@@ -54,8 +54,8 @@ tasks:
     why_it_matters: The product benchmark is current and can change quickly.
     owner_role: AUTHOR
     assigned_model: "Codex (runtime model identifier not exposed)"
-    reviewer_model: TO_ASSIGN_INDEPENDENT
-    status: READY_FOR_REVIEW
+    reviewer_model: "Claude Fable 5 (claude-fable-5) via Claude Code — independent challenger"
+    status: CHANGES_REQUESTED
     priority: P0
     dependencies:
       - S0-001
@@ -91,7 +91,12 @@ tasks:
       - 01_governance/SOURCE_LEDGER.csv
       - 99_handoffs/completed/S0-002_handoff.yaml
     author_completed_at: "2026-08-21T12:58:08-04:00"
-    verification_status: NOT_INDEPENDENTLY_REVIEWED
+    challenger_evidence:
+      - 99_handoffs/completed/S0-002_challenger_review.yaml
+    challenger_completed_at: "2026-08-21T16:40:00-04:00"
+    challenger_verdict: CHANGES_REQUESTED
+    challenger_finding_counts: "BLOCKER 0, HIGH 3, MEDIUM 2, LOW 2, NOTE 7"
+    verification_status: CHALLENGER_REVIEWED_CHANGES_REQUESTED_NOT_VERIFIED
 
   - task_id: S0-003
     title: Verify current model access and design project benchmark
