@@ -85,6 +85,8 @@ Going forward:
 
 This note records scope, not a new decision:
 
+- Provenance: written in the initial Stage 0 author batch under S0-001's `DECISION_LOG.md` allowance on behalf of the S0-002 and S0-003 research outcomes; attribution was clarified during F-S0-001-02 remediation. It changed no D-00x status.
+
 - Current primary-source research does not change D-001 through D-005.
 - D-006, D-007, and D-008 remain provisional founder hypotheses. No customer evidence was added by Stage 0.
 - The reference product's documented shared-computer boundary is evidence about Grok Bot, not a selected architecture for this project.

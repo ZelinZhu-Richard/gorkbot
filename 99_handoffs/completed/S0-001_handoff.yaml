@@ -73,9 +73,11 @@ known_limitations:
   - "FILE_MANIFEST.json is a generated inventory aid, not the repository source of truth, and does not list itself."
   - "Filesystem timestamps were not treated as evidence of semantic freshness; freshness below comes from file content, base commit context, and primary-source reopening requirements."
   - "Independent challenger and verifier reviews have not run."
+  - "Historical timestamp clarification added during F-S0-001-03 remediation: the three initial Stage 0 handoffs used one batch-written completed_at value and did not capture real per-task started_at values. The timestamps were not fabricated, but they do not establish task duration or ordering. Future handoffs, beginning with the S0-001 fixer handoff, must record distinct non-null start and completion times."
 unverified_claims:
   - "Founder-reported hardware and product subscriptions were not independently inspected."
   - "Prepared public-product and model claims were not treated as verified by this inventory task."
+  - "Historical author-model clarification added during F-S0-001-04 remediation: the authoring surface is recorded as Codex, but the exact runtime model identifier was not exposed and the review request's GPT-5.6 Sol description is not founder-confirmed in the repository."
 blockers:
   - grok_bot_account_build_plan_region_and_rollout_missing
   - funded_model_api_accounts_quotas_and_budget_missing
@@ -86,7 +88,12 @@ repository_commit_or_patch: "Uncommitted Stage 0 working tree based on 4d99fff94
 
 inventory_scope:
   base_commit: 4d99fff945a796d22fbe2ab7ec43e1310425ab71
+  reviewed_commit: f151f28
+  fix_baseline_commit: 9a2900ad11b92c69404193feae88d5aac1734242
   tracked_input_file_count: 34
+  reviewed_commit_file_count: 39
+  fix_baseline_tracked_file_count: 42
+  combined_inventory_file_count_including_uncommitted_fixer_handoff: 43
   original_evidence_file_count: 0
   application_source_file_count: 0
   customer_evidence_record_count: 0
@@ -100,6 +107,10 @@ authority_classes:
   PREPARED_FOUNDER_INPUT: "Structured founder statement, proposal, template, queue, or draft; not validated customer or product evidence."
   PRIMARY_EVIDENCE_CONTAINER_INSTRUCTION: "Explains where scrubbed originals belong; the README itself is not an original observation."
   REPOSITORY_METADATA: "Navigation, tooling, manifest, or handoff scaffolding; not product/customer evidence."
+  AUTHOR_OUTPUT_CHANGES_REQUESTED_NOT_VERIFIED: "Author-created deliverable with an independent challenger verdict of CHANGES_REQUESTED; not verifier-approved evidence."
+  AUTHOR_FACTUAL_HANDOFF_NOT_VERIFICATION: "Author process and evidence record; factual where reproducible, but not proof of independent review or acceptance."
+  INDEPENDENT_CHALLENGER_REVIEW_NOT_VERIFIER_DECISION: "Independent challenger record and finding evidence; not a verifier acceptance decision."
+  AUTHOR_FIXER_HANDOFF_PENDING_INDEPENDENT_REVIEW: "Author's factual fix record awaiting independent review; not proof that findings or acceptance criteria are verified."
 
 repository_inventory:
   - path: .gitignore
@@ -273,6 +284,60 @@ repository_inventory:
     freshness: CURRENT_AT_BASE_COMMIT_2026_08_21
     evidence_or_assumption: NEITHER
 
+repository_inventory_addendum_at_fix_baseline:
+  - path: 02_research/GROK_BOT_BASELINE_2026-08-21.md
+    role: sourced_reference_product_feature_and_evidence_baseline
+    authority: AUTHOR_OUTPUT_CHANGES_REQUESTED_NOT_VERIFIED
+    freshness: AUTHORED_AT_F151F28_CHANGES_REQUESTED_AT_874AE4B_REFRESH_REQUIRED
+    evidence_or_assumption: DOCUMENTATION_DERIVED_BASELINE_NOT_BLACK_BOX_OBSERVATION
+  - path: 06_evaluation/MODEL_ROLE_BENCHMARK_PLAN.md
+    role: project_specific_model_role_evaluation_plan
+    authority: AUTHOR_OUTPUT_CHANGES_REQUESTED_NOT_VERIFIED
+    freshness: AUTHORED_AT_F151F28_CHANGES_REQUESTED_AT_B8735FB_REVISION_PENDING
+    evidence_or_assumption: PLAN_ONLY_ZERO_BENCHMARK_RESULTS
+  - path: 99_handoffs/completed/S0-001_handoff.yaml
+    role: initial_s0_001_author_inventory_and_process_record_with_fixer_addendum
+    authority: AUTHOR_FACTUAL_HANDOFF_NOT_VERIFICATION
+    freshness: AUTHORED_AT_F151F28_CHALLENGED_AT_43DAAD7_FIXER_ADDENDUM_UNCOMMITTED_2026_08_21
+    evidence_or_assumption: FACTUAL_HANDOFF_AND_INVENTORY_RECORD_NOT_PROOF_OF_ACCEPTANCE
+  - path: 99_handoffs/completed/S0-002_handoff.yaml
+    role: initial_s0_002_author_research_handoff
+    authority: AUTHOR_FACTUAL_HANDOFF_NOT_VERIFICATION
+    freshness: AUTHORED_AT_F151F28_CHANGES_REQUESTED_AT_874AE4B
+    evidence_or_assumption: FACTUAL_HANDOFF_NOT_PROOF_OF_RESEARCH_ACCEPTANCE
+  - path: 99_handoffs/completed/S0-003_handoff.yaml
+    role: initial_s0_003_author_model_research_and_benchmark_handoff
+    authority: AUTHOR_FACTUAL_HANDOFF_NOT_VERIFICATION
+    freshness: AUTHORED_AT_F151F28_CHANGES_REQUESTED_AT_B8735FB
+    evidence_or_assumption: FACTUAL_HANDOFF_NOT_PROOF_OF_MODEL_OR_BENCHMARK_ACCEPTANCE
+  - path: 99_handoffs/completed/S0-001_challenger_review.yaml
+    role: independent_s0_001_challenger_review_and_findings
+    authority: INDEPENDENT_CHALLENGER_REVIEW_NOT_VERIFIER_DECISION
+    freshness: REVIEW_COMMITTED_AT_43DAAD7_FIX_PASS_PENDING_REVIEW_2026_08_21
+    evidence_or_assumption: REPRODUCIBLE_REVIEW_EVIDENCE_AND_CHALLENGER_JUDGMENT_NOT_VERIFIER_ACCEPTANCE
+  - path: 99_handoffs/completed/S0-002_challenger_review.yaml
+    role: independent_s0_002_challenger_review_and_findings
+    authority: INDEPENDENT_CHALLENGER_REVIEW_NOT_VERIFIER_DECISION
+    freshness: REVIEW_COMMITTED_AT_874AE4B_FIX_NOT_STARTED
+    evidence_or_assumption: REPRODUCIBLE_REVIEW_EVIDENCE_AND_CHALLENGER_JUDGMENT_NOT_VERIFIER_ACCEPTANCE
+  - path: 99_handoffs/completed/S0-003_challenger_review.yaml
+    role: independent_s0_003_challenger_review_and_findings
+    authority: INDEPENDENT_CHALLENGER_REVIEW_NOT_VERIFIER_DECISION
+    freshness: REVIEW_COMMITTED_AT_B8735FB_FIX_NOT_STARTED
+    evidence_or_assumption: REPRODUCIBLE_REVIEW_EVIDENCE_AND_CHALLENGER_JUDGMENT_NOT_VERIFIER_ACCEPTANCE
+  - path: 99_handoffs/completed/S0-001_fixer_handoff.yaml
+    role: s0_001_fixer_changes_finding_resolutions_and_verification_record
+    authority: AUTHOR_FIXER_HANDOFF_PENDING_INDEPENDENT_REVIEW
+    freshness: UNCOMMITTED_FIXER_OUTPUT_2026_08_21_PENDING_REVIEW
+    evidence_or_assumption: FACTUAL_FIX_RECORD_NOT_PROOF_OF_INDEPENDENT_ACCEPTANCE
+
+fixer_attribution_addendum:
+  finding_id: F-S0-001-02
+  added_at: "2026-08-21T18:00:57-04:00"
+  decision_log_change: "The Stage 0 author reconciliation note was written in the initial author batch under S0-001's DECISION_LOG.md allowance on behalf of S0-002 and S0-003 research outcomes."
+  effect: "The note changed no D-00x status and selected no architecture, customer wedge, MVP workflow, or model role."
+  audit_treatment: "This attribution supplements the original handoff; it does not rewrite the original files_modified list or pretend the provenance was recorded before challenger review."
+
 missing_input_list:
   priority_0:
     - "Eligible Grok Bot account, installed application build, plan, region, enabled rollout controls, and safe test environment."
@@ -282,5 +347,9 @@ missing_input_list:
     - "Independent challenger and verifier assignments for Stage 0."
   required_before_stage_1_gate:
     - "Actual customer interviews, workflow artifacts, pilot willingness, and willingness-to-pay evidence; none is currently present."
+  required_before_architecture_or_production:
+    - "Review provider terms, data use, rate limits, reselling restrictions, and commercial-deployment rights; cross-reference MAG-005 for the unresolved DeepSeek license, hosting, and commercial-deployment review."
+    - "Record which cloud providers are actually available to the founder and which account, region, quota, and budget constraints apply."
+    - "Decide whether customers bring provider keys, the SaaS resells inference, or both; cross-reference MAG-006 because this remains an input to billing and credential architecture."
   absent_but_not_currently_required:
     - "Prior reusable application code, UI screenshots/recordings, external papers, and existing research reports."

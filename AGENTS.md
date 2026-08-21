@@ -58,4 +58,4 @@ For external actions, reread or otherwise verify the resulting external state.
 
 ## Handoff
 
-After a task, update the task registry and create a factual handoff under `99_handoffs/completed/` using the schema in the master prompt. Do not claim production readiness without production evidence.
+After a task, update the task registry and create a factual handoff under `99_handoffs/completed/` using `99_handoffs/HANDOFF_TEMPLATE.yaml`. Do not claim production readiness without production evidence.
