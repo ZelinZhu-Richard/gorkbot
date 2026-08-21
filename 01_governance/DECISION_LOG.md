@@ -63,6 +63,24 @@
 - Decision: A web control plane may precede native desktop and mobile applications.
 - Evidence required: whether the first workflow requires local takeover, deep OS integration, or mobile supervision.
 
+## D-009: S0-003 out-of-scope file modification
+
+- Date: 2026-08-21
+- Status: CONFIRMED
+- Decision type: PROCESS_EXCEPTION
+- Founder decision: Do not retroactively modify S0-003's `allowed_files_to_change`.
+
+S0-003 modified governance files outside its originally authorized file scope. The modifications were relevant to the task, but the process deviation should remain visible rather than being erased by retroactively broadening the task definition.
+
+The existing changes are accepted as a one-time documented exception.
+
+Going forward:
+
+1. A task must not modify files outside `allowed_files_to_change`.
+2. If additional files become necessary, the task scope must be amended before modifying them.
+3. The reason for the scope amendment must be recorded.
+4. Reviewers should flag unauthorized changes even when the content itself is correct.
+
 ## Stage 0 author reconciliation note — 2026-08-21
 
 This note records scope, not a new decision:
