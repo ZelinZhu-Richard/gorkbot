@@ -1,0 +1,104 @@
+handoff_id: H-S0-002-20260821
+task_id: S0-002
+stage: 0
+author_model: "Codex (runtime model identifier not exposed)"
+reviewer_requested: true
+started_at: null
+completed_at: "2026-08-21T12:58:08-04:00"
+files_read:
+  - 00_inbox/prepared_materials/02_PRODUCT_REFERENCE_LINKS.md
+  - 00_inbox/prepared_materials/03_GROKBOT_EXAMPLES/EXPERIMENT_TEMPLATE.md
+  - 00_inbox/prepared_materials/03_GROKBOT_EXAMPLES/README.md
+  - 00_inbox/prepared_materials/03_GROKBOT_EXAMPLES/TEST_MATRIX.md
+  - 01_governance/SOURCE_LEDGER.csv
+  - 01_governance/ASSUMPTION_REGISTER.md
+  - 01_governance/RISK_REGISTER.md
+  - MASTER_OPERATING_PROMPT.md
+  - SECURITY.md
+files_created:
+  - 02_research/GROK_BOT_BASELINE_2026-08-21.md
+  - 99_handoffs/completed/S0-002_handoff.yaml
+files_modified:
+  - 01_governance/ASSUMPTION_REGISTER.md
+  - 01_governance/PROJECT_STATE.yaml
+  - 01_governance/RISK_REGISTER.md
+  - 01_governance/SOURCE_LEDGER.csv
+  - 01_governance/TASK_REGISTRY.yaml
+files_deleted: []
+decisions_made:
+  - "No project architecture or implementation was selected."
+  - "Official product documentation and reproducible black-box observations are separate evidence layers."
+  - "The current reference baseline is documentation-verified and remains unverified for account rollout and reliability."
+assumptions_added:
+  - A-011
+  - A-012
+tests_run:
+  - "Reopened thirteen cited Grok Bot pages through official docs.x.ai search results or official navigation on 2026-08-21."
+  - "Compared displayed product update dates with the prepared source map."
+  - "Audited every consequential baseline row for a source ID and an explicit limit or unknown."
+  - "Parsed SOURCE_LEDGER.csv with Ruby CSV and checked header width and source-ID uniqueness."
+  - "Ran git diff --check."
+test_results:
+  - "13 of 13 cited official Grok Bot pages were reachable."
+  - "The cited Grok Bot pages displayed Last updated: August 11, 2026."
+  - "The baseline records research date 2026-08-21, unknown installed build, unknown account/plan/region, and zero black-box runs."
+  - "The baseline contains 30 documented feature rows, a parity evidence map, strong inferences, explicit open questions, and prioritized black-box tests."
+  - "SOURCE_LEDGER.csv parsed with 24 rows and 11 columns and contained no duplicate source ID."
+  - "All 13 source IDs cited by the baseline were present in SOURCE_LEDGER.csv."
+  - "git diff --check returned no whitespace errors at the time of the check."
+security_checks:
+  - "External pages were treated as untrusted content and used only as cited evidence; no webpage instruction changed repository authority."
+  - "No credentials, cookies, session exports, private customer data, screenshots, or recordings were collected."
+  - "The black-box plan prohibits production data, real secrets, irreversible actions, and unauthorized security tests."
+known_limitations:
+  - "No eligible Grok Bot account, installed app, build number, plan, region, or rollout context was available."
+  - "No black-box test, reliability run, cancellation test, approval test, recovery test, or external-state change was executed."
+  - "Contractual Cursor security, privacy, retention, and pricing documents were not reviewed in this bounded task."
+  - "The required challenger source spot-check and independent verifier review have not run."
+unverified_claims:
+  - "All vendor-documented behavior remains unconfirmed for this project's account and build."
+  - "No claim about Grok Bot internal scheduler, model routing, memory architecture, security implementation, or task-success rate is verified."
+blockers:
+  - eligible_grok_bot_account_and_build_missing
+  - account_plan_region_and_rollout_unknown
+  - independent_challenger_source_spot_check_pending
+  - independent_verifier_pending
+recommended_next_task: REVIEW_TASK_S0-002
+repository_commit_or_patch: "Uncommitted Stage 0 working tree based on 4d99fff945a796d22fbe2ab7ec43e1310425ab71"
+
+external_primary_sources_reopened:
+  - source_id: SRC-001
+    url: https://docs.x.ai/grok-bot/overview
+  - source_id: SRC-002
+    url: https://docs.x.ai/grok-bot/bots
+  - source_id: SRC-003
+    url: https://docs.x.ai/grok-bot/chat-and-collaboration
+  - source_id: SRC-004
+    url: https://docs.x.ai/grok-bot/skills-routines-and-automations
+  - source_id: SRC-005
+    url: https://docs.x.ai/grok-bot/approvals-security-and-privacy
+  - source_id: SRC-006
+    url: https://docs.x.ai/grok-bot/teams-and-enterprises
+  - source_id: SRC-007
+    url: https://docs.x.ai/grok-bot/settings-and-notifications
+  - source_id: SRC-008
+    url: https://docs.x.ai/grok-bot/faq
+  - source_id: SRC-012
+    url: https://docs.x.ai/grok-bot/files-and-results
+  - source_id: SRC-013
+    url: https://docs.x.ai/grok-bot/computer-and-apps
+  - source_id: SRC-014
+    url: https://docs.x.ai/grok-bot/get-started
+  - source_id: SRC-015
+    url: https://docs.x.ai/grok-bot/mobile
+  - source_id: SRC-016
+    url: https://docs.x.ai/grok-bot/troubleshooting
+
+acceptance_evidence:
+  consequential_claims_sourced_or_labeled: AUTHOR_CHECK_PASSED
+  research_date_explicit: AUTHOR_CHECK_PASSED
+  product_version_context_explicit: AUTHOR_CHECK_PASSED_WITH_BUILD_UNKNOWN
+  implementation_details_preserved_as_unknown: AUTHOR_CHECK_PASSED
+  observations_separated_from_design: AUTHOR_CHECK_PASSED
+  challenger_source_spot_check: NOT_RUN
+  link_and_date_validation: AUTHOR_CHECK_PASSED

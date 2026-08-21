@@ -4,30 +4,39 @@ repository: ZelinZhu-Richard/gorkbot
 source_of_truth: repository
 current_stage: 0
 current_stage_name: intake_governance_reference_research
-current_stage_status: READY
+current_stage_status: AUTHOR_WORK_READY_FOR_REVIEW
 current_gate: stage_0_gate
 stage_gate_status: NOT_EVALUATED
-author_model: null
-challenger_model: null
-verifier_model: null
-active_task_ids: []
-ready_task_ids:
+author_model: "Codex (runtime model identifier not exposed)"
+challenger_model: TO_ASSIGN_INDEPENDENT_REVIEWER
+verifier_model: TO_ASSIGN_INDEPENDENT_VERIFIER
+active_task_ids:
   - S0-001
   - S0-002
   - S0-003
+ready_task_ids: []
 completed_task_ids: []
-blocked_task_ids: []
+blocked_task_ids:
+  - S0-004
+  - S0-005
 current_architecture_version: null
 current_prd_version: null
 current_code_commit: null
+working_tree_base_commit: 4d99fff945a796d22fbe2ab7ec43e1310425ab71
 last_verified_checkpoint: null
 unresolved_p0_questions:
   - first_customer_segment
   - first_mvp_workflow
   - prototype_budget
-  - funded_api_access
-next_recommended_action: "Run MODE: INITIALIZE with a planning model, starting from S0-001."
-updated_at: "2026-08-21T00:00:00-04:00"
+  - funded_api_access_and_account_quotas
+  - grok_bot_eligible_account_build_and_rollout
+  - independent_stage_0_challenger_and_verifier
+next_recommended_action: "Run MODE: REVIEW_TASK_S0-001 with an independent challenger; then review S0-002 and S0-003 before evaluating the Stage 0 gate."
+updated_at: "2026-08-21T12:58:08-04:00"
 notes:
   - "Prepared materials are structured founder inputs, not validated customer evidence."
-  - "No application implementation should begin before Stage 0 and Stage 1 gates."
+  - "S0-001, S0-002, and S0-003 have author artifacts and handoffs but are not independently reviewed or verified."
+  - "The Grok Bot baseline is based on current official documentation; no product account, installed build, or black-box observations were available."
+  - "Public model catalogs and prices were verified; funded account access and API smoke tests were not."
+  - "No application implementation, final architecture, customer wedge, or permanent model-role assignment was created."
+  - "Stage 1 was not executed because S1-001 remains BACKLOG and Stage 0 review is pending."

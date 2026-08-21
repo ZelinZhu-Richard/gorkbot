@@ -62,3 +62,12 @@
 - Status: PROVISIONAL
 - Decision: A web control plane may precede native desktop and mobile applications.
 - Evidence required: whether the first workflow requires local takeover, deep OS integration, or mobile supervision.
+
+## Stage 0 author reconciliation note — 2026-08-21
+
+This note records scope, not a new decision:
+
+- Current primary-source research does not change D-001 through D-005.
+- D-006, D-007, and D-008 remain provisional founder hypotheses. No customer evidence was added by Stage 0.
+- The reference product's documented shared-computer boundary is evidence about Grok Bot, not a selected architecture for this project.
+- No final architecture, MVP workflow, customer wedge, or model-role assignment was selected.

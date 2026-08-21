@@ -1,89 +1,416 @@
-registry_status: INITIAL_DRAFT
-verified_on: "2026-08-21"
-warning: "Founder access and public availability do not prove funded API access, exact identifiers, quotas, or suitability. Reverify before use."
+registry_status: AUTHOR_BASELINE_READY_FOR_REVIEW
+public_source_verified_on: "2026-08-21"
+account_access_verified_on: null
+benchmark_plan: 06_evaluation/MODEL_ROLE_BENCHMARK_PLAN.md
+verification_scope:
+  - public_product_identity
+  - public_api_availability
+  - public_model_identifiers
+  - public_context_and_output_limits
+  - public_list_pricing
+  - selected_public_capability_and_policy_constraints
+not_verified_by_this_record:
+  - founder_account_login_or_subscription_state
+  - funded_api_access
+  - account_model_entitlements
+  - account_rate_limits_or_quotas
+  - negotiated_pricing
+  - actual_api_responses_or_served_versions
+  - benchmark_performance
+warning: "Founder-reported consumer access and public catalog availability do not prove funded API access, account entitlement, production quotas, legal suitability, or benchmark fitness. No credentials were inspected or stored."
+
+personal_product_access:
+  - product: ChatGPT Pro
+    provider: OpenAI
+    evidence_basis: founder_reported_in_00_inbox_prepared_materials
+    access_status: REPORTED_NOT_INDEPENDENTLY_VERIFIED
+    production_api_access_inference: NONE
+  - product: Codex
+    provider: OpenAI
+    evidence_basis: founder_reported_in_00_inbox_prepared_materials
+    access_status: REPORTED_NOT_INDEPENDENTLY_VERIFIED
+    exact_product_model_and_usage_limits: NOT_VERIFIED
+    production_api_access_inference: NONE
+  - product: Claude Max
+    provider: Anthropic
+    evidence_basis: founder_reported_in_00_inbox_prepared_materials
+    access_status: REPORTED_NOT_INDEPENDENTLY_VERIFIED
+    production_api_access_inference: NONE
+  - product: Claude Code
+    provider: Anthropic
+    evidence_basis: founder_reported_in_00_inbox_prepared_materials
+    access_status: REPORTED_NOT_INDEPENDENTLY_VERIFIED
+    exact_product_model_and_usage_limits: NOT_VERIFIED
+    production_api_access_inference: NONE
+  - product: DeepSeek consumer_or_developer_access
+    provider: DeepSeek
+    evidence_basis: founder_reported_in_00_inbox_prepared_materials
+    access_status: REPORTED_NOT_INDEPENDENTLY_VERIFIED
+    exact_surface_and_model: NOT_VERIFIED
+    production_api_access_inference: NONE
+
+provider_account_access:
+  - provider: OpenAI
+    public_api_catalog_status: DOCUMENTED
+    funded_account_status: UNKNOWN
+    candidate_model_entitlements: UNKNOWN
+    account_rate_tier: UNKNOWN
+    minimal_authorized_api_test: NOT_RUN
+  - provider: Anthropic
+    public_api_catalog_status: DOCUMENTED
+    funded_account_status: UNKNOWN
+    candidate_model_entitlements: UNKNOWN
+    account_rate_tier: UNKNOWN
+    minimal_authorized_api_test: NOT_RUN
+  - provider: DeepSeek
+    public_api_catalog_status: DOCUMENTED
+    funded_account_status: UNKNOWN
+    candidate_model_entitlements: UNKNOWN
+    account_rate_tier: UNKNOWN
+    minimal_authorized_api_test: NOT_RUN
+
 models:
   - logical_name: openai_gpt_5_6_sol
     provider: OpenAI
     family: GPT-5.6
     tier: Sol
-    founder_reported_access: ChatGPT Pro
-    public_availability_status: officially_described_for_chatgpt_codex_api
-    exact_api_model_id: TO_VERIFY
+    public_api_availability_status: DOCUMENTED_CURRENT_CATALOG
+    founder_account_api_access: NOT_VERIFIED
+    exact_api_model_id: gpt-5.6-sol
+    additional_aliases:
+      - gpt-5.6
+    dated_snapshot_or_served_version: NOT_LISTED_BY_REVIEWED_PUBLIC_MODEL_PAGE
+    public_specs:
+      context_window_tokens: 1050000
+      max_output_tokens: 128000
+      knowledge_cutoff: "2026-02-16"
+      input_modalities:
+        - text
+        - image
+      output_modalities:
+        - text
+      function_calling: SUPPORTED
+      structured_outputs: SUPPORTED
+      streaming: SUPPORTED
+      responses_api: SUPPORTED
+      computer_use: SUPPORTED_VIA_RESPONSES_API
+      fine_tuning: NOT_SUPPORTED
+      reasoning_effort:
+        - none
+        - low
+        - medium
+        - high
+        - xhigh
+        - max
+    public_list_pricing_usd_per_1m_tokens:
+      standard_short_context:
+        input: 5.00
+        cached_input: 0.50
+        cache_write: 6.25
+        output: 30.00
+      long_context_over_272000_input_tokens:
+        input: 10.00
+        cached_input: 1.00
+        cache_write: 12.50
+        output: 45.00
+      note: "Tool calls and alternate service tiers can add or change charges; account pricing is unverified."
+    public_rate_limit_context: "Usage-tier dependent; free tier not supported. Reviewed page lists Tier 1 at 500 RPM and 500000 TPM, but the founder's tier is unknown."
     proposed_roles:
       - PLANNER
       - CODER
       - VERIFIER
       - INTEGRATOR
+    role_assignment_status: HYPOTHESIS_ONLY
     benchmark_status: NOT_RUN
-    source: https://openai.com/index/gpt-5-6/
+    source_ids:
+      - SRC-009
+      - SRC-017
+      - SRC-020
 
   - logical_name: openai_gpt_5_6_terra
     provider: OpenAI
     family: GPT-5.6
     tier: Terra
-    founder_reported_access: TO_VERIFY
-    public_availability_status: officially_described_for_chatgpt_codex_api
-    exact_api_model_id: TO_VERIFY
+    public_api_availability_status: DOCUMENTED_CURRENT_CATALOG
+    founder_account_api_access: NOT_VERIFIED
+    exact_api_model_id: gpt-5.6-terra
+    additional_aliases: []
+    dated_snapshot_or_served_version: NOT_LISTED_BY_REVIEWED_PUBLIC_MODEL_PAGE
+    public_specs:
+      context_window_tokens: 1050000
+      max_output_tokens: 128000
+      knowledge_cutoff: "2026-02-16"
+      input_modalities:
+        - text
+        - image
+      output_modalities:
+        - text
+      function_calling: SUPPORTED
+      structured_outputs: SUPPORTED
+      streaming: SUPPORTED
+      responses_api: SUPPORTED
+      computer_use: SUPPORTED_VIA_RESPONSES_API
+      fine_tuning: NOT_SUPPORTED
+      reasoning_effort:
+        - none
+        - low
+        - medium
+        - high
+        - xhigh
+        - max
+    public_list_pricing_usd_per_1m_tokens:
+      standard_short_context:
+        input: 2.00
+        cached_input: 0.20
+        cache_write: 2.50
+        output: 12.00
+      long_context_over_272000_input_tokens:
+        input: 4.00
+        cached_input: 0.40
+        cache_write: 5.00
+        output: 18.00
+      note: "Tool calls and alternate service tiers can add or change charges; account pricing is unverified."
+    public_rate_limit_context: "Usage-tier dependent; free tier not supported. Reviewed page lists Tier 1 at 500 RPM and 500000 TPM, but the founder's tier is unknown."
     proposed_roles:
       - EXECUTOR
       - CODER
       - SUMMARIZER
+    role_assignment_status: HYPOTHESIS_ONLY
     benchmark_status: NOT_RUN
-    source: https://openai.com/index/gpt-5-6/
+    source_ids:
+      - SRC-009
+      - SRC-018
+      - SRC-020
 
   - logical_name: openai_gpt_5_6_luna
     provider: OpenAI
     family: GPT-5.6
     tier: Luna
-    founder_reported_access: TO_VERIFY
-    public_availability_status: officially_described_for_chatgpt_codex_api
-    exact_api_model_id: TO_VERIFY
+    public_api_availability_status: DOCUMENTED_CURRENT_CATALOG
+    founder_account_api_access: NOT_VERIFIED
+    exact_api_model_id: gpt-5.6-luna
+    additional_aliases: []
+    dated_snapshot_or_served_version: NOT_LISTED_BY_REVIEWED_PUBLIC_MODEL_PAGE
+    public_specs:
+      context_window_tokens: 1050000
+      max_output_tokens: 128000
+      knowledge_cutoff: "2026-02-16"
+      input_modalities:
+        - text
+        - image
+      output_modalities:
+        - text
+      function_calling: SUPPORTED
+      structured_outputs: SUPPORTED
+      streaming: SUPPORTED
+      responses_api: SUPPORTED
+      computer_use: SUPPORTED_VIA_RESPONSES_API
+      fine_tuning: NOT_SUPPORTED
+      reasoning_effort:
+        - none
+        - low
+        - medium
+        - high
+        - xhigh
+        - max
+    public_list_pricing_usd_per_1m_tokens:
+      standard_short_context:
+        input: 0.20
+        cached_input: 0.02
+        cache_write: 0.25
+        output: 1.20
+      long_context_over_272000_input_tokens:
+        input: 0.40
+        cached_input: 0.04
+        cache_write: 0.50
+        output: 1.80
+      note: "Tool calls and alternate service tiers can add or change charges; account pricing is unverified."
+    public_rate_limit_context: "Usage-tier dependent; free tier not supported. Reviewed page lists Tier 1 at 500 RPM and 500000 TPM, but the founder's tier is unknown."
     proposed_roles:
       - ROUTER
       - MEMORY_EXTRACTOR
       - STRUCTURED_EXECUTOR
+    role_assignment_status: HYPOTHESIS_ONLY
     benchmark_status: NOT_RUN
-    source: https://openai.com/index/gpt-5-6/
+    source_ids:
+      - SRC-009
+      - SRC-019
+      - SRC-020
 
   - logical_name: anthropic_claude_fable_5
     provider: Anthropic
     family: Claude
     tier: Fable 5
-    founder_reported_access: Claude Max
-    public_availability_status: officially_redeployed_globally_subject_to_plan_rules
-    exact_api_model_id: TO_VERIFY
+    public_api_availability_status: DOCUMENTED_GENERALLY_AVAILABLE
+    founder_account_api_access: NOT_VERIFIED
+    exact_api_model_id: claude-fable-5
+    additional_aliases:
+      - claude-fable-5
+    dated_snapshot_or_served_version: "Public docs describe claude-fable-5 as the Claude API ID and alias and state that every Claude model ID is pinned; no date suffix is shown."
+    public_specs:
+      context_window_tokens: 1000000
+      max_output_tokens: 128000
+      reliable_knowledge_cutoff: "2026-01"
+      input_modalities:
+        - text
+        - image
+      output_modalities:
+        - text
+      tool_use: SUPPORTED_VIA_MESSAGES_API
+      structured_outputs: TO_VERIFY_AND_BENCHMARK
+      adaptive_thinking: ALWAYS_ON
+      manual_extended_thinking: NOT_SUPPORTED
+      default_effort: high
+      classifier_refusal_behavior: "A classifier refusal can return HTTP 200 with stop_reason refusal; integration handling and fallback must be tested."
+      data_retention_constraint: "Reviewed migration guidance states 30-day retention is required and ZDR is unavailable for this model."
+    public_list_pricing_usd_per_1m_tokens:
+      input: 10.00
+      five_minute_cache_write: 12.50
+      one_hour_cache_write: 20.00
+      cache_hit_or_refresh: 1.00
+      output: 50.00
+      batch_input: 5.00
+      batch_output: 25.00
+      note: "Partner-cloud, region, usage-credit, and negotiated prices can differ; founder account pricing is unverified."
+    public_rate_limit_context: "Account and service-tier dependent; no founder account limit was verified."
     proposed_roles:
       - PLANNER
       - CHALLENGER
       - CODER
       - VERIFIER
+    role_assignment_status: HYPOTHESIS_ONLY
     benchmark_status: NOT_RUN
-    source: https://www.anthropic.com/news/redeploying-fable-5
+    source_ids:
+      - SRC-010
+      - SRC-021
+      - SRC-022
+      - SRC-023
 
   - logical_name: deepseek_v4_pro
     provider: DeepSeek
     family: DeepSeek-V4
     tier: Pro
-    founder_reported_access: DeepSeek access
-    public_availability_status: officially_documented_api_family
+    public_api_availability_status: DOCUMENTED_CURRENT_API
+    founder_account_api_access: NOT_VERIFIED
     exact_api_model_id: deepseek-v4-pro
+    additional_aliases: []
+    served_or_product_version_on_public_pricing_page: DeepSeek-V4-Pro-0813
+    public_specs:
+      context_window_tokens: 1000000
+      max_output_tokens: 384000
+      thinking_modes:
+        - non_thinking
+        - thinking_default
+      json_output: SUPPORTED
+      tool_calls: SUPPORTED
+      responses_api: SUPPORTED
+      anthropic_compatible_api: SUPPORTED
+      vision: "Not established for this alias by the reviewed table; a separate deepseek-v4-flash-vision-exp product is listed."
+      open_weights_status: "Official V4 release page links an open-weight collection; license and production-deployment terms were not reviewed in this task."
+    public_list_pricing_usd_per_1m_tokens:
+      off_peak:
+        cache_hit_input: 0.022
+        cache_miss_input: 0.66
+        output: 1.98
+      peak:
+        cache_hit_input: 0.044
+        cache_miss_input: 1.32
+        output: 3.96
+      peak_hours_utc:
+        - "01:00-04:00"
+        - "06:00-10:00"
+      note: "Prices can change and depend on the served alias version; founder balance and billing are unverified."
+    public_concurrency_limit: 500
     proposed_roles:
       - PLANNER
       - LONG_CONTEXT_SYNTHESIS
       - EXECUTOR
+    role_assignment_status: HYPOTHESIS_ONLY
     benchmark_status: NOT_RUN
-    source: https://api-docs.deepseek.com/updates
+    source_ids:
+      - SRC-011
+      - SRC-024
 
   - logical_name: deepseek_v4_flash
     provider: DeepSeek
     family: DeepSeek-V4
     tier: Flash
-    founder_reported_access: TO_VERIFY
-    public_availability_status: officially_documented_api_family
+    public_api_availability_status: DOCUMENTED_CURRENT_API
+    founder_account_api_access: NOT_VERIFIED
     exact_api_model_id: deepseek-v4-flash
+    additional_aliases: []
+    served_or_product_version_on_public_pricing_page: DeepSeek-V4-Flash-0731
+    public_specs:
+      context_window_tokens: 1000000
+      max_output_tokens: 384000
+      thinking_modes:
+        - non_thinking
+        - thinking_default
+      json_output: SUPPORTED
+      tool_calls: SUPPORTED
+      responses_api: SUPPORTED
+      anthropic_compatible_api: SUPPORTED
+      vision: "Not established for this alias by the reviewed table; a separate deepseek-v4-flash-vision-exp product is listed."
+      open_weights_status: "Official V4 release page links an open-weight collection; license and production-deployment terms were not reviewed in this task."
+    public_list_pricing_usd_per_1m_tokens:
+      off_peak:
+        cache_hit_input: 0.007
+        cache_miss_input: 0.22
+        output: 0.66
+      peak:
+        cache_hit_input: 0.014
+        cache_miss_input: 0.44
+        output: 1.32
+      peak_hours_utc:
+        - "01:00-04:00"
+        - "06:00-10:00"
+      note: "Prices can change and depend on the served alias version; founder balance and billing are unverified."
+    public_concurrency_limit: 2500
     proposed_roles:
       - ROUTER
       - STRUCTURED_EXECUTOR
       - MEMORY_EXTRACTOR
+    role_assignment_status: HYPOTHESIS_ONLY
     benchmark_status: NOT_RUN
-    source: https://api-docs.deepseek.com/updates
+    source_ids:
+      - SRC-011
+      - SRC-024
+
+access_gaps:
+  - gap_id: MAG-001
+    gap: "No provider funded API account, balance, entitlement, or minimal authorized call is recorded."
+    blocks:
+      - benchmark_execution
+      - production_provider_selection
+  - gap_id: MAG-002
+    gap: "Exact founder organization rate limits, quotas, regional availability, and negotiated prices are unknown."
+    blocks:
+      - throughput_and_cost_baseline
+  - gap_id: MAG-003
+    gap: "Prototype monthly model and infrastructure budget is not confirmed."
+    blocks:
+      - benchmark_replication_budget
+  - gap_id: MAG-004
+    gap: "Required retention, training, residency, and data-classification policy is not selected; Fable 5's documented 30-day retention requirement may be material."
+    blocks:
+      - sensitive_fixture_use
+      - production_suitability
+  - gap_id: MAG-005
+    gap: "DeepSeek V4 open-weight license, hosting requirements, and commercial-deployment terms were not reviewed."
+    blocks:
+      - local_or_self_hosted_candidate_status
+  - gap_id: MAG-006
+    gap: "Whether customers bring provider keys, the platform resells inference, or both is undecided."
+    blocks:
+      - billing_and_credential_architecture
+
+benchmark_policy:
+  role_assignments_locked: false
+  provider_reputation_is_evidence: false
+  exact_model_and_config_required_per_run: true
+  measure_verified_success: true
+  measure_false_completion: true
+  measure_cost_per_verified_success: true
+  measure_latency_distribution: true
+  measure_first_pass_structured_output: true
+  require_independent_review_for_consequential_roles: true

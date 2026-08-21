@@ -5,9 +5,9 @@ tasks:
     objective: Confirm every current file, its role, authority, freshness, and whether it contains assumptions or evidence.
     why_it_matters: Prevent planning models from treating prepared drafts as verified observations.
     owner_role: AUTHOR
-    assigned_model: null
-    reviewer_model: null
-    status: READY
+    assigned_model: "Codex (runtime model identifier not exposed)"
+    reviewer_model: TO_ASSIGN_INDEPENDENT
+    status: READY_FOR_REVIEW
     priority: P0
     dependencies: []
     files_to_read:
@@ -37,6 +37,10 @@ tasks:
       - Cross-check inventory against repository tree.
     expected_evidence:
       - paths_and_classifications
+    author_evidence:
+      - 99_handoffs/completed/S0-001_handoff.yaml
+    author_completed_at: "2026-08-21T12:58:08-04:00"
+    verification_status: NOT_INDEPENDENTLY_REVIEWED
 
   - task_id: S0-002
     title: Verify current Grok Bot capability baseline
@@ -44,9 +48,9 @@ tasks:
     objective: Reopen current official documentation and create a sourced feature baseline with facts, inferences, unknowns, and rollout limitations.
     why_it_matters: The product benchmark is current and can change quickly.
     owner_role: AUTHOR
-    assigned_model: null
-    reviewer_model: null
-    status: READY
+    assigned_model: "Codex (runtime model identifier not exposed)"
+    reviewer_model: TO_ASSIGN_INDEPENDENT
+    status: READY_FOR_REVIEW
     priority: P0
     dependencies:
       - S0-001
@@ -77,6 +81,12 @@ tasks:
       - Link and date validation.
     expected_evidence:
       - cited_claim_matrix
+    author_evidence:
+      - 02_research/GROK_BOT_BASELINE_2026-08-21.md
+      - 01_governance/SOURCE_LEDGER.csv
+      - 99_handoffs/completed/S0-002_handoff.yaml
+    author_completed_at: "2026-08-21T12:58:08-04:00"
+    verification_status: NOT_INDEPENDENTLY_REVIEWED
 
   - task_id: S0-003
     title: Verify current model access and design project benchmark
@@ -84,9 +94,9 @@ tasks:
     objective: Confirm available model products, API access, costs, limits, and create a benchmark plan for project roles.
     why_it_matters: Consumer subscriptions and production API access are different.
     owner_role: AUTHOR
-    assigned_model: null
-    reviewer_model: null
-    status: READY
+    assigned_model: "Codex (runtime model identifier not exposed)"
+    reviewer_model: TO_ASSIGN_INDEPENDENT
+    status: READY_FOR_REVIEW
     priority: P0
     dependencies:
       - S0-001
@@ -112,6 +122,110 @@ tasks:
       - Primary-source verification.
     expected_evidence:
       - model_access_records
+    author_evidence:
+      - 01_governance/MODEL_REGISTRY.yaml
+      - 06_evaluation/MODEL_ROLE_BENCHMARK_PLAN.md
+      - 99_handoffs/completed/S0-003_handoff.yaml
+    author_completed_at: "2026-08-21T12:58:08-04:00"
+    verification_status: NOT_INDEPENDENTLY_REVIEWED
+
+  - task_id: S0-004
+    title: Run priority Grok Bot black-box verification
+    stage: 0
+    objective: Test the highest-impact documented Grok Bot behaviors on an authorized eligible account with exact build plan region and rollout context.
+    why_it_matters: Official documentation does not prove account rollout reliability cancellation approval recovery isolation or false-completion behavior.
+    owner_role: AUTHOR
+    assigned_model: null
+    reviewer_model: null
+    status: BLOCKED
+    priority: P0
+    dependencies:
+      - S0-002
+    blocked_by:
+      - eligible_grok_bot_account_and_plan_not_recorded
+      - installed_app_build_and_safe_test_environment_not_recorded
+      - S0-002_independent_review_pending
+    files_to_read:
+      - 02_research/GROK_BOT_BASELINE_2026-08-21.md
+      - 00_inbox/prepared_materials/03_GROKBOT_EXAMPLES/
+      - 01_governance/SOURCE_LEDGER.csv
+      - SECURITY.md
+    allowed_files_to_change:
+      - 00_inbox/prepared_materials/03_GROKBOT_EXAMPLES/
+      - 02_research/
+      - 01_governance/SOURCE_LEDGER.csv
+      - 01_governance/ASSUMPTION_REGISTER.md
+      - 01_governance/RISK_REGISTER.md
+      - 01_governance/TASK_REGISTRY.yaml
+      - 01_governance/PROJECT_STATE.yaml
+      - 99_handoffs/completed/
+    deliverables:
+      - account_and_build_preflight
+      - repeated_p0_black_box_records
+      - independently_verified_external_state
+      - baseline_revision
+    acceptance_criteria:
+      - Build plan region rollout and initial state are explicit.
+      - Exact prompts timelines approvals actions artifacts and external-state checks are preserved with secrets redacted.
+      - Each P0 behavior is repeated as specified or the limit is explicitly recorded.
+      - Failures and absent rollout features are retained as results.
+      - No production account private customer data real secret irreversible action or unauthorized test is used.
+    required_tests:
+      - Independent challenger review of a sample of records.
+      - Verifier readback of every claimed external-state change.
+    expected_evidence:
+      - dated_experiment_folders
+      - redacted_screenshots_or_recording_references
+      - before_and_after_state_checks
+
+  - task_id: S0-005
+    title: Verify funded provider API access with minimal smoke tests
+    stage: 0
+    objective: Confirm which candidate model APIs are actually available to funded project accounts and record returned identifiers quotas usage cost and policy settings without storing credentials.
+    why_it_matters: Public availability and consumer subscriptions do not establish production access or benchmark feasibility.
+    owner_role: AUTHOR
+    assigned_model: null
+    reviewer_model: null
+    status: BLOCKED
+    priority: P0
+    dependencies:
+      - S0-003
+    blocked_by:
+      - founder_has_not_recorded_funded_api_accounts_or_budget
+      - approved_retention_region_and_data_classification_settings_unknown
+      - S0-003_independent_review_pending
+    files_to_read:
+      - 01_governance/MODEL_REGISTRY.yaml
+      - 06_evaluation/MODEL_ROLE_BENCHMARK_PLAN.md
+      - SECURITY.md
+    allowed_files_to_change:
+      - 01_governance/MODEL_REGISTRY.yaml
+      - 06_evaluation/
+      - 01_governance/SOURCE_LEDGER.csv
+      - 01_governance/ASSUMPTION_REGISTER.md
+      - 01_governance/RISK_REGISTER.md
+      - 01_governance/TASK_REGISTRY.yaml
+      - 01_governance/PROJECT_STATE.yaml
+      - 99_handoffs/completed/
+    deliverables:
+      - provider_account_access_records
+      - minimal_model_call_records
+      - actual_quota_and_usage_records
+      - benchmark_execution_budget
+    acceptance_criteria:
+      - Consumer product access remains separate from every API account record.
+      - Each accessible candidate records exact requested and returned identifiers or an exact access failure.
+      - Actual account limits retention region and list price or negotiated-price status are recorded without credentials.
+      - Minimal tests use non-sensitive input and record token usage latency and direct cost.
+      - Inaccessible candidates remain explicitly unavailable rather than inferred.
+    required_tests:
+      - Provider account model listing where supported.
+      - One minimal authorized non-sensitive call per accessible candidate.
+      - Independent verifier checks account usage or billing readback.
+    expected_evidence:
+      - scrubbed_api_response_metadata
+      - provider_usage_readback
+      - no_secret_scan
 
   - task_id: S1-001
     title: Generate and score customer-workflow hypotheses
