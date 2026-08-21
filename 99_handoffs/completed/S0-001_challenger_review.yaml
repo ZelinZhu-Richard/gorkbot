@@ -1,0 +1,184 @@
+review_id: R-S0-001-20260821-CHALLENGER
+task_id: S0-001
+stage: 0
+mode: REVIEW_TASK_S0-001
+role: CHALLENGER
+reviewer_model: "Claude Fable 5 (claude-fable-5) via Claude Code"
+reviewer_independence: "Independent of the recorded author (repository records author as 'Codex (runtime model identifier not exposed)'; the review request described the author as GPT-5.6 Sol). Neither identity is a Claude model; independence holds under either."
+started_at: "2026-08-21T15:40:00-04:00"
+completed_at: "2026-08-21T16:05:00-04:00"
+reviewed_commit: f151f28
+reviewed_commit_full_state: "Branch chore/initialize-project-materials at f151f28 (docs: establish Stage 0 research baseline), working tree clean, 39 tracked files. Author base commit 4d99fff945a796d22fbe2ab7ec43e1310425ab71 (34 tracked files)."
+verdict: CHANGES_REQUESTED
+verdict_rationale: >-
+  No BLOCKER, HIGH, or MEDIUM finding survived adversarial verification. All four
+  acceptance criteria are satisfied within the scope the author disclosed, and the
+  core integrity claims (manifest checksums, original inputs unmodified, no secrets,
+  handoff file lists equal to the git diff) were independently reproduced. Acceptance
+  criterion 1 is PARTIAL at the reviewed commit (34 of 39 tracked files inventoried;
+  the five Stage 0 author outputs carry no authority classification), and the S0-001
+  handoff claims a DECISION_LOG change it does not describe and whose substance derives
+  from S0-002/S0-003. These are LOW-severity, cheap to fix inside S0-001's allowed files,
+  and the project protocol expects one revision before the verifier decision. The task
+  must not be marked VERIFIED by this review; it should return to the author for a
+  bounded FIX_TASK_S0-001 pass.
+
+method:
+  - "Read MASTER_OPERATING_PROMPT.md, AGENTS.md, CLAUDE.md, all 01_governance files, SOURCE_LEDGER.csv, all three Stage 0 handoffs, every file under 00_inbox/, FILE_MANIFEST.json, SECURITY.md, .gitignore, 99_handoffs/HANDOFF_TEMPLATE.yaml, and the two Stage 0 author outputs (02_research, 06_evaluation) for contradictions only."
+  - "Re-ran every reproducible author test myself (see tests_run)."
+  - "Ran an independent multi-agent verification pass (8 finder dimensions: manifest checksums, inventory cross-check, handoff-vs-diff reconciliation, classification critique, secret and git-history scan, governance consistency, evidence integrity, schema validity) followed by one adversarial refuter per finding (35 findings -> 8 survived, 27 refuted or downgraded). The challenger verdict below is my own judgment over the reproduced evidence; agent output was not trusted without re-checking the cited files."
+
+files_read:
+  - MASTER_OPERATING_PROMPT.md
+  - AGENTS.md
+  - CLAUDE.md
+  - README.md
+  - SECURITY.md
+  - .gitignore
+  - FILE_MANIFEST.json
+  - 01_governance/PROJECT_STATE.yaml
+  - 01_governance/TASK_REGISTRY.yaml
+  - 01_governance/DECISION_LOG.md
+  - 01_governance/ASSUMPTION_REGISTER.md
+  - 01_governance/RISK_REGISTER.md
+  - 01_governance/MODEL_REGISTRY.yaml
+  - 01_governance/SOURCE_LEDGER.csv
+  - 99_handoffs/HANDOFF_TEMPLATE.yaml
+  - 99_handoffs/completed/README.md
+  - 99_handoffs/completed/S0-001_handoff.yaml
+  - 99_handoffs/completed/S0-002_handoff.yaml
+  - 99_handoffs/completed/S0-003_handoff.yaml
+  - 00_inbox/README.md
+  - 00_inbox/uploaded_originals/README.md
+  - 00_inbox/prepared_materials/ (all 17 files)
+  - 02_research/GROK_BOT_BASELINE_2026-08-21.md (contradiction check only)
+  - 06_evaluation/MODEL_ROLE_BENCHMARK_PLAN.md (contradiction check only)
+files_created:
+  - 99_handoffs/completed/S0-001_challenger_review.yaml
+files_modified:
+  - 01_governance/TASK_REGISTRY.yaml
+  - 01_governance/PROJECT_STATE.yaml
+files_deleted: []
+
+tests_run:
+  - "git ls-tree -r --name-only 4d99fff | wc -l; git ls-files | wc -l; find . -path ./.git -prune -o -type f -print | wc -l"
+  - "python3: set comparison of the 34 'path:' entries in S0-001_handoff.yaml repository_inventory against git ls-tree 4d99fff and git ls-files at HEAD; duplicate check; files_read set comparison"
+  - "python3: sha256 + byte size of every FILE_MANIFEST.json entry versus git show 4d99fff:<path> and versus HEAD working tree"
+  - "git diff 4d99fff f151f28 -- 00_inbox | wc -l; git diff 4d99fff f151f28 -- README.md AGENTS.md CLAUDE.md MASTER_OPERATING_PROMPT.md SECURITY.md .gitignore FILE_MANIFEST.json 99_handoffs/HANDOFF_TEMPLATE.yaml 99_handoffs/completed/README.md | wc -l"
+  - "python3: union of files_created+files_modified across the three handoffs versus git diff --name-only 4d99fff f151f28"
+  - "git diff 4d99fff f151f28 -- 01_governance/TASK_REGISTRY.yaml PROJECT_STATE.yaml DECISION_LOG.md ASSUMPTION_REGISTER.md RISK_REGISTER.md (read in full)"
+  - "git ls-files -s | awk '{print $1}' | sort | uniq -c (symlink/mode check); git status --porcelain --ignored"
+  - "ruby -ryaml: parse PROJECT_STATE.yaml, TASK_REGISTRY.yaml, MODEL_REGISTRY.yaml, HANDOFF_TEMPLATE.yaml, S0-001/2/3 handoffs (python3 yaml module unavailable)"
+  - "HANDOFF_TEMPLATE.yaml key presence check against S0-001_handoff.yaml"
+  - "git diff --check 4d99fff f151f28"
+  - "grep -rnIE secret/credential/PII regex families over working tree; git log -p --all | grep same patterns; git log --all --format='%an <%ae>' | sort -u; git log --all --diff-filter=D --name-only; git fsck --unreachable --no-reflogs and pattern scan of the one unreachable blob; file --mime over git ls-files"
+test_results:
+  - "Base tree 34 files; HEAD tree 39 files; filesystem 39 files; git status --porcelain --ignored empty (no untracked or ignored files)."
+  - "Inventory: 34 unique paths == git ls-tree 4d99fff exactly (0 missing, 0 extra). files_read: 34 == base tree exactly. At HEAD, 5 tracked files are not in the inventory: 02_research/GROK_BOT_BASELINE_2026-08-21.md, 06_evaluation/MODEL_ROLE_BENCHMARK_PLAN.md, 99_handoffs/completed/S0-001_handoff.yaml, S0-002_handoff.yaml, S0-003_handoff.yaml."
+  - "FILE_MANIFEST.json: file_count 33, 33 entries, 0 sha256/size mismatches against base commit blobs; the only base-tree path absent from the manifest is FILE_MANIFEST.json itself. Against HEAD: 7 mismatches, all 01_governance files modified by Stage 0 (ASSUMPTION_REGISTER, DECISION_LOG, MODEL_REGISTRY, PROJECT_STATE, RISK_REGISTER, SOURCE_LEDGER, TASK_REGISTRY); all 18 manifest entries under 00_inbox still match at HEAD."
+  - "git diff 4d99fff f151f28 -- 00_inbox: 0 lines. Root governing docs and templates: 0 lines. 00_inbox/uploaded_originals contains only README.md (zero originals)."
+  - "Union of handoff files_created+files_modified == git diff name list exactly (claimed-not-changed: none; changed-not-claimed: none). S0-001 files_modified (DECISION_LOG, PROJECT_STATE, TASK_REGISTRY) are inside S0-001 allowed_files_to_change."
+  - "TASK_REGISTRY S0-001 diff: only assigned_model, reviewer_model, status READY->READY_FOR_REVIEW, author_evidence, author_completed_at, verification_status changed; acceptance criteria, scope, and files unchanged. S0-004/S0-005 were added as BLOCKED tasks."
+  - "All 39 index entries mode 100644; no symlinks; no binaries (FILE_MANIFEST.json is application/json text)."
+  - "All YAML files parse (ruby); every HANDOFF_TEMPLATE key present in S0-001 handoff; git diff --check clean."
+  - "Secrets/PII: no key-like tokens, private keys, JWTs, basic-auth URLs, emails, phone numbers, IP addresses, or home paths in the working tree or in any commit in history; only personal identifier present is the repository slug ZelinZhu-Richard/gorkbot in PROJECT_STATE.yaml; single commit author identity using a GitHub noreply address; no deleted files in history; one unreachable local blob (earlier MASTER_OPERATING_PROMPT draft, 50756 bytes) scanned clean."
+
+acceptance_criteria_evaluation:
+  - criterion: "Every repository file is listed."
+    result: PARTIAL
+    evidence: "PASS at the author's declared scope (base commit 4d99fff: 34/34, independently reproduced). At the reviewed commit f151f28 the inventory covers 34 of 39 tracked files; the five Stage 0 author outputs have no authority/freshness/evidence entry anywhere (only TASK_REGISTRY author_evidence pointers). Scope limitation is disclosed in decisions_made and inventory_scope."
+  - criterion: "Prepared drafts are distinguished from primary evidence."
+    result: PASS
+    evidence: "Five authority classes; every 00_inbox file is labelled PREPARED_FOUNDER_INPUT or instruction with an explicit non-evidence evidence_or_assumption label; inventory_scope records original_evidence_file_count 0, customer_evidence_record_count 0, black_box_observation_count 0; founder-reported hardware/subscriptions listed under unverified_claims."
+  - criterion: "No original evidence is modified."
+    result: PASS
+    evidence: "git diff 4d99fff f151f28 -- 00_inbox is empty; all 18 manifest entries under 00_inbox match at HEAD; 00_inbox/uploaded_originals holds only its README (zero originals exist to modify)."
+  - criterion: "Missing high-priority inputs are identified."
+    result: PASS
+    evidence: "missing_input_list priority_0 covers eligible Grok Bot account/build/plan/region, repeated black-box observations, funded provider API accounts/quotas/retention, confirmed budget, and independent reviewers; required_before_stage_1_gate covers customer evidence. Minor omissions recorded as F-S0-001-05 (LOW)."
+  - criterion: "Required test: Cross-check inventory against repository tree."
+    result: PASS
+    evidence: "Author ran git ls-files and manifest checksum checks; challenger independently reproduced identical results at base commit. Author did not re-run at HEAD because the HEAD content is the author's own output (see F-S0-001-01)."
+
+findings:
+  - finding_id: F-S0-001-01
+    severity: LOW
+    requirement: "TASK_REGISTRY S0-001 acceptance criterion 1 'Every repository file is listed'; objective 'Confirm every current file, its role, authority, freshness'; why_it_matters 'Prevent planning models from treating prepared drafts as verified observations'."
+    file_or_component: "99_handoffs/completed/S0-001_handoff.yaml (inventory_scope, repository_inventory)"
+    evidence: "Inventory = 34 paths = git ls-tree 4d99fff. git ls-files at f151f28 = 39. Unlisted: 02_research/GROK_BOT_BASELINE_2026-08-21.md, 06_evaluation/MODEL_ROLE_BENCHMARK_PLAN.md, 99_handoffs/completed/S0-001_handoff.yaml, S0-002_handoff.yaml, S0-003_handoff.yaml. grep shows no authority/freshness/evidence classification for these five anywhere in 01_governance or 99_handoffs. Handoff decisions_made discloses: 'scoped to the 34 tracked input files at base commit ... author-created Stage 0 outputs are recorded by handoffs and the final diff'."
+    why_it_matters: "The two research outputs are the files Stage 1 planners will read next; the inventory is the one place that tells agents which files are unreviewed author drafts versus authoritative state. The self-labels inside those files ('Author status: READY_FOR_REVIEW') mitigate but do not replace the inventory entry. Criterion 1 is therefore PARTIAL at the reviewed commit."
+    required_fix: "Add an addendum to S0-001_handoff.yaml (allowed path) — e.g. repository_inventory_addendum_at_f151f28 — listing the five files with role, authority (e.g. AUTHOR_OUTPUT_PENDING_INDEPENDENT_REVIEW), freshness, and evidence_or_assumption (e.g. DOCUMENTATION_DERIVED_BASELINE_NOT_OBSERVATION / PLAN_ONLY_NO_RESULTS / FACTUAL_HANDOFF_NOT_PROOF_OF_REVIEW), and record reviewed_commit f151f28 in inventory_scope. Alternatively the verifier may explicitly accept base-commit scoping for criterion 1 and record that acceptance."
+    verification_method: "git ls-files | sort > a; grep -E '^  - path: ' S0-001_handoff.yaml (both inventory and addendum) | sed 's/.*path: //' | sort > b; comm -23 a b is empty."
+  - finding_id: F-S0-001-02
+    severity: LOW
+    requirement: "AGENTS.md completion rule (record files changed); MASTER task execution rule 4 'Implement only the bounded task'; per-task allowed_files_to_change in TASK_REGISTRY.yaml."
+    file_or_component: "01_governance/DECISION_LOG.md lines 65-73 ('Stage 0 author reconciliation note'); 99_handoffs/completed/S0-001_handoff.yaml files_modified/decisions_made"
+    evidence: "The only DECISION_LOG change between 4d99fff and f151f28 is the reconciliation note. Only the S0-001 handoff lists DECISION_LOG.md under files_modified; it does not describe the change. Two of the note's bullets ('Current primary-source research does not change D-001 through D-005'; 'The reference product's documented shared-computer boundary is evidence about Grok Bot, not a selected architecture') rest on S0-002 research (GBF-006), while S0-001's own handoff states 'Prepared public-product and model claims were not treated as verified by this inventory task'. S0-002 and S0-003 allowed_files_to_change exclude DECISION_LOG.md."
+    why_it_matters: "Provenance: an agent tracing why DECISION_LOG changed is pointed at the inventory task, which has no research basis for the statements. The note is explicitly 'scope, not a new decision' and alters no D-00x status, so the impact is traceability only."
+    required_fix: "In S0-001_handoff.yaml, describe the DECISION_LOG change (name the note, state that it is a stage-level author note written under S0-001's DECISION_LOG allowance on behalf of the S0-002/S0-003 research outcomes, and that it changes no decision status). Optionally add a one-line 'Recorded by: S0-001 handoff on behalf of S0-002/S0-003' under the note header (DECISION_LOG.md is in S0-001's allowed files)."
+    verification_method: "grep -n 'reconciliation' 99_handoffs/completed/S0-001_handoff.yaml returns a description; git diff of DECISION_LOG shows no D-00x status change."
+  - finding_id: F-S0-001-03
+    severity: LOW
+    requirement: "AGENTS.md Handoff section (factual handoff following the schema); 99_handoffs/HANDOFF_TEMPLATE.yaml fields started_at and completed_at."
+    file_or_component: "99_handoffs/completed/S0-001_handoff.yaml:6-7 (also S0-002:6-7, S0-003:6-7); 01_governance/TASK_REGISTRY.yaml author_completed_at x3; 01_governance/PROJECT_STATE.yaml updated_at"
+    evidence: "started_at: null in all three handoffs; the literal '2026-08-21T12:58:08-04:00' appears as completed_at in all three handoffs, as author_completed_at for all three tasks, and as PROJECT_STATE.updated_at (single batch stamp). Value lies inside the commit window (base 11:44:54, HEAD 15:32:00 -04:00), so nothing is fabricated."
+    why_it_matters: "Removes duration/ordering evidence the template asks for and makes three tasks look simultaneously completed; audit value only, no acceptance impact."
+    required_fix: "Add to S0-001 handoff known_limitations that timestamps were batch-written and started_at was not captured; future handoffs record real per-task start/end times."
+    verification_method: "grep -n '_at:' 99_handoffs/completed/S0-001_handoff.yaml shows the limitation note; later handoffs show non-null started_at."
+  - finding_id: F-S0-001-04
+    severity: LOW
+    requirement: "MASTER 'Record exact model version' / 'Maintain a model registry'; AGENTS.md 'Label facts, inferences, proposals, and unknowns separately'; Stage 0 gate 'governance files agree with one another'."
+    file_or_component: "01_governance/PROJECT_STATE.yaml author_model; 01_governance/TASK_REGISTRY.yaml assigned_model (S0-001..S0-003); 99_handoffs/completed/S0-00{1,2,3}_handoff.yaml author_model"
+    evidence: "All five fields read 'Codex (runtime model identifier not exposed)'. The REVIEW_TASK_S0-001 request described the author as 'GPT 5.6 Sol'. The repository cannot reconcile the two; MODEL_REGISTRY.yaml has no entry for the project's own author/challenger/verifier runs."
+    why_it_matters: "Independence of author/challenger/verifier and later model benchmarking depend on knowing which product and model produced each artifact. The repository is authoritative, but its record is non-specific and conflicts with the founder's description."
+    required_fix: "Founder confirms the actual authoring product/model and records it consistently (PROJECT_STATE.author_model, TASK_REGISTRY.assigned_model, handoff author_model), e.g. 'OpenAI Codex (GPT-5.6 Sol) — exact runtime identifier not exposed', or records UNKNOWN explicitly. Requires founder input; not fixable by the author alone."
+    verification_method: "grep -n 'author_model\\|assigned_model' 01_governance/*.yaml 99_handoffs/completed/*.yaml shows one consistent, founder-confirmed value."
+  - finding_id: F-S0-001-05
+    severity: LOW
+    requirement: "TASK_REGISTRY S0-001 acceptance criterion 4 'Missing high-priority inputs are identified'; deliverable missing_input_list."
+    file_or_component: "99_handoffs/completed/S0-001_handoff.yaml missing_input_list"
+    evidence: "The list has no entry for provider legal/commercial-use terms review (01_FOUNDER_BRIEF.md 'Exact API credits, model IDs, quotas, legal terms, and production access must be verified separately'; 06_BUILD_CONSTRAINTS.md 'Review provider terms, data use, reselling, rate limits, and commercial deployment rights') or for available cloud providers / customer-supplied keys / resell-vs-passthrough (05_MODEL_ACCESS.md 'Missing access facts'). MODEL_REGISTRY.yaml access_gaps MAG-005/MAG-006 partially cover these, so they are captured repository-wide but not in the S0-001 deliverable."
+    why_it_matters: "These are not Stage 0/1 gate blockers, so criterion 4 still passes, but the S0-001 list is the canonical missing-input record and should not omit founder-flagged verification items."
+    required_fix: "Add a 'required_before_architecture_or_production' tier to missing_input_list naming provider terms/commercial-use review, available cloud providers, and the BYOK/resell decision, cross-referencing MAG-005/MAG-006."
+    verification_method: "grep -n -i 'terms\\|cloud provider' 99_handoffs/completed/S0-001_handoff.yaml returns entries under missing_input_list."
+  - finding_id: F-S0-001-06
+    severity: LOW
+    requirement: "MASTER Stage 0 gate 'governance files agree with one another'; S0-001 objective to confirm every file's role and authority."
+    file_or_component: "AGENTS.md Handoff section; MASTER_OPERATING_PROMPT.md; 99_handoffs/HANDOFF_TEMPLATE.yaml"
+    evidence: "AGENTS.md: 'create a factual handoff under 99_handoffs/completed/ using the schema in the master prompt.' MASTER_OPERATING_PROMPT.md contains no handoff schema (only 'Create a factual handoff' in Task execution rule 10); the schema lives in 99_handoffs/HANDOFF_TEMPLATE.yaml. Pre-existing at base; AGENTS.md is outside S0-001's allowed files; the inventory did not flag the contradiction and no follow-up is recorded."
+    why_it_matters: "An agent following AGENTS.md literally finds no schema; the Stage 0 gate requires governance files to agree."
+    required_fix: "Record a follow-up governance task (any task with AGENTS.md in scope) to point AGENTS.md at 99_handoffs/HANDOFF_TEMPLATE.yaml; S0-001 fix pass should list this under known_limitations/blockers so it is not lost."
+    verification_method: "grep -n 'HANDOFF_TEMPLATE' AGENTS.md returns a hit after the follow-up."
+
+notes:
+  - note_id: N-S0-001-01
+    text: "FILE_MANIFEST.json is a base-commit snapshot: 0 mismatches at 4d99fff; at f151f28 7 governance entries differ and 5 Stage 0 files are unlisted. Disclosed in the S0-001 handoff; FILE_MANIFEST.json is outside S0-001's allowed files. Regenerate or explicitly retire it in a task permitted to change it; do not treat it as a HEAD inventory."
+  - note_id: N-S0-001-02
+    text: "All three handoffs and PROJECT_STATE describe an 'Uncommitted Stage 0 working tree based on 4d99fff'. The founder committed that work as f151f28 at 15:32:00 -04:00 (after the handoffs). Accurate when written; this review records f151f28 as the reviewed commit in PROJECT_STATE.stage_0_author_commit."
+  - note_id: N-S0-001-03
+    text: "S0-002 and S0-003 (dependencies: S0-001) were executed in the same batch while S0-001 was unverified; all three were READY at base. MASTER task-execution rule 2 ('Confirm dependencies are verified') was not met for those two tasks. Not an S0-001 defect; to be weighed in REVIEW_TASK_S0-002 / S0-003. The review ordering in PROJECT_STATE (S0-001 first) is correct."
+  - note_id: N-S0-001-04
+    text: "For REVIEW_TASK_S0-003: the S0-003 handoff lists 01_governance/ASSUMPTION_REGISTER.md, RISK_REGISTER.md, and SOURCE_LEDGER.csv under files_modified, which are outside S0-003's allowed_files_to_change (they are inside S0-002's). Out of S0-001 scope."
+  - note_id: N-S0-001-05
+    text: "For REVIEW_TASK_S0-003: PROJECT_STATE note 'Public model catalogs and prices were verified' is an author (S0-003) claim recorded in state before independent review; the same file says S0-003 is not verified. Uses the project's 'verified = primary-source-supported' vocabulary; flag for the S0-003 reviewer."
+  - note_id: N-S0-001-06
+    text: "CLAUDE.md is classed REPOSITORY_METADATA although it contains binding instructions for Claude agents; 00_inbox/uploaded_originals/README.md has a single-member class. Taxonomy choices, not misleading; optional cleanup only."
+  - note_id: N-S0-001-07
+    text: "Repo-wide .gitignore patterns (*.har, *.log, *.tmp, tmp/, build/, *.crt, screen_recordings_raw/) would silently ignore such files if placed under 00_inbox/uploaded_originals/. No such files exist today. Consider an explicit policy before S0-004 evidence collection."
+  - note_id: N-S0-001-08
+    text: "Adversarial verification statistics: 35 candidate findings from 8 independent finders; 27 refuted or reduced to informational by one refuter each; 8 survived, all LOW or NOTE. Candidate MEDIUM items (HEAD inventory gap, DECISION_LOG attribution, dependency-order deviation, author-model vagueness, S0-004/S0-005 creation unrecorded in any handoff, PROJECT_STATE 'verified' wording) were each re-checked against the actual requirement text and downgraded."
+
+passes_confirmed:
+  - "Inventory equals the base-commit tree exactly; no duplicates; files_read equals the tree."
+  - "Every 00_inbox file preserved byte-for-byte across Stage 0; zero originals exist; uploaded_originals untouched."
+  - "Prepared drafts, templates, queues, and founder statements are labelled as non-evidence; zero customer, black-box, or original evidence is claimed."
+  - "FILE_MANIFEST.json checksum claims reproduced (33/33 at base)."
+  - "Handoff files_created/files_modified across Stage 0 match git exactly; S0-001 stayed inside its allowed files."
+  - "Statuses advanced only to READY_FOR_REVIEW; verification_status NOT_INDEPENDENTLY_REVIEWED; no task self-verified."
+  - "No secrets, credentials, cookies, PII, customer data, binaries, or symlinks in tree or history; public-repository constraints respected."
+  - "YAML/CSV/JSON parse; whitespace clean; handoff follows HANDOFF_TEMPLATE keys."
+
+blockers_for_task: []
+recommended_next_task: FIX_TASK_S0-001
+recommended_fix_scope: "Author edits 99_handoffs/completed/S0-001_handoff.yaml (and optionally DECISION_LOG.md note header) for F-S0-001-01, -02, -03, -05, -06; founder supplies the author-model identity for F-S0-001-04. No research, architecture, or scope changes. Then VERIFY by re-running the verification_method commands above. REVIEW_TASK_S0-002 and REVIEW_TASK_S0-003 may proceed in parallel."
+repository_commit_or_patch: "Review performed against committed state f151f28; review artifact and governance updates left uncommitted in the working tree for the founder to commit."

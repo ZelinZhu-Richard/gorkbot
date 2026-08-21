@@ -4,11 +4,11 @@ repository: ZelinZhu-Richard/gorkbot
 source_of_truth: repository
 current_stage: 0
 current_stage_name: intake_governance_reference_research
-current_stage_status: AUTHOR_WORK_READY_FOR_REVIEW
+current_stage_status: UNDER_INDEPENDENT_REVIEW
 current_gate: stage_0_gate
 stage_gate_status: NOT_EVALUATED
 author_model: "Codex (runtime model identifier not exposed)"
-challenger_model: TO_ASSIGN_INDEPENDENT_REVIEWER
+challenger_model: "Claude Fable 5 (claude-fable-5) via Claude Code — Stage 0 task reviews"
 verifier_model: TO_ASSIGN_INDEPENDENT_VERIFIER
 active_task_ids:
   - S0-001
@@ -23,6 +23,7 @@ current_architecture_version: null
 current_prd_version: null
 current_code_commit: null
 working_tree_base_commit: 4d99fff945a796d22fbe2ab7ec43e1310425ab71
+stage_0_author_commit: f151f28
 last_verified_checkpoint: null
 unresolved_p0_questions:
   - first_customer_segment
@@ -31,11 +32,11 @@ unresolved_p0_questions:
   - funded_api_access_and_account_quotas
   - grok_bot_eligible_account_build_and_rollout
   - independent_stage_0_challenger_and_verifier
-next_recommended_action: "Run MODE: REVIEW_TASK_S0-001 with an independent challenger; then review S0-002 and S0-003 before evaluating the Stage 0 gate."
-updated_at: "2026-08-21T12:58:08-04:00"
+next_recommended_action: "Run MODE: FIX_TASK_S0-001 (author) against 99_handoffs/completed/S0-001_challenger_review.yaml findings F-S0-001-01..06 (all LOW); in parallel run MODE: REVIEW_TASK_S0-002 and REVIEW_TASK_S0-003 with the independent challenger; then verifier decision and Stage 0 gate."
+updated_at: "2026-08-21T16:05:00-04:00"
 notes:
   - "Prepared materials are structured founder inputs, not validated customer evidence."
-  - "S0-001, S0-002, and S0-003 have author artifacts and handoffs but are not independently reviewed or verified."
+  - "S0-001 was independently challenged on 2026-08-21 against commit f151f28: verdict CHANGES_REQUESTED with 0 BLOCKER/HIGH/MEDIUM and 6 LOW findings; not verified. S0-002 and S0-003 have author artifacts and handoffs but are not independently reviewed or verified."
   - "The Grok Bot baseline is based on current official documentation; no product account, installed build, or black-box observations were available."
   - "Public model catalogs and prices were verified; funded account access and API smoke tests were not."
   - "No application implementation, final architecture, customer wedge, or permanent model-role assignment was created."
