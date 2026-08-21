@@ -1,0 +1,64 @@
+# Decision Log
+
+## Decision status
+
+- CONFIRMED: explicitly decided by the founder
+- PROVISIONAL: working choice pending evidence
+- DEFERRED: intentionally postponed
+- REJECTED: considered and not selected
+
+## D-001: Build toward a multi-tenant SaaS
+
+- Date: 2026-08-21
+- Status: CONFIRMED
+- Decision: The long-term target is a SaaS product other people can use.
+- Consequence: tenant, authorization, billing, audit, and data-boundary concerns must remain architecturally possible even if not built in the first prototype.
+
+## D-002: Use Grok Bot as a clean-room capability benchmark
+
+- Date: 2026-08-21
+- Status: CONFIRMED
+- Decision: Target functional parity or better without copying branding, proprietary implementation, or exact assets.
+- Consequence: maintain a sourced parity matrix and independent product identity.
+
+## D-003: Begin with one extremely capable persistent agent
+
+- Date: 2026-08-21
+- Status: CONFIRMED
+- Decision: Build core persistence, execution, approvals, observability, artifacts, and verification before visible agent teams.
+- Consequence: group chat, many agents, skills, and routines are later stages.
+
+## D-004: Support multiple model providers
+
+- Date: 2026-08-21
+- Status: CONFIRMED
+- Decision: GPT, Claude, DeepSeek, and future models should be replaceable through a model abstraction and routing layer.
+- Consequence: no provider-specific behavior may define core task state, memory, approvals, or authorization.
+
+## D-005: Use repository files as shared model state
+
+- Date: 2026-08-21
+- Status: CONFIRMED
+- Decision: GPT, Claude, and execution models coordinate through versioned files and task records.
+- Consequence: chat memory and verbal summaries are non-authoritative.
+
+## D-006: Initial beachhead customer
+
+- Date: 2026-08-21
+- Status: PROVISIONAL
+- Decision: Begin discovery with technical founders and small startup teams while comparing research and engineering workflows.
+- Evidence required: interviews, pilot willingness, workflow access, measurable pain, and technical feasibility.
+
+## D-007: Primary differentiation
+
+- Date: 2026-08-21
+- Status: PROVISIONAL
+- Decision: Test verified completion and model-transparent orchestration as the primary wedge, with stronger isolation as a secondary advantage.
+- Evidence required: customer value, technical performance, cost, and competitive comparison.
+
+## D-008: First client surface
+
+- Date: 2026-08-21
+- Status: PROVISIONAL
+- Decision: A web control plane may precede native desktop and mobile applications.
+- Evidence required: whether the first workflow requires local takeover, deep OS integration, or mobile supervision.

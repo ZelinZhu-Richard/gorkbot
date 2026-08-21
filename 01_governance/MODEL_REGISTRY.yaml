@@ -1,0 +1,89 @@
+registry_status: INITIAL_DRAFT
+verified_on: "2026-08-21"
+warning: "Founder access and public availability do not prove funded API access, exact identifiers, quotas, or suitability. Reverify before use."
+models:
+  - logical_name: openai_gpt_5_6_sol
+    provider: OpenAI
+    family: GPT-5.6
+    tier: Sol
+    founder_reported_access: ChatGPT Pro
+    public_availability_status: officially_described_for_chatgpt_codex_api
+    exact_api_model_id: TO_VERIFY
+    proposed_roles:
+      - PLANNER
+      - CODER
+      - VERIFIER
+      - INTEGRATOR
+    benchmark_status: NOT_RUN
+    source: https://openai.com/index/gpt-5-6/
+
+  - logical_name: openai_gpt_5_6_terra
+    provider: OpenAI
+    family: GPT-5.6
+    tier: Terra
+    founder_reported_access: TO_VERIFY
+    public_availability_status: officially_described_for_chatgpt_codex_api
+    exact_api_model_id: TO_VERIFY
+    proposed_roles:
+      - EXECUTOR
+      - CODER
+      - SUMMARIZER
+    benchmark_status: NOT_RUN
+    source: https://openai.com/index/gpt-5-6/
+
+  - logical_name: openai_gpt_5_6_luna
+    provider: OpenAI
+    family: GPT-5.6
+    tier: Luna
+    founder_reported_access: TO_VERIFY
+    public_availability_status: officially_described_for_chatgpt_codex_api
+    exact_api_model_id: TO_VERIFY
+    proposed_roles:
+      - ROUTER
+      - MEMORY_EXTRACTOR
+      - STRUCTURED_EXECUTOR
+    benchmark_status: NOT_RUN
+    source: https://openai.com/index/gpt-5-6/
+
+  - logical_name: anthropic_claude_fable_5
+    provider: Anthropic
+    family: Claude
+    tier: Fable 5
+    founder_reported_access: Claude Max
+    public_availability_status: officially_redeployed_globally_subject_to_plan_rules
+    exact_api_model_id: TO_VERIFY
+    proposed_roles:
+      - PLANNER
+      - CHALLENGER
+      - CODER
+      - VERIFIER
+    benchmark_status: NOT_RUN
+    source: https://www.anthropic.com/news/redeploying-fable-5
+
+  - logical_name: deepseek_v4_pro
+    provider: DeepSeek
+    family: DeepSeek-V4
+    tier: Pro
+    founder_reported_access: DeepSeek access
+    public_availability_status: officially_documented_api_family
+    exact_api_model_id: deepseek-v4-pro
+    proposed_roles:
+      - PLANNER
+      - LONG_CONTEXT_SYNTHESIS
+      - EXECUTOR
+    benchmark_status: NOT_RUN
+    source: https://api-docs.deepseek.com/updates
+
+  - logical_name: deepseek_v4_flash
+    provider: DeepSeek
+    family: DeepSeek-V4
+    tier: Flash
+    founder_reported_access: TO_VERIFY
+    public_availability_status: officially_documented_api_family
+    exact_api_model_id: deepseek-v4-flash
+    proposed_roles:
+      - ROUTER
+      - STRUCTURED_EXECUTOR
+      - MEMORY_EXTRACTOR
+    benchmark_status: NOT_RUN
+    source: https://api-docs.deepseek.com/updates

@@ -1,0 +1,33 @@
+project_id: gorkbot-cleanroom-001
+project_name: "Working codename: GorkBot"
+repository: ZelinZhu-Richard/gorkbot
+source_of_truth: repository
+current_stage: 0
+current_stage_name: intake_governance_reference_research
+current_stage_status: READY
+current_gate: stage_0_gate
+stage_gate_status: NOT_EVALUATED
+author_model: null
+challenger_model: null
+verifier_model: null
+active_task_ids: []
+ready_task_ids:
+  - S0-001
+  - S0-002
+  - S0-003
+completed_task_ids: []
+blocked_task_ids: []
+current_architecture_version: null
+current_prd_version: null
+current_code_commit: null
+last_verified_checkpoint: null
+unresolved_p0_questions:
+  - first_customer_segment
+  - first_mvp_workflow
+  - prototype_budget
+  - funded_api_access
+next_recommended_action: "Run MODE: INITIALIZE with a planning model, starting from S0-001."
+updated_at: "2026-08-21T00:00:00-04:00"
+notes:
+  - "Prepared materials are structured founder inputs, not validated customer evidence."
+  - "No application implementation should begin before Stage 0 and Stage 1 gates."

@@ -1,0 +1,152 @@
+tasks:
+  - task_id: S0-001
+    title: Inventory and classify repository inputs
+    stage: 0
+    objective: Confirm every current file, its role, authority, freshness, and whether it contains assumptions or evidence.
+    why_it_matters: Prevent planning models from treating prepared drafts as verified observations.
+    owner_role: AUTHOR
+    assigned_model: null
+    reviewer_model: null
+    status: READY
+    priority: P0
+    dependencies: []
+    files_to_read:
+      - README.md
+      - MASTER_OPERATING_PROMPT.md
+      - AGENTS.md
+      - 00_inbox/README.md
+      - 00_inbox/prepared_materials/
+      - 01_governance/
+    allowed_files_to_change:
+      - 01_governance/PROJECT_STATE.yaml
+      - 01_governance/TASK_REGISTRY.yaml
+      - 01_governance/DECISION_LOG.md
+      - 01_governance/ASSUMPTION_REGISTER.md
+      - 01_governance/RISK_REGISTER.md
+      - 99_handoffs/completed/
+    deliverables:
+      - repository_inventory
+      - authority_classification
+      - missing_input_list
+    acceptance_criteria:
+      - Every repository file is listed.
+      - Prepared drafts are distinguished from primary evidence.
+      - No original evidence is modified.
+      - Missing high-priority inputs are identified.
+    required_tests:
+      - Cross-check inventory against repository tree.
+    expected_evidence:
+      - paths_and_classifications
+
+  - task_id: S0-002
+    title: Verify current Grok Bot capability baseline
+    stage: 0
+    objective: Reopen current official documentation and create a sourced feature baseline with facts, inferences, unknowns, and rollout limitations.
+    why_it_matters: The product benchmark is current and can change quickly.
+    owner_role: AUTHOR
+    assigned_model: null
+    reviewer_model: null
+    status: READY
+    priority: P0
+    dependencies:
+      - S0-001
+    files_to_read:
+      - 00_inbox/prepared_materials/02_PRODUCT_REFERENCE_LINKS.md
+      - 00_inbox/prepared_materials/03_GROKBOT_EXAMPLES/
+      - 01_governance/SOURCE_LEDGER.csv
+    allowed_files_to_change:
+      - 02_research/
+      - 01_governance/SOURCE_LEDGER.csv
+      - 01_governance/ASSUMPTION_REGISTER.md
+      - 01_governance/RISK_REGISTER.md
+      - 01_governance/TASK_REGISTRY.yaml
+      - 01_governance/PROJECT_STATE.yaml
+      - 99_handoffs/completed/
+    deliverables:
+      - reference_product_teardown
+      - feature_parity_baseline
+      - source_ledger_update
+      - black_box_test_priorities
+    acceptance_criteria:
+      - Every consequential claim links to a current primary source or is labeled.
+      - Research date and product version context are explicit.
+      - Unknown implementation details remain unknown.
+      - Public observations are not confused with clean-room design proposals.
+    required_tests:
+      - Challenger source spot-check.
+      - Link and date validation.
+    expected_evidence:
+      - cited_claim_matrix
+
+  - task_id: S0-003
+    title: Verify current model access and design project benchmark
+    stage: 0
+    objective: Confirm available model products, API access, costs, limits, and create a benchmark plan for project roles.
+    why_it_matters: Consumer subscriptions and production API access are different.
+    owner_role: AUTHOR
+    assigned_model: null
+    reviewer_model: null
+    status: READY
+    priority: P0
+    dependencies:
+      - S0-001
+    files_to_read:
+      - 00_inbox/prepared_materials/05_MODEL_ACCESS.md
+      - 01_governance/MODEL_REGISTRY.yaml
+    allowed_files_to_change:
+      - 01_governance/MODEL_REGISTRY.yaml
+      - 06_evaluation/
+      - 01_governance/TASK_REGISTRY.yaml
+      - 01_governance/PROJECT_STATE.yaml
+      - 99_handoffs/completed/
+    deliverables:
+      - verified_model_registry
+      - model_role_benchmark_plan
+      - access_gap_list
+    acceptance_criteria:
+      - Personal product access is separated from API access.
+      - Exact versions and verification dates are recorded.
+      - No model role is locked based only on reputation.
+      - Benchmark includes success, cost, latency, and structured-output reliability.
+    required_tests:
+      - Primary-source verification.
+    expected_evidence:
+      - model_access_records
+
+  - task_id: S1-001
+    title: Generate and score customer-workflow hypotheses
+    stage: 1
+    objective: Compare at least five customer and workflow combinations using explicit criteria.
+    why_it_matters: Building a platform before selecting a painful workflow is the largest strategic failure risk.
+    owner_role: AUTHOR
+    assigned_model: null
+    reviewer_model: null
+    status: BACKLOG
+    priority: P0
+    dependencies:
+      - S0-002
+      - S0-003
+    files_to_read:
+      - 00_inbox/prepared_materials/01_FOUNDER_BRIEF.md
+      - 00_inbox/prepared_materials/04_TARGET_WORKFLOWS.md
+      - 00_inbox/prepared_materials/08_COMPETITOR_EXAMPLES.md
+      - 00_inbox/prepared_materials/10_CUSTOMER_NOTES/
+    allowed_files_to_change:
+      - 03_product/
+      - 02_research/
+      - 01_governance/
+      - 99_handoffs/completed/
+    deliverables:
+      - customer_workflow_scorecard
+      - provisional_beachhead
+      - falsification_plan
+      - interview_recruiting_plan
+    acceptance_criteria:
+      - At least five combinations are compared.
+      - Recommendation distinguishes evidence from founder preference.
+      - The selected hypothesis is narrow and testable.
+      - Disconfirming evidence plan exists.
+    required_tests:
+      - Independent challenger review.
+    expected_evidence:
+      - scored_hypotheses
