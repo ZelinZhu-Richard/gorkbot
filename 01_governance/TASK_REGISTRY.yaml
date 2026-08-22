@@ -84,7 +84,7 @@ tasks:
     owner_role: AUTHOR
     assigned_model: "Codex (runtime model identifier not exposed)"
     reviewer_model: "Claude Fable 5 (claude-fable-5) via Claude Code — independent challenger"
-    status: CHANGES_REQUESTED
+    status: READY_FOR_REVIEW
     priority: P0
     dependencies:
       - S0-001
@@ -125,7 +125,12 @@ tasks:
     challenger_completed_at: "2026-08-21T16:40:00-04:00"
     challenger_verdict: CHANGES_REQUESTED
     challenger_finding_counts: "BLOCKER 0, HIGH 3, MEDIUM 2, LOW 2, NOTE 7"
-    verification_status: CHALLENGER_REVIEWED_CHANGES_REQUESTED_NOT_VERIFIED
+    fixer_evidence:
+      - 99_handoffs/completed/S0-002_fixer_handoff.yaml
+    fixer_started_at: "2026-08-21T22:58:27-04:00"
+    fixer_completed_at: "2026-08-21T23:13:44-04:00"
+    fixer_finding_counts: "FIXED 7, DISPUTED 0, DEFERRED 0"
+    verification_status: FIXER_PASS_COMPLETE_AWAITING_INDEPENDENT_REVIEW_NOT_VERIFIED
 
   - task_id: S0-003
     title: Verify current model access and design project benchmark
