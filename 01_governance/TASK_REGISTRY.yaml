@@ -363,7 +363,7 @@ tasks:
     owner_role: AUTHOR
     assigned_model: null
     reviewer_model: null
-    status: BACKLOG
+    status: READY
     priority: P0
     dependencies:
       - S0-002

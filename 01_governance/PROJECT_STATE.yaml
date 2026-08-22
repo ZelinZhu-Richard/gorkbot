@@ -2,21 +2,26 @@ project_id: gorkbot-cleanroom-001
 project_name: "Working codename: GorkBot"
 repository: ZelinZhu-Richard/gorkbot
 source_of_truth: repository
-current_stage: 0
-current_stage_name: intake_governance_reference_research
-current_stage_status: STAGE_0_VERIFIED_AWAITING_ADVANCE_STAGE
-current_gate: stage_0_gate
-stage_gate_status: VERIFIED
-stage_gate_verified_at: "2026-08-22T16:54:44Z"
-stage_gate_reviewed_commit: 665bd03f091d4a57853d081b3ed9a350a256c481
+current_stage: 1
+current_stage_name: customer_wedge_company_thesis
+current_stage_status: READY
+current_gate: stage_1_gate
+stage_gate_status: NOT_EVALUATED
+last_verified_stage: 0
+last_verified_stage_name: intake_governance_reference_research
+last_verified_gate: stage_0_gate
+last_verified_gate_status: VERIFIED
+last_verified_gate_verified_at: "2026-08-22T16:54:44Z"
+last_verified_gate_reviewed_commit: 665bd03f091d4a57853d081b3ed9a350a256c481
 verified_checkpoint: 10_checkpoints/stage_checkpoints/STAGE_0_VERIFICATION.yaml
-stage_gate_verification_patch_status: UNCOMMITTED_FOR_FOUNDER
+verified_checkpoint_commit: 7c337530ffd01154bb2778ef8d5f30f306adcf36
 author_model: "Codex (runtime model identifier not exposed)"
 challenger_model: "Claude Fable 5 (claude-fable-5) via Claude Code — Stage 0 task reviews"
 verifier_model: "Claude Fable 5 (claude-fable-5) via Claude Code — S0-001, S0-002 and S0-003 independent verifier and S0-003 re-verifier (separate sessions from the challenger and from each other; independent of the Codex author/fixers; for S0-003 the verifier is also a registry candidate and pinned every Anthropic check to quoted live page text)"
 stage_gate_verifier_model: "Codex (runtime model identifier not exposed) — independent repository-first Stage 0 gate session; same Codex product label as the original author is disclosed, exact runtime equality is UNKNOWN_NOT_EXPOSED under D-010"
 active_task_ids: []
-ready_task_ids: []
+ready_task_ids:
+  - S1-001
 completed_task_ids:
   - S0-001
   - S0-002
@@ -27,9 +32,9 @@ blocked_task_ids:
 current_architecture_version: null
 current_prd_version: null
 current_code_commit: null
-working_tree_base_commit: 665bd03f091d4a57853d081b3ed9a350a256c481
+working_tree_base_commit: 7c337530ffd01154bb2778ef8d5f30f306adcf36
 stage_0_author_commit: f151f28
-last_verified_checkpoint: "Stage 0 VERIFIED on 2026-08-22 against clean commit 665bd03f091d4a57853d081b3ed9a350a256c481 (10_checkpoints/stage_checkpoints/STAGE_0_VERIFICATION.yaml): all required-work and exact gate conditions PASS, 0 FAIL/PARTIAL, no new material findings. S0-001, S0-002, and S0-003 retain their independent VERIFIED chains. S0-004 and S0-005 remain BLOCKED and are explicit DEFERRED_EXTERNAL_DEPENDENCY items with required-before boundaries in the checkpoint and TASK_REGISTRY. The checkpoint/governance patch is uncommitted for founder review; Stage 1 has not started."
+last_verified_checkpoint: "Stage 0 VERIFIED on 2026-08-22 against clean commit 665bd03f091d4a57853d081b3ed9a350a256c481 (10_checkpoints/stage_checkpoints/STAGE_0_VERIFICATION.yaml), with the gate artifact committed by the founder at 7c337530ffd01154bb2778ef8d5f30f306adcf36. All required-work and exact gate conditions PASS, 0 FAIL/PARTIAL, and no new material findings exist. S0-001, S0-002, and S0-003 retain their independent VERIFIED chains. S0-004 and S0-005 remain BLOCKED as explicit DEFERRED_EXTERNAL_DEPENDENCY items under their recorded required-before boundaries. Stage 0 remains the last verified checkpoint while Stage 1 is READY and its gate is NOT_EVALUATED."
 unresolved_p0_questions:
   - first_customer_segment
   - first_mvp_workflow
@@ -45,15 +50,15 @@ deferred_dependencies:
     status: BLOCKED
     gate_disposition: LEGITIMATE_DEFERRED_EXTERNAL_DEPENDENCY
     required_before: "Before any paid comparative/model API execution beyond minimal authorized S0-005 smoke calls; before any real-provider technical spike or final model/provider suitability decision; and no later than the Stage 4 gate requiring evidenced provider abstraction across at least two providers."
-next_recommended_action: "Founder reviews and commits the Stage 0 checkpoint and governance patch. Then run MODE: ADVANCE_STAGE. Do not execute S1-001 until ADVANCE_STAGE records the stage transition. S0-004 and S0-005 remain BLOCKED external dependencies under their exact required-before boundaries; do not mark either VERIFIED without its own execution and independent verification."
-updated_at: "2026-08-22T16:54:44Z"
+next_recommended_action: "Run MODE: EXECUTE_TASK_S1-001 to generate and score customer-workflow hypotheses. Preserve prepared materials as founder inputs rather than customer evidence; do not confirm D-006 or D-007, select architecture, or run benchmarks or provider/API calls through this transition. S0-004 and S0-005 remain BLOCKED external dependencies under their exact required-before boundaries."
+updated_at: "2026-08-22T19:25:49Z"
 notes:
   - "Prepared materials are structured founder inputs, not validated customer evidence."
   - "S0-001 was independently challenged on 2026-08-21 against commit f151f28: verdict CHANGES_REQUESTED with 0 BLOCKER/HIGH/MEDIUM and 6 LOW findings; not verified. S0-002 was independently challenged on 2026-08-21 against commit 43daad7: verdict CHANGES_REQUESTED with 0 BLOCKER, 3 HIGH, 2 MEDIUM, 2 LOW findings; not verified. S0-003 was independently challenged on 2026-08-21 against commit 874ae4b: verdict CHANGES_REQUESTED with 0 BLOCKER, 2 HIGH, 5 MEDIUM, 4 LOW findings; not verified."
   - "The Grok Bot baseline is based on official documentation; no product account, installed build, or black-box observations were available. The 2026-08-21 challenger spot-check found four cited pages (FAQ, Get started, Mobile, Teams and enterprises) had drifted on or about August 20/21, identified omitted launch/beta/model/security/persistence/team context and official-source ambiguities, and requested changes. The S0-002 fixer pass reopened 24 current primary URLs, corrected the four source dates and plan eligibility, expanded the baseline and ledger, and preserved the original source-access limitation; the corrected baseline was independently VERIFIED on 2026-08-21 against fb89315 (see the S0-002 verifier note below). Installed build, account, plan, region, rollout and black-box behavior remain UNKNOWN with zero runs."
   - "Public model catalogs and prices matched the primary sources at the author's 2026-08-21 access (Internet Archive confirmed); the challenger re-check at 2026-08-21 ~21:00Z found the GPT-5.6 Sol list price had changed to promotional $4/$0.40/$20 (through at least 2026-11-21), that the registry omits publicly documented lower-cost or specialised candidates (Claude Opus 5 / Sonnet 5 / Haiku 4.5, OpenAI codex and computer-use models, DeepSeek V4-Flash-Vision-Exp) and several documented capability, data-policy and jurisdiction facts; funded account access and API smoke tests were not verified."
   - "No application implementation, final architecture, customer wedge, or permanent model-role assignment was created."
-  - "Stage 1 was not executed; S1-001 remains BACKLOG until a separate MODE: ADVANCE_STAGE records the transition after the verified Stage 0 gate."
+  - "MODE: ADVANCE_STAGE formally transitioned the repository from verified Stage 0 to Stage 1 READY and moved only S1-001 from BACKLOG to READY. No Stage 1 research was executed and no customer segment, MVP workflow, differentiator, architecture, model role, benchmark, API access, application code, or customer evidence was selected or created."
   - "S0-001 fixer pass completed on 2026-08-21 against F-S0-001-01..06: five findings were fixed and F-S0-001-04 was deferred at fix time because the exact initial author runtime model is not exposed; the founder then resolved F-S0-001-04 via D-010 and the fixer-handoff founder_confirmation_addendum (authoring surface Codex, exact runtime model unknown, no GPT-5.6 Sol relabel; commit adc87c4). Scope amendment S0-001-A1 prospectively authorized the AGENTS.md schema-pointer correction and preserves the challenger-reviewed original scope."
   - "S0-001 was independently VERIFIED on 2026-08-21 against commit adc87c4 (99_handoffs/completed/S0-001_verifier_review.yaml): all acceptance criteria PASS, F-S0-001-01..06 all RESOLVED, 0 BLOCKER/HIGH/MEDIUM new findings, 1 LOW (stale governance pointers, reconciled by the verifier update) and 8 NOTEs. The verifier is the same model/product as the challenger (Claude Fable 5 via Claude Code) in a separate session and is independent of the Codex author. S0-002, S0-003, and the Stage 0 gate were not evaluated and remain unverified."
   - "S0-002 fixer pass completed on 2026-08-21 against F-S0-002-01..07: all seven findings are recorded FIXED with no disputed or deferred findings. The final live-source window was 2026-08-22T03:06:16Z..03:07:34Z and returned HTTP 200 for 24/24 official primary URLs. The fixer pass was committed by the founder as fb89315; no product account/build behavior or black-box result was claimed. S0-003 was not modified."
