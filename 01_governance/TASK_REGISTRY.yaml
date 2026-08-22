@@ -247,6 +247,16 @@ tasks:
     reviewer_model: null
     status: BLOCKED
     priority: P0
+    stage_0_gate_disposition: LEGITIMATE_DEFERRED_EXTERNAL_DEPENDENCY
+    stage_0_closure_required: false
+    required_before:
+      - "Any claim that Grok Bot runtime behavior, rollout, reliability, cancellation, approval, recovery, isolation, or false-completion behavior was directly observed or reproduced."
+      - "Any parity/improvement claim or product/architecture decision that depends on those currently UNKNOWN runtime behaviors, unless the consuming artifact retains them as reference UNKNOWN and does not rely on them."
+    not_required_before:
+      - ADVANCE_STAGE
+      - "Stage 1 customer/workflow selection"
+      - "Stage 2 parity mapping when affected capabilities remain reference unknown"
+    gate_disposition_evidence: 10_checkpoints/stage_checkpoints/STAGE_0_VERIFICATION.yaml
     dependencies:
       - S0-002
     blocked_by:
@@ -295,6 +305,18 @@ tasks:
     reviewer_model: null
     status: BLOCKED
     priority: P0
+    stage_0_gate_disposition: LEGITIMATE_DEFERRED_EXTERNAL_DEPENDENCY
+    stage_0_closure_required: false
+    required_before:
+      - "Any paid comparative model benchmark or BENCHMARK_MODELS execution beyond explicitly authorized minimal S0-005 smoke calls."
+      - "Any model/provider technical spike using real funded API accounts, and any final model-role, production-suitability, or account-dependent provider/architecture lock."
+      - "The Stage 4 gate; S0-005 must be VERIFIED and actual access evidence must cover at least two providers before provider abstraction across at least two providers can be accepted as evidence."
+    not_required_before:
+      - ADVANCE_STAGE
+      - "Stage 1 customer/workflow selection"
+      - "Stage 2 product/parity definition"
+      - "Provider-agnostic Stage 3 architecture options while account-dependent claims remain UNKNOWN and required spikes stay open"
+    gate_disposition_evidence: 10_checkpoints/stage_checkpoints/STAGE_0_VERIFICATION.yaml
     dependencies:
       - S0-003
     blocked_by:
