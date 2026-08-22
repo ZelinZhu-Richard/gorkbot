@@ -57,6 +57,12 @@ known_limitations:
   - "DeepSeek moving aliases can change served versions and prices; the registry is a dated public baseline only."
   - "DeepSeek V4 open-weight license and commercial deployment terms were not reviewed."
   - "The independent challenger and verifier reviews have not run."
+  - "Historical dependency deviation recorded by the S0-003 fixer: the initial author pass ran while dependency S0-001 was READY but not independently VERIFIED. S0-001 was VERIFIED before either S0-003 fixer pass; the original ordering remains visible rather than being rewritten."
+  - "Historical provenance limitation recorded by the S0-003 fixer: started_at is null, completed_at is the shared Stage 0 batch stamp, and the initial pass did not capture a per-source UTC access time. GPT-5.6 Sol pricing drifted later on 2026-08-21 to promotional pricing through at least 2026-11-21, so the original author record cannot order its access against that change."
+  - "Historical scope deviation recorded under D-009: the initial S0-003 author pass changed SOURCE_LEDGER.csv, ASSUMPTION_REGISTER.md, and RISK_REGISTER.md outside its then-current allowed_files_to_change. The prospective S0-003-A1 authorization for the first fixer does not retroactively cure that deviation."
+  - "Second-fixer access state: founder API accounts, model entitlements, funded balances, quotas, regions, and provider data configurations remain unverified; public or consumer-product access is not founder-account evidence."
+  - "Second-fixer execution state: no benchmark budget has been authorized, so the executable benchmark budget remains USD 0; the Stage 1 customer workflow remains unselected and BLOCKED_WORKFLOW_NOT_SELECTED."
+  - "Second-fixer evidence state: no paid benchmark execution occurred, and every proposed model-role assignment remains HYPOTHESIS_ONLY rather than benchmark-validated."
 unverified_claims:
   - "Founder-reported ChatGPT Pro, Codex, Claude Max, Claude Code, and DeepSeek access were not independently verified."
   - "No candidate's project-role performance, structured-output rate, latency, or cost per successful task is known."
@@ -102,3 +108,18 @@ acceptance_evidence:
   primary_source_verification: AUTHOR_CHECK_PASSED
   account_level_api_verification: NOT_RUN_BLOCKED
   independent_review: NOT_RUN
+
+second_fixer_addendum:
+  added_for_findings:
+    - V-S0-003-01
+    - V-S0-003-02
+    - V-S0-003-03
+    - V-S0-003-04
+  current_source_reverification_started_at: "2026-08-22T15:24:10Z"
+  current_source_reverification_completed_at: "2026-08-22T15:24:11Z"
+  current_source_ids:
+    - SRC-021
+    - SRC-023
+  current_result: "Both current Anthropic primary pages returned HTTP 200. The model registry now uses source-native month precision, treats the unstated Opus 5 availability date as UNKNOWN, and keeps the 512-token value only as a caching threshold."
+  historical_record_treatment: "All original author tests, results, timestamps, acceptance_evidence, and repository_commit_or_patch fields above remain unchanged. The six known_limitations entries added in this pass and this addendum preserve the post-review audit facts without rewriting the initial record."
+  evidence_handoff: 99_handoffs/completed/S0-003_second_fixer_handoff.yaml

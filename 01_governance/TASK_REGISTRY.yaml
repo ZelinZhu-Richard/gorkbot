@@ -151,7 +151,8 @@ tasks:
     owner_role: AUTHOR
     assigned_model: "Codex (runtime model identifier not exposed)"
     reviewer_model: "Claude Fable 5 (claude-fable-5) via Claude Code — independent challenger"
-    status: CHANGES_REQUESTED
+    verifier_model: "Claude Fable 5 (claude-fable-5) via Claude Code — independent verifier (separate session; same model/product as challenger; independent of the Codex author/fixer; conflict disclosure: verifier is itself a registry candidate)"
+    status: READY_FOR_REVIEW
     priority: P0
     dependencies:
       - S0-001
@@ -164,6 +165,13 @@ tasks:
       - 01_governance/TASK_REGISTRY.yaml
       - 01_governance/PROJECT_STATE.yaml
       - 99_handoffs/completed/
+    scope_amendments:
+      - amendment_id: S0-003-A1
+        effective_at: "2026-08-22T03:54:16Z"
+        change: "Add 01_governance/SOURCE_LEDGER.csv and 01_governance/RISK_REGISTER.md to allowed_files_to_change for the FIX_TASK_S0-003 pass only."
+        reason: "F-S0-003-01 through F-S0-003-05 require current primary-source entries for newly included candidates and provider policy facts, and the verified DeepSeek jurisdiction, storage, and training terms materially change the existing production-suitability risk record."
+        authorization: "Founder instruction in MODE: FIX_TASK_S0-003 authorizes a prospective scope amendment under D-009 when another file must change."
+        audit_note: "This amendment is prospective. It does not add these paths to the original S0-003 scope, cure the original SOURCE_LEDGER.csv / ASSUMPTION_REGISTER.md / RISK_REGISTER.md deviation, or authorize any new ASSUMPTION_REGISTER.md edit in this fixer pass. The historical deviation remains in the original handoff and D-009."
     deliverables:
       - verified_model_registry
       - model_role_benchmark_plan
@@ -187,7 +195,36 @@ tasks:
     challenger_completed_at: "2026-08-21T17:35:00-04:00"
     challenger_verdict: CHANGES_REQUESTED
     challenger_finding_counts: "BLOCKER 0, HIGH 2, MEDIUM 5, LOW 4, NOTE 8"
-    verification_status: CHALLENGER_REVIEWED_CHANGES_REQUESTED_NOT_VERIFIED
+    historical_dependency_provenance:
+      original_author_execution: "S0-003 author work completed on 2026-08-21 before S0-001 had reached independent VERIFIED status. This historical dependency-order deviation remains visible; D-009 is not used retroactively to cure it."
+      current_fixer_entry: "S0-001 and S0-002 were independently VERIFIED before FIX_TASK_S0-003 began; the current HEAD baseline is d264d862c2949ec42de9a1a67c976167f60858d5."
+      substantive_effect: "No S0-001 finding changed the S0-003 model-source or benchmark corrections, but the deviation remains acceptance provenance."
+    fixer_evidence:
+      - 99_handoffs/completed/S0-003_fixer_handoff.yaml
+    fixer_started_at: "2026-08-22T03:54:16Z"
+    fixer_completed_at: "2026-08-22T04:24:04Z"
+    fixer_finding_counts: "FIXED 11, DISPUTED 0, DEFERRED 0"
+    fixer_live_source_window_utc: "2026-08-22T04:13:42Z..2026-08-22T04:13:51Z (39/39 S0-003 primary URLs HTTP 200)"
+    verifier_evidence:
+      - 99_handoffs/completed/S0-003_verifier_review.yaml
+    verifier_started_at: "2026-08-22T11:40:00Z"
+    verifier_completed_at: "2026-08-22T12:10:00Z"
+    verifier_reviewed_state: "d264d862c2949ec42de9a1a67c976167f60858d5 plus the uncommitted FIX_TASK_S0-003 working-tree patch; exact reviewed bytes pinned by SHA-256 in the verifier review (reviewed_file_digests)"
+    verifier_verdict: CHANGES_REQUIRED
+    verifier_live_source_window_utc: "2026-08-22T11:53:56Z..2026-08-22T11:54:18Z (39/39 S0-003 primary URLs HTTP 200; every registry/ledger/plan value re-located in live text except the three Anthropic-entry values in V-S0-003-01/02)"
+    verifier_acceptance_results: "Personal product access separated from API access: PASS; Exact versions and verification dates recorded: PASS; No model role locked by reputation: PASS; Benchmark includes success, cost, latency, structured-output reliability: PASS; Required test primary-source verification: PARTIAL (claude-opus-5 reliable_knowledge_cutoff contradicts live SRC-021; claude-opus-5 public_api_availability 2026-05-21 not stated by any ledgered source; claude-fable-5 prompt-cache-minimum-400 clause undocumented)"
+    verifier_original_finding_dispositions: "F-S0-003-01 RESOLVED, F-S0-003-02 RESOLVED, F-S0-003-03 RESOLVED, F-S0-003-04 RESOLVED, F-S0-003-05 RESOLVED, F-S0-003-06 RESOLVED, F-S0-003-07 RESOLVED, F-S0-003-08 RESOLVED, F-S0-003-09 RESOLVED, F-S0-003-10 RESOLVED_IN_SUBSTANCE (author-handoff location not used; see V-S0-003-04), F-S0-003-11 RESOLVED"
+    verifier_new_finding_counts: "BLOCKER 0, HIGH 0, MEDIUM 1 (V-S0-003-01), LOW 3 (V-S0-003-02, V-S0-003-03, V-S0-003-04), NOTE 10"
+    verifier_required_fix_scope: "01_governance/MODEL_REGISTRY.yaml (claude-opus-5 release_context and reliable_knowledge_cutoff; claude-fable-5 public_specs.thinking clause; month-precision cutoffs) plus append-only known_limitations in 99_handoffs/completed/S0-003_handoff.yaml (or founder alternative); a ledger row only if the Opus 5 availability date is kept; then re-verification of the changed fields"
+    second_fixer_evidence:
+      - 99_handoffs/completed/S0-003_second_fixer_handoff.yaml
+    second_fixer_started_at: "2026-08-22T15:24:10Z"
+    second_fixer_completed_at: "2026-08-22T15:28:24Z"
+    second_fixer_finding_counts: "FIXED 4, DISPUTED 0, DEFERRED 0"
+    second_fixer_source_window_utc: "2026-08-22T15:24:10Z..2026-08-22T15:24:11Z (SRC-021 and SRC-023 current Anthropic primary pages HTTP 200)"
+    second_fixer_source_change: "No new source added and SOURCE_LEDGER.csv unchanged; the unsupported Opus 5 availability date was removed and marked UNKNOWN rather than replaced with an inferred date."
+    second_fixer_verification_results: "V-S0-003-01..04 FIXED; modified YAML parsed; source-native cutoff precision and cache semantics confirmed; challenger F-S0-003-10/V-S0-003-04 grep passed; founder/account/budget/workflow/benchmark/role states unchanged; no paid run; no secret; unrelated reviewed deliverables retained their pre-pass hashes; git diff --check PASS."
+    verification_status: SECOND_FIX_READY_FOR_INDEPENDENT_REVIEW_NOT_VERIFIED
 
   - task_id: S0-004
     title: Run priority Grok Bot black-box verification
