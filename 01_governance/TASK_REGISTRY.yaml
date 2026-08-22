@@ -7,7 +7,8 @@ tasks:
     owner_role: AUTHOR
     assigned_model: "Codex (runtime model identifier not exposed)"
     reviewer_model: "Claude Fable 5 (claude-fable-5) via Claude Code — independent challenger"
-    status: READY_FOR_REVIEW
+    verifier_model: "Claude Fable 5 (claude-fable-5) via Claude Code — independent verifier (separate session; same model/product as challenger; independent of the Codex author)"
+    status: VERIFIED
     priority: P0
     dependencies: []
     files_to_read:
@@ -60,7 +61,20 @@ tasks:
     challenger_completed_at: "2026-08-21T16:05:00-04:00"
     challenger_verdict: CHANGES_REQUESTED
     challenger_finding_counts: "BLOCKER 0, HIGH 0, MEDIUM 0, LOW 6, NOTE 8"
-    verification_status: FIXER_PASS_COMPLETE_AWAITING_INDEPENDENT_REVIEW_NOT_VERIFIED
+    deferred_finding_resolutions:
+      - finding_id: F-S0-001-04
+        resolved_by: "Founder decision D-010 (DECISION_LOG.md) and founder_confirmation_addendum in 99_handoffs/completed/S0-001_fixer_handoff.yaml (recorded 2026-08-21T19:39:00-04:00, committed adc87c4): authoring surface Codex, exact runtime model UNKNOWN_NOT_EXPOSED, no GPT-5.6 Sol relabel; remaining_blocker false."
+        resolved_at: "2026-08-21T19:39:00-04:00"
+    verifier_evidence:
+      - 99_handoffs/completed/S0-001_verifier_review.yaml
+    verifier_started_at: "2026-08-21T21:55:00-04:00"
+    verifier_completed_at: "2026-08-21T22:03:39-04:00"
+    verified_commit: adc87c4
+    verifier_verdict: VERIFIED
+    verifier_acceptance_results: "Every repository file is listed: PASS; Prepared drafts distinguished from primary evidence: PASS; No original evidence modified: PASS; Missing high-priority inputs identified: PASS; Required test inventory-vs-tree cross-check: PASS"
+    verifier_original_finding_dispositions: "F-S0-001-01 RESOLVED, F-S0-001-02 RESOLVED, F-S0-001-03 RESOLVED, F-S0-001-04 RESOLVED, F-S0-001-05 RESOLVED, F-S0-001-06 RESOLVED"
+    verifier_new_finding_counts: "BLOCKER 0, HIGH 0, MEDIUM 0, LOW 1 (V-S0-001-01, resolved by the verifier governance update), NOTE 8"
+    verification_status: VERIFIED_BY_INDEPENDENT_VERIFIER_AGAINST_ADC87C4_2026-08-21
 
   - task_id: S0-002
     title: Verify current Grok Bot capability baseline
