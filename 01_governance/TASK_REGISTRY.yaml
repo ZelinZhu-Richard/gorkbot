@@ -84,7 +84,8 @@ tasks:
     owner_role: AUTHOR
     assigned_model: "Codex (runtime model identifier not exposed)"
     reviewer_model: "Claude Fable 5 (claude-fable-5) via Claude Code — independent challenger"
-    status: READY_FOR_REVIEW
+    verifier_model: "Claude Fable 5 (claude-fable-5) via Claude Code — independent verifier (separate session; same model/product as challenger; independent of the Codex author/fixer)"
+    status: VERIFIED
     priority: P0
     dependencies:
       - S0-001
@@ -130,7 +131,17 @@ tasks:
     fixer_started_at: "2026-08-21T22:58:27-04:00"
     fixer_completed_at: "2026-08-21T23:13:44-04:00"
     fixer_finding_counts: "FIXED 7, DISPUTED 0, DEFERRED 0"
-    verification_status: FIXER_PASS_COMPLETE_AWAITING_INDEPENDENT_REVIEW_NOT_VERIFIED
+    verifier_evidence:
+      - 99_handoffs/completed/S0-002_verifier_review.yaml
+    verifier_started_at: "2026-08-21T23:17:00-04:00"
+    verifier_completed_at: "2026-08-21T23:34:28-04:00"
+    verified_commit: fb89315
+    verifier_verdict: VERIFIED
+    verifier_live_source_window_utc: "2026-08-22T03:22:27Z..2026-08-22T03:22:34Z (24/24 official primary URLs HTTP 200; nine cited docs pages dated August 11, 2026, four dated August 20, 2026)"
+    verifier_acceptance_results: "Every consequential claim links to a current primary source or is labeled: PASS; Research date and product version context explicit: PASS; Unknown implementation details remain unknown: PASS; Public observations not confused with clean-room design proposals: PASS; Required test challenger source spot-check: PASS; Required test link and date validation: PASS"
+    verifier_original_finding_dispositions: "F-S0-002-01 RESOLVED, F-S0-002-02 RESOLVED, F-S0-002-03 RESOLVED, F-S0-002-04 RESOLVED, F-S0-002-05 RESOLVED, F-S0-002-06 RESOLVED, F-S0-002-07 RESOLVED"
+    verifier_new_finding_counts: "BLOCKER 0, HIGH 0, MEDIUM 0, LOW 1 (V-S0-002-01, resolved by the verifier governance update), NOTE 8"
+    verification_status: VERIFIED_BY_INDEPENDENT_VERIFIER_AGAINST_FB89315_2026-08-21
 
   - task_id: S0-003
     title: Verify current model access and design project benchmark
@@ -193,7 +204,6 @@ tasks:
     blocked_by:
       - eligible_grok_bot_account_and_plan_not_recorded
       - installed_app_build_and_safe_test_environment_not_recorded
-      - S0-002_independent_review_pending
     files_to_read:
       - 02_research/GROK_BOT_BASELINE_2026-08-21.md
       - 00_inbox/prepared_materials/03_GROKBOT_EXAMPLES/
