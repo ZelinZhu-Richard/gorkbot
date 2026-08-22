@@ -151,8 +151,8 @@ tasks:
     owner_role: AUTHOR
     assigned_model: "Codex (runtime model identifier not exposed)"
     reviewer_model: "Claude Fable 5 (claude-fable-5) via Claude Code — independent challenger"
-    verifier_model: "Claude Fable 5 (claude-fable-5) via Claude Code — independent verifier (separate session; same model/product as challenger; independent of the Codex author/fixer; conflict disclosure: verifier is itself a registry candidate)"
-    status: READY_FOR_REVIEW
+    verifier_model: "Claude Fable 5 (claude-fable-5) via Claude Code — independent verifier and re-verifier (separate sessions; same model/product as challenger; independent of the Codex author/fixers; conflict disclosure: verifier is itself a registry candidate)"
+    status: VERIFIED
     priority: P0
     dependencies:
       - S0-001
@@ -224,7 +224,18 @@ tasks:
     second_fixer_source_window_utc: "2026-08-22T15:24:10Z..2026-08-22T15:24:11Z (SRC-021 and SRC-023 current Anthropic primary pages HTTP 200)"
     second_fixer_source_change: "No new source added and SOURCE_LEDGER.csv unchanged; the unsupported Opus 5 availability date was removed and marked UNKNOWN rather than replaced with an inferred date."
     second_fixer_verification_results: "V-S0-003-01..04 FIXED; modified YAML parsed; source-native cutoff precision and cache semantics confirmed; challenger F-S0-003-10/V-S0-003-04 grep passed; founder/account/budget/workflow/benchmark/role states unchanged; no paid run; no secret; unrelated reviewed deliverables retained their pre-pass hashes; git diff --check PASS."
-    verification_status: SECOND_FIX_READY_FOR_INDEPENDENT_REVIEW_NOT_VERIFIED
+    reverifier_evidence:
+      - 99_handoffs/completed/S0-003_reverification_review.yaml
+    reverifier_started_at: "2026-08-22T16:19:00Z"
+    reverifier_completed_at: "2026-08-22T16:30:00Z"
+    verified_commit: 6fb9557
+    reverifier_verdict: VERIFIED
+    reverifier_live_source_window_utc: "2026-08-22T16:21:28Z..2026-08-22T16:21:30Z (SRC-021 and SRC-023 current Anthropic primary pages HTTP 200, HTML and .md variants; narrow scope — the other 37 S0-003 URLs were last re-located live by the first verifier at 11:53:56Z..11:54:18Z and the files citing them are byte-identical by SHA-256)"
+    reverifier_finding_dispositions: "V-S0-003-01 RESOLVED, V-S0-003-02 RESOLVED, V-S0-003-03 RESOLVED, V-S0-003-04 RESOLVED"
+    reverifier_new_finding_counts: "BLOCKER 0, HIGH 0, MEDIUM 0, LOW 0, NOTE 0 (four non-finding observations recorded)"
+    reverifier_acceptance_results: "Personal product access separated from API access: PASS; Exact versions and verification dates recorded: PASS; No model role locked by reputation: PASS; Benchmark includes success, cost, latency, structured-output reliability: PASS; Required test primary-source verification: PASS (live SRC-021 cutoffs Jan 2026 / May 2026 / Jan 2026 / Feb 2025 == registry 2026-01 / 2026-05 / 2026-01 / 2025-02; no Opus 5 availability date on the live page, registry UNKNOWN; live SRC-023 documents the 512-token minimum only as a caching threshold, registry clause removed)"
+    reverifier_conduct_checks: "Second fixer: no paid benchmark, no founder API access claim, no Stage 1 customer/workflow selection, no final model role, no architecture, no application code, no S0-001/S0-002 regression, inside original allowed files, S0-003 left READY_FOR_REVIEW (not self-verified) — all PASS"
+    verification_status: VERIFIED_BY_INDEPENDENT_REVERIFIER_AGAINST_6FB9557_2026-08-22
 
   - task_id: S0-004
     title: Run priority Grok Bot black-box verification
@@ -289,7 +300,6 @@ tasks:
     blocked_by:
       - founder_has_not_recorded_funded_api_accounts_or_budget
       - approved_retention_region_and_data_classification_settings_unknown
-      - S0-003_independent_review_pending
     files_to_read:
       - 01_governance/MODEL_REGISTRY.yaml
       - 06_evaluation/MODEL_ROLE_BENCHMARK_PLAN.md

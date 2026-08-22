@@ -1,0 +1,243 @@
+review_id: R-S0-003-20260822-REVERIFIER
+handoff_id: H-S0-003-REVERIFY-20260822
+task_id: S0-003
+stage: 0
+mode: REVIEW_TASK_S0-003
+role: VERIFIER (narrow re-verification of V-S0-003-01..04; not a second broad challenger review)
+author_model: "Claude Fable 5 (claude-fable-5) via Claude Code — author of this re-verification artifact only; not an author or fixer of any S0-003 content"
+reviewer_model: "Claude Fable 5 (claude-fable-5) via Claude Code"
+reviewer_independence: >-
+  Independent of the S0-003 author, first fixer and second fixer, which the repository records as
+  "Codex (runtime model identifier not exposed)" (D-010). The re-verifier is the same model/product as
+  the S0-003 challenger and first verifier (Claude Fable 5 via Claude Code) but ran in a separate
+  session with no shared conversation state; it re-derived every fact below from the committed
+  repository at HEAD and from its own live retrieval of the two Anthropic primary pages that the four
+  open findings depend on, and did not rely on the second fixer's test_results or on the first
+  verifier's conclusions without re-checking the current files. Conflict disclosure (same as
+  N-S0-003-06 / V-S0-003-13): the re-verifier is itself a registry candidate (claude-fable-5); every
+  Anthropic statement below is pinned to quoted live page text so the founder can re-check it without
+  relying on the re-verifier. The AGENTS.md sole-author rule is satisfied: the author/fixers (Codex)
+  did not mark their own work verified.
+reviewer_requested: false
+started_at: "2026-08-22T16:19:00Z"
+completed_at: "2026-08-22T16:30:00Z"
+reviewed_commit: 6fb9557f0caf739dd4a5df8e0a098603e0d56774
+reviewed_commit_full_state: >-
+  Branch chore/initialize-project-materials at 6fb9557 (Record S0-003 first fixer and verifier
+  artifacts; preceded by 5f7b805 Fix remaining S0-003 verifier findings), working tree clean at the
+  start of this pass (git status --short empty). The founder committed the second fixer changes
+  (5f7b805: MODEL_REGISTRY.yaml, PROJECT_STATE.yaml, TASK_REGISTRY.yaml, S0-003_handoff.yaml,
+  S0-003_second_fixer_handoff.yaml) and then the first fixer/verifier artifacts (6fb9557:
+  RISK_REGISTER.md, SOURCE_LEDGER.csv, MODEL_ROLE_BENCHMARK_PLAN.md, S0-003_fixer_handoff.yaml,
+  S0-003_verifier_review.yaml). Cumulative diff d264d86..HEAD touches exactly those ten paths.
+reviewed_file_digests_at_head:
+  01_governance/MODEL_REGISTRY.yaml: 0487505f50d63d4ecc2ab61739811f0d4fa0aa8914789aad49771603db34f849
+  01_governance/PROJECT_STATE.yaml: b7a502a70cc5ce0fc366d21182c43bd12042488c6c906d23d24103eb41a5dbf2
+  01_governance/RISK_REGISTER.md: 1d49be3272535d70bd237457bfcb1897fc732b167178ab50348e577b1cd193bb
+  01_governance/SOURCE_LEDGER.csv: 461bf998607d3ed75d8dcbdcd5ac058551d4c33faa750630d19bb00a3b598d81
+  01_governance/TASK_REGISTRY.yaml: 45d061165d6b9394ac397ec9487aa6ea48a3b4021510a6b6db77c9d61f92e7d9
+  06_evaluation/MODEL_ROLE_BENCHMARK_PLAN.md: 05aa7799181cbefa1b3951f615de1cc8d32865522a2fda33f3c9aadfb821424c
+  99_handoffs/completed/S0-003_handoff.yaml: b0915b68db8b6e6a29804677bac21ce388ef110a3db4ddc6804acab0042c455f
+  99_handoffs/completed/S0-003_challenger_review.yaml: d8a115b40014121756e5c075b39b14f103a18314c13e6709ed1ce721ece0a30a
+  99_handoffs/completed/S0-003_fixer_handoff.yaml: a4b0314fba21386659cf0d22bf8b70e523bf37f2aa364fee36e3896300282fcc
+  99_handoffs/completed/S0-003_verifier_review.yaml: 502c0ba00811bd26550745ad6b49fb6ffb26b56f58cec2824fcfae0dbec7b077
+  99_handoffs/completed/S0-003_second_fixer_handoff.yaml: 6f6ea95e430d1bc858822a6487b042edae21e62bffcfbe09e5f85e162ba37b15
+digest_continuity_check: >-
+  RISK_REGISTER.md, SOURCE_LEDGER.csv, MODEL_ROLE_BENCHMARK_PLAN.md and S0-003_fixer_handoff.yaml at
+  HEAD are byte-identical to the bytes the first verifier pinned in S0-003_verifier_review.yaml
+  reviewed_file_digests (1d49be32…, 461bf998…, 05aa7799…, a4b0314f…), and S0-003_verifier_review.yaml
+  matches the digest the second fixer recorded (502c0ba0…). The first-fixer MODEL_REGISTRY.yaml that
+  the first verifier reviewed (digest 9aae1cc6…) was recovered from the git object store as unreachable
+  blob 43b448ce504a5cb3728084caa9a8f788bc7f615a (SHA-256 re-computed and matched), so the second
+  fixer's registry change is isolated exactly: registry_status line; new
+  targeted_second_fix_source_reverification block; per-entry source_accessed_at_utc /
+  source_access_scope for the four Anthropic entries; Fable thinking clause; Opus release_context;
+  four reliable_knowledge_cutoff values. No other registry line changed.
+verdict: VERIFIED
+verdict_rationale: >-
+  All four findings left open by the first verifier are RESOLVED at HEAD and no new material issue
+  exists. V-S0-003-01: the unsupported Claude Opus 5 availability date is gone (release_context
+  claim_status UNKNOWN, public_api_availability_date null, with an explicit note), the Opus 5 reliable
+  knowledge cutoff is "2026-05", which matches the live overview page's "May 2026" at the source's
+  month precision, and provenance was re-stamped (per-entry 2026-08-22T15:24:10Z..15:24:11Z window
+  with a scope note, a registry-level targeted re-verification block, and the author-handoff
+  addendum). V-S0-003-02: the "insufficient prompt-cache minimum" clause is absent from the Fable
+  thinking field; the 512-token value survives only as prompt_cache_minimum_tokens, which the live
+  migration guide documents solely as "The minimum cacheable prompt length … is 512 tokens" with no
+  error. V-S0-003-03: all four Anthropic reliable_knowledge_cutoff values are month precision
+  (2026-01 / 2026-05 / 2026-01 / 2025-02), matching the live page (Jan 2026 / May 2026 / Jan 2026 /
+  Feb 2025). V-S0-003-04: the original author handoff gained six append-only known_limitations
+  entries plus a second_fixer_addendum (diff d264d86..HEAD on that file is 21 insertions, 0
+  deletions); the dependency-order, null-started_at / batch-stamp / no-per-source-access-time,
+  same-day GPT-5.6 Sol promotional drift (2026-11-21) and three-file allowed-files deviation under
+  D-009 are all recorded, acceptance_evidence still reads AUTHOR_CHECK_PASSED, and the challenger's
+  F-S0-003-10 / V-S0-003-04 grep returns the entries. The required test "Primary-source
+  verification", which the first verifier marked PARTIAL solely because of these three Anthropic
+  values, is now PASS; the four acceptance criteria the first verifier marked PASS are unchanged by
+  the second fixer's bounded diff and were re-confirmed for the changed fields. The second fixer ran no
+  paid benchmark, claimed no founder API access, selected no Stage 1 customer/workflow, assigned no
+  final model role, chose no architecture, wrote no application code, did not regress S0-001/S0-002
+  content, stayed inside the original S0-003 allowed files, and left S0-003 at READY_FOR_REVIEW /
+  SECOND_FIX_READY_FOR_REVIEW_NOT_VERIFIED rather than self-verifying. S0-003 is therefore marked
+  VERIFIED against 6fb9557. The Stage 0 gate was deliberately not evaluated; S0-004 and S0-005 stay
+  BLOCKED; Stage 1 was not started.
+
+method:
+  - "Read MASTER_OPERATING_PROMPT.md, AGENTS.md, CLAUDE.md, 01_governance/{PROJECT_STATE.yaml,TASK_REGISTRY.yaml,DECISION_LOG.md,MODEL_REGISTRY.yaml (header, drift/targeted blocks and all four Anthropic entries in full)}, SOURCE_LEDGER.csv header and SRC-021/SRC-023 rows, 06_evaluation/MODEL_ROLE_BENCHMARK_PLAN.md in full, 99_handoffs/completed/S0-003_{handoff,challenger_review,fixer_handoff,verifier_review,second_fixer_handoff}.yaml in full, 99_handoffs/completed/README.md and the S0-002 verifier review header (format precedent)."
+  - "git log/show for 5f7b805 and 6fb9557; git diff --stat d264d86 HEAD; full diffs d264d86..HEAD of S0-003_handoff.yaml, PROJECT_STATE.yaml and TASK_REGISTRY.yaml; out-of-scope diff over 00_inbox, 02_research, ASSUMPTION_REGISTER.md, DECISION_LOG.md, governing docs, all S0-001/S0-002 artifacts and the S0-003 challenger review (0 paths); git diff --check d264d86 HEAD (clean); git ls-files for application-code extensions (none)."
+  - "SHA-256 of every S0-003 file at HEAD compared with the first verifier's and the second fixer's recorded digests; git fsck --unreachable to recover the first-fixer registry blob (43b448ce…) and diff -u it against HEAD to bound the second fixer's registry change."
+  - "Live retrieval with curl (desktop User-Agent, max-time 30 s, follow redirects) of SRC-021 https://platform.claude.com/docs/en/about-claude/models/overview (HTML 948,111 B; .md variant 28,819 B) and SRC-023 https://platform.claude.com/docs/en/about-claude/models/migration-guide (HTML 2,571,033 B; .md variant 158,323 B) at 2026-08-22T16:21:28Z..16:21:30Z, all HTTP 200; grep of the .md and HTML bodies for the cutoff table, any Opus 5 availability date ('May 21', '2026-05-21', '21, 2026'), the 512-token minimum and every '400' statement."
+  - "ruby -ryaml parse of all 17 governance/handoff YAML files; parsed-registry extraction of all 13 exact IDs, role_assignment_status, benchmark_status, FOUNDER_ACCOUNT_ACCESS claim_status, reliable_knowledge_cutoff, Opus 5 release_context, Fable thinking and prompt_cache_minimum_tokens, benchmark_policy; FOUNDER_ACCOUNT_VERIFIED text-occurrence count; HANDOFF_TEMPLATE key coverage of the second fixer handoff; repository-wide grep for the retired values 2026-05-21 / 2026-01-31 / 2025-02-28 / 'insufficient prompt-cache' / 'May 21'; the challenger's F-S0-003-10 / V-S0-003-04 grep; plan execution-state grep."
+  - "No subagents were used. Network access was used only to retrieve the two public primary pages; no API key, account, sign-in, model call, paid run or product interaction occurred."
+
+files_read:
+  - MASTER_OPERATING_PROMPT.md
+  - AGENTS.md
+  - CLAUDE.md
+  - 01_governance/PROJECT_STATE.yaml
+  - 01_governance/TASK_REGISTRY.yaml
+  - 01_governance/DECISION_LOG.md
+  - 01_governance/MODEL_REGISTRY.yaml (HEAD, and the recovered first-fixer blob 43b448ce for diff)
+  - 01_governance/SOURCE_LEDGER.csv (header; SRC-021 and SRC-023 rows)
+  - 06_evaluation/MODEL_ROLE_BENCHMARK_PLAN.md
+  - 99_handoffs/completed/README.md
+  - 99_handoffs/completed/S0-003_handoff.yaml
+  - 99_handoffs/completed/S0-003_challenger_review.yaml
+  - 99_handoffs/completed/S0-003_fixer_handoff.yaml
+  - 99_handoffs/completed/S0-003_verifier_review.yaml
+  - 99_handoffs/completed/S0-003_second_fixer_handoff.yaml
+  - 99_handoffs/completed/S0-002_verifier_review.yaml (header only, format precedent)
+  - git log / git show 5f7b805 6fb9557 / git diff d264d86 HEAD
+  - live SRC-021 and SRC-023 (HTML and .md variants)
+files_created:
+  - 99_handoffs/completed/S0-003_reverification_review.yaml
+files_modified:
+  - 01_governance/TASK_REGISTRY.yaml
+  - 01_governance/PROJECT_STATE.yaml
+files_deleted: []
+decisions_made:
+  - "S0-003 status set READY_FOR_REVIEW -> VERIFIED in TASK_REGISTRY.yaml with re-verifier fields added (verified_commit 6fb9557); S0-003 moved from active_task_ids to completed_task_ids in PROJECT_STATE.yaml."
+  - "S0-005 blocked_by entry 'S0-003_independent_review_pending' removed because it is no longer true; S0-005 remains BLOCKED on founder funded-account/budget inputs and retention/region/data-classification settings. S0-004 unchanged (BLOCKED). Neither task was started."
+  - "The reviewed deliverables (MODEL_REGISTRY.yaml, MODEL_ROLE_BENCHMARK_PLAN.md, SOURCE_LEDGER.csv, RISK_REGISTER.md), the author handoff, the challenger review, the first fixer handoff, the first verifier review and the second fixer handoff were NOT edited; S0-003_verifier_review.yaml was not overwritten — this is a separate artifact."
+  - "No Stage 0 gate, Stage 1, architecture, customer/workflow, model-role or application decision was made or evaluated."
+  - "All changes are left uncommitted for the founder; no git commit or push was performed."
+assumptions_added: []
+
+live_source_verification:
+  window_started_at_utc: "2026-08-22T16:21:28Z"
+  window_completed_at_utc: "2026-08-22T16:21:30Z"
+  local_equivalent: "2026-08-22T12:21:28-04:00 .. 12:21:30-04:00"
+  access_method: "curl -sS -L with a desktop browser User-Agent, max-time 30s, direct live HTTPS; HTML and the .md variant Anthropic publishes were both saved locally and grepped."
+  sources:
+    - source_id: SRC-021
+      url: https://platform.claude.com/docs/en/about-claude/models/overview
+      http: "200 (HTML 948,111 B; .md 28,819 B)"
+      body_sha256: "HTML 24e9bb1d4cfb931bbaaf556178ed9df5cc07b21a25c6373ae56a9c4ef501c5e6; .md c4b23d31f9f3bd850ebc63bacf05417a2780f945dc15c78f9dcf853f55af0d12"
+      quoted_facts:
+        - "Model table row 'Reliable knowledge cutoff': Jan 2026 (Claude Fable 5) | May 2026 (Claude Opus 5) | Jan 2026 (Claude Sonnet 5) | Feb 2025 (Claude Haiku 4.5); row 'Training data cutoff': Jan 2026 | May 2026 | Jan 2026 | Jul 2025. Footnote 2: 'Reliable knowledge cutoff indicates the date through which a model's knowledge is most extensive and reliable.' Values are month-level only; no day is given anywhere on the page."
+        - "Claude API IDs claude-fable-5 / claude-opus-5 / claude-sonnet-5 / claude-haiku-4-5-20251001 (alias claude-haiku-4-5); 'Every Claude model ID is a pinned snapshot … Starting with the Claude 4.6 generation, model IDs use a dateless format that is also a pinned snapshot'."
+        - "'Claude Fable 5 is available on the Claude API, Amazon Bedrock, Claude Platform on AWS, Google Cloud, and Microsoft Foundry beginning June 9, 2026.' The page states NO initial availability date for Claude Opus 5; grep for 'May 21', '2026-05-21' and '21, 2026' over the HTML and .md bodies returns nothing. Opus 5 is documented as currently available (Claude API ID row, 'start with Claude Opus 5 for complex agentic coding and enterprise work', effort defaults)."
+    - source_id: SRC-023
+      url: https://platform.claude.com/docs/en/about-claude/models/migration-guide
+      http: "200 (HTML 2,571,033 B; .md 158,323 B)"
+      body_sha256: "HTML 7f60e308572943e62e7765dec399c21d32cdf32e924785064c7df51f91b0c745; .md b4bec69d1a3bcca8ed667b63d8a705ce14794e7ffe864ce6ead0f2c26dd4a092"
+      quoted_facts:
+        - "'Lower prompt caching minimum: The minimum cacheable prompt length on claude-fable-5 and claude-mythos-5 is 512 tokens, lower than the 1,024 tokens on Claude Opus 4.8. Prompts that were too short to cache on Claude Opus 4.8 can now create cache entries, with no code changes required.' Every other occurrence of 512 on the page is the same caching-threshold statement for Opus 5. No sentence on the page associates the cache minimum with an error; every '400' statement on the page concerns thinking disabled / budget_tokens, assistant prefill, non-default temperature/top_p/top_k, the effort xhigh/max + thinking-disabled combination on Opus 5, data-retention configuration, mid-conversation system messages on Opus 4.7, reasoning_content, or Haiku 4.5 temperature+top_p."
+        - "Fable 5 / Mythos 5: 'Adaptive thinking is always on … Both thinking: {type: \"disabled\"} and manual extended thinking (thinking: {type: \"enabled\", budget_tokens: N}) return a 400 error.' 'Prefilling the assistant message returns a 400 error.' Sampling-parameter 400 and prefill 400 carried over from Opus 5 — consistent with the remaining registry Fable thinking clause."
+  result: "2/2 HTTP 200 at 2026-08-22T16:21:28Z..16:21:30Z. The second fixer's recorded 2/2 HTTP 200 at 15:24:10Z..15:24:11Z is reproduced about 57 minutes later with the same facts; the fixer's own window cannot be re-observed. The other 37 S0-003 primary URLs were not re-fetched by this re-verifier (narrow scope); the files that cite them (SOURCE_LEDGER.csv, RISK_REGISTER.md, MODEL_ROLE_BENCHMARK_PLAN.md and every non-Anthropic registry entry) are byte-identical to the content the first verifier checked against 39/39 live pages at 11:53:56Z..11:54:18Z."
+
+tests_run:
+  - "curl mirror of SRC-021 and SRC-023 (HTML + .md) with UTC timestamps, HTTP status, byte size and SHA-256; grep for cutoffs, Opus 5 availability dates, 512-token minimum and all '400' statements"
+  - "shasum -a 256 of all eleven S0-003-related files at HEAD vs the first verifier's reviewed_file_digests and the second fixer's unchanged_reviewed_artifact_digests"
+  - "git fsck --unreachable blob scan for the first-fixer registry digest; diff -u recovered blob vs HEAD registry"
+  - "ruby -ryaml parse of 01_governance/*.yaml, HANDOFF_TEMPLATE.yaml and all 14 files under 99_handoffs/completed (before this artifact); HANDOFF_TEMPLATE key coverage for the second fixer handoff; parsed-registry invariants (13 IDs, HYPOTHESIS_ONLY, NOT_RUN, FOUNDER_ACCOUNT_ACCESS UNKNOWN, cutoffs, Opus release_context, Fable thinking/cache, benchmark_policy)"
+  - "Repository-wide grep for '2026-05-21|2026-01-31|2025-02-28|insufficient prompt-cache|May 21'; grep -n 'insufficient prompt-cache' 01_governance/MODEL_REGISTRY.yaml; grep -n 'reliable_knowledge_cutoff|public_api_availability' 01_governance/MODEL_REGISTRY.yaml; challenger grep -n -E 'access time|2026-11-21|promotional|dependency|ASSUMPTION_REGISTER' 99_handoffs/completed/S0-003_handoff.yaml"
+  - "git diff d264d86 HEAD --stat / per-file diffs (S0-003_handoff.yaml, PROJECT_STATE.yaml, TASK_REGISTRY.yaml); out-of-scope path diff; git diff --check d264d86 HEAD; git ls-files code-extension scan; plan execution-state grep"
+test_results:
+  - "2/2 live pages HTTP 200; live SRC-021 cutoffs Jan 2026 / May 2026 / Jan 2026 / Feb 2025 == registry 2026-01 / 2026-05 / 2026-01 / 2025-02 at month precision; no Opus 5 availability date on the live page; live SRC-023 documents 512 tokens only as the minimum cacheable prompt length, no 400."
+  - "Digests: RISK_REGISTER.md, SOURCE_LEDGER.csv, MODEL_ROLE_BENCHMARK_PLAN.md, S0-003_fixer_handoff.yaml == first verifier pins; S0-003_verifier_review.yaml == second fixer record; recovered blob 43b448ce SHA-256 == 9aae1cc6… (first verifier's registry pin). Second-fixer registry diff limited to: registry_status, new targeted_second_fix_source_reverification block, four source_accessed_at_utc + source_access_scope lines, Fable thinking clause, Opus release_context (claim_status UNKNOWN, public_api_availability_date null, note), four reliable_knowledge_cutoff values."
+  - "All 17 YAML files parse; second fixer handoff contains every HANDOFF_TEMPLATE key plus mode/role/scope_control/source_reverification/unchanged_reviewed_artifact_digests/finding_resolutions; started_at/completed_at non-null and distinct (15:24:10Z -> 15:28:24Z)."
+  - "Registry: 13 models; all role_assignment_status HYPOTHESIS_ONLY; all benchmark_status NOT_RUN; all FOUNDER_ACCOUNT_ACCESS UNKNOWN; FOUNDER_ACCOUNT_VERIFIED appears once (vocabulary definition); benchmark_policy PLAN_ONLY_NOT_AUTHORIZED_TO_RUN, no_paid_calls_run true, no_provider_or_model_locked true; registry_status SECOND_FIX_READY_FOR_REVIEW_NOT_VERIFIED (not self-verified); Fable prompt_cache_minimum_tokens 512 retained."
+  - "Retired values: '2026-05-21', '2026-01-31', '2025-02-28', 'insufficient prompt-cache' and 'May 21' occur nowhere in the repository except as quoted history inside S0-003_verifier_review.yaml, S0-003_second_fixer_handoff.yaml, PROJECT_STATE note and TASK_REGISTRY verifier_acceptance_results (all historical records, correct to retain). grep -n 'insufficient prompt-cache' on the registry returns nothing."
+  - "S0-003_handoff.yaml diff d264d86..HEAD: +21/-0 (six known_limitations entries after the original five, one second_fixer_addendum block); original started_at null, completed_at, tests_run, test_results, acceptance_evidence (primary_source_verification: AUTHOR_CHECK_PASSED, independent_review: NOT_RUN) and repository_commit_or_patch unchanged. Challenger grep returns lines 60-62 (dependency, access time / 2026-11-21 / promotional, ASSUMPTION_REGISTER / D-009)."
+  - "Changed paths d264d86..HEAD == the ten S0-003 files (first fixer set + second fixer set + both handoffs + verifier review); second fixer's own files_modified/files_created match; all inside original S0-003 allowed_files_to_change (second fixer did not touch SOURCE_LEDGER.csv or RISK_REGISTER.md, so S0-003-A1 was not needed or reused). Out-of-scope diff over 00_inbox, 02_research, ASSUMPTION_REGISTER.md, DECISION_LOG.md, AGENTS.md, MASTER_OPERATING_PROMPT.md, README.md, SECURITY.md, CLAUDE.md, all S0-001/S0-002 artifacts and S0-003_challenger_review.yaml = 0 paths; no application-code files tracked; git diff --check clean."
+  - "Plan unchanged (digest): 'Benchmark executions completed: 0', 'Execution authorization: PLAN_ONLY_NOT_AUTHORIZED', 'BLOCKED_WORKFLOW_NOT_SELECTED', 'the benchmark budget is USD 0'."
+
+finding_dispositions:
+  - finding_id: V-S0-003-01
+    original_severity: MEDIUM
+    disposition: RESOLVED
+    evidence: "(a) 01_governance/MODEL_REGISTRY.yaml claude-opus-5 release_context now reads {claim_status: UNKNOWN, public_api_availability_date: null, note: 'Current public API availability is separately VERIFIED_PUBLIC under access_dimensions; SRC-021 states current availability but gives no initial availability date for Claude Opus 5.'}; the date 2026-05-21 occurs nowhere in the registry; the live overview page at 16:21:28Z contains no Opus 5 availability date, so UNKNOWN is the correct label and the separate PUBLIC_API_AVAILABILITY VERIFIED_PUBLIC is supported by the live model table. (b) reliable_knowledge_cutoff is '2026-05'; live 'Reliable knowledge cutoff' for Claude Opus 5 is 'May 2026' — match at the precision the source provides. (c) Provenance: the four Anthropic entries carry source_accessed_at_utc 2026-08-22T15:24:10Z..2026-08-22T15:24:11Z with source_access_scope stating which source IDs were re-checked and that the others retain the ledgered 04:13 window; a registry-level targeted_second_fix_source_reverification block records the window, source IDs, result and scope; the author handoff's second_fixer_addendum and the second fixer handoff source_reverification record the same window. No new source was added and none was needed."
+  - finding_id: V-S0-003-02
+    original_severity: LOW
+    disposition: RESOLVED
+    evidence: "claude-fable-5 public_specs.thinking now reads 'Adaptive thinking is always enabled; default effort is high. Manual effort budget, disabling thinking, non-default temperature/top_p/top_k, and assistant-prefill can produce documented HTTP 400 errors.' — each remaining item is documented as a 400 on live SRC-023 (budget_tokens, thinking disabled, sampling parameters, prefill). 'insufficient prompt-cache' is absent from the registry. prompt_cache_minimum_tokens: 512 is retained as a separate field, consistent with live SRC-023 'The minimum cacheable prompt length on claude-fable-5 and claude-mythos-5 is 512 tokens', which states no error."
+  - finding_id: V-S0-003-03
+    original_severity: LOW
+    disposition: RESOLVED
+    evidence: "grep reliable_knowledge_cutoff returns exactly four values: claude-fable-5 '2026-01' (line 420), claude-opus-5 '2026-05' (line 472), claude-sonnet-5 '2026-01' (line 506), claude-haiku-4-5-20251001 '2025-02' (line 541); live SRC-021 gives Jan 2026 / May 2026 / Jan 2026 / Feb 2025. No day-level Anthropic cutoff remains; the live page has not materially changed (same four month values as the first verifier quoted at 11:54Z)."
+  - finding_id: V-S0-003-04
+    original_severity: LOW
+    disposition: RESOLVED
+    evidence: "99_handoffs/completed/S0-003_handoff.yaml is append-only relative to d264d86 (+21/-0): known_limitations entries 6-11 record (a) the S0-001 READY-not-VERIFIED dependency order with 'the original ordering remains visible rather than being rewritten', (b) started_at null / shared batch completed_at / no per-source UTC access time plus the same-day GPT-5.6 Sol promotional drift through at least 2026-11-21, (c) the SOURCE_LEDGER.csv / ASSUMPTION_REGISTER.md / RISK_REGISTER.md deviation under D-009 with the statement that S0-003-A1 does not retroactively cure it, and (d)-(f) the second-fixer access/budget/workflow/execution/HYPOTHESIS_ONLY state; a second_fixer_addendum names the four findings, the 15:24Z window, SRC-021/023, and states 'All original author tests, results, timestamps, acceptance_evidence, and repository_commit_or_patch fields above remain unchanged'. The original claims (e.g. acceptance_evidence primary_source_verification: AUTHOR_CHECK_PASSED, independent_review: NOT_RUN, test_results 'public prices and limits were recorded') are untouched, so history is preserved rather than rewritten as if it had always been correct. The challenger's F-S0-003-10 verification grep and the first verifier's V-S0-003-04 grep both return the entries. This matches the S0-002 append-only addendum precedent."
+
+second_fixer_conduct_checks:
+  - {check: "did not run paid benchmarks", result: PASS, evidence: "benchmark_policy.no_paid_calls_run true; all 13 benchmark_status NOT_RUN; plan 'Benchmark executions completed: 0' (plan digest unchanged); second fixer handoff 'No paid benchmark or minimal account call occurred'; no run/report artifacts under 06_evaluation/."}
+  - {check: "did not claim founder API access", result: PASS, evidence: "all 13 FOUNDER_ACCOUNT_ACCESS claim_status UNKNOWN; founder_account_verified_claims_in_this_registry 0; FOUNDER_ACCOUNT_VERIFIED appears only in the vocabulary definition; handoff known_limitations 'founder API accounts, model entitlements, balances, quotas, regions, and provider data configurations remain unverified'."}
+  - {check: "did not select Stage 1 customer/workflow", result: PASS, evidence: "plan BLOCKED_WORKFLOW_NOT_SELECTED unchanged; DECISION_LOG.md unchanged since d264d86 (D-006 PROVISIONAL); second fixer decisions_made 'No architecture, customer segment, MVP workflow … decision was made'; S1-001 BACKLOG."}
+  - {check: "did not assign final model roles", result: PASS, evidence: "all 13 role_assignment_status HYPOTHESIS_ONLY; no_provider_or_model_locked true; proposed_roles unchanged by the second-fixer diff."}
+  - {check: "did not choose architecture", result: PASS, evidence: "no ADR, no 03_product/04_architecture paths, DECISION_LOG unchanged, current_architecture_version null."}
+  - {check: "did not write application code", result: PASS, evidence: "git ls-files contains no .py/.ts/.js/.go/.rs/.java/.rb/.sh files; changed paths are governance/evaluation/handoff documents only."}
+  - {check: "did not regress S0-001 or S0-002", result: PASS, evidence: "diff d264d86..HEAD over 00_inbox, 02_research, S0-001_* and S0-002_* artifacts, ASSUMPTION_REGISTER.md and DECISION_LOG.md is empty; S0-001/S0-002 TASK_REGISTRY entries unchanged (VERIFIED, adc87c4 / fb89315); SOURCE_LEDGER.csv byte-identical to the first-verifier-reviewed bytes, whose 24 S0-002 rows were already confirmed unchanged in their original 11 columns."}
+  - {check: "kept S0-003 at READY_FOR_REVIEW rather than self-verifying", result: PASS, evidence: "TASK_REGISTRY S0-003 status READY_FOR_REVIEW and verification_status SECOND_FIX_READY_FOR_INDEPENDENT_REVIEW_NOT_VERIFIED at HEAD; registry_status SECOND_FIX_READY_FOR_REVIEW_NOT_VERIFIED; PROJECT_STATE note 'S0-003 is READY_FOR_REVIEW and not VERIFIED'; second fixer handoff known_limitations 'S0-003 remains unverified until an independent verifier re-checks'."}
+  - {check: "stayed inside allowed files", result: PASS, evidence: "second fixer changed MODEL_REGISTRY.yaml, PROJECT_STATE.yaml, TASK_REGISTRY.yaml and two files under 99_handoffs/completed/ — all in the original S0-003 allowed_files_to_change; SOURCE_LEDGER.csv and RISK_REGISTER.md untouched (digests), so no scope amendment was needed and S0-003-A1 was not reused."}
+
+acceptance_criteria_evaluation:
+  - criterion: "Personal product access is separated from API access."
+    result: PASS
+    evidence: "Unchanged by the second-fixer diff (bounded hunks listed above); re-confirmed from the parsed registry: four access dimensions present on all 13 models, FOUNDER_ACCOUNT_ACCESS UNKNOWN everywhere, founder_account_verified_claims 0. First verifier PASS stands."
+  - criterion: "Exact versions and verification dates are recorded."
+    result: PASS
+    evidence: "Exact IDs unchanged; Anthropic entries now carry the 15:24:10Z..15:24:11Z targeted access window with explicit scope and the unsupported Opus 5 date is UNKNOWN rather than asserted; all other per-model/ledger windows unchanged (04:13:42Z..04:13:51Z). The first verifier's caveat ('unsupported Opus 5 availability date … recorded as V-S0-003-01') is cleared."
+  - criterion: "No model role is locked based only on reputation."
+    result: PASS
+    evidence: "Unchanged by the diff; HYPOTHESIS_ONLY on all 13 entries; no_provider_or_model_locked true; DECISION_LOG unchanged."
+  - criterion: "Benchmark includes success, cost, latency, and structured-output reliability."
+    result: PASS
+    evidence: "MODEL_ROLE_BENCHMARK_PLAN.md byte-identical to the first-verifier-reviewed content (digest 05aa7799…); metrics sections re-read in full."
+  - criterion: "Required test: Primary-source verification."
+    result: PASS
+    evidence: "The first verifier's PARTIAL rested solely on the three Anthropic-entry values in V-S0-003-01/02 and the precision issue in V-S0-003-03. All are corrected and re-located by this re-verifier in live SRC-021/SRC-023 at 16:21Z; no other registry/ledger/plan value changed since the first verifier re-located every other fact in 39/39 live pages at 11:54Z (digests prove those files unchanged, and the second-fixer registry diff touches no other value)."
+  - criterion: "Deliverable: verified_model_registry"
+    result: PASS
+    evidence: "13 candidates, four access dimensions, current prices/policies, ambiguity records, drift records, targeted re-verification block; the three defects from the first verifier are fixed; no unsupported VERIFIED_PUBLIC value found in the changed hunks."
+  - criterion: "Deliverable: model_role_benchmark_plan"
+    result: PASS
+    evidence: "Unchanged since first verifier PASS."
+  - criterion: "Deliverable: access_gap_list"
+    result: PASS
+    evidence: "Unchanged since first verifier PASS (MAG-001..006; plan 'Current access gaps blocking execution')."
+
+new_material_findings: []
+observations_not_findings:
+  - "SOURCE_LEDGER.csv rows SRC-021 and SRC-023 still carry accessed_at_utc 2026-08-22T04:13:42Z..04:13:51Z (the first fixer's window) while the registry's Anthropic entries and the handoffs record the later 15:24:10Z..15:24:11Z re-check. The second fixer deliberately left the ledger unchanged (outside its original allowed files; S0-003-A1 was a first-fixer-only amendment), and the earlier access remains a true statement; the later access is fully recorded in the registry's targeted_second_fix_source_reverification block, the per-entry source_access_scope notes and both handoffs. Governance files therefore agree; no correction required. Future ledger maintenance may add the later window under a task that owns the ledger (S0-005 lists it)."
+  - "The Fable thinking field's phrase 'Manual effort budget' denotes the manual thinking budget (budget_tokens), which live SRC-023 documents as a 400; wording only."
+  - "Carried forward unchanged and outside S0-003: FILE_MANIFEST.json staleness and the missing trailing newline in S0-001_fixer_handoff.yaml (V-S0-003-14 / V-S0-001-02)."
+  - "Re-verifier and first verifier and challenger are the same model/product (Claude Fable 5 via Claude Code) in separate sessions; author/fixers are Codex. Independence from the author holds; the re-verifier is a registry candidate, so every Anthropic pass above is pinned to quoted live text and the founder may prefer a different-vendor verifier for the Stage 0 gate (same disclosure as V-S0-001-06 / V-S0-002-07 / V-S0-003-13)."
+
+passes_confirmed:
+  - "V-S0-003-01..04 all RESOLVED against live SRC-021/SRC-023 and the committed HEAD files; no retired value survives outside historical records."
+  - "Second-fixer change set is bounded, inside original scope, additive to the author handoff, parses, passes git diff --check, contains no secret, and does not touch S0-001/S0-002-verified content, DECISION_LOG.md, ASSUMPTION_REGISTER.md or 00_inbox."
+  - "Founder API access, entitlements, balances, quotas, regions and retention settings UNKNOWN / NOT_RUN throughout; benchmark budget USD 0 absent founder authorization; Stage 1 workflow BLOCKED_WORKFLOW_NOT_SELECTED; paid benchmark executions 0; PLAN_ONLY_NOT_AUTHORIZED; no role lock; no architecture, wedge, MVP, Stage 1 or application work."
+  - "All four S0-003 acceptance criteria and the required primary-source verification test PASS."
+
+known_limitations:
+  - "started_at is approximate (session start shortly before the first repository read); completed_at is the time this artifact was written. The live-source window timestamps are exact."
+  - "This is a narrow re-verification: only SRC-021 and SRC-023 were re-fetched live (the two pages on which V-S0-003-01..03 depend). The remaining 37 S0-003 primary URLs were last re-located live by the first verifier at 2026-08-22T11:53:56Z..11:54:18Z; the files citing them are byte-identical to what that verifier reviewed. Pages may change again after 16:21Z; the verdict applies to the content as ledgered and as observed in these windows."
+  - "Verification covers S0-003 only; the Stage 0 gate was deliberately not evaluated; S0-004, S0-005 and Stage 1 were not started."
+  - "No product account, API key or model call was available to the re-verifier; nothing in this review asserts account access, served behavior or benchmark fitness."
+unverified_claims: []
+blockers: []
+blockers_for_task: []
+recommended_next_task: "Founder commits this re-verification artifact and the TASK_REGISTRY/PROJECT_STATE updates; then MODE: VERIFY_STAGE_0 (independent, ideally a different-vendor verifier per the conflict disclosures) against the committed state. S0-004 remains BLOCKED on an eligible Grok Bot account/build/plan/region; S0-005 remains BLOCKED on founder funded-account/budget inputs and retention/region/data-classification settings (its S0-003 review dependency is now satisfied); Stage 1 (S1-001) remains BACKLOG and out of scope until the Stage 0 gate is verified."
+repository_commit_or_patch: "Review performed against committed HEAD 6fb9557f0caf739dd4a5df8e0a098603e0d56774 (working tree clean at start), with live sources accessed 2026-08-22T16:21:28Z..16:21:30Z; this artifact and the TASK_REGISTRY/PROJECT_STATE updates are left uncommitted in the working tree for the founder to commit."
