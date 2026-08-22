@@ -81,6 +81,18 @@ Going forward:
 3. The reason for the scope amendment must be recorded.
 4. Reviewers should flag unauthorized changes even when the content itself is correct.
 
+## D-010: Initial Stage 0 author runtime
+
+- Date: 2026-08-21
+- Status: CONFIRMED
+- Decision type: EXECUTION_PROVENANCE
+- Founder confirmation: The original `MODE: INITIALIZE` author pass for Stage 0 was executed in Codex, not directly in the ChatGPT interface using GPT-5.6 Sol.
+
+Consequence:
+- Stage 0 provenance should identify the author runtime as Codex.
+- Any more specific underlying model identifier should remain unknown unless it was explicitly exposed by the Codex runtime.
+- Do not retroactively label the author as GPT-5.6 Sol without evidence.
+
 ## Stage 0 author reconciliation note — 2026-08-21
 
 This note records scope, not a new decision:

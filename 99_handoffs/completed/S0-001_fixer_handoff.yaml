@@ -137,3 +137,24 @@ finding_resolutions:
       - "AGENTS.md now points directly to 99_handoffs/HANDOFF_TEMPLATE.yaml, the actual schema location."
     verification:
       - "AGENTS.md names 99_handoffs/HANDOFF_TEMPLATE.yaml; YAML parsing confirms that the named template exists and parses."
+
+founder_confirmation_addendum:
+  recorded_at: "2026-08-21T19:39:00-04:00"
+  finding_id: F-S0-001-04
+  founder_confirmation:
+    authoring_surface: Codex
+    exact_runtime_model: UNKNOWN_NOT_EXPOSED
+    statement: "Founder confirmed that the original MODE: INITIALIZE Stage 0 author pass was executed in Codex."
+  resolution: FIXED
+  evidence:
+    - "Founder directly confirmed on 2026-08-21 that MODE: INITIALIZE was run in Codex."
+    - "The repository already records the authoring surface as Codex."
+    - "The exact underlying runtime model was not exposed and therefore remains unknown."
+  interpretation:
+    - "The author must be identified as Codex for execution provenance."
+    - "Do not relabel the initial author as GPT-5.6 Sol without independent runtime evidence."
+    - "The unknown exact underlying model is not a blocker to S0-001 verification."
+  supersedes:
+    - "The DEFERRED resolution for F-S0-001-04 in finding_resolutions."
+    - "The founder_confirmation_of_initial_author_product_and_runtime_model blocker."
+  remaining_blocker: false
