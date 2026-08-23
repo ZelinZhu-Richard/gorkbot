@@ -93,17 +93,6 @@ Consequence:
 - Any more specific underlying model identifier should remain unknown unless it was explicitly exposed by the Codex runtime.
 - Do not retroactively label the author as GPT-5.6 Sol without evidence.
 
-## Stage 0 author reconciliation note — 2026-08-21
-
-This note records scope, not a new decision:
-
-- Provenance: written in the initial Stage 0 author batch under S0-001's `DECISION_LOG.md` allowance on behalf of the S0-002 and S0-003 research outcomes; attribution was clarified during F-S0-001-02 remediation. It changed no D-00x status.
-
-- Current primary-source research does not change D-001 through D-005.
-- D-006, D-007, and D-008 remain provisional founder hypotheses. No customer evidence was added by Stage 0.
-- The reference product's documented shared-computer boundary is evidence about Grok Bot, not a selected architecture for this project.
-- No final architecture, MVP workflow, customer wedge, or model-role assignment was selected.
-
 ## D-011: S1-001 provisional discovery beachhead
 
 - Date: 2026-08-23
@@ -114,3 +103,58 @@ This note records scope, not a new decision:
 - Evidence required: the predeclared problem, delegation/differentiation, commitment/payment, and prototype-feasibility gates in `03_product/S1-001_CUSTOMER_WORKFLOW_SCORECARD.md`.
 - Reversal rule: reopen this decision if any H1 problem gate fails, current alternatives are satisfactory without a material gap, the paid-pilot gate fails, authenticated/private sources are required for the first valuable version, or H2 produces stronger artifact, pilot, or payment evidence.
 - Non-decision: D-006 and D-007 remain provisional. No final segment, workflow, pricing, architecture, model/provider role, benchmark, application implementation, market demand, or traction is confirmed.
+
+## D-012: Stage 1 discovery allocation after S1-001 challenger review
+
+- Date: 2026-08-23
+- Status: CONFIRMED
+- Decision type: FOUNDER_DISCOVERY_ALLOCATION
+- Supersedes: D-011 only with respect to provisional discovery prioritization.
+
+### Decision
+
+H1 and H2 will proceed as co-equal discovery candidates.
+
+Neither H1 nor H2 is selected as the final beachhead customer/workflow.
+
+H1:
+Verification-first competitor-change workflow for small B2B SaaS teams.
+
+H2:
+Verification-first software-engineering workflow centered on independently verified completion evidence around issue-to-PR work.
+
+H8:
+The challenger-added independent PR reproduce-and-verify hypothesis should be formally scored and evaluated during the S1-001 fix, but is not yet elevated to co-equal discovery status.
+
+### Rationale
+
+The S1-001 challenger found that:
+
+1. H2 scored slightly above H1 in the original model.
+2. The H1/H2 ranking is highly sensitive to small scoring changes.
+3. H1's original differentiation was weakened by current SMB competitive-monitoring products.
+4. H1's original preference was partly driven by feasibility and founder-access assumptions already represented in the score.
+5. H2's issue-to-PR market is also highly competitive, but independently verified completion evidence remains an unresolved potential differentiator.
+6. There is currently zero direct customer evidence for either hypothesis.
+
+Therefore the evidence is insufficient to privilege either H1 or H2 before customer discovery.
+
+### Consequences
+
+- S1-001 must not portray H1 as the sole provisional beachhead.
+- The scoring model must be corrected and sensitivity made explicit.
+- H1 and H2 must receive comparable discovery effort and falsification criteria.
+- Customer evidence, not founder preference or small score differences, should determine which survives.
+- D-006 and D-007 remain PROVISIONAL.
+- No final customer, MVP workflow, pricing, architecture, or model role is selected.
+
+## Stage 0 author reconciliation note — 2026-08-21
+
+This note records scope, not a new decision:
+
+- Provenance: written in the initial Stage 0 author batch under S0-001's `DECISION_LOG.md` allowance on behalf of the S0-002 and S0-003 research outcomes; attribution was clarified during F-S0-001-02 remediation. It changed no D-00x status.
+
+- Current primary-source research does not change D-001 through D-005.
+- D-006, D-007, and D-008 remain provisional founder hypotheses. No customer evidence was added by Stage 0.
+- The reference product's documented shared-computer boundary is evidence about Grok Bot, not a selected architecture for this project.
+- No final architecture, MVP workflow, customer wedge, or model-role assignment was selected.
