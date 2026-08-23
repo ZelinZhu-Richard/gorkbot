@@ -362,8 +362,8 @@ tasks:
     why_it_matters: Building a platform before selecting a painful workflow is the largest strategic failure risk.
     owner_role: AUTHOR
     assigned_model: "Codex (runtime model identifier not exposed)"
-    reviewer_model: "Claude Fable 5 (claude-fable-5) via Claude Code — independent challenger (separate session; independent of the Codex author)"
-    status: CHANGES_REQUESTED
+    reviewer_model: "Claude Fable 5 (claude-fable-5) via Claude Code — independent challenger completed; independent post-fix reviewer still required (separate session; independent of the Codex author/fixer)"
+    status: READY_FOR_REVIEW
     author_started_at: "2026-08-23T05:17:35Z"
     author_completed_at: "2026-08-23T05:49:59Z"
     priority: P0
@@ -411,5 +411,20 @@ tasks:
     challenger_finding_counts: "BLOCKER 0, HIGH 3, MEDIUM 6, LOW 3, NOTE 5"
     challenger_acceptance_results: "At least five combinations compared: PASS; Recommendation distinguishes evidence from founder preference: PARTIAL; Selected hypothesis narrow and testable: PASS; Disconfirming evidence plan exists: PASS; Required test independent challenger review: RUN"
     challenger_summary: "Arithmetic and ranking reproduce exactly (H2 76.8, H1 75.6). Customer evidence correctly zero; no fabricated demand. HIGH: H1 substitute screen omitted SMB change monitors and scheduled-assistant routines that already ship before/after diffs, timestamps, AI importance scoring and digests (F-S1-001-01); D-011 tie-break reasons double-count scored criteria and founder reach (F-S1-001-02); H2 screen cites 2 of >=9 first-party issue-to-PR agents and does not name the verification-evidence layer as the only open differentiator (F-S1-001-03). H1 and H2 should proceed as co-equal discovery candidates after fixes; challenger-added candidate H8 (independent PR reproduce-and-verify) recorded for scoring, not selection."
-    required_test_status: INDEPENDENT_CHALLENGER_REVIEW_RUN_2026-08-23_CHANGES_REQUESTED
-    verification_status: CHALLENGED_CHANGES_REQUESTED_NOT_VERIFIED_FIX_TASK_S1-001_REQUIRED
+    fixer_model: "Codex (runtime model identifier not exposed) — original S1-001 AUTHOR returning as FIXER"
+    fixer_completed_at: "2026-08-23T16:22:27Z"
+    fixer_evidence:
+      - 03_product/S1-001_CUSTOMER_WORKFLOW_SCORECARD.md
+      - 03_product/S1-001_SCORED_HYPOTHESES.csv
+      - 02_research/S1-001_CURRENT_WORKAROUND_EVIDENCE_2026-08-23.md
+      - 01_governance/DECISION_LOG.md
+      - 01_governance/ASSUMPTION_REGISTER.md
+      - 01_governance/RISK_REGISTER.md
+      - 01_governance/SOURCE_LEDGER.csv
+      - 99_handoffs/completed/S1-001_fixer_handoff.yaml
+    fixer_source_refresh_window_utc: "2026-08-23T16:10:48Z..2026-08-23T16:10:53Z"
+    fixer_finding_counts: "FIXED 12, DISPUTED 0, DEFERRED 0"
+    fixer_score_summary: "Corrected balanced totals: H1 60.4, H2 57.4, H8 57.0, H6 56.4, H3/H4 51.8, H5 50.4, H7 48.6. H1/H2 remain co-equal under D-012; H8 is retained as an H2 refinement pending independent discussion. Rankings change under sensitivity, so the score selects no winner. Customer evidence remains 0_NONE for all rows."
+    fixer_acceptance_results: "Eight combinations compared including H8: PASS; evidence/judgment/unknown provenance explicit for every scored cell: PASS; H1 and H2 narrow and comparably testable under D-012: PASS; executable disconfirming gates for H1 and H2: PASS; independent post-fix review: NOT_RUN_REQUIRED_NEXT"
+    required_test_status: INDEPENDENT_CHALLENGER_REVIEW_RUN_2026-08-23_CHANGES_REQUESTED_FIXER_PASS_COMPLETE_POST_FIX_REVIEW_REQUIRED
+    verification_status: FIXER_COMPLETE_READY_FOR_INDEPENDENT_REVIEW_NOT_VERIFIED

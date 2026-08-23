@@ -1,6 +1,6 @@
-# S1-001 customer-workflow scorecard and evidence plan
+# S1-001 customer-workflow scorecard and falsification plan
 
-Status: AUTHOR DRAFT — READY FOR INDEPENDENT CHALLENGER REVIEW
+Status: FIXER PASS — READY FOR INDEPENDENT REVIEW; NOT VERIFIED
 
 Research date: 2026-08-23
 
@@ -10,377 +10,323 @@ Current-workaround research: `02_research/S1-001_CURRENT_WORKAROUND_EVIDENCE_202
 
 ## Outcome first
 
-**DESIGN PROPOSAL — provisional discovery beachhead:** prioritize discovery for a founder, head of product, or product-marketing lead at a **3–30 person B2B SaaS company with 5–15 named competitors and no dedicated competitive-intelligence analyst**. Test one narrow workflow: a **verification-first weekly ledger of material product, pricing, and changelog changes from an explicit official-source allowlist**, followed by a cited delta brief and an approval-gated update to the customer's master record.
+**CONFIRMED GOVERNANCE STATE — D-012:** H1 and H2 are co-equal discovery candidates. Neither is validated, selected as the final beachhead, or authorized for implementation. H8 is formally scored as a challenger-added hypothesis but is not automatically elevated to co-equal discovery status.
 
-This is **not a validated customer selection**. It is the hypothesis to test first.
+**VERIFIED REPOSITORY FACT:** `CUSTOMER_EVIDENCE = ZERO` for every hypothesis. There are no customer interviews, customer artifacts, observed workflows, usage records, pilot commitments, willingness-to-pay observations, payments, traction, or retention records in the repository.
 
-The raw scorecard ranks H2, GitHub issue to reviewed pull-request candidate, first at `76.8/100` and H1, the competitor-change workflow, second at `75.6/100`. The `1.2`-point gap is smaller than a one-level change in any moderately weighted criterion, so the author treats them as a directional tie. H1 is selected for discovery because it offers a read-only, lower-sensitivity first test, a simpler external completion predicate, and alignment with the founder's stated reach hypothesis. H2 remains the explicit counter-hypothesis.
+**CORRECTED SCORE RESULT:** under the corrected weights H1 scores `60.4`, H2 `57.4`, H8 `57.0`, H6 `56.4`, H3/H4 `51.8`, H5 `50.4`, and H7 `48.6`. These are structured analyst judgments, not measured market differences. Alternative weightings change ranks: H8 leads under competition/WTP-heavy weights, and H2 ties H6 under feasibility-heavy weights. The score does not support a single winner.
 
-**VERIFIED FACT — evidence state:** the repository contains zero customer interviews, usage records, pilot commitments, payments, or retention evidence. Every demand-side score is therefore low-confidence and provisional.
+**DISCOVERY ALLOCATION:** give H1 and H2 the same interview count, artifact request, concept-test sequence, pilot threshold, price-test form, sampling-bias control, and review standard. Let customer evidence determine which survives.
 
-**VERIFIED FACT — founder preference:** D-006 and the founder brief prefer starting discovery with technical founders and small startup teams. That is evidence of founder preference and proposed reach, not customer demand.
+## Historical audit trail and D-012
 
-**VERIFIED FACT — current alternatives:** first-party pages document strong adjacent products in every shortlisted workflow. GitHub Copilot and Codex cover asynchronous coding work; ChatGPT deep research, Klue, and Crayon cover cited research or competitor monitoring; Hex, Dovetail, and Elicit cover analytics, customer research, and literature workflows; Vercel covers preview deployments; Power Automate covers browser automation. See SRC-064 through SRC-074.
+1. The original AUTHOR ranking scored H2 `76.8` and H1 `75.6`, called them a directional tie, then gave H1 the first discovery slot under D-011.
+2. The independent CHALLENGER found the H1/H2 choice too sensitive, the H1 substitute screen incomplete, the H2 market screen incomplete, and parts of the H1 tie-break already represented in scored feasibility criteria.
+3. The founder issued D-012. It supersedes D-011 **only for current discovery allocation**. D-011 remains historical and provisional.
+4. Current state: H1 and H2 are co-equal discovery candidates; neither is selected. D-006 and D-007 remain PROVISIONAL.
 
-**OPEN QUESTION:** whether any target customer values a verification-first delta ledger enough to switch, pilot, or pay.
+No H1-only quota, contract, build position, or incumbent advantage remains in the current plan.
 
 ## Evidence and claim discipline
 
-| Evidence class | What exists | What it permits |
-|---|---|---|
-| Repository-verified project state | Stage 0 verified; no customer evidence; D-006/D-007 provisional; A-001/A-002/A-005 open | State constraints and explicit founder preference only |
-| Current first-party product pages | Documented product positioning and capabilities in SRC-064 through SRC-074 | Alternative/product-availability and workflow-crowding screen only |
-| Prepared founder materials | Workflow descriptions, completion predicates, and founder intent | Hypothesis generation and prototype-fit judgment only |
-| Author scoring | Seven scored combinations with explicit weights | A transparent order for discovery; not a market fact |
-| Missing evidence | Interviews, observed work, artifacts, pilots, payment, retention | No claim of pain, demand, willingness to pay, or product-market fit |
+| Class | Meaning in this artifact |
+|---|---|
+| `E` | Current public evidence or repository fact supports the input. Public product evidence is competition evidence, never customer evidence. |
+| `J` | Analyst or founder judgment maps structure/evidence to the rubric. It is not an observed fact. |
+| `U` | Evidence is unknown or insufficient. A wholly unknown criterion defaults to neutral `3` and cannot receive `4` or `5`. |
 
-No market size, customer count, conversion rate, willingness to pay, or traction is asserted.
+Every scored cell has an adjacent `_basis` cell in the CSV beginning with one or more of `E`, `J`, or `U`, followed by a source ID or concise rationale. `E+J` means evidence exists but score mapping remains judgment. `U+J` means a neutral or conservative judgment is used because customer evidence is missing.
 
-## Scoring method
+The CSV is the per-cell provenance record. The score is not numerical precision about a population; it is a reproducible comparison under declared assumptions.
 
-Each hypothesis receives an integer score from `1` to `5` for each criterion:
+## Corrected scoring method
+
+Each hypothesis receives an integer `1`–`5` for each of 15 criteria:
 
 - `1`: structurally unfavorable for a first wedge
 - `2`: material weakness
 - `3`: mixed, neutral, or substantially unknown
-- `4`: promising but unvalidated
-- `5`: unusually favorable as a hypothesis
+- `4`: favorable structure with an explicit evidence or judgment basis, still unvalidated
+- `5`: unusually favorable structure with a strong non-customer basis; never used to impute missing demand evidence
 
-For `integration tractability`, `security manageability`, and `sales-cycle speed`, a higher score is more favorable: fewer or easier integrations, less sensitive data, and a shorter hypothesized sales cycle. A high score is not a claim that the real customer condition has been observed.
-
-The weighted total is:
+The corrected total is:
 
 ```text
-sum(criterion score × criterion weight) / 5
+sum(score × corrected_weight) / 5
 ```
 
-The weights sum to `100`. Scores and weights are author judgments subject to challenger review and customer evidence.
+### Failure direction correction
 
-| Criterion | Weight | Why it matters at Stage 1 |
-|---|---:|---|
-| Pain and urgency | 11 | A wedge must displace a painful job, not create novelty work. |
-| Current-workaround gap | 5 | Strong existing solutions lower switching motivation. |
-| Workflow frequency | 7 | Repetition supports learning and retention. |
-| Economic value | 8 | The result must justify product and service cost. |
-| Cost of failure | 5 | Failure cost shapes trust, verification, and buyer urgency. |
-| Willingness to delegate | 6 | A painful job is not useful if customers refuse delegation. |
-| Integration tractability | 7 | Fewer, safer integrations reduce prototype risk. |
-| Security manageability | 6 | Low-sensitivity inputs permit faster responsible learning. |
-| Sales-cycle speed | 7 | A small team needs fast design-partner feedback and revenue tests. |
-| Ease of reaching users | 8 | Founder-led discovery depends on access to qualified users. |
-| Prototype feasibility | 10 | The first demo must be repeatable and objectively verifiable. |
-| Differentiation | 8 | The wedge must be more than a generic agent or existing feature. |
-| Expansion potential | 4 | The narrow wedge should lead to adjacent durable workflows. |
-| Bootstrap revenue potential | 5 | Early paid pilots should be possible without enterprise scale. |
-| Investor relevance | 3 | A credible platform path helps, but customer evidence comes first. |
-| **Total** | **100** | |
+The ambiguous `cost_of_failure` criterion is renamed **failure safety**.
 
-## Ranked hypotheses
+**Higher = safer / lower consequence of agent failure under the bounded pilot contract.**
 
-| Rank | ID | Customer × workflow | Total | Evidence confidence | Customer evidence |
-|---:|---|---|---:|---|---|
-| 1 | H2 | Small software team × bounded GitHub issue to tested, reviewed PR candidate | 76.8 | LOW | 0 — none |
-| 2 | H1 | Small B2B SaaS team × verification-first official-source competitor-change ledger | 75.6 | LOW | 0 — none |
-| 3 | H3 | Data/analytics team × reproducible data-quality and decision report | 68.8 | LOW | 0 — none |
-| 4 | H6 | Small web agency × bounded website change to checked preview | 67.8 | LOW | 0 — none |
-| 5 | H7 | Operations-heavy small business × browser record reconciliation with proposed updates | 66.2 | LOW | 0 — none |
-| 6 | H4 | Product/user-research team × traceable interview synthesis | 63.0 | LOW | 0 — none |
-| 7 | H5 | Applied research team × literature intelligence workspace | 62.8 | LOW | 0 — none |
+| Score | Failure-safety meaning |
+|---:|---|
+| 1 | Failure could cause serious or difficult-to-recover external harm even with proposed controls. |
+| 2 | Significant security, decision, or recovery cost remains plausible. |
+| 3 | Mixed: work is reviewable, but failure can still create material rework or risk. |
+| 4 | Primarily read-only/reversible with a clear approval boundary; false signals still have a cost. |
+| 5 | Isolated, synthetic, and readily reversible with negligible external consequence. |
 
-The complete criterion-level values are in the CSV. The ranking is a prioritization instrument, not measurement of a population.
+All hypotheses were rescored in this direction. The old values and totals were not preserved.
 
-## Sensitivity and selection rule
+### Corrected weights and double-counting audit
 
-- H2 leads H1 by `1.2` points. A one-level change in a criterion weighted `6` changes the total by `1.2`; a one-level change in an `8`-weight criterion changes it by `1.6`. The top two are therefore not meaningfully separated by this author-only score.
-- H2's structural pain, frequency, and economic-value hypothesis are strong, but SRC-064 and SRC-065 show that the core issue-to-PR sequence is already directly served. Its differentiation score is `2`.
-- H1 also faces strong alternatives: SRC-066 provides cited deep research and SRC-067/SRC-068 provide competitor monitoring. Its proposed edge is narrower—verified delta state and approval-gated record updates—not generic citations.
-- H1 receives the first discovery slot because the founder's stated target and proposed founder-led outreach make qualified-user access more plausible, while public-source-only inputs make an initial concierge test lower sensitivity. Neither point is customer evidence.
-- If the H1 problem or payment gates fail, or H2 produces stronger artifact, pilot, and payment evidence, reopen D-011 and prefer H2 or another candidate. Do not defend the author ranking.
+| Criterion | Original | Corrected | Corrected rationale |
+|---|---:|---:|---|
+| Pain and urgency | 11 | 13 | Core demand question; neutral while customer evidence is absent. |
+| Current-workaround gap | 5 | 9 | Competition and actual switching motivation were underweighted. |
+| Workflow frequency | 7 | 8 | Recurrence matters, but software cadence is not customer frequency. |
+| Economic value | 8 | 10 | Makes value/WTP evidence more influential. |
+| Failure safety | 5 | 5 | Necessary risk screen with corrected favorable direction. |
+| Willingness to delegate | 6 | 6 | Separate from pain; cannot exceed neutral without evidence. |
+| Integration tractability | 7 | 5 | Reduced to limit feasibility dominance. |
+| Security manageability | 6 | 5 | Reduced; still a gating constraint. |
+| Sales-cycle speed | 7 | 5 | Unknown sales-cycle guesses receive less leverage. |
+| Ease of reaching users | 8 | 7 | Founder access remains useful but is not customer demand. |
+| Prototype feasibility | 10 | 7 | Reduced to avoid selecting a merely easy demo. |
+| Differentiation | 8 | 9 | Strong substitutes require more weight. |
+| Expansion potential | 4 | 4 | Retained as a secondary platform-path judgment. |
+| Bootstrap revenue potential | 5 | 5 | WTP proxy remains neutral until price evidence exists. |
+| Investor relevance | 3 | 2 | Lowest priority before customer evidence. |
+| **Total** | **100** | **100** | |
 
-## Hypothesis briefs
+Original feasibility/safety factors (`failure safety + integration + security + prototype`) held `28` weight; corrected weight is `22`. Original competition/WTP proxies (`gap + differentiation + bootstrap revenue`) held `18`; corrected weight is `23`. Core demand (`pain + frequency + economic value`) rises from `26` to `31`. Distribution (`sales cycle + reach`) falls from `15` to `12`. This does not eliminate correlation, so sensitivity analysis is mandatory.
 
-### H1 — small B2B SaaS competitor-change intelligence
+Platform necessity is deliberately **not** another positive score. It is analyzed separately as a constraint so a workflow is not rewarded merely because a persistent-agent platform can technically perform it.
 
-**PROVISIONAL HYPOTHESIS:** a founder or product/product-marketing lead at a 3–30 person B2B SaaS company, tracking 5–15 named competitors without a dedicated CI analyst, performs material competitor-change research at least monthly and will delegate a weekly public-source change ledger when every material claim is independently inspectable.
+## Corrected score table
 
-- **Pain, frequency, value, and failure:** OPEN QUESTIONS. Scores assume missed or stale product/pricing changes can create planning or positioning rework; no occurrence or cost is evidenced.
-- **Current workaround:** general cited research and purpose-built CI monitoring exist (SRC-066 through SRC-068). Actual small-team use remains unknown.
-- **Delegation:** read-only public research appears structurally delegable, but interviews must identify sources and decisions users will not delegate.
-- **Required integrations:** initial test needs an allowlisted browser/web fetcher plus CSV/spreadsheet and memo artifacts. CRM, Slack, email, authenticated sources, and automatic schedules are non-goals for the first test.
-- **Security:** use public official sources and a customer-supplied non-secret watchlist; no credentials, private customer data, or external publishing.
-- **Sales and reach:** founder-led access is a founder preference, not verified recruiting reach. The hypothesized buyer can approve a small pilot without enterprise procurement; this must be tested.
-- **Prototype feasibility:** high because the result can be compared against a prior snapshot and a manually curated source set.
-- **Differentiation:** the proposed verification contract is a hypothesis. Citations alone are not differentiated.
-- **Expansion:** recurring monitoring, customer-supplied sources, product-marketing distribution, win/loss evidence, and operating intelligence are later possibilities only after the narrow workflow retains users.
-- **Falsifier:** insufficient observed frequency/artifacts, satisfaction with existing tools, no value placed on delta evidence, authenticated/private-source dependence, or failure to obtain paid-pilot commitments.
+| Corrected rank | ID | Customer × workflow | Corrected total | Discovery status | Evidence confidence | Customer evidence |
+|---:|---|---|---:|---|---|---|
+| 1 | H1 | Small B2B SaaS team × official-source competitor-change decision ledger | 60.4 | CO-EQUAL DISCOVERY CANDIDATE under D-012 | LOW | 0_NONE |
+| 2 | H2 | Small software team × bounded issue to tested PR with independently checked completion evidence | 57.4 | CO-EQUAL DISCOVERY CANDIDATE under D-012 | LOW | 0_NONE |
+| 3 | H8 | Small software team × independent PR reproduce-and-verify evidence bundle | 57.0 | CHALLENGER_ADDED; retain as H2 refinement pending review/discovery | LOW | 0_NONE |
+| 4 | H6 | Small web agency × bounded website change to checked preview | 56.4 | SCORED BACKUP; NOT SELECTED | LOW | 0_NONE |
+| 5T | H3 | Data/analytics team × reproducible data-quality decision report | 51.8 | SCORED BACKUP; NOT SELECTED | LOW | 0_NONE |
+| 5T | H4 | Product/user-research team × traceable interview synthesis | 51.8 | SCORED BACKUP; NOT SELECTED | LOW | 0_NONE |
+| 7 | H5 | Applied research team × literature intelligence workspace | 50.4 | SCORED BACKUP; NOT SELECTED | LOW | 0_NONE |
+| 8 | H7 | Operations-heavy small business × browser record reconciliation | 48.6 | SCORED BACKUP; NOT SELECTED | LOW | 0_NONE |
 
-### H2 — small software team issue to reviewed PR candidate
+The corrected rank does not override D-012. A `3.0`-point H1/H2 difference is only three one-level judgment changes on weight-5 criteria, and the demand cells are uniformly unobserved.
 
-**PROVISIONAL HYPOTHESIS:** a technical founder or engineering lead at a 2–20 developer team will delegate bounded, well-tested repository issues when the system reproduces the problem, records tests and review evidence, and never merges without approval.
+## Sensitivity analysis
 
-- **Pain, frequency, value, and failure:** structurally promising but unobserved in target teams.
-- **Current workaround:** GitHub Copilot cloud agent and Codex already cover issue delegation, pull requests, cloud work, testing, and review (SRC-064, SRC-065).
-- **Delegation and security:** repository access, code, dependency installation, CI, secrets, and write permissions create higher trust and isolation requirements than H1.
-- **Required integrations:** GitHub, terminal/test environment, dependency registry, and optional preview environment.
-- **Sales and reach:** technical founders match D-006, but access and purchasing authority are untested.
-- **Prototype feasibility:** high for well-instrumented repositories; environment reproduction and flaky tests reduce repeatability.
-- **Differentiation:** weak unless independent verification materially outperforms current coding agents on a customer-owned task.
-- **Expansion:** code review, maintenance, release preparation, incident follow-up, and engineering operations.
-- **Falsifier:** qualified teams already trust existing agents, will not grant repository access, cannot provide runnable test environments, or see no improvement in verified completion.
+All scenarios below use the **corrected scores**, including corrected failure-safety direction. “Original” means the original AUTHOR weights applied to corrected scores; it does not reuse the defective original cells.
 
-### H3 — boutique or internal analytics team data report
+Abbreviations: `P` pain, `G` workaround gap, `F` frequency, `V` economic value, `S` failure safety, `Dg` delegation, `I` integration, `Sec` security, `Sa` sales cycle, `R` reach, `Pr` prototype, `Df` differentiation, `E` expansion, `B` bootstrap revenue, `Iv` investor relevance.
 
-**PROVISIONAL HYPOTHESIS:** an analyst responsible for recurring decisions will delegate data-quality checks and a reproducible report when calculations, filters, units, charts, and caveats can be re-run and independently checked.
+| Weighting scheme | P | G | F | V | S | Dg | I | Sec | Sa | R | Pr | Df | E | B | Iv | Total |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| Original AUTHOR | 11 | 5 | 7 | 8 | 5 | 6 | 7 | 6 | 7 | 8 | 10 | 8 | 4 | 5 | 3 | 100 |
+| Corrected balanced | 13 | 9 | 8 | 10 | 5 | 6 | 5 | 5 | 5 | 7 | 7 | 9 | 4 | 5 | 2 | 100 |
+| Demand-heavy | 20 | 12 | 15 | 15 | 3 | 8 | 3 | 3 | 4 | 5 | 3 | 5 | 2 | 1 | 1 | 100 |
+| Feasibility-heavy | 6 | 4 | 5 | 5 | 10 | 4 | 12 | 10 | 4 | 4 | 18 | 4 | 4 | 5 | 5 | 100 |
+| Competition/WTP-heavy | 10 | 18 | 6 | 13 | 3 | 5 | 3 | 3 | 5 | 5 | 4 | 18 | 2 | 4 | 1 | 100 |
 
-- **Pain, frequency, value, and failure:** potentially high but no observed jobs, time, error, or buyer evidence exists.
-- **Current workaround:** spreadsheets/notebooks and a purpose-built agentic analytics platform such as Hex (SRC-069).
-- **Delegation and security:** customer exports, warehouse schemas, commercial metrics, and PII may be sensitive.
-- **Required integrations:** file ingestion and notebook/terminal initially; warehouse, BI, and semantic-model integrations later.
-- **Sales and reach:** analytics practitioners are in the recruiting brief, but founder reach is unknown.
-- **Prototype feasibility:** strong with scrubbed exports and fixed questions; weaker with live warehouse ambiguity.
-- **Differentiation:** reproducibility and independent calculation checks must beat existing governed notebook workflows.
-- **Expansion:** recurring reporting, metric diagnostics, planning, and decision support.
-- **Falsifier:** analysts prefer direct notebook control, cannot share safe fixtures, or corrections consume more time than the delegated work saves.
+| Scheme | Ordered corrected totals |
+|---|---|
+| Original AUTHOR weights | H1 62.4; H2 58.4; H6 57.6; H8 57.2; H4 52.2; H3 51.6; H5 51.0; H7 45.8 |
+| Corrected balanced | H1 60.4; H2 57.4; H8 57.0; H6 56.4; H3/H4 51.8; H5 50.4; H7 48.6 |
+| Demand-heavy | H1 58.8; H2/H8 57.0; H6 56.4; H4 53.6; H3 53.4; H7 52.6; H5 51.0 |
+| Feasibility-heavy | H1 67.4; H2/H6 59.0; H8 55.4; H4 53.2; H5 52.8; H3 51.2; H7 39.2 |
+| Competition/WTP-heavy | H8 55.6; H1 55.2; H2 53.2; H6 52.8; H7 52.0; H3 49.4; H4 49.2; H5 48.2 |
 
-### H4 — product/user-research interview synthesis
+**MATERIAL SENSITIVITY:** H8 moves from fourth under original weights to first under competition/WTP-heavy weights; H2 ties H6 under feasibility-heavy weights; H7 moves sharply when competition is emphasized. Since demand evidence is zero and rankings change, the score cannot select a single winner.
 
-**PROVISIONAL HYPOTHESIS:** a product or research team will delegate first-pass coding and synthesis if every theme links to permitted source excerpts or timestamps and dissenting evidence remains visible.
+## Corrected hypothesis briefs
 
-- **Pain, frequency, value, and failure:** unobserved; transcript volume and decision impact must be measured.
-- **Current workaround:** Dovetail already positions evidence-linked clips, research memory, PII controls, and purpose-built analysis (SRC-070).
-- **Delegation and security:** recordings, participant PII, consent, and confidential roadmap context create high sensitivity.
-- **Required integrations:** transcript/file ingestion initially; meeting, support, and repository connectors later.
-- **Sales and reach:** product researchers are recruitable in principle but no channel conversion is known.
-- **Prototype feasibility:** high on permitted redacted transcripts; real data handling is the gating risk.
-- **Differentiation:** weak unless cross-tool portability or an independently verified evidence graph solves a documented switching problem.
-- **Expansion:** research repository, feedback triage, roadmap evidence, and recurring voice-of-customer synthesis.
-- **Falsifier:** PII/security blocks cloud delegation, purpose-built repositories are satisfactory, or researchers reject model-generated coding even with provenance.
+### H1 — small B2B SaaS competitor-change decision ledger
 
-### H5 — applied-research literature intelligence
+**PROVISIONAL HYPOTHESIS:** a directly responsible founder, product lead, or product-marketing lead at a 3–30 person B2B SaaS company with 5–15 named competitors and no dedicated CI analyst may value a governed decision ledger beyond current monitoring products.
 
-**PROVISIONAL HYPOTHESIS:** an applied research team will delegate paper accounting, extraction, and a research-gap memo when each claim maps to page/section evidence and uncertain extraction is flagged.
+- Current alternatives already provide page monitoring, before/after diffs, URLs/timestamps, importance scoring, reports, integrations, and multi-competitor views, often at self-serve prices (SRC-067, SRC-068, SRC-075–SRC-090, SRC-105).
+- Corrected `current_workaround_gap = 2` and `differentiation = 2`.
+- Residual differentiator to test: customer-owned materiality rule, explicit coverage/unknown state, approval-gated master-record proposal, and exact readback after an approved update. It is not established as unique or valuable.
+- Minimum sufficient runtime for most value: **scheduled automation**. A multi-tool persistent agent is optional unless governed record maintenance proves valuable.
+- Pain, meaningful-event frequency, active time, dissatisfaction, delegation, pilot interest, and WTP are all UNKNOWN/NOT_TESTED.
 
-- **Pain, frequency, value, and failure:** systematic evidence work can be intensive, but target-team behavior and budget are unknown.
-- **Current workaround:** Elicit documents reports, review screening/extraction, libraries, alerts, and sentence-level citations (SRC-071).
-- **Delegation and security:** public papers are manageable; unpublished manuscripts, clinical data, or licensed corpora are not in initial scope.
-- **Required integrations:** PDF/file processing and bibliography/spreadsheet output; database and publisher access later.
-- **Sales and reach:** academic procurement may be slow; applied or commercial research teams may differ. Both are open questions.
-- **Prototype feasibility:** moderate to high on a fixed public corpus, constrained by PDF and table extraction reliability.
-- **Differentiation:** weak without a validated domain or workflow that existing literature tools do not cover.
-- **Expansion:** alerts, evidence maintenance, protocol support, and regulated evidence workflows only with appropriate controls.
-- **Falsifier:** existing products satisfy the job, budgets are individual/low, or required accuracy demands make correction cost prohibitive.
+#### H1 trigger and three clocks
 
-### H6 — small web agency website-release preparation
+- Trigger: a new interval since the last accepted snapshot, or a named decision requiring a fresh comparison.
+- Software check cadence: DESIGN PROPOSAL—daily for ordinary allowlisted pages, with any faster cadence tested only when justified.
+- Human reporting cadence: DESIGN PROPOSAL—weekly digest plus an exceptional material alert.
+- Strategically meaningful change/pain frequency: UNKNOWN. Interview evidence must establish it; machine checks and weekly reports do not count as customer pain frequency.
 
-**PROVISIONAL HYPOTHESIS:** a small agency or founder will delegate bounded site changes when the agent produces a checked preview and cannot deploy production without explicit approval.
+### H2 — bounded issue to tested PR with independently checked evidence
 
-- **Pain, frequency, value, and failure:** plausible but unobserved; the job may already be fast enough with existing tools.
-- **Current workaround:** coding agents cover changes and Vercel provides automatic pull-request previews and production-after-merge workflows (SRC-065, SRC-072).
-- **Delegation and security:** repository and preview access are sensitive, but production can remain blocked.
-- **Required integrations:** Git provider, build/test toolchain, browser preview, and one preview host.
-- **Sales and reach:** agencies may buy quickly, but founder reach and pricing are unknown.
-- **Prototype feasibility:** high for a known stack and fixture site.
-- **Differentiation:** weak unless visual, accessibility, and external-state verification remove a measured review bottleneck.
-- **Expansion:** multi-site maintenance, content operations, accessibility remediation, and release coordination.
-- **Falsifier:** existing coding/preview flow is satisfactory, stack diversity destroys repeatability, or preview QA still requires full manual work.
+**PROVISIONAL HYPOTHESIS:** a technical founder or engineering lead at a 2–20 developer team may delegate bounded GitHub issues when merge remains human-controlled and completion evidence is independently checked.
 
-### H7 — operations-heavy SMB browser record reconciliation
+- GitHub Copilot, Codex, Claude Code, Cursor, Devin, and Jules materially overlap task-to-code, autonomous execution, tests, PRs, background work, review, CI follow-up, approvals, and evidence artifacts (SRC-064, SRC-065, SRC-091–SRC-104).
+- Corrected `current_workaround_gap = 2` and `differentiation = 2`.
+- Potential differentiator to test, not a market fact: **independently verified completion evidence** from a separately provisioned reproducer that checks the declared acceptance predicate, relevant tests/behavior, and current remote PR/CI state after the author run stops.
+- Do not claim that competitors lack verification. Current products document second opinions, multi-agent review, verification steps, logs, artifacts, and video proof. The narrower separate-reproduction gap is UNKNOWN.
+- Minimum sufficient runtime: **multi-tool persistent agent**, which current coding-agent products already provide.
+- Pain, delegation, dissatisfaction, pilot interest, WTP, and acceptable failure contract are UNKNOWN/NOT_TESTED.
 
-**PROVISIONAL HYPOTHESIS:** an operations user working across a browser-only application and spreadsheets will delegate read-only extraction and reconciliation if all proposed writes are reviewable and blocked pending approval.
+### H8 — independent PR reproduce-and-verify evidence bundle
 
-- **Pain, frequency, value, and failure:** potentially high and recurring, but no actual SMB workflow has been observed.
-- **Current workaround:** manual work and RPA are hypotheses; Power Automate publicly documents browser automation capabilities and concrete control failures (SRC-073, SRC-074).
-- **Delegation and security:** customer records, account credentials, PII, and write actions create high sensitivity.
-- **Required integrations:** browser control, spreadsheet/file reconciliation, authentication takeover, and approval interception.
-- **Sales and reach:** the buyer and distribution path are unclear, and setup may become services-heavy.
-- **Prototype feasibility:** lowest in the set because UI variability and account-specific state are central to the workflow.
-- **Differentiation:** verified proposed changes and robust exception handling could matter, but neither is customer-validated.
-- **Expansion:** broader back-office operations and recurring routines if one vertical is selected.
-- **Falsifier:** no repeatable vertical process is found, setup cost exceeds value, browser reliability is inadequate, or customers reject cloud credential handling.
+Origin: `CHALLENGER_ADDED_HYPOTHESIS`.
 
-## Provisional beachhead contract
+**PROVISIONAL HYPOTHESIS:** the same small-team buyer may want a read-mostly verifier for a human- or agent-authored PR: freeze base/head commits and acceptance predicate, provision a clean environment, reproduce relevant tests/behavior, check remote PR/CI state, and emit a contradiction-preserving evidence bundle without merging.
 
-### Customer
+- Corrected total `57.0`; close to H2 and first under competition/WTP-heavy weights.
+- Not clearly dominated, so it requires explicit challenger/verifier discussion.
+- Same buyer, systems, and completion decision as H2; current classification is **retain as an H2 refinement**, not a separate co-equal discovery candidate or quota.
+- Minimum sufficient runtime: **multi-tool persistent agent**, though incumbent review/coding products may absorb it as a feature.
+- Customer evidence and all gates: `ZERO / NOT_TESTED`.
 
-Founder, head of product, or product-marketing lead at a 3–30 person B2B SaaS company that tracks 5–15 named competitors and has no dedicated CI analyst.
+### H3–H7
 
-### Trigger and job
+| ID | Key structural judgment | Minimum sufficient runtime | Primary falsifier |
+|---|---|---|---|
+| H3 | Reproducible data report is verifiable, but Hex/notebooks are strong substitutes and live data can be sensitive. | Product feature or scheduled automation | Analysts prefer direct notebook control or correction cost exceeds savings. |
+| H4 | Traceable synthesis is feasible on redacted transcripts, but Dovetail covers provenance/memory and PII is central. | Product feature | Security/consent blocks delegation or current repository is satisfactory. |
+| H5 | Fixed public corpora are tractable, but Elicit covers screening/extraction/alerts and budgets/frequency are unknown. | Scheduled automation | Existing tools satisfy the job or required accuracy makes correction prohibitive. |
+| H6 | Code-to-preview is tractable on a known stack, but coding agents plus Vercel already serve most of the flow. | Multi-tool persistent agent | Existing code/preview process is satisfactory or stack variance destroys repeatability. |
+| H7 | Browser/record work has the strongest runtime need but the worst safety, security, and prototype profile. | Multi-tool persistent agent | No repeatable vertical process, setup exceeds value, or customers reject credential handling. |
 
-At a weekly review or before a positioning/release decision, determine what materially changed on allowlisted official competitor product, pricing, documentation, and changelog pages since the prior accepted snapshot.
+No hypothesis currently requires a multi-agent team. Ability to use multiple agents is not scored as customer value.
 
-### Narrow first output
+## Comparable H1/H2 discovery gates
 
-1. A machine-checkable CSV change ledger with company, source URL, source type, prior observed value, current observed value, retrieved-at time, materiality classification, confidence, and status.
-2. A short cited delta memo covering only material changes and explicit unknowns.
-3. A proposed update to the customer's master ledger, held for approval.
-4. After approval in a test environment, a readback proving the intended record and exact values changed once.
+Every threshold below is a **DESIGN PROPOSAL** for falsification. Every result is `NOT_TESTED`. Thresholds are not customer observations.
 
-### Completion predicate
+### Equivalent discovery effort
 
-- every allowlisted source is covered or marked unavailable;
-- every material claim links to current source evidence and the prior accepted snapshot;
-- no unsupported material claim appears;
-- duplicate records are rejected;
-- CSV schema and memo-to-ledger consistency checks pass;
-- no external publication, message, or master-record update occurs without approval;
-- any approved test update is re-read and exactly verified;
-- uncertainty and source failure remain visible rather than being converted into a change claim.
+| Dimension | H1 | H2 |
+|---|---|---|
+| Qualified interviews | 8 | 8 |
+| Participant independence | One person per organization; at least 4/8 outside founder first-degree network | Same |
+| Interview length/procedure | 45 minutes; last actual workflow first, neutral concepts later | Same |
+| Artifact request | Permitted recent watchlist, prior report/ledger, or live process walk-through | Permitted recent bounded issue, PR/review artifact, or live process walk-through |
+| Concept comparison | Current alternative vs residual governed evidence contract | Current alternative vs residual independent-reproduction contract |
+| Sample cycle | One operator-run, no-external-write sample after interview | Same |
+| Pilot ask | Two cycles, named owner/input/date/criterion | Same |
+| Written price test | USD 500 for four weeks | Same |
 
-### Primary differentiator to test
+If service effort differs, record operator minutes and cost; do not secretly give either candidate more support or count it as stronger demand.
 
-**PROVISIONAL HYPOTHESIS:** verification-first delta evidence and explicit completion state are more valuable than a generic cited report. Model transparency is secondary and is not assumed to be a purchasing driver. This narrows D-007 for testing without confirming it.
+### Predeclared falsification table
 
-### Prototype demo proposal
+| Dimension | H1 observable pass criterion | H2 observable pass criterion | Current result |
+|---|---|---|---|
+| Customer pain | At least 5/8 describe a specific decision-linked missed/stale/research burden in the preceding 90 days and a concrete consequence; at least 4/8 anchor it to a permitted artifact or walk-through. | At least 5/8 describe a specific bounded-issue/review failure or delay in the preceding 90 days and a concrete consequence; at least 4/8 anchor it to a permitted artifact or walk-through. | NOT_TESTED |
+| Workflow frequency | At least 5/8 personally performed the decision-linked comparison at least twice in the preceding 60 days. Machine checks and report cadence do not count. | At least 5/8 personally triaged at least four bounded issues or agent/human PR reviews in the preceding 30 days. | NOT_TESTED |
+| Current-workaround dissatisfaction | At least 4/8 show one repeated manual step, missed state, or correction in their actual named stack and explicitly identify the step they would replace; neutral comparison includes current page monitors/CI suites. | At least 4/8 show one repeated manual check, reopen, CI/review gap, or correction in their actual named stack and identify the step they would replace; neutral comparison includes current coding/review agents. | NOT_TESTED |
+| Willingness to delegate | At least 5/8 specify an own-work public watchlist they would permit for read-only testing and name allowed/blocked actions. | At least 5/8 specify an authorized repository/fixture they would permit for a no-merge, bounded test and name allowed/blocked actions. | NOT_TESTED |
+| Measurable value | At least 4/8 provide a recent baseline for active time, correction time, missed-change consequence, or decision delay and agree to one before/after success metric. | At least 4/8 provide a recent baseline for issue cycle time, review time, reopen/rework, escaped defect, or verification effort and agree to one success metric. | NOT_TESTED |
+| Willingness to pilot | At least 3/8 make a written two-cycle commitment with permitted input, named owner, start date within 30 days, and completion criterion. | Same, using an authorized bounded issue/PR and runnable environment. | NOT_TESTED |
+| Willingness to pay | At least 3/8 explicitly accept in writing a USD 500/four-week paid-pilot offer with scope and terms, including at least one organization outside the founder's first-degree network. A payment is stronger evidence; enthusiasm is not acceptance. | Same. | NOT_TESTED |
+| Required integrations | At least 6/8 can receive first value from public URLs plus CSV/memo and an approval-gated test ledger; fewer than 3/8 require private/authenticated/regulated sources for first value. | At least 6/8 can receive first value from one Git repo, reproducible test command/environment, and PR/CI read access; fewer than 3/8 require production credentials or deployment/merge authority. | NOT_TESTED |
+| Failure tolerance | At least 5/8 accept explicit unknowns, human approval before any record write, and the predefined false-positive/false-negative review process; fewer than 3/8 require an unsupported near-zero miss rate for first value. | At least 5/8 accept no-merge/no-deploy operation, explicit unknowns, human review, and verifier disagreement; fewer than 3/8 require autonomous merge/deploy or an unsupported near-zero defect rate. | NOT_TESTED |
+| Competitive differentiation | After the neutral actual-alternative comparison and sample, at least 4/8 say the residual contract would change a real workflow decision **and** at least 3 of those 4 make the written pilot commitment. | Same for separate reproduction/current-state evidence versus their actual coding-agent/CI/review stack. | NOT_TESTED |
 
-Use a synthetic or founder-created prior snapshot and five public competitor sites. Run one change cycle, identify a seeded mix of changed, unchanged, duplicate, and unavailable sources, produce the ledger and memo, block a master-ledger update for approval, accept one user correction, apply the approved update in a test record, and re-read it. This is a proposed demo definition, not an implementation or observed result.
+Failing any pain, frequency, dissatisfaction, delegation, pilot, or price gate removes that candidate from the build queue unless the segment/job is explicitly revised and re-reviewed. Passing interviews without the price gate is not commercial validation.
 
-### Expansion path
+### H8 probes inside H2 discovery
 
-Only if the narrow workflow retains users: scheduled monitoring, authenticated customer-supplied sources, team distribution, win/loss evidence, product-planning context, and a broader recurring operating-intelligence teammate. No expansion item is MVP scope today.
+H8 gets no separate quota. In every H2 interview, ask after the actual-workflow walkthrough:
 
-## Falsification plan
+1. Who or what currently verifies an agent/human PR independently of the author?
+2. Would a clean-environment reproduction bundle change approval, merge, or review time?
+3. Which evidence is already sufficient: CI, author logs, video, code review, human test, or separate reproduction?
+4. Would the participant pilot/pay for verification without buying issue-to-code generation?
 
-### H1 problem gate — eight qualified interviews
+If at least 4/8 prefer verification-only and at least 3/8 make the same written pilot commitment, reopen whether H8 is a distinct workflow. This is a DESIGN PROPOSAL and remains NOT_TESTED.
 
-Pass only if all of the following occur:
+## Making sample and feasibility gates executable
 
-1. At least `5/8` participants personally performed the defined competitor-change job at least twice in the preceding 60 days.
-2. At least `4/8` provide a permitted redacted prior artifact, source list, or live process walk-through; hypothetical interest alone does not count.
-3. At least `4/8` report two or more hours of active work per cycle and can connect that estimate to the observed steps or artifact.
-4. At least `3/8` describe a specific missed or stale change in the preceding 90 days and a concrete consequence; generalized fear does not count.
+### Operational definitions
 
-Failing any item falsifies the initial pain/frequency framing and removes H1 from the build queue pending a revised segment or job.
+- **Qualified interview:** participant meets the candidate screen, directly owned the named workflow, and recounts a real occurrence in the specified time window. Interest without a real occurrence is unqualified.
+- **Artifact-backed:** participant permits viewing a redacted artifact or live process. The repository stores only a sanitized evidence ID and observation, not confidential material.
+- **Written pilot commitment:** explicit yes containing owner, permitted input, start date, two-cycle scope, and completion criterion.
+- **Written price acceptance:** explicit acceptance of the proposed USD 500/four-week scope and terms. A counteroffer is recorded separately; praise, a waitlist signup, or “keep me posted” does not count.
+- **Concierge cycle:** a named human operator performs the proposed bounded workflow once using participant-permitted historical or current inputs, records active minutes and corrections, and makes no external write/message/merge/deploy.
+- **Independent truth-set curator:** a second person who did not operate the sample freezes and labels the comparison set before inspecting the sample output. Disagreements remain visible.
 
-### Delegation and differentiation gate
+### H1 sample and truth set
 
-Pass only if:
+1. Participant names the decision, 5–15 competitors, allowlisted pages, prior accepted snapshot/date, and material fields before the run.
+2. Operator checks the frozen prior/current pages and produces the proposed ledger/memo without external writes.
+3. Curator independently labels changed/unchanged/unavailable pages and material fields from the frozen source set using the participant's predeclared materiality rule.
+4. Compare coverage, unsupported claims, precision/recall, correction minutes, and decision usefulness. Do not count software check volume as customer frequency.
 
-1. At least `5/8` will test read-only delegation on their own public watchlist.
-2. At least `4/8`, after comparing a generic cited report with the proposed delta ledger, select the inspectable before/after and completion-state evidence as materially useful for a real decision.
-3. Fewer than `3/8` require authenticated, private, or regulated sources for the first valuable version.
-4. Fewer than `5/8` describe their current alternative as satisfactory with no material unsolved gap.
+### H2/H8 sample and truth set
 
-If generic citations are sufficient, or existing CI products solve the job, verified completion is not a wedge for this workflow even if participants like the concept.
+1. Participant supplies an authorized historical or fixture issue/PR, immutable base/head commit IDs, setup command, test command, and acceptance predicate before the run.
+2. Operator performs the evidence-only reproduction in a clean environment with no push, merge, deploy, or production credential.
+3. Curator is the repository owner or an independent engineer who did not operate the sample; they freeze the expected acceptance/test set before viewing output.
+4. Compare reproducibility, evidence coverage, contradictions, false-completion claims, correction minutes, and whether the bundle changes the participant's review decision.
 
-### Commitment and payment gate
+### Prototype feasibility gates — only after customer evidence authorizes a build
 
-Pass only if:
+All thresholds are DESIGN PROPOSALS and `NOT_RUN`.
 
-1. At least `3/8` provide a permitted watchlist plus prior artifact and commit in writing to a two-cycle concierge pilot.
-2. After reviewing one sample cycle, at least `2/8` accept a written price test of `USD 500` for a four-week pilot. The number is a DESIGN PROPOSAL for falsification, not a price decision or willingness-to-pay claim.
+| Check | H1 proposed threshold | H2/H8 proposed threshold |
+|---|---|---|
+| Representative cases | 3 authorized watchlists across 2 consecutive cycles | 3 authorized repos/fixtures with 2 bounded cases each |
+| Evidence coverage | 100% of output claims link to prior/current source, or are explicit UNKNOWN | 100% of completion claims link to immutable commit/environment/test/log evidence, or are explicit UNKNOWN |
+| Unsupported material claims | 0 | 0 |
+| Truth-set performance | At least 90% precision and 90% recall on curated material changes | At least 90% agreement with curated acceptance/test outcomes; disagreements must be shown, never silently resolved |
+| Unauthorized action | 0 writes/messages | 0 pushes/merges/deploys/production writes |
+| External-state verification | Approved test-ledger update occurs exactly once and passes readback | Current remote PR head and CI/check state reread after verification; no claim based on stale local state |
+| Human correction | Median no more than 15 active minutes/cycle | Median no more than 30 active minutes/case |
+| Required recording | Cost, latency, unavailable-source rate, false positive/negative, corrections, false completion | Cost, latency, setup failure, flaky tests, contradictions, corrections, false completion |
 
-Interest, compliments, waitlist signup, or an unpaid trial without artifact access do not satisfy payment evidence. If pain passes and payment fails, do not call the wedge commercially validated; test a different buyer, outcome, or candidate.
-
-### Prototype feasibility gate — after customer evidence authorizes a build
-
-On three permitted customer-supplied or equivalently representative watchlists across two consecutive cycles:
-
-- `100%` of material claims have accessible source and prior-state evidence;
-- `0` unsupported material claims;
-- at least `90%` precision and `90%` recall against an independently curated material-change set;
-- `0` unauthorized external writes or messages;
-- approved test updates are applied exactly once and pass readback;
-- median human correction time is no more than 15 minutes per cycle;
-- task cost, latency, unavailable-source rate, and false-completion rate are recorded rather than assumed.
-
-These thresholds are proposed acceptance tests. No run has occurred.
-
-### Counter-hypothesis rule
-
-Run at least four artifact-led H2 interviews in the same discovery wave. Reopen the selection if H2 produces more qualified artifacts, stronger pilot commitments, or stronger payment evidence than H1, despite its lower differentiation score. H1 receives no incumbent advantage.
+Threshold values are proposals chosen to make the next test falsifiable. They are not benchmark results, customer requirements, or production-readiness claims.
 
 ## Interview recruiting plan
 
-### Objective and timing
+**DESIGN PROPOSAL:** 16 discovery interviews, 8 H1 and 8 H2, one participant per organization. No outreach, recruiting, incentive, or spend is authorized or executed by S1-001.
 
-**DESIGN PROPOSAL:** recruit and complete `20` discovery interviews between `2026-08-24` and `2026-09-13`, subject to founder availability and approval. This stays within A-001's `15–25` interview evidence target and deliberately covers multiple segments.
+### Qualification screens
 
-No outreach has been sent, no participant has been recruited, and no incentive is authorized in this task.
+- H1: founder, product lead, or product-marketing lead; 3–30 staff; 5–15 named competitors; no dedicated CI analyst; personally performed the defined decision-linked workflow at least once in the preceding 60 days. Record one directly responsible owner per organization.
+- H2: technical founder or engineering lead; 2–20 developers; maintains a Git repository with a runnable bounded test path; personally triaged a bounded issue or reviewed a PR in the preceding 30 days.
 
-### Sampling quotas
+At least 4/8 in each group should be outside the founder's first-degree network. If the quota is missed, report the sampling skew; do not lower it silently. H8 is probed within H2. H3–H7 receive no first-wave allocation under D-012.
 
-| Quota | Candidate group | Qualification screen | Main hypotheses |
-|---:|---|---|---|
-| 8 | B2B SaaS founders, heads of product, or product-marketing leads | 3–30 staff; 5–15 named competitors; personally touched competitor research in last 60 days; no dedicated CI analyst | H1 |
-| 4 | Technical founders or engineering leads | 2–20 developers; maintains a GitHub repository; personally triages bounded issues | H2 |
-| 3 | Internal or boutique data analysts | Produced a decision report from an export/notebook in the last 60 days | H3 |
-| 3 | Product/user researchers or applied research leads | Synthesized interviews or literature into a decision artifact in the last 90 days | H4 or H5 |
-| 2 | Operations leads in small businesses or professional-services teams | Reconciles records between a browser-only system and spreadsheet at least monthly | H7 |
-| **20** | | One participant per organization in the first wave | |
+### Interview sequence
 
-H6 remains a scored backup but receives no first-wave quota unless recruiting evidence or challenger review raises it.
+1. Reconfirm qualification, direct responsibility, and last actual occurrence.
+2. Walk through trigger, active/elapsed time, tools, people, artifacts, errors, completion state, and approval boundary.
+3. Record the actual named workaround and why it remains in use.
+4. Request a permitted redacted artifact/live process; absence is recorded.
+5. Only after behavior capture, compare the actual workaround with the residual concept. Randomize concept order.
+6. Run or schedule at most one no-write concierge sample under the definitions above.
+7. Ask for the exact pilot and price commitments; record “no,” conditions, counteroffers, and non-response.
+8. Separate participant report, observed artifact, exact permitted quotation, analyst inference, and proposal.
 
-### Channel plan
-
-Use channels in this order, recording attempted and qualified counts without implying conversion:
-
-1. Founder first-degree network and prior colleagues, if the founder confirms relevant contacts.
-2. Targeted introductions through accelerator, founder, product, engineering, analytics, research, and operations communities where outreach is permitted.
-3. Direct role-based outreach to publicly identifiable professionals on company sites or professional networks; do not scrape private contact data or send bulk unsolicited messages.
-4. Customer referrals requested only after an interview, with no disclosure of the prior participant's statements.
-
-At least half of completed interviews should come from outside the founder's first-degree network to reduce preference bias. If that quota cannot be met, record the skew rather than relaxing it silently.
-
-### Proposed outreach copy
-
-> I'm researching how small teams handle [specific recurring job]. I'm not selling a finished product. Could I spend 45 minutes learning about the last time you did it, the artifacts and tools involved, and what went wrong? I will not ask you to share confidential data; a redacted example or screen walk-through is optional. With your permission, I may invite you to test a narrow prototype later.
-
-Do not lead with “persistent agents,” multi-model orchestration, or the proposed differentiator. Ask about past behavior before presenting concepts.
-
-### Interview procedure
-
-1. Use `00_inbox/prepared_materials/10_CUSTOMER_NOTES/INTERVIEW_TEMPLATE.md`.
-2. Reconfirm role, company size, workflow recency, and direct responsibility.
-3. Walk through the last actual occurrence: trigger, tools, people, handoffs, elapsed and active time, errors, completion state, and approval boundary.
-4. Request a permitted redacted artifact or live process map; absence is recorded.
-5. Ask what has already been tried and why it remains in use or was abandoned.
-6. Only after evidence capture, show two neutral output concepts: a generic cited report and a verification-first delta ledger. Randomize presentation order across interviews.
-7. Ask for a concrete next action: watchlist/artifact access, scheduled pilot date, and written price response. Record “no” and conditions exactly.
-8. Capture disconfirming evidence before author interpretation.
-
-### Evidence recording and privacy
-
-- Default to notes only. Record audio/video only with explicit permission.
-- Do not commit participant names, emails, recordings, private company data, credentials, or identifiable quotations to this public repository.
-- Store only sanitized notes or aggregate evidence in the repository; keep authorized originals in an approved private location and reference them by non-identifying ID.
-- Separate exact permitted quotation, observed artifact, participant report, interviewer inference, and product proposal.
-- One interview is one evidence unit; do not count multiple employees from one company as independent market observations in the first wave.
-- A pilot commitment requires a named owner, permitted input, start date, completion criterion, and explicit yes. A payment signal requires a written price response or payment, not enthusiasm.
-
-### Incentive proposal and unresolved authority
-
-**DESIGN PROPOSAL:** offer up to `USD 50` for a 45-minute interview, with a maximum discovery incentive budget of `USD 1,000`, only after founder approval. The task does not authorize spending or outreach. If no budget is approved, record incentive-free recruiting and its sampling bias.
-
-### Weekly evidence review
-
-- After each batch of five interviews, update a hypothesis evidence table with support, contradiction, unknowns, artifact availability, and next sampling gap.
-- Do not change the hypothesis because of one memorable quote.
-- After 20 interviews, apply the predeclared gates before revising the recommendation.
-- Independent challenger review should test whether the coding counter-hypothesis or another segment was under-sampled.
+Default to notes. Do not commit participant names, contact details, recordings, credentials, private data, or identifiable quotations to this public repository. A proposed interview incentive up to USD 50/person (maximum USD 800) requires separate founder approval; no budget or outreach is authorized here.
 
 ## Decisions and non-decisions
 
-### Provisional decisions
+### Current decisions
 
-- Test H1 first and H2 as the explicit counter-hypothesis.
-- Test verified delta completion as the primary differentiator; do not assume model transparency is a buyer benefit.
-- Keep the first H1 test public-source-only and read-only until approval for a test record update.
+- D-012 controls discovery allocation: H1 and H2 are co-equal.
+- H8 is scored and retained as an H2 refinement requiring explicit reviewer discussion.
+- H1/H2 have comparable, executable, predeclared gates and equal effort.
+- Failure safety uses the explicit favorable direction above.
+- Platform necessity is a qualitative constraint, not a score bonus.
 
 ### Not decided
 
-- No final customer segment, workflow, differentiator, pricing, market size, sales motion, architecture, integration stack, model provider, model role, benchmark shortlist, application code, or production scope is selected.
-- D-006 and D-007 remain provisional.
-- S0-004 and S0-005 remain unchanged and blocked under their recorded boundaries.
-- The independent challenger test has not run; the author may not mark this work verified.
+- No final customer, beachhead, workflow, differentiator, MVP, price, market size, sales motion, architecture, integration stack, model/provider role, benchmark, application implementation, or production scope is selected.
+- D-006 and D-007 remain PROVISIONAL.
+- H1/H2/H8 remain NOT_TESTED; customer evidence remains zero.
+- S0-004/S0-005 remain unchanged. S1-002 is not started.
 
-## Required independent challenge
+## Required independent review
 
-The reviewer should at minimum:
+The next reviewer should:
 
-1. Recompute every weighted total from the CSV and verify rank ordering.
-2. Challenge scores and weights, especially H1 vs H2, with an alternative weighting or at least three one-level perturbations.
-3. Check every public-workaround statement against SRC-064 through SRC-074 and reject vendor outcome claims presented as demand evidence.
-4. Verify that all four S1-001 deliverables and acceptance criteria are present.
-5. Attack the H1 segment definition, thresholds, recruiting bias, artifact requirements, payment test, and kill rules.
-6. Confirm no architecture, application code, paid benchmark, model-role lock, or customer evidence was fabricated.
-7. Return findings and a verdict without marking the author's artifact verified unless a later independent verifier satisfies the repository rules.
+1. Recompute the corrected total and all five weighting scenarios from the CSV.
+2. Validate every score has an E/J/U basis and every cited source ID exists.
+3. Challenge H1/H2 competitor matrices against the current primary sources.
+4. Decide whether H8 remains an H2 refinement or warrants separate discovery, without treating its score as customer evidence.
+5. Check H1/H2 gate equivalence, operational definitions, and threshold labels.
+6. Confirm D-012, D-006, D-007, customer-evidence zero, and the no-build/no-MVP boundaries remain intact.
+7. Do not mark S1-001 VERIFIED unless an independent verifier satisfies the repository completion rule.

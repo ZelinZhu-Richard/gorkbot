@@ -104,6 +104,13 @@ Consequence:
 - Reversal rule: reopen this decision if any H1 problem gate fails, current alternatives are satisfactory without a material gap, the paid-pilot gate fails, authenticated/private sources are required for the first valuable version, or H2 produces stronger artifact, pilot, or payment evidence.
 - Non-decision: D-006 and D-007 remain provisional. No final segment, workflow, pricing, architecture, model/provider role, benchmark, application implementation, market demand, or traction is confirmed.
 
+Historical status note — 2026-08-23 S1-001 fixer pass:
+
+- This original author ranking and first-slot rationale are preserved as the historical decision record.
+- The independent challenger found the top-two ordering too sensitive, the H1 substitute screen incomplete, and the first-slot rationale partly duplicative of scored feasibility factors.
+- Confirmed founder decision D-012 supersedes D-011 **only for current discovery allocation**. H1 no longer has an incumbent quota, contract, or priority: H1 and H2 are co-equal discovery candidates under comparable gates, and neither is validated or selected.
+- The corrected scorecard does not retroactively rewrite the original `76.8/75.6` author scores. Customer evidence remains zero; customer evidence must determine which candidate survives.
+
 ## D-012: Stage 1 discovery allocation after S1-001 challenger review
 
 - Date: 2026-08-23
