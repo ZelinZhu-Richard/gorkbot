@@ -4,7 +4,7 @@ repository: ZelinZhu-Richard/gorkbot
 source_of_truth: repository
 current_stage: 1
 current_stage_name: customer_wedge_company_thesis
-current_stage_status: READY
+current_stage_status: IN_REVIEW
 current_gate: stage_1_gate
 stage_gate_status: NOT_EVALUATED
 last_verified_stage: 0
@@ -19,9 +19,9 @@ author_model: "Codex (runtime model identifier not exposed)"
 challenger_model: "Claude Fable 5 (claude-fable-5) via Claude Code — Stage 0 task reviews"
 verifier_model: "Claude Fable 5 (claude-fable-5) via Claude Code — S0-001, S0-002 and S0-003 independent verifier and S0-003 re-verifier (separate sessions from the challenger and from each other; independent of the Codex author/fixers; for S0-003 the verifier is also a registry candidate and pinned every Anthropic check to quoted live page text)"
 stage_gate_verifier_model: "Codex (runtime model identifier not exposed) — independent repository-first Stage 0 gate session; same Codex product label as the original author is disclosed, exact runtime equality is UNKNOWN_NOT_EXPOSED under D-010"
-active_task_ids: []
-ready_task_ids:
+active_task_ids:
   - S1-001
+ready_task_ids: []
 completed_task_ids:
   - S0-001
   - S0-002
@@ -38,6 +38,7 @@ last_verified_checkpoint: "Stage 0 VERIFIED on 2026-08-22 against clean commit 6
 unresolved_p0_questions:
   - first_customer_segment
   - first_mvp_workflow
+  - customer_discovery_recruiting_and_incentive_budget
   - prototype_budget
   - funded_api_access_and_account_quotas
   - grok_bot_eligible_account_build_and_rollout
@@ -50,9 +51,10 @@ deferred_dependencies:
     status: BLOCKED
     gate_disposition: LEGITIMATE_DEFERRED_EXTERNAL_DEPENDENCY
     required_before: "Before any paid comparative/model API execution beyond minimal authorized S0-005 smoke calls; before any real-provider technical spike or final model/provider suitability decision; and no later than the Stage 4 gate requiring evidenced provider abstraction across at least two providers."
-next_recommended_action: "Run MODE: EXECUTE_TASK_S1-001 to generate and score customer-workflow hypotheses. Preserve prepared materials as founder inputs rather than customer evidence; do not confirm D-006 or D-007, select architecture, or run benchmarks or provider/API calls through this transition. S0-004 and S0-005 remain BLOCKED external dependencies under their exact required-before boundaries."
-updated_at: "2026-08-22T19:25:49Z"
+next_recommended_action: "Run MODE: REVIEW_TASK_S1-001 as an independent CHALLENGER. Recompute the scorecard, challenge H1 versus H2 and the predeclared falsification/recruiting gates, spot-check SRC-064 through SRC-074, and confirm that customer evidence remains zero. Do not start another Stage 1 task, architecture, application code, benchmarks, provider/API calls, recruiting, outreach, or spending."
+updated_at: "2026-08-23T05:49:59Z"
 notes:
+  - "S1-001 AUTHOR pass completed on 2026-08-23 and is READY_FOR_REVIEW, not VERIFIED. Seven customer-workflow combinations were scored under a 100-weight model; H2 scored 76.8 and H1 scored 75.6, a directional tie. D-011 provisionally gives H1 (3–30 person B2B SaaS team, verification-first official-source competitor-change ledger) the first discovery slot and keeps H2 as the explicit counter-hypothesis. Customer evidence remains zero; D-006/D-007 remain provisional; problem, delegation, payment, feasibility, recruiting and reversal gates are predeclared. Eleven current first-party adjacent-product sources were added as product-availability/competition evidence only. No outreach, interview, customer artifact, market-size claim, architecture, application code, paid benchmark, provider/API call, model-role lock, or S0-004/S0-005 execution occurred. Independent challenger review is required next."
   - "Prepared materials are structured founder inputs, not validated customer evidence."
   - "S0-001 was independently challenged on 2026-08-21 against commit f151f28: verdict CHANGES_REQUESTED with 0 BLOCKER/HIGH/MEDIUM and 6 LOW findings; not verified. S0-002 was independently challenged on 2026-08-21 against commit 43daad7: verdict CHANGES_REQUESTED with 0 BLOCKER, 3 HIGH, 2 MEDIUM, 2 LOW findings; not verified. S0-003 was independently challenged on 2026-08-21 against commit 874ae4b: verdict CHANGES_REQUESTED with 0 BLOCKER, 2 HIGH, 5 MEDIUM, 4 LOW findings; not verified."
   - "The Grok Bot baseline is based on official documentation; no product account, installed build, or black-box observations were available. The 2026-08-21 challenger spot-check found four cited pages (FAQ, Get started, Mobile, Teams and enterprises) had drifted on or about August 20/21, identified omitted launch/beta/model/security/persistence/team context and official-source ambiguities, and requested changes. The S0-002 fixer pass reopened 24 current primary URLs, corrected the four source dates and plan eligibility, expanded the baseline and ledger, and preserved the original source-access limitation; the corrected baseline was independently VERIFIED on 2026-08-21 against fb89315 (see the S0-002 verifier note below). Installed build, account, plan, region, rollout and black-box behavior remain UNKNOWN with zero runs."

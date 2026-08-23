@@ -103,3 +103,14 @@ This note records scope, not a new decision:
 - D-006, D-007, and D-008 remain provisional founder hypotheses. No customer evidence was added by Stage 0.
 - The reference product's documented shared-computer boundary is evidence about Grok Bot, not a selected architecture for this project.
 - No final architecture, MVP workflow, customer wedge, or model-role assignment was selected.
+
+## D-011: S1-001 provisional discovery beachhead
+
+- Date: 2026-08-23
+- Status: PROVISIONAL
+- Decision: Test first with a founder, head of product, or product-marketing lead at a 3–30 person B2B SaaS company that tracks 5–15 named competitors without a dedicated competitive-intelligence analyst. The narrow job is a verification-first weekly ledger of material official-source product, pricing, documentation, and changelog changes, with an approval-gated master-record update. Keep the small-software-team GitHub issue-to-reviewed-PR workflow as the explicit counter-hypothesis.
+- Scoring context: H2 scored `76.8/100` and H1 scored `75.6/100`; the author treats the 1.2-point gap as a directional tie because one level on a weight-6 criterion changes the total by 1.2 points. H1 receives the first discovery slot based on lower-sensitivity initial inputs and founder-stated reach, neither of which is customer evidence.
+- Primary differentiation hypothesis: test verified before/after delta evidence, explicit unknown states, approval, and external-state readback. Citations alone are not differentiated, and model transparency is not assumed to be a purchasing driver.
+- Evidence required: the predeclared problem, delegation/differentiation, commitment/payment, and prototype-feasibility gates in `03_product/S1-001_CUSTOMER_WORKFLOW_SCORECARD.md`.
+- Reversal rule: reopen this decision if any H1 problem gate fails, current alternatives are satisfactory without a material gap, the paid-pilot gate fails, authenticated/private sources are required for the first valuable version, or H2 produces stronger artifact, pilot, or payment evidence.
+- Non-decision: D-006 and D-007 remain provisional. No final segment, workflow, pricing, architecture, model/provider role, benchmark, application implementation, market demand, or traction is confirmed.

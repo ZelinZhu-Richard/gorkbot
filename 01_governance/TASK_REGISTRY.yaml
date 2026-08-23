@@ -361,9 +361,11 @@ tasks:
     objective: Compare at least five customer and workflow combinations using explicit criteria.
     why_it_matters: Building a platform before selecting a painful workflow is the largest strategic failure risk.
     owner_role: AUTHOR
-    assigned_model: null
-    reviewer_model: null
-    status: READY
+    assigned_model: "Codex (runtime model identifier not exposed)"
+    reviewer_model: "Independent challenger not yet assigned"
+    status: READY_FOR_REVIEW
+    author_started_at: "2026-08-23T05:17:35Z"
+    author_completed_at: "2026-08-23T05:49:59Z"
     priority: P0
     dependencies:
       - S0-002
@@ -392,3 +394,12 @@ tasks:
       - Independent challenger review.
     expected_evidence:
       - scored_hypotheses
+    author_evidence:
+      - 03_product/S1-001_CUSTOMER_WORKFLOW_SCORECARD.md
+      - 03_product/S1-001_SCORED_HYPOTHESES.csv
+      - 02_research/S1-001_CURRENT_WORKAROUND_EVIDENCE_2026-08-23.md
+      - 01_governance/SOURCE_LEDGER.csv
+      - 99_handoffs/completed/S1-001_handoff.yaml
+    author_score_summary: "Seven combinations scored with weights summing to 100: H2 76.8, H1 75.6, H3 68.8, H6 67.8, H7 66.2, H4 63.0, H5 62.8. Evidence confidence LOW and customer evidence 0_NONE for every row. D-011 provisionally prioritizes H1 for discovery and retains H2 as the counter-hypothesis."
+    author_required_test_status: INDEPENDENT_CHALLENGER_REVIEW_NOT_RUN_AUTHOR_PASS
+    verification_status: AUTHOR_COMPLETE_READY_FOR_INDEPENDENT_CHALLENGE_NOT_VERIFIED
