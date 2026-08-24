@@ -155,6 +155,118 @@ Therefore the evidence is insufficient to privilege either H1 or H2 before custo
 - D-006 and D-007 remain PROVISIONAL.
 - No final customer, MVP workflow, pricing, architecture, or model role is selected.
 
+## D-013: S1-003 founder execution authorization and product-scope clarification
+
+- Date: 2026-08-24
+- Status: CONFIRMED
+- Decision type: CUSTOMER_DISCOVERY_EXECUTION_AUTHORIZATION
+
+### Long-term product scope
+
+The long-term product remains a clean-room Grok Bot-class multi-tenant SaaS platform with functional parity or better.
+
+H1 and H2 are candidate initial customer-workflow wedges. They do not redefine or limit the long-term platform scope.
+
+Customer discovery will determine which workflow, if either, should become the first packaged use case, prototype demonstration, and customer-acquisition wedge.
+
+Neither H1 nor H2 is currently selected.
+
+TAM/SAM/SOM analysis is deferred until customer discovery produces a provisional ICP, workflow, buyer, pricing hypothesis, and evidence of willingness to pilot or pay.
+
+### Outreach authorization
+
+Manual, personalized, one-to-one outreach is authorized for the verified S1-003 discovery protocol.
+
+Automated bulk outreach is not authorized during the first wave.
+
+### Outreach scaling policy
+
+Outreach quantity may increase later only after personalization quality, factual accuracy, tone, relevance, and protocol compliance have been tested and shown to remain stable.
+
+Every message must:
+
+1. Be based on verified company-specific and role-relevant context.
+2. Demonstrate genuine understanding of why the recipient is relevant.
+3. Avoid fabricated facts, compliments, familiarity, or personalization.
+4. Avoid generic or obviously AI-generated language.
+5. Be individually relevant even when a reusable structural template is used.
+6. Comply with applicable platform, community, and email rules.
+
+The scaling sequence is:
+
+1. Founder-reviewed individual drafting.
+2. AI-assisted personalized batches with founder approval.
+3. Controlled higher-volume production after a documented quality gate.
+4. Automated sending only after separate founder authorization and appropriate compliance, deliverability, suppression, audit, and quality controls exist.
+
+Increasing quantity must not reduce the required personalization standard.
+
+### Approved initial channels
+
+The following channels are authorized for individualized outreach where contextually appropriate:
+
+- founder email
+- LinkedIn
+- X
+- GitHub
+- warm introductions
+- relevant startup or technical communities whose rules permit recruiting
+- direct email based on legitimately obtained public business contact information
+
+The following are not authorized during the first wave:
+
+- purchased lead lists
+- mass scraping for outreach
+- automated bulk messaging
+- indiscriminate community posting
+- deceptive identity or false familiarity
+
+### Incentives
+
+The first-wave incentive budget is USD 0.
+
+The prior proposal of up to USD 50 per interview and USD 800 total remains unapproved.
+
+Incentives may be reconsidered after evidence from the initial unincentivized recruiting effort.
+
+### Evidence storage and consent
+
+Raw and identifying customer-discovery evidence must remain in approved private storage.
+
+The public repository may contain only sanitized structured evidence or opaque references.
+
+Recording is off by default.
+
+Any recording requires the participant's explicit prior consent.
+
+### Interviewer
+
+The founder is the primary interviewer for the initial discovery wave.
+
+### AI role
+
+AI may:
+
+- research prospects using permitted public information
+- draft personalized outreach for founder approval
+- prepare interview briefs
+- check protocol compliance
+- structure founder-provided notes
+- extract candidate evidence
+- conduct second-pass coding
+- identify contradictions
+- calculate predeclared gates
+- analyze results
+
+AI may not:
+
+- autonomously conduct first-wave interviews
+- send bulk outreach
+- fabricate or infer missing customer evidence
+- change frozen discovery gates after results appear
+- independently select H1 or H2 as the winner
+- place private evidence in the public repository
+
 ## Stage 0 author reconciliation note — 2026-08-21
 
 This note records scope, not a new decision:
