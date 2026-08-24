@@ -1,0 +1,505 @@
+review_id: R-S1-002-20260823-CHALLENGER
+task_id: S1-002
+stage: 1
+mode: REVIEW_TASK_S1-002
+role: CHALLENGER
+reviewer_model: "Claude Fable 5 (claude-fable-5) via Claude Code"
+reviewer_independence: >-
+  Independent of the recorded S1-002 author ("Codex (runtime model identifier not exposed) —
+  Stage 1 planner"); no Claude model authored any S1-002 artifact. Same model/product as the
+  S1-001 challenger and verifier (Claude Fable 5 via Claude Code) but a separate session with no
+  shared conversation state: every fact below was re-derived from the committed repository at
+  ae06032. The reviewer has no stake in which hypothesis survives; no vendor-published source is
+  newly relied on in this review (no live source retrieval was required — S1-002 is a design
+  artifact whose competitive evidence was already independently verified in S1-001).
+started_at: "2026-08-23T20:55:00Z"
+completed_at: "2026-08-23T21:35:00Z"
+reviewed_commit: ae060323c0e3754b3dcded26e7d4967753ed42e7
+reviewed_commit_full_state: >-
+  Branch chore/initialize-project-materials at ae06032 (Plan S1-002 customer discovery
+  experiment), committed by the founder from the author's uncommitted patch on base 1dff5c2;
+  working tree clean at review start. The S1-002 diff (1dff5c2..ae06032) touches exactly the
+  eight allowed paths: five 03_product/S1-002_* artifacts, TASK_REGISTRY.yaml,
+  PROJECT_STATE.yaml, and 99_handoffs/completed/S1-002_handoff.yaml (+1279/-4).
+verdict: CHANGES_REQUESTED
+verdict_rationale: >-
+  No BLOCKER. The plan is substantially rigorous: scope is clean (planning only — zero outreach,
+  interviews, spend, incentives, contacts, or customer rows; verified from the diff, the
+  zero-row CSV, and the absence of any customer evidence anywhere in the patch); H1/H2 remain
+  co-equal with no winner; H8 stays inside H2 with no quota; structural qualification correctly
+  excludes pain/frequency/dissatisfaction/interest so negative and rare workflows stay in the
+  denominator; the 19-field hypothesis contracts, Level 0-6 evidence hierarchy, eleven
+  non-compensating hard gates, early-stop math (independently recomputed and correct), overlap
+  and one-organization rules, and the public/restricted privacy boundary are all predeclared and
+  labeled DESIGN PROPOSAL. Both guides are genuinely behavior-first, delay concepts and pricing
+  until after behavioral evidence, and anchor pilot/WTP to written commitments rather than
+  enthusiasm. However, two HIGH findings could each bias the H1-vs-H2 selection the experiment
+  exists to make fair. (1) H2's residual differentiation is structurally isolated by a
+  two-contract design (commodity Contract A absorbs issue-to-PR interest before residual
+  Contract B is tested), but H1 presents one bundled contract mixing commodity elements
+  (source-linked before/after evidence, summaries — already shipped by the monitors S1-001
+  verified) with residual elements (coverage manifest, materiality rule, approval-gated record,
+  readback). For the up to 4/8 primarily-manual H1 participants there is no commodity baseline
+  to absorb ordinary-monitoring value, so G8-H1 credit rests on interviewer attribution while
+  G8-H2 credit is structural — an asymmetry that favors H1. (2) Decision rule 3 hands the
+  recommendation to the sole advancing hypothesis when the other is "killed/paused/inconclusive"
+  without distinguishing market falsification (KILL) from recruiting/access failure
+  (PAUSE/INCONCLUSIVE); with the recruiting plan itself acknowledging the founder network is
+  H2-heavy and H1 cold-channel response estimated at 3-15%, an H1 recruiting shortfall could
+  hand H2 the beachhead recommendation without H1 ever being tested — converting channel failure
+  into selection, the exact confusion the market-signal/channel-failure distinction must
+  prevent. Four MEDIUM findings (undefined decision freeze governing the G9/G10 written-
+  commitment cutoff; undefined coding authority/disagreement resolution despite a reviewer_id
+  field; missing field-level sanitization guidance for identity-prone public CSV fields; a
+  40-prospect cap that the plan's own response estimates do not show can fill the quota) are
+  important execution-quality gaps, and six LOW findings are bounded. All fixes are bounded plan
+  edits; no new research or customer contact is required. Acceptance criteria: 13 PASS, 2
+  PARTIAL; required structural tests re-run by this reviewer all PASS. After the fixes and
+  independent verification, the experiment can validly proceed to founder authorization.
+primary_review_question_answer: >-
+  NOT YET SUFFICIENT TO EXECUTE WITH REAL PEOPLE, BUT CLOSE. The experiment as designed would
+  produce real behavioral evidence and can falsify either hypothesis; the denominator, gate,
+  privacy-boundary, and anti-post-hoc architecture is sound. It cannot yet fairly SELECT between
+  H1 and H2 because H1's residual is not isolated from commodity-monitoring value the way H2's
+  is, and because the decision rule lets differential recruiting difficulty select the winner.
+  Both are bounded fixes to the plan and the H1 guide.
+
+method:
+  - "Read MASTER_OPERATING_PROMPT.md, AGENTS.md, CLAUDE.md, 01_governance/{PROJECT_STATE.yaml, TASK_REGISTRY.yaml (S1-002 and S1-003 entries in full), DECISION_LOG.md (D-012 and all), ASSUMPTION_REGISTER.md (A-014..A-018), RISK_REGISTER.md}, 03_product/S1-001_CUSTOMER_WORKFLOW_SCORECARD.md, 03_product/S1-001_SCORED_HYPOTHESES.csv, 99_handoffs/completed/S1-001_verifier_review.yaml, all five S1-002 product artifacts line by line, 99_handoffs/completed/S1-002_handoff.yaml, and the S1-001 challenger review for format precedent."
+  - "Re-ran the required structural tests myself with Ruby/git: CSV parse (row count, header count, uniqueness, empty-name check, required-field presence, privacy-header absence); YAML.safe_load of PROJECT_STATE.yaml, TASK_REGISTRY.yaml, and the S1-002 handoff; git diff --stat and --check 1dff5c2..ae06032; secret-pattern grep over the S1-002 diff; out-of-scope path diff against both 1dff5c2 and the Stage 0 verified commit 7c33753; application-code extension scan."
+  - "Independently recomputed every early-stop bound: general rule s + (8 - n) < t confirmed correct; 0/4 recent pain gives max 4 < 5 (G1 unreachable); 0/6 pilots gives max 2 < 3 (G9 unreachable); third occurrence on a 'no more than two' bound fails immediately."
+  - "Cross-checked every shared number across the plan, both guides, the recruiting plan, the handoff, TASK_REGISTRY, and A-014..A-018: 8/8 quota, 16 organizations, 4/8 outside-network, 4/8 buyer and alternative-use targets, 5/8-4/8-3/8-6/8 gate thresholds, USD 500/four weeks, two cycles, USD 50/USD 800 incentive proposal, 21-day/40-prospect/8-interview caps, H8 4/8+3 thresholds, Level 0-6 definitions."
+  - "Inspected both interview guides question by question for leading, hypothetical-first, presupposing, or concept-anchoring wording, and audited the concept-test structures for symmetric residual isolation."
+  - "Audited each of G1-G11 for observability, falsifiability, explicit thresholds, H1/H2 symmetry, and non-compensation; audited the decision rule, stop conditions, overlap rules, exclusions, and privacy rules for post-hoc flexibility."
+  - "No subagents, no network retrieval, no login, account, API key, paid model call, outreach, interview, contact identification, spend, architecture, application code, or S0-004/S0-005 action occurred. No customer data exists or was created."
+
+files_read:
+  - MASTER_OPERATING_PROMPT.md
+  - AGENTS.md
+  - CLAUDE.md
+  - 01_governance/PROJECT_STATE.yaml
+  - 01_governance/TASK_REGISTRY.yaml
+  - 01_governance/DECISION_LOG.md
+  - 01_governance/ASSUMPTION_REGISTER.md
+  - 01_governance/RISK_REGISTER.md
+  - 03_product/S1-001_CUSTOMER_WORKFLOW_SCORECARD.md
+  - 03_product/S1-001_SCORED_HYPOTHESES.csv
+  - 99_handoffs/completed/S1-001_verifier_review.yaml
+  - 99_handoffs/completed/S1-001_challenger_review.yaml (format precedent)
+  - 03_product/S1-002_CUSTOMER_DISCOVERY_PLAN.md
+  - 03_product/S1-002_INTERVIEW_GUIDE_H1.md
+  - 03_product/S1-002_INTERVIEW_GUIDE_H2.md
+  - 03_product/S1-002_DISCOVERY_SCORECARD.csv
+  - 03_product/S1-002_RECRUITING_PLAN.md
+  - 99_handoffs/completed/S1-002_handoff.yaml
+  - git history 1dff5c2..ae06032 (diff --stat, diff --check, content diffs)
+files_created:
+  - 99_handoffs/completed/S1-002_challenger_review.yaml
+files_modified:
+  - 01_governance/TASK_REGISTRY.yaml
+  - 01_governance/PROJECT_STATE.yaml
+files_deleted: []
+decisions_made:
+  - "Verdict CHANGES_REQUESTED recorded; S1-002 remains READY_FOR_REVIEW pending a FIXER pass and independent post-fix verification. No product artifact was edited by the challenger (no self-fixing)."
+  - "No hypothesis was selected, no gate was evaluated against customer data (none exists), no outreach/spend/authorization occurred, and no S1-003 blocker was removed."
+  - "All changes left uncommitted for the founder."
+
+scope_and_leakage_checks:
+  planning_execution_boundary: >-
+    PASS. No outreach occurred (diff contains only draft templates explicitly marked
+    "do not send" with a conditional-incentive placeholder, not an offer); no interview occurred
+    (zero scorecard rows; 10_CUSTOMER_NOTES untouched); no incentive was offered or purchased
+    and no money was spent (scope_control all zero; no payment artifact anywhere in the diff);
+    no customer evidence was fabricated (the only CSV is header-only; no quotation, name, or
+    result appears in any file); no H1/H2 winner was selected (h1_selected/h2_selected false;
+    plan and registry state co-equality); H8 has no quota (scorecard hypothesis enum "H1 or H2;
+    never H8"; plan section "H8 treatment inside H2").
+  allowed_files: "PASS. The 1dff5c2..ae06032 diff touches only the eight paths listed in the S1-002 allowed_files_to_change."
+  out_of_scope_paths: "PASS. Zero changes to 00_inbox, 02_research, 06_evaluation, 10_checkpoints, FILE_MANIFEST.json, SOURCE_LEDGER.csv, DECISION_LOG.md, ASSUMPTION_REGISTER.md, RISK_REGISTER.md, MODEL_REGISTRY.yaml, or governing documents; S0-004/S0-005 registry entries unchanged; no application-code files exist."
+  s1_003_containment: "PASS. S1-003 is a separate BLOCKED task whose blocked_by list requires independent S1-002 verification, founder outreach authorization, approved channels/accounts, the incentive decision, restricted-storage/consent approval, and an assigned executor before any contact."
+
+tests_run:
+  - "ruby CSV parse of 03_product/S1-002_DISCOVERY_SCORECARD.csv: row/header/uniqueness/required-field/privacy-header assertions"
+  - "ruby -ryaml -rdate safe_load of PROJECT_STATE.yaml, TASK_REGISTRY.yaml, S1-002_handoff.yaml"
+  - "git diff --check 1dff5c2 ae06032; git diff --stat scope audit vs 1dff5c2 and 7c33753"
+  - "secret-pattern grep (sk-/ghp_/AKIA/private-key/xoxb) over the full S1-002 diff"
+  - "early-stop bound recomputation for G1, G9, and the general s + (8 - n) < t rule"
+  - "cross-file numeric consistency sweep (quota, thresholds, price, caps, H8, evidence levels)"
+test_results:
+  - "CSV PASS: exactly 1 header row, 70 unique nonempty headers, 0 data rows; all fields required by the acceptance criterion present including h8_material_trust_lift, h8_verification_only_interest, h8_pilot_commitment, network_tier, recruitment_channel, protocol_version, disconfirming_evidence, contradictions, source_recording_or_notes; no participant_name/email/phone/company_name/repository_url/private_url/recording_url header."
+  - "YAML PASS: all three governance/handoff files parse."
+  - "Whitespace PASS; secret scan 0 matches."
+  - "Scope PASS: exactly the eight allowed paths changed; S0-004/S0-005 untouched; no code files."
+  - "Early-stop math PASS: all published bounds reproduce."
+  - "Cross-file consistency LARGELY PASS: quota, gate thresholds, price, pilot definition, caps, evidence levels, and G8's in-wave H8 threshold agree everywhere checked; two bounded inconsistencies found (F-S1-002-07 timing table, F-S1-002-08 A-018 reopen construct)."
+
+acceptance_criteria_evaluation:
+  - criterion: "H1 and H2 each define exact ICP, buyer, operational user, trigger, job, workaround, expected frequency, pain, economic value, trust/delegation, alternative dissatisfaction, pilot, WTP, integration, failure tolerance, differentiation, disconfirming evidence, kill criteria, and advance criteria; every unverified item remains a hypothesis."
+    result: PASS
+    evidence: "Both contracts carry all 19 numbered fields; every row is labeled DESIGN PROPOSAL / HYPOTHESIS — NOT TESTED except S1-001-verified public-alternative descriptions."
+  - criterion: "H1 and H2 receive eight ICP-qualified interviews each with comparable procedure, evidence requests, sampling-bias controls, pilot ask, and identical USD 500/four-week price test."
+    result: PARTIAL
+    evidence: "8/8 quota, identical price/pilot asks, identical sampling controls, same 45-minute phase order. The concept-test phase is not comparable in residual-isolation strength: H2 uses a commodity-baseline Contract A before residual Contract B; H1 presents one bundled contract (F-S1-002-01)."
+  - criterion: "Structural qualification does not condition on recent pain, high frequency, dissatisfaction, delegation, pilot interest, or WTP; negative and rare workflows remain in the denominator."
+    result: PASS
+    evidence: "Verified in the plan's ICP-qualified definition, both guides' screening sections and rule 6, the recruiting plan's screening form ('Do not ask How painful is this?...'), and the administrative-invalidation rule."
+  - criterion: "Interview guides collect last actual behavior, artifacts, current alternatives, frequency, cost, delegation, and failure boundaries before presenting any concept."
+    result: PASS
+    evidence: "Both guides sequence behavior (7-20), frequency/cost (20-25), unaided-then-recognition workarounds (25-31), delegation/failure boundaries (31-36) before any concept (36-40); concept exposure before the checkpoint is prohibited."
+  - criterion: "H1 explicitly tests whether scheduled monitoring/current products already solve the job and whether the residual governed-record layer changes a real decision."
+    result: PASS
+    evidence: "Unaided workaround questions, standardized recognition list naming the S1-001-verified monitors, adequacy question, concept Q5/Q8 (monitor-equivalence), G8-H1 named-decision requirement, and the kill criterion 'kill it if scheduled monitoring plus the current workflow is adequate'. Isolation strength is weaker than H2's (F-S1-002-01) but the test itself is explicit."
+  - criterion: "H2 explicitly treats issue-to-PR as commoditized and tests whether separately reproduced completion evidence changes a real decision or permission."
+    result: PASS
+    evidence: "Contract A commodity baseline with 'Do not count interest in Contract A as support for H2's differentiation'; Contract B residual with action-level questions; G8-H2 excludes faster code generation."
+  - criterion: "H8 is encoded as a testable H2 sub-hypothesis with action-level lift criteria, no separate quota, and no automatic elevation."
+    result: PASS
+    evidence: "Four material-lift criteria requiring named actions/permissions/decisions; rating-only changes excluded; no quota/buyer/score/price; elevation requires the 4/8+3 threshold plus independent review determining material distinctness."
+  - criterion: "Evidence levels distinguish opinion, behavior, measured repetition, artifact observation, operational commitment, economic commitment, and retained paid behavior; generic enthusiasm is Level 0."
+    result: PASS
+    evidence: "Levels 0-6 with per-level qualifying and non-qualifying examples; per-claim classification; strength modifiers; enthusiasm/waitlist/ratings explicitly Level 0."
+  - criterion: "The scorecard contains the required structured fields, privacy-safe identifiers, H8 fields, and exactly one header row with zero fabricated customer rows."
+    result: PASS
+    evidence: "Independently re-parsed: 70 unique headers, one header row, zero data rows, pseudonymous interview_id/organization_key, all H8 fields, no direct-identifier headers."
+  - criterion: "The predeclared rule uses hard gates for pain, frequency, dissatisfaction, value, delegation, access, failure tolerance, differentiation, pilot, WTP, and evidence quality; no aggregate score can hide a fatal weakness."
+    result: PASS
+    evidence: "G1-G11 map one-to-one to the eleven listed dimensions; 'a strong result on one cannot compensate for a fatal weakness on another'; ADVANCE requires all eleven; no blended score exists."
+  - criterion: "Early-stop math, first-wave cap, overlap/deduplication, missing-data treatment, and selection/tie outcomes are defined before interviews."
+    result: PARTIAL
+    evidence: "Early-stop math correct (recomputed); 8-interview cap, overlap/dedup rules, NOT_ASKED handling, and the tie rule are defined. But the 'decision freeze' that closes G9/G10 written-commitment counting is referenced once and never defined (F-S1-002-03), and rule 3 does not separate paused from killed rivals (F-S1-002-02), so the selection outcome set is not fully predeclared."
+  - criterion: "Recruiting channels include expected quality, bias, effort, response-probability design estimates, H1/H2 fit, and founder-network controls; templates remain drafts only."
+    result: PASS
+    evidence: "Eight-channel table with all required columns, DESIGN ESTIMATES labeling, 4/8 first-degree cap, channel-concentration cap, and do-not-send draft templates. The estimates are not reconciled with the 40-prospect cap (F-S1-002-06) but the criterion as written is met."
+  - criterion: "Incentives remain a DESIGN PROPOSAL capped at USD 800 and require explicit founder authorization before any spend."
+    result: PASS
+    evidence: "USD 50/interview reserve, USD 800 cap, explicitly NOT AUTHORIZED, USD 0 option preserved, payment independent of answer favorability, zero spend executed."
+  - criterion: "S1-003 is separately defined and BLOCKED on S1-002 verification, explicit outreach authorization, the founder incentive decision, restricted evidence storage/consent approval, and an assigned executor."
+    result: PASS
+    evidence: "S1-003 registry entry BLOCKED with all six blockers, required_before contact prohibition, frozen-protocol rule, spending/outreach restrictions, and its own review/verification tests."
+  - criterion: "Customer evidence remains exactly zero; no outreach, interview, pilot, price offer, spend, customer selection, architecture, code, benchmark, S0-004/S0-005 action, or Stage 2 work occurs."
+    result: PASS
+    evidence: "Verified from the diff scope, zero-row CSV, scope_control zeros, unchanged out-of-scope paths, and absence of any customer/contact/payment artifact."
+  - required_test: "Independent challenger review of ICP symmetry, leading-question risk, denominator leakage, sampling bias, threshold equivalence, stop rules, privacy, and whether H1/H2 residual differentiation is actually isolated."
+    result: RUN
+    evidence: "This review. Residual-differentiation isolation is the area found deficient for H1 (F-S1-002-01)."
+  - required_test: "Independent verifier checks every acceptance criterion after any fixes and confirms the author did not self-verify."
+    result: NOT_RUN
+    evidence: "Required after the FIX_TASK_S1-002 pass."
+  - required_test: "Parse TASK_REGISTRY.yaml and PROJECT_STATE.yaml as YAML."
+    result: PASS
+  - required_test: "Parse the discovery CSV and confirm one header row, unique nonempty column names, required fields present, and zero data rows."
+    result: PASS
+  - required_test: "Cross-file consistency check for sample counts, price, pilot definition, evidence levels, H8 thresholds, restrictions, and next-task dependencies."
+    result: PARTIAL
+    evidence: "All shared numbers agree except the procedure-timing table (F-S1-002-07) and the A-018 H8-reopen construct (F-S1-002-08)."
+  - required_test: "Scope, forbidden-action, secret-pattern, privacy-field, and git diff whitespace checks."
+    result: PASS
+
+experiment_design_assessments:
+  can_it_distinguish_h1_from_h2: >-
+    MOSTLY. ICPs are comparable small-company, founder-reachable segments each matched to its
+    workflow; the hypotheses are specific (19-field contracts); pain, frequency, delegation,
+    pilot, and WTP are measured with identical thresholds and instruments; behavioral questions
+    target last occurrences, artifacts, time/money, failures, and switching attempts rather than
+    opinions. The two residual-isolation and recruiting-differential findings (F-01, F-02) are
+    the pathways by which one hypothesis could pass for the wrong reason; both are fixable in
+    the plan text and H1 guide.
+  could_one_pass_because_easier_to_recruit: "YES AS WRITTEN — via decision rule 3 treating a paused rival as equivalent to a killed one (F-S1-002-02). Within-hypothesis gate proportions are immune to recruiting ease, and the within-two-interviews pacing rule is a good control during the wave, but the terminal rule leaks channel difficulty into selection."
+  could_one_fail_because_harder_to_explain: "RESIDUAL RISK, ACCEPTED. Contract B is cognitively harder than H1's ledger concept; confusion codes as no-lift against H2. The fixed neutral script, action-level lift definition, and 'what would make it theater' probe mitigate; no change required (NOTE-3)."
+  sample_design: >-
+    APPROPRIATE FOR A FIRST FALSIFICATION WAVE. 8 per hypothesis with organization-level
+    independence detects repeated patterns and gate failures without simulating statistical
+    significance; the 12.5%-per-interview granularity is acknowledged by the hard-gate design.
+    Role mix, size bands, buyer coverage, alternative-use strata, and the 4/8 outside-network
+    floor are sensible; overlap assignment before concept exposure is bias-resistant; exclusions
+    (consultants, vendors, hobby projects, duplicates) are correct. Adaptivity is properly
+    limited to predeclared early stops, with extension requiring a new task — the right
+    anti-post-hoc tradeoff. No sample-size change is recommended.
+  wtp_testing: >-
+    WELL-DESIGNED. Behavioral budget questions (current spend, last comparable purchase, budget
+    source) precede the price test; the WTP instrument is written acceptance of a concrete
+    scoped USD 500/four-week paid pilot, not "would you pay $X"; counteroffers are recorded but
+    do not pass G10; enthusiasm/waitlists are Level 0; payment and repeated payment occupy
+    Levels 5-6. One boundary clarification needed (F-S1-002-09).
+  evidence_hierarchy: "SOUND. Each of Levels 0-6 strictly increases commitment; artifacts outrank verbal claims; payment outranks hypothetical WTP; repeated usage outranks one-time pilot enthusiasm; per-claim coding prevents a single halo level."
+  hard_gates: >-
+    DECISION-USEFUL. All eleven are observable, falsifiable, explicitly thresholded, symmetric
+    in form and threshold, non-compensating, and labeled DESIGN PROPOSAL. The frequency
+    thresholds (H1 2/60d vs H2 4/30d) match each job's natural cadence, consistent with the
+    verified S1-001 gates. G10 (3/8 written USD 500 acceptances) is aggressive for a first
+    wave but is a legitimate falsification choice, and acceptance may arrive after the
+    interview — which is exactly why the undefined decision freeze (F-S1-002-03) matters.
+  h1_stress_test: >-
+    LARGELY PASSED BY THE PROTOCOL. The guide discovers existing monitoring tools (unaided +
+    recognition list), alert adequacy, whether manual synthesis is the residual pain
+    (replaceable-step question), whether anyone acts on the information (behavioral Q11-12),
+    decision materiality (concept Q4), and human frequency with the three clocks separated.
+    The weakness is isolation, not coverage: commodity-monitoring value can still leak into
+    residual credit for monitor-naive participants (F-S1-002-01). Note also that even a full
+    H1 pass validates a workflow whose S1-001 minimum sufficient runtime is
+    scheduled_automation — a Stage 1 gate consideration, not an S1-002 defect (NOTE-4).
+  h2_stress_test: >-
+    PASSED BY THE PROTOCOL. Issue-to-PR is treated as commoditized via Contract A; the
+    residual (independent reproduction, current-state readback, contradiction-preserving
+    bundle) is tested through action-level lift only; reviewer burden, test adequacy, CI
+    sufficiency, and buy-verification-without-generation are all probed; closing
+    disconfirmation asks whether the pain is generation speed. Two wording items risk mild
+    priming (F-S1-002-10) but the lift definition requires changed actions, not agreement.
+  post_hoc_flexibility: >-
+    MOSTLY PREVENTED. Qualification, exclusions, enums, missing-data, ambiguity, duplicates,
+    frozen rules, and the amendment procedure are predeclared; S1-003 makes the S1-002 rules
+    read-only. Remaining levers: the undefined decision freeze (F-S1-002-03), undefined coding
+    authority/disagreement resolution (F-S1-002-04), and no completion-status distinction for
+    truncated interviews (F-S1-002-11).
+  privacy_public_repo: >-
+    BOUNDARY DEFINED AND CORRECT: public repository receives only sanitized pseudonymous
+    structured evidence; raw notes/recordings/identities live in a founder-approved restricted
+    location referenced by opaque IDs; separate consent for recording/quoting/artifacts;
+    recruiting identities kept in a restricted tracker. Gap: no field-level sanitization
+    guidance for identity-prone free-text columns (F-S1-002-05).
+  incentives: >-
+    ACCEPTABLE AS AN UNAUTHORIZED DESIGN PROPOSAL. USD 50/interview is modest for these ICPs
+    and payment is decoupled from answer favorability; the plan already supports a USD 0 or
+    warm-first founder decision without forcing it, and correctly notes incentives are
+    unnecessary for willing warm contacts — so the founder can stage authorization (warm first,
+    incentives only if the outside-network quota needs them) within the existing structure.
+    Two bounded gaps: cross-hypothesis incentive-policy symmetry is not required in writing,
+    and the private incentive-ledger location is unnamed (F-S1-002-12).
+  s1_003_minimum_authorization_set: >-
+    The six recorded blockers are the correct minimum: (1) independent S1-002 verification;
+    (2) explicit outreach authorization; (3) approved channels/accounts (covers identity/
+    public-profile use and the cold email/DM decision); (4) incentive decision and cap
+    (a recorded USD 0 decision permitted); (5) restricted raw-evidence storage location plus
+    consent practice (covers recording/transcription policy); (6) assigned author/interviewer
+    (covers whether AI conducts, assists, or is excluded from interviews — the founder should
+    state this explicitly when assigning). Automated outreach is already prohibited outright.
+    No additional founder decision is required before execution.
+
+findings:
+  - finding_id: F-S1-002-01
+    severity: HIGH
+    requirement: "S1-002 acceptance criteria: 'comparable procedure' and required challenger test 'whether H1/H2 residual differentiation is actually isolated'; D-012 co-equal treatment; R-021/R-022"
+    file_or_component: "03_product/S1-002_INTERVIEW_GUIDE_H1.md (Concept test, 36-40 min); 03_product/S1-002_CUSTOMER_DISCOVERY_PLAN.md (G8, H1 row)"
+    evidence: >-
+      The H2 guide isolates its residual structurally: commodity Contract A (issue-to-PR,
+      tests, draft PR, logs) is presented and explicitly discounted ('Do not count interest in
+      Contract A as support for H2's differentiation') before residual Contract B, and lift is
+      measured B-over-A. The H1 guide presents one bundled contract mixing commodity elements
+      that S1-001 verified are already shipped by USD 12-99/month monitors (source-linked
+      before/after evidence, summaries/decision memo) with the residual governed layer
+      (coverage manifest with unknown states, customer materiality rule, approval-gated
+      master-record proposal, readback). Attribution relies on participant introspection
+      (concept Q5, Q8) and interviewer coding. The sampling design permits up to 4/8 H1
+      participants who are primarily manual-workaround users with no direct monitor experience;
+      for them no commodity baseline exists to absorb ordinary-monitoring value, and the whole
+      bundle reads as novel.
+    why_it_matters: >-
+      G8 is a hard gate feeding the selection decision. H1's G8 can accrue credit from
+      commodity monitoring value while H2's G8 is measured strictly on the increment over an
+      explicit commodity baseline. This asymmetry systematically favors H1 in the H1-vs-H2
+      comparison the experiment exists to make fair, and it strikes exactly at H1's verified
+      biggest weakness (scheduled monitoring captures most of its value).
+    required_fix: >-
+      Give H1 the same two-contract structure: Contract A neutrally describes commodity
+      monitoring (detection, before/after diffs, source URL/timestamps, AI summaries/importance
+      scoring, digests/alerts — drawn from the S1-001-verified capability list), with the same
+      'do not count interest in Contract A' rule; Contract B adds the governed residual layer.
+      Ask the same 'what changes only with B' / permission / removed-step questions, and record
+      the H1 delegation tier after A and after B (add a column or a predeclared coding rule so
+      B-over-A lift is recordable for both hypotheses). Align G8-H1 wording to count only
+      B-over-A changes.
+    verification_method: "Re-inspect the H1 guide for the two-contract structure and discounting rule; confirm G8-H1 and the scorecard/coding rules capture B-over-A attribution symmetrically with H2."
+  - finding_id: F-S1-002-02
+    severity: HIGH
+    requirement: "Decision rule integrity under D-012; separation of MARKET SIGNAL from RECRUITING CHANNEL FAILURE; R-021"
+    file_or_component: "03_product/S1-002_CUSTOMER_DISCOVERY_PLAN.md (Decision rule, item 3; Stop and pause conditions)"
+    evidence: >-
+      Rule 3: 'If exactly one advances and the other is killed/paused/inconclusive, the
+      advancing hypothesis becomes the recommended provisional beachhead...'. KILL (gate
+      falsification by market evidence) and PAUSE/INCONCLUSIVE (recruiting, access, or protocol
+      failure — explicitly non-market outcomes elsewhere in the plan) are treated identically
+      at recommendation time. The recruiting plan itself records that the founder network is
+      'likely H2-heavy' and estimates H1 cold channels at 3-15% positive response, so an H1
+      recruiting shortfall inside the 21-day/40-prospect caps is a realistic scenario in which
+      H2 would be recommended while H1 was never actually tested.
+    why_it_matters: >-
+      Converts recruiting-channel difficulty into hypothesis selection — the exact confusion
+      the plan's own stop conditions try to prevent — and silently retires D-012 co-equality
+      for the untested candidate. Downstream review can catch it, but the rule is frozen before
+      data precisely so that defects like this must be fixed now.
+    required_fix: >-
+      Split rule 3: (a) if the non-advancing hypothesis was KILLED on gates, the advancing one
+      is the recommended provisional beachhead as written; (b) if it was PAUSED or INCONCLUSIVE
+      for recruiting/access/protocol reasons, the recommendation must be explicitly labeled
+      'advanced against an untested rival', and beachhead confirmation requires either
+      completing the paused hypothesis's wave under a new authorized task or a recorded founder
+      decision to abandon it on reach grounds. State that recruiting failure is recorded as
+      reach/channel evidence and never as pain/demand falsification.
+    verification_method: "Re-read the amended decision rule; confirm the paused-vs-killed branch, the labeling requirement, and the reach-evidence classification exist and reach S1-003's acceptance criteria unchanged."
+  - finding_id: F-S1-002-03
+    severity: MEDIUM
+    requirement: "Predeclared, non-movable thresholds (acceptance criterion: selection outcomes defined before interviews)"
+    file_or_component: "03_product/S1-002_CUSTOMER_DISCOVERY_PLAN.md (Gate calculation rules: 'before the decision freeze')"
+    evidence: "The written pilot commitment (G9) and written USD 500 acceptance (G10) may legitimately arrive after the interview via the sent scope; the counting cutoff is 'the decision freeze', a term used once and defined nowhere in the plan, guides, recruiting plan, or registry."
+    why_it_matters: "An undefined freeze is a post-hoc lever on the two most decision-relevant gates: holding the window open until a favorable written yes arrives (or closing it early) changes G9/G10 outcomes after results are visible."
+    required_fix: "Define the freeze exactly, e.g.: gate counting closes N calendar days after the final counted interview of that hypothesis or M days after the 21-day recruiting stop, whichever is earlier; written commitments arriving after the freeze are recorded but do not change gate results for this wave."
+    verification_method: "Grep the fixed plan for the freeze definition; confirm G9/G10 and the stop conditions reference it."
+  - finding_id: F-S1-002-04
+    severity: MEDIUM
+    requirement: "Evidence coding integrity; author-challenger-verifier separation applied to judgment-coded gate fields"
+    file_or_component: "03_product/S1-002_CUSTOMER_DISCOVERY_PLAN.md (Scorecard and coding rules); 03_product/S1-002_DISCOVERY_SCORECARD.csv (interviewer_id, reviewer_id)"
+    evidence: >-
+      The schema anticipates a reviewer (reviewer_id) but no rule states who codes each record,
+      which fields a second coder must independently check, or how coding disagreements are
+      recorded and resolved. The most gameable gate inputs are judgment-coded free-text
+      determinations: G1 'concrete consequence', G3 'replaceable step', G8 'named decision
+      changed' / 'material H8 lift'. The likely S1-003 executor is the founder-interviewer,
+      who has a stake in the outcome; the S1-003 verifier re-checks only 'a permissioned
+      sample' of records.
+    why_it_matters: "Sole-coder discretion over ambiguous judgment fields is the largest remaining post-hoc pathway after the frozen thresholds; optimistic coding of three or four borderline records can flip a hard gate."
+    required_fix: >-
+      Predeclare: who codes (interviewer), that every gate-relevant judgment field (G1
+      consequence, G3 replaceable step, G4 baseline, G8 decision-change/lift, evidence levels)
+      is independently re-coded by a second party from the restricted notes before the decision
+      freeze (the independent S1-003 challenger/verifier may serve as that party), that
+      disagreements are recorded in the contradictions field and resolved conservatively
+      (the lower/negative coding stands unless the artifact record supports the higher one),
+      and that reviewer_id must be non-empty for every counted row.
+    verification_method: "Confirm the coding-authority and disagreement rules exist in the plan and are referenced by S1-003's required tests."
+  - finding_id: F-S1-002-05
+    severity: MEDIUM
+    requirement: "Public-repository privacy (R-010); S1-003 acceptance criterion 'no names, contacts, private links'"
+    file_or_component: "03_product/S1-002_CUSTOMER_DISCOVERY_PLAN.md (Privacy section; coding rules); 03_product/S1-002_DISCOVERY_SCORECARD.csv headers"
+    evidence: >-
+      The general prohibition (no names, employer-identifying free text) is present, but
+      several schema fields structurally invite identifying content and carry no per-field
+      guidance: pilot_owner (a written pilot commitment 'names an owner' — a person),
+      pilot_input (a watchlist whose 5-15 named competitors near-uniquely fingerprint the
+      participant company, or a repository name), current_tools + company_size + role +
+      interview_date (quasi-identifier combination in small communities), qualification_reason
+      and notes (free text).
+    why_it_matters: "This repository is public. A compliant-in-spirit executor filling 'pilot_owner' with a name or 'pilot_input' with a competitor list would publish identifying customer data; deletion from git history is expensive after the fact."
+    required_fix: >-
+      Add per-field sanitization rules to the coding section: pilot_owner records role only;
+      pilot_input records a generic description (e.g. 'own 12-competitor public watchlist',
+      'authorized backend service repo fixture') and never competitor names, company names, or
+      repository identifiers; interview_date may be recorded at month precision in the public
+      CSV; free-text fields are checked against a no-identifier rule before commit; add a
+      pre-commit privacy review step for every scorecard row to S1-003's procedure.
+    verification_method: "Confirm the per-field rules exist and S1-003's CSV/no-PII validation test enumerates them."
+  - finding_id: F-S1-002-06
+    severity: MEDIUM
+    requirement: "Recruiting-cap coherence (challenger instruction: do the caps interact sensibly; is 40 prospects enough for the quota)"
+    file_or_component: "03_product/S1-002_RECRUITING_PLAN.md (Channel assessment; Funnel and time box)"
+    evidence: >-
+      The plan caps outreach at 40 unique prospects per hypothesis and 21 days, requires 8
+      completed ICP-qualified interviews with at least 4 outside-network, and separately
+      estimates positive-response probabilities of 2-15% for the cold channels that must
+      supply those outside-network participants. It never multiplies these through: with a
+      4/8 first-degree cap, roughly 32 cold/warm-intro prospects at mid-range estimates yield
+      approximately 2-5 positive responses before screening and completion attrition — below
+      or barely at the outside-network floor, and marginal for the 8-interview quota itself.
+      No expected response/conversion assumption or fallback derivation is stated; contacted
+      versus qualified prospects are distinguished only implicitly via the funnel log.
+    why_it_matters: "Under the plan's own estimates the most likely first-wave outcome is a reach failure that ends in PAUSE and a new task — which feeds directly into F-S1-002-02's selection pathway and burns the 21-day window without a decision."
+    required_fix: >-
+      State the expected funnel arithmetic per hypothesis (prospects -> positive responses ->
+      screen passes -> completed interviews) using the published estimate ranges; then either
+      raise the prospect cap to a level the arithmetic supports, or predeclare a bounded
+      founder-authorized extension rule (e.g. one +20-prospect / +14-day extension per
+      hypothesis, recorded before results are compared), and state explicitly that a
+      quota shortfall is channel/reach evidence, not gate evidence.
+    verification_method: "Confirm the funnel math appears with DESIGN ESTIMATE labels and the cap or extension rule is consistent with it."
+  - finding_id: F-S1-002-07
+    severity: LOW
+    requirement: "Cross-file consistency (required test); procedure comparability"
+    file_or_component: "03_product/S1-002_CUSTOMER_DISCOVERY_PLAN.md (Comparable interview procedure table) vs both interview guides"
+    evidence: "The plan's phase table (0-5 screen; 5-23 occurrence; 23-30 workaround; 30-35 delegation; 35-40 concept; 40-45 pilot/price/disconfirmation) does not match the guides' section boundaries (0-3 consent; 3-7 screen; 7-20 behavior; 20-25 frequency/cost; 25-31 workaround; 31-36 delegation; 36-40 concept; 40-43 pilot; 43-45 price), and both guides demote closing disconfirmation to 'If time remains' while the plan allocates it inside 40-45."
+    why_it_matters: "Phase order is identical so validity is unaffected, but the authoritative timing is ambiguous, and the disconfirmation block — a falsification instrument — becomes optional in practice."
+    required_fix: "Declare the guides authoritative and correct the plan table (or vice versa); either allocate explicit minutes to closing disconfirmation or move its two strongest questions (strongest contradicting evidence; strongest reason not to build) into the concept/pricing sections so they cannot be dropped."
+    verification_method: "Re-compare the table and guide headings; confirm the disconfirmation questions are non-optional."
+  - finding_id: F-S1-002-08
+    severity: LOW
+    requirement: "Cross-file consistency of H8 thresholds (required test); A-018"
+    file_or_component: "03_product/S1-002_CUSTOMER_DISCOVERY_PLAN.md (H8 treatment) vs 01_governance/ASSUMPTION_REGISTER.md A-018"
+    evidence: "A-018 reopens a distinct H8 allocation on 'at least 4/8 identify verification-only value and at least 3/8 make the same written pilot commitment'; the plan reopens on 'at least 4/8 material lifts and at least 3 of those participants making the standard written pilot commitment' plus independent review. Material lift and verification-only interest are different constructs — the CSV correctly records both (h8_material_trust_lift, h8_verification_only_interest) — and the pilot base differs ('3/8' vs '3 of those 4')."
+    why_it_matters: "After S1-003, a result could satisfy one reopening condition and not the other, leaving the governance register and the frozen plan in disagreement about whether H8 elevation is even discussable."
+    required_fix: "Reconcile in the plan (the stricter instrument): state that reopening requires both the 4/8 material-lift threshold and 4/8 verification-only interest (or explicitly supersede A-018's wording prospectively with the plan's condition), and align the pilot-count base; the fixer may not edit A-018 without a scope amendment, so the plan should state which formulation governs S1-003."
+    verification_method: "Confirm the plan states a single governing reopening condition and its relationship to A-018."
+  - finding_id: F-S1-002-09
+    severity: LOW
+    requirement: "Evidence-level boundary used by the tie-breaker (decision rule 4: 'at least one Level-5 economic commitment')"
+    file_or_component: "03_product/S1-002_CUSTOMER_DISCOVERY_PLAN.md (Evidence hierarchy; Decision rule 4; wtp_signal enum)"
+    evidence: "Level 5 requires 'Payment/deposit, signed paid-pilot order, or an equivalent signed commitment naming amount, budget owner, and execution date', and the enum separates WRITTEN_500_ACCEPTANCE from ECONOMIC_COMMITMENT — but no sentence states which side of the 4/5 boundary a plain written acceptance of the USD 500 scope falls on. The handoff calls it 'Level 4-style'; the tie-breaker between two advancing hypotheses turns on Level 5 presence."
+    why_it_matters: "Ambiguity enters at exactly the winner-selection moment; a motivated reading could promote an emailed 'yes, accepted' to Level 5."
+    required_fix: "Add one sentence: a written acceptance of the standardized scope is Level 4 (wtp_signal WRITTEN_500_ACCEPTANCE) unless it is a signed order or payment naming amount, budget owner, and execution date, which alone qualify as Level 5 (ECONOMIC_COMMITMENT)."
+    verification_method: "Grep for the boundary sentence; confirm decision rule 4 references it."
+  - finding_id: F-S1-002-10
+    severity: LOW
+    requirement: "Non-leading behavioral questioning (acceptance criterion: behavior-first guides; challenger instruction on leading questions)"
+    file_or_component: "03_product/S1-002_INTERVIEW_GUIDE_H1.md (Frequency Q8); 03_product/S1-002_INTERVIEW_GUIDE_H2.md (Frequency Q8; Workaround Q3-Q4)"
+    evidence: >-
+      Three wordings presuppose or evaluatively frame the pain: H1 frequency Q8 'What
+      correction, delay, missed response, or decision cost resulted from the last failure or
+      stale state?' presupposes a failure occurred; H2 frequency Q8 'What happens when you
+      accept the author's completion claim without additional checking?' presupposes unchecked
+      acceptance happens; H2 workaround Q4's 'genuinely independent' is evaluative and, asked
+      minutes before Contract B, frames the H8 differentiator (Q3 'Where is evidence generated
+      by the same authoring system?' contributes to the same frame). These are secondary
+      questions — the primary instruments are behavioral — and pre-concept provenance mapping
+      is methodologically necessary, so this is wording, not structure.
+    why_it_matters: "Presupposing wordings manufacture pain reports from compliant participants; the evaluative independence frame can prime H8 lift statements minutes before Contract B."
+    required_fix: "Recast conditionally/neutrally: 'Was there a failure or stale state in that case? If so, what did it cost?'; 'Do you ever accept a completion claim without additional checking? What happened the last time?'; replace 'genuinely independent' with 'Which checks, if any, are performed by someone or something other than the author or the authoring tool?'"
+    verification_method: "Re-read the three questions in the fixed guides."
+  - finding_id: F-S1-002-11
+    severity: LOW
+    requirement: "Partial-interview handling (challenger instruction: post-hoc flexibility checklist)"
+    file_or_component: "03_product/S1-002_CUSTOMER_DISCOVERY_PLAN.md (Administrative invalidation; coding rules); 03_product/S1-002_DISCOVERY_SCORECARD.csv"
+    evidence: "An interview truncated after the behavioral section stays in the denominator with later fields NOT_ASKED (counting against G8-G11), which is the correct conservative choice — but the schema records no completion status, so a truncated interview and an asked-and-refused answer are indistinguishable in the public record, and the truncation rate (a protocol-quality signal) is invisible."
+    why_it_matters: "Later independent analysis cannot separate 'the market said no' from 'the interview ran out of time', and a high truncation rate should trigger the protocol/data-quality pause."
+    required_fix: "Add an interview_completion field (e.g. COMPLETE, TRUNCATED_AFTER_BEHAVIOR, TRUNCATED_BEFORE_CONCEPT, TRUNCATED_BEFORE_PRICING) or a predeclared notes convention, and state that truncated interviews remain counted non-successes on unasked gates."
+    verification_method: "Confirm the field or convention exists and the denominator rule is restated."
+  - finding_id: F-S1-002-12
+    severity: LOW
+    requirement: "Incentive symmetry and tracking (challenger instruction sections 4/14)"
+    file_or_component: "03_product/S1-002_RECRUITING_PLAN.md (Incentive design)"
+    evidence: "The incentive controls require consistency 'enough to identify sampling bias' but never require the same incentive policy for H1 and H2, and the S1-003 required 'incentive ledger' audit has no named private location (the restricted tracker is named only for prospect identity)."
+    why_it_matters: "An asymmetric incentive policy (e.g. paying only the harder-to-recruit ICP) would differentially alter who participates across the two co-equal candidates; an unlocated ledger invites ad hoc spend records."
+    required_fix: "Add: the incentive policy (amount and delivery) must be identical for H1 and H2 within a wave unless the founder records a reason before outreach; the incentive ledger lives in the founder-approved restricted tracker and records prospect key, amount, date, and delivery method, with only the total spend surfaced publicly."
+    verification_method: "Confirm both sentences in the fixed recruiting plan."
+
+notes:
+  - note_id: N-1
+    text: "Early-stop mathematics independently verified correct: the general bound s + (8 - n) < t, the 0/4-pain and 0/6-pilot checkpoints, and the immediate failure on a third 'no more than two' occurrence all reproduce."
+  - note_id: N-2
+    text: "The prospective narrowing of 'qualified interview' to structural-only ICP qualification is a deliberate, transparent, symmetric improvement over S1-001's occurrence-conditioned screen: it makes G1/G2 strictly harder and removes frequency-selection bias. Correctly labeled as prospectively governing S1-003 without rewriting the verified S1-001 artifact."
+  - note_id: N-3
+    text: "Contract B is cognitively harder to grasp than H1's ledger concept; confusion codes as no-lift against H2. The fixed neutral script and action-level lift definition are adequate mitigation; no change requested."
+  - note_id: N-4
+    text: "Even a full H1 gate pass validates a workflow classified scheduled_automation in verified S1-001 — the Stage 1 gate must still weigh platform necessity (extends S1-001 verifier NOTE-6). Not an S1-002 defect."
+  - note_id: N-5
+    text: "G2-H2 counts 'triaged/reviewed at least four bounded issues/PRs' while the guide asks triage and review as separate questions; the fixer may state that the two counts are summed."
+  - note_id: N-6
+    text: "The recruiting plan's within-two-interviews pacing rule and quota-pause rule are good timing-symmetry controls; they mitigate (but do not remove) F-S1-002-02 during the wave."
+  - note_id: N-7
+    text: "The author handoff transparently records reading Codex-local spreadsheet-skill files for CSV QA; no repository impact."
+  - note_id: N-8
+    text: "Topic-salience self-selection (people interested in competitor tracking / code verification respond more) is inherent to voluntary recruiting; the restricted funnel log and channel/bias table make it visible, which is the realistic mitigation at this scale."
+  - note_id: N-9
+    text: "The S1-002 registry acceptance criterion 'identical USD 500/four-week price test' is met; the price is identical, and the differing pilot substrates (watchlist cycles vs bounded issue/PR cycles) are workflow-inherent, not favoritism."
+
+security_checks:
+  - "No secrets, credentials, tokens, or private keys in the S1-002 diff (pattern scan zero matches)."
+  - "No customer, prospect, contact, account, connector, community, recording, or external system accessed; no outreach or spend of any kind."
+  - "No retrieved-content instructions followed; no network retrieval performed in this review."
+  - "The public scorecard contains no PII and no data rows; privacy-boundary gaps are recorded as F-S1-002-05, not exploited."
+
+blockers: []
+recommended_next_task: >-
+  FIX_TASK_S1-002 addressing F-S1-002-01..12 (the two HIGH findings are the priority: H1
+  two-contract residual isolation; paused-vs-killed decision-rule split), followed by
+  independent post-fix verification of every acceptance criterion. S1-003 remains BLOCKED and
+  must not start; no outreach, contact identification, incentive, or spend is authorized by
+  this review. The founder decisions listed in s1_003_minimum_authorization_set remain open
+  and are not pre-empted here.
+repository_commit_or_patch: "Uncommitted S1-002 challenger patch based on ae060323c0e3754b3dcded26e7d4967753ed42e7; intentionally left uncommitted for the founder."

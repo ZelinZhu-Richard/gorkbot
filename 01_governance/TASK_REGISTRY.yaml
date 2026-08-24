@@ -449,7 +449,7 @@ tasks:
     why_it_matters: Customer evidence is zero, H1 is substantially exposed to scheduled-monitoring substitutes, and H2's issue-to-PR layer is commoditized; only a rigorous experiment can determine whether either residual workflow deserves provisional beachhead status.
     owner_role: AUTHOR
     assigned_model: "Codex (runtime model identifier not exposed) — Stage 1 planner"
-    reviewer_model: "Independent challenger not yet assigned"
+    reviewer_model: "Claude Fable 5 (claude-fable-5) via Claude Code — independent challenger (separate session; independent of the Codex author)"
     verifier_model: "Independent post-fix verifier not yet assigned"
     status: READY_FOR_REVIEW
     priority: P0
@@ -546,7 +546,43 @@ tasks:
       - 03_product/S1-002_RECRUITING_PLAN.md
       - 99_handoffs/completed/S1-002_handoff.yaml
     author_required_test_status: INDEPENDENT_CHALLENGER_AND_POST_FIX_VERIFICATION_NOT_RUN_REQUIRED_NEXT
-    verification_status: NOT_VERIFIED_AUTHOR_PASS
+    challenger_evidence:
+      - 99_handoffs/completed/S1-002_challenger_review.yaml
+    challenger_started_at: "2026-08-23T20:55:00Z"
+    challenger_completed_at: "2026-08-23T21:35:00Z"
+    challenger_reviewed_commit: ae060323c0e3754b3dcded26e7d4967753ed42e7
+    challenger_verdict: CHANGES_REQUESTED
+    challenger_finding_counts: "BLOCKER 0, HIGH 2, MEDIUM 4, LOW 6, NOTE 9"
+    challenger_acceptance_results: >-
+      13 of 15 acceptance criteria PASS; 2 PARTIAL (comparable-procedure criterion — H1 lacks
+      the commodity-baseline contract that structurally isolates H2's residual, F-S1-002-01;
+      predeclared-selection criterion — the decision freeze closing G9/G10 counting is
+      undefined and rule 3 does not separate paused from killed rivals, F-S1-002-02/03).
+      Required structural tests re-run independently: YAML parse PASS; CSV one-header/70-unique/
+      zero-row/required-field/privacy-header PASS; early-stop math PASS; scope, secret-pattern,
+      whitespace PASS; cross-file consistency PARTIAL (procedure-timing table and A-018 H8
+      reopen construct, F-S1-002-07/08). Required test independent challenger review: RUN.
+      Independent post-fix verification: NOT_RUN.
+    challenger_summary: >-
+      Scope is clean: planning only — zero outreach, interviews, contacts, incentives, spend, or
+      customer rows; H1/H2 co-equal with no winner; H8 quota-free inside H2; structural
+      qualification correctly keeps negative/rare workflows in the denominator; gates, evidence
+      hierarchy, early-stop math, overlap, privacy boundary, and S1-003 blockers are predeclared
+      and sound; sample design (8/8, org-independent, 4/8 outside network) is appropriate for a
+      first falsification wave. CHANGES_REQUESTED on two HIGH findings that could bias the
+      H1-vs-H2 selection: (1) H1's concept test bundles commodity monitoring value with the
+      governed-record residual while H2 isolates its residual behind commodity Contract A —
+      asymmetric isolation favoring H1 at G8; (2) decision rule 3 recommends the sole advancing
+      hypothesis even when the rival was merely PAUSED for recruiting/access failure, converting
+      channel failure into selection against an untested candidate (founder network is
+      acknowledged H2-heavy). MEDIUM: undefined decision freeze for G9/G10 written-commitment
+      counting; undefined coding authority/disagreement resolution despite reviewer_id;
+      missing field-level sanitization guidance for identity-prone public CSV fields
+      (pilot_owner, pilot_input, quasi-identifiers); 40-prospect cap unreconciled with the
+      plan's own 2-15% cold-channel response estimates. Six LOW findings are bounded wording,
+      consistency, and schema improvements. All fixes are plan/guide edits; no new research or
+      customer contact required.
+    verification_status: NOT_VERIFIED_CHALLENGER_CHANGES_REQUESTED_FIXER_PASS_REQUIRED
 
   - task_id: S1-003
     title: Execute first-wave symmetric H1/H2 customer discovery
