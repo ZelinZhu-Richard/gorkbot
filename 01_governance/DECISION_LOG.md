@@ -267,6 +267,83 @@ AI may not:
 - independently select H1 or H2 as the winner
 - place private evidence in the public repository
 
+## D-014: Shared core platform with a provisional Finance Edition
+
+- Date: 2026-08-24
+- Status: PROVISIONAL
+- Decision type: PRODUCT_LINE_AND_VERTICALIZATION_STRATEGY
+
+### Decision
+
+The project will continue toward one shared, model-agnostic, Grok Bot-class persistent-agent platform.
+
+The intended product-line structure is:
+
+1. General Edition
+2. Finance Edition
+
+These editions must share the same core agent runtime, task state, model abstraction, tool system, memory architecture, approval engine, security controls, audit system, and multi-agent protocol.
+
+They must not become separate duplicated codebases.
+
+### General Edition
+
+The General Edition remains the clean-room Grok Bot-class product for persistent AI teammates, tools, cloud execution, skills, routines, and multi-agent collaboration.
+
+### Finance Edition
+
+The Finance Edition is a provisional future vertical built on the same platform.
+
+Its initial scope should focus on finance-specialized research, analysis, modeling, reproducible backtesting, portfolio monitoring, risk analysis, evidence provenance, and human-approved workflows.
+
+The Finance Edition is not currently authorized to:
+
+- manage external investor capital
+- make unsupervised live trades
+- provide unreviewed personalized investment advice
+- represent itself publicly as an operating hedge fund
+- claim improved returns or investment performance without evidence
+- use a model fine-tune as a substitute for current data, deterministic calculations, backtesting, verification, or risk controls
+
+### Fine-tuning policy
+
+Finance-specific fine-tuning is deferred until:
+
+1. A precise finance customer and workflow are defined.
+2. Finance-specific evaluations exist.
+3. Repeated failure modes are measured.
+4. Retrieval, tools, skills, and prompting have been tested.
+5. The project has lawful rights to use the proposed training data.
+6. Fine-tuning demonstrates measurable improvement over the base-model system.
+
+The initial Finance Edition should use strong base models with authoritative data retrieval, deterministic financial tools, reproducible code, finance-specific skills, and independent verification.
+
+### Potential future investment-management entity
+
+A future AI-native fund or investment adviser would be a separate strategic and legal undertaking from the SaaS Finance Edition.
+
+It would require independent legal, compliance, risk, operational, custody, reporting, and live-capital authorization gates.
+
+No such entity or live-capital operation is currently selected or authorized.
+
+### Current Stage 1 consequence
+
+H1 and H2 remain the only co-equal candidates in the currently verified S1-003 customer-discovery protocol.
+
+The Finance Edition does not receive a current interview quota and does not delay S1-003.
+
+A later bounded task should define and test:
+
+- finance ICP
+- buyer and user
+- first finance workflow
+- research versus execution boundary
+- data requirements
+- integration requirements
+- willingness to pay
+- regulatory and compliance boundaries
+- whether the finance vertical should become an early product line or a later expansion
+
 ## Stage 0 author reconciliation note — 2026-08-21
 
 This note records scope, not a new decision:
