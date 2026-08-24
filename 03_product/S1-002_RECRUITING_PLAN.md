@@ -1,6 +1,6 @@
 # S1-002 recruiting plan for H1/H2 discovery
 
-Status: DRAFT-ONLY DESIGN PROPOSAL — NO OUTREACH AUTHORIZED OR SENT
+Status: FIXED DRAFT-ONLY DESIGN PROPOSAL — NO OUTREACH AUTHORIZED OR SENT
 
 Planning date: 2026-08-23
 
@@ -93,17 +93,44 @@ Recommended H1 emphasis: LinkedIn, PMM/product communities, warm founder/product
 
 Recommended H2 emphasis: founder/engineering network, GitHub-derived public professional paths, engineering communities, LinkedIn, and direct email.
 
-## Funnel and time box
+## Funnel arithmetic, batches, and time box
 
-**DESIGN PROPOSAL — NOT STARTED:**
+All values in this section are **DESIGN PROPOSAL / DESIGN ESTIMATES — NOT OBSERVED PROJECT RESULTS**. The funnel is measured separately for H1 and H2 as:
 
-- Build a restricted prospect pool sufficient to support up to 40 unique, targeted invitations per hypothesis.
+```text
+unique prospects contacted
+→ positive/opt-in responses
+→ structural screens completed
+→ ICP-qualified screens
+→ interviews scheduled
+→ ICP-qualified interviews completed
+```
+
+Declines, non-responses, screen failures, scheduling failures, and no-shows remain in the restricted funnel. None is a G1–G11 market result.
+
+### Cap adequacy scenarios
+
+The former 40-prospect cap cannot plausibly yield eight completed qualified interviews under the channel ranges above. The revised maximum is 120 unique targeted prospects **per hypothesis**, using a planning mix of up to 16 known/warm prospects and at least 104 outside-first-degree prospects if the full cap is needed. These scenarios show the arithmetic; they do not predict actual performance.
+
+| Hypothesis/scenario | Response assumptions | Screen-completion | ICP-qualified among screened | Schedule among qualified | Complete among scheduled | Expected funnel at 120: responses → screened → qualified → scheduled → completed | Expected outside-network completions |
+|---|---|---:|---:|---:|---:|---|---:|
+| H1 base design | 35% of 16 known/warm; 10% of 104 outside | 85% | 75% | 90% | 90% | 16.0 → 13.6 → 10.2 → 9.2 → **8.3** | 5.4 |
+| H1 downside | 20% known/warm; 3% outside | 75% | 60% | 80% | 80% | 6.3 → 4.7 → 2.8 → 2.3 → **1.8** | 0.9 |
+| H2 base design | 45% of 16 known/warm; 10% of 104 outside | 90% | 80% | 90% | 90% | 17.6 → 15.8 → 12.7 → 11.4 → **10.3** | 6.1 |
+| H2 downside | 30% known/warm; 3% outside | 80% | 70% | 80% | 80% | 7.9 → 6.3 → 4.4 → 3.5 → **2.8** | 1.1 |
+
+The base scenarios support the eight-interview and four-outside targets; the downside scenarios do not. Reaching 120 without filling a quota therefore means `PAUSE_RECRUITING_FAILED`, not customer-market rejection. The response, screen, schedule, and completion assumptions must be replaced by actual funnel values as S1-003 proceeds, without changing G1–G11.
+
+### Predeclared staged release
+
+- **Batch 1:** up to 40 unique prospects per hypothesis, with at least 28 outside the founder's first-degree network and at least two approved channels.
+- **Batch 2:** on or after day 7, release up to 40 more for a hypothesis only if its completed-qualified plus already-screened-and-scheduled qualified pipeline is below 8, or its outside-network completed/scheduled pipeline is below 4.
+- **Batch 3:** on or after day 14, apply the same trigger for up to 40 more. Change channel emphasis toward the better observed recruiting conversion only within founder-approved channels; do not change the ICP or screen.
 - Send one personalized initial invitation and at most one follow-up 5–7 days later.
-- Stop outreach after 21 calendar days from the first authorized invitation or 40 unique prospects per hypothesis, whichever comes first.
+- Stop outreach after 35 calendar days from the first authorized invitation or 120 unique prospects for that hypothesis, whichever comes first. Any extension requires a new founder-authorized task before comparison; it is not granted post hoc.
+- Schedule H1 and H2 in parallel and keep completed-valid counts within two interviews when feasible. If one quota fills first, pause its recruiting while the other catches up.
 - Screen structurally before booking where practical, but do not ask whether the problem is painful, frequent, unsolved, delegable, or worth paying for.
-- Schedule the hypotheses in parallel and keep completed-valid counts within two interviews of each other so timing does not privilege one candidate.
-- If one quota fills first, pause its recruiting while the other catches up.
-- If quotas or sampling controls are missed, report the exact funnel and bias; do not expand the ICP or exceed 8 interviews without a new task.
+- If quotas or sampling controls are missed, report every funnel stage, channel mix, and bias; do not expand the ICP, exceed eight valid interviews, or interpret recruiting friction as a failed customer gate.
 
 ## Draft screening form
 
@@ -168,9 +195,10 @@ Rationale:
 Controls:
 
 - Founder must explicitly authorize the total cap, delivery method, eligible geography, and who can issue incentives before S1-003.
-- Never pay more for favorable evidence or access to private data.
-- Pay for a completed structurally qualified interview even when evidence is negative.
-- If the founder chooses no incentive or a lower cap, record that decision before outreach and apply it consistently enough to identify sampling bias.
+- The amount, eligibility, and delivery policy must be identical for H1 and H2 within the wave unless the founder records a concrete operational reason before any outreach; no observed response or interview result may trigger an asymmetric change.
+- Incentives compensate time, not agreement. Never pay more for favorable evidence, artifact access, private data, pilot interest, or price acceptance. Pay the authorized amount for every completed structurally qualified interview even when the participant rejects the hypothesis.
+- If the founder chooses USD 0, a lower cap, or an unpaid-warm-first stage, record that policy and its symmetric stage trigger before outreach. A staged option is not silently adopted as founder policy.
+- The private incentive/payment ledger lives in the founder-approved restricted recruiting tracker and records only the opaque prospect key, eligibility, amount, currency, authorization reference, delivery date, and delivery method. Names, payment details, and delivery identifiers never enter Git; only aggregate authorized/paid totals are surfaced publicly.
 - No incentive, gift card, software subscription, list purchase, ad spend, or other expenditure may occur under S1-002.
 
 ## Consent, privacy, and contact controls
@@ -182,7 +210,7 @@ Controls:
 - Keep names, contact details, employer-identifying notes, and raw consent records in an approved restricted system, not Git.
 - Ask separate permission for recording, quoting, and artifact viewing.
 - Do not request source code, credentials, customer data, private URLs, or production access during recruiting/interviews.
-- Use pseudonymous keys in the public scorecard and a non-public evidence reference ID.
+- Use pseudonymous keys in the public scorecard and an opaque random restricted-record ID, never a path or share link.
 
 ## Execution readiness checklist
 
@@ -195,6 +223,9 @@ S1-003 remains blocked until all are true:
 - restricted prospect/raw-evidence storage location approved;
 - consent language approved;
 - S1-003 author/interviewer assigned;
-- guides and decision gates version-frozen.
+- explicit AI-role policy recorded for outreach, interviews, transcription, raw evidence, extraction, coding, and review;
+- independently verified protocol commit SHA and guide versions recorded before first contact;
+- 35-day/120-prospect batch authority plus the frozen common-cutoff formula, authorized first-outreach date, and day-42 cap recorded before contact; the exact common freeze is mechanically logged when the later H1/H2 terminal occurs; and
+- primary-coder responsibility accepted, with a second reviewer assigned no later than before the gate-counting freeze.
 
 Current status: none of these S1-003 execution permissions is inferred from this document. Outreach sent: **ZERO**. Interviews conducted: **ZERO**. Spend: **USD 0**.

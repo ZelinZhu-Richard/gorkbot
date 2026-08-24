@@ -1,8 +1,8 @@
 # S1-002 interview guide — H1 competitor-change workflow
 
-Status: DRAFT PROTOCOL — NOT EXECUTED; NOT VERIFIED
+Status: FIXED DRAFT PROTOCOL — NOT EXECUTED; NOT VERIFIED
 
-Protocol version: `S1-002-H1-v1`
+Protocol version: `S1-002-H1-v2`
 
 Target duration: 45 minutes
 
@@ -50,7 +50,7 @@ Screen outcome:
 - `SCREEN_FAIL`: a structural criterion is not met. End politely; do not count the interview.
 - Do not screen out a participant because the workflow is rare, painless, well served, non-delegable, or not worth paying for.
 
-## Behavioral interview — 7 to 20 minutes
+## Behavioral interview — 7 to 19 minutes
 
 Mandatory behavior checkpoint begins here. Do not show the concept until this section and the workaround section are complete.
 
@@ -63,7 +63,7 @@ Mandatory behavior checkpoint begins here. Do not show the concept until this se
 7. How did you compare the current state with what you previously believed?
 8. What did you produce or update at the end?
 9. How did you decide the research was complete enough to use?
-10. What was unavailable, uncertain, stale, or contradictory?
+10. Was anything unavailable, uncertain, stale, or contradictory? If not, record none.
 11. What happened after the research? Which decision or action changed, if any?
 12. What happened, or would have happened, if you did nothing?
 
@@ -73,7 +73,7 @@ Artifact prompt, without pressure:
 
 Record `artifacts_observed=FALSE` if nothing is shown. A promised later artifact does not count as observed.
 
-## Frequency and cost — 20 to 25 minutes
+## Frequency and cost — 19 to 24 minutes
 
 Keep the three H1 clocks separate.
 
@@ -84,20 +84,20 @@ Keep the three H1 clocks separate.
 5. For the last case, roughly how many active minutes did you spend? What was the elapsed delay?
 6. Did anyone else spend time on it? How much?
 7. What tools or services are paid for now, and what is the approximate current spend if you know it?
-8. What correction, delay, missed response, or decision cost resulted from the last failure or stale state?
+8. Was there a failure, stale state, correction, delay, or missed response in that case? If so, what did it cost or change? If not, record none.
 
 Do not convert software polling frequency into customer workflow frequency.
 
-## Current workaround and alternatives — 25 to 31 minutes
+## Current workaround and alternatives — 24 to 30 minutes
 
 Ask unaided first:
 
 1. What are you using now?
 2. Why did you choose that process?
 3. What is adequate about it?
-4. What repeated step, missed state, or correction is still unsatisfactory?
+4. Is any repeated step, missed state, or correction still unsatisfactory? If none, what is adequate enough to keep?
 5. Have you tried replacing the process? What did you actually try, and what happened?
-6. Which exact step would you stop doing if the process improved?
+6. If the process improved, is there an exact step you would stop doing? If none, record none.
 
 Only after unaided answers, use the standardized recognition list:
 
@@ -105,7 +105,7 @@ Only after unaided answers, use the standardized recognition list:
 
 Do not imply that every named product is appropriate or deficient. Record `ADEQUATE` when the participant considers the current solution good enough.
 
-## Delegation, trust, access, and failure tolerance — 31 to 36 minutes
+## Delegation, trust, access, and failure tolerance — 30 to 35 minutes
 
 Begin with past behavior:
 
@@ -122,31 +122,40 @@ Begin with past behavior:
 
 Record the delegation tier before any concept is shown.
 
-## Concept test — 36 to 40 minutes
+## Contract A / Contract B test — 35 to 40 minutes
 
-Read the neutral contract once. Do not add benefit claims.
+Read each neutral contract once. Do not add benefit claims. The same Contract A is shown to monitor users and monitor-naive/manual participants so novelty attributable to ordinary monitoring is absorbed before Contract B.
 
-> Imagine a bounded two-cycle service. You provide 5–15 competitors, public URLs, a prior accepted snapshot, and your own materiality rules. Each cycle returns a coverage manifest showing checked, unchanged, changed, and unavailable sources; source-linked before/after evidence; a short decision memo; and proposed changes to a master record. Nothing is written externally without approval, and any approved test-record change is reread. The service can return unknowns and does not claim to replace every monitoring tool.
+### Contract A — commodity monitoring baseline
+
+> Contract A uses capabilities already substantially available from monitoring products. It checks named public pages on a schedule, detects changes, returns source URLs and timestamps with before/after diffs, produces summaries or importance signals, and sends alerts, digests, or an ordinary recurring report. It does not maintain or update a governed canonical competitive record.
 
 Ask:
 
-1. In your current process, what exact step would this change, if any?
-2. What would remain unchanged?
-3. Which current tool would it replace, supplement, or duplicate?
-4. Think about the last case you described. Would this output have changed the decision, timing, or confidence? How?
-5. Which part is already handled well by your current tool?
-6. Is the coverage/unknown state or approval-gated record proposal useful enough to act differently, or merely nice to have?
-7. What evidence in the bundle would you ignore?
-8. If a standard page monitor plus your current summary process produced the same outcome, would you still need this service?
-9. What is the strongest reason this should not be built for your team?
+1. How different is Contract A from what you already use or could configure today?
+2. For the last case, would Contract A change any exact step, permission, or delegation decision? If so, which one; if not, record none.
+3. Would Contract A alone adequately solve the job? Why or why not?
 
-A claimed decision change counts only when tied to the named recent workflow.
+Record `delegation_tier_after_contract_a`. Interest, novelty, time savings, or willingness to try Contract A is commodity value and does **not** support H1's G8 residual differentiation.
 
-## Pilot commitment — 40 to 43 minutes
+### Contract B — H1 governed-record residual
+
+> Contract B assumes Contract A's monitoring output already exists. It adds cross-competitor synthesis tied to your named decision and decision rules; a canonical change ledger that records checked, unchanged, changed, unavailable, and unknown state with source provenance; a proposed update to that record; explicit approval before any external record change; and readback of an approved test-record update. It adds no faster monitoring or extra alert volume.
+
+Ask:
+
+1. Beyond Contract A, would Contract B change any exact step, named decision, permission, or delegation choice in the last case? If so, which one; what would remain unchanged?
+2. Would you remove or shorten any manual reconciliation or review step only with Contract B? If so, which one and how would that be measured; if not, record none.
+3. Which part is already duplicated by your current stack, and would Contract B still add enough beyond your current monitoring to change an action?
+4. Which evidence or ledger fields would you ignore, and what maintenance, latency, false-state, or approval burden would make Contract B worse than the current process?
+
+Record `delegation_tier_after_concept` after Contract B. `contract_b_material_action_lift=TRUE` only when a named recent decision, permission, removed/shortened step, or qualifying pilot commitment changes **over Contract A**. If a participant values the bundle but cannot identify what B adds beyond A, code no residual lift.
+
+## Pilot commitment — 40 to 42 minutes
 
 Ask in order and record exact answers:
 
-1. Would you test this on a real, permitted watchlist for two cycles?
+1. Would you test Contract B, layered on your current or Contract A monitoring, on a real permitted watchlist for two cycles?
 2. Which watchlist and prior snapshot would you use?
 3. Who would own the pilot?
 4. What start date within the next 30 days could you commit to?
@@ -159,7 +168,7 @@ Classification:
 - `WRITTEN_QUALIFYING` only when owner, permitted input, start date, two-cycle scope, and completion criterion are all accepted in writing.
 - A verbal yes, referral, scheduling suggestion, or “after you build it” is not a qualifying commitment.
 
-## Pricing and WTP — 43 to 45 minutes
+## Pricing and WTP — 42 to 44 minutes
 
 Ask behavioral budget questions before stating the test price:
 
@@ -169,7 +178,7 @@ Ask behavioral budget questions before stating the test price:
 
 Then read the standardized price test without discounting or negotiation:
 
-> The first-wave price test is USD 500 for a four-week, two-cycle pilot with the bounded scope just described and no automatic continuation. Would your organization accept that scope and price in writing?
+> The first-wave price test is USD 500 for a four-week, two-cycle Contract B pilot with the bounded scope just described and no automatic continuation. Would your organization accept that scope and price in writing?
 
 Follow-ups:
 
@@ -178,16 +187,16 @@ Follow-ups:
 3. If no, what would you do instead?
 4. If you propose a different price, what scope and approval would that include?
 
-Only an explicit written acceptance of the standardized offer counts for G10. Record counteroffers separately; do not negotiate during the interview.
+Only an explicit written acceptance of the standardized offer counts for G10. Code it `WRITTEN_500_ACCEPTANCE` and Level 4 at most. A conversational “yes” or “USD 500 sounds reasonable” is `PRICE_REACTION_ONLY`; only payment/deposit, a signed paid-pilot order, or an equivalent binding signed commitment naming amount, budget owner, and execution date is Level 5 / `ECONOMIC_COMMITMENT`. Record counteroffers separately; do not negotiate during the interview.
 
-## Closing disconfirmation
+## Mandatory closing disconfirmation — 44 to 45 minutes
 
-If time remains:
+Ask both; they are not optional:
 
-1. What evidence from your own workflow most contradicts the idea that this is a real problem?
-2. Is this job too rare, too low-stakes, or already solved?
-3. What required access or failure mode makes delegation unacceptable?
-4. Who else in the company would disagree with your answers, and why?
+1. What observed evidence from your own workflow most contradicts the idea that the residual Contract B problem is real?
+2. What is the strongest reason not to build Contract B for your team?
+
+If time remains, ask whether the job is too rare, too low-stakes, already solved, or blocked by access/failure tolerance, and who in the company would disagree.
 
 Thank the participant. Do not promise a product, pilot slot, incentive, follow-up, or timeline beyond what S1-003 has explicitly authorized.
 
@@ -198,8 +207,11 @@ Thank the participant. Do not promise a product, pilot slot, incentive, follow-u
 - Separate machine cadence, human report cadence, and decision-linked frequency.
 - Record actual tools before the recognition list.
 - Identify a replaceable step or mark none.
+- Record separate delegation tiers before contracts, after Contract A, and after Contract B; commodity Contract A interest cannot count toward G8.
+- Code `contract_b_material_action_lift` only from a B-over-A action change tied to the recent case.
 - Record allowed/blocked actions and forbidden access requirements.
 - Code pilot and WTP using exact commitment enums.
 - Assign evidence levels per claim, then record the maximum interview level.
 - Preserve contradictions and exact negative evidence.
-- Store only pseudonymous/sanitized data and a restricted source-reference ID.
+- Record `interview_completion`; truncated ICP-qualified interviews remain in the denominator with unasked gates as non-successes.
+- Store only field-level sanitized data and an opaque restricted source-reference ID; `pilot_owner` is a role and `pilot_input` is generic.

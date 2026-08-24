@@ -1,0 +1,303 @@
+handoff_id: H-S1-002-20260823-FIXER
+task_id: S1-002
+stage: 1
+mode: FIX_TASK_S1-002
+role: FIXER
+author_model: "Codex (runtime model identifier not exposed) — original S1-002 AUTHOR returning as FIXER"
+reviewer_requested: "Independent repository-first CHALLENGER/VERIFIER; the fixer may not self-verify"
+started_at: "2026-08-23 (exact UTC fixer start not separately recorded)"
+completed_at: "2026-08-24T00:56:21Z"
+base_commit: 715b440f57db90e348b52565610057f7c9975f46
+task_status: READY_FOR_REVIEW
+verification_status: NOT_VERIFIED
+customer_evidence_status: ZERO
+
+files_read:
+  - MASTER_OPERATING_PROMPT.md
+  - AGENTS.md
+  - 01_governance/PROJECT_STATE.yaml
+  - 01_governance/TASK_REGISTRY.yaml
+  - 01_governance/DECISION_LOG.md
+  - 01_governance/ASSUMPTION_REGISTER.md
+  - 01_governance/RISK_REGISTER.md
+  - 01_governance/SOURCE_LEDGER.csv
+  - 03_product/S1-001_CUSTOMER_WORKFLOW_SCORECARD.md
+  - 03_product/S1-001_SCORED_HYPOTHESES.csv
+  - 02_research/S1-001_CURRENT_WORKAROUND_EVIDENCE_2026-08-23.md
+  - 99_handoffs/completed/S1-001_challenger_review.yaml
+  - 99_handoffs/completed/S1-001_fixer_handoff.yaml
+  - 99_handoffs/completed/S1-001_verifier_review.yaml
+  - 00_inbox/prepared_materials/01_FOUNDER_BRIEF.md
+  - 00_inbox/prepared_materials/04_TARGET_WORKFLOWS.md
+  - 00_inbox/prepared_materials/06_BUILD_CONSTRAINTS.md
+  - 00_inbox/prepared_materials/08_COMPETITOR_EXAMPLES.md
+  - 00_inbox/prepared_materials/11_RANDOM_IDEAS.md
+  - 00_inbox/prepared_materials/ASSUMPTIONS_AND_OPEN_QUESTIONS.md
+  - 00_inbox/prepared_materials/10_CUSTOMER_NOTES/README.md
+  - 00_inbox/prepared_materials/10_CUSTOMER_NOTES/INTERVIEW_TEMPLATE.md
+  - 03_product/S1-002_CUSTOMER_DISCOVERY_PLAN.md
+  - 03_product/S1-002_INTERVIEW_GUIDE_H1.md
+  - 03_product/S1-002_INTERVIEW_GUIDE_H2.md
+  - 03_product/S1-002_DISCOVERY_SCORECARD.csv
+  - 03_product/S1-002_RECRUITING_PLAN.md
+  - 99_handoffs/completed/S1-002_handoff.yaml
+  - 99_handoffs/completed/S1-002_challenger_review.yaml
+  - 99_handoffs/HANDOFF_TEMPLATE.yaml
+
+files_created:
+  - 99_handoffs/completed/S1-002_fixer_handoff.yaml
+
+files_modified:
+  - 01_governance/PROJECT_STATE.yaml
+  - 01_governance/TASK_REGISTRY.yaml
+  - 03_product/S1-002_CUSTOMER_DISCOVERY_PLAN.md
+  - 03_product/S1-002_INTERVIEW_GUIDE_H1.md
+  - 03_product/S1-002_INTERVIEW_GUIDE_H2.md
+  - 03_product/S1-002_DISCOVERY_SCORECARD.csv
+  - 03_product/S1-002_RECRUITING_PLAN.md
+
+files_deleted: []
+
+decisions_made:
+  - "Resolved F-S1-002-01..12 as FIXED; no finding was disputed or deferred."
+  - "Made Contract A a commodity baseline and Contract B the residual in both guides; only B-over-A action lift can support G8."
+  - "Separated KILL_MARKET_EVIDENCE from recruiting, project-access, protocol, and insufficient-sample states; an advanced candidate facing a paused or inconclusive rival is promising but not a comparative winner."
+  - "Defined a prospective protocol commit freeze and one common G9/G10 gate-counting freeze, with late commitments retained but excluded from the first-wave decision."
+  - "Assigned primary and independent second coding, conservative disagreement handling, a restricted audit trail, and accountable limits on AI assistance."
+  - "Assigned every one of the 74 public scorecard headers exactly one privacy treatment and required row-level sanitization plus quasi-identifier review."
+  - "Replaced the unsupported 40-prospect design with symmetric staged 120-prospect/35-day caps backed by labeled base and downside funnel arithmetic."
+  - "Preserved D-012: H1 and H2 remain co-equal NOT_TESTED discovery candidates; selected no customer, beachhead, workflow, MVP, price, architecture, or model/provider role."
+
+assumptions_added: []
+
+tests_run:
+  - "Ruby Psych YAML parse of PROJECT_STATE.yaml, TASK_REGISTRY.yaml, and the S1-002 challenger review."
+  - "Ruby CSV parse and schema validation of S1-002_DISCOVERY_SCORECARD.csv."
+  - "Field-level privacy-map validation against every public CSV header."
+  - "Cross-file timing, protocol, contract/gate structure, and finding-semantic checks over the plan and both guides."
+  - "Separate deterministic arithmetic recomputation of all four recruiting-funnel scenarios."
+  - "Separate deterministic recomputation of the G1/G9 checkpoint and third-disallowed-access early-stop bounds."
+  - "Final YAML, governance-state, allowed-scope, secret-pattern, privacy, newline/trailing-whitespace, and git diff checks."
+
+test_results:
+  - "YAML PASS for the parsed governance and review artifacts."
+  - "CSV PASS: one header row, 74 unique nonempty headers, all required Contract A/B, completion, H8, coding, price, and source-reference fields present, and zero customer data rows."
+  - "Privacy mapping PASS: 74/74 public headers each occur in exactly one of PUBLIC_SAFE, PUBLIC_SANITIZED, or OPAQUE_REFERENCE_ONLY; PRIVATE_ONLY data has no public header."
+  - "Timing PASS: the plan and both v2 guides use the same ten consecutive phases spanning minute 0 through 45, and minute 44–45 disconfirmation is mandatory."
+  - "Structure PASS: H1 and H2 each retain 19 hypothesis-contract rows and the hard-gate matrix contains G1–G11 exactly once."
+  - "Finding-semantic check PASS: 12/12 challenger findings have the required control in the fixed artifacts."
+  - "Funnel arithmetic PASS: H1 base/downside complete 8.3/1.8 with outside-network 5.4/0.9; H2 base/downside complete 10.3/2.8 with outside-network 6.1/1.1."
+  - "Early-stop arithmetic PASS: 0/4 G1 can reach at most 4/8, 0/6 G9 at most 2/8, and the third disallowed-access requirement fails the no-more-than-two bound."
+  - "Final governance PASS: S1-002 is READY_FOR_REVIEW/NOT_VERIFIED, S1-003 is BLOCKED, and the next action is REVIEW_TASK_S1-002."
+  - "Final handoff PASS: 12 ordered finding IDs, every resolution FIXED, required finding evidence fields nonempty, and summary 12/0/0."
+  - "Final scope PASS: exactly eight allowed paths changed, zero out-of-scope paths, HEAD remains 715b440f57db90e348b52565610057f7c9975f46, and the patch is uncommitted."
+  - "Final security/text PASS: zero common secret-pattern hits, zero trailing-whitespace defects, final newlines present in all eight paths, zero customer rows, and git diff --check returned no errors."
+
+validation_attempt_notes:
+  - "Three early validator drafts failed because the repository Ruby lacks Array#tally, Array#filter_map, and leading-dot decimal literal support; corrected Ruby-compatible validators were rerun. These were test-harness compatibility failures, not artifact failures."
+  - "An early privacy validator counted explanatory repeats of current_tools, pilot_owner, and pilot_input within their single PUBLIC_SANITIZED paragraph as duplicate classes; the corrected validator deduplicated within a class and confirmed each header belongs to one class only."
+  - "A later evidence-level row count was initially unscoped and also matched numbered hypothesis-contract rows; the corrected validator scoped the count to the Evidence hierarchy section and confirmed Levels 0–6 exactly once."
+
+security_checks:
+  - "Used no login, connector, account, customer system, outreach channel, private contact source, payment system, or external write."
+  - "Sent no message or recruiting post; conducted no interview; scheduled no call; offered no pilot or price; purchased and spent nothing."
+  - "Collected and fabricated no customer names, contacts, statements, quotations, recordings, artifacts, commitments, payments, or scorecard rows."
+  - "No secret, credential, private link, source code, architecture, benchmark, provider/API call, deployment, S0-004/S0-005 execution, or Stage 2 work was introduced."
+
+known_limitations:
+  - "CUSTOMER_EVIDENCE remains ZERO; every pain, frequency, dissatisfaction, value, delegation, differentiation, pilot, WTP, and evidence-quality result remains NOT_TESTED."
+  - "The funnel conversion values and incentive recommendation are DESIGN ESTIMATES/PROPOSALS, not observed outcomes or founder authorizations."
+  - "The founder has not authorized outreach, approved execution channels/accounts, chosen an incentive cap, approved restricted evidence/consent storage, assigned the S1-003 interviewer, or recorded an AI-role policy."
+  - "S1-002 has not received independent post-fix verification; the fixer may not mark it VERIFIED."
+  - "The fixes prepare a protocol; they do not establish a comparative winner, customer segment, MVP workflow, pricing validity, or product demand."
+
+unverified_claims:
+  - "H1 participants have qualifying recent pain, recurring human comparison work, residual B-over-A value, or willingness to pilot/pay."
+  - "H2 participants have qualifying recent pain, recurring issue/review work, residual independent-verification value, or willingness to pilot/pay."
+  - "H8 satisfies the stricter action-lift, verification-only, and written-pilot conjunction required even to reopen a distinct allocation discussion."
+  - "The base recruiting scenarios will yield eight qualified participants and four outside-network participants per hypothesis."
+
+blockers:
+  - S1_002_INDEPENDENT_POST_FIX_VERIFICATION_PENDING
+  - FOUNDER_OUTREACH_AUTHORIZATION_NOT_RECORDED
+  - FOUNDER_APPROVED_CHANNELS_AND_ACCOUNTS_NOT_RECORDED
+  - FOUNDER_INCENTIVE_DECISION_AND_MAXIMUM_SPEND_NOT_RECORDED
+  - RESTRICTED_RAW_EVIDENCE_STORAGE_AND_CONSENT_PRACTICE_NOT_APPROVED
+  - S1_003_AUTHOR_INTERVIEWER_NOT_ASSIGNED
+  - FOUNDER_AI_ROLE_POLICY_NOT_RECORDED
+
+recommended_next_task: REVIEW_TASK_S1-002
+repository_commit_or_patch: "Uncommitted S1-002 fixer patch based on 715b440f57db90e348b52565610057f7c9975f46; intentionally left uncommitted for the founder."
+
+decision_logic:
+  H1: "CO_EQUAL_DISCOVERY_CANDIDATE_D012; NOT_TESTED; no selection"
+  H2: "CO_EQUAL_DISCOVERY_CANDIDATE_D012; NOT_TESTED; no selection"
+  H8: "H2_SUB_HYPOTHESIS_ONLY; no separate quota or automatic elevation"
+  advancing_with_market_killed_rival: "May be provisionally recommended only after independent review and founder decision."
+  advancing_with_paused_or_inconclusive_rival: "PROMISING_ADVANCE_WITH_UNRESOLVED_RIVAL; no comparative winner."
+
+recruiting_design:
+  status: DRAFT_ONLY_NOT_AUTHORIZED
+  count_target: "8 ICP-qualified interviews per hypothesis from 16 distinct organizations"
+  outside_network_floor: "4/8 per hypothesis"
+  maximum_unique_prospects: "120 per hypothesis in three batches of up to 40"
+  maximum_duration: "35 calendar days after first authorized invitation"
+  follow_up_limit: "one per prospect"
+  shortfall_state: PAUSE_RECRUITING_FAILED
+
+privacy_model:
+  public_headers: 74
+  public_data_rows: 0
+  public_classes:
+    - PUBLIC_SAFE
+    - PUBLIC_SANITIZED
+    - OPAQUE_REFERENCE_ONLY
+  private_class: PRIVATE_ONLY_NO_PUBLIC_HEADER
+  precommit_controls:
+    - field_by_field_review
+    - quasi_identifier_review
+    - opaque_restricted_source_reference
+
+incentive_status:
+  proposal: "Up to USD 50 per completed structurally qualified interview; maximum USD 800."
+  authorization: NOT_AUTHORIZED
+  actual_spend_usd: 0
+  symmetry: "Same amount, eligibility, and delivery policy for H1/H2 unless prospectively justified before outreach."
+  private_ledger: "Founder-approved restricted recruiting tracker; public repository receives aggregate totals only."
+
+s1_003_status:
+  status: BLOCKED
+  execution_started: false
+  outreach_sent: 0
+  interviews_conducted: 0
+  customer_rows_created: 0
+
+scope_control:
+  allowed_files_changed: 8
+  out_of_scope_changes: []
+  original_author_handoff_modified: false
+  uploaded_originals_modified: false
+  decision_log_modified: false
+  assumption_register_modified: false
+  risk_register_modified: false
+  source_ledger_modified: false
+  s0_004_modified: false
+  s0_005_modified: false
+  architecture_started: false
+  application_code_written: false
+  benchmark_runs: 0
+  provider_api_calls: 0
+  customer_discovery_or_outreach_executed: false
+  spend_executed_usd: 0
+
+findings:
+  - finding_id: F-S1-002-01
+    resolution: FIXED
+    files_changed:
+      - 03_product/S1-002_CUSTOMER_DISCOVERY_PLAN.md
+      - 03_product/S1-002_INTERVIEW_GUIDE_H1.md
+      - 03_product/S1-002_DISCOVERY_SCORECARD.csv
+    evidence: "H1 now uses the same two-contract method as H2: Contract A explicitly covers commodity monitoring, diffs, provenance/timestamps, summaries/importance, alerts/digests/reports; Contract B adds only the governed residual. Separate post-A and post-B delegation plus a generic B-over-A action-lift field exist for both hypotheses, and G8 excludes Contract A value."
+    verification: "Fixer structural check locates both H1 contracts, the discounting rule, three delegation tiers, and Contract-B-over-A G8 text; independent post-fix verification pending."
+
+  - finding_id: F-S1-002-02
+    resolution: FIXED
+    files_changed:
+      - 03_product/S1-002_CUSTOMER_DISCOVERY_PLAN.md
+      - 01_governance/TASK_REGISTRY.yaml
+    evidence: "The decision matrix distinguishes KILL_MARKET_EVIDENCE from PAUSE_RECRUITING_FAILED, PAUSE_ACCESS_BLOCKED, PAUSE_PROTOCOL_FAILED, and INCONCLUSIVE_INSUFFICIENT_SAMPLE. A passing hypothesis facing an unresolved rival is PROMISING_ADVANCE_WITH_UNRESOLVED_RIVAL and is not a comparative winner."
+    verification: "Fixer state-vocabulary and decision-branch check PASS; S1-003 acceptance text preserves the split; independent post-fix verification pending."
+
+  - finding_id: F-S1-002-03
+    resolution: FIXED
+    files_changed:
+      - 03_product/S1-002_CUSTOMER_DISCOVERY_PLAN.md
+      - 01_governance/TASK_REGISTRY.yaml
+      - 03_product/S1-002_RECRUITING_PLAN.md
+    evidence: "Before outreach, S1-003 must record the verified protocol commit, immutable common-cutoff formula, authorized first-outreach date, and day-42 cap. When the later H1/H2 terminal occurs, it mechanically logs the exact 23:59 America/New_York cutoff as the earlier of terminal-plus-seven-days or day 42. Late pilot/price acceptances are recorded but cannot change G9/G10."
+    verification: "Fixer freeze-definition and cross-file readiness check PASS; independent post-fix verification pending."
+
+  - finding_id: F-S1-002-04
+    resolution: FIXED
+    files_changed:
+      - 03_product/S1-002_CUSTOMER_DISCOVERY_PLAN.md
+      - 03_product/S1-002_DISCOVERY_SCORECARD.csv
+      - 01_governance/TASK_REGISTRY.yaml
+    evidence: "The interviewer is primary coder; a second reviewer independently recodes every gate-relevant interpretive field; every counted row needs reviewer_id; unresolved disagreement becomes contradiction plus UNKNOWN/FALSE/lower/nonqualifying coding; all changes enter a restricted audit log. AI cannot make final classifications or resolve disagreement."
+    verification: "Fixer coding-authority, reviewer, conservative-disagreement, audit, and AI-limit text check PASS; independent post-fix verification pending."
+
+  - finding_id: F-S1-002-05
+    resolution: FIXED
+    files_changed:
+      - 03_product/S1-002_CUSTOMER_DISCOVERY_PLAN.md
+      - 03_product/S1-002_DISCOVERY_SCORECARD.csv
+      - 01_governance/TASK_REGISTRY.yaml
+    evidence: "All 74 public headers are classified exactly once. Pilot owner is role-only, pilot input is generic, dates use month precision, size/team use bands, narrative/tool fields are sanitized, source references are opaque IDs, and a quasi-identifier review is mandatory before commit."
+    verification: "Automated header-to-class mapping PASS 74/74; scorecard remains zero-row; independent post-fix verification pending."
+
+  - finding_id: F-S1-002-06
+    resolution: FIXED
+    files_changed:
+      - 03_product/S1-002_RECRUITING_PLAN.md
+      - 03_product/S1-002_CUSTOMER_DISCOVERY_PLAN.md
+      - 01_governance/TASK_REGISTRY.yaml
+    evidence: "The recruiting plan exposes the full contact-to-completion funnel, recomputes base/downside H1/H2 scenarios, and uses three prospectively triggered batches up to 120 prospects per hypothesis and 35 days. A quota shortfall is PAUSE_RECRUITING_FAILED, never a customer gate."
+    verification: "All four funnel rows independently recompute to the published one-decimal values; cap/time-box cross-file check PASS; independent post-fix verification pending."
+
+  - finding_id: F-S1-002-07
+    resolution: FIXED
+    files_changed:
+      - 03_product/S1-002_CUSTOMER_DISCOVERY_PLAN.md
+      - 03_product/S1-002_INTERVIEW_GUIDE_H1.md
+      - 03_product/S1-002_INTERVIEW_GUIDE_H2.md
+    evidence: "The plan and both guides now use identical minute ranges: 0–3, 3–7, 7–19, 19–24, 24–30, 30–35, 35–40, 40–42, 42–44, and mandatory disconfirmation 44–45."
+    verification: "Automated timing extraction PASS for ten phases in all three artifacts; independent post-fix verification pending."
+
+  - finding_id: F-S1-002-08
+    resolution: FIXED
+    files_changed:
+      - 03_product/S1-002_CUSTOMER_DISCOVERY_PLAN.md
+      - 03_product/S1-002_INTERVIEW_GUIDE_H2.md
+    evidence: "The frozen plan prospectively operationalizes A-018 as a conjunction: 4/8 B-over-A action lifts, 4/8 verification-only interest, and at least three of the same participants satisfying both plus a qualifying written pilot. This only reopens independent review and creates no automatic elevation or quota."
+    verification: "Fixer H8/A-018 threshold and guide consistency check PASS; independent post-fix verification pending."
+
+  - finding_id: F-S1-002-09
+    resolution: FIXED
+    files_changed:
+      - 03_product/S1-002_CUSTOMER_DISCOVERY_PLAN.md
+      - 03_product/S1-002_INTERVIEW_GUIDE_H1.md
+      - 03_product/S1-002_INTERVIEW_GUIDE_H2.md
+    evidence: "Plain timely written acceptance of the standardized USD 500 scope is WRITTEN_500_ACCEPTANCE and Level 4 at most. Only payment/deposit, a signed paid-pilot order, or an equivalent binding signed commitment naming amount, budget owner, and execution date reaches Level 5 / ECONOMIC_COMMITMENT."
+    verification: "Fixer Level-4/5 boundary check PASS in the plan and both guides; independent post-fix verification pending."
+
+  - finding_id: F-S1-002-10
+    resolution: FIXED
+    files_changed:
+      - 03_product/S1-002_INTERVIEW_GUIDE_H1.md
+      - 03_product/S1-002_INTERVIEW_GUIDE_H2.md
+    evidence: "The three cited presupposing/evaluative questions are conditionally and neutrally worded, with explicit none/does-not-occur paths; related questions were also neutralized without changing the behavior-first order."
+    verification: "Exact old-phrase scan returns no matches and manual comparison confirms the neutral replacements; independent post-fix verification pending."
+
+  - finding_id: F-S1-002-11
+    resolution: FIXED
+    files_changed:
+      - 03_product/S1-002_CUSTOMER_DISCOVERY_PLAN.md
+      - 03_product/S1-002_DISCOVERY_SCORECARD.csv
+      - 03_product/S1-002_INTERVIEW_GUIDE_H1.md
+      - 03_product/S1-002_INTERVIEW_GUIDE_H2.md
+    evidence: "interview_completion is a required public schema field with eight mutually exclusive completion/truncation values covering behavior through mandatory disconfirmation. Structurally qualified truncations remain in the fixed denominator, cannot be replaced merely to improve a gate, and every unasked gate is a non-success."
+    verification: "CSV/schema/enum and both guide checklist checks PASS; independent post-fix verification pending."
+
+  - finding_id: F-S1-002-12
+    resolution: FIXED
+    files_changed:
+      - 03_product/S1-002_RECRUITING_PLAN.md
+      - 03_product/S1-002_CUSTOMER_DISCOVERY_PLAN.md
+      - 01_governance/TASK_REGISTRY.yaml
+    evidence: "Amount, eligibility, delivery policy, and any staged trigger are symmetric across H1/H2 unless prospectively justified before outreach. The private restricted tracker holds opaque-key eligibility/amount/currency/authorization/date/method; only aggregate totals may be public. Incentives compensate time regardless of evidence and remain unauthorized."
+    verification: "Fixer symmetry/private-ledger/control check PASS; actual spend USD 0; independent post-fix verification pending."
+
+finding_summary:
+  fixed: 12
+  disputed: 0
+  deferred: 0
