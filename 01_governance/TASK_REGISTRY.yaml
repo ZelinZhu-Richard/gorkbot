@@ -651,6 +651,8 @@ tasks:
     why_it_matters: Only real customer behavior, workflow artifacts, delegation, pilot commitment, and economic commitment can determine whether either candidate deserves provisional beachhead status.
     owner_role: AUTHOR
     assigned_model: null
+    assigned_interviewer: founder
+    primary_coder: founder
     reviewer_model: null
     verifier_model: null
     status: BLOCKED
@@ -658,12 +660,97 @@ tasks:
     dependencies:
       - S1-002
     blocked_by:
-      - FOUNDER_OUTREACH_AUTHORIZATION_NOT_RECORDED
-      - FOUNDER_APPROVED_CHANNELS_AND_ACCOUNTS_NOT_RECORDED
-      - FOUNDER_INCENTIVE_DECISION_AND_MAXIMUM_SPEND_NOT_RECORDED
-      - RESTRICTED_RAW_EVIDENCE_STORAGE_AND_CONSENT_PRACTICE_NOT_APPROVED
-      - S1_003_AUTHOR_INTERVIEWER_NOT_ASSIGNED
-      - FOUNDER_AI_ROLE_POLICY_NOT_RECORDED
+      - RESTRICTED_RAW_EVIDENCE_STORAGE_LOCATION_NOT_NAMED_OR_APPROVED
+    founder_authorization_reference:
+      decision_id: D-013
+      decision_status: CONFIRMED
+      commit: 6e12f738a12a8ac3214b81056320d6098773f430
+      subject: "Authorize controlled S1-003 customer discovery"
+    authorization_reconciliation:
+      mode: RECONCILE_S1_003_AUTHORIZATION
+      reconciled_at: "2026-08-25T22:26:43Z"
+      requirements:
+        outreach_authorization:
+          status: SATISFIED
+          evidence: "D-013 authorizes manual, personalized, one-to-one outreach and individualized channel use. Automated bulk sending remains unauthorized in the first wave; higher volume requires demonstrated stable personalization quality, factual accuracy, relevance, tone, and protocol compliance, and automated sending still requires separate founder authorization."
+        approved_channels_and_accounts:
+          status: SATISFIED
+          authorized_channels:
+            - founder_email
+            - direct_email_from_legitimately_obtained_public_business_contact_information
+            - linkedin
+            - x
+            - github
+            - warm_introductions
+            - permitted_startup_or_technical_communities
+          prohibited_methods:
+            - purchased_lead_lists
+            - mass_scraping_for_outreach
+            - automated_bulk_messaging
+            - indiscriminate_community_posting
+            - deceptive_identity
+            - false_familiarity
+          evidence: "D-013 Approved initial channels. The frozen recruiting controls still prohibit GitHub issue/PR recruiting, community-rule bypass, more than one follow-up per prospect, and ignored opt-outs."
+        incentive_decision_and_cap:
+          status: SATISFIED
+          authorized_first_wave_budget_usd: 0
+          prior_design_proposal: "UNAUTHORIZED: up to USD 50 per completed qualified interview and USD 800 total."
+          evidence: "D-013 Incentives explicitly chooses USD 0 and leaves the earlier USD 50/USD 800 proposal unapproved."
+        evidence_storage_and_consent:
+          status: PARTIALLY_SATISFIED
+          satisfied_controls:
+            - identifying_and_raw_evidence_private_only
+            - public_repository_sanitized_structured_evidence_or_opaque_references_only
+            - recording_off_by_default
+            - explicit_prior_participant_consent_required_for_recording
+          restricted_storage_location: null
+          remaining_requirement: "The independently verified S1-002 protocol requires the authorization record to name an actual founder-approved restricted evidence/consent location before S1-003; D-013 states a storage practice but names no provider, system, or path."
+        interviewer:
+          status: SATISFIED
+          primary_interviewer: founder
+          autonomous_ai_first_wave_interviewing: PROHIBITED
+          evidence: "D-013 Interviewer and AI role."
+        ai_role:
+          status: SATISFIED
+          permitted:
+            - prospect_research_using_permitted_public_information
+            - personalized_outreach_drafting_for_founder_approval
+            - interview_preparation
+            - protocol_compliance_checking
+            - structuring_founder_provided_notes
+            - candidate_evidence_extraction
+            - second_pass_coding
+            - contradiction_detection
+            - predeclared_gate_calculation
+            - post_interview_analysis
+          prohibited:
+            - autonomous_first_wave_interviews
+            - bulk_outreach_sending
+            - fabricated_customer_evidence
+            - inference_of_missing_customer_evidence
+            - changing_frozen_discovery_gates_after_results
+            - independent_h1_h2_winner_selection
+            - private_evidence_in_public_repository
+          evidence: "D-013 AI role. The verified S1-002 protocol additionally keeps final evidence classification, coder-disagreement resolution, and gate upgrades with accountable humans."
+      blockers_removed:
+        - FOUNDER_OUTREACH_AUTHORIZATION_NOT_RECORDED
+        - FOUNDER_APPROVED_CHANNELS_AND_ACCOUNTS_NOT_RECORDED
+        - FOUNDER_INCENTIVE_DECISION_AND_MAXIMUM_SPEND_NOT_RECORDED
+        - S1_003_AUTHOR_INTERVIEWER_NOT_ASSIGNED
+        - FOUNDER_AI_ROLE_POLICY_NOT_RECORDED
+      blockers_remaining:
+        - RESTRICTED_RAW_EVIDENCE_STORAGE_LOCATION_NOT_NAMED_OR_APPROVED
+      resulting_status: BLOCKED
+      execution_started: false
+      customer_evidence: ZERO
+      outreach_executed: 0
+      interviews_executed: 0
+      spend_usd: 0
+      finance_edition_non_interference:
+        decision_id: D-014
+        commit: ce960c9d2c3f6314d0c7e39a9db4082191c7f387
+        result: PASS
+        evidence: "D-014 keeps H1/H2 as the only co-equal candidates, gives Finance no current interview quota, and does not delay or modify S1-003."
     required_before:
       - "Any customer contact, recruiting post, direct message, email, scheduling, interview, incentive purchase, price offer, or pilot commitment request."
     files_to_read:
@@ -729,10 +816,26 @@ tasks:
       - frozen_rule_gate_results
       - independent_review_and_verification
     spending_restrictions:
-      status: BLOCKED_PENDING_FOUNDER_DECISION
-      maximum_usd: null
-      rule: "The S1-002 proposal is at most USD 800, but S1-003 may spend only the lower amount explicitly authorized by the founder; a recorded zero-budget decision is permitted."
+      status: AUTHORIZED_MAXIMUM_USD_0_PENDING_FULL_TASK_READINESS
+      maximum_usd: 0
+      actual_spend_usd: 0
+      authorization_reference: "D-013 at 6e12f738a12a8ac3214b81056320d6098773f430"
+      rule: "No first-wave incentive, gift card, list purchase, advertisement, software subscription, or other discovery spend is authorized. The earlier USD 50/interview and USD 800 total design proposal remains unapproved."
     outreach_restrictions:
-      status: BLOCKED_PENDING_EXPLICIT_FOUNDER_AUTHORIZATION
-      rule: "Use only founder-approved accounts/channels; no scraping, bulk/automated messaging, GitHub issue/PR recruiting, community-rule bypass, or more than one follow-up per prospect."
+      status: AUTHORIZED_MANUAL_PERSONALIZED_ONE_TO_ONE_PENDING_FULL_TASK_READINESS
+      authorization_reference: "D-013 at 6e12f738a12a8ac3214b81056320d6098773f430"
+      rule: "After S1-003 becomes READY and is separately claimed for execution, use only the seven D-013-approved channels where contextually appropriate. No purchased lists, mass scraping, bulk/automated messaging, indiscriminate community posting, deceptive identity, false familiarity, GitHub issue/PR recruiting, community-rule bypass, or more than one follow-up per prospect. Automated sending requires a separate future founder authorization."
+    evidence_storage_and_consent:
+      status: PARTIALLY_AUTHORIZED_PENDING_NAMED_RESTRICTED_LOCATION
+      restricted_storage_location: null
+      private_storage_rule: "Identifying and raw evidence must remain private."
+      public_repository_rule: "Sanitized structured evidence or opaque references only."
+      recording_default: "OFF"
+      recording_consent: EXPLICIT_PRIOR_PARTICIPANT_CONSENT_REQUIRED
+    execution_counters:
+      customer_evidence_records: 0
+      outreach_messages_sent: 0
+      recruiting_posts_sent: 0
+      interviews_conducted: 0
+      spend_usd: 0
     customer_evidence_status: ZERO_NOT_STARTED
