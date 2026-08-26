@@ -419,6 +419,136 @@ This decision satisfies the remaining S1-003 restricted-evidence-storage-locatio
 
 It does not itself start outreach, interviews, recording, spending, or S1-003 execution.
 
+## D-016: Engineering-first open-source Developer Preview
+
+- Date: 2026-08-25
+- Status: CONFIRMED
+- Decision type: PROJECT_MODE_AND_INITIAL_PRODUCT_SCOPE
+
+### Decision
+
+The project will temporarily pause startup validation, customer discovery, sales, pricing, TAM/SAM/SOM, fundraising, and other go-to-market work.
+
+The immediate objective is to build a functioning engineering project and open-source developer tool.
+
+The long-term objective remains a clean-room, model-agnostic Grok Bot-class platform with functional parity or better.
+
+The verified customer-discovery work will be preserved but deferred. It may be resumed later without being treated as completed market validation.
+
+### Initial engineering product
+
+The first product will be an Engineering Preview focused on one persistent, single-user software-engineering agent.
+
+The target workflow is:
+
+1. Receive a repository engineering task or issue.
+2. Inspect and understand the repository.
+3. Create durable task state and a bounded plan.
+4. Work in an isolated execution environment.
+5. Use files, terminal, Git, and tests.
+6. Reproduce the problem where applicable.
+7. Implement a bounded change.
+8. Run deterministic checks.
+9. Independently verify completion.
+10. Produce a patch, branch, commit, or draft pull-request package for human approval.
+11. Return an evidence bundle containing the relevant diff, commands, tests, outputs, limitations, and completion status.
+
+### Required core capabilities
+
+The Engineering Preview should eventually support:
+
+- persistent agent identity
+- durable task execution
+- resumability after client or worker restart
+- model-provider abstraction
+- model routing
+- repository workspaces
+- sandboxed terminal and filesystem operations
+- Git operations
+- test execution
+- structured tool permissions
+- structured approval requests
+- stop, pause, redirect, and resume
+- artifacts and evidence bundles
+- external-state verification
+- execution observability
+- failure recovery
+- bounded autonomous task queues
+
+### Initial product form
+
+The Engineering Preview is initially:
+
+- local-first
+- single-user
+- developer-focused
+- usable on real repositories
+- compatible with future cloud execution
+- compatible with future multi-tenant SaaS
+- compatible with future General and Finance Editions
+
+The final client technology, including CLI, local web control plane, Electron, Tauri, or another desktop approach, is not yet selected.
+
+### Deferred startup work
+
+The following are deferred:
+
+- S1-003 customer outreach and interviews
+- customer-selection gates
+- TAM/SAM/SOM
+- pricing
+- sales
+- fundraising
+- customer acquisition
+- incentive spending
+- production multi-tenant SaaS
+- enterprise administration
+
+No existing customer-discovery evidence may be deleted or relabeled as completed validation.
+
+### Initial non-goals
+
+The first Engineering Preview does not require:
+
+- multi-tenant organizations
+- subscription billing
+- enterprise SSO
+- mobile applications
+- full visual Grok Bot parity
+- user-visible multi-agent group chat
+- skills marketplace
+- every connector
+- production-scale cloud infrastructure
+- Finance Edition strategy packs
+- backtesting
+- paper trading
+- live trading
+- real-money execution
+
+### General and Finance Editions
+
+The General Edition and Finance Edition remain planned extensions of the same shared core.
+
+The Finance Edition remains deferred and will not create a second duplicated platform or codebase.
+
+### Clean-room rule
+
+The verified external Grok Bot reconstruction audit may inform requirements, architectural alternatives, technical spikes, and testing approaches.
+
+External reconstructed source code, proprietary renderer assets, private implementation material, branding, and exact UI copy must not be imported into the project.
+
+All implementation must remain independently designed.
+
+### Consequence
+
+The next project operation should:
+
+1. Pause S1-003 without deleting its authorization or verified protocol.
+2. Create an Engineering Preview planning track.
+3. Define its PRD, acceptance criteria, architecture tasks, technical spikes, and evaluation suite.
+4. Preserve all future SaaS constraints without requiring SaaS implementation in v0.1.
+5. Avoid application implementation until the Engineering Preview requirements and architecture gates are verified.
+
 ## Stage 0 author reconciliation note — 2026-08-21
 
 This note records scope, not a new decision:
