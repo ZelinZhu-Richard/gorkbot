@@ -2,16 +2,21 @@
 
 > Working codename only. The final product name must be selected independently and must not imply affiliation with xAI, Cursor, or Grok.
 
-This repository is the source of truth for designing and building a model-agnostic SaaS platform for persistent AI teammates.
+This repository is the source of truth for designing and building a model-agnostic persistent-agent platform.
 
 The long-term capability benchmark is clean-room functional parity with Grok Bot, followed by measurable improvement in areas such as model choice, verified completion, security isolation, cost governance, portability, and inspectable collaboration.
 
 ## Current status
 
-- Stage: 0, founder inputs and research foundation
+- Active program: Engineering Preview
+- Current phase: E1 product specification; E0 initialization is ready for independent review
+- Startup/customer track: preserved and deferred by D-016; S1-003 was not executed
 - Architecture: not selected
-- MVP: not selected
-- Customer wedge: provisional, not validated
+- Engineering Preview target: one local user and one persistent software-engineering agent working on real repositories with durable state, independent verification, and evidence bundles
+- First READY engineering task: E1-001, product and correctness specification
+- Customer wedge: not selected or validated; S1-001 and S1-002 remain verified research inputs
+- Model roles: not locked; benchmarks have not run
+- Full autonomous build mode: not authorized
 - Code: no application implementation yet
 - Public repository: yes, so never commit secrets, private customer data, access tokens, credentials, or confidential documents
 
@@ -26,15 +31,15 @@ Every planning or coding model must read these files in order:
 5. `00_inbox/prepared_materials/01_FOUNDER_BRIEF.md`
 6. The remaining files listed by the active task
 
-The first command for the planning model is:
+The next command for the planning model is:
 
 ```text
-MODE: INITIALIZE
+MODE: EXECUTE_TASK_E1-001
 
-Read MASTER_OPERATING_PROMPT.md, AGENTS.md, the governance files, and every file in 00_inbox/prepared_materials.
+Read MASTER_OPERATING_PROMPT.md, AGENTS.md, PROJECT_STATE.yaml, TASK_REGISTRY.yaml, and every E1-001 files_to_read entry.
 Treat the repository as the sole authoritative project state.
-Perform Stage 0 initialization and execute only tasks marked READY in TASK_REGISTRY.yaml.
-Do not begin application implementation.
+Author only the Engineering Preview v0.1 product and correctness specification within E1-001's allowed paths.
+Do not select architecture, run E2/E3 work, write application code, resume S1-003, or activate autonomous build mode.
 ```
 
 ## Repository principles

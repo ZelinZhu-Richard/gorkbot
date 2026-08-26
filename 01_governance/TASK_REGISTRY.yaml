@@ -656,19 +656,33 @@ tasks:
     reviewer_model: null
     verifier_model: null
     status: BLOCKED
+    task_disposition: DEFERRED
+    deferred_by: D-016
+    defer_reason: PAUSED_BY_D016_ENGINEERING_FIRST_PIVOT
     priority: P0
     dependencies:
       - S1-002
     blocked_by:
-      - RESTRICTED_RAW_EVIDENCE_STORAGE_LOCATION_NOT_NAMED_OR_APPROVED
+      - PAUSED_BY_D016_ENGINEERING_FIRST_PIVOT
     founder_authorization_reference:
       decision_id: D-013
       decision_status: CONFIRMED
       commit: 6e12f738a12a8ac3214b81056320d6098773f430
       subject: "Authorize controlled S1-003 customer discovery"
+      execution_effect_while_d016_active: PRESERVED_BUT_INACTIVE
+    restricted_storage_authorization_reference:
+      decision_id: D-015
+      decision_status: CONFIRMED
+      commit: 529c94400bd5ca18f923c15c69e7718f780ad3e7
+      effect: "Satisfied the previously remaining restricted-evidence-storage requirement without starting S1-003."
+    engineering_pivot_reference:
+      decision_id: D-016
+      decision_status: CONFIRMED
+      commit: 334f91919abd62b8d9804ee63dda31699dbff0a0
+      effect: "Defers S1-003 and makes customer-discovery execution unauthorized while the engineering-first pause is active."
     authorization_reconciliation:
-      mode: RECONCILE_S1_003_AUTHORIZATION
-      reconciled_at: "2026-08-25T22:26:43Z"
+      mode: INITIALIZE_ENGINEERING_PREVIEW
+      reconciled_at: "2026-08-25"
       requirements:
         outreach_authorization:
           status: SATISFIED
@@ -697,14 +711,14 @@ tasks:
           prior_design_proposal: "UNAUTHORIZED: up to USD 50 per completed qualified interview and USD 800 total."
           evidence: "D-013 Incentives explicitly chooses USD 0 and leaves the earlier USD 50/USD 800 proposal unapproved."
         evidence_storage_and_consent:
-          status: PARTIALLY_SATISFIED
+          status: SATISFIED_BUT_INACTIVE
           satisfied_controls:
             - identifying_and_raw_evidence_private_only
             - public_repository_sanitized_structured_evidence_or_opaque_references_only
             - recording_off_by_default
             - explicit_prior_participant_consent_required_for_recording
-          restricted_storage_location: null
-          remaining_requirement: "The independently verified S1-002 protocol requires the authorization record to name an actual founder-approved restricted evidence/consent location before S1-003; D-013 states a storage practice but names no provider, system, or path."
+          restricted_storage_location: /Users/richardzhu/dev/grok_bot/private_customer_discovery
+          evidence: "D-015 names and approves the restricted location, public/private boundary, opaque-reference convention, and recording/consent policy. D-016 subsequently defers S1-003, so this satisfied input is preserved but inactive."
         interviewer:
           status: SATISFIED
           primary_interviewer: founder
@@ -739,8 +753,10 @@ tasks:
         - S1_003_AUTHOR_INTERVIEWER_NOT_ASSIGNED
         - FOUNDER_AI_ROLE_POLICY_NOT_RECORDED
       blockers_remaining:
-        - RESTRICTED_RAW_EVIDENCE_STORAGE_LOCATION_NOT_NAMED_OR_APPROVED
+        - PAUSED_BY_D016_ENGINEERING_FIRST_PIVOT
       resulting_status: BLOCKED
+      task_disposition: DEFERRED
+      authorization_inputs_current: SATISFIED_BUT_INACTIVE
       execution_started: false
       customer_evidence: ZERO
       outreach_executed: 0
@@ -751,8 +767,10 @@ tasks:
         commit: ce960c9d2c3f6314d0c7e39a9db4082191c7f387
         result: PASS
         evidence: "D-014 keeps H1/H2 as the only co-equal candidates, gives Finance no current interview quota, and does not delay or modify S1-003."
+      resume_condition: "A separate founder decision must lift or supersede D-016, followed by a fresh readiness, privacy, storage, consent, channel, spend, and AI-role audit. D-013 alone does not authorize outreach while D-016 is active."
     required_before:
       - "Any customer contact, recruiting post, direct message, email, scheduling, interview, incentive purchase, price offer, or pilot commitment request."
+      - "Before any S1-003 execution resumes, a founder decision must lift or supersede D-016 and a fresh authorization/readiness audit must establish READY."
     files_to_read:
       - MASTER_OPERATING_PROMPT.md
       - AGENTS.md
@@ -816,18 +834,18 @@ tasks:
       - frozen_rule_gate_results
       - independent_review_and_verification
     spending_restrictions:
-      status: AUTHORIZED_MAXIMUM_USD_0_PENDING_FULL_TASK_READINESS
+      status: PRESERVED_MAXIMUM_USD_0_BUT_INACTIVE_BY_D016
       maximum_usd: 0
       actual_spend_usd: 0
       authorization_reference: "D-013 at 6e12f738a12a8ac3214b81056320d6098773f430"
       rule: "No first-wave incentive, gift card, list purchase, advertisement, software subscription, or other discovery spend is authorized. The earlier USD 50/interview and USD 800 total design proposal remains unapproved."
     outreach_restrictions:
-      status: AUTHORIZED_MANUAL_PERSONALIZED_ONE_TO_ONE_PENDING_FULL_TASK_READINESS
+      status: PRESERVED_BUT_INACTIVE_BY_D016
       authorization_reference: "D-013 at 6e12f738a12a8ac3214b81056320d6098773f430"
-      rule: "After S1-003 becomes READY and is separately claimed for execution, use only the seven D-013-approved channels where contextually appropriate. No purchased lists, mass scraping, bulk/automated messaging, indiscriminate community posting, deceptive identity, false familiarity, GitHub issue/PR recruiting, community-rule bypass, or more than one follow-up per prospect. Automated sending requires a separate future founder authorization."
+      rule: "No outreach is authorized while D-016 is active. If a separate founder decision later lifts or supersedes D-016 and S1-003 passes a fresh readiness audit, use only the seven D-013-approved channels where contextually appropriate. No purchased lists, mass scraping, bulk/automated messaging, indiscriminate community posting, deceptive identity, false familiarity, GitHub issue/PR recruiting, community-rule bypass, or more than one follow-up per prospect. Automated sending requires a separate future founder authorization."
     evidence_storage_and_consent:
-      status: PARTIALLY_AUTHORIZED_PENDING_NAMED_RESTRICTED_LOCATION
-      restricted_storage_location: null
+      status: SATISFIED_BY_D015_BUT_INACTIVE_BY_D016
+      restricted_storage_location: /Users/richardzhu/dev/grok_bot/private_customer_discovery
       private_storage_rule: "Identifying and raw evidence must remain private."
       public_repository_rule: "Sanitized structured evidence or opaque references only."
       recording_default: "OFF"
@@ -838,4 +856,220 @@ tasks:
       recruiting_posts_sent: 0
       interviews_conducted: 0
       spend_usd: 0
-    customer_evidence_status: ZERO_NOT_STARTED
+    customer_evidence_status: ZERO_NOT_STARTED_DEFERRED_BY_D016
+
+  - task_id: E0-001
+    title: Initialize Engineering Preview track and reconcile D-016
+    stage: E0
+    objective: Reconcile the repository around D-016, preserve and defer the startup/customer track, define the Engineering Preview charter and gates, and create only the bounded task structure needed to enter E1.
+    why_it_matters: The engineering-first pivot needs an auditable governance transition that does not erase verified research, imply customer validation, select architecture, lock model roles, or authorize implementation.
+    owner_role: AUTHOR
+    assigned_model: "Codex (runtime model identifier not exposed)"
+    reviewer_model: null
+    verifier_model: null
+    status: READY_FOR_REVIEW
+    priority: P0
+    dependencies:
+      - S0-001
+      - S0-002
+      - S0-003
+    files_to_read:
+      - MASTER_OPERATING_PROMPT.md
+      - AGENTS.md
+      - README.md
+      - SECURITY.md
+      - 01_governance/PROJECT_STATE.yaml
+      - 01_governance/TASK_REGISTRY.yaml
+      - 01_governance/DECISION_LOG.md
+      - 01_governance/ASSUMPTION_REGISTER.md
+      - 01_governance/RISK_REGISTER.md
+      - 01_governance/MODEL_REGISTRY.yaml
+      - 02_research/GROK_BOT_BASELINE_2026-08-21.md
+      - 02_research/GROK_BOT_018_RECONSTRUCTED_ARCHITECTURE_AUDIT.md
+      - 02_research/GROK_BOT_018_ARCHITECTURE_ADOPTION_MATRIX.csv
+      - 03_product/S1-001_CUSTOMER_WORKFLOW_SCORECARD.md
+      - 03_product/S1-001_SCORED_HYPOTHESES.csv
+      - 02_research/S1-001_CURRENT_WORKAROUND_EVIDENCE_2026-08-23.md
+      - 03_product/S1-002_CUSTOMER_DISCOVERY_PLAN.md
+      - 03_product/S1-002_INTERVIEW_GUIDE_H1.md
+      - 03_product/S1-002_INTERVIEW_GUIDE_H2.md
+      - 03_product/S1-002_RECRUITING_PLAN.md
+      - 03_product/S1-002_DISCOVERY_SCORECARD.csv
+      - 06_evaluation/MODEL_ROLE_BENCHMARK_PLAN.md
+      - 10_checkpoints/stage_checkpoints/STAGE_0_VERIFICATION.yaml
+      - 99_handoffs/HANDOFF_TEMPLATE.yaml
+      - 99_handoffs/completed/EXTERNAL_GROK_BOT_018_ARCHITECTURE_AUDIT_verifier_review.yaml
+      - 99_handoffs/completed/S1-001_verifier_review.yaml
+      - 99_handoffs/completed/S1-002_verifier_review.yaml
+      - 99_handoffs/completed/S1-003_AUTHORIZATION_RECONCILIATION_handoff.yaml
+    allowed_files_to_change:
+      - README.md
+      - 01_governance/PROJECT_STATE.yaml
+      - 01_governance/TASK_REGISTRY.yaml
+      - 03_product/ENGINEERING_PREVIEW_CHARTER.md
+      - 99_handoffs/completed/ENGINEERING_PREVIEW_INITIALIZATION_handoff.yaml
+    scope_amendments:
+      - amendment_id: E0-001-A1
+        effective_at: "2026-08-25"
+        change: "Add README.md to E0-001 allowed_files_to_change for the initialization pass."
+        reason: "The repository entrypoint still advertised Stage 0 and MODE: INITIALIZE after confirmed D-016, which contradicted current authoritative state and could misroute the next agent."
+        authorization: "The founder's MODE: INITIALIZE_ENGINEERING_PREVIEW requires governance reconciliation, current-state validation, and a correct next command; this prospective documentation-only amendment stays inside governance/planning scope."
+        audit_note: "README.md is updated only for current program/status/start-command consistency; no product, architecture, model, customer, or implementation decision is added."
+    deliverables:
+      - reconciled_project_state
+      - reconciled_task_registry
+      - engineering_preview_charter
+      - factual_initialization_handoff
+    acceptance_criteria:
+      - D-016 remains unchanged and authoritative.
+      - S1-001 and S1-002 remain VERIFIED, while S1-003 and all startup/customer execution are preserved and deferred without outreach, interviews, spend, customer selection, or fabricated evidence.
+      - The Engineering Preview E0-E5 program, v0.1 target, E1 correctness gate, E2 architecture gate, E3 automation-unlock gate, provisional inactive E4 contract, and E5 release phase are explicit and technology-neutral.
+      - Exactly one E1 authoring task is READY; E2 and E3 are not started; FULL_AUTONOMOUS_BUILD_MODE is not authorized.
+      - Architecture, client technology, provider/model roles, PRD, and application code remain unselected or absent.
+      - All changed YAML parses; task IDs and dependencies are valid; Markdown, allowed-path, secret, customer-artifact, source-code, and whitespace checks pass.
+    required_tests:
+      - Independent challenger review of scope, governance semantics, requirement coverage, contradictions, and premature authorization.
+      - Independent verifier review of every acceptance criterion after fixes.
+      - YAML parse and registry dependency/status assertions.
+      - D-016, S1-001, S1-002, customer-artifact, model-registry, and no-source-code regression checks.
+      - Markdown, allowed-path, secret-pattern, and git diff --check.
+    expected_evidence:
+      - changed_file_list_and_diff
+      - exact_validation_commands_and_results
+      - independent_challenger_findings
+      - independent_verifier_verdict
+      - factual_handoff
+    author_evidence:
+      - 03_product/ENGINEERING_PREVIEW_CHARTER.md
+      - 99_handoffs/completed/ENGINEERING_PREVIEW_INITIALIZATION_handoff.yaml
+    author_completed_at: "2026-08-25"
+    verification_status: NOT_VERIFIED_AUTHOR_WORK_AWAITING_INDEPENDENT_REVIEW
+
+  - task_id: E1-001
+    title: Author Engineering Preview v0.1 product and correctness specification
+    stage: E1
+    objective: Define what a correct, secure, reliable, local-first Engineering Preview v0.1 must do before any architecture or implementation begins.
+    why_it_matters: Architecture and code cannot be evaluated rigorously until user outcomes, lifecycle semantics, safety boundaries, completion evidence, and release acceptance are explicit and testable.
+    owner_role: AUTHOR
+    assigned_model: null
+    reviewer_model: null
+    verifier_model: null
+    status: READY
+    priority: P0
+    dependencies:
+      - S0-002
+      - S0-003
+    governance_prerequisites:
+      - D-016_CONFIRMED
+      - ENGINEERING_PREVIEW_CHARTER_PRESENT
+    gate_invariant: "E0-001 must be independently VERIFIED before E1 can be gate-VERIFIED or E2 can be activated; E1-001 may be authored while E0-001 awaits review because D-016 is already confirmed authority and its execution dependencies are independently VERIFIED."
+    files_to_read:
+      - MASTER_OPERATING_PROMPT.md
+      - AGENTS.md
+      - 01_governance/PROJECT_STATE.yaml
+      - 01_governance/TASK_REGISTRY.yaml
+      - 01_governance/DECISION_LOG.md
+      - 01_governance/ASSUMPTION_REGISTER.md
+      - 01_governance/RISK_REGISTER.md
+      - 01_governance/MODEL_REGISTRY.yaml
+      - 02_research/GROK_BOT_BASELINE_2026-08-21.md
+      - 02_research/GROK_BOT_018_RECONSTRUCTED_ARCHITECTURE_AUDIT.md
+      - 02_research/GROK_BOT_018_ARCHITECTURE_ADOPTION_MATRIX.csv
+      - 03_product/ENGINEERING_PREVIEW_CHARTER.md
+      - 06_evaluation/MODEL_ROLE_BENCHMARK_PLAN.md
+      - 99_handoffs/completed/EXTERNAL_GROK_BOT_018_ARCHITECTURE_AUDIT_verifier_review.yaml
+    allowed_files_to_change:
+      - 03_product/ENGINEERING_PREVIEW_PRD.md
+      - 03_product/ENGINEERING_PREVIEW_USER_FLOWS.md
+      - 03_product/ENGINEERING_PREVIEW_CORRECTNESS_CONTRACT.md
+      - 01_governance/ASSUMPTION_REGISTER.md
+      - 01_governance/RISK_REGISTER.md
+      - 01_governance/PROJECT_STATE.yaml
+      - 01_governance/TASK_REGISTRY.yaml
+      - 99_handoffs/completed/E1-001_handoff.yaml
+    deliverables:
+      - engineering_preview_prd
+      - user_flows
+      - mvp_scope
+      - explicit_non_goals
+      - functional_requirements
+      - reliability_requirements
+      - security_requirements
+      - task_lifecycle
+      - agent_lifecycle
+      - completion_predicates
+      - approval_boundaries
+      - evidence_bundle_contract
+    acceptance_criteria:
+      - The primary user, repository-engineering workflow, functional requirements, MVP scope, and explicit non-goals are unambiguous and testable.
+      - Task and agent lifecycle states, durable authority boundaries, restart/resume, pause/stop/redirect semantics, failure recovery, and bounded-autonomy limits are defined without selecting technology.
+      - Reliability, security, approval, secret, tool-schema/runtime-validation, independent-verification, completion-predicate, context-compaction, and evidence-bundle requirements have objective acceptance evidence.
+      - The verified baseline and reconstructed-architecture audit are used only as bounded evidence inputs with clean-room and uncertainty caveats; no external code, exact internal names, or architecture claims are imported.
+      - The specification preserves future extension paths without adding future multi-agent, SaaS, Finance, enterprise, mobile, marketplace, or real-money features to v0.1.
+    required_tests:
+      - Independent challenger review against every required capability, non-goal, future-compatibility constraint, lifecycle, approval boundary, completion predicate, and evidence field.
+      - Cross-file terminology, authority, dependency, clean-room, no-technology-selection, no-code, secret-pattern, and Markdown checks.
+      - Independent post-fix verification of every acceptance criterion.
+    expected_evidence:
+      - requirements_traceability_matrix
+      - lifecycle_and_state_transition_review
+      - approval_and_security_negative_case_review
+      - independent_challenger_and_verifier_records
+    readiness_basis: "D-016 is confirmed; S0-002 and S0-003 are VERIFIED; the task is authoring-only and selects no technology."
+
+  - task_id: E1-002
+    title: Define open-source contribution workflow, evaluation suite, and v0.1 release acceptance criteria
+    stage: E1
+    objective: Complete the E1 correctness gate with contribution, evaluation, and release contracts that can govern later architecture, implementation, and release verification.
+    why_it_matters: A durable open-source Engineering Preview needs a reproducible contributor path and objective release gates before implementation can claim readiness.
+    owner_role: AUTHOR
+    assigned_model: null
+    reviewer_model: null
+    verifier_model: null
+    status: BACKLOG
+    priority: P0
+    dependencies:
+      - E1-001
+    blocked_by:
+      - E1_001_NOT_INDEPENDENTLY_VERIFIED
+    activation_condition: "E1-001 is independently VERIFIED and E0-001 is independently VERIFIED."
+    files_to_read:
+      - MASTER_OPERATING_PROMPT.md
+      - AGENTS.md
+      - 01_governance/PROJECT_STATE.yaml
+      - 01_governance/TASK_REGISTRY.yaml
+      - 01_governance/DECISION_LOG.md
+      - 01_governance/ASSUMPTION_REGISTER.md
+      - 01_governance/RISK_REGISTER.md
+      - 03_product/ENGINEERING_PREVIEW_CHARTER.md
+      - 03_product/ENGINEERING_PREVIEW_PRD.md
+      - 03_product/ENGINEERING_PREVIEW_USER_FLOWS.md
+      - 03_product/ENGINEERING_PREVIEW_CORRECTNESS_CONTRACT.md
+      - 06_evaluation/MODEL_ROLE_BENCHMARK_PLAN.md
+    allowed_files_to_change:
+      - 03_product/ENGINEERING_PREVIEW_CONTRIBUTION_WORKFLOW.md
+      - 06_evaluation/ENGINEERING_PREVIEW_EVALUATION_SUITE.md
+      - 10_checkpoints/stage_checkpoints/ENGINEERING_PREVIEW_V0_1_RELEASE_ACCEPTANCE.yaml
+      - 01_governance/ASSUMPTION_REGISTER.md
+      - 01_governance/RISK_REGISTER.md
+      - 01_governance/PROJECT_STATE.yaml
+      - 01_governance/TASK_REGISTRY.yaml
+      - 99_handoffs/completed/E1-002_handoff.yaml
+    deliverables:
+      - open_source_contribution_workflow
+      - evaluation_suite
+      - release_acceptance_criteria
+    acceptance_criteria:
+      - Contribution setup, change isolation, review, test, evidence, security, and maintainer-approval expectations are reproducible for an external contributor.
+      - The evaluation suite covers functional correctness, durability, restart/recovery, isolation, tool use, interruption, provider routing, completion verification, evidence generation, security-negative behavior, cost, and latency without running E3 benchmarks.
+      - Release acceptance criteria require deterministic checks, independent verification, forbidden-artifact and secret checks, clean-room/source provenance, evidence-bundle validation, known limitations, and human release approval.
+      - E1 is not gate-VERIFIED and E2 is not activated until E0-001, E1-001, and E1-002 are independently VERIFIED.
+    required_tests:
+      - Independent challenger and post-fix verifier reviews.
+      - Requirements traceability and cross-file gate consistency checks.
+      - Markdown, no-code, no-architecture-selection, no-benchmark-execution, secret-pattern, and git diff --check.
+    expected_evidence:
+      - contributor_workflow_walkthrough
+      - evaluation_coverage_matrix
+      - release_gate_checklist
+      - independent_verification_record
