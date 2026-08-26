@@ -1,0 +1,377 @@
+handoff_id: H-E0-001-FIXER-20260825
+task_id: E0-001
+stage: E0
+mode: FIX_TASK_E0-001
+role: FIXER
+author_model: "Codex (runtime model identifier not exposed) — original E0 AUTHOR returning as FIXER"
+reviewer_requested: "Independent post-fix project VERIFIER review of every corrected E0 acceptance criterion and F-E0-01 through F-E0-07 disposition. Author-internal subagent analysis, critique, exploration, and checks do not satisfy that review."
+started_at: "2026-08-25 (exact UTC start not separately recorded)"
+completed_at: "2026-08-26T03:16:25Z"
+base_commit: 7d3dc59db243a1eee9558209f2ab71539638d766
+challenger_review:
+  artifact: 99_handoffs/completed/ENGINEERING_PREVIEW_INITIALIZATION_challenger_review.yaml
+  reviewer_model: "Claude Fable 5 (claude-fable-5) via Claude Code"
+  reviewed_commit: 25688830a2e9aab79a78bece358b13c7a3cd31b8
+  verdict: E0_CHANGES_REQUESTED
+  finding_counts:
+    blocker: 0
+    high: 2
+    medium: 3
+    low: 2
+task_status: READY_FOR_REVIEW
+verification_status: NOT_VERIFIED
+
+files_read:
+  - MASTER_OPERATING_PROMPT.md
+  - AGENTS.md
+  - README.md
+  - SECURITY.md
+  - 01_governance/PROJECT_STATE.yaml
+  - 01_governance/TASK_REGISTRY.yaml
+  - 01_governance/DECISION_LOG.md
+  - 01_governance/ASSUMPTION_REGISTER.md
+  - 01_governance/RISK_REGISTER.md
+  - 01_governance/MODEL_REGISTRY.yaml
+  - 03_product/ENGINEERING_PREVIEW_CHARTER.md
+  - 99_handoffs/completed/ENGINEERING_PREVIEW_INITIALIZATION_handoff.yaml
+  - 99_handoffs/completed/ENGINEERING_PREVIEW_INITIALIZATION_challenger_review.yaml
+  - 06_evaluation/MODEL_ROLE_BENCHMARK_PLAN.md
+  - 02_research/GROK_BOT_BASELINE_2026-08-21.md
+  - 02_research/GROK_BOT_018_RECONSTRUCTED_ARCHITECTURE_AUDIT.md
+  - 02_research/GROK_BOT_018_ARCHITECTURE_ADOPTION_MATRIX.csv
+  - 99_handoffs/completed/EXTERNAL_GROK_BOT_018_ARCHITECTURE_AUDIT_verifier_review.yaml
+  - 03_product/S1-001_CUSTOMER_WORKFLOW_SCORECARD.md
+  - 03_product/S1-001_SCORED_HYPOTHESES.csv
+  - 02_research/S1-001_CURRENT_WORKAROUND_EVIDENCE_2026-08-23.md
+  - 03_product/S1-002_CUSTOMER_DISCOVERY_PLAN.md
+  - 03_product/S1-002_INTERVIEW_GUIDE_H1.md
+  - 03_product/S1-002_INTERVIEW_GUIDE_H2.md
+  - 03_product/S1-002_RECRUITING_PLAN.md
+  - 03_product/S1-002_DISCOVERY_SCORECARD.csv
+  - 10_checkpoints/stage_checkpoints/STAGE_0_VERIFICATION.yaml
+  - 99_handoffs/completed/S1-001_verifier_review.yaml
+  - 99_handoffs/completed/S1-002_verifier_review.yaml
+  - 99_handoffs/completed/S1-003_AUTHORIZATION_RECONCILIATION_handoff.yaml
+  - 99_handoffs/HANDOFF_TEMPLATE.yaml
+
+files_created:
+  - 99_handoffs/completed/E0-001_fixer_handoff.yaml
+files_modified:
+  - README.md
+  - MASTER_OPERATING_PROMPT.md
+  - 01_governance/PROJECT_STATE.yaml
+  - 01_governance/TASK_REGISTRY.yaml
+  - 01_governance/ASSUMPTION_REGISTER.md
+  - 01_governance/RISK_REGISTER.md
+  - 01_governance/MODEL_REGISTRY.yaml
+  - 03_product/ENGINEERING_PREVIEW_CHARTER.md
+  - 06_evaluation/MODEL_ROLE_BENCHMARK_PLAN.md
+  - 99_handoffs/completed/ENGINEERING_PREVIEW_INITIALIZATION_handoff.yaml
+files_deleted: []
+
+scope_amendments:
+  recorded_before_newly_scoped_files_were_modified: true
+  historical_scope_preserved: true
+  amendments:
+    - amendment_id: E0-001-A2
+      path: MASTER_OPERATING_PROMPT.md
+      reason: "Reconcile the mandatory global prompt's active startup instructions with confirmed D-016 while preserving the startup sequence for future resumption."
+    - amendment_id: E0-001-A3
+      path: 06_evaluation/MODEL_ROLE_BENCHMARK_PLAN.md
+      reason: "Replace the active engineering benchmark's unreachable customer-selection dependency with the verified Engineering Preview E1 task/evaluation gate while preserving the startup gate."
+    - amendment_id: E0-001-A4
+      path: 01_governance/MODEL_REGISTRY.yaml
+      reason: "Reconcile the registry's separate active benchmark-policy copy without changing model evidence, roles, or results."
+    - amendment_id: E0-001-A5
+      paths:
+        - 01_governance/ASSUMPTION_REGISTER.md
+        - 01_governance/RISK_REGISTER.md
+      reason: "Update only materially stale D-016 assumptions, mitigations, and autonomy/clean-room risks."
+    - amendment_id: E0-001-A6
+      path: 99_handoffs/completed/E0-001_fixer_handoff.yaml
+      reason: "Create the founder-required factual finding-resolution and validation handoff."
+
+decisions_made:
+  - "GOVERNANCE CORRECTION: D-016 establishes engineering-first mode, eventual bounded autonomous-task capability, and pre-implementation specification/architecture/spike gates; it does not authorize autonomous implementation."
+  - "GOVERNANCE CORRECTION: E3 verification is necessary but not sufficient and can establish AUTONOMY_ELIGIBLE only; a separate explicit founder decision must record AUTONOMOUS_BUILD_AUTHORIZED before E4 can start."
+  - "DEPENDENCY CORRECTION: E1-001 depends on independent E0-001 verification and remains BACKLOG with E1-002; no downstream task is READY."
+  - "EVIDENCE CLASSIFICATION: implementation-neutral required properties are separated from audit-supported E2 patterns and reconstruction-specific implementation details; the audit selects no architecture."
+  - "MODEL-OPERATOR CORRECTION: future autonomous work uses logical roles whose eligible occupants are determined by E3 evidence and a future founder authorization; no provider or product is selected."
+  - "PIVOT RECONCILIATION: while D-016 is active, Engineering Preview E1 requirements/evaluation fixtures replace customer-wedge selection as the active benchmark input; the startup gate remains preserved for separate resumption."
+  - "No architecture, client technology, model role, benchmark result, application implementation, customer evidence, customer action, or autonomous-build authorization was created."
+
+assumptions_added:
+  - A-019
+assumptions_refined:
+  - A-004
+risks_added:
+  - R-025
+  - R-026
+risks_refined:
+  - R-001
+  - R-013
+
+finding_resolutions:
+  - finding_id: F-E0-01
+    resolution: FIXED
+    files_changed:
+      - README.md
+      - MASTER_OPERATING_PROMPT.md
+      - 01_governance/PROJECT_STATE.yaml
+      - 01_governance/TASK_REGISTRY.yaml
+      - 03_product/ENGINEERING_PREVIEW_CHARTER.md
+      - 99_handoffs/completed/ENGINEERING_PREVIEW_INITIALIZATION_handoff.yaml
+    evidence: >-
+      The current policy is explicitly E3 VERIFIED to AUTONOMY_ELIGIBLE to a separate explicit
+      founder authorization to AUTONOMOUS_BUILD_AUTHORIZED. E3 is necessary but not sufficient;
+      it cannot automatically activate E4. D-016 is described only as engineering-first mode,
+      eventual bounded capability, and the requirement for specification/architecture/spike
+      gates. PROJECT_STATE records E4 NOT_STARTED, autonomous_build_authorized false,
+      authorization NOT_AUTHORIZED, and founder authorization NOT_RECORDED. The future founder
+      decision may define systems/models, costs, task classes, escalation, branch/worktree,
+      commit, and stop policies.
+    verification: >-
+      Fixer checks require zero active-file matches for "D-016 conditionally", positive
+      two-gate language in charter/state/master/registry, E4 NOT_STARTED plus explicit
+      NOT_AUTHORIZED state, and a byte-identical D-016 section/file. Independent post-fix
+      verification is pending.
+
+  - finding_id: F-E0-02
+    resolution: FIXED
+    files_changed:
+      - README.md
+      - MASTER_OPERATING_PROMPT.md
+      - 01_governance/PROJECT_STATE.yaml
+      - 01_governance/TASK_REGISTRY.yaml
+      - 03_product/ENGINEERING_PREVIEW_CHARTER.md
+      - 99_handoffs/completed/ENGINEERING_PREVIEW_INITIALIZATION_handoff.yaml
+    evidence: >-
+      E1-001 is BACKLOG, depends on E0-001, and is blocked by
+      E0_001_NOT_INDEPENDENTLY_VERIFIED. E1-002 remains BACKLOG. PROJECT_STATE returns the current
+      phase to E0 READY_FOR_REVIEW with an empty ready-task list, and README plus PROJECT_STATE
+      direct the next operation to MODE: VERIFY_TASK_E0-001. The historical author handoff is
+      explicitly superseded for current status by its fixer addendum.
+    verification: >-
+      Fixer graph/status assertions require E1-001 to be non-executable unless every dependency,
+      including E0-001, is VERIFIED; README and PROJECT_STATE must agree on E0 verification as
+      next action; E0 must remain READY_FOR_REVIEW and NOT_VERIFIED. Independent post-fix
+      verification is pending.
+
+  - finding_id: F-E0-03
+    resolution: FIXED
+    files_changed:
+      - 03_product/ENGINEERING_PREVIEW_CHARTER.md
+    evidence: >-
+      Charter Section 16.2 now separates Level A implementation-neutral required properties,
+      Level B audit-supported patterns that E2 must compare against alternatives, and Level C
+      reconstruction-specific mechanisms that are not requirements and must not be copied.
+      Related Sections 4.4, 5, 6, 11, 15, and 19 now state semantic outcomes and decision
+      questions without preselecting stores, services, compaction, content addressing, typed
+      registries, provider routers, gateways, cloud seams, checkpoint/quarantine mechanisms, or
+      renderer/Electron details.
+    verification: >-
+      Fixer and author-internal read-only checks read Sections 4.4, 5, 6, 11, 15, 16.2, and 19
+      together and found no property simultaneously presented as an open pattern and a mandatory
+      implementation. Every founder-specified example appears at exactly the appropriate level.
+      Independent post-fix verification is pending.
+
+  - finding_id: F-E0-04
+    resolution: FIXED
+    files_changed:
+      - MASTER_OPERATING_PROMPT.md
+      - 03_product/ENGINEERING_PREVIEW_CHARTER.md
+      - 06_evaluation/MODEL_ROLE_BENCHMARK_PLAN.md
+    evidence: >-
+      The E4 design proposal uses AUTONOMOUS_CONTROLLER, PLANNER, EXECUTOR, CODER, VERIFIER, and
+      SECURITY_REVIEWER. E3 must determine which available system/model, if any, may occupy each
+      role by task class, and the future founder decision must authorize the allowed occupants.
+      Codex, Terra, Luna, Claude Code, DeepSeek, open/self-hosted, and future systems remain
+      candidates only; none is assigned to E4.
+    verification: >-
+      Fixer searches require no "Codex may repeat" or vendor-specific E4/controller assignment;
+      both charter and benchmark must contain the six logical roles; MODEL_REGISTRY must remain
+      HYPOTHESIS_ONLY/NOT_RUN with no provider/model locked. Independent post-fix verification is
+      pending.
+
+  - finding_id: F-E0-05
+    resolution: FIXED
+    files_changed:
+      - MASTER_OPERATING_PROMPT.md
+      - 01_governance/PROJECT_STATE.yaml
+      - 01_governance/TASK_REGISTRY.yaml
+      - 01_governance/MODEL_REGISTRY.yaml
+      - 03_product/ENGINEERING_PREVIEW_CHARTER.md
+      - 06_evaluation/MODEL_ROLE_BENCHMARK_PLAN.md
+    evidence: >-
+      A precedence-labeled D-016 override defers customer discovery, makes E1 Engineering Preview
+      requirements/evaluation fixtures the active benchmark workflow input, gates E2 on verified
+      E1, and gates E3 on verified E1/E2 plus separate access/budget/data/run approvals rather
+      than paused S1-003. The original startup mission, sequence, Stage 1 gate, and five benchmark
+      inputs remain explicitly preserved and reactivate only after a separate founder decision
+      resumes that track. MODEL_REGISTRY carries the same two-track rule without changing model
+      evidence or results.
+    verification: >-
+      Fixer and author-internal checks require the active D-016 branch to contain no S1-003 or
+      customer-selection prerequisite, preserved startup wording to remain present, benchmark
+      executions/results to stay zero/none, and all model roles to stay unselected. The
+      prospective scope amendments E0-001-A2 through A4 were recorded before these files were
+      edited. Independent post-fix verification is pending.
+
+  - finding_id: F-E0-06
+    resolution: FIXED
+    files_changed:
+      - 01_governance/ASSUMPTION_REGISTER.md
+      - 01_governance/RISK_REGISTER.md
+      - 01_governance/TASK_REGISTRY.yaml
+    evidence: >-
+      Confirmed-context notes distinguish D-016 facts from hypotheses/risks. A-004 is tied to the
+      unrun E3 suite with NO_ROLE_SELECTED; A-019 records the local-first, single-user persistent
+      engineering-agent product hypothesis and future-SaaS constraint. R-001 and R-013 now use
+      E1/E2/E3/E5 mitigations under D-016; R-025 covers unauthorized autonomy; R-026 covers
+      clean-room/license/provenance exposure. Prior startup entries remain intact and deferred.
+    verification: >-
+      Fixer and author-internal checks require D-016, Engineering Preview, architecture
+      unselected, E3 eligibility, separate founder authorization, local-first single-user target,
+      and future-SaaS constraint language in the two registers; IDs and table widths must be
+      valid, and the diff must remain limited to the named entries. E0-001-A5 was recorded before
+      editing. Independent post-fix verification is pending.
+
+  - finding_id: F-E0-07
+    resolution: FIXED
+    files_changed:
+      - 99_handoffs/completed/ENGINEERING_PREVIEW_INITIALIZATION_handoff.yaml
+    evidence: >-
+      Author-side subagents are now labeled AUTHOR_INTERNAL_ANALYSIS,
+      AUTHOR_INTERNAL_CRITIQUE, and AUTHOR_INTERNAL_CHECK and explicitly do not satisfy the
+      project CHALLENGER/VERIFIER protocol. A provenance-correction addendum records the original
+      labels, pinned historical commit 2568883 and SHA-256, the true independent challenger
+      artifact/verdict, and the still-pending independent post-fix verifier. The stale original
+      E1/autonomy/next-task fields remain historical and are superseded for current use by a
+      separate current-state correction addendum.
+    verification: >-
+      Fixer checks require no bare role CHALLENGER/VERIFIER lines in the author handoff, a valid
+      provenance addendum, a historical file hash matching the pinned commit, the true challenger
+      path/verdict, and formal verification status NOT_VERIFIED. Independent post-fix verification
+      is pending.
+
+finding_summary:
+  fixed: 7
+  disputed: 0
+  deferred: 0
+
+tests_run:
+  - "Ruby Psych safe-load of every repository YAML file; task-ID uniqueness, dependency resolution/cycle, project-state/list, E0/E1/S1 status, E4 authorization, finding-resolution, and header-only customer-scorecard assertions."
+  - "Heading-bounded D-016 SHA-256 plus worktree/origin decision-log blob and git-diff identity checks."
+  - "Active-policy semantic assertions for the two-gate autonomy rule, no automatic E4 activation, E1 dependency/next action, Level A/B/C audit integration, provider-neutral logical roles, two-track benchmark gate, and author-internal role provenance."
+  - "Manual-plus-scripted cross-reading of charter Sections 4.4, 5, 6, 11, 15, 16.2, and 19, followed by a separate author-internal read-only audit for requirement/pattern/implementation-detail consistency."
+  - "Ruby comparison of the 13 MODEL_REGISTRY model entries against base commit 7d3dc59; role/result/benchmark-policy assertions."
+  - "Assumption/risk ID uniqueness, Markdown table-width, D-016 context-term, and bounded-diff checks."
+  - "Historical author-handoff SHA-256 from commit 2568883; corrected role-label, actual-challenger, current-state-addendum, and pending-verifier assertions."
+  - "Protected-artifact git diff from 7d3dc59 across D-016, AGENTS/SECURITY, inbox, source ledger, research, S1 product, checkpoints, challenger, and verifier artifacts."
+  - "Repository scan for application source/manifests and downstream E1/architecture/benchmark artifacts; state counters for architecture, code, spikes, benchmarks, customer actions, and spend."
+  - "Exact changed/untracked path comparison against the 11 expected paths and the E0-001 allowlist; E0-001-A2 through A6 presence; staged-change check."
+  - "UTF-8, final-newline, tab, trailing-whitespace, Markdown fence/table, and high-confidence private-key/AWS/GitHub/OpenAI/Anthropic/Slack/Google/credential-assignment pattern checks on all 11 changed files."
+  - "git diff --check against base commit 7d3dc59 and final git status inspection."
+test_results:
+  - "YAML/governance PASS: 36/36 YAML files parse; 11 unique tasks; 15 resolving acyclic dependencies; E0 READY_FOR_REVIEW/NOT_VERIFIED; no READY task; E1-001/E1-002 BACKLOG; S1-001/S1-002 VERIFIED; S1-003 BLOCKED+DEFERRED with its single D-016 blocker and zero counters; all seven finding records complete and FIXED."
+  - "D-016 immutability PASS: lines 422–550 SHA-256 77c1542e6767dff084e2700187c07de9ea319ce6500c0218500d08b0a4f7f1aa; worktree and 334f919 decision-log blob both 41e349cc24b9624b682f4de9e4011e29daabe57a; git diff empty."
+  - "Initial combined semantic-validator invocation failed only because Ruby %w split multiword Level headings in the check itself; the corrected validator ran immediately and PASSed with no repository change caused by the failed check."
+  - "Policy semantics PASS: no active D-016 conditional-authorization, Codex-E4, or automation-unlock wording; two-gate autonomy, E0 next action, six logical roles, three audit levels, D-016 benchmark override, preserved startup gate, and corrected role provenance all present."
+  - "External-audit integration PASS: seven Level A required properties, Level B alternatives, Level C reconstruction details, E2-only selection, and no-copy rule; separate author-internal re-audit found no residual Level B preselection."
+  - "Model PASS: all 13 model entries are byte-semantically unchanged from 7d3dc59; 13/13 HYPOTHESIS_ONLY, 13/13 NOT_RUN; PLAN_ONLY_NOT_AUTHORIZED_TO_RUN, no paid calls, and no provider/model lock remain."
+  - "Register PASS: 19 unique assumptions and 26 unique risks with valid table widths; D-016, active Engineering Preview, unselected architecture, E3 eligibility, separate authorization, local-first target, and future-SaaS constraint are represented in both; only the bounded named rows changed."
+  - "Provenance PASS: historical author handoff at 2568883 hashes to 2bcf527a03aa3341fea97db89fb97f3ac0689f3011f3a73441a2928665a1547a; no bare CHALLENGER/VERIFIER role labels remain; true challenger/verdict recorded; formal post-fix verifier remains pending."
+  - "Regression PASS: protected decision, inbox, research, S1 product, checkpoint, challenger, and verifier artifacts are unchanged; the S1-002 scorecard remains 74 headers and zero customer rows."
+  - "No-downstream-work PASS: no application source/manifests or E1 product artifacts exist; architecture/PRD/code versions remain null; application/architecture flags false; technical spikes and model benchmarks remain 0; benchmark plan records 0 executions, no results, and plan-only authorization."
+  - "Scope PASS: exact 11-path fixer diff; every path is allowed; prospective amendments E0-001-A2 through A6 are present; no staged changes and no commit."
+  - "Security/text PASS: 11/11 files valid UTF-8 with final newlines, no tabs/trailing whitespace, balanced Markdown fences/tables, and zero high-confidence secret/credential-pattern matches."
+  - "git diff --check PASS with no output."
+security_checks:
+  - "No customer/prospect system, private customer-evidence directory, external account, connector, paid API, or network service was accessed."
+  - "No outreach, contact identification, recruiting, interview, recording, pilot, price offer, incentive, spend, technical spike, model benchmark, or external action occurred."
+  - "No reconstructed source code, exact reconstruction schema/module, renderer asset, UI copy, branding, consumer authentication integration, or other external implementation material was imported."
+  - "High-confidence secret and credential scan returned zero matches across every changed/created file."
+
+known_limitations:
+  - "E0-001 is READY_FOR_REVIEW and NOT_VERIFIED; this fixer and its author-internal subagents do not satisfy the independent project verifier requirement."
+  - "No Engineering Preview PRD, user flows, correctness contract, contribution workflow, evaluation suite, architecture ADR, implementation, spike result, benchmark result, or release artifact exists."
+  - "The verified external architecture audit is static research about an unofficial reconstruction and selects no project architecture."
+  - "The verified Grok Bot baseline has no authorized black-box/runtime execution evidence."
+unverified_claims:
+  - "The local-first single-user Engineering Preview target remains an OPEN_NOT_TESTED product assumption."
+  - "All model role and task-class suitability remains HYPOTHESIS_ONLY/NOT_RUN."
+  - "Runtime durability, recovery, isolation, tool reliability, completion verification, and evidence generation remain untested because no implementation or E3 spike exists."
+  - "Customer demand, pricing, willingness to pay, market size, and customer selection remain unvalidated because S1-003 is deferred with zero execution."
+blockers:
+  - "Independent post-fix verification of E0-001 is required before E0-001 can become VERIFIED or E1-001 can become READY."
+recommended_next_task: "MODE: VERIFY_TASK_E0-001 — independently verify the fixer patch; do not execute E1-001."
+repository_commit_or_patch: "Uncommitted E0-001 fixer patch based on 7d3dc59db243a1eee9558209f2ab71539638d766; intentionally left uncommitted for the founder."
+
+scope_control:
+  allowed_paths_only: true
+  d016_modified: false
+  s1_001_status: VERIFIED
+  s1_002_status: VERIFIED
+  s1_003_status: BLOCKED_DEFERRED
+  customer_records_created: 0
+  customer_contacts_identified: 0
+  outreach_messages_sent: 0
+  recruiting_posts_sent: 0
+  interviews_conducted: 0
+  pilots_offered_or_started: 0
+  price_offers_made: 0
+  incentives_purchased: 0
+  spend_usd: 0
+  architecture_selected: false
+  client_technology_selected: false
+  model_roles_locked: false
+  technical_spikes_run: 0
+  model_benchmarks_run: 0
+  application_code_written: false
+  external_actions_performed: false
+  autonomous_build_authorized: false
+  commit_created: false
+
+final_state:
+  E0_001:
+    status: READY_FOR_REVIEW
+    verification_status: NOT_VERIFIED
+  E1_001:
+    status: BACKLOG
+    blocked_by: E0_001_NOT_INDEPENDENTLY_VERIFIED
+  E1_002: BACKLOG
+  E2: NOT_STARTED
+  E3: NOT_STARTED
+  E4: NOT_STARTED
+  E5: NOT_STARTED
+  autonomy_eligibility: NOT_ELIGIBLE
+  autonomous_build_authorized: false
+  autonomous_build_authorization: NOT_AUTHORIZED
+  startup_track: PRESERVED_DEFERRED_BY_D016
+  S1_001: VERIFIED
+  S1_002: VERIFIED
+  S1_003: BLOCKED_DEFERRED
+  architecture_selected: false
+  application_code_created: false
+
+final_validation:
+  status: PASS_FIXER_CHECKS_E0_REMAINS_READY_FOR_REVIEW_NOT_VERIFIED
+  yaml_parse: PASS_36_OF_36
+  tasks_unique: PASS_11_OF_11
+  dependencies: PASS_15_RESOLVING_ACYCLIC
+  finding_resolutions: PASS_7_FIXED_0_DISPUTED_0_DEFERRED
+  d016_unchanged: PASS_BYTE_IDENTICAL
+  s1_001_s1_002: VERIFIED_UNCHANGED
+  s1_003: BLOCKED_DEFERRED_ZERO_EXECUTION
+  e1_001: BACKLOG_PENDING_E0_VERIFIED
+  autonomy: NOT_ELIGIBLE_NOT_AUTHORIZED
+  audit_layers: PASS_DISTINCT_A_B_C
+  model_registry: PASS_13_HYPOTHESIS_ONLY_13_NOT_RUN
+  architecture_selected: false
+  application_code_created: false
+  technical_spikes_run: 0
+  model_benchmarks_run: 0
+  allowed_paths: PASS_EXACT_11
+  secret_scan: PASS_ZERO_MATCHES
+  git_diff_check: PASS_NO_OUTPUT
+  independent_post_fix_verification: PENDING

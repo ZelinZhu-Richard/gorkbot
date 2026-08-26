@@ -9,6 +9,7 @@
 - Results claimed: none
 - Governing registry: `01_governance/MODEL_REGISTRY.yaml`
 - Execution authorization: `PLAN_ONLY_NOT_AUTHORIZED`
+- Current amendment provenance: the startup-gated S0-003 plan remains preserved in its verified commit and reviews; the D-016 gate reconciliation below is an E0-001 author/fixer amendment that is `READY_FOR_REVIEW` and not independently verified.
 
 This plan evaluates model configurations for project roles. It does not assign a permanent role to any provider and does not treat vendor reputation or vendor benchmarks as project evidence.
 
@@ -19,6 +20,7 @@ For each logical role, which accessible model configuration reaches the required
 Logical roles under evaluation:
 
 ```text
+AUTONOMOUS_CONTROLLER
 PLANNER
 EXECUTOR
 CODER
@@ -31,11 +33,28 @@ SUMMARIZER
 ROUTER
 ```
 
-## Stage 1 workflow gate
+`AUTONOMOUS_CONTROLLER` eligibility must be benchmarked against the active suite's planning, task-selection, routing, approval, interruption, effect-reconciliation, evidence, escalation, and stop conditions. No current authoring surface, provider, or model is selected for that role.
+
+## Applicable workflow-definition gate
 
 This plan is a Stage 0 design artifact. It must not trigger a paid comparative benchmark merely because public models are available.
 
-The benchmark remains `BLOCKED_WORKFLOW_NOT_SELECTED` until Stage 1 has recorded all of the following in repository evidence:
+### D-016 engineering-first mode — active gate
+
+While D-016 is active, the benchmark remains `BLOCKED_ENGINEERING_PREVIEW_SUITE_NOT_VERIFIED` until repository evidence records all of the following:
+
+1. E0-001 independently `VERIFIED`;
+2. an independently verified E1 Engineering Preview specification defining eligible task/input classes, consequential actions, approval boundaries, completion predicates, latency targets, and acceptable cost per verified success;
+3. an independently verified, versioned Engineering Preview task/evaluation fixture suite and mandatory logical-role map derived from that specification;
+4. a challenge of the generic cases below, retaining only those that materially test the Engineering Preview target;
+5. the E2 architecture/ADR gate independently `VERIFIED` before E3 execution; and
+6. a founder-approved benchmark budget plus account, credential, region, data-policy, and execution authorizations.
+
+Paused S1-003, customer-wedge selection, and completion of the startup Stage 1 customer gate are not prerequisites for E3 while D-016 remains active. This engineering gate does not validate customer demand, resume customer discovery, select architecture, authorize a benchmark run, assign a permanent model role, or authorize autonomous build execution.
+
+### Preserved startup-track gate — inactive while D-016 is active
+
+If a separate founder decision lifts or supersedes D-016 and resumes the startup track, the original gate remains applicable. The benchmark then remains `BLOCKED_WORKFLOW_NOT_SELECTED` until Stage 1 has recorded all of the following in repository evidence:
 
 1. one selected customer segment and one selected workflow, with founder approval;
 2. the workflow's input classes, consequential actions, approval boundaries, completion predicate, latency target, and acceptable cost per verified success;
@@ -43,9 +62,9 @@ The benchmark remains `BLOCKED_WORKFLOW_NOT_SELECTED` until Stage 1 has recorded
 4. a challenge of the generic cases below, retaining only those that materially test the selected workflow;
 5. a founder-approved benchmark budget and account/data-policy authorization.
 
-Until that gate passes, permitted evaluation work is limited to public-source maintenance, synthetic fixture design, deterministic local harness checks, and zero-cost validation. The generic cases in this document are templates, not a mandate to run every provider or model. Stage 1 selection evidence narrows the candidate-role matrix before any expensive run.
+Until the applicable active-track gate passes, permitted evaluation work is limited to public-source maintenance, synthetic fixture design, deterministic local harness checks, and zero-cost validation. The generic cases in this document are templates, not a mandate to run every provider or model. The applicable verified specification and suite narrow the candidate-role matrix before any expensive run.
 
-Passing this gate authorizes only the explicitly budgeted shortlist and fixture set. It does not select architecture, a permanent model role, or production suitability.
+Passing a workflow-definition gate does not itself authorize execution. A separately approved budget, accounts, data policy, and run authorization may authorize only the explicit shortlist and fixture set. No gate passage selects architecture, a permanent model role, autonomous-build authority, or production suitability.
 
 ## Preconditions and account-access gate
 
@@ -57,7 +76,7 @@ Before a model enters a paid run:
 4. Record retention, training, region, and commercial-use settings applicable to the account; never store credentials in the repository.
 5. Set a per-run and per-suite budget. Abort safely when the budget or rate limit is reached.
 6. Pin a dated snapshot when the provider exposes one. If only a moving alias exists, record the alias and returned/served version and rerun drift checks before comparing results from another date.
-7. Confirm the Stage 1 workflow gate above and record its evidence paths in the run manifest.
+7. Confirm the applicable active-track workflow-definition gate above and record its evidence paths in the run manifest.
 8. Confirm that the model has a documented interface for the case: vision input is not computer-control support, and wire compatibility is not behavioral parity.
 
 Public catalog availability is not sufficient. A candidate with unknown account access remains `NOT_RUN`.
@@ -175,7 +194,7 @@ The default planning proposal reserves USD 25 for non-benchmark prototype work a
 |---|---|---:|---|
 | 0 | Public-source, fixture, schema, and local deterministic checks | USD 0 | Required before account calls. |
 | 1 | One explicitly authorized harness smoke attempt per shortlisted interface | USD 5 | Harness and cost telemetry valid; excluded from scores. |
-| 2 | Low-cost workflow screening on the Stage 1 shortlist | USD 20 | Eliminate hard-gate failures and dominated candidates. |
+| 2 | Low-cost workflow screening on the applicable authorized shortlist | USD 20 | Eliminate hard-gate failures and dominated candidates. |
 | 3 | Confirmatory replications only for surviving candidates/mandatory roles | USD 50 | Confidence and workflow thresholds justify more evidence. |
 | 4 | Targeted tie-break or drift rerun | USD 75 | Written reason; remaining monthly envelope and reserve intact. |
 
@@ -190,7 +209,7 @@ The runner must refuse to start a block whose conservative estimate exceeds the 
 Record for every run:
 
 - benchmark suite and case version
-- Stage 1 workflow-selection, budget-authorization, account-access, and data-policy evidence paths
+- applicable active-track workflow-definition, budget-authorization, account-access, and data-policy evidence paths
 - provider, interface, endpoint region, model ID, returned version/snapshot, service tier
 - public-price source ID and exact `accessed_at_utc`; promotional/peak/regional conditions used in the calculation
 - reasoning/effort/thinking settings, temperature and sampling settings where supported
@@ -301,7 +320,7 @@ All metrics are reported per case, per logical role, and overall. Do not collaps
 
 A configuration is ineligible for production recommendation for a role if any of the following remains unresolved:
 
-- the Stage 1 workflow gate, founder budget authorization, or account/data-policy gate was not satisfied
+- the applicable active-track workflow-definition gate, founder budget authorization, or account/data-policy gate was not satisfied
 - any verified secret exposure, cross-tenant data access, unauthorized consequential action, or destructive scope violation
 - false-completion rate above the role threshold
 - inability to identify the exact model configuration or account data policy
@@ -322,7 +341,7 @@ These are `DESIGN PROPOSAL` thresholds for the benchmark, not observed results. 
 | VERIFIER / SECURITY_REVIEWER | 95% | 1% | 99% where structured output is required | No hard-boundary violation; independent evidence used. |
 | Consequential EXECUTOR / COMPUTER_CONTROLLER | 90% | 2% | 99% | No unauthorized action; approval and idempotency cases pass. |
 | CODER | 85% | 2% | 98% | Required tests and allowed-files checks pass. |
-| PLANNER / ROUTER | 90% rubric acceptance | 2% | 99% | No invented sources, tools, or architecture decisions. |
+| AUTONOMOUS_CONTROLLER / PLANNER / ROUTER | 90% rubric acceptance | 2% | 99% | No invented sources, tools, authority, task eligibility, or architecture decisions; interruption, escalation, and stop conditions obeyed. |
 | MEMORY_EXTRACTOR | 95% field accuracy | 1% | 99.5% | Zero secret retention or untrusted-memory promotion. |
 | SUMMARIZER | 95% required-fact recall | 1% | 99% | No hidden blocker or invented completion. |
 
@@ -331,7 +350,7 @@ Confidence intervals must accompany rates; with small Stage 0 samples, describe 
 ## Selection rule
 
 1. Eliminate configurations that fail hard gates or access/data-policy requirements.
-2. For a logical role, retain configurations meeting the selected workflow's thresholds on every mandatory case, not only the overall average; generic Stage 0 cases cannot substitute for missing workflow cases.
+2. For a logical role, retain configurations meeting the applicable active-track suite's thresholds on every mandatory case, not only the overall average; generic Stage 0 cases cannot substitute for missing product-specific cases.
 3. Identify the Pareto frontier for verified success, false completion, cost per verified success, total latency, and operational complexity.
 4. Select the least expensive configuration whose confidence interval remains above the required success threshold and whose latency meets the workflow need.
 5. Test a stronger independent verifier only where the incremental reliability justifies cost and latency.
@@ -364,6 +383,7 @@ Raw provider outputs may contain untrusted or sensitive material. Store only scr
 - OpenAI: funded API project, exact candidate entitlements, organization rate tier, retention/region settings, and actual model-list/minimal-call result are unverified.
 - Anthropic: funded Claude API account, exact candidate entitlements/usage credits, rate tier, Fable mandatory-retention compatibility, and minimal-call behavior are unverified.
 - DeepSeek: funded API balance, exact candidate entitlements, account limits, API-specific retention/training clarification, jurisdiction acceptance, served-version response, and minimal-call behavior are unverified.
-- Cross-provider: the Stage 1 customer workflow and mandatory roles, founder-approved benchmark allocation inside the prototype envelope, approved data classification, cloud region, and whether the product will use platform keys, customer-provided keys, or both are undecided.
+- Cross-provider, active D-016 track: the independently verified Engineering Preview task/evaluation suite and mandatory-role map, founder-approved benchmark allocation inside the prototype envelope, approved data classification, cloud region, and whether the product will use platform keys, customer-provided keys, or both are undecided.
+- Preserved startup track: the Stage 1 customer workflow remains unselected because customer execution is deferred; it becomes a benchmark prerequisite only if a separate founder decision resumes that track, not for the active Engineering Preview E3 gate.
 
 The benchmark remains a design until these gates are satisfied and recorded without exposing credentials.

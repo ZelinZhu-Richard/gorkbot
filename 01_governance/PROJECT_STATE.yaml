@@ -3,10 +3,10 @@ project_name: "Working codename: GorkBot"
 repository: ZelinZhu-Richard/gorkbot
 source_of_truth: repository
 active_program: ENGINEERING_PREVIEW
-current_stage: E1
-current_stage_name: engineering_preview_product_specification
-current_stage_status: ACTIVE
-current_gate: engineering_preview_e1_specification_gate
+current_stage: E0
+current_stage_name: engineering_pivot_and_governance_reconciliation
+current_stage_status: READY_FOR_REVIEW
+current_gate: engineering_preview_e0_independent_verification
 stage_gate_status: NOT_EVALUATED
 last_verified_stage: 0
 last_verified_stage_name: intake_governance_reference_research
@@ -22,9 +22,9 @@ verifier_model: "Claude Fable 5 (claude-fable-5) via Claude Code — S0-001, S0-
 stage_gate_verifier_model: "Codex (runtime model identifier not exposed) — independent repository-first Stage 0 gate session; same Codex product label as the original author is disclosed, exact runtime equality is UNKNOWN_NOT_EXPOSED under D-010"
 active_task_ids:
   - E0-001
-ready_task_ids:
-  - E1-001
+ready_task_ids: []
 backlog_task_ids:
+  - E1-001
   - E1-002
 completed_task_ids:
   - S0-001
@@ -41,7 +41,7 @@ current_prd_version: null
 current_code_commit: null
 working_tree_base_commit: 334f91919abd62b8d9804ee63dda31699dbff0a0
 stage_0_author_commit: f151f28
-last_verified_checkpoint: "Stage 0 remains the last independently VERIFIED stage checkpoint (10_checkpoints/stage_checkpoints/STAGE_0_VERIFICATION.yaml). S0-001, S0-002, S0-003, S1-001, and S1-002 retain their independent VERIFIED records. D-016 defers the startup/customer track with its Stage 1 gate NOT_EVALUATED. Engineering Preview E0-001 is READY_FOR_REVIEW and not verified; E1-001 is the sole READY authoring task; E2 and E3 are NOT_STARTED; E4 is NOT_AUTHORIZED."
+last_verified_checkpoint: "Stage 0 remains the last independently VERIFIED stage checkpoint (10_checkpoints/stage_checkpoints/STAGE_0_VERIFICATION.yaml). S0-001, S0-002, S0-003, S1-001, and S1-002 retain their independent VERIFIED records. D-016 defers the startup/customer track with its Stage 1 gate NOT_EVALUATED. Engineering Preview E0-001 is READY_FOR_REVIEW and not verified; E1-001 and E1-002 are BACKLOG pending verified dependencies; E2, E3, E4, and E5 are NOT_STARTED; autonomous build is NOT_AUTHORIZED."
 unresolved_p0_questions:
   - engineering_preview_v0_1_correctness_contract
   - engineering_preview_architecture_alternatives
@@ -102,6 +102,13 @@ engineering_preview_track:
   status: ACTIVE
   decision_reference: D-016
   target: "Local-first, single-user Engineering Preview centered on one persistent software-engineering agent that can perform durable work on real repositories and return independently verified evidence."
+  active_d016_stage_mapping:
+    E1: "Immediate product-definition work analogous to MASTER_OPERATING_PROMPT Stage 2; verified Engineering Preview requirements replace customer-wedge selection as the active specification input."
+    E2: "Architecture comparison and ADR selection analogous to Stage 3; requires the independently verified E1 gate."
+    E3: "Technical evidence analogous to Stage 4 plus model-role benchmarks; requires verified E1 task/evaluation fixtures and E2, not paused S1-003."
+    E4: "Bounded implementation analogous to Stage 5 only after E3 establishes AUTONOMY_ELIGIBLE and a separate founder decision records AUTONOMOUS_BUILD_AUTHORIZED."
+    E5: "Bounded Stage 6 reliability, open-source packaging, and release verification subset."
+  startup_track_mapping_status: "PRESERVED_INACTIVE_UNDER_D016; the original customer-wedge and benchmark gates apply again only after a separate founder decision resumes the startup track."
   phases:
     E0:
       name: engineering_pivot_and_governance_reconciliation
@@ -111,12 +118,17 @@ engineering_preview_track:
       verification_status: NOT_VERIFIED
     E1:
       name: engineering_preview_product_specification
-      status: ACTIVE
+      status: NOT_STARTED
       task_ids:
         - E1-001
         - E1-002
-      ready_task_id: E1-001
+      task_statuses:
+        E1-001: BACKLOG
+        E1-002: BACKLOG
+      blocked_by:
+        - E0_001_NOT_INDEPENDENTLY_VERIFIED
       gate_status: NOT_EVALUATED
+      activation_condition: "E0-001 is independently VERIFIED before E1-001 may become READY."
       gate_invariant: "E0-001 and all required E1 specification work must be independently VERIFIED before the E1 gate can be VERIFIED or E2 can be activated."
     E2:
       name: architecture_and_adr_selection
@@ -125,12 +137,19 @@ engineering_preview_track:
     E3:
       name: technical_spikes_and_model_role_benchmarks
       status: NOT_STARTED
-      activation_condition: "E2 architecture and ADR gate is independently VERIFIED; paid or real-provider work also requires the S0-005 inputs, budget, credentials, and approval."
+      activation_condition: "E2 architecture and ADR gate is independently VERIFIED; the independently verified Engineering Preview task/evaluation suite supplies the active workflow input and paused S1-003/customer selection is not a prerequisite while D-016 is active; paid or real-provider work also requires the S0-005 inputs, budget, credentials, data-policy approval, and execution approval."
+      gate_effect: AUTONOMY_ELIGIBLE_ONLY
+      does_not_authorize_e4: true
     E4:
       name: autonomous_implementation_of_engineering_preview
-      status: NOT_AUTHORIZED
+      status: NOT_STARTED
+      autonomy_eligibility: NOT_ELIGIBLE
+      autonomous_build_authorized: false
+      autonomous_build_authorization: NOT_AUTHORIZED
       full_autonomous_build_mode: NOT_AUTHORIZED
-      activation_condition: "E3 is independently VERIFIED; D-016 conditionally authorizes the provisional E4 contract at that gate, subject to its recorded task eligibility, approval, budget, stage, release, and stop/escalation rules."
+      activation_condition: "E3 must be independently VERIFIED, establishing AUTONOMY_ELIGIBLE only; a separate explicit founder decision recorded in 01_governance/DECISION_LOG.md must then record AUTONOMOUS_BUILD_AUTHORIZED before E4 may start."
+      founder_authorization_status: NOT_RECORDED
+      authorization_policy: "E3 verification is necessary but not sufficient and cannot automatically activate E4. A future founder decision may define allowed systems/models, cost limits, task classes, escalation conditions, branch/worktree policy, commit policy, and stop conditions."
     E5:
       name: reliability_open_source_packaging_and_release_verification
       status: NOT_STARTED
@@ -180,9 +199,10 @@ s1_003_authorization_reconciliation:
     model_benchmarks_run: 0
     technical_spikes_run: 0
     external_actions_performed: false
-next_recommended_action: "MODE: EXECUTE_TASK_E1-001 — author the Engineering Preview v0.1 product and correctness specification from D-016, the verified baseline and reconstructed-architecture audit, and 03_product/ENGINEERING_PREVIEW_CHARTER.md. Do not select architecture, execute E2/E3, run paid APIs or benchmarks, write application code, activate autonomous build mode, or resume S1-003."
+next_recommended_action: "MODE: VERIFY_TASK_E0-001 — independently verify the E0 fixer patch and F-E0-01 through F-E0-07 dispositions. Do not execute E1-001, select architecture, execute E2/E3, run paid APIs or benchmarks, write application code, authorize autonomous build, or resume S1-003."
 updated_at: "2026-08-25"
 notes:
+  - "E0-001 FIXER PASS (2026-08-25 / 2026-08-26 UTC): F-E0-01 through F-E0-07 are addressed and await independent post-fix verification. E0-001 remains READY_FOR_REVIEW and NOT_VERIFIED. E1-001 now depends on E0-001 and is BACKLOG with E1-002 until its verified prerequisites are satisfied; no downstream task is READY. E2, E3, E4, and E5 are NOT_STARTED. E3 verification can establish AUTONOMY_ELIGIBLE only; a separate explicit founder decision is required to record AUTONOMOUS_BUILD_AUTHORIZED, which remains NOT_AUTHORIZED. D-016 remains unchanged; the startup/customer track remains preserved and DEFERRED; S1-001/S1-002 remain VERIFIED and S1-003 remains BLOCKED/DEFERRED with zero execution. Architecture, application code, spikes, benchmark runs, and permanent model-role selections remain absent. The earlier initialization note below is preserved as historical author-state evidence and is superseded for current E0/E1/autonomy status by this note."
   - "ENGINEERING PREVIEW INITIALIZATION AUTHOR DRAFT (2026-08-25 / 2026-08-26 UTC): D-016 is reconciled as the active engineering-first mode without modifying the decision. The startup/customer track is preserved and DEFERRED; S1-001 and S1-002 remain VERIFIED; D-015's satisfied storage input and D-013's authorization remain preserved but inactive; S1-003 remains BLOCKED with disposition DEFERRED on PAUSED_BY_D016_ENGINEERING_FIRST_PIVOT, with customer evidence, outreach, interviews, recruiting posts, and spend still zero. Engineering Preview is ACTIVE: E0-001 is READY_FOR_REVIEW and not VERIFIED; E1-001 is the sole READY authoring task; E1-002 is BACKLOG; E2/E3/E5 are NOT_STARTED; E4 and FULL_AUTONOMOUS_BUILD_MODE are NOT_AUTHORIZED. Architecture, client technology, permanent model roles, PRD, and application code remain unselected/absent. Earlier notes below are preserved historical records and do not override this current state."
   - "S1-003 authorization reconciliation completed on 2026-08-25 against confirmed D-013 at 6e12f738a12a8ac3214b81056320d6098773f430. SATISFIED: manual personalized one-to-one outreach authorization; the seven D-013 channels/accounts with first-wave prohibitions preserved; an explicit USD 0 first-wave incentive cap with the USD 50/interview and USD 800 total proposal still unauthorized; founder as primary interviewer with no autonomous AI interviewing; and the explicit bounded AI-role policy. PARTIALLY_SATISFIED: D-013 requires raw/identifying evidence to remain private, limits the public repository to sanitized structured evidence or opaque references, sets recording OFF by default, and requires explicit prior recording consent, but it does not name or approve the actual restricted storage location that the independently verified S1-002 protocol says the authorization record must name before S1-003. Five blocker entries were removed and the remaining blocker was narrowed to RESTRICTED_RAW_EVIDENCE_STORAGE_LOCATION_NOT_NAMED_OR_APPROVED. S1-003 therefore remains BLOCKED, not READY/CLAIMED/IN_PROGRESS/READY_FOR_REVIEW/VERIFIED. D-014 is non-interfering: Finance remains a parallel future hypothesis with no quota or delay. S1-002 remains VERIFIED; H1/H2 remain co-equal; H8 remains inside H2; customer evidence, outreach, interviews, and spend remain ZERO; no Stage 2, project-architecture, or application-code work occurred in this reconciliation."
   - "S1-002 was independently VERIFIED on 2026-08-24 (UTC) against committed HEAD 15936ea9b0818eb016f7e5aecc3883c3389e0383 (99_handoffs/completed/S1-002_verifier_review.yaml): all 15 acceptance criteria PASS and F-S1-002-01..12 all RESOLVED as re-checked against the current artifacts rather than the fixer's labels. The verifier independently re-ran every structural test: YAML parse (5/5), CSV parse (1 header row, 74 unique nonempty headers, 0 customer rows, all required Contract A/B/completion/coding/privacy/H8 fields), scripted one-privacy-class-per-header reconciliation (74/74: PUBLIC_SAFE 44, PUBLIC_SANITIZED 29, OPAQUE_REFERENCE_ONLY 1; PRIVATE_ONLY has no public header), exact recomputation of all four recruiting-funnel scenarios (H1 8.3/1.8, H2 10.3/2.8 completions; outside-network 5.4/0.9 and 6.1/1.1) and all early-stop bounds, identical 10-phase 0-45-minute timing with mandatory disconfirmation, scope/secret/whitespace checks, and byte-identical regression of all S1-001/S0/governance/inbox/checkpoint paths against verified 7cfd17d. Section results: H1 and H2 residual isolation both PASS (symmetric commodity Contract A then residual Contract B; only B-over-A action lift counts at G8; monitor-naive participants cannot inflate residual demand); comparative decision logic PASS (KILL_MARKET_EVIDENCE split from PAUSE/INCONCLUSIVE; PROMISING_ADVANCE_WITH_UNRESOLVED_RIVAL claims no comparative winner; recruiting failure is never market rejection); decision freeze PASS (immutable pre-outreach protocol commit plus mechanical common G9/G10 cutoff formula with day-42 cap); evidence coding PASS (primary plus independent second coder, conservative disagreement, restricted audit, bounded AI role); privacy boundary PASS and safe for a public repository; evidence hierarchy PASS (written USD 500 acceptance is Level 4 at most; only payment/signed order is Level 5); H8 PASS (inside H2 only, no quota, stricter prospective A-018 conjunction, no automatic elevation); incentives PASS (unauthorized symmetric proposal, max USD 50/800, actual spend USD 0). New findings: 0 BLOCKER/HIGH/MEDIUM/LOW, 3 NOTEs (day-42 cutoff edge is predeclared and symmetric; disclosed bounded second-coder dual role; FILE_MANIFEST Stage 0 snapshot precedent). CUSTOMER_EVIDENCE remains ZERO; no outreach, interview, pilot, price offer, incentive, spend, winner selection, architecture, code, benchmark, provider call, S0-004/S0-005 action, or Stage 2 work occurred. D-012 remains authoritative, D-006/D-007 PROVISIONAL. S1-003's satisfied verification blocker was removed per the S0-003/S0-005 precedent but S1-003 remains BLOCKED on all six founder execution inputs; nothing in the verification authorizes outreach or spend. The verifier is the same model/product as the challenger (Claude Fable 5 via Claude Code) in a separate session, independent of the Codex author/fixer. The Stage 1 gate was NOT evaluated; changes left uncommitted for the founder."

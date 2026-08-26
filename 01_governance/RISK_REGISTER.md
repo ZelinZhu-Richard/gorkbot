@@ -1,8 +1,12 @@
 # Risk Register
 
+## Confirmed D-016 operating context (not risk ratings)
+
+Startup/customer execution is deferred; the local-first, single-user Engineering Preview is active; architecture is unselected; and future SaaS compatibility is a constraint rather than immediate implementation scope. E3 remains an unrun benchmark/spike gate that may establish `AUTONOMY_ELIGIBLE` only. Autonomous build is `NOT_AUTHORIZED` unless a separate explicit founder decision later records `AUTONOMOUS_BUILD_AUTHORIZED`.
+
 | ID | Risk | Likelihood | Impact | Early mitigation | Owner |
 |---|---|---:|---:|---|---|
-| R-001 | Building a broad platform before validating a workflow | High | Critical | Stage 1 gate and strict MVP non-goals | Founder |
+| R-001 | D-016's engineering-first pivot builds before customer-workflow validation and could expand into a broad platform | High | Critical | Keep the active Engineering Preview bounded to the local-first single-user software-engineering target; require independently verified E1 requirements and non-goals, E2 architecture comparison, E3 spike/benchmark evidence, and E5 release acceptance; keep future SaaS compatibility as a constraint rather than v0.1 scope; preserve the deferred startup Stage 1 customer gate for any later resumption | Founder |
 | R-002 | False completion damages trust | High | Critical | Completion predicates, external checks, verifier path | Runtime lead |
 | R-003 | Prompt injection causes unauthorized action | High | Critical | least privilege, content trust labels, hard approvals, sandboxing | Security lead |
 | R-004 | Cross-tenant or cross-agent data leakage | Medium | Critical | explicit scopes, isolation tests, audit | Security lead |
@@ -14,7 +18,7 @@
 | R-010 | Public repository receives sensitive data | Medium | High | security policy, redaction, private storage plan | Founder |
 | R-011 | Product positioning depends on another company's brand | Medium | High | distinct name, independent wedge, clean-room policy | Founder |
 | R-012 | Investor demo is theatrical but unreproducible | High | High | stable task, repeated runs, visible verification | Product lead |
-| R-013 | Architecture becomes too complex for a small team | High | High | managed services, vertical slices, ADRs, no premature scale | Architect |
+| R-013 | Architecture becomes too complex for a small team or turns future SaaS compatibility into an immediate implementation requirement | High | High | Keep architecture unselected until verified E1 requirements exist; use E2 ADR comparisons and reversibility; optimize v0.1 for local-first single-user operation while preserving future cloud and multi-tenant seams without building SaaS features | Architect |
 | R-014 | Provider changes break core behavior | High | Medium | adapters, version pinning, regression suite, fallbacks | Runtime lead |
 | R-015 | Memory stores stale or poisoned facts | Medium | High | provenance, source reopening, correction and expiration | Runtime lead |
 | R-016 | Official Grok Bot documentation is mistaken for reproduced account behavior or reliability | High | High | record build plan region and rollout; run repeated black-box tests; keep documentation and observation labels separate | Research lead |
@@ -26,3 +30,5 @@
 | R-022 | Strong current coding, monitoring, CI, research, analytics, research-repository, literature, deployment, or RPA alternatives make the proposed wedge indistinguishable or easy to absorb | High | High | compare against each customer's actual alternative; test residual decision value switching pilot and payment behavior; kill or narrow the wedge if independent evidence does not change a real decision | Product lead |
 | R-023 | Correlated feasibility, integration, security, failure-safety, verification, and platform-fit judgments create double-counting and false numerical precision in hypothesis ranking | High | High | separate E/J/U provenance per cell; keep weights explicit; reduce correlated-cluster weight; run demand-heavy feasibility-heavy and competition/WTP-heavy sensitivity; do not select on a small or unstable score difference | Product lead and verifier |
 | R-024 | A workflow is rewarded for technical compatibility with a persistent-agent platform even when a product feature or scheduled automation solves most of the job | High | High | classify product-feature scheduled-automation persistent-single-agent multi-tool-agent and multi-agent-team necessity separately; require customer evidence for residual persistent-runtime value; do not treat technical usability as platform necessity | Product and runtime leads |
+| R-025 | E3 verification is mistaken for autonomous-build authorization, or an unbenchmarked model/operator receives implementation authority, causing unauthorized, destructive, costly, or falsely completed work | Medium | Critical | Keep autonomous build NOT_AUTHORIZED through E3; E3 may establish AUTONOMY_ELIGIBLE only; require a separate explicit founder decision before AUTONOMOUS_BUILD_AUTHORIZED that defines eligible logical roles/models, task classes, cost limits, escalation and approval conditions, branch/worktree and commit policy, and stop conditions | Founder and verifier |
+| R-026 | The open-source Engineering Preview imports external reconstructed code, incompatible or proprietary material, or reconstruction-specific implementation details without rights and provenance clearance | Medium | Critical | Enforce the D-016 clean-room boundary; require source and dependency provenance, license/rights review, forbidden-artifact and secret scans, and independent E5 release verification; evaluate external-audit patterns as alternatives rather than copying implementation details | Security lead and release verifier |

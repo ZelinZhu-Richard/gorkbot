@@ -865,7 +865,7 @@ tasks:
     why_it_matters: The engineering-first pivot needs an auditable governance transition that does not erase verified research, imply customer validation, select architecture, lock model roles, or authorize implementation.
     owner_role: AUTHOR
     assigned_model: "Codex (runtime model identifier not exposed)"
-    reviewer_model: null
+    reviewer_model: "Claude Fable 5 (claude-fable-5) via Claude Code — independent E0 challenger"
     verifier_model: null
     status: READY_FOR_REVIEW
     priority: P0
@@ -904,10 +904,16 @@ tasks:
       - 99_handoffs/completed/S1-003_AUTHORIZATION_RECONCILIATION_handoff.yaml
     allowed_files_to_change:
       - README.md
+      - MASTER_OPERATING_PROMPT.md
       - 01_governance/PROJECT_STATE.yaml
       - 01_governance/TASK_REGISTRY.yaml
+      - 01_governance/ASSUMPTION_REGISTER.md
+      - 01_governance/RISK_REGISTER.md
+      - 01_governance/MODEL_REGISTRY.yaml
       - 03_product/ENGINEERING_PREVIEW_CHARTER.md
+      - 06_evaluation/MODEL_ROLE_BENCHMARK_PLAN.md
       - 99_handoffs/completed/ENGINEERING_PREVIEW_INITIALIZATION_handoff.yaml
+      - 99_handoffs/completed/E0-001_fixer_handoff.yaml
     scope_amendments:
       - amendment_id: E0-001-A1
         effective_at: "2026-08-25"
@@ -915,6 +921,36 @@ tasks:
         reason: "The repository entrypoint still advertised Stage 0 and MODE: INITIALIZE after confirmed D-016, which contradicted current authoritative state and could misroute the next agent."
         authorization: "The founder's MODE: INITIALIZE_ENGINEERING_PREVIEW requires governance reconciliation, current-state validation, and a correct next command; this prospective documentation-only amendment stays inside governance/planning scope."
         audit_note: "README.md is updated only for current program/status/start-command consistency; no product, architecture, model, customer, or implementation decision is added."
+      - amendment_id: E0-001-A2
+        effective_at: "2026-08-25"
+        change: "Add MASTER_OPERATING_PROMPT.md to E0-001 allowed_files_to_change before the F-E0-05 fixer edit."
+        reason: "The mandatory global prompt's active startup sequence and INITIALIZE instructions conflict with confirmed D-016 and can misroute every later agent while customer discovery is deferred."
+        authorization: "The founder's MODE: FIX_TASK_E0-001 explicitly requires F-E0-05 reconciliation and prospectively authorizes an out-of-scope amendment under D-009 before this file is modified."
+        audit_note: "Only an engineering-pivot precedence/reconciliation is added; the original startup logic remains preserved for any separately authorized resumption."
+      - amendment_id: E0-001-A3
+        effective_at: "2026-08-25"
+        change: "Add 06_evaluation/MODEL_ROLE_BENCHMARK_PLAN.md to E0-001 allowed_files_to_change before the F-E0-05 fixer edit."
+        reason: "The verified plan's active Stage 1 customer-workflow gate makes the E3 engineering benchmark unreachable while D-016 pauses S1-003."
+        authorization: "The founder's MODE: FIX_TASK_E0-001 explicitly requires F-E0-05 reconciliation and prospectively authorizes an out-of-scope amendment under D-009 before this file is modified."
+        audit_note: "Only the applicable workflow-definition gate is reconciled; the startup-track gate remains preserved, and no benchmark, spike, budget, provider, or role decision is authorized or executed."
+      - amendment_id: E0-001-A4
+        effective_at: "2026-08-25"
+        change: "Add 01_governance/MODEL_REGISTRY.yaml to E0-001 allowed_files_to_change before the F-E0-05 fixer edit."
+        reason: "Its active benchmark policy separately retains the same Stage 1 customer-selection dependency and would otherwise contradict the reconciled benchmark plan."
+        authorization: "The founder's MODE: FIX_TASK_E0-001 requires every active benchmark dependency to agree with D-016; D-009 requires this amendment before the out-of-scope file is modified."
+        audit_note: "Only gate vocabulary may change; all candidate access evidence, HYPOTHESIS_ONLY role statuses, NOT_RUN results, and USD 0 execution state must remain unchanged."
+      - amendment_id: E0-001-A5
+        effective_at: "2026-08-25"
+        change: "Add 01_governance/ASSUMPTION_REGISTER.md and 01_governance/RISK_REGISTER.md to E0-001 allowed_files_to_change before the F-E0-06 fixer edits."
+        reason: "Both registers are materially stale under D-016: the active Engineering Preview hypothesis, local-first target, deferred startup execution, unselected architecture, E3 eligibility boundary, separate founder authorization, future-SaaS constraint, and related risks are not represented consistently."
+        authorization: "The founder's MODE: FIX_TASK_E0-001 explicitly requires the bounded F-E0-06 reconciliation and a prospective D-009 scope amendment before either file is modified."
+        audit_note: "The amendment is limited to D-016-caused entries; it preserves the startup assumptions and risks historically and does not perform broad register cleanup."
+      - amendment_id: E0-001-A6
+        effective_at: "2026-08-25"
+        change: "Add 99_handoffs/completed/E0-001_fixer_handoff.yaml to E0-001 allowed_files_to_change before creating the founder-required finding-resolution record."
+        reason: "The founder explicitly requires a new factual fixer handoff with dispositions and verification evidence for F-E0-01 through F-E0-07."
+        authorization: "The founder's MODE: FIX_TASK_E0-001 explicitly requires this exact output path; D-009 requires its prospective inclusion before creation."
+        audit_note: "The handoff will record author/fixer checks and request independent post-fix verification; it cannot mark E0-001 VERIFIED."
     deliverables:
       - reconciled_project_state
       - reconciled_task_registry
@@ -923,15 +959,21 @@ tasks:
     acceptance_criteria:
       - D-016 remains unchanged and authoritative.
       - S1-001 and S1-002 remain VERIFIED, while S1-003 and all startup/customer execution are preserved and deferred without outreach, interviews, spend, customer selection, or fabricated evidence.
-      - The Engineering Preview E0-E5 program, v0.1 target, E1 correctness gate, E2 architecture gate, E3 automation-unlock gate, provisional inactive E4 contract, and E5 release phase are explicit and technology-neutral.
-      - Exactly one E1 authoring task is READY; E2 and E3 are not started; FULL_AUTONOMOUS_BUILD_MODE is not authorized.
+      - The Engineering Preview E0-E5 program, v0.1 target, E1 correctness gate, E2 architecture gate, E3 benchmark/spike and autonomy-eligibility gate, inactive E4 design proposal, and E5 release phase are explicit and technology-neutral.
+      - E0-001 is READY_FOR_REVIEW and not VERIFIED; E1-001 and E1-002 are BACKLOG pending verified dependencies; E2, E3, E4, and E5 are NOT_STARTED; autonomous build is NOT_AUTHORIZED.
+      - E3 verification can establish AUTONOMY_ELIGIBLE only and is necessary but not sufficient for E4; a separate explicit founder decision must record AUTONOMOUS_BUILD_AUTHORIZED before autonomous implementation can start.
+      - External-audit integration distinguishes implementation-neutral required properties, architectural patterns for E2 comparison, and reconstruction-specific implementation details that are not requirements or automatic designs.
+      - No vendor or product is preselected as autonomous operator; E3 evidence and a future founder authorization determine which available system/model, if any, may occupy AUTONOMOUS_CONTROLLER, PLANNER, EXECUTOR, CODER, VERIFIER, and SECURITY_REVIEWER roles by task class.
+      - While D-016 is active, verified Engineering Preview E1 requirements and its evaluation suite replace customer-wedge selection as the current engineering benchmark input; paused S1-003 is not an E3 prerequisite, and the preserved startup benchmark gate applies again only if the startup track is separately resumed.
+      - Assumption and risk records reflect D-016 without broad cleanup, and author-internal subagent work is not mislabeled as independent project CHALLENGER or VERIFIER work.
       - Architecture, client technology, provider/model roles, PRD, and application code remain unselected or absent.
       - All changed YAML parses; task IDs and dependencies are valid; Markdown, allowed-path, secret, customer-artifact, source-code, and whitespace checks pass.
     required_tests:
       - Independent challenger review of scope, governance semantics, requirement coverage, contradictions, and premature authorization.
       - Independent verifier review of every acceptance criterion after fixes.
       - YAML parse and registry dependency/status assertions.
-      - D-016, S1-001, S1-002, customer-artifact, model-registry, and no-source-code regression checks.
+      - D-016 byte-identity; S1-001/S1-002 status; S1-003 deferral; customer-artifact; model-registry HYPOTHESIS_ONLY/NOT_RUN; no-architecture; no-benchmark; and no-source-code regression checks.
+      - Autonomy two-gate, E1 dependency, external-audit layering, provider-neutral logical-role, D-016 benchmark-override, register-reconciliation, and role-provenance assertions.
       - Markdown, allowed-path, secret-pattern, and git diff --check.
     expected_evidence:
       - changed_file_list_and_diff
@@ -942,8 +984,23 @@ tasks:
     author_evidence:
       - 03_product/ENGINEERING_PREVIEW_CHARTER.md
       - 99_handoffs/completed/ENGINEERING_PREVIEW_INITIALIZATION_handoff.yaml
+    challenger_evidence:
+      - 99_handoffs/completed/ENGINEERING_PREVIEW_INITIALIZATION_challenger_review.yaml
+    challenger_verdict: E0_CHANGES_REQUESTED
+    challenger_finding_counts:
+      blocker: 0
+      high: 2
+      medium: 3
+      low: 2
+    fixer_evidence:
+      - 99_handoffs/completed/E0-001_fixer_handoff.yaml
+    fixer_finding_counts:
+      fixed: 7
+      disputed: 0
+      deferred: 0
     author_completed_at: "2026-08-25"
-    verification_status: NOT_VERIFIED_AUTHOR_WORK_AWAITING_INDEPENDENT_REVIEW
+    fixer_completed_at: "2026-08-25"
+    verification_status: NOT_VERIFIED_FIXER_WORK_AWAITING_INDEPENDENT_REVIEW
 
   - task_id: E1-001
     title: Author Engineering Preview v0.1 product and correctness specification
@@ -954,15 +1011,19 @@ tasks:
     assigned_model: null
     reviewer_model: null
     verifier_model: null
-    status: READY
+    status: BACKLOG
     priority: P0
     dependencies:
+      - E0-001
       - S0-002
       - S0-003
+    blocked_by:
+      - E0_001_NOT_INDEPENDENTLY_VERIFIED
     governance_prerequisites:
       - D-016_CONFIRMED
       - ENGINEERING_PREVIEW_CHARTER_PRESENT
-    gate_invariant: "E0-001 must be independently VERIFIED before E1 can be gate-VERIFIED or E2 can be activated; E1-001 may be authored while E0-001 awaits review because D-016 is already confirmed authority and its execution dependencies are independently VERIFIED."
+      - E0_001_INDEPENDENTLY_VERIFIED
+    gate_invariant: "E1-001 may become READY only after every dependency, including E0-001, is independently VERIFIED. E0-001 READY_FOR_REVIEW is not sufficient."
     files_to_read:
       - MASTER_OPERATING_PROMPT.md
       - AGENTS.md
@@ -1015,7 +1076,7 @@ tasks:
       - lifecycle_and_state_transition_review
       - approval_and_security_negative_case_review
       - independent_challenger_and_verifier_records
-    readiness_basis: "D-016 is confirmed; S0-002 and S0-003 are VERIFIED; the task is authoring-only and selects no technology."
+    readiness_basis: "BACKLOG pending independent E0-001 verification. D-016 confirmation and verified S0-002/S0-003 inputs do not waive the E0 dependency; no parallel authoring is authorized."
 
   - task_id: E1-002
     title: Define open-source contribution workflow, evaluation suite, and v0.1 release acceptance criteria

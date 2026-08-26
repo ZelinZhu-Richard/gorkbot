@@ -74,27 +74,27 @@ program_state:
   full_autonomous_build_mode: NOT_AUTHORIZED
   engineering_preview_target: "Local-first, single-user, one persistent software-engineering agent using real repositories, durable state, isolated execution, files/terminal/Git/tests, independent completion verification, and evidence bundles."
 
-independent_review:
+author_internal_subagent_work:
   governance_design:
-    role: ADVISORY_REVIEW
-    independence: "Separate read-only subagent; no file edits."
+    role: AUTHOR_INTERNAL_ANALYSIS
+    independence: "Separate read-only subagent context within the E0 AUTHOR operation; no file edits; does not satisfy the independent project CHALLENGER or VERIFIER protocol."
     result: "Recommended the minimal E0-001/E1-001/E1-002 task graph, BLOCKED+DEFERRED S1-003 representation, and explicit E2/E3/E4 gates."
   external_audit_requirements:
-    role: ADVISORY_REVIEW
-    independence: "Separate read-only subagent; no file edits."
+    role: AUTHOR_INTERNAL_ANALYSIS
+    independence: "Separate read-only subagent context within the E0 AUTHOR operation; no file edits; does not satisfy the independent project CHALLENGER or VERIFIER protocol."
     result: "Mapped the verified reconstructed-audit patterns and caveats into E1/E2 requirements without treating the audit as architecture authority."
-  challenger:
-    role: CHALLENGER
-    independence: "Separate read-only subagent; no file edits."
+  draft_critique:
+    role: AUTHOR_INTERNAL_CRITIQUE
+    independence: "Separate read-only subagent context within the E0 AUTHOR operation; no file edits; does not satisfy the independent project CHALLENGER or VERIFIER protocol."
     result: "CHANGES_REQUIRED during drafting on stale README/provenance, handoff placeholders, and E4 unlock wording; all substantive findings were fixed. Its final current-byte review found no remaining governance or requirement gap and identified only the now-resolved handoff placeholder closure."
   requirements_traceability:
-    role: CHALLENGER
-    independence: "Separate read-only subagent; no file edits."
+    role: AUTHOR_INTERNAL_CHECK
+    independence: "Separate read-only subagent context within the E0 AUTHOR operation; no file edits; does not satisfy the independent project CHALLENGER or VERIFIER protocol."
     result: "PASS after fixes: every explicit startup-pause, v0.1 capability, future-compatibility, external-audit, E1 artifact, E2, E3, E4, E5, prohibition, clean-room, privacy, and validation requirement maps to the current artifacts."
-  verifier_candidate:
-    role: VERIFIER
-    independence: "Separate read-only subagent; no file edits."
-    result: "PASS on every requested current-state invariant and validation; the only documentary follow-up was replacing the handoff's pending fields with these completed results. The verifier explicitly did not mark E0 VERIFIED."
+  invariant_check:
+    role: AUTHOR_INTERNAL_CHECK
+    independence: "Separate read-only subagent context within the E0 AUTHOR operation; no file edits; does not satisfy the independent project CHALLENGER or VERIFIER protocol."
+    result: "PASS on every requested current-state invariant and validation; the only documentary follow-up was replacing the handoff's pending fields with these completed results. The author-internal check explicitly did not mark E0 VERIFIED."
   formal_task_verification_status: NOT_VERIFIED
 
 tests_run:
@@ -103,8 +103,8 @@ tests_run:
   - "Ruby registry assertions for unique task IDs, resolving dependencies, sole READY E1-001, S1-001/S1-002 VERIFIED, S1-003 BLOCKED+DEFERRED, E0-001 READY_FOR_REVIEW, and E1-002 BACKLOG."
   - "Ruby project-state assertions for Engineering Preview active, exact active/ready/backlog lists, and E4 NOT_AUTHORIZED."
   - "E0-001 files_to_read existence check; two initially incorrect S1-001 paths were found and corrected before final validation."
-  - "Independent read-only challenger and requirements-traceability reviews against the founder request, D-012 through D-016, the verified research, and the current five-file patch."
-  - "Independent read-only verifier assertions for three YAML files; 11 unique task IDs; 14 resolving, acyclic dependencies; exact status lists; S1 preservation; E0-E5 state; no selections; handoff schema; and model-registry invariants."
+  - "Author-internal read-only subagent critique and requirements-traceability checks against the founder request, D-012 through D-016, the verified research, and the current five-file patch; these did not satisfy independent project review."
+  - "Author-internal read-only subagent invariant checks for three YAML files; 11 unique task IDs; 14 resolving, acyclic dependencies; exact status lists; S1 preservation; E0-E5 state; no selections; handoff schema; and model-registry invariants; these did not satisfy independent project verification."
   - "Decision-log worktree-versus-HEAD blob comparison and heading-bounded D-016 byte comparison; protected governance, baseline/audit, benchmark, S1 product, verifier-handoff, uploaded-originals, and customer-artifact git diff checks."
   - "Ruby CSV check of the S1-002 scorecard: 74 unique headers and zero customer rows."
   - "Exact changed-path comparison against the E0-001 allowlist including prospective amendment E0-001-A1; changed-extension/no-application-source check."
@@ -182,3 +182,44 @@ final_validation:
   model_roles_unlocked: PASS
   secret_scan: PASS_ZERO_MATCHES
   git_diff_check: PASS_NO_OUTPUT
+
+role_provenance_correction_addendum:
+  correction_id: E0-001-F-E0-07
+  recorded_at: "2026-08-25 / 2026-08-26 UTC"
+  correction_mode: FIX_TASK_E0-001
+  historical_record_preserved: true
+  historical_commit: 25688830a2e9aab79a78bece358b13c7a3cd31b8
+  historical_file_sha256: 2bcf527a03aa3341fea97db89fb97f3ac0689f3011f3a73441a2928665a1547a
+  original_labels:
+    block_key: independent_review
+    roles:
+      - CHALLENGER
+      - CHALLENGER
+      - VERIFIER
+  correction: "The original labels described author-side, context-separated subagents used for analysis, critique, traceability, and invariant checks inside the E0 AUTHOR operation. They were not independent project CHALLENGER or VERIFIER roles and did not satisfy the repository's independent-review protocol. The live labels above are corrected to AUTHOR_INTERNAL_ANALYSIS, AUTHOR_INTERNAL_CRITIQUE, and AUTHOR_INTERNAL_CHECK; the original labels and results remain recoverable in the pinned historical commit and are recorded here rather than silently erased."
+  actual_independent_challenger:
+    artifact: 99_handoffs/completed/ENGINEERING_PREVIEW_INITIALIZATION_challenger_review.yaml
+    reviewed_commit: 25688830a2e9aab79a78bece358b13c7a3cd31b8
+    verdict: E0_CHANGES_REQUESTED
+  independent_post_fix_verifier: NOT_RUN_PENDING_VERIFY_TASK_E0_001
+  formal_task_verification_status: NOT_VERIFIED
+
+fixer_correction_addendum:
+  correction_id: E0-001-FIXER-CURRENT-STATE-20260825
+  correction_mode: FIX_TASK_E0-001
+  record_policy: "The initialization fields above remain historical author-state evidence. This addendum supersedes their current-state interpretation without rewriting the original status, test, limitation, or recommended-next-task claims."
+  corrected_current_state:
+    E0_001: READY_FOR_REVIEW_NOT_VERIFIED
+    E1_001: BACKLOG_PENDING_E0_001_INDEPENDENT_VERIFICATION
+    E1_002: BACKLOG
+    E2: NOT_STARTED
+    E3: NOT_STARTED
+    E4: NOT_STARTED
+    E5: NOT_STARTED
+    autonomy_eligibility: NOT_ELIGIBLE
+    autonomous_build_authorization: NOT_AUTHORIZED
+    full_autonomous_build_mode: NOT_AUTHORIZED
+  corrected_autonomy_policy: "D-016 does not authorize autonomous implementation. E3 verification can establish AUTONOMY_ELIGIBLE only; a separate explicit founder decision must record AUTONOMOUS_BUILD_AUTHORIZED before E4 can start."
+  corrected_dependency_policy: "E1-001 depends on E0-001 and cannot become READY until E0-001 is independently VERIFIED."
+  current_recommended_next_task: "MODE: VERIFY_TASK_E0-001"
+  prohibited_next_task: "Do not execute E1-001 before E0-001 is independently VERIFIED."

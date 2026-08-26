@@ -4,6 +4,8 @@
 
 Design and coordinate the clean-room development of a model-agnostic SaaS platform for persistent AI teammates.
 
+The following immediate goal and sequence are preserved startup-track logic. The D-016 engineering-first override immediately below has active precedence while that decision remains in force.
+
 The long-term benchmark is functional parity with the important capabilities publicly observable in Grok Bot, followed by meaningful improvement in selected dimensions. The immediate goal is not to build the whole platform. It is to identify a valuable beachhead workflow and build one unusually reliable persistent agent that completes that workflow end to end.
 
 The project should progress through this sequence:
@@ -22,6 +24,21 @@ verified research
 → multi-tenant SaaS
 → fundraising based on evidence
 ```
+
+## Active engineering-first override (D-016)
+
+**CONFIRMED DECISION — ACTIVE PRECEDENCE.** While D-016 engineering-first mode is active:
+
+- customer-discovery execution, including S1-003, is deferred; the startup Stage 1 customer gate remains `NOT_EVALUATED`, and neither the work nor the gate is erased, completed, rejected, or resumed;
+- Engineering Preview requirements replace customer-wedge selection as the immediate product-specification input;
+- E0 must be independently verified before E1-001 may become `READY`;
+- the independently verified E1 Engineering Preview specification and evaluation suite are the workflow-definition prerequisite for Engineering Preview technical/model benchmarks;
+- E2 architecture decisions require the verified E1 gate;
+- E3 technical spikes and model-role benchmarks require the verified E1 Engineering Preview task/evaluation suite and the verified E2 gate, not completion of paused S1-003, plus every separately recorded budget, account, credential, data-policy, and execution authorization;
+- E3 verification may establish `AUTONOMY_ELIGIBLE` only; it is necessary but not sufficient for implementation authority; and
+- E4 cannot start unless a separate explicit founder decision records `AUTONOMOUS_BUILD_AUTHORIZED`. That future decision may define allowed systems/models, cost limits, task classes, escalation conditions, branch/worktree policy, commit policy, and stop conditions.
+
+The Engineering Preview mapping is E1 approximately Stage 2 product definition, E2 Stage 3 architecture, E3 Stage 4 technical evidence plus model-role benchmarks, E4 bounded Stage 5 implementation only after separate founder authorization, and E5 a bounded Stage 6 reliability/open-source release subset. The preserved startup sequence and numbered stage model remain historically and prospectively valid if a separate founder decision lifts or supersedes D-016 and resumes that track. This override does not validate market demand or authorize customer work, architecture selection, spikes, benchmarks, implementation, or autonomous build execution.
 
 ## Clean-room boundary
 
@@ -57,6 +74,8 @@ The eventual product should let customers:
 
 ## Strategic constraint
 
+The following startup/company-thesis constraint remains preserved. While D-016 is active, it does not authorize customer-discovery execution or gate the immediate Engineering Preview specification and benchmark work described above.
+
 "A clone of Grok Bot" is not a sufficient company thesis. Clean-room parity is an engineering benchmark. The company requires a clear initial customer, urgent workflow, distribution path, and differentiated reason to win.
 
 Evaluate at least these possible differentiators:
@@ -87,6 +106,8 @@ Default planning arrangement, subject to project benchmarks:
 - Claude Fable 5 Max or the strongest available Claude model: independent product, architecture, and implementation challenge
 - GPT-5.6 Luna or Terra, Codex, Claude Code, DeepSeek V4, or other coding models: bounded execution after requirements exist
 
+These are session-level planning candidates, not permanent product roles or E4 authority. No vendor or product is preselected as `AUTONOMOUS_CONTROLLER`, executor, coder, verifier, or security reviewer; the applicable benchmark evidence and any separately required founder authorization determine eligible role occupants by task class.
+
 Do not use model reputation as proof. Maintain a model registry and run project-specific evaluations.
 
 Avoid consensus theater. For major decisions use one author proposal, one challenger review, one revision, and one verifier decision. Record unresolved dissent rather than creating endless model debate.
@@ -101,6 +122,7 @@ Every project instruction begins with one mode:
 - `EXECUTE_TASK_<ID>`: execute one bounded task
 - `REVIEW_TASK_<ID>`: independently review one task
 - `FIX_TASK_<ID>`: address verified findings
+- `VERIFY_TASK_<ID>`: independently verify one task after the author/fixer cycle
 - `VERIFY_STAGE_<N>`: verify the full stage gate
 - `ADVANCE_STAGE`: advance only after verification
 - `AUDIT_ARCHITECTURE`: inspect coherence, coupling, reversibility, and operational risk
@@ -148,6 +170,8 @@ Gate:
 - governance files agree with one another
 
 ## Stage 1: customer, wedge, and company thesis
+
+This is preserved startup-track logic. While D-016 is active, Stage 1 customer-discovery execution is deferred, S1-003 remains paused, and this gate is not a prerequisite for the Engineering Preview E1/E2/E3 sequence. It applies again only after a separate founder decision resumes the startup track.
 
 Generate at least five customer-workflow combinations. Evaluate:
 
@@ -490,6 +514,7 @@ Model review may supplement hard controls but never replace them.
 
 Maintain logical roles rather than hardcoding vendors:
 
+- AUTONOMOUS_CONTROLLER
 - PLANNER
 - EXECUTOR
 - CODER
@@ -545,7 +570,7 @@ Avoid fake traces, prewritten results, hidden manual work, and unstable dependen
 
 ## INITIALIZE output
 
-When run in `INITIALIZE` mode:
+When run in `INITIALIZE` mode for the preserved startup track, use the following output. While D-016 is active, follow the Engineering Preview E-track, task registry, and charter instead; do not re-run beachhead selection or customer work merely because this historical startup-mode procedure exists.
 
 1. Inventory files.
 2. Verify source freshness.

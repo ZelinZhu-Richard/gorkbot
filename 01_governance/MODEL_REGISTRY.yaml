@@ -686,7 +686,7 @@ excluded_or_deferred_public_candidates:
   - candidate: [gpt-oss-120b, gpt-oss-20b]
     claim_status: VERIFIED_PUBLIC
     disposition: DEFERRED_UNTIL_SELF_HOSTING_IS_IN_SCOPE
-    reason: "Open-weight Apache 2.0 models are relevant only if self-hosting becomes a selected Stage 1 constraint; the OpenAI hosted API pages list no hosted rate limits."
+    reason: "Open-weight Apache 2.0 models are relevant only if self-hosting becomes an applicable verified product/architecture constraint (E1/E2 while D-016 is active; Stage 1 if the startup track resumes); the OpenAI hosted API pages list no hosted rate limits."
     source_ids: [SRC-044, SRC-045]
 
 documented_ambiguities:
@@ -751,4 +751,4 @@ benchmark_policy:
   status: PLAN_ONLY_NOT_AUTHORIZED_TO_RUN
   no_paid_calls_run: true
   no_provider_or_model_locked: true
-  rule: "Stage 1 must first select a customer workflow and authorize a budgeted shortlist. Public specifications are screening evidence, not product evidence or production approval."
+  rule: "While D-016 engineering-first mode is active, an independently verified E1 Engineering Preview specification and task/evaluation suite—not paused S1-003 or customer-wedge selection—must define the eligible task classes and shortlist, and E2 plus separate budget/account/data-policy/run gates must pass before E3 execution. If a separate founder decision resumes the startup track, the preserved Stage 1 customer-workflow gate applies again. Public specifications are screening evidence, not product evidence, a permanent role assignment, autonomous-build authorization, or production approval."

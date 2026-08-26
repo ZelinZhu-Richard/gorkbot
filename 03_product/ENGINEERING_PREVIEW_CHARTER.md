@@ -11,8 +11,10 @@ This charter uses the repository's evidence discipline:
 
 - **CONFIRMED DECISION** means a founder decision recorded in `01_governance/DECISION_LOG.md`.
 - **VERIFIED EVIDENCE INPUT** means a repository artifact with an independent verification record.
-- **PRODUCT REQUIREMENT** means a constraint that E1 must make testable before architecture or code begins.
-- **PROVISIONAL CONTRACT** means a future operating rule that remains inactive until its named gate is satisfied.
+- **PRODUCT REQUIREMENT / REQUIRED PROPERTY** means an implementation-neutral constraint that E1 must make testable before architecture or code begins.
+- **ARCHITECTURAL PATTERN TO EVALUATE** means an evidence-supported candidate that E2 must compare against alternatives; it is not selected by this charter or by an external audit label.
+- **EXTERNAL IMPLEMENTATION DETAIL** means a reconstruction-specific observation that is neither a product requirement nor an automatically eligible design and must not be copied automatically.
+- **PROVISIONAL CONTRACT** means a proposed future operating rule that remains inactive until every named evidence gate and every separately required explicit authorization are satisfied. A verified gate never substitutes for a separate founder authorization when one is required.
 - **OPEN QUESTION** means no answer has been selected.
 
 The repository is authoritative. A model assertion, chat summary, transcript line, activity event, telemetry event, or self-authored manifest is not by itself evidence that work occurred or completed.
@@ -74,13 +76,13 @@ The product is useful only if its completion claim can be reviewed from durable 
 **PRODUCT REQUIREMENT.** Engineering Preview v0.1 is correct only when all of the following hold:
 
 - An authorized repository task is durably represented with a stable identity, bounded scope, governing inputs, and explicit completion predicates.
-- Canonical conversation/message state and durable task state remain distinct from rebuildable transcript, activity, and summary projections and from execution/effect state.
+- Information needed for authorization, resumption, audit, recovery, effect reconciliation, and completion verification remains authoritative, durable, and distinguishable from disposable or rebuildable transcript, activity, summary, telemetry, UI, and model-working-context views. E2 decides the physical and logical boundaries.
 - Accepted work survives client or worker restart without silent loss, stale-state overwrite, or unintended duplicate effects.
 - Work remains confined to an isolated local workspace with explicit filesystem, terminal, Git, test, model, tool, network, approval, and secret boundaries.
 - Every tool boundary uses structured, versioned input/output/action contracts and runtime validation.
 - Pause, stop, redirect, resume, retry, recovery, and escalation have persisted semantics.
 - Consequential external actions require human approval bound to the exact action and target.
-- Failures are typed and drive bounded retry, recovery, or escalation rather than unbounded repetition.
+- Failures have structured, machine-distinguishable, bounded, safe semantics that drive retry, recovery, terminal failure, or escalation rather than unbounded repetition.
 - Task-specific completion predicates are independently checked through tests, checks, diffs, artifacts, receipts, or external readback.
 - A reviewable patch, branch, bounded commit, or draft-pull-request package and a complete evidence bundle are produced.
 
@@ -94,15 +96,15 @@ E1 must turn every capability below into functional requirements and objective a
 
 - One persistent named agent with a durable identity.
 - Durable task state with stable task identity, authority, scope, dependencies, status, limits, and completion predicates.
-- Canonical conversation and message state, including ordering, authorship, content references, and durable recovery semantics.
-- Execution and effect state separate from canonical conversation state and from transcript, UI, activity, or summary projections.
+- Durable conversation and message information needed for ordering, authorship, authorization, resumption, audit, and recovery.
+- Execution and effect information whose authority is explicit and cannot be replaced by transcript, UI, activity, summary, telemetry, or model-working-context claims; E2 decides whether these responsibilities use combined or separate stores and services.
 - Restart and resume after client, orchestrator, or worker interruption without silent loss or duplicate effects.
-- Context compaction that changes only derived working context and does not destroy authoritative records or evidence.
+- Safe context management: if working context is summarized, compacted, truncated, or rebuilt, the operation may change only derived working context and must not destroy or supersede authoritative records or evidence.
 
 ### 5.2 Execution and repository work
 
 - A local execution sandbox with declared isolation and security properties.
-- A provider-neutral abstraction for a future cloud sandbox without requiring cloud execution in v0.1.
+- A documented, testable compatibility and migration path for possible future cloud execution without requiring cloud execution or preselecting an execution-provider abstraction or seam in v0.1.
 - Filesystem tools with normalized paths, allowed-root enforcement, symlink handling, bounds, and effect receipts.
 - Terminal tools with declared working directory, environment, time/output limits, cancellation, exit status, and retained evidence.
 - Git tools for inspection, isolated workspace creation, diffing, branching, bounded commits, and review packages.
@@ -111,11 +113,11 @@ E1 must turn every capability below into functional requirements and objective a
 
 ### 5.3 Models and capabilities
 
-- A model-provider abstraction with explicit provider and model identity.
-- Model routing that preserves provider-specific tool, streaming, refusal, usage, cancellation, stop, cost, and error semantics.
+- Explicit provider and model identity plus provider replaceability across any selected integration design; E2 decides whether router and adapter boundaries exist and how they are arranged.
+- Preservation of provider-specific tool, streaming, refusal, usage, cancellation, stop, cost, and error semantics across routing or direct integration.
 - No hidden fallback and no permanent task-role assignment without E3 evidence.
 - Structured and versioned tool/capability identifiers, input schemas, output schemas, effect classes, side-effect declarations, idempotency rules, limits, cancellation semantics, and runtime validation.
-- A future-compatible MCP or equivalent capability gateway with explicit authorization, credential scope, approval receipts, effect receipts, and independent readback.
+- Portable, authorized, runtime-validated capability integration with explicit credential scope, approval receipts, effect receipts, and independent readback. Direct adapters, an MCP gateway, or an equivalent capability-gateway topology remain E2 alternatives.
 
 ### 5.4 Control, safety, and visibility
 
@@ -132,26 +134,26 @@ E1 must turn every capability below into functional requirements and objective a
 - Evidence bundles defined by the contract in Section 10.
 - Task-specific completion predicates defined before execution.
 - Independent completion verification distinct from the sole author/model's assertion.
-- A stable typed error and retry taxonomy with safe user-facing descriptions, internal correlation, retryability/terminal metadata, bounded payloads, and an unknown fallback.
+- A stable structured failure and retry contract with safe user-facing descriptions, internal correlation, retryability/terminal metadata, bounded payloads, and an unknown fallback. A central typed error registry is an E2 pattern to evaluate, not a selected architecture.
 - Failure recovery for worker/client restart, stale work, partial effects, cancellation, malformed state, corrupted local records, and interrupted long-running operations.
 - Operation recovery with stable operation identity, terminal readback, duplicate-effect prevention, and explicit handling of uncertain outcomes.
 
 ## 6. Authority and state invariants
 
-E1 must define the exact records and lifecycle semantics; E2 must compare implementations. At minimum, the following logical authorities may not be collapsed merely for convenience:
+E1 must define the following semantic responsibilities and testable invariants. E2 must decide their authoritative data model, physical boundaries, storage, and projection relationships. This list does not mandate six stores, services, or logs and does not select event sourcing, transactional state, workflow history, content addressing, or any other architecture. E2 may combine responsibilities only where authority, recovery, retention, security, and independent verification remain explicit and testable:
 
-1. Durable task state: requested outcome, scope, status, limits, dependencies, approvals needed, completion predicates, and final disposition.
-2. Canonical conversation/message state: ordered durable messages and referenced content required to reconstruct the conversation.
-3. Execution/effect state: operations attempted, tools invoked, effects requested, receipts, outputs, retries, cancellations, and uncertain outcomes.
-4. Artifact/evidence state: source inputs, patches, logs, test results, manifests, digests, approvals, limitations, and verification records.
-5. Event/history state: durable causal history needed for audit, recovery, reconciliation, and projection rebuilding.
-6. Derived projections: transcript displays, activity feeds, search indexes, summaries, working context, UI state, and telemetry views.
+1. Task responsibility: requested outcome, scope, status, limits, dependencies, approvals needed, completion predicates, and final disposition.
+2. Conversation/message responsibility: durable ordering, authorship, content references, authorization context, and recovery semantics.
+3. Execution/effect responsibility: operations attempted, tools invoked, effects requested, receipts, outputs, retries, cancellations, and uncertain outcomes.
+4. Artifact/evidence responsibility: source inputs, patches, logs, test results, manifests, digests, approvals, limitations, provenance, and verification records.
+5. Causal/history responsibility: history sufficient for audit, recovery, reconciliation, concurrency safety, and any selected projection-rebuilding design.
+6. Presentation/working-context responsibility: transcript displays, activity feeds, search indexes, summaries, model working context, UI state, and telemetry views.
 
-Derived projections must be rebuildable or explicitly disposable and may not overwrite authoritative state. E2 must document ownership, ordering, versions, correlation/causal identities, retention, recovery, and migration for every chosen boundary.
+Presentation and working-context material may be rebuildable or explicitly disposable, but it may not overwrite, delete, or become authority over records required for authorization, recovery, effects, audit, evidence, or completion. E2 must document ownership, ordering, versions, correlation/causal identities, retention, recovery, and migration for every chosen boundary.
 
-### 6.1 Compaction invariant
+### 6.1 Context-management invariant
 
-Context compaction may alter only the model's working projection. It may not delete, overwrite, or become authoritative over durable conversation/message history, task state, execution/effect history, approvals, source and test evidence, artifacts, audit records, or evidence-bundle inputs. Stale summaries must not replace newer state, and required source evidence must remain retrievable.
+If context is summarized, compacted, truncated, or rebuilt, the operation may alter only a derived model-working projection. It may not delete, overwrite, or become authoritative over durable conversation/message history, task state, execution/effect history, approvals, source and test evidence, artifacts, audit records, or evidence-bundle inputs. Stale working views must not replace newer state, and required source evidence must remain retrievable. Whether compaction or persisted summary blocks exist is an E2 decision.
 
 ### 6.2 Content identity caveat
 
@@ -212,7 +214,7 @@ Human approval is required before consequential external actions, including as a
 - destructive migration, irreversible deletion, force update, or other difficult-to-recover effect;
 - changing a release, stage, security, architecture, or autonomous-build gate.
 
-Local read-only inspection and later explicitly authorized bounded local implementation may follow their task contract. E4's provisional contract does not authorize external actions. Prompt text, regex matching, tool names, model review, or caller-provided `confirmed: true` values may supplement user experience but may not be primary enforcement.
+Local read-only inspection and later explicitly authorized bounded local implementation may follow their task contract. E4's provisional contract is a design proposal and does not authorize implementation or external actions. Prompt text, regex matching, tool names, model review, or caller-provided `confirmed: true` values may supplement user experience but may not be primary enforcement.
 
 ## 10. Evidence-bundle contract
 
@@ -248,7 +250,7 @@ E1 must define measurable requirements for:
 - stale-writer and stale-summary rejection;
 - operation identity, progress, cancellation, timeout, retry ceilings, terminal status, and readback;
 - repository-workspace isolation and protection of unrelated changes;
-- checkpoint/restore evidence and corrupt-state quarantine or salvage;
+- recovery evidence for the selected persistence mechanism and safe corrupt-state detection/handling without silent use or loss; checkpoint/restore, quarantine, and salvage remain E2 patterns to compare;
 - bounded output, history, artifact, and evidence retention;
 - deterministic completion-predicate evaluation where possible;
 - surfaced partial completion, skipped checks, degradation, and limitations;
@@ -285,7 +287,19 @@ v0.1 autonomy is bounded by eligible task state, declared scope, allowed reposit
 
 The user must be able to pause, stop, redirect, and resume work. The system must persist the requested control, reconcile in-flight operations, show whether an effect may already have occurred, and require readback or escalation where terminal state is uncertain.
 
-No bounded task queue or implementation loop is active during E0–E3. `FULL_AUTONOMOUS_BUILD_MODE` remains `NOT_AUTHORIZED` until E3 is independently verified.
+No bounded task queue or implementation loop is active during E0–E3. The authorization sequence is:
+
+```text
+E3 VERIFIED
+        ↓
+AUTONOMY_ELIGIBLE
+        ↓
+separate explicit founder authorization
+        ↓
+AUTONOMOUS_BUILD_AUTHORIZED
+```
+
+E3 verification is necessary but not sufficient. It can establish `AUTONOMY_ELIGIBLE` only. No model may automatically activate E4 when E3 passes, and `AUTONOMOUS_BUILD_AUTHORIZED` remains `NO` / `NOT_AUTHORIZED` until a separate founder decision is recorded.
 
 ## 14. Explicit v0.1 non-goals
 
@@ -308,7 +322,7 @@ The following are not required for v0.1 and are not authorized by this charter:
 
 ## 15. Future compatibility without premature scope
 
-v0.1 implements one local user and one persistent agent. E1 requirements and E2 ADRs must preserve versioned identities, ownership, causal/correlation fields, capability scopes, extension points, and migration paths sufficient to add later:
+v0.1 implements one local user and one persistent agent. E1 requirements and E2 ADRs must demonstrate a credible, testable compatibility and migration path sufficient to add later features below. E2 decides which versioned identities, ownership rules, causal/correlation fields, capability scopes, extension points, and migration mechanisms are necessary rather than treating this list as a preselected schema:
 
 - multiple persistent agents;
 - agent-to-agent messaging;
@@ -335,21 +349,46 @@ E2 must explicitly examine future ordering, expected versions, causal identities
 
 **VERIFIED EVIDENCE INPUT.** The corrected reconstructed-architecture audit and its verifier review are verified static research against the pinned unofficial reconstruction identified in those artifacts. They are not original or production Grok Bot architecture, security, behavior, deployment, or tenancy evidence. Their `ADOPT`, `ADAPT`, `REJECT`, and similar labels are research recommendations, not project decisions.
 
-E1/E2 must evaluate, without automatically adopting:
+The audit is integrated at three separate levels.
 
-- canonical conversation state distinct from transcript projection;
-- content-addressed state and artifact concepts with authorization, privacy, retention, and erasure caveats;
-- structured long-running/cloud-agent lifecycle concepts and operation recovery;
-- stable typed errors and bounded safe error identity;
-- context summarization/compaction with authoritative-evidence preservation;
-- structured approvals bound to exact effects;
-- local/remote execution-provider abstraction;
-- provider/model routing that preserves provider semantics;
-- MCP or equivalent capability gateway;
-- typed and runtime-validated boundaries;
-- evidence manifests and lineage;
-- multi-writer and multi-device concerns;
-- security-negative testing.
+#### Level A — verified requirement / property
+
+These implementation-neutral properties are required independently by D-016, the master operating requirements, `SECURITY.md`, and the repository's completion/evidence rules. The external audit corroborates them and may contribute test ideas, but is not their authority:
+
+- durable task and conversation information sufficient for authorization, resumption, audit, recovery, and completion verification;
+- safe recovery from restart, interruption, partial failure, stale writers, and uncertain effects without silent loss or duplicate consequential effects;
+- explicit, durable approval, refusal, and revocation semantics bound to the exact actor, action, target, scope, policy, and task or operation;
+- structured, machine-distinguishable failures with bounded retry, recovery, terminal-failure, and escalation behavior;
+- validated tool and provider contracts that preserve provider-specific semantics and never hide fallback or erase failure meaning;
+- evidence and artifact provenance sufficient for independent verification, including inputs, actions, outputs, receipts, limitations, and reviewed revision;
+- context management that may reduce working context but cannot destroy or supersede authoritative task, conversation, effect, approval, audit, or completion history;
+- future concurrency safety that prevents silent lost mutations, stale writers or workers, duplicate effects, and authority amplification while leaving the mechanism open;
+- authoritative readback for external-state completion claims, or an explicit unresolved or uncertain outcome.
+
+Level A requires authority and derived claims to remain distinguishable and testable. It does not mandate separate databases, services, logs, projections, or a particular canonical-state implementation.
+
+#### Level B — architectural pattern to evaluate
+
+E2 must compare audit-supported patterns against alternatives before any ADR selects them. Candidate patterns include:
+
+- canonical task or conversation authority with rebuildable transcript or activity projections;
+- content-addressed state or artifact referents with versioned roots, retention, privacy, and deletion controls;
+- transactional state plus outbox, append-only event history, durable workflow history, or hybrid authority models;
+- central typed error registries with stable codes and safe public/internal representations;
+- structured long-running or cloud-agent lifecycle and operation-recovery patterns;
+- explicit process ports, provider-router/provider-adapter boundaries, and local/remote execution-provider seams;
+- direct tool adapters versus an MCP or equivalent capability gateway;
+- approval controllers or capability receipts; evidence packets, digest manifests, anchor/closure records, and drift checks;
+- provider-aware context-compaction services with persisted summary blocks;
+- optimistic concurrency, compare-and-swap/version checks, durable queues, leases/fencing, actors, or workflow-engine ownership;
+- separate telemetry, audit, evidence, and presentation stores versus a correlated shared backbone;
+- corrupt-state quarantine and bounded salvage patterns.
+
+Only an independently verified E2 ADR may select among these. E3 may test a selected design; an audit classification cannot bypass E1 or E2.
+
+#### Level C — external implementation detail
+
+Reconstruction-specific mechanisms are observations, not requirements and not designs to copy automatically. These include Electron-specific main/preload/renderer/coordinator and IPC boundaries; local SQLite or JSON/JSONL implementations; exact protobuf, hash, schema, table, action, status, error-code, payload, module, adapter, queue, port, authentication, container, selector, renderer, asset, installer, branding, copy, or shipped-compatibility mechanisms; and reconstruction-specific cloud-agent, provider, MCP-bridge, home-directory, or updater behavior.
 
 No external source code, translated schema, exact internal name, renderer/minified asset, installer, selector/hash, UI copy, branding, consumer-session authentication integration, undocumented endpoint, or private implementation material may be imported. All product and implementation work must be independently designed.
 
@@ -358,13 +397,15 @@ No external source code, translated schema, exact internal name, renderer/minifi
 | Phase | Purpose | Current status | Gate to proceed |
 |---|---|---|---|
 | E0 | Engineering pivot and governance reconciliation | `READY_FOR_REVIEW` | Independent review and verification of the initialization artifacts |
-| E1 | Engineering Preview product and correctness specification | `ACTIVE`; E1-001 is `READY` | All required E1 artifacts and E0-001 independently verified |
+| E1 | Engineering Preview product and correctness specification | `NOT_STARTED`; E1-001 and E1-002 are `BACKLOG` | E0-001 independently verified before E1-001 can become `READY`; all required E1 artifacts independently verified before E2 |
 | E2 | Architecture alternatives and ADR selection | `NOT_STARTED` | E1 gate independently verified |
-| E3 | Technical spikes and model-role benchmarks | `NOT_STARTED` | E2 gate independently verified; external inputs and approvals satisfied |
-| E4 | Autonomous implementation of Engineering Preview | `NOT_AUTHORIZED` | E3 independently verified under the provisional contract and its recorded limits |
+| E3 | Technical spikes and model-role benchmarks | `NOT_STARTED` | E2 gate independently verified; verified Engineering Preview task/evaluation suite and external inputs/approvals satisfied |
+| E4 | Autonomous implementation of Engineering Preview | `NOT_STARTED`; autonomous build `NOT_AUTHORIZED` | E3 independently verified, then a separate explicit founder decision records `AUTONOMOUS_BUILD_AUTHORIZED` and its limits |
 | E5 | Reliability, open-source packaging, and release verification | `NOT_STARTED` | Eligible E4 implementation independently verified and release gate opened |
 
-E0 being ready for review does not block authoring E1-001 because D-016 is already confirmed and E1-001 depends only on verified research tasks. E0-001 must nevertheless be independently verified before E1 can be gate-verified or E2 can activate.
+E0-001 must be independently verified before E1-001 can become `READY`. No downstream authoring task is released during this fixer pass.
+
+While D-016 engineering-first mode is active, the E-track reconciles to the preserved master stage model as follows: E1 supplies the immediate product-definition work analogous to Stage 2; E2 is the Stage 3 architecture decision; E3 covers Stage 4 technical evidence plus model-role benchmarks; E4 is analogous to bounded Stage 5 implementation only after separate founder authorization; and E5 is a bounded Stage 6 reliability/open-source release subset. This mapping does not erase the startup track. E1 Engineering Preview requirements replace customer-wedge selection as the current workflow-definition input, and the E3 suite depends on verified E1/E2 engineering artifacts rather than completion of paused S1-003. If a separate founder decision resumes the startup track, its preserved Stage 1 customer gate applies again.
 
 ## 18. E1 product-specification gate
 
@@ -386,41 +427,35 @@ E1 must eventually produce independently verified artifacts for:
 14. Evaluation suite.
 15. Release acceptance criteria.
 
-E1-001 is the sole READY authoring task and covers items 1–12. E1-002 remains BACKLOG and covers items 13–15 after E1-001 and E0-001 are independently verified. Challenge, fix, and verify operations apply the repository's author/challenger/verifier protocol to each task; no author may mark their own high-risk work verified.
+E1-001 and E1-002 remain `BACKLOG`. E1-001 covers items 1–12 and may become `READY` only after E0-001 is independently verified. E1-002 covers items 13–15 and remains blocked until both E0-001 and E1-001 are independently verified. Challenge, fix, and verify operations apply the repository's author/challenger/verifier protocol to each task; no author may mark their own high-risk work verified.
 
 The E1 gate must answer what correctness means before architecture or code begins.
 
 ## 19. E2 architecture and ADR gate
 
-E2 is not authorized during this operation. It must later compare alternatives and record evidence-backed ADRs for:
+E2 is not authorized during this operation. The questions below are comparison subjects, not preselected components, stores, services, or topology. E2 must later compare alternatives and record evidence-backed ADRs for:
 
-- durable workflow engine;
-- canonical task state;
-- canonical conversation/message state;
-- event/history log;
-- projections and indexes;
-- local database;
-- sandbox provider and declared isolation tier;
-- local execution;
-- future cloud execution;
-- model router;
-- provider adapters;
-- tool/capability gateway;
-- MCP integration;
-- approval engine;
-- secrets handling and storage;
-- artifact/evidence store;
-- Git workspace model;
-- observability and audit separation;
-- error taxonomy and recovery policy;
-- concurrency, ordering, leases/fencing, idempotency, and conflict handling;
+- workflow durability and ownership: a dedicated workflow engine, explicit task-state loop, or another bounded mechanism;
+- authority relationships among task, conversation/message, execution/effect, artifact/evidence, and causal/history responsibilities, including combined transactional, event-history, workflow-history, content-addressed, and hybrid alternatives;
+- whether transcript/activity/search/summary/UI/telemetry views are derived, stored, rebuilt, or combined with an authoritative backbone;
+- local persistence and migration alternatives, without assuming a database type or separate store;
+- sandbox and local-execution alternatives, their declared isolation tier, and the compatibility path to possible future cloud execution;
+- direct provider integration versus router/adapter boundaries, while preserving provider identity and semantics;
+- direct capability adapters versus gateway, MCP, or equivalent integration topology;
+- approval-policy enforcement and durable receipt alternatives;
+- secrets acquisition, storage, injection, redaction, revocation, and evidence boundaries;
+- artifact/evidence representation, provenance, retention, integrity, and its relationship to other authority;
+- Git workspace isolation and review-package alternatives;
+- separate telemetry, audit, evidence, and presentation stores versus a correlated shared backbone;
+- structured error and recovery alternatives, including whether a central registry exists;
+- concurrency, ordering, version/CAS, queues, leases/fencing, actors, workflow ownership, idempotency, and conflict-handling alternatives;
 - recovery, migration, and schema/event evolution;
-- plugin and vertical-pack boundary;
-- CLI, web, desktop, or other client surface.
+- plugin and vertical-pack boundaries;
+- CLI, web, desktop, or another client surface.
 
 Each comparison must consider correctness, durability, recovery, isolation, security, local-first usability, future cloud/multi-writer extension, operability, testability, migration, open-source contributor burden, cost, and lock-in. No client, language, framework, workflow engine, queue, database, sandbox/container/VM, artifact store, event model, schema library, MCP topology, secret store, provider, model, or permanent model role is selected by this charter.
 
-## 20. E3 automation-unlock gate
+## 20. E3 benchmark/spike and autonomy-eligibility gate
 
 E3 is not authorized during this operation. Future E3 work must test the riskiest product and architecture assumptions and benchmark candidate execution models on representative task classes.
 
@@ -444,17 +479,17 @@ At minimum, E3 must evaluate:
 
 Security-negative cases must include untrusted repository/web/document/MCP/model content, secret leakage, path/symlink escape, egress, malformed or oversized schemas, approval replay or mutation, stale workers, duplicate effects, cancellation races, and isolation failure.
 
-The benchmark must determine which task classes, if any, can safely use Luna, Terra, Sol, Claude/Fable, DeepSeek, open/self-hosted models, or other candidates, and when escalation is required. No permanent role is assigned now. Provider access, paid calls, live technical spikes, or final suitability claims remain subject to S0-005, budget, credential, and approval constraints.
+The benchmark must determine which available system or model, if any, may occupy each logical role for each eligible task class: `AUTONOMOUS_CONTROLLER`, `PLANNER`, `EXECUTOR`, `CODER`, `VERIFIER`, and `SECURITY_REVIEWER`. Codex, Terra, Luna, Claude Code, DeepSeek, open/self-hosted models, and future systems remain candidates; none is selected by E0. The benchmark must also determine when escalation is required. Provider access, paid calls, live technical spikes, or final suitability claims remain subject to S0-005, budget, credential, data-policy, and approval constraints.
 
-`FULL_AUTONOMOUS_BUILD_MODE` is not authorized until E3 has been independently verified. D-016 conditionally authorizes the provisional E4 loop after that gate, subject to eligible READY task state and all approval, budget, stage, release, and stop/escalation rules below.
+E3 verification can establish `AUTONOMY_ELIGIBLE`; it cannot activate E4 or authorize implementation. D-016 establishes engineering-first mode, eventual bounded autonomous-task capability, and the requirement to avoid implementation until specification, architecture, and spike gates are verified. It does not authorize autonomous build execution. After E3, a separate explicit founder decision must record `AUTONOMOUS_BUILD_AUTHORIZED` before any E4 loop can run. That future decision may define allowed systems/models, cost limits, task classes, escalation conditions, branch/worktree policy, commit policy, and stop conditions. Current authorization remains `NO` / `NOT_AUTHORIZED`.
 
 ## 21. Provisional E4 autonomous build contract
 
-**PROVISIONAL CONTRACT — INACTIVE.** After E3 is independently verified, Codex may repeat the following only while eligible READY engineering tasks exist:
+**PROVISIONAL CONTRACT — DESIGN PROPOSAL, INACTIVE.** Only after both (a) E3 is independently verified and records `AUTONOMY_ELIGIBLE` and (b) a separate explicit founder decision records `AUTONOMOUS_BUILD_AUTHORIZED`, a benchmark-approved `AUTONOMOUS_CONTROLLER` may coordinate occupants of the logical `PLANNER`, `EXECUTOR`, `CODER`, `VERIFIER`, and `SECURITY_REVIEWER` roles for eligible task classes. A system/model may occupy a role only when the E3 evidence and founder decision allow it. Subject to those still-future conditions, the controller may repeat the following only while eligible `READY` engineering tasks exist:
 
 1. Read `01_governance/PROJECT_STATE.yaml`.
 2. Claim the highest-priority unblocked eligible engineering task.
-3. Select a benchmark-approved execution model for that task class.
+3. Assign only benchmark-approved, founder-authorized role occupants for that task class.
 4. Create or use an isolated branch or worktree.
 5. Read the task's required specifications and governing records.
 6. Implement only the allowed scope.
@@ -479,7 +514,7 @@ The loop must stop and escalate on:
 - unsupported model capability;
 - uncertain consequential effect that cannot be resolved by safe readback.
 
-This contract does not authorize external push, pull-request creation, merge, release, deployment, messaging, spending, or other consequential external action without the separately required human approval. It is not active during E0, E1, E2, or E3.
+This design proposal is not itself an authorization. It does not authorize implementation, external push, pull-request creation, merge, release, deployment, messaging, spending, or any other consequential external action without every separately required approval. It is not active during E0, E1, E2, or E3, and E3 verification alone cannot activate it.
 
 ## 22. E5 reliability, packaging, and release gate
 
@@ -522,10 +557,10 @@ This E0 authoring operation is complete for review when:
 - project state and the task registry consistently preserve and defer the startup track;
 - the Engineering Preview track is active with unique E0–E5 identifiers;
 - S1-003 is preserved, blocked, and deferred by D-016 with zero execution;
-- E0-001 is `READY_FOR_REVIEW`, E1-001 is the sole `READY` task, and E1-002 is `BACKLOG`;
-- E2 and E3 are not started and E4 is not authorized;
+- E0-001 is `READY_FOR_REVIEW` and not verified, while E1-001 and E1-002 are `BACKLOG` pending their verified dependencies;
+- E2, E3, E4, and E5 are not started, and autonomous build is not authorized;
 - this charter and a factual initialization handoff exist;
-- D-016, verified customer artifacts, customer evidence, and the model registry are unchanged;
+- D-016, verified customer artifacts, customer evidence, model candidate evidence, role hypotheses, and benchmark-run counts are unchanged;
 - YAML, task dependency/status, Markdown, scope, secret, no-source-code, and whitespace checks pass;
 - no architecture, model role, customer wedge, pricing, application code, technical spike, benchmark, outreach, external action, or autonomous build mode is created or activated.
 
