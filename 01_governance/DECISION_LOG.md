@@ -344,6 +344,81 @@ A later bounded task should define and test:
 - regulatory and compliance boundaries
 - whether the finance vertical should become an early product line or a later expansion
 
+## D-015: Restricted customer-discovery evidence storage
+
+- Date: 2026-08-25
+- Status: CONFIRMED
+- Decision type: CUSTOMER_DISCOVERY_DATA_GOVERNANCE
+
+### Approved restricted storage location
+
+Raw and identifying S1-003 customer-discovery evidence is approved to reside at:
+
+`/Users/richardzhu/dev/grok_bot/private_customer_discovery`
+
+This directory is outside the public Git repository:
+
+`/Users/richardzhu/dev/grok_bot/gork_bot`
+
+and is restricted to the founder's local macOS user.
+
+### Storage structure
+
+The approved private workspace contains:
+
+- `raw_interviews/`
+- `recordings/`
+- `transcripts/`
+- `private_artifacts/`
+- `participant_registry/`
+
+### Public repository boundary
+
+The public repository may contain only:
+
+- opaque interview IDs
+- sanitized/de-identified structured evidence
+- aggregate findings
+- evidence classifications
+- non-identifying workflow descriptions
+- opaque references to restricted evidence
+
+The public repository must not contain, unless separately and explicitly authorized:
+
+- participant names
+- personal email addresses
+- identifying employer information
+- raw interview notes
+- recordings
+- transcripts
+- private screenshots
+- proprietary code
+- confidential company documents
+- confidential workflows
+- identifiable budget information
+- payment information
+
+### Evidence references
+
+Private evidence should be referenced from public records using opaque identifiers such as:
+
+`H1-INT-001`
+`H2-INT-001`
+
+Public records must not encode participant identity into those IDs.
+
+### Recording policy
+
+Recording remains OFF by default.
+
+Any recording requires explicit prior participant consent and must be stored only in the restricted evidence location.
+
+### Consequence
+
+This decision satisfies the remaining S1-003 restricted-evidence-storage-location requirement.
+
+It does not itself start outreach, interviews, recording, spending, or S1-003 execution.
+
 ## Stage 0 author reconciliation note — 2026-08-21
 
 This note records scope, not a new decision:
