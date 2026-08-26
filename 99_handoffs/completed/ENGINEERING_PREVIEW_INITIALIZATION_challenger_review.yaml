@@ -1,0 +1,464 @@
+review_id: R-E0-001-20260826-CHALLENGER
+task_id: E0-001
+stage: E0
+mode: REVIEW_ENGINEERING_PREVIEW_E0
+role: CHALLENGER
+reviewer_model: "Claude Fable 5 (claude-fable-5) via Claude Code"
+reviewer_independence: >-
+  Independent of the recorded E0-001 author ("Codex (runtime model identifier not exposed)").
+  No Claude model authored any E0 artifact. The author's handoff records read-only Codex
+  subagents labeled "challenger" and "verifier" during drafting; this review is not one of
+  them and shares no conversation state with them. Same model/product as prior S0/S1
+  challengers and verifiers, in a separate session; every fact below was re-derived from the
+  committed repository at 2568883, not from the author's summary.
+started_at: "2026-08-26T02:45:00Z (approximate)"
+completed_at: "2026-08-26T03:20:00Z (approximate)"
+reviewed_commit: 25688830a2e9aab79a78bece358b13c7a3cd31b8
+reviewed_commit_full_state: >-
+  Branch chore/initialize-project-materials at 2568883 ("Initialize Engineering Preview
+  track"), committed by the founder from the author's patch on base 334f919 ("Pivot project to
+  engineering-first Developer Preview", which added only D-016 to DECISION_LOG.md). Working
+  tree clean at review start. The E0 diff (334f919..2568883) touches exactly five paths:
+  README.md, 01_governance/PROJECT_STATE.yaml, 01_governance/TASK_REGISTRY.yaml,
+  03_product/ENGINEERING_PREVIEW_CHARTER.md (new), and
+  99_handoffs/completed/ENGINEERING_PREVIEW_INITIALIZATION_handoff.yaml (new);
+  +1104/-56 lines.
+
+verdict: E0_CHANGES_REQUESTED
+verdict_rationale: >-
+  No BLOCKER. The initialization is structurally sound: D-016 is byte-unchanged and correctly
+  treated as the sole authority; the startup track is paused rather than falsified (S1-001 and
+  S1-002 remain VERIFIED, S1-003 remains BLOCKED with disposition DEFERRED and a single
+  D-016 blocker, all execution counters are zero, D-013/D-014/D-015 are preserved and marked
+  inactive, no startup artifact was deleted or rewritten); the registry parses, has 11 unique
+  IDs, 14 resolving acyclic dependencies, status lists that reconcile with PROJECT_STATE, no
+  premature READY architecture or implementation task, and no application code; the charter
+  matches D-016's target workflow point for point, separates v0.1 requirements from future
+  compatibility from explicit non-goals, and selects no client, language, framework, engine,
+  database, sandbox, provider, model, or permanent role (technologies appear only as E2
+  alternatives or "MCP or equivalent"). Two HIGH findings nevertheless require a fixer pass
+  before independent verification. (1) The charter (Section 20) and PROJECT_STATE (E4
+  activation_condition) state that "D-016 conditionally authorizes the provisional E4 loop"
+  after E3 verification. D-016 contains no such authorization: it lists "bounded autonomous
+  task queues" as an eventual product capability and instructs the project to avoid
+  implementation until requirements and architecture gates are verified. The author has
+  attributed to the founder a pre-authorization of autonomous build mode that the founder did
+  not record, so as written the autonomy gate would open on E3 verification alone with no
+  further founder decision. (2) E1-001 is READY, PROJECT_STATE shows E1 ACTIVE, and README's
+  next command is EXECUTE_TASK_E1-001, while E0-001 is unreviewed and E1-001 does not depend
+  on it, even though E1-001's governing input is the unverified charter (governance
+  prerequisite ENGINEERING_PREVIEW_CHARTER_PRESENT; files_to_read includes it). E1-002 is
+  correctly gated on E0-001 verification; E1-001 is not, so charter defects (including finding
+  1) would flow directly into the PRD. Three MEDIUM findings concern an internal contradiction
+  between "must evaluate without adopting" and "PRODUCT REQUIREMENT" treatment of the same
+  audit-derived principles, the pre-naming of Codex as the E4 build operator, and the
+  unreconciled MASTER_OPERATING_PROMPT stage model plus the verified benchmark plan's
+  Stage 1 workflow gate that D-016 has now deferred. All fixes are bounded governance and
+  charter edits; no research, spike, or code is needed.
+
+primary_review_question_answer: >-
+  E0 implemented D-016 faithfully in every respect except one: it manufactured a conditional
+  founder authorization for the E4 autonomous build loop. The startup track was paused safely.
+  The engineering track structure is coherent. The charter is technology-neutral and correctly
+  scoped, but it must (a) stop attributing the E4 contract to D-016, (b) decide whether the
+  audit-derived state/error/compaction principles are settled requirements or open
+  evaluations, and (c) not release E1-001 ahead of E0 verification without an explicit founder
+  decision to do so.
+
+# ────────────────────────────────────────────────────────────────────
+# 1. Files read
+# ────────────────────────────────────────────────────────────────────
+files_read:
+  - MASTER_OPERATING_PROMPT.md
+  - AGENTS.md
+  - CLAUDE.md
+  - README.md
+  - SECURITY.md
+  - 01_governance/PROJECT_STATE.yaml
+  - 01_governance/TASK_REGISTRY.yaml
+  - 01_governance/DECISION_LOG.md
+  - 01_governance/ASSUMPTION_REGISTER.md
+  - 01_governance/RISK_REGISTER.md
+  - 01_governance/MODEL_REGISTRY.yaml (benchmark_policy and role-status fields)
+  - 03_product/ENGINEERING_PREVIEW_CHARTER.md
+  - 99_handoffs/completed/ENGINEERING_PREVIEW_INITIALIZATION_handoff.yaml
+  - 99_handoffs/completed/S1-003_AUTHORIZATION_RECONCILIATION_handoff.yaml
+  - 99_handoffs/completed/S1-001_verifier_review.yaml (verdict and header)
+  - 99_handoffs/completed/S1-002_verifier_review.yaml (verdict and header)
+  - 99_handoffs/completed/S1-002_challenger_review.yaml (format precedent)
+  - 99_handoffs/completed/EXTERNAL_GROK_BOT_018_ARCHITECTURE_AUDIT_verifier_review.yaml
+  - 99_handoffs/HANDOFF_TEMPLATE.yaml
+  - 99_handoffs/completed/README.md
+  - 10_checkpoints/stage_checkpoints/STAGE_0_VERIFICATION.yaml (verdict, gate, S0-004/S0-005)
+  - 02_research/GROK_BOT_018_RECONSTRUCTED_ARCHITECTURE_AUDIT.md (Section 0 corrections)
+  - 02_research/GROK_BOT_018_ARCHITECTURE_ADOPTION_MATRIX.csv (all 20 pattern rows)
+  - 06_evaluation/MODEL_ROLE_BENCHMARK_PLAN.md (Stage 1 workflow gate section)
+  - 03_product/S1-002_DISCOVERY_SCORECARD.csv (row count only)
+  - git history: 2568883, 334f919, 529c944 diffs and stats
+
+# ────────────────────────────────────────────────────────────────────
+# 2. Structural checks re-run by the challenger
+# ────────────────────────────────────────────────────────────────────
+checks_run:
+  - check: "YAML parse of TASK_REGISTRY.yaml, PROJECT_STATE.yaml, and the E0 handoff (Ruby Psych safe_load)"
+    result: PASS_3_OF_3
+  - check: "Unique task IDs"
+    result: "PASS — 11 IDs: S0-001..S0-005, S1-001..S1-003, E0-001, E1-001, E1-002"
+  - check: "Every dependency resolves; no cycle (DFS)"
+    result: PASS_14_DEPENDENCIES_ACYCLIC
+  - check: "PROJECT_STATE active/ready/backlog/completed/blocked lists vs registry statuses"
+    result: "PASS — active E0-001=READY_FOR_REVIEW; ready E1-001=READY; backlog E1-002=BACKLOG; completed S0-001/002/003, S1-001/002 all VERIFIED; blocked S0-004/S0-005/S1-003 all BLOCKED"
+  - check: "Sole READY task and its dependency statuses"
+    result: "E1-001 READY; deps S0-002 VERIFIED, S0-003 VERIFIED (E0-001 is NOT a dependency — see F-E0-02)"
+  - check: "E0-001 and E1-001 files_to_read exist on disk"
+    result: PASS_ALL_PRESENT
+  - check: "Lines removed from governance YAML by the E0 commit"
+    result: "PASS — only the pre-pivot stage fields, the prior RECONCILE_S1_003_AUTHORIZATION block, the now-satisfied RESTRICTED_RAW_EVIDENCE_STORAGE_LOCATION blocker, and PENDING_FULL_TASK_READINESS statuses were replaced; no VERIFIED record, evidence, counter, or authorization text was removed"
+  - check: "D-016 unchanged by E0"
+    result: "PASS — the E0 commit does not touch DECISION_LOG.md; D-016 exists only from 334f919"
+  - check: "Protected artifacts unchanged since 529c944 (02_research, 03_product S1-*, 06_evaluation, MODEL_REGISTRY, SOURCE_LEDGER, 10_checkpoints, 00_inbox, prior handoffs)"
+    result: PASS_NO_DIFF
+  - check: "S1-002 scorecard remains header-only"
+    result: PASS_1_LINE_0_CUSTOMER_ROWS
+  - check: "Model registry roles"
+    result: "PASS — 13 HYPOTHESIS_ONLY entries; benchmark_policy block unchanged"
+  - check: "Stage 0 checkpoint and S1-001/S1-002 verifier verdicts intact"
+    result: "PASS — STAGE_0_VERIFIED / gate VERIFIED; S1-001 VERIFIED; S1-002 VERIFIED"
+  - check: "Application source files in repository"
+    result: "PASS — none (.py/.ts/.js/.rs/.go/package.json/Cargo.toml/pyproject.toml absent)"
+  - check: "git diff --check on the E0 commit"
+    result: PASS
+  - check: "High-confidence secret/token/private-key pattern scan of the E0 diff"
+    result: PASS_ZERO_MATCHES
+  - check: "Premature-technology grep across charter, README, registry, state, handoff (Electron, Tauri, React, Next.js, Rust, TypeScript, Python, Temporal, Redis, Postgres, SQLite, Docker, Kubernetes, Firecracker, E2B, Modal, cloud providers, LangChain, AutoGen, CrewAI, MCP, web-only, CLI-only)"
+    result: "PASS — only 'MCP or equivalent' (Sections 5.3/16.2/19), 'MCP/tool descriptions' as untrusted input, and 'isolated branch or worktree' (generic Git) appear; all technology lists are labeled as E2 alternatives; Section 19 explicitly selects none"
+  - check: "Reconstruction-specific vocabulary leakage into charter (JSONL, blob, WAL, KV, SHA-256, exact internal names)"
+    result: "PASS — none; 'content-addressed' appears only as a caveated E2 alternative (Section 6.2)"
+  - check: "D-016 text for any autonomous-build / E4 / loop / Codex authorization"
+    result: "FAIL_FOR_AUTHOR_CLAIM — D-016 contains only 'bounded autonomous task queues' as an eventual product capability; no conditional authorization of a build loop exists (see F-E0-01)"
+  - check: "MASTER_OPERATING_PROMPT.md / AGENTS.md references to D-016 or the E-track"
+    result: "NONE — the governing prompt still describes the Stage 0–12 SaaS sequence (see F-E0-05)"
+
+# ────────────────────────────────────────────────────────────────────
+# 3. Section-by-section assessment
+# ────────────────────────────────────────────────────────────────────
+section_results:
+  d016_fidelity:
+    result: PASS_WITH_ONE_HIGH_DEVIATION
+    long_term_goal_preserved: "PASS — charter Section 3 and README restate the clean-room, model-agnostic, Grok Bot-class platform objective"
+    immediate_goal_preserved: "PASS — engineering-first Developer Preview, local-first, single-user (Sections 4.1–4.2)"
+    first_workflow_preserved: "PASS — Section 4.3 maps to D-016's 11-step workflow and the 13-item review target; steps 9/10/13 add persistence, retry/escalation, and evidence detail without changing intent"
+    startup_deferred_not_erased: "PASS — Section 2; PROJECT_STATE.startup_customer_track; S1-003 registry entry"
+    general_finance_preserved: "PASS — Section 15 lists both Editions as future extensions of one shared core; Section 14 excludes Finance packs/backtesting/paper/live trading from v0.1"
+    no_duplicated_platform: "PASS — Section 15 last paragraph"
+    autonomous_build_not_authorized: "PARTIAL — FULL_AUTONOMOUS_BUILD_MODE is NOT_AUTHORIZED everywhere, but Sections 20–21 and PROJECT_STATE claim D-016 already conditionally authorizes E4 after E3, which D-016 does not say (F-E0-01)"
+  startup_track_pause:
+    result: PASS
+    s1_001: VERIFIED_UNCHANGED
+    s1_002: VERIFIED_UNCHANGED
+    s1_003: "BLOCKED; task_disposition DEFERRED; deferred_by D-016; sole blocker PAUSED_BY_D016_ENGINEERING_FIRST_PIVOT; not CANCELLED/VERIFIED/COMPLETED"
+    outreach_interviews_evidence: "0 / 0 / ZERO in registry, PROJECT_STATE (two counter blocks), and handoff scope_control"
+    d013_d015_history: "Preserved and labeled CONFIRMED_PRESERVED_INACTIVE / SATISFIED_PRESERVED_INACTIVE; commit SHAs retained; D-014 non-interference PASS retained"
+    resumption_possible: "PASS — resumable: true; resume_condition requires a separate founder decision plus fresh readiness audit"
+    artifacts_deleted_or_rewritten: "NONE — verified by git diff against 529c944"
+    note: "The prior RECONCILE_S1_003_AUTHORIZATION block was replaced in PROJECT_STATE/TASK_REGISTRY by the reconciled D-015-satisfied form; the original reconciliation handoff remains intact at 99_handoffs/completed/S1-003_AUTHORIZATION_RECONCILIATION_handoff.yaml, so history is preserved"
+  engineering_track_structure:
+    result: PASS_WITH_MEDIUM_CAVEATS
+    phases: "E0 governance → E1 specification → E2 architecture/ADR → E3 spikes and model-role benchmarks → E4 autonomous implementation → E5 reliability/open-source release; coherent"
+    task_ids_unique: true
+    dependencies_valid_acyclic: true
+    architecture_task_ready_prematurely: false
+    implementation_task_ready_prematurely: false
+    e4_depends_on_verified_e3: "true in PROJECT_STATE and charter Sections 13/20/21"
+    e5_follows_implementation: true
+    caveats: "E1-001 readiness ahead of E0 verification (F-E0-02); E2–E5 exist only as PROJECT_STATE phase records, not registry tasks — acceptable for E0 and noted"
+  charter:
+    result: PASS_WITH_MEDIUM_CAVEATS
+    thirteen_item_target_coverage: "All 13 items present in Section 4.3 (receive, inspect, durable task, reproduce, bounded plan, isolated workspace, edit, terminal/Git, tests, independent verification, patch/branch/commit/draft-PR, evidence bundle, human approval)"
+    not_generic_chatbot: PASS
+    not_saas: "PASS — Section 14"
+    not_multi_agent_now: "PASS — Sections 14/15"
+    not_finance_now: "PASS — Section 14"
+    not_github_only: "PASS — 'draft pull-request package' and 'external pull request or issue' are host-neutral; no GitHub-specific requirement"
+    not_specific_framework: "PASS — Section 19 disclaimer"
+    caveat: "Internal contradiction between Section 16.2 'evaluate without adopting' and Sections 4.4/5.1/5.5/6/6.1 'PRODUCT REQUIREMENT' for the same principles (F-E0-03)"
+  mvp_scope:
+    result: PASS
+    required_v0_1: "Section 5 covers identity, durable task state, restart/resume, local sandbox, files, terminal, Git, tests, model abstraction/routing, approvals, pause/stop/redirect/resume, observability, artifacts, evidence bundle, completion predicates, independent verification, typed error/retry/recovery, secret boundaries"
+    future_compatibility: "Section 15 (obligation to preserve extension points, explicitly not authorization)"
+    explicit_non_goals: "Section 14 matches D-016's non-goal list and adds SaaS, orgs, enterprise controls, every connector, startup activities"
+    scope_creep: "None found. Section 5.3's 'future-compatible MCP or equivalent capability gateway' and Section 5.2's 'provider-neutral abstraction for a future cloud sandbox without requiring cloud execution' are compatibility requirements, not implementation mandates"
+  premature_architecture:
+    result: PASS
+    detail: "No client surface, language, framework, workflow engine, queue, database, sandbox/container/VM, artifact store, event store, schema library, agent framework, cloud provider, MCP topology, or model-routing library is selected. Section 19 lists them as ADR subjects and disclaims selection. Section 6.2 explicitly demotes content-addressing to an alternative. D-016 itself names CLI/local web/Electron/Tauri only as unselected options and the charter repeats none of them as a choice."
+  external_audit_integration:
+    result: PASS_WITH_MEDIUM_CAVEAT
+    detail: "Section 16.2 labels the audit VERIFIED EVIDENCE INPUT, states its ADOPT/ADAPT/REJECT labels are research recommendations not decisions, lists the 13 principles for E1/E2 evaluation, and repeats the clean-room import prohibition. No PAT-xx identifier, external path, or internal name is imported. Caveat: several listed principles are simultaneously mandated as requirements elsewhere in the charter (F-E0-03)."
+  e1_001:
+    result: PASS_WITH_HIGH_CAVEAT
+    bounded_author_task: true
+    deliverables_cover: "PRD, user flows, MVP scope, non-goals, functional/reliability/security requirements, task lifecycle, agent lifecycle, completion predicates, approval boundaries, evidence-bundle contract (charter items 1–12)"
+    excludes: "Acceptance criterion 2 says 'without selecting technology'; criterion 4 forbids importing external code/names/architecture claims; allowed paths are three 03_product specification files plus governance/handoff — no code, ADR, evaluation, or spike paths; no benchmark path"
+    open_source_workflow_evaluation_cases_release_criteria: "Deliberately assigned to E1-002 (items 13–15); consistent with Section 18"
+    caveat: "READY before E0-001 is reviewed and without an E0-001 dependency (F-E0-02)"
+  e1_002:
+    result: PASS
+    backlog_appropriate: true
+    dependency_sensible: "Depends on E1-001; blocked_by E1_001_NOT_INDEPENDENTLY_VERIFIED; activation also requires E0-001 VERIFIED"
+    duplication: "None — E1-002 covers contribution workflow, evaluation suite, and release acceptance, which E1-001 does not; its paths (03_product/…CONTRIBUTION_WORKFLOW.md, 06_evaluation/…EVALUATION_SUITE.md, 10_checkpoints/…RELEASE_ACCEPTANCE.yaml) do not overlap E1-001's"
+  autonomy_gate:
+    result: AUTONOMY_GATE_WEAK
+    structural_gate: "Present — E4 NOT_AUTHORIZED; FULL_AUTONOMOUS_BUILD_MODE NOT_AUTHORIZED; activation requires E3 independently VERIFIED; Section 13 prohibits any loop during E0–E3; Section 21 stop/escalation list is complete"
+    e3_evidence_list: "Section 20 covers durable execution, restart/recovery, Git isolation, editing, tests, interruption controls, completion verification, evidence generation, tool reliability, provider routing, inexpensive-model reliability, escalation, security-negative cases, cost, latency — all 14 requested evidence classes"
+    permanent_role_selected: "No model role; but Codex is named as the E4 loop operator (F-E0-04)"
+    why_weak: "Activation authority is misattributed to D-016 (F-E0-01), so as written no further founder decision would be required to start autonomous build once E3 verifies; and the operator is pre-named before any E3 benchmark (F-E0-04)"
+  open_source_orientation:
+    result: PASS
+    detail: "Reproducible setup, deterministic tests, contribution guide, security reporting, release process, plugin/vertical-pack boundary, compatibility testing, clean-room provenance, and license/rights review are placed in E1-002 and the E5 gate (Sections 18, 19, 22); no SaaS business features are required"
+  general_finance_compatibility:
+    result: PASS
+    detail: "Section 15 preserves General/Finance Editions, multi-agent, skills/routines, cloud execution, multi-device, and SaaS as compatibility obligations; Section 14 excludes them from v0.1; no finance implementation exists or is scheduled; D-014 non-interference PASS is retained in PROJECT_STATE"
+  governance_consistency:
+    result: PASS_WITH_FINDINGS
+    detail: "PROJECT_STATE and TASK_REGISTRY reconcile; IDs resolve; S1-003 pause is represented identically in registry, state (two blocks), charter, and handoff; D-016 referenced correctly except for the E4 attribution; prior VERIFIED states intact; no architecture, code, or build authorization; handoff files_created/files_modified match the commit exactly. Findings: MOP/AGENTS unreconciled and benchmark-plan gate conflict (F-E0-05); registers not updated (F-E0-06); handoff role labeling (F-E0-07)"
+
+# ────────────────────────────────────────────────────────────────────
+# 4. E0-001 acceptance criteria (from TASK_REGISTRY.yaml, verbatim)
+# ────────────────────────────────────────────────────────────────────
+acceptance_criteria_results:
+  - criterion: "D-016 remains unchanged and authoritative."
+    result: PASS
+    evidence: "E0 commit does not touch DECISION_LOG.md; D-016 blob identical to 334f919; charter/state/registry cite D-016 as authority. (Misattribution of E4 authorization is a fidelity defect recorded under criterion 3, not a modification of D-016.)"
+  - criterion: "S1-001 and S1-002 remain VERIFIED, while S1-003 and all startup/customer execution are preserved and deferred without outreach, interviews, spend, customer selection, or fabricated evidence."
+    result: PASS
+    evidence: "Registry statuses; zero counters in three locations; header-only scorecard; protected-artifact git diff empty"
+  - criterion: "The Engineering Preview E0-E5 program, v0.1 target, E1 correctness gate, E2 architecture gate, E3 automation-unlock gate, provisional inactive E4 contract, and E5 release phase are explicit and technology-neutral."
+    result: PARTIAL
+    evidence: "All present and technology-neutral; but the E4 contract claims D-016 authorization it lacks (F-E0-01) and names Codex as operator (F-E0-04)"
+  - criterion: "Exactly one E1 authoring task is READY; E2 and E3 are not started; FULL_AUTONOMOUS_BUILD_MODE is not authorized."
+    result: PASS
+    evidence: "E1-001 sole READY; E2/E3 NOT_STARTED; E4 NOT_AUTHORIZED. Whether E1-001 should be READY before E0 verification is F-E0-02, a separate finding; the criterion as written is met"
+  - criterion: "Architecture, client technology, provider/model roles, PRD, and application code remain unselected or absent."
+    result: PASS
+    evidence: "current_architecture_version/current_prd_version/current_code_commit null; architecture_selected/model_roles_locked/application_code_created false; no source files; technology grep clean"
+  - criterion: "All changed YAML parses; task IDs and dependencies are valid; Markdown, allowed-path, secret, customer-artifact, source-code, and whitespace checks pass."
+    result: PASS
+    evidence: "Re-run by challenger — see checks_run; changed paths equal the five allowed paths including prospective amendment E0-001-A1"
+
+required_tests_results:
+    - test: "Independent challenger review of scope, governance semantics, requirement coverage, contradictions, and premature authorization."
+      result: RUN_THIS_REVIEW
+    - test: "Independent verifier review of every acceptance criterion after fixes."
+      result: NOT_RUN_REQUIRED_AFTER_FIXER
+    - test: "YAML parse and registry dependency/status assertions."
+      result: PASS_RERUN
+    - test: "D-016, S1-001, S1-002, customer-artifact, model-registry, and no-source-code regression checks."
+      result: PASS_RERUN
+    - test: "Markdown, allowed-path, secret-pattern, and git diff --check."
+      result: PASS_RERUN
+
+# ────────────────────────────────────────────────────────────────────
+# 5. Findings
+# ────────────────────────────────────────────────────────────────────
+finding_counts: "BLOCKER 0, HIGH 2, MEDIUM 3, LOW 2, NOTE 5"
+
+findings:
+  - finding_id: F-E0-01
+    severity: HIGH
+    requirement: "D-016 fidelity; autonomous build explicitly not yet authorized; E0-001 acceptance criterion 3 (provisional inactive E4 contract explicit and faithful)"
+    file_or_component: "03_product/ENGINEERING_PREVIEW_CHARTER.md Section 20 (line 449) and Section 21; 01_governance/PROJECT_STATE.yaml engineering_preview_track.phases.E4.activation_condition (line 133)"
+    evidence: >-
+      Charter line 449: "D-016 conditionally authorizes the provisional E4 loop after that gate".
+      PROJECT_STATE line 133: "D-016 conditionally authorizes the provisional E4 contract at that
+      gate". The D-016 text (DECISION_LOG.md, introduced at 334f919, unchanged) contains no
+      authorization, conditional or otherwise, of an autonomous build loop, an E4 phase, or a
+      Codex-operated implementation queue; grep for autonom/loop/E4/Codex/conditionally returns
+      only "bounded autonomous task queues" in the list of capabilities the product "should
+      eventually support", and its Consequence section says to "avoid application implementation
+      until the Engineering Preview requirements and architecture gates are verified".
+    why_it_matters: >-
+      This is the only place E0 deviates from D-016, and it deviates on the most consequential
+      control in the track. As written, the repository tells a future agent that once E3 is
+      independently VERIFIED the founder has already consented to autonomous implementation; no
+      further founder decision would be sought. The founder made no such decision. Attributing
+      an authorization to a CONFIRMED decision that does not contain it is the same class of
+      defect as relabeling deferred customer work as validated.
+    required_fix: >-
+      Remove the D-016 attribution from charter Section 20 and PROJECT_STATE E4
+      activation_condition. State instead that the Section 21 contract is a DESIGN PROPOSAL
+      (or PROVISIONAL CONTRACT) drafted by the E0 author, that D-016 lists bounded autonomous
+      task queues only as an eventual product capability, and that E4 activation requires (a)
+      E3 independently VERIFIED and (b) a separate explicit founder decision recorded in
+      DECISION_LOG.md. Mirror the same wording in the handoff decisions_made if the fixer
+      updates it.
+    verification_method: >-
+      grep -n "D-016 conditionally" across the repository returns nothing; charter Section 20/21
+      and PROJECT_STATE E4 name a separate founder decision as an activation precondition; D-016
+      remains byte-identical.
+
+  - finding_id: F-E0-02
+    severity: HIGH
+    requirement: "Expected lifecycle E0 AUTHOR → CHALLENGER → FIXER → VERIFIER → E1-001; AGENTS.md 'execute only a task marked READY'; MASTER_OPERATING_PROMPT EXECUTE_TASK rule 2 'confirm dependencies are verified'; internal consistency with E1-002's activation condition"
+    file_or_component: "01_governance/TASK_REGISTRY.yaml E1-001 (status READY, dependencies S0-002/S0-003 only, gate_invariant line 965); 01_governance/PROJECT_STATE.yaml current_stage E1 / current_stage_status ACTIVE / ready_task_ids / next_recommended_action; README.md 'next command' block; charter Section 17 last paragraph"
+    evidence: >-
+      E1-001 is READY with dependencies [S0-002, S0-003] and governance_prerequisites
+      [D-016_CONFIRMED, ENGINEERING_PREVIEW_CHARTER_PRESENT]; its files_to_read includes the
+      charter, and its deliverables are the charter's items 1–12. E0-001 is READY_FOR_REVIEW and
+      unreviewed. E1-002 by contrast is gated on "E1-001 is independently VERIFIED and E0-001 is
+      independently VERIFIED". README instructs the next model to run EXECUTE_TASK_E1-001 now.
+      Charter Section 17 argues E1-001 may proceed because "E1-001 depends only on verified
+      research tasks", which is true only because E0-001 was omitted from its dependency list.
+    why_it_matters: >-
+      The charter is the governing specification input for E1-001. Releasing E1-001 before the
+      charter is challenged and verified means charter defects (F-E0-01, F-E0-03, F-E0-04)
+      propagate into the PRD, user flows, and correctness contract, and the fixer/verifier for
+      E0 would then be reviewing a document that E1 has already built on. The inconsistency with
+      E1-002's gate shows the author recognized the dependency for one task and not the other.
+      Allowing parallel authoring may be a legitimate founder choice, but it is a choice the
+      founder must record, not one the author may make by omitting a dependency.
+    required_fix: >-
+      Either (preferred) add E0-001 to E1-001.dependencies, set E1-001 to BACKLOG with
+      blocked_by E0_001_NOT_INDEPENDENTLY_VERIFIED, set PROJECT_STATE current_stage to E0 with
+      ready_task_ids empty until E0 verifies, and change README's next command to the E0
+      review/fix/verify sequence; or, if the founder wants E1-001 authored in parallel, record
+      that as an explicit founder decision or scope note in DECISION_LOG.md/PROJECT_STATE and
+      add to E1-001 an acceptance criterion that the PRD must be reconciled against the verified
+      charter before E1-001 can be verified. In either case make E1-001's gate consistent with
+      E1-002's.
+    verification_method: >-
+      Registry assertion: E1-001 is READY only if every dependency including E0-001 is VERIFIED,
+      or a founder decision authorizing parallel authoring is cited in E1-001.readiness_basis;
+      README next command matches PROJECT_STATE.next_recommended_action and the sole READY task.
+
+  - finding_id: F-E0-03
+    severity: MEDIUM
+    requirement: "External audit preserved as INPUT to E1/E2/E3, not architecture mandate; charter must be unambiguous about what E1 may still decide"
+    file_or_component: "03_product/ENGINEERING_PREVIEW_CHARTER.md Section 16.2 (lines 338–352) versus Sections 4.4 (line 77), 5.1 (lines 97–100), 5.5 (line 135), 6 (lines 141–150), 6.1 (line 154)"
+    evidence: >-
+      Section 16.2 says E1/E2 "must evaluate, without automatically adopting" canonical
+      conversation state distinct from transcript projection, typed errors, compaction with
+      evidence preservation, structured approvals bound to effects, and typed/runtime-validated
+      boundaries. Sections 4.4/5.1/5.5/6/6.1 already declare each of these a PRODUCT REQUIREMENT
+      or invariant that "may not be collapsed". The same principle is therefore simultaneously
+      "open for evaluation" and "required".
+    why_it_matters: >-
+      An E1 author cannot tell whether canonical-state/projection separation, typed error
+      taxonomy, and compaction invariants are settled charter requirements to specify or open
+      questions to evaluate and possibly reject. If they are settled, the charter should own
+      them as requirements derived from D-016 and MASTER_OPERATING_PROMPT (durable state
+      machine, completion standard, security principles) so that the external audit is
+      corroboration rather than the source of authority; if they are open, Sections 4.4/6 must
+      soften. The current wording lets the audit become de facto architecture authority while
+      claiming it is not.
+    required_fix: >-
+      Add one sentence to Section 16.2 (or Section 6) stating which listed principles are
+      charter-level logical requirements independent of the audit (state/projection
+      separation, typed errors, compaction invariant, structured approvals, validated
+      boundaries, evidence lineage, security-negative testing) and which remain genuinely open
+      E2 alternatives (content-addressing, cloud-agent lifecycle mechanics, MCP gateway
+      topology, multi-writer mechanics). Keep every requirement at the logical level with no
+      technology named.
+    verification_method: "Read Sections 4.4, 6, and 16.2 together; no principle should be both 'must evaluate without adopting' and 'PRODUCT REQUIREMENT' without an explicit reconciling statement."
+
+  - finding_id: F-E0-04
+    severity: MEDIUM
+    requirement: "No permanent Terra/Luna/Sol/Fable/Codex role selected in E0; MASTER_OPERATING_PROMPT 'Do not use model reputation as proof'; E3 must determine which task classes can use which candidates"
+    file_or_component: "03_product/ENGINEERING_PREVIEW_CHARTER.md Section 21 line 453"
+    evidence: "\"After E3 is independently verified, Codex may repeat the following…\" — the provisional E4 contract names Codex as the autonomous build operator before any E3 benchmark exists, while Section 20 says \"No permanent role is assigned now.\""
+    why_it_matters: "Pre-naming the build operator is a role selection in the one place it matters most and contradicts Section 20 and the model registry's 13/13 HYPOTHESIS_ONLY state; it also conflates the human-run authoring surface used so far with the product's future execution model."
+    required_fix: "Replace 'Codex' with 'a benchmark-approved execution agent/model selected under verified E3 evidence' and, if useful, note that the current authoring surface (Codex) is not thereby selected."
+    verification_method: "grep -n Codex 03_product/ENGINEERING_PREVIEW_CHARTER.md returns no role assignment in Section 21."
+
+  - finding_id: F-E0-05
+    severity: MEDIUM
+    requirement: "Governance files agree with one another (MASTER_OPERATING_PROMPT Stage 0 gate principle); E3 model-role benchmark must be reachable under the E-track"
+    file_or_component: "MASTER_OPERATING_PROMPT.md (mission, stage sequence, Stage 1–12 gates — untouched by E0 and outside its allowed paths); AGENTS.md; 06_evaluation/MODEL_ROLE_BENCHMARK_PLAN.md 'Stage 1 workflow gate' (lines 34–46, verified S0-003 artifact); charter Sections 17/20; PROJECT_STATE current_stage E1"
+    evidence: >-
+      MASTER_OPERATING_PROMPT still states the mission as a SaaS platform progressing
+      verified research → customer/wedge selection → product requirements → …, with modes
+      keyed to numeric stages, and contains no reference to D-016 or E-phases (grep returns
+      nothing). The independently verified benchmark plan says the benchmark "remains
+      BLOCKED_WORKFLOW_NOT_SELECTED until Stage 1 has recorded … one selected customer segment
+      and one selected workflow, with founder approval" and a workflow-specific fixture pack.
+      D-016 defers exactly that Stage 1 selection. Charter Section 20 assigns model-role
+      benchmarks to E3 and gates them only on S0-005, budget, credentials, and approval; it
+      does not mention the plan's Stage 1 gate. E0 records no mapping between E-phases and MOP
+      stages and no assumption/risk about the conflict.
+    why_it_matters: >-
+      Two authoritative documents now disagree about what gates the model-role benchmark and
+      what the project's stage sequence is. A future E3 author either silently bypasses a
+      verified artifact's gate or is blocked by a customer-selection requirement the founder
+      deferred. AGENTS.md makes MASTER_OPERATING_PROMPT mandatory reading, so the stale stage
+      model will be read as authoritative by every new session.
+    required_fix: >-
+      Within E0's scope: add to the charter (Section 17 or 23) and PROJECT_STATE an explicit
+      E-phase ↔ MASTER_OPERATING_PROMPT stage mapping (E1≈Stage 2 product definition,
+      E2≈Stage 3, E3≈Stage 4 plus the model benchmark, E4≈Stage 5, E5≈Stage 6 subset) and a
+      statement that the benchmark plan's Stage 1 workflow gate must be re-gated on the
+      verified E1 specification's task classes by a bounded, founder-authorized amendment to
+      06_evaluation/MODEL_ROLE_BENCHMARK_PLAN.md before E3 (assign this to E1-002's evaluation
+      suite or a new bounded task), not bypassed. Recommend a founder scope amendment or a
+      short D-017 note authorizing a minimal MASTER_OPERATING_PROMPT/AGENTS.md reconciliation
+      pointer to D-016; E0 itself must not edit those files without that amendment.
+    verification_method: "Charter and PROJECT_STATE contain the mapping and the benchmark re-gating statement; a founder-authorized path to reconcile MASTER_OPERATING_PROMPT is recorded; the benchmark plan is unchanged until that amendment."
+
+  - finding_id: F-E0-06
+    severity: LOW
+    requirement: "Governance records (assumption, risk) reflect the confirmed decision; MASTER_OPERATING_PROMPT Stage 0 gate 'unresolved high-impact questions are visible'"
+    file_or_component: "01_governance/RISK_REGISTER.md (R-001 mitigation 'Stage 1 gate'); 01_governance/ASSUMPTION_REGISTER.md (no Engineering Preview assumption); both outside E0-001 allowed paths"
+    evidence: "Neither register mentions D-016 or the Engineering Preview. R-001 ('Building a broad platform before validating a workflow', mitigation 'Stage 1 gate and strict MVP non-goals') is the exact risk D-016 knowingly accepts, yet its mitigation now points at a deferred gate. No assumption records that a local single-user software-engineering agent is the right open-source first product, and no risk covers open-source license/provenance exposure or autonomous-build failure modes."
+    why_it_matters: "Bounded: the registers are inputs to E1-001, which has both files in its allowed paths, so the gap can be closed there; but E0 should have flagged it rather than leaving R-001's mitigation silently stale."
+    required_fix: "Either amend E0-001 scope (D-009 process) to add one assumption (engineering-first product hypothesis, OPEN_NOT_TESTED) and update R-001's mitigation to cite D-016 and the E1/E5 gates, or add an explicit handoff/known_limitations note assigning this reconciliation to E1-001."
+    verification_method: "grep D-016 in both registers after the fixer or E1-001 pass, or a known_limitations entry naming the deferral."
+
+  - finding_id: F-E0-07
+    severity: LOW
+    requirement: "AGENTS.md: CHALLENGER and VERIFIER are independent roles; 'the sole author may not mark high-risk work verified'"
+    file_or_component: "99_handoffs/completed/ENGINEERING_PREVIEW_INITIALIZATION_handoff.yaml independent_review block (lines 77–98)"
+    evidence: "The author's own read-only subagents are recorded with role: CHALLENGER and role: VERIFIER and results such as 'PASS on every requested current-state invariant', although formal_task_verification_status is correctly NOT_VERIFIED."
+    why_it_matters: "Later audits searching for challenger/verifier records could mistake author-internal drafting checks for the repository's independent roles. The Stage 0 precedent (S1-003 reconciliation handoff) used the same labeling, so this is a bounded terminology correction, not a protocol violation."
+    required_fix: "Relabel these entries (e.g., role: AUTHOR_INTERNAL_SUBAGENT_REVIEW) and state that they do not satisfy the independent challenger/verifier requirement; keep formal_task_verification_status NOT_VERIFIED."
+    verification_method: "Handoff independent_review roles no longer use the bare CHALLENGER/VERIFIER labels."
+
+notes:
+  - note_id: N-E0-01
+    text: "E2–E5 exist only as PROJECT_STATE phase records with activation conditions, not as registry tasks. This is appropriate for E0; concrete E2/E3 tasks should be created by the E1 gate or a PLAN_STAGE operation, not now."
+  - note_id: N-E0-02
+    text: "'MCP or equivalent capability gateway' (Sections 5.3, 16.2, 19) names MCP as one alternative and keeps the gateway abstract; this is not a premature selection. 'Isolated branch or worktree' in Section 21 is generic Git vocabulary, not a tooling choice."
+  - note_id: N-E0-03
+    text: "The handoff says the patch was 'intentionally left uncommitted for the founder'; the founder committed it as 2568883 with the same five paths. Consistent with repository precedent."
+  - note_id: N-E0-04
+    text: "PROJECT_STATE replaced the prior RECONCILE_S1_003_AUTHORIZATION block (which recorded the storage location as null/PARTIALLY_SATISFIED) with the D-015-satisfied form. The original reconciliation handoff at 99_handoffs/completed/S1-003_AUTHORIZATION_RECONCILIATION_handoff.yaml preserves the earlier state, so no history was lost; a reader should consult that handoff for the pre-D-015 view."
+  - note_id: N-E0-05
+    text: "Charter Section 4.4 requires 'no hidden fallback' while MASTER_OPERATING_PROMPT Stage 5 expects 'primary and fallback models'. These are compatible (explicit, visible fallback is permitted), but E1-001 should say so to prevent a future reader from reading them as a contradiction."
+
+# ────────────────────────────────────────────────────────────────────
+# 6. Scope control of this review
+# ────────────────────────────────────────────────────────────────────
+scope_control:
+  files_created:
+    - 99_handoffs/completed/ENGINEERING_PREVIEW_INITIALIZATION_challenger_review.yaml
+  files_modified: []
+  governance_status_recording: >-
+    Deliberately not performed. Repository protocol (AGENTS.md, 99_handoffs/completed/README.md)
+    requires a factual handoff but does not strictly require the challenger to record status in
+    PROJECT_STATE/TASK_REGISTRY; prior challengers did so by convention. Per the review
+    instruction, E0-001 is left READY_FOR_REVIEW so the fixer/verifier can record status
+    transitions together with the fixes. The verifier should add challenger_evidence,
+    challenger_verdict, and challenger_finding_counts to E0-001 when it records its own result.
+  charter_readme_d016_task_definitions_source_code_modified: false
+  e1_001_started: false
+  architecture_selected: false
+  application_code_written: false
+  benchmarks_or_spikes_run: 0
+  paid_api_calls: 0
+  outreach_interviews_spend: 0
+  external_actions_performed: false
+  changes_committed: false
+
+recommended_next_task: >-
+  MODE: FIX_TASK_E0-001 — address F-E0-01 through F-E0-07 within E0-001's allowed paths (plus a
+  D-009 prospective scope amendment only if the fixer chooses to update the assumption/risk
+  registers for F-E0-06), leave E0-001 READY_FOR_REVIEW, then MODE: VERIFY_TASK_E0-001 by an
+  independent verifier. Do not execute E1-001 until the verifier's verdict is recorded or the
+  founder explicitly authorizes parallel authoring (F-E0-02).
