@@ -169,3 +169,40 @@ scope_control:
   spend_usd: 0
   s1_003_resumed: false
   autonomous_build_authorized: false
+
+fixer_correction_addendum:
+  recorded_at: "2026-08-27T20:49:58Z"
+  authority: "Direct founder MODE: FIX_TASK_E1-001 instruction and E1-001-SA-01"
+  original_handoff_sha256_before_addendum: 36496b0ee8216301502aa69be6358e0e54fa633351301cc17d1c582e5f5c3097
+  preservation_rule: >-
+    All fields above remain the historical AUTHOR-pass record, including its then-current
+    21-NEG count, validation commands, blockers, and recommended REVIEW command. They are not
+    rewritten as though the original author pass already contained the fixer corrections.
+    Current corrected facts and all finding dispositions are in
+    99_handoffs/completed/E1-001_fixer_handoff.yaml and current governance.
+  challenger_source:
+    path: 99_handoffs/completed/E1-001_challenger_review.yaml
+    sha256: a2b2aec5270725473fbeb259515bf6dab188bec71d85ea7100a585b6045eb34e
+    reviewed_commit: cf27ef4f6fed1b04f21c572054dc0fabb24c3cdb
+    verdict: CHANGES_REQUESTED
+    finding_counts: "BLOCKER 0, HIGH 2, MEDIUM 9, LOW 9"
+  external_author_input_provenance:
+    path_as_received: /Users/richardzhu/.codex/attachments/8971d941-f161-425c-b260-1ae24db4d3fa/pasted-text.txt
+    sha256: b4d239de8b268193531b064da72d95edac02066ba76d7a13101f253e54ad1e72
+    byte_count: 9282
+    line_count: 283
+    role: "Founder EXECUTE_TASK_E1-001 author brief and mode/output instructions."
+    materiality: >-
+      It constrained task execution and final reporting but introduced no unique product
+      requirement not traceable to D-016, the Engineering Preview charter, the master prompt,
+      SECURITY.md, and the registered E1-001 task. It was treated as founder input, not as
+      repository authority or observed product evidence. No copy was placed in the repository
+      because a stable content identity plus this bounded role statement is sufficient and
+      avoids duplicating execution-only material.
+  corrected_current_summary: >-
+    56 FR, 15 HARD_INVARIANT RR, 4 PREVIEW_SLO, 4 MEASURE_ONLY, 9
+    FUTURE_COMPATIBILITY constraints, 23 security-negative families, and 16 user flows.
+    F-E1-001-01..20 are addressed in the fixer patch with FIXED dispositions, pending
+    independent post-fix verification.
+  current_status: READY_FOR_REVIEW_NOT_VERIFIED
+  next_command: "MODE: VERIFY_TASK_E1-001"
