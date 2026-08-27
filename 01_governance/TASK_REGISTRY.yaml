@@ -1020,10 +1020,12 @@ tasks:
     objective: Define what a correct, secure, reliable, local-first Engineering Preview v0.1 must do before any architecture or implementation begins.
     why_it_matters: Architecture and code cannot be evaluated rigorously until user outcomes, lifecycle semantics, safety boundaries, completion evidence, and release acceptance are explicit and testable.
     owner_role: AUTHOR
-    assigned_model: null
-    reviewer_model: null
-    verifier_model: null
-    status: READY
+    assigned_model: "Codex (runtime model identifier not exposed) — E1-001 AUTHOR"
+    reviewer_model: "Independent challenger not yet assigned"
+    verifier_model: "Independent post-fix verifier not yet assigned"
+    status: READY_FOR_REVIEW
+    author_started_at: "2026-08-27T15:13:18Z"
+    author_completed_at: "2026-08-27T16:08:58Z"
     priority: P0
     dependencies:
       - E0-001
@@ -1090,6 +1092,17 @@ tasks:
       - independent_challenger_and_verifier_records
     readiness_basis: "READY as of 2026-08-26 (UTC): E0-001 was independently VERIFIED against 0b930e21910ffbc60b0c44eadcd017548e9f080d and S0-002/S0-003 remain VERIFIED, so every dependency and every governance prerequisite (D-016_CONFIRMED, ENGINEERING_PREVIEW_CHARTER_PRESENT, E0_001_INDEPENDENTLY_VERIFIED) is satisfied. E0-001 verification was the sole remaining blocker; no parallel authoring occurred. READY is not execution: E1-001 is unclaimed and unstarted, is authoring-only, and selects no technology."
     readiness_recorded_by: "VERIFY_TASK_E0-001 independent verifier (Claude Fable 5 via Claude Code), acting on the founder's instruction to make E1-001 READY only if its sole remaining blocker was E0-001 verification; the verifier did not execute E1-001."
+    author_claim: "Claimed for the bounded EXECUTE_TASK_E1-001 author pass on 2026-08-27T15:13:18Z after rereading every files_to_read entry and confirming a clean working tree. This claim authorizes specification work only within allowed_files_to_change; it does not authorize architecture, code, E1-002, E2/E3, benchmarks, paid calls, S1-003, external actions, or autonomous build."
+    author_evidence:
+      - 03_product/ENGINEERING_PREVIEW_PRD.md
+      - 03_product/ENGINEERING_PREVIEW_USER_FLOWS.md
+      - 03_product/ENGINEERING_PREVIEW_CORRECTNESS_CONTRACT.md
+      - 99_handoffs/completed/E1-001_handoff.yaml
+    author_requirement_summary: "56 FR, 15 HARD_INVARIANT RR, 4 PREVIEW_SLO, 4 MEASURE_ONLY, 9 FUTURE_COMPATIBILITY, 21 security-negative families, 16 user flows, a multi-axis lifecycle/correctness model, task-type completion predicates, and a versioned evidence-bundle contract. These are normative requirements, not implementation or observed reliability claims."
+    author_required_test_status: AUTHOR_STRUCTURAL_SCOPE_TERMINOLOGY_SECURITY_AND_GOVERNANCE_CHECKS_PASS;_INDEPENDENT_CHALLENGER_AND_POST_FIX_VERIFICATION_NOT_RUN_REQUIRED_NEXT
+    author_internal_review_status: "AUTHOR_INTERNAL_QA only: lifecycle/security/traceability/reliability/evidence agents searched for gaps and made no edits; they are not the required independent challenger or verifier."
+    verification_status: NOT_VERIFIED
+    next_command: "MODE: REVIEW_TASK_E1-001"
 
   - task_id: E1-002
     title: Define open-source contribution workflow, evaluation suite, and v0.1 release acceptance criteria

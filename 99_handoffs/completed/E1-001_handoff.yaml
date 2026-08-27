@@ -1,0 +1,171 @@
+handoff_id: H-E1-001-20260827-AUTHOR
+task_id: E1-001
+stage: E1
+mode: EXECUTE_TASK_E1-001
+role: AUTHOR
+author_model: "Codex (runtime model identifier not exposed) — E1-001 AUTHOR"
+reviewer_requested: "Independent CHALLENGER followed by an independent post-fix VERIFIER; this author pass and its author-internal QA do not satisfy either role"
+started_at: "2026-08-27T15:13:18Z"
+completed_at: "2026-08-27T16:08:58Z"
+base_commit: b48288eb5155ad3afbd082126e6be819fbd88d36
+base_branch: chore/initialize-project-materials
+task_status: READY_FOR_REVIEW
+verification_status: NOT_VERIFIED_AUTHOR_PASS
+
+files_read:
+  - MASTER_OPERATING_PROMPT.md
+  - AGENTS.md
+  - README.md
+  - SECURITY.md
+  - 01_governance/PROJECT_STATE.yaml
+  - 01_governance/TASK_REGISTRY.yaml
+  - 01_governance/DECISION_LOG.md
+  - 01_governance/ASSUMPTION_REGISTER.md
+  - 01_governance/RISK_REGISTER.md
+  - 01_governance/MODEL_REGISTRY.yaml
+  - 02_research/GROK_BOT_BASELINE_2026-08-21.md
+  - 02_research/GROK_BOT_018_RECONSTRUCTED_ARCHITECTURE_AUDIT.md
+  - 02_research/GROK_BOT_018_ARCHITECTURE_ADOPTION_MATRIX.csv
+  - 03_product/ENGINEERING_PREVIEW_CHARTER.md
+  - 06_evaluation/MODEL_ROLE_BENCHMARK_PLAN.md
+  - 99_handoffs/completed/E0-001_verifier_review.yaml
+  - 99_handoffs/completed/EXTERNAL_GROK_BOT_018_ARCHITECTURE_AUDIT_verifier_review.yaml
+  - 99_handoffs/HANDOFF_TEMPLATE.yaml
+  - /Users/richardzhu/.codex/attachments/8971d941-f161-425c-b260-1ae24db4d3fa/pasted-text.txt
+
+files_created:
+  - 03_product/ENGINEERING_PREVIEW_PRD.md
+  - 03_product/ENGINEERING_PREVIEW_USER_FLOWS.md
+  - 03_product/ENGINEERING_PREVIEW_CORRECTNESS_CONTRACT.md
+  - 99_handoffs/completed/E1-001_handoff.yaml
+
+files_modified:
+  - 01_governance/ASSUMPTION_REGISTER.md
+  - 01_governance/RISK_REGISTER.md
+  - 01_governance/PROJECT_STATE.yaml
+  - 01_governance/TASK_REGISTRY.yaml
+
+files_deleted: []
+
+decisions_made:
+  - "REQUIRED product semantics only: v0.1 is a local-first, single-user preview with one persistent named engineering agent and bounded authority over one user-admitted repository task. This is a product target, not validated customer evidence."
+  - "Correctness uses separate work-phase, wait/control/blocker, attempt-disposition, verification-status/verdict, operation/effect-outcome, and agent-availability axes; no one status label may erase another."
+  - "COMPLETED is a derived conjunction requiring all applicable predicates, terminal and accounted material operations/effects, fresh readback where required, a valid evidence bundle, and independent PASSED verification on the exact revision; false terminal completion is a zero-tolerance failure."
+  - "A minimal durable preflight grant and candidate task identity exist before repository/issue-content access; expanded task authority is required before material execution."
+  - "Bounded autonomy cannot self-create/select work, delegate to visible peer agents, expand authority, weaken predicates, or exceed finite limits; task amendment and separate consequential-action approval remain distinct."
+  - "The v0.1 core ends in a local review package/report. Optional consequential external capabilities are not required; if later supported, they require admitted authority, exact approval, receipt, and fresh readback."
+  - "E1-001 defines only nonwaivable contribution/evaluation/release constraints. E1-002 exclusively owns the contributor procedure, evaluation cases/fixtures/harness/oracles, aggregate thresholds, release checklist, and checkpoint and remains BACKLOG."
+  - "No architecture, client, language, storage/event mechanism, isolation technology, provider, model, framework, cloud, or permanent logical-role occupant was selected."
+
+assumptions_added:
+  - "A-020 OPEN_NOT_TESTED; E1_GATE: the eligible task classes, correctness invariants, lifecycle/evidence contract, and requirement/security-negative families are sufficient inputs for E1-002; independent review and later E1-002/E2/E3/E5 evidence are required."
+
+risks_added:
+  - "R-027 HIGH/HIGH: unrun aggregate reliability targets could be presented as evidence or selected prematurely."
+  - "R-028 HIGH/CRITICAL: collapsing independent status axes could produce false completion."
+
+tests_run:
+  - "Specification encoding, final-newline, whitespace, fence, Markdown-table shape, stable-ID, and user-flow ordering validation."
+  - "All-repository YAML parse, unique task ID, dependency resolution/acyclicity, project/registry status, handoff-presence, and architecture/code/autonomy invariant validation."
+  - "Exact allowed-path, staged-index, and application-source-extension validation."
+  - "High-confidence AWS/OpenAI/GitHub/Google/Slack/private-key pattern scan across all eight patch files."
+  - "Prohibited named client/database/workflow/sandbox/cloud/framework technology selection scan across all three specifications."
+  - "Cross-document status, E1-002 artifact boundary, master claim-label, evaluation-case-ID, and stale/conflicting terminology validation."
+  - "Whitespace, staged-index, and final worktree-status checks."
+
+final_validation_commands:
+  - name: specification_structure_and_ids
+    command: |-
+      ruby -e 'docs=%w[03_product/ENGINEERING_PREVIEW_PRD.md 03_product/ENGINEERING_PREVIEW_USER_FLOWS.md 03_product/ENGINEERING_PREVIEW_CORRECTNESS_CONTRACT.md]; docs.each{|f| s=File.binread(f); raise "invalid UTF-8 #{f}" unless s.dup.force_encoding("UTF-8").valid_encoding?; raise "missing final newline #{f}" unless s.end_with?("\n"); raise "tab #{f}" if s.include?("\t"); raise "trailing whitespace #{f}" if s.lines.any?{|l| l.match?(/[ \t]+\r?\n\z/)}; raise "unbalanced fence #{f}" unless s.scan(/^```/).size.even?; groups=[]; cur=[]; s.lines.each_with_index{|l,i| if l.start_with?("|"); cur << [i+1,l]; elsif !cur.empty?; groups << cur; cur=[]; end}; groups << cur unless cur.empty?; groups.each{|g| counts=g.map{|_,l| l.count("|")}; raise "table columns #{f}:#{g.first[0]} #{counts.inspect}" unless counts.uniq.size==1 } }; prd=File.read(docs[0]); con=File.read(docs[2]); flows=File.read(docs[1]); defs=lambda{|s,p| s.scan(/^\| `((?:#{p})-[A-Z0-9-]+)` \|/).flatten}; fr=defs.call(prd,"FR"); expected=((1..9).to_a+(10..15).to_a+(20..27).to_a+(30..37).to_a+(40..48).to_a+(50..55).to_a+(60..69).to_a).map{|n| "FR-%03d"%n}; raise "FR mismatch" unless fr==expected; rr1=defs.call(prd,"RR"); rr2=defs.call(con,"RR"); expected_rr=(1..15).map{|n| "RR-%03d"%n}; raise "RR mismatch" unless rr1==expected_rr && rr2==expected_rr; fc=defs.call(prd,"FC"); raise "FC mismatch" unless fc==(1..9).map{|n| "FC-%03d"%n}; slo=defs.call(con,"SLO"); met=defs.call(con,"MET"); raise "SLO mismatch" unless slo==(1..4).map{|n| "SLO-%03d"%n}; raise "MET mismatch" unless met==(1..4).map{|n| "MET-%03d"%n}; neg=defs.call(con,"NEG"); raise "NEG count/duplicate" unless neg.size==21 && neg.uniq.size==21; uf=flows.scan(/^## \d+\. (UF-\d{2})/).flatten; raise "UF mismatch" unless uf==(1..16).map{|n| "UF-%02d"%n}; puts "PASS docs=#{docs.size} FR=#{fr.size} RR=#{rr1.size} FC=#{fc.size} SLO=#{slo.size} MET=#{met.size} NEG=#{neg.size} UF=#{uf.size} tables_fences_utf8_whitespace=clean"'
+  - name: yaml_governance_dependencies_and_scope_flags
+    command: |-
+      ruby -ryaml -rdate -e 'files=Dir["**/*.{yaml,yml}"].sort; files.each{|f| YAML.safe_load(File.read(f), permitted_classes:[Date,Time], aliases:true)}; reg=YAML.safe_load(File.read("01_governance/TASK_REGISTRY.yaml"), permitted_classes:[Date,Time], aliases:true); tasks=reg.fetch("tasks"); ids=tasks.map{|t| t.fetch("task_id")}; raise "duplicate task IDs" unless ids.uniq.size==ids.size; known=ids.to_h{|id| [id,true]}; tasks.each{|t| Array(t["dependencies"]).each{|d| raise "missing dependency #{d}" unless known[d]}}; graph=tasks.to_h{|t| [t["task_id"],Array(t["dependencies"]) ]}; visiting={}; done={}; visit=nil; visit=lambda{|id| raise "dependency cycle #{id}" if visiting[id]; return if done[id]; visiting[id]=true; graph[id].each{|d| visit.call(d)}; visiting.delete(id); done[id]=true}; ids.each{|id| visit.call(id)}; e1=tasks.find{|t| t["task_id"]=="E1-001"}; e2=tasks.find{|t| t["task_id"]=="E1-002"}; ps=YAML.safe_load(File.read("01_governance/PROJECT_STATE.yaml"), permitted_classes:[Date,Time], aliases:true); raise "E1 status mismatch" unless ps.dig("engineering_preview_track","phases","E1","task_statuses","E1-001")==e1["status"]; raise "E1-002 mismatch" unless ps.dig("engineering_preview_track","phases","E1","task_statuses","E1-002")==e2["status"]; raise "architecture selected" unless ps.dig("engineering_preview_track","architecture_selected")==false; raise "application code" unless ps.dig("engineering_preview_track","application_code_created")==false; raise "autonomy" unless ps.dig("engineering_preview_track","phases","E4","autonomous_build_authorization")=="NOT_AUTHORIZED"; raise "handoff missing" unless File.file?("99_handoffs/completed/E1-001_handoff.yaml"); puts "PASS yaml=#{files.size} tasks=#{tasks.size} dependencies=resolved_acyclic E1-001=#{e1["status"]} E1-002=#{e2["status"]} architecture=false code=false autonomy=NOT_AUTHORIZED handoff=present"'
+  - name: exact_allowed_patch_and_no_application_source
+    command: |-
+      ruby -e 'allowed=%w[03_product/ENGINEERING_PREVIEW_PRD.md 03_product/ENGINEERING_PREVIEW_USER_FLOWS.md 03_product/ENGINEERING_PREVIEW_CORRECTNESS_CONTRACT.md 01_governance/ASSUMPTION_REGISTER.md 01_governance/RISK_REGISTER.md 01_governance/PROJECT_STATE.yaml 01_governance/TASK_REGISTRY.yaml 99_handoffs/completed/E1-001_handoff.yaml]; lines=`git status --porcelain=v1`.lines; paths=lines.map{|l| l[3..].strip}; bad=paths-allowed; missing=allowed-paths; raise "out of scope #{bad.inspect}" unless bad.empty?; raise "missing allowed deliverable #{missing.inspect}" unless missing.empty?; raise "staged changes" unless lines.none?{|l| l[0] != " " && l[0] != "?"}; code=paths.grep(/\.(rb|py|js|jsx|ts|tsx|go|rs|java|kt|swift|c|cc|cpp|h|hpp|cs|php|sh|zsh|fish|vue|svelte)$/i); raise "application source #{code.inspect}" unless code.empty?; puts "PASS changed=#{paths.size} exact_allowed_patch staged=0 application_source=0"'
+  - name: high_confidence_secret_scan
+    command: |-
+      if rg -n -I -e 'AKIA[0-9A-Z]{16}' -e 'ASIA[0-9A-Z]{16}' -e 'sk-[A-Za-z0-9_-]{20,}' -e 'gh[pousr]_[A-Za-z0-9]{20,}' -e 'AIza[0-9A-Za-z_-]{35}' -e 'xox[baprs]-[0-9A-Za-z-]{10,}' -e '-----BEGIN ([A-Z0-9 ]+ )?PRIVATE KEY-----' 01_governance/ASSUMPTION_REGISTER.md 01_governance/PROJECT_STATE.yaml 01_governance/RISK_REGISTER.md 01_governance/TASK_REGISTRY.yaml 03_product/ENGINEERING_PREVIEW_PRD.md 03_product/ENGINEERING_PREVIEW_USER_FLOWS.md 03_product/ENGINEERING_PREVIEW_CORRECTNESS_CONTRACT.md 99_handoffs/completed/E1-001_handoff.yaml; then exit 1; else echo 'PASS high-confidence secret scan files=8 matches=0'; fi
+  - name: prohibited_technology_selection_scan
+    command: |-
+      if rg -n -i '(^|[^A-Za-z])(Electron|Tauri|Temporal|Redis|Postgres|PostgreSQL|SQLite|Docker|Firecracker|E2B|LangChain|LangGraph|CrewAI|AutoGen|AWS|Azure)([^A-Za-z]|$)' 03_product/ENGINEERING_PREVIEW_PRD.md 03_product/ENGINEERING_PREVIEW_USER_FLOWS.md 03_product/ENGINEERING_PREVIEW_CORRECTNESS_CONTRACT.md; then exit 1; else echo 'PASS no prohibited named technology/vendor selections'; fi
+  - name: status_boundary_and_claim_labels
+    command: |-
+      ruby -e 'docs=%w[03_product/ENGINEERING_PREVIEW_PRD.md 03_product/ENGINEERING_PREVIEW_USER_FLOWS.md 03_product/ENGINEERING_PREVIEW_CORRECTNESS_CONTRACT.md]; expected="Status: E1-001 AUTHOR PASS — READY_FOR_REVIEW; NOT VERIFIED"; docs.each{|f| lines=File.readlines(f,chomp:true); raise "status #{f}" unless lines[2]==expected; raise "E1-002 boundary absent #{f}" unless File.read(f).include?("E1-002")}; forbidden=%w[03_product/ENGINEERING_PREVIEW_CONTRIBUTION_WORKFLOW.md 06_evaluation/ENGINEERING_PREVIEW_EVALUATION_SUITE.md 10_checkpoints/stage_checkpoints/ENGINEERING_PREVIEW_V0_1_RELEASE_ACCEPTANCE.yaml]; present=forbidden.select{|f| File.exist?(f)}; raise "premature E1-002 artifacts #{present.inspect}" unless present.empty?; all=docs.map{|f| File.read(f)}.join("\n"); %w[VERIFIED\ FACT STRONG\ INFERENCE DESIGN\ PROPOSAL OPEN\ QUESTION].each{|label| raise "missing label #{label}" unless all.include?(label)}; raise "evaluation-case IDs leaked" if all.match?(/\bES-\d+/); puts "PASS status=READY_FOR_REVIEW_NOT_VERIFIED E1-002=boundary_only premature_artifacts=0 claim_labels=present evaluation_case_ids=0"'
+  - name: stale_conflicting_terminology_scan
+    command: |-
+      if rg -n -e 'READY FOR INDEPENDENT' -e 'Status: .*CLAIMED' -e 'productive/material' -e 'no new material operation may start' -e 'spend beyond an authorized budget' -e 'purchase or paid use beyond admitted budget' -e 'terminal/reconciled effects' -e 'NOT_REPRODUCIBLE_WITH_BOUNDS' -e 'owner generation' -e 'ownership generation' -e 'FALSE_COMPLETION' -e 'EFFECT_UNKNOWN' -e 'technology-neutral contributor flow requirement' 03_product/ENGINEERING_PREVIEW_PRD.md 03_product/ENGINEERING_PREVIEW_USER_FLOWS.md 03_product/ENGINEERING_PREVIEW_CORRECTNESS_CONTRACT.md; then exit 1; else echo 'PASS stale/conflicting terminology scan matches=0'; fi
+  - name: whitespace_staging_and_status
+    command: |-
+      git diff --check && echo 'PASS git diff --check' && git diff --cached --quiet && echo 'PASS no staged changes' && git status --short
+
+test_results:
+  - "Specification structure PASS: 3 UTF-8 Markdown documents; final newlines; zero tabs/trailing whitespace; balanced fences; consistent table column counts; 56 ordered unique FR definitions, 15 matching RR IDs in PRD/contract, 9 FC, 4 SLO, 4 MET, 21 NEG, and UF-01..UF-16 ordered and unique."
+  - "Repository YAML/governance PASS after handoff inclusion: all YAML files parse; 11 unique task IDs; dependencies resolve and are acyclic; E1-001 is READY_FOR_REVIEW in registry and project state; E1-002 remains BACKLOG; architecture_selected=false; application_code_created=false; autonomous build remains NOT_AUTHORIZED."
+  - "Scope PASS: exactly the eight E1-001 allowed paths are modified/untracked; zero staged changes and zero application-source files."
+  - "Secret scan PASS: zero high-confidence secret/private-key matches across the eight patch files."
+  - "Technology-selection PASS: zero prohibited named technology/vendor selections in the three specifications. Generic technology categories appear only as explicitly unselected/non-goal/unknown boundaries."
+  - "Whitespace PASS: git diff --check returned no output."
+  - "Uncommitted-state PASS: git diff --cached --quiet succeeded and git status reports only the eight allowed E1-001 paths."
+
+validation_iteration_notes:
+  - "The first all-YAML validator attempt failed because Ruby Psych required Date to be explicitly permitted. The corrected command required date and parsed the repository successfully; this was a validator invocation issue, not malformed YAML."
+  - "Two early identifier checks were discarded: the installed Ruby lacks Array#tally, and the next draft asserted an obsolete FR count before FR-009/FR-037/FR-048 and E1-002-boundary edits stabilized. The final explicit expected-ID validator passes 56 FR and every other stable family."
+  - "One draft high-confidence secret scan had invalid zsh quoting and was not credited despite its shell branch printing PASS. A corrected quote-safe scan was run separately and returned zero matches."
+
+author_internal_reviews:
+  - "Lifecycle/control/failure semantics gap review: AUTHOR_INTERNAL_QA, read-only, no files edited, not independent challenge or verification."
+  - "Security/approval/secret/retention gap review: AUTHOR_INTERNAL_QA, read-only, no files edited, not independent challenge or verification."
+  - "Traceability/source/scope boundary gap review: AUTHOR_INTERNAL_QA, read-only, no files edited, not independent challenge or verification."
+  - "Reliability/evidence/observability gap review: AUTHOR_INTERNAL_QA, read-only, no files edited, not independent challenge or verification."
+  - "Fresh final scope, semantic, and ID/trace QA: AUTHOR_INTERNAL_QA only; reported corrections were applied by the sole author."
+
+security_checks:
+  - "No real secret, credential, customer/private fixture, paid API, provider account, external system, remote repository action, or runtime product account was accessed."
+  - "Repository, baseline, audit, and attachment content was treated as bounded evidence/untrusted input; no retrieved instruction broadened task authority."
+  - "The contract requires deny-by-default capability/runtime-schema enforcement, allowed-root and descendant-process boundaries, secret-safe protected recipient handling, exact approval binding, external-effect readback, audit-gap detection, and 21 stable security-negative requirement families."
+  - "External reconstructed material was used only for Level A corroboration; Level B is reserved for E2 comparison; Level C code, schemas, names, assets, copy, and implementation details were excluded."
+
+known_limitations:
+  - "This is the sole AUTHOR pass. No independent E1-001 challenger or post-fix verifier has reviewed the final bytes, so E1-001 is READY_FOR_REVIEW and NOT VERIFIED."
+  - "The author-internal agents are not independent project roles and cannot satisfy the required challenger or verifier tests."
+  - "E1-002 has not authored a contributor workflow, evaluation suite, executable cases/oracles, aggregate thresholds, release checklist, or checkpoint and remains BACKLOG."
+  - "No implementation exists and no requirement, hard invariant, SLO, metric, security negative, recovery behavior, or completion gate has been exercised against product code."
+  - "Aggregate preview thresholds, supported host/repository/language/tool matrix, architecture, isolation class, provider configurations, role occupants, budgets, and production suitability remain UNKNOWN."
+  - "ENGINEERING_PREVIEW_CHARTER.md contains historical pre-authoring E0/E1 status prose outside E1-001 allowed paths; current status authority is TASK_REGISTRY.yaml and PROJECT_STATE.yaml, so the charter was not edited."
+
+unverified_claims:
+  - "Whether the product target solves a validated customer problem; customer evidence remains zero and the startup/customer track remains deferred under D-016."
+  - "Whether any future implementation can satisfy the 56 FR, 15 hard invariants, reliability families, evidence contract, or security boundaries."
+  - "Whether E1-002 can instantiate complete reproducible coverage without requiring a material E1-001 amendment (A-020)."
+  - "Whether any provider/model/configuration is eligible for any logical role; E3 evidence does not exist and no role is selected."
+  - "Whether any architecture or isolation design is feasible, secure, reliable, or production-ready; E2 has not started."
+
+blockers:
+  - independent_e1_001_challenger_review_not_run
+  - author_response_and_fixes_not_run
+  - independent_post_fix_e1_001_verification_not_run
+  - e1_002_blocked_until_e1_001_verified
+
+recommended_next_task: REVIEW_TASK_E1-001
+next_command: "MODE: REVIEW_TASK_E1-001"
+repository_commit_or_patch: "Uncommitted E1-001 author patch based on b48288eb5155ad3afbd082126e6be819fbd88d36 on chore/initialize-project-materials; intentionally left uncommitted for the founder."
+
+scope_control:
+  e1_002_activated: false
+  e2_started: false
+  e3_started: false
+  e4_started: false
+  e5_started: false
+  architecture_selected: false
+  application_code_written: false
+  model_benchmarks_run: 0
+  technical_spikes_run: 0
+  paid_api_calls_run: 0
+  external_actions_performed: false
+  customer_evidence_records: 0
+  outreach_messages_sent: 0
+  interviews_conducted: 0
+  spend_usd: 0
+  s1_003_resumed: false
+  autonomous_build_authorized: false
