@@ -9,14 +9,15 @@ The long-term capability benchmark is clean-room functional parity with Grok Bot
 ## Current status
 
 - Active program: Engineering Preview
-- Current phase: E0 independent post-fix verification; E0-001 is ready for review, not verified
+- Current phase: E1 product specification; E1-001 is ready and not started
+- Engineering Preview task status: `E0-001`: `VERIFIED`; `E1-001`: `READY`; `E1-002`: `BACKLOG`; `E2-E5`: `NOT_STARTED`
 - Startup/customer track: preserved and deferred by D-016; S1-003 was not executed
 - Architecture: not selected
 - Engineering Preview target: one local user and one persistent software-engineering agent working on real repositories with durable state, independent verification, and evidence bundles
-- Downstream engineering tasks: E1-001 and E1-002 remain BACKLOG; E1-001 cannot become READY until E0-001 is independently VERIFIED
 - Customer wedge: not selected or validated; S1-001 and S1-002 remain verified research inputs
 - Model roles: not locked; benchmarks have not run
-- Full autonomous build mode: not authorized; E3 verification would establish only `AUTONOMY_ELIGIBLE`, and a separate explicit founder decision is required for `AUTONOMOUS_BUILD_AUTHORIZED`
+- `AUTONOMY_ELIGIBLE`: `NOT_ELIGIBLE`
+- `AUTONOMOUS_BUILD_AUTHORIZED`: `NO`; E3 verification would establish eligibility only, and a separate explicit founder decision is required to authorize autonomous build execution
 - Code: no application implementation yet
 - Public repository: yes, so never commit secrets, private customer data, access tokens, credentials, or confidential documents
 
@@ -34,12 +35,12 @@ Every planning or coding model must read these files in order:
 The next command for the planning model is:
 
 ```text
-MODE: VERIFY_TASK_E0-001
+MODE: EXECUTE_TASK_E1-001
 
-Read MASTER_OPERATING_PROMPT.md, AGENTS.md, PROJECT_STATE.yaml, TASK_REGISTRY.yaml, the Engineering Preview charter, the E0 author/fixer handoffs, and the independent challenger artifact.
+Read MASTER_OPERATING_PROMPT.md, AGENTS.md, PROJECT_STATE.yaml, TASK_REGISTRY.yaml, and every E1-001 files_to_read entry.
 Treat the repository as the sole authoritative project state.
-Independently verify E0-001's corrected acceptance criteria and all F-E0-01 through F-E0-07 dispositions; do not treat author-internal checks as project verification.
-Do not execute E1-001, select architecture, run E2/E3 work, write application code, resume S1-003, or authorize autonomous build mode.
+Author only the Engineering Preview v0.1 product and correctness specification within E1-001's allowed paths; mark E1-001 READY_FOR_REVIEW, not VERIFIED, and create a factual handoff.
+Do not select architecture, execute E2/E3 work, run paid APIs or benchmarks, write application code, resume S1-003, or authorize autonomous build mode.
 ```
 
 ## Repository principles

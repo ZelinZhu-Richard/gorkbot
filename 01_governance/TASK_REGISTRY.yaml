@@ -866,8 +866,8 @@ tasks:
     owner_role: AUTHOR
     assigned_model: "Codex (runtime model identifier not exposed)"
     reviewer_model: "Claude Fable 5 (claude-fable-5) via Claude Code — independent E0 challenger"
-    verifier_model: null
-    status: READY_FOR_REVIEW
+    verifier_model: "Claude Fable 5 (claude-fable-5) via Claude Code — independent post-fix verifier (separate session; same model/product as the E0 challenger; independent of the Codex author/fixer; Claude Code is one of the named E3 candidate systems and this verification selects no role occupant)"
+    status: VERIFIED
     priority: P0
     dependencies:
       - S0-001
@@ -999,8 +999,20 @@ tasks:
       disputed: 0
       deferred: 0
     author_completed_at: "2026-08-25"
+    challenger_reviewed_commit: 25688830a2e9aab79a78bece358b13c7a3cd31b8
     fixer_completed_at: "2026-08-25"
-    verification_status: NOT_VERIFIED_FIXER_WORK_AWAITING_INDEPENDENT_REVIEW
+    fixer_base_commit: 7d3dc59db243a1eee9558209f2ab71539638d766
+    verifier_evidence:
+      - 99_handoffs/completed/E0-001_verifier_review.yaml
+    verifier_started_at: "2026-08-26T03:22:00Z (approximate; after the founder's 2026-08-26T03:21:27Z commit of 0b930e2)"
+    verifier_completed_at: "2026-08-26T03:37:34Z"
+    verified_commit: 0b930e21910ffbc60b0c44eadcd017548e9f080d
+    verifier_verdict: E0_VERIFIED
+    verifier_acceptance_results: "AC1 D-016 unchanged/authoritative: PASS; AC2 startup track preserved and deferred with zero execution: PASS; AC3 E0-E5 program explicit and technology-neutral: PASS; AC4 E0/E1/E2-E5/autonomy pre-verification state: PASS; AC5 E3 AUTONOMY_ELIGIBLE only plus separate founder decision: PASS; AC6 external-audit Level A/B/C: PASS; AC7 provider-neutral logical roles: PASS; AC8 D-016 benchmark reconciliation: PASS; AC9 registers reflect D-016 and role provenance corrected: PASS; AC10 architecture/client/model roles/PRD/code unselected or absent: PASS; AC11 YAML/IDs/dependencies/Markdown/allowed-path/secret/customer-artifact/source-code/whitespace checks: PASS (all re-run by the verifier)"
+    verifier_original_finding_dispositions: "F-E0-01 RESOLVED, F-E0-02 RESOLVED, F-E0-03 RESOLVED, F-E0-04 RESOLVED, F-E0-05 RESOLVED, F-E0-06 RESOLVED, F-E0-07 RESOLVED"
+    verifier_new_finding_counts: "BLOCKER 0, HIGH 0, MEDIUM 0, LOW 0, NOTE 6 (V-E0-N1 artifact self-status lines are historical author-state and README needs a founder refresh; V-E0-N2 superseded historical fields preserved; V-E0-N3 challenger approximate timestamps; V-E0-N4 S1-003 reconciliation handoff subagent labels out of scope; V-E0-N5 amendment authorization provenance; V-E0-N6 FILE_MANIFEST scope) — none blocking"
+    verifier_section_results: "AUTONOMY_AUTHORIZATION_PASS; E1_GATE_PASS; EXTERNAL_AUDIT_INTEGRATION_PASS; MODEL_OPERATOR_NEUTRALITY_PASS; BENCHMARK_RECONCILIATION_PASS; ASSUMPTION_RISK_STATE_PASS; ROLE_PROVENANCE_PASS; PROJECT_STATE_PASS; NO_PREMATURE_IMPLEMENTATION_PASS"
+    verification_status: VERIFIED_BY_INDEPENDENT_VERIFIER_AGAINST_0B930E2_2026-08-26
 
   - task_id: E1-001
     title: Author Engineering Preview v0.1 product and correctness specification
@@ -1011,14 +1023,14 @@ tasks:
     assigned_model: null
     reviewer_model: null
     verifier_model: null
-    status: BACKLOG
+    status: READY
     priority: P0
     dependencies:
       - E0-001
       - S0-002
       - S0-003
-    blocked_by:
-      - E0_001_NOT_INDEPENDENTLY_VERIFIED
+    blocked_by: []
+    blocker_cleared: "E0_001_NOT_INDEPENDENTLY_VERIFIED cleared on 2026-08-26 (UTC) by independent E0-001 verification against 0b930e21910ffbc60b0c44eadcd017548e9f080d (99_handoffs/completed/E0-001_verifier_review.yaml)."
     governance_prerequisites:
       - D-016_CONFIRMED
       - ENGINEERING_PREVIEW_CHARTER_PRESENT
@@ -1076,7 +1088,8 @@ tasks:
       - lifecycle_and_state_transition_review
       - approval_and_security_negative_case_review
       - independent_challenger_and_verifier_records
-    readiness_basis: "BACKLOG pending independent E0-001 verification. D-016 confirmation and verified S0-002/S0-003 inputs do not waive the E0 dependency; no parallel authoring is authorized."
+    readiness_basis: "READY as of 2026-08-26 (UTC): E0-001 was independently VERIFIED against 0b930e21910ffbc60b0c44eadcd017548e9f080d and S0-002/S0-003 remain VERIFIED, so every dependency and every governance prerequisite (D-016_CONFIRMED, ENGINEERING_PREVIEW_CHARTER_PRESENT, E0_001_INDEPENDENTLY_VERIFIED) is satisfied. E0-001 verification was the sole remaining blocker; no parallel authoring occurred. READY is not execution: E1-001 is unclaimed and unstarted, is authoring-only, and selects no technology."
+    readiness_recorded_by: "VERIFY_TASK_E0-001 independent verifier (Claude Fable 5 via Claude Code), acting on the founder's instruction to make E1-001 READY only if its sole remaining blocker was E0-001 verification; the verifier did not execute E1-001."
 
   - task_id: E1-002
     title: Define open-source contribution workflow, evaluation suite, and v0.1 release acceptance criteria
