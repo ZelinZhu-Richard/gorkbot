@@ -1148,10 +1148,14 @@ tasks:
     objective: Complete the E1 correctness gate with contribution, evaluation, and release contracts that can govern later architecture, implementation, and release verification.
     why_it_matters: A durable open-source Engineering Preview needs a reproducible contributor path and objective release gates before implementation can claim readiness.
     owner_role: AUTHOR
-    assigned_model: null
+    assigned_model: "Codex (runtime model identifier not exposed) — E1-002 AUTHOR"
     reviewer_model: null
     verifier_model: null
-    status: READY
+    status: READY_FOR_REVIEW
+    author_started_at: null
+    author_started_at_status: "UNKNOWN_NOT_CAPTURED; author claim was first recorded during the active pass and is not relabeled as the exact start time"
+    author_claim_recorded_at: "2026-08-28T02:21:59Z"
+    author_completed_at: "2026-08-28T02:39:39Z"
     priority: P0
     dependencies:
       - E1-001
@@ -1162,6 +1166,17 @@ tasks:
     gate_invariant: "E1-002 may become READY only after every dependency, including E1-001, is independently VERIFIED. E1-001 READY_FOR_REVIEW is not sufficient. E1 is not gate-VERIFIED and E2 is not activated until E0-001, E1-001, and E1-002 are all independently VERIFIED."
     readiness_basis: "READY as of 2026-08-27 (UTC): E1-001 was independently VERIFIED against cced38474c4fd71ee1d5bcc29fe0ed53929d53ac and E0-001 remains VERIFIED, so every dependency and the activation condition are satisfied. E1-001 verification was the sole remaining blocker; no parallel authoring occurred. READY is not execution: E1-002 is unclaimed and unstarted, is authoring-only (contribution workflow, evaluation suite, release acceptance criteria), must trace every FR/RR/SLO/MET/FC/NEG/flow/contract requirement, and selects no technology, runs no benchmark, and writes no application code."
     readiness_recorded_by: "VERIFY_TASK_E1-001 independent verifier (Claude Fable 5 via Claude Code), acting on the founder's instruction to make E1-002 READY only if E1-001 verification was its sole remaining blocker; the verifier did not execute E1-002."
+    author_claim: "Claim recorded during the bounded EXECUTE_TASK_E1-002 author pass at 2026-08-28T02:21:59Z after the required repository state had been read. The exact pass start time was not captured. This author pass is limited to E1-002's three specification deliverables and governance/handoff paths; it authorizes no architecture, application code, E2/E3 work, model benchmark, provider/paid call, external effect, S1-003 work, release, or autonomous build."
+    author_evidence:
+      - 03_product/ENGINEERING_PREVIEW_CONTRIBUTION_WORKFLOW.md
+      - 06_evaluation/ENGINEERING_PREVIEW_EVALUATION_SUITE.md
+      - 10_checkpoints/stage_checkpoints/ENGINEERING_PREVIEW_V0_1_RELEASE_ACCEPTANCE.yaml
+      - 99_handoffs/completed/E1-002_handoff.yaml
+    author_requirement_summary: "169 uniquely identified evaluation cases map all 127 canonical E1-001 IDs: 56 FR, 15 HARD_INVARIANT RR, 4 PREVIEW_SLO, 4 MEASURE_ONLY, 9 FC, 16 UF, and 23 NEG. Separate mechanically keyed coverage reconciles 16 repository conditions, 30 Git/effect rows, 32 task-lifecycle transitions, 9 operation transitions, 12 agent transitions, 7 completion-predicate sets, 12 state combinations, 6 evidence profiles, 42 logical evidence keys, 15 sections, and 16 evidence-validation rules. Eleven synthetic clean-room fixture recipes and 18 oracle classes are specified but not implemented or run."
+    author_required_test_status: "PASS_AUTHOR_MECHANICAL_ONLY: requirements/case/reference/oracle/fixture/matrix/transition/evidence traceability, cross-file gate consistency, Markdown/YAML/scope/no-code/no-architecture/no-benchmark/secret/clean-room/staged-index/git-diff checks passed. REQUIRED_NEXT: independent challenger review and independent post-fix verifier review have not run; E1-002 remains NOT VERIFIED."
+    author_internal_review_status: "AUTHOR_SIDE_ASSISTANCE_ONLY: seven read-only subagents reviewed case coverage, contribution flow, fixtures, release gates, requirements, security/oracles, and final traceability. Their findings informed the sole author's artifacts; they are neither the registered independent challenger nor verifier and provide no independent lifecycle evidence."
+    verification_status: NOT_VERIFIED_AUTHOR_PASS
+    next_command: "MODE: REVIEW_TASK_E1-002"
     files_to_read:
       - MASTER_OPERATING_PROMPT.md
       - AGENTS.md

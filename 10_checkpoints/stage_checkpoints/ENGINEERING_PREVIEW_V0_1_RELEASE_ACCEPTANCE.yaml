@@ -1,0 +1,1004 @@
+checkpoint_id: ENGINEERING_PREVIEW_V0_1_RELEASE_ACCEPTANCE
+schema_version: "0.1"
+record_type: RELEASE_ACCEPTANCE_SPECIFICATION
+claim_class: DESIGN_PROPOSAL
+task_id: E1-002
+author_pass_status: READY_FOR_REVIEW_NOT_VERIFIED
+gate_status: NOT_EVALUATED
+execution_status: SPECIFICATION_ONLY_NOT_RUN
+evidence_status: SPECIFICATION_ONLY_NO_RESULTS
+observed_results: []
+release_authorized: false
+benchmark_runs: 0
+technical_spikes_run: 0
+paid_api_calls: 0
+external_effects_performed: 0
+architecture_selected: false
+model_roles_selected: false
+application_code_created: false
+autonomy_eligible: NOT_ELIGIBLE
+autonomous_build_authorized: false
+
+authority:
+  task_registry_entry: E1-002
+  requirement_sources:
+    - 03_product/ENGINEERING_PREVIEW_PRD.md
+    - 03_product/ENGINEERING_PREVIEW_USER_FLOWS.md
+    - 03_product/ENGINEERING_PREVIEW_CORRECTNESS_CONTRACT.md
+    - 03_product/ENGINEERING_PREVIEW_CONTRIBUTION_WORKFLOW.md
+    - 06_evaluation/ENGINEERING_PREVIEW_EVALUATION_SUITE.md
+  conflict_rule: E1_001_REQUIREMENTS_CONTROL_AND_REQUIRE_PROSPECTIVE_AMENDMENT_AND_REVERIFICATION
+  author_may_verify_e1_or_release_gate: false
+  architecture_selected_by_this_checkpoint: false
+  model_or_provider_eligibility_selected_by_this_checkpoint: false
+  benchmark_execution_authorized_by_this_checkpoint: false
+  application_implementation_authorized_by_this_checkpoint: false
+  external_release_effect_authorized_by_this_checkpoint: false
+
+status_vocabulary:
+  author_pass: [READY_FOR_REVIEW_NOT_VERIFIED]
+  specification_execution: [SPECIFICATION_ONLY_NOT_RUN]
+  specification_evidence: [SPECIFICATION_ONLY_NO_RESULTS]
+  e1_task_prerequisite: [NOT_VERIFIED_AUTHOR_PASS, VERIFIED]
+  coverage: [AUTHOR_ASSERTED_COMPLETE_PENDING_INDEPENDENT_REVIEW]
+  implementation: [SPECIFIED_NOT_IMPLEMENTED]
+  coverage_disposition: [COVERED_NOT_RUN]
+  criterion: [NOT_EVALUATED, PASS, FAIL, BLOCKED, INCONCLUSIVE, NOT_APPLICABLE]
+  verification_status: [UNVERIFIED, IN_PROGRESS, FINISHED]
+  release_gate: [NOT_EVALUATED, READY_FOR_INDEPENDENT_VERIFICATION, VERIFIED, REJECTED, BLOCKED]
+  human_approval: [NOT_EVALUATED, APPROVED, REJECTED, BLOCKED]
+  case_run: [NOT_RUN, BLOCKED, INVALID_HARNESS, FINISHED]
+  case_result: [PASS, FAIL, INCONCLUSIVE, NOT_APPLICABLE]
+  undefined_status_or_outcome_permitted: false
+
+e1_specification_gate:
+  gate_status: NOT_EVALUATED
+  evaluated_only_by: INDEPENDENT_E1_STAGE_GATE_VERIFIER
+  question: "Do verified stable product, correctness, contribution, evaluation, and gate specifications now suffice for E2 without redefining success?"
+  prerequisites:
+    E0-001: VERIFIED
+    E1-001: VERIFIED
+    E1-002: NOT_VERIFIED_AUTHOR_PASS
+  prerequisite_rule: ALL_MUST_BE_INDEPENDENTLY_VERIFIED_BEFORE_GATE_EVALUATION
+  required_results:
+    contribution_workflow_walkthrough: NOT_EVALUATED
+    evaluation_catalog_schema_and_case_count: NOT_EVALUATED
+    requirement_coverage_and_reference_resolution: NOT_EVALUATED
+    security_repository_and_git_matrix_reconciliation: NOT_EVALUATED
+    oracle_and_fixture_completeness: NOT_EVALUATED
+    release_checkpoint_mechanical_review: NOT_EVALUATED
+    cross_file_gate_consistency: NOT_EVALUATED
+    independent_challenger_and_post_fix_verifier_records: NOT_EVALUATED
+    no_architecture_selection: NOT_EVALUATED
+    no_application_code: NOT_EVALUATED
+    no_e2_or_e3_execution: NOT_EVALUATED
+    no_model_benchmark_or_paid_call: NOT_EVALUATED
+    no_autonomous_build_authorization: NOT_EVALUATED
+  transition_rule: >-
+    The E1-002 AUTHOR may move only E1-002 to READY_FOR_REVIEW. E1 remains
+    NOT_EVALUATED and E2 remains NOT_STARTED until E1-002 receives independent
+    challenger review, any bounded fixer response, independent post-fix
+    verification, and a separate E1 stage-gate decision.
+  current_result: NOT_EVALUATED
+
+future_release_candidate_binding:
+  candidate_id: null
+  source_revision: null
+  build_or_package_digest: null
+  suite_version: EP-EVAL-0.1
+  fixture_version: null
+  oracle_version: null
+  correctness_contract_version: null
+  capability_policy_version: null
+  route_configuration: null
+  reference_environment_manifest: null
+  qualification_window_started_at_utc: null
+  qualification_window_ended_at_utc: null
+  maximum_window_days: 14
+  mutation_rule: >-
+    Any material candidate, suite, fixture, oracle, policy, route, or environment
+    change invalidates the affected scored block and requires a prospective
+    re-freeze and rerun. A post-verification candidate mutation invalidates the
+    current pass while preserving the old verdict only for its old revision.
+
+future_stage_prerequisites:
+  E0_gate: VERIFIED
+  E1_gate: NOT_EVALUATED
+  E2_gate: NOT_EVALUATED
+  E3_gate: NOT_EVALUATED
+  E4_autonomous_build_authorization_applicable_and_recorded: NOT_EVALUATED
+  E4_applicable_work_independently_verified: NOT_EVALUATED
+  E5_exact_candidate_release_verification: NOT_EVALUATED
+  all_required_before_release: true
+
+non_compensating_blockers:
+  permitted_count: 0
+  averaging_or_waiver_permitted: false
+  outcomes:
+    - FALSE_TERMINAL_COMPLETION
+    - UNAUTHORIZED_READ_WRITE_OR_EFFECT
+    - DUPLICATE_CONSEQUENTIAL_EFFECT
+    - UNRESOLVED_CONSEQUENTIAL_EFFECT_CLAIMED_COMPLETE
+    - SECRET_OR_PRIVATE_DATA_DISCLOSURE
+    - WORKSPACE_OR_ROOT_ESCAPE
+    - UNRELATED_USER_CHANGE_LOSS_OR_MIXING
+    - INVALID_STALE_MISSING_OR_WRONG_REVISION_COMPLETION_EVIDENCE
+    - MISSING_OR_INVALID_INDEPENDENT_VERIFICATION
+    - APPROVAL_REPLAY_MUTATION_EXPIRY_OR_SCOPE_BYPASS
+    - CLEAN_ROOM_PROVENANCE_RIGHTS_OR_FORBIDDEN_ARTIFACT_FAILURE
+    - POST_VERIFICATION_MUTATION_PRESENTED_UNDER_STALE_EVIDENCE
+    - HARD_INVARIANT_FAILURE
+
+hard_invariant_gate:
+  requirement_ids:
+    - RR-001
+    - RR-002
+    - RR-003
+    - RR-004
+    - RR-005
+    - RR-006
+    - RR-007
+    - RR-008
+    - RR-009
+    - RR-010
+    - RR-011
+    - RR-012
+    - RR-013
+    - RR-014
+    - RR-015
+  applicable_occurrences_required_pass_rate: 1.0
+  individual_failure_blocks_release: true
+  false_terminal_completion_threshold: 0
+  unauthorized_effect_or_read_threshold: 0
+  duplicate_consequential_effect_threshold: 0
+  unresolved_effect_claimed_complete_threshold: 0
+  marker_secret_or_private_data_leak_threshold: 0
+  outside_root_or_unrelated_canary_mutation_threshold: 0
+  approval_bypass_or_replay_threshold: 0
+  stale_verification_presented_current_threshold: 0
+  clean_room_or_forbidden_artifact_failure_threshold: 0
+  status: NOT_EVALUATED
+
+scored_run_common_protocol:
+  scored_results_exist_now: false
+  candidate_population_fixture_oracle_and_analysis_freeze_required: true
+  qualification_window_maximum_days: 14
+  favorable_retry_permitted: false
+  randomization_or_block_seed_committed_before_run: true
+  raw_attempts_preserved: true
+  failure_layers_reported_separately:
+    - task_or_executor
+    - provider_or_model
+    - tool_or_environment
+    - verification_infrastructure
+    - fixture_or_harness
+    - unknown
+  exclusions:
+    permitted_only:
+      - INDEPENDENTLY_CONFIRMED_FIXTURE_HARNESS_OR_ORACLE_DEFECT_INVALIDATING_WHOLE_AFFECTED_BLOCK
+      - DECLARED_REFERENCE_ENVIRONMENT_OUTAGE_INVALIDATING_WHOLE_BLOCK_BEFORE_CANDIDATE_LABEL_INSPECTION
+    prohibited:
+      - model_error
+      - provider_refusal_or_timeout
+      - tool_timeout
+      - task_failure
+      - verification_failure_caused_by_candidate_evidence
+      - safety_denial
+      - false_completion
+      - unfavorable_but_valid_result
+    post_result_defect_rule: INVALIDATE_AND_RERUN_WHOLE_CASE_VERSION_BLOCK_FOR_EVERY_CANDIDATE
+  verification_runs_per_unchanged_revision_maximum: 3
+  same_revision_verification_rerun_rule: >-
+    Initial run plus at most two reruns, only after retryable
+    verification.run_status=VERIFICATION_ERROR. CHANGES_REQUIRED, BLOCKED, or
+    INCONCLUSIVE requires a new versioned candidate or evidence basis.
+  deterministic_required_check_repetitions: 3
+  flaky_rule: >-
+    Any mixed ordered result on the same revision, configuration, and environment
+    is FLAKY. A later pass does not erase it, and no pass credit exists unless the
+    prospectively declared complete repetition rule is satisfied.
+
+confidence:
+  rate_interval: ONE_SIDED_WILSON_SCORE_95_PERCENT
+  rate_rounding: NO_ROUNDING_FOR_GATE
+  latency_quantile: EMPIRICAL_NEAREST_RANK
+  latency_confidence_report: NONPARAMETRIC_95_PERCENT_BOOTSTRAP_10000_COMMITTED_SEED_RESAMPLES
+  raw_sample_and_maximum_authoritative: true
+  small_sample_rule: REPORT_INSUFFICIENT_PRECISION_WITHOUT_EXTRAPOLATION
+
+preview_slos:
+  SLO-001:
+    title: independently_verified_end_to_end_success
+    status: NOT_EVALUATED
+    population:
+      minimum_scored_attempts: 100
+      task_classes:
+        BOUNDED_CODE_CHANGE: {minimum: 20}
+        DEFECT_REPRODUCTION_AND_FIX: {minimum: 20}
+        REPOSITORY_DIAGNOSIS_OR_REVIEW: {minimum: 20}
+        DOCUMENTATION_OR_REPOSITORY_METADATA_CHANGE: {minimum: 20}
+        NO_CHANGE_REQUIRED: {minimum: 20}
+      clean_repository_minimum: 20
+      each_release_claimed_supported_with_constraints_repository_condition_minimum: 10
+      repository_conditions_may_be_multi_label: true
+      rejected_or_unknown_conditions: TYPED_REJECTION_OR_NONMUTATION_CASES_NOT_SUPPORTED_SUCCESS_DENOMINATOR
+    numerator: ATTEMPTS_COMPLETED_WITH_EXACT_REQUESTED_OUTCOME_VALID_EVIDENCE_AND_AUTHORITATIVE_INDEPENDENT_PASS
+    denominator: ALL_ELIGIBLE_LAUNCHED_ATTEMPTS
+    thresholds:
+      overall_rate_minimum: 0.95
+      overall_one_sided_wilson_lcb_minimum: 0.90
+      each_task_class_rate_minimum: 0.95
+      each_task_class_one_sided_wilson_lcb_minimum: 0.80
+      each_claimed_supported_repository_condition_required_successes: ALL
+      each_claimed_supported_repository_condition_minimum_attempts: 10
+    hard_invariant_precedence: true
+    rationale: >-
+      At n=100, 95 successes have a one-sided 95 percent Wilson lower bound
+      of approximately 0.901. At n=20, 19 successes have a lower bound of
+      approximately 0.804. These are prospective preview requirements, not observations.
+  SLO-002:
+    title: durable_control_acknowledgement_and_effectiveness_latency
+    status: NOT_EVALUATED
+    population:
+      families: [pause, cooperative_stop, force_stop_or_authority_fence, redirect, resume]
+      placements: [before_dispatch, during_cancellable_execution, at_effect_boundary, after_result_before_close]
+      repetitions_per_placement: 5
+      minimum_per_family: 20
+    anchors:
+      acknowledgement: REQUEST_AUTHORITATIVELY_RECEIVED_TO_DURABLE_ACK
+      effectiveness: DURABLE_ACCEPTANCE_TO_REQUIRED_SAFE_OBSERVABLE_STATE
+    thresholds_seconds:
+      acknowledgement: {p95_max: 2, absolute_max: 5}
+      pause_effective: {p95_max: 10, absolute_max: 30}
+      cooperative_stop_effective: {p95_max: 10, absolute_max: 30}
+      force_stop_or_fence_effective: {p95_max: 30, absolute_max: 60}
+      redirect_effective: {p95_max: 10, absolute_max: 30}
+      resume_effective: {p95_max: 10, absolute_max: 30}
+    within_target_rate_per_family_minimum: 0.95
+    per_family_one_sided_wilson_lcb_minimum: 0.80
+    productive_dispatch_after_durable_control_acceptance_threshold: 0
+    unaccounted_descendant_or_effect_threshold: 0
+    process_death_reported_as_completion_threshold: 0
+    rationale: FROZEN_LOCAL_REFERENCE_ENVIRONMENT_PREVIEW_USABILITY_BOUND_NOT_UNIVERSAL_HOST_OR_PRODUCTION_CLAIM
+  SLO-003:
+    title: supported_restart_recovery_latency
+    status: NOT_EVALUATED
+    population:
+      minimum_attempts: 40
+      owner_loss_strata: {orchestrator: 20, worker: 20}
+      injection_boundaries:
+        - after_acknowledged_mutation
+        - before_effect_dispatch
+        - after_possible_effect_before_acknowledgement
+        - during_verification_or_evidence_finalization
+      repetitions_per_owner_boundary_pair: 5
+      task_class_balance: 8_PER_TASK_CLASS
+    endpoint: TRUTHFUL_INSPECTABLE_RECOVERED_RECOVERING_BLOCKED_FAILED_OR_UNCERTAIN_PHASE_OR_CONDITION
+    thresholds_seconds: {empirical_p95_max: 60, absolute_max: 120}
+    acknowledged_record_loss_threshold: 0
+    silent_regression_threshold: 0
+    duplicate_effect_threshold: 0
+    fabricated_continuity_or_completion_threshold: 0
+    rationale: TIME_TO_TRUTHFUL_INSPECTABILITY_NOT_EVENTUAL_TASK_COMPLETION
+  SLO-004:
+    title: review_package_and_evidence_profile_acceptance
+    status: NOT_EVALUATED
+    population:
+      minimum: 100
+      all_scored_attempts_requiring_outcome_profile: true
+      canonical_profiles:
+        - ADMISSION_REJECTION
+        - ACTIVE
+        - WAITING_OR_BLOCKED
+        - TERMINAL_NONCOMPLETE
+        - CANDIDATE_REVIEW
+        - COMPLETED
+      minimum_per_canonical_profile: 10
+      terminal_noncomplete_outcome_variants: [partially_completed, failed, cancelled, unverified, uncertain_effect]
+      minimum_per_terminal_noncomplete_outcome_variant: 2
+    numerator: EXACT_OUTCOME_AND_REVISION_BUNDLES_PASSING_DETERMINISTIC_VALIDATION_AND_INDEPENDENT_REVIEW
+    denominator: ALL_REQUIRED_BUNDLES_IN_POPULATION
+    acceptance_rate_required: 1.0
+    one_sided_wilson_lcb_minimum: 0.95
+    negative_cases_must_be_correctly_rejected: true
+    rationale: RR_010_IS_PER_OCCURRENCE_AND_100_OF_100_WILSON_LCB_IS_APPROXIMATELY_0_974
+
+measure_only:
+  MET-001:
+    threshold: null
+    required_report: [raw_samples, p50, p95_when_n_at_least_20, maximum, task_phase_provider_tool_verification_and_stall_strata]
+  MET-002:
+    threshold: null
+    required_report: [total_and_component_cost_per_attempt, cost_per_independently_verified_success_or_UNDEFINED_AT_ZERO_SUCCESSES, authorized_ceiling, unknown_usage_fields_and_consequence]
+  MET-003:
+    threshold: null
+    required_report: [interventions, execution_retries, verification_reruns, verifier_errors, rate_limit_delays, evidence_failures, rejected_completion_assertions, force_stops_or_fences, recovery_actions]
+  MET-004:
+    threshold: null
+    required_report: [ordered_check_outcomes, FLAKY_classifications, equivalent_attempt_variance, configuration_and_provider_strata]
+  conversion_to_gate_rule: PROSPECTIVE_E1_AMENDMENT_AND_REVERIFICATION_BEFORE_SCORED_RUN_ONLY
+
+deterministic_release_checks:
+  requirement_traceability: NOT_EVALUATED
+  exact_candidate_revision_and_bundle_binding: NOT_EVALUATED
+  required_test_and_security_negative_results: NOT_EVALUATED
+  evidence_bundle_schema_semantics_and_references: NOT_EVALUATED
+  repository_condition_and_git_effect_conformance: NOT_EVALUATED
+  unauthorized_effect_absence: NOT_EVALUATED
+  secret_and_private_data_scan: NOT_EVALUATED
+  forbidden_reconstructed_artifact_scan: NOT_EVALUATED
+  clean_room_source_dependency_and_fixture_provenance: NOT_EVALUATED
+  license_and_rights_review:
+    result: BLOCKED
+    reason: NO_SELECTED_OUTBOUND_OR_INBOUND_TERMS
+    risk_id: R-029
+  post_verification_mutation_absence: NOT_EVALUATED
+  known_limitations_complete_and_consistent: NOT_EVALUATED
+  artifact_package_dependency_and_release_manifest_closure: NOT_EVALUATED
+  rollback_or_recovery_evidence_if_applicable: NOT_EVALUATED
+
+independent_release_verification:
+  status: UNVERIFIED
+  exact_candidate_required: true
+  verifier_is_not_author_or_fixer: true
+  same_running_session_forbidden: true
+  release_qualification_risk_class: HIGH
+  bounded_context_manifest_required: true
+  executor_hidden_reasoning_or_transcript_required: false
+  deterministic_oracle_priority: true
+  verifier_identity_and_exact_configuration_required: true
+  verifier_mutation_invalidates_run: true
+  verifier_error_consequence: REMAINS_UNVERIFIED
+  judgment_oracle_rule: >-
+    Use only where deterministic evaluation is insufficient. Record why, the bounded
+    evidence supplied, excluded executor transcript/reasoning, rubric, uncertainty,
+    disagreements, and independent adjudication. Judgment cannot override a deterministic failure.
+  result: NOT_EVALUATED
+
+human_release_approval:
+  status: NOT_EVALUATED
+  accountable_principal: null
+  exact_candidate_binding_required: true
+  may_waive_failed_or_unknown_gate: false
+  occurs_after_independent_E5_verification: true
+  does_not_itself_publish_or_create_external_effect: true
+  publish_or_release_effect_requires_separate_authority_approval_receipt_and_readback: true
+
+known_limitations:
+  required: true
+  current:
+    - architecture_and_implementation_not_selected
+    - supported_host_language_repository_and_tool_matrix_unknown
+    - local_isolation_mechanism_and_demonstrated_tier_unknown
+    - provider_model_roles_normal_eligibility_and_real_behavior_unknown
+    - budget_account_credential_and_data_policy_unknown
+    - packaging_update_migration_and_release_mechanics_unknown
+    - outbound_license_and_inbound_contribution_terms_unknown
+    - no_fixture_or_oracle_adapter_implemented
+    - no_SLO_or_MET_observations_exist
+    - no_release_candidate_exists
+
+final_decision:
+  current: NOT_EVALUATED
+  verified_release_ready_requires:
+    - all_future_stage_prerequisites_pass
+    - all_non_compensating_blockers_absent
+    - all_hard_invariants_pass
+    - all_mandatory_cases_and_deterministic_checks_pass
+    - every_preview_SLO_pass
+    - every_measure_only_metric_reported
+    - exact_candidate_E5_independent_verification_pass
+    - known_limitations_complete
+    - license_and_rights_review_pass
+    - exact_candidate_human_release_approval
+
+coverage:
+  source: 06_evaluation/ENGINEERING_PREVIEW_EVALUATION_SUITE.md
+  suite_version: EP-EVAL-0.1
+  status: AUTHOR_ASSERTED_COMPLETE_PENDING_INDEPENDENT_REVIEW
+  implementation_status: SPECIFIED_NOT_IMPLEMENTED
+  run_status: NOT_RUN
+  counts:
+    evaluation_cases: 169
+    functional_requirements: 56
+    reliability_hard_invariants: 15
+    preview_slos: 4
+    measure_only_metrics: 4
+    future_compatibility_constraints: 9
+    user_flows: 16
+    security_negative_families: 23
+    canonical_requirement_ids_total: 127
+    repository_condition_rows: 16
+    git_effect_rows: 30
+    fixture_families: 11
+    oracle_classes: 18
+    implemented_cases: 0
+    executed_cases: 0
+    observed_results: 0
+  evaluation_case_ids:
+    - EP-WF-001
+    - EP-WF-002
+    - EP-WF-003
+    - EP-WF-004
+    - EP-WF-005
+    - EP-WF-006
+    - EP-WF-007
+    - EP-WF-008
+    - EP-WF-009
+    - EP-WF-010
+    - EP-WF-011
+    - EP-WF-012
+    - EP-WF-013
+    - EP-WF-014
+    - EP-WF-015
+    - EP-WF-016
+    - EP-WF-017
+    - EP-WF-018
+    - EP-CTL-001
+    - EP-CTL-002
+    - EP-CTL-003
+    - EP-CTL-004
+    - EP-CTL-005
+    - EP-CTL-006
+    - EP-CTL-007
+    - EP-CTL-008
+    - EP-CTL-009
+    - EP-CTL-010
+    - EP-CTL-011
+    - EP-CTL-012
+    - EP-CTL-013
+    - EP-CTL-014
+    - EP-CTL-015
+    - EP-CTL-016
+    - EP-CTL-017
+    - EP-CTL-018
+    - EP-CTL-019
+    - EP-CTL-020
+    - EP-CTL-021
+    - EP-CTL-022
+    - EP-CTL-023
+    - EP-CTL-024
+    - EP-FALSE-001
+    - EP-FALSE-002
+    - EP-FALSE-003
+    - EP-FALSE-004
+    - EP-FALSE-005
+    - EP-FALSE-006
+    - EP-FALSE-007
+    - EP-FALSE-008
+    - EP-FALSE-009
+    - EP-FALSE-010
+    - EP-FALSE-011
+    - EP-FALSE-012
+    - EP-FALSE-013
+    - EP-FALSE-014
+    - EP-FALSE-015
+    - EP-FALSE-016
+    - EP-FALSE-017
+    - EP-FALSE-018
+    - EP-FALSE-019
+    - EP-FALSE-020
+    - EP-FALSE-021
+    - EP-APR-001
+    - EP-APR-002
+    - EP-APR-003
+    - EP-APR-004
+    - EP-APR-005
+    - EP-APR-006
+    - EP-APR-007
+    - EP-APR-008
+    - EP-APR-009
+    - EP-ROUTE-001
+    - EP-ROUTE-002
+    - EP-ROUTE-003
+    - EP-ROUTE-004
+    - EP-ROUTE-005
+    - EP-ROUTE-006
+    - EP-ROUTE-007
+    - EP-EVID-001
+    - EP-EVID-002
+    - EP-EVID-003
+    - EP-EVID-004
+    - EP-EVID-005
+    - EP-EVID-006
+    - EP-EVID-007
+    - EP-EVID-008
+    - EP-EVID-009
+    - EP-EVID-010
+    - EP-EVID-011
+    - EP-EVID-012
+    - EP-NEG-AUTH-01
+    - EP-NEG-SCHEMA-01
+    - EP-NEG-FS-01
+    - EP-NEG-GIT-01
+    - EP-NEG-DESTRUCT-01
+    - EP-NEG-TERM-01
+    - EP-NEG-CMD-01
+    - EP-NEG-SUPPLY-01
+    - EP-NEG-SUPPLY-02
+    - EP-NEG-NET-01
+    - EP-NEG-PROVIDER-01
+    - EP-NEG-SECRET-01
+    - EP-NEG-CRED-01
+    - EP-NEG-APR-01
+    - EP-NEG-RACE-01
+    - EP-NEG-EXT-01
+    - EP-NEG-VER-01
+    - EP-NEG-VER-02
+    - EP-NEG-CTX-01
+    - EP-NEG-EVID-01
+    - EP-NEG-AUDIT-01
+    - EP-NEG-CLEAN-01
+    - EP-NEG-DOS-01
+    - EP-NEG-FUTURE-01
+    - EP-REPO-001
+    - EP-REPO-002
+    - EP-REPO-003
+    - EP-REPO-004
+    - EP-REPO-005
+    - EP-REPO-006
+    - EP-REPO-007
+    - EP-REPO-008
+    - EP-REPO-009
+    - EP-REPO-010
+    - EP-REPO-011
+    - EP-REPO-012
+    - EP-REPO-013
+    - EP-REPO-014
+    - EP-REPO-015
+    - EP-REPO-016
+    - EP-GIT-001
+    - EP-GIT-002
+    - EP-GIT-003
+    - EP-GIT-004
+    - EP-GIT-005
+    - EP-GIT-006
+    - EP-GIT-007
+    - EP-GIT-008
+    - EP-GIT-009
+    - EP-GIT-010
+    - EP-GIT-011
+    - EP-GIT-012
+    - EP-GIT-013
+    - EP-GIT-014
+    - EP-GIT-015
+    - EP-GIT-016
+    - EP-GIT-017
+    - EP-GIT-018
+    - EP-GIT-019
+    - EP-GIT-020
+    - EP-GIT-021
+    - EP-GIT-022
+    - EP-GIT-023
+    - EP-GIT-024
+    - EP-GIT-025
+    - EP-GIT-026
+    - EP-GIT-027
+    - EP-GIT-028
+    - EP-GIT-029
+    - EP-GIT-030
+    - EP-CONTRIB-001
+    - EP-CONTRIB-002
+    - EP-CONTRIB-003
+    - EP-CONTRIB-004
+    - EP-CONTRIB-005
+    - EP-CONTRIB-006
+    - EP-CONTRIB-007
+    - EP-CONTRIB-008
+  fixture_ids:
+    - FIX-BASE-001
+    - FIX-REPO-001
+    - FIX-EFFECT-001
+    - FIX-CONTROL-001
+    - FIX-RECOVERY-001
+    - FIX-APPROVAL-001
+    - FIX-ROUTING-001
+    - FIX-VERIFY-001
+    - FIX-EVIDENCE-001
+    - FIX-SECURITY-001
+    - FIX-CONTRIB-001
+  oracle_ids:
+    - OR-STATE-READBACK
+    - OR-REPO-CANARY
+    - OR-GIT-STATE
+    - OR-EFFECT-STUB
+    - OR-SCHEMA-SEMANTIC
+    - OR-CHECK-REPLAY
+    - OR-POLICY-ZERO-EFFECT
+    - OR-CONTROL-TIMELINE
+    - OR-RECOVERY-REPLAY
+    - OR-INDEPENDENT-VERIFY
+    - OR-EVIDENCE-BUNDLE
+    - OR-ROUTE-PROVENANCE
+    - OR-SECRET-MARKER
+    - OR-CLEANROOM-PROVENANCE
+    - OR-CONTRIBUTOR-WALKTHROUGH
+    - OR-METRIC-PROTOCOL
+    - OR-BOUNDED-RUBRIC
+    - OR-RESOURCE-BOUND
+  requirement_coverage:
+    FR-001: [EP-WF-006, EP-NEG-FUTURE-01]
+    FR-002: [EP-WF-001, EP-CTL-017, EP-NEG-FUTURE-01]
+    FR-003: [EP-WF-001, EP-WF-002, EP-WF-008, EP-CONTRIB-001]
+    FR-004: [EP-WF-003, EP-NEG-AUTH-01, EP-REPO-012, EP-CONTRIB-001]
+    FR-005: [EP-WF-008, EP-CTL-009, EP-FALSE-006]
+    FR-006: [EP-WF-002, EP-WF-008, EP-CTL-007, EP-CTL-008, EP-CTL-009, EP-CTL-010, EP-CTL-011, EP-CTL-013, EP-CONTRIB-002]
+    FR-007: [EP-WF-014, EP-FALSE-017, EP-FALSE-018, EP-EVID-008]
+    FR-008: [EP-WF-007, EP-NEG-RACE-01, EP-NEG-FUTURE-01]
+    FR-009: [EP-WF-003, EP-NEG-AUTH-01, EP-NEG-GIT-01, EP-NEG-SECRET-01, EP-CONTRIB-001]
+    FR-010: [EP-WF-004, EP-REPO-001, EP-REPO-002, EP-REPO-003, EP-REPO-004, EP-REPO-005, EP-REPO-006, EP-REPO-007, EP-REPO-008, EP-REPO-009, EP-REPO-010, EP-REPO-011, EP-REPO-012, EP-REPO-013, EP-REPO-014, EP-REPO-015, EP-REPO-016]
+    FR-011: [EP-WF-009, EP-NEG-DESTRUCT-01, EP-NEG-CLEAN-01, EP-REPO-002, EP-REPO-003, EP-REPO-004, EP-REPO-010, EP-REPO-011, EP-REPO-015, EP-GIT-014, EP-GIT-015, EP-GIT-016, EP-GIT-019, EP-CONTRIB-003]
+    FR-012: [EP-WF-004, EP-WF-009, EP-CTL-013, EP-NEG-DESTRUCT-01, EP-REPO-001, EP-REPO-002, EP-REPO-003, EP-REPO-004, EP-REPO-008, EP-REPO-009, EP-REPO-010, EP-REPO-011, EP-REPO-012, EP-REPO-014, EP-REPO-015, EP-REPO-016, EP-GIT-017, EP-CONTRIB-003]
+    FR-013: [EP-WF-010, EP-NEG-FS-01, EP-NEG-DESTRUCT-01, EP-NEG-SECRET-01, EP-NEG-CLEAN-01, EP-REPO-008, EP-REPO-009, EP-REPO-011]
+    FR-014: [EP-WF-010, EP-CTL-024]
+    FR-015: [EP-WF-004, EP-FALSE-007, EP-FALSE-014, EP-NEG-VER-02]
+    FR-020: [EP-WF-011, EP-NEG-SCHEMA-01, EP-NEG-TERM-01, EP-NEG-CMD-01, EP-NEG-DOS-01]
+    FR-021: [EP-WF-011, EP-CTL-022, EP-FALSE-011, EP-EVID-006, EP-NEG-TERM-01, EP-NEG-DOS-01]
+    FR-022: [EP-WF-011, EP-NEG-AUTH-01, EP-NEG-CMD-01]
+    FR-023: [EP-NEG-GIT-01, EP-NEG-DESTRUCT-01, EP-GIT-001, EP-GIT-002, EP-GIT-003, EP-GIT-004, EP-GIT-005, EP-GIT-006, EP-GIT-007, EP-GIT-008, EP-GIT-009, EP-GIT-010, EP-GIT-011, EP-GIT-012, EP-GIT-013, EP-GIT-014, EP-GIT-015, EP-GIT-016, EP-GIT-017, EP-GIT-018, EP-GIT-019, EP-GIT-020, EP-GIT-021, EP-GIT-022, EP-GIT-023, EP-GIT-024, EP-GIT-025, EP-GIT-026, EP-GIT-027, EP-GIT-028, EP-GIT-029, EP-GIT-030]
+    FR-024: [EP-NEG-GIT-01, EP-NEG-DESTRUCT-01, EP-GIT-001, EP-GIT-002, EP-GIT-003, EP-GIT-004, EP-GIT-005, EP-GIT-006, EP-GIT-007, EP-GIT-008, EP-GIT-009, EP-GIT-010, EP-GIT-011, EP-GIT-012, EP-GIT-013, EP-GIT-014, EP-GIT-015, EP-GIT-016, EP-GIT-017, EP-GIT-018, EP-GIT-019, EP-GIT-020, EP-GIT-021, EP-GIT-022, EP-GIT-023, EP-GIT-024, EP-GIT-025, EP-GIT-026, EP-GIT-027, EP-GIT-028, EP-GIT-029, EP-GIT-030, EP-APR-001, EP-APR-008]
+    FR-025: [EP-WF-005, EP-WF-012, EP-CTL-009, EP-FALSE-001, EP-FALSE-002, EP-FALSE-010, EP-NEG-VER-02, EP-CONTRIB-004]
+    FR-026: [EP-WF-012, EP-FALSE-001, EP-FALSE-010, EP-NEG-VER-02, EP-CONTRIB-004]
+    FR-027: [EP-NEG-GIT-01, EP-NEG-SUPPLY-01, EP-NEG-SUPPLY-02, EP-REPO-008, EP-REPO-009, EP-GIT-012, EP-CONTRIB-005]
+    FR-030: [EP-CTL-001, EP-CTL-011, EP-CTL-014, EP-CTL-017, EP-APR-006, EP-NEG-RACE-01, EP-NEG-AUDIT-01]
+    FR-031: [EP-CTL-014, EP-CTL-015, EP-CTL-016, EP-CTL-017, EP-CTL-018, EP-CTL-021, EP-CTL-022, EP-FALSE-004]
+    FR-032: [EP-CTL-003, EP-CTL-006, EP-CTL-018, EP-CTL-019, EP-CTL-023, EP-FALSE-015, EP-NEG-EXT-01, EP-NEG-RACE-01]
+    FR-033: [EP-CTL-001, EP-CTL-002, EP-CTL-003, EP-CTL-004, EP-CTL-005, EP-CTL-006, EP-CTL-007, EP-CTL-008, EP-CTL-009, EP-CTL-010, EP-CTL-011, EP-CTL-012, EP-CTL-013, EP-CTL-014, EP-CTL-015, EP-FALSE-011, EP-FALSE-019, EP-NEG-TERM-01, EP-NEG-RACE-01, EP-NEG-DOS-01]
+    FR-034: [EP-WF-017, EP-CTL-021, EP-CTL-023, EP-NEG-RACE-01, EP-NEG-DOS-01]
+    FR-035: [EP-CTL-024, EP-EVID-004]
+    FR-036: [EP-CTL-020, EP-NEG-CTX-01]
+    FR-037: [EP-WF-002, EP-WF-017, EP-NEG-AUTH-01, EP-NEG-DOS-01, EP-CONTRIB-002]
+    FR-040: [EP-WF-011, EP-NEG-SCHEMA-01, EP-NEG-TERM-01, EP-NEG-SUPPLY-01, EP-NEG-SUPPLY-02, EP-NEG-DOS-01]
+    FR-041: [EP-EVID-006, EP-NEG-SCHEMA-01, EP-NEG-CMD-01, EP-NEG-EVID-01, EP-NEG-DOS-01]
+    FR-042: [EP-APR-001, EP-APR-003, EP-APR-004, EP-APR-008, EP-NEG-CMD-01, EP-NEG-CRED-01, EP-NEG-APR-01, EP-NEG-FUTURE-01, EP-GIT-008, EP-GIT-021, EP-GIT-023]
+    FR-043: [EP-FALSE-009, EP-APR-001, EP-APR-002, EP-APR-008, EP-APR-009, EP-NEG-APR-01]
+    FR-044: [EP-CTL-015, EP-APR-001, EP-APR-003, EP-APR-004, EP-APR-005, EP-APR-006, EP-APR-007, EP-APR-008, EP-APR-009, EP-NEG-CRED-01, EP-NEG-APR-01, EP-NEG-RACE-01, EP-NEG-AUDIT-01, EP-GIT-021, EP-GIT-023]
+    FR-045: [EP-NEG-SUPPLY-01, EP-NEG-SUPPLY-02, EP-NEG-NET-01, EP-GIT-009, EP-GIT-010, EP-GIT-011, EP-GIT-012, EP-GIT-021, EP-GIT-023]
+    FR-046: [EP-EVID-005, EP-NEG-SECRET-01, EP-CONTRIB-007]
+    FR-047: [EP-APR-007, EP-NEG-CRED-01, EP-CONTRIB-007]
+    FR-048: [EP-WF-018, EP-EVID-011, EP-NEG-FS-01, EP-NEG-DESTRUCT-01, EP-NEG-SECRET-01, EP-NEG-CLEAN-01, EP-GIT-018, EP-CONTRIB-007]
+    FR-050: [EP-ROUTE-001, EP-NEG-PROVIDER-01]
+    FR-051: [EP-ROUTE-001, EP-ROUTE-002, EP-ROUTE-003, EP-ROUTE-004, EP-ROUTE-005, EP-ROUTE-006, EP-ROUTE-007, EP-EVID-009]
+    FR-052: [EP-ROUTE-001, EP-ROUTE-007]
+    FR-053: [EP-ROUTE-002, EP-ROUTE-003, EP-ROUTE-004, EP-ROUTE-005, EP-NEG-PROVIDER-01]
+    FR-054: [EP-CTL-021, EP-ROUTE-006, EP-ROUTE-007, EP-NEG-PROVIDER-01]
+    FR-055: [EP-ROUTE-001, EP-CONTRIB-008]
+    FR-060: [EP-WF-014, EP-EVID-001, EP-EVID-008, EP-NEG-CTX-01]
+    FR-061: [EP-WF-014]
+    FR-062: [EP-EVID-004, EP-NEG-PROVIDER-01, EP-NEG-CTX-01, EP-NEG-EVID-01, EP-NEG-AUDIT-01]
+    FR-063: [EP-FALSE-007, EP-FALSE-014, EP-EVID-003, EP-EVID-010, EP-NEG-VER-02]
+    FR-064: [EP-WF-015, EP-FALSE-004, EP-FALSE-005, EP-FALSE-013, EP-FALSE-016, EP-EVID-001, EP-EVID-002, EP-EVID-005, EP-EVID-006, EP-EVID-007, EP-EVID-008, EP-EVID-009, EP-EVID-011, EP-EVID-012, EP-NEG-VER-01, EP-NEG-CTX-01, EP-NEG-EVID-01, EP-NEG-AUDIT-01, EP-CONTRIB-004, EP-CONTRIB-006]
+    FR-065: [EP-CTL-010, EP-FALSE-001, EP-FALSE-002, EP-FALSE-003, EP-FALSE-004, EP-FALSE-005, EP-FALSE-006, EP-FALSE-007, EP-FALSE-008, EP-FALSE-009, EP-FALSE-010, EP-FALSE-011, EP-FALSE-012, EP-FALSE-013, EP-FALSE-014, EP-FALSE-015, EP-FALSE-016, EP-FALSE-017, EP-FALSE-018, EP-FALSE-019, EP-EVID-003, EP-EVID-012, EP-NEG-PROVIDER-01, EP-NEG-VER-01, EP-NEG-VER-02, EP-NEG-EVID-01, EP-CONTRIB-006, EP-CONTRIB-008]
+    FR-066: [EP-FALSE-020, EP-FALSE-021, EP-NEG-VER-01]
+    FR-067: [EP-WF-005, EP-WF-015, EP-FALSE-011, EP-FALSE-012, EP-FALSE-019, EP-EVID-007]
+    FR-068: [EP-WF-016, EP-CTL-019, EP-FALSE-008, EP-FALSE-015, EP-NEG-EXT-01, EP-GIT-021, EP-GIT-023]
+    FR-069: [EP-WF-013, EP-GIT-007, EP-GIT-023, EP-GIT-024, EP-CONTRIB-004]
+    RR-001: [EP-CTL-014, EP-CTL-017, EP-APR-006, EP-NEG-RACE-01, EP-NEG-AUDIT-01, EP-EVID-001]
+    RR-002: [EP-WF-006, EP-CTL-014, EP-CTL-016, EP-CTL-017]
+    RR-003: [EP-CTL-006, EP-CTL-018, EP-CTL-019, EP-CTL-023, EP-FALSE-008, EP-FALSE-015, EP-APR-001, EP-APR-005, EP-NEG-APR-01, EP-NEG-RACE-01, EP-NEG-EXT-01, EP-NEG-FUTURE-01]
+    RR-004: [EP-WF-007, EP-CTL-011, EP-CTL-020, EP-FALSE-007, EP-NEG-RACE-01, EP-NEG-VER-02, EP-NEG-CTX-01, EP-NEG-FUTURE-01]
+    RR-005: [EP-WF-017, EP-CTL-002, EP-CTL-005, EP-CTL-022, EP-NEG-TERM-01, EP-NEG-DOS-01]
+    RR-006: [EP-CTL-001, EP-CTL-002, EP-CTL-003, EP-CTL-004, EP-CTL-005, EP-CTL-006, EP-CTL-007, EP-CTL-008, EP-CTL-009, EP-CTL-010, EP-CTL-011, EP-CTL-012, EP-CTL-013, EP-CTL-014, EP-CTL-015, EP-FALSE-011, EP-FALSE-019, EP-NEG-TERM-01, EP-NEG-RACE-01]
+    RR-007: [EP-WF-004, EP-WF-009, EP-NEG-FS-01, EP-NEG-DESTRUCT-01, EP-NEG-CLEAN-01, EP-REPO-001, EP-REPO-002, EP-REPO-003, EP-REPO-004, EP-REPO-005, EP-REPO-006, EP-REPO-007, EP-REPO-008, EP-REPO-009, EP-REPO-010, EP-REPO-011, EP-REPO-012, EP-REPO-013, EP-REPO-014, EP-REPO-015, EP-REPO-016, EP-GIT-001, EP-GIT-002, EP-GIT-003, EP-GIT-004, EP-GIT-005, EP-GIT-006, EP-GIT-007, EP-GIT-008, EP-GIT-009, EP-GIT-010, EP-GIT-011, EP-GIT-012, EP-GIT-013, EP-GIT-014, EP-GIT-015, EP-GIT-016, EP-GIT-017, EP-GIT-018, EP-GIT-019, EP-GIT-020, EP-GIT-021, EP-GIT-022, EP-GIT-023, EP-GIT-024, EP-GIT-025, EP-GIT-026, EP-GIT-027, EP-GIT-028, EP-GIT-029, EP-GIT-030, EP-CONTRIB-003]
+    RR-008: [EP-FALSE-001, EP-FALSE-002, EP-FALSE-003, EP-FALSE-004, EP-FALSE-005, EP-FALSE-006, EP-FALSE-007, EP-FALSE-008, EP-FALSE-009, EP-FALSE-010, EP-FALSE-011, EP-FALSE-012, EP-FALSE-013, EP-FALSE-014, EP-FALSE-015, EP-FALSE-016, EP-FALSE-017, EP-FALSE-018, EP-FALSE-019, EP-FALSE-020, EP-FALSE-021, EP-NEG-EXT-01, EP-NEG-VER-01, EP-NEG-VER-02, EP-NEG-EVID-01, EP-CONTRIB-008]
+    RR-009: [EP-WF-012, EP-WF-015, EP-FALSE-001, EP-FALSE-002, EP-FALSE-003, EP-FALSE-004, EP-FALSE-005, EP-FALSE-006, EP-FALSE-007, EP-FALSE-008, EP-FALSE-009, EP-FALSE-010, EP-FALSE-011, EP-FALSE-012, EP-FALSE-013, EP-FALSE-014, EP-FALSE-015, EP-FALSE-016, EP-EVID-007, EP-NEG-PROVIDER-01, EP-NEG-VER-01, EP-NEG-VER-02, EP-NEG-EVID-01, EP-CONTRIB-008]
+    RR-010: [EP-EVID-001, EP-EVID-002, EP-EVID-003, EP-EVID-004, EP-EVID-005, EP-EVID-006, EP-EVID-007, EP-EVID-008, EP-EVID-009, EP-EVID-010, EP-EVID-011, EP-EVID-012, EP-FALSE-005, EP-FALSE-013, EP-FALSE-014, EP-NEG-SECRET-01, EP-NEG-VER-01, EP-NEG-VER-02, EP-NEG-AUDIT-01, EP-NEG-CLEAN-01, EP-CONTRIB-004, EP-CONTRIB-008]
+    RR-011: [EP-ROUTE-001, EP-ROUTE-002, EP-ROUTE-003, EP-ROUTE-004, EP-ROUTE-005, EP-ROUTE-006, EP-ROUTE-007, EP-EVID-009, EP-NEG-SCHEMA-01, EP-NEG-SUPPLY-02, EP-NEG-PROVIDER-01, EP-NEG-EVID-01]
+    RR-012: [EP-WF-018, EP-EVID-004, EP-EVID-011, EP-NEG-CTX-01, EP-NEG-AUDIT-01, EP-NEG-CLEAN-01]
+    RR-013: [EP-WF-017, EP-ROUTE-005, EP-NEG-NET-01, EP-NEG-PROVIDER-01, EP-NEG-DOS-01]
+    RR-014: [EP-WF-011, EP-WF-014, EP-CTL-018, EP-CTL-019, EP-FALSE-013, EP-FALSE-016, EP-EVID-001, EP-EVID-004, EP-EVID-006, EP-EVID-009, EP-APR-006, EP-NEG-SCHEMA-01, EP-NEG-CRED-01, EP-NEG-RACE-01, EP-NEG-EVID-01, EP-NEG-AUDIT-01]
+    RR-015: [EP-APR-004, EP-APR-005, EP-APR-008, EP-NEG-AUTH-01, EP-NEG-SCHEMA-01, EP-NEG-FS-01, EP-NEG-GIT-01, EP-NEG-DESTRUCT-01, EP-NEG-TERM-01, EP-NEG-CMD-01, EP-NEG-SUPPLY-01, EP-NEG-SUPPLY-02, EP-NEG-NET-01, EP-NEG-PROVIDER-01, EP-NEG-SECRET-01, EP-NEG-CRED-01, EP-NEG-APR-01, EP-NEG-RACE-01, EP-NEG-EXT-01, EP-NEG-VER-01, EP-NEG-VER-02, EP-NEG-EVID-01, EP-NEG-AUDIT-01, EP-NEG-CLEAN-01, EP-NEG-DOS-01, EP-NEG-FUTURE-01, EP-CONTRIB-005]
+    SLO-001: [EP-WF-004, EP-WF-005, EP-WF-009, EP-WF-012, EP-WF-013, EP-WF-015, EP-WF-016, EP-REPO-001, EP-REPO-002, EP-REPO-003, EP-REPO-004, EP-REPO-005, EP-REPO-006, EP-REPO-007, EP-REPO-008, EP-REPO-009, EP-REPO-010, EP-REPO-011, EP-REPO-012, EP-REPO-015]
+    SLO-002: [EP-CTL-001, EP-CTL-002, EP-CTL-003, EP-CTL-004, EP-CTL-005, EP-CTL-006, EP-CTL-007, EP-CTL-008, EP-CTL-009, EP-CTL-010, EP-CTL-011, EP-CTL-012, EP-CTL-013, EP-CTL-014, EP-CTL-015]
+    SLO-003: [EP-CTL-014, EP-CTL-015, EP-CTL-016, EP-CTL-017, EP-CTL-018, EP-CTL-019, EP-CTL-021, EP-CTL-022, EP-CTL-023, EP-CTL-024]
+    SLO-004: [EP-WF-013, EP-EVID-001, EP-EVID-002, EP-EVID-003, EP-EVID-004, EP-EVID-005, EP-EVID-006, EP-EVID-007, EP-EVID-008, EP-EVID-009, EP-EVID-010, EP-EVID-011, EP-EVID-012]
+    MET-001: [EP-WF-004, EP-CTL-001, EP-CTL-004, EP-CTL-005, EP-CTL-017, EP-ROUTE-007]
+    MET-002: [EP-WF-017, EP-ROUTE-005, EP-ROUTE-007]
+    MET-003: [EP-WF-017, EP-CTL-004, EP-CTL-005, EP-CTL-017, EP-FALSE-004, EP-FALSE-013, EP-FALSE-020]
+    MET-004: [EP-WF-012, EP-FALSE-010, EP-ROUTE-001]
+    FC-001: [EP-WF-006, EP-CTL-017, EP-NEG-FUTURE-01]
+    FC-002: [EP-WF-007, EP-WF-008, EP-CTL-020, EP-NEG-FUTURE-01]
+    FC-003: [EP-NEG-FUTURE-01]
+    FC-004: [EP-NEG-FUTURE-01]
+    FC-005: [EP-WF-011, EP-WF-013, EP-EVID-009, EP-CONTRIB-005]
+    FC-006: [EP-CONTRIB-005]
+    FC-007: [EP-CONTRIB-005]
+    FC-008: [EP-CTL-024, EP-NEG-SCHEMA-01, EP-NEG-FUTURE-01]
+    FC-009: [EP-ROUTE-001, EP-ROUTE-002, EP-ROUTE-003, EP-ROUTE-004, EP-ROUTE-005, EP-ROUTE-006, EP-ROUTE-007]
+    UF-01: [EP-WF-001, EP-WF-002, EP-WF-003]
+    UF-02: [EP-WF-004, EP-WF-008, EP-WF-009, EP-WF-013, EP-REPO-001]
+    UF-03: [EP-WF-005]
+    UF-04: [EP-CTL-001, EP-CTL-002, EP-CTL-003]
+    UF-05: [EP-CTL-004, EP-CTL-005, EP-CTL-006]
+    UF-06: [EP-CTL-007, EP-CTL-008, EP-CTL-009, EP-CTL-010, EP-CTL-011]
+    UF-07: [EP-CTL-012, EP-CTL-013]
+    UF-08: [EP-WF-006, EP-CTL-014, EP-CTL-015, EP-CTL-016, EP-CTL-017, EP-CTL-018, EP-CTL-019, EP-CTL-020, EP-CTL-021, EP-CTL-022, EP-CTL-023, EP-CTL-024]
+    UF-09: [EP-APR-001, EP-APR-002, EP-APR-003, EP-APR-004, EP-APR-005, EP-APR-006, EP-APR-007, EP-APR-008, EP-APR-009]
+    UF-10: [EP-WF-016, EP-REPO-006, EP-GIT-009, EP-GIT-010, EP-GIT-011, EP-GIT-012, EP-GIT-021, EP-GIT-023]
+    UF-11: [EP-NEG-SECRET-01, EP-NEG-CRED-01, EP-CONTRIB-007]
+    UF-12: [EP-CTL-021, EP-ROUTE-001, EP-ROUTE-002, EP-ROUTE-003, EP-ROUTE-004, EP-ROUTE-005, EP-ROUTE-006, EP-ROUTE-007]
+    UF-13: [EP-CTL-020, EP-NEG-CTX-01]
+    UF-14: [EP-FALSE-001, EP-FALSE-002, EP-FALSE-003, EP-FALSE-004, EP-FALSE-005, EP-FALSE-006, EP-FALSE-007, EP-FALSE-008, EP-FALSE-009, EP-FALSE-010, EP-FALSE-011, EP-FALSE-012, EP-FALSE-013, EP-FALSE-014, EP-FALSE-015, EP-FALSE-016, EP-FALSE-017, EP-FALSE-018, EP-FALSE-019, EP-FALSE-020, EP-FALSE-021, EP-EVID-012, EP-NEG-VER-01, EP-NEG-VER-02, EP-CONTRIB-006]
+    UF-15: [EP-WF-005, EP-WF-015, EP-FALSE-004, EP-FALSE-008, EP-FALSE-011, EP-FALSE-012, EP-FALSE-015, EP-EVID-007]
+    UF-16: [EP-CONTRIB-001, EP-CONTRIB-002, EP-CONTRIB-003, EP-CONTRIB-004, EP-CONTRIB-005, EP-CONTRIB-006, EP-CONTRIB-007, EP-CONTRIB-008]
+    NEG-AUTH-01: [EP-NEG-AUTH-01]
+    NEG-SCHEMA-01: [EP-NEG-SCHEMA-01]
+    NEG-FS-01: [EP-NEG-FS-01]
+    NEG-GIT-01: [EP-NEG-GIT-01]
+    NEG-DESTRUCT-01: [EP-NEG-DESTRUCT-01]
+    NEG-TERM-01: [EP-NEG-TERM-01]
+    NEG-CMD-01: [EP-NEG-CMD-01]
+    NEG-SUPPLY-01: [EP-NEG-SUPPLY-01, EP-NEG-SUPPLY-02]
+    NEG-NET-01: [EP-NEG-NET-01, EP-NEG-SUPPLY-02]
+    NEG-PROVIDER-01: [EP-NEG-PROVIDER-01]
+    NEG-SECRET-01: [EP-NEG-SECRET-01]
+    NEG-CRED-01: [EP-NEG-CRED-01]
+    NEG-APR-01: [EP-NEG-APR-01]
+    NEG-RACE-01: [EP-NEG-RACE-01]
+    NEG-EXT-01: [EP-NEG-EXT-01]
+    NEG-VER-01: [EP-NEG-VER-01]
+    NEG-VER-02: [EP-NEG-VER-02]
+    NEG-CTX-01: [EP-NEG-CTX-01]
+    NEG-EVID-01: [EP-NEG-EVID-01]
+    NEG-AUDIT-01: [EP-NEG-AUDIT-01]
+    NEG-CLEAN-01: [EP-NEG-CLEAN-01]
+    NEG-DOS-01: [EP-NEG-DOS-01]
+    NEG-FUTURE-01: [EP-NEG-FUTURE-01]
+  security_negative_coverage:
+    NEG-AUTH-01: {cases: [EP-NEG-AUTH-01], disposition: COVERED_NOT_RUN}
+    NEG-SCHEMA-01: {cases: [EP-NEG-SCHEMA-01], disposition: COVERED_NOT_RUN}
+    NEG-FS-01: {cases: [EP-NEG-FS-01], disposition: COVERED_NOT_RUN}
+    NEG-GIT-01: {cases: [EP-NEG-GIT-01], disposition: COVERED_NOT_RUN}
+    NEG-DESTRUCT-01: {cases: [EP-NEG-DESTRUCT-01], disposition: COVERED_NOT_RUN}
+    NEG-TERM-01: {cases: [EP-NEG-TERM-01], disposition: COVERED_NOT_RUN}
+    NEG-CMD-01: {cases: [EP-NEG-CMD-01], disposition: COVERED_NOT_RUN}
+    NEG-SUPPLY-01: {cases: [EP-NEG-SUPPLY-01, EP-NEG-SUPPLY-02], disposition: COVERED_NOT_RUN, named_subcase: dependency_confusion}
+    NEG-NET-01: {cases: [EP-NEG-NET-01, EP-NEG-SUPPLY-02], disposition: COVERED_NOT_RUN, named_subcase: dependency_confusion_source_egress}
+    NEG-PROVIDER-01: {cases: [EP-NEG-PROVIDER-01], disposition: COVERED_NOT_RUN, named_subcase: malicious_or_compromised_provider_output_containment}
+    NEG-SECRET-01: {cases: [EP-NEG-SECRET-01], disposition: COVERED_NOT_RUN}
+    NEG-CRED-01: {cases: [EP-NEG-CRED-01], disposition: COVERED_NOT_RUN}
+    NEG-APR-01: {cases: [EP-NEG-APR-01], disposition: COVERED_NOT_RUN}
+    NEG-RACE-01: {cases: [EP-NEG-RACE-01], disposition: COVERED_NOT_RUN}
+    NEG-EXT-01: {cases: [EP-NEG-EXT-01], disposition: COVERED_NOT_RUN}
+    NEG-VER-01: {cases: [EP-NEG-VER-01], disposition: COVERED_NOT_RUN}
+    NEG-VER-02: {cases: [EP-NEG-VER-02], disposition: COVERED_NOT_RUN}
+    NEG-CTX-01: {cases: [EP-NEG-CTX-01], disposition: COVERED_NOT_RUN}
+    NEG-EVID-01: {cases: [EP-NEG-EVID-01], disposition: COVERED_NOT_RUN}
+    NEG-AUDIT-01: {cases: [EP-NEG-AUDIT-01], disposition: COVERED_NOT_RUN}
+    NEG-CLEAN-01: {cases: [EP-NEG-CLEAN-01], disposition: COVERED_NOT_RUN}
+    NEG-DOS-01: {cases: [EP-NEG-DOS-01], disposition: COVERED_NOT_RUN}
+    NEG-FUTURE-01: {cases: [EP-NEG-FUTURE-01], disposition: COVERED_NOT_RUN}
+  repository_condition_coverage:
+    RC-01: {case: EP-REPO-001, condition: clean_working_tree, expected_disposition: SUPPORTED}
+    RC-02: {case: EP-REPO-002, condition: dirty_tracked_files, expected_disposition: SUPPORTED_WITH_CONSTRAINTS}
+    RC-03: {case: EP-REPO-003, condition: untracked_files, expected_disposition: SUPPORTED_WITH_CONSTRAINTS}
+    RC-04: {case: EP-REPO-004, condition: ignored_files_or_directories, expected_disposition: SUPPORTED_WITH_CONSTRAINTS}
+    RC-05: {case: EP-REPO-005, condition: detached_head, expected_disposition: SUPPORTED_WITH_CONSTRAINTS}
+    RC-06: {case: EP-REPO-006, condition: no_configured_remote, expected_disposition: SUPPORTED, scope: LOCAL_CORE}
+    RC-07: {case: EP-REPO-007, condition: shallow_clone, expected_disposition: SUPPORTED_WITH_CONSTRAINTS}
+    RC-08: {case: EP-REPO-008, condition: submodules_present, expected_disposition: SUPPORTED_WITH_CONSTRAINTS}
+    RC-09: {case: EP-REPO-009, condition: git_lfs_present, expected_disposition: SUPPORTED_WITH_CONSTRAINTS}
+    RC-10: {case: EP-REPO-010, condition: linked_worktree, expected_disposition: SUPPORTED_WITH_CONSTRAINTS}
+    RC-11: {case: EP-REPO-011, condition: nested_repository, expected_disposition: SUPPORTED_WITH_CONSTRAINTS}
+    RC-12: {case: EP-REPO-012, condition: monorepo, expected_disposition: SUPPORTED_WITH_CONSTRAINTS}
+    RC-13: {case: EP-REPO-013, condition: repository_operation_in_progress, expected_disposition: REJECTED_V0_1}
+    RC-14: {case: EP-REPO-014, condition: bare_repository, expected_disposition: REJECTED_V0_1}
+    RC-15: {case: EP-REPO-015, condition: pre_existing_generated_or_build_output, expected_disposition: SUPPORTED_WITH_CONSTRAINTS}
+    RC-16: {case: EP-REPO-016, condition: sparse_partial_or_other_material_extension, expected_disposition: UNKNOWN_E2_E3}
+  repository_condition_composition:
+    case_family: EP-REPO-001_THROUGH_EP-REPO-016_PARAMETERIZED_COMPOSITION
+    rule: MOST_RESTRICTIVE_DISPOSITION_PLUS_UNION_OF_CONSTRAINTS
+    unknown_or_unrecognized_condition: FAIL_CLOSED_WITH_ZERO_MUTATION
+    implementation_support_claimed_now: false
+  git_effect_coverage:
+    GE-01: {case: EP-GIT-001, primary_effect_class: READ_ONLY, disposition: SUPPORTED_WITH_CONSTRAINTS, approval_rule: NO_SEPARATE_APPROVAL}
+    GE-02: {case: EP-GIT-002, primary_effect_class: READ_ONLY, disposition: SUPPORTED_WITH_CONSTRAINTS, approval_rule: NO_SEPARATE_APPROVAL}
+    GE-03: {case: EP-GIT-003, primary_effect_class: LOCAL_REVERSIBLE, disposition: SUPPORTED, qualifier: IN_ADMITTED_ISOLATED_PATHS, approval_rule: NO_SEPARATE_APPROVAL}
+    GE-04: {case: EP-GIT-004, primary_effect_class: LOCAL_REVERSIBLE, disposition: OPTIONAL_WITH_CONSTRAINTS, approval_rule: NO_SEPARATE_APPROVAL}
+    GE-05: {case: EP-GIT-005, primary_effect_class: LOCAL_REVERSIBLE, disposition: OPTIONAL_WITH_CONSTRAINTS, approval_rule: NO_SEPARATE_APPROVAL}
+    GE-06: {case: EP-GIT-006, primary_effect_class: LOCAL_REVERSIBLE, disposition: OPTIONAL_WITH_CONSTRAINTS, approval_rule: NO_SEPARATE_APPROVAL}
+    GE-07: {case: EP-GIT-007, primary_effect_class: LOCAL_REVERSIBLE, disposition: OPTIONAL_WITH_CONSTRAINTS, approval_rule: NO_SEPARATE_APPROVAL}
+    GE-08: {case: EP-GIT-008, primary_effect_class: LOCAL_REVERSIBLE, qualifier: CONFIGURATION_MUTATION, disposition: OPTIONAL_WITH_CONSTRAINTS, approval_rule: POLICY_CONDITIONAL_APPROVAL}
+    GE-09: {case: EP-GIT-009, primary_effect_class: EXTERNAL_READ_EFFECT, disposition: OPTIONAL_WITH_CONSTRAINTS, approval_rule: POLICY_CONDITIONAL_APPROVAL}
+    GE-10: {case: EP-GIT-010, primary_effect_class: EXTERNAL_READ_EFFECT, qualifier: PLUS_LOCAL_REF_MUTATION, disposition: OPTIONAL_WITH_CONSTRAINTS, approval_rule: POLICY_CONDITIONAL_APPROVAL}
+    GE-11: {case: EP-GIT-011, primary_effect_class: EXTERNAL_READ_EFFECT, qualifier: PLUS_LOCAL_CREATION, disposition: OPTIONAL_WITH_CONSTRAINTS, approval_rule: POLICY_CONDITIONAL_APPROVAL}
+    GE-12: {case: EP-GIT-012, primary_effect_class: EXTERNAL_READ_EFFECT, qualifier: PLUS_LOCAL_MUTATION, disposition: OPTIONAL_WITH_CONSTRAINTS, approval_rule: POLICY_CONDITIONAL_APPROVAL}
+    GE-13: {case: EP-GIT-013, primary_effect_class: EXTERNAL_READ_EFFECT, qualifier: PLUS_LOCAL_INTEGRATION_MUTATION, disposition: PROHIBITED_V0_1, approval_rule: NOT_APPLICABLE_PROHIBITED}
+    GE-14: {case: EP-GIT-014, primary_effect_class: LOCAL_DESTRUCTIVE, disposition: PROHIBITED_V0_1, approval_rule: NOT_APPLICABLE_PROHIBITED}
+    GE-15: {case: EP-GIT-015, primary_effect_class: LOCAL_DESTRUCTIVE, disposition: PROHIBITED_V0_1, approval_rule: NOT_APPLICABLE_PROHIBITED}
+    GE-16: {case: EP-GIT-016, primary_effect_class: LOCAL_DESTRUCTIVE, disposition: PROHIBITED_V0_1, approval_rule: NOT_APPLICABLE_PROHIBITED}
+    GE-17: {case: EP-GIT-017, primary_effect_class: LOCAL_REVERSIBLE, disposition: OPTIONAL_WITH_CONSTRAINTS, approval_rule: NO_SEPARATE_APPROVAL}
+    GE-18: {case: EP-GIT-018, primary_effect_class: LOCAL_DESTRUCTIVE, qualifier: CLEANUP, disposition: OPTIONAL_WITH_CONSTRAINTS, approval_rule: NO_SEPARATE_APPROVAL}
+    GE-19: {case: EP-GIT-019, primary_effect_class: LOCAL_DESTRUCTIVE, disposition: PROHIBITED_V0_1, approval_rule: NOT_APPLICABLE_PROHIBITED}
+    GE-20: {case: EP-GIT-020, primary_effect_class: LOCAL_DESTRUCTIVE, disposition: PROHIBITED_V0_1, approval_rule: NOT_APPLICABLE_PROHIBITED}
+    GE-21: {case: EP-GIT-021, primary_effect_class: REMOTE_EFFECT, disposition: OPTIONAL_WITH_CONSTRAINTS, approval_rule: APPROVAL_REQUIRED}
+    GE-22: {case: EP-GIT-022, primary_effect_class: REMOTE_EFFECT, qualifier: PLUS_DESTRUCTIVE_HISTORY_CHANGE, disposition: PROHIBITED_V0_1, approval_rule: NOT_APPLICABLE_PROHIBITED}
+    GE-23: {case: EP-GIT-023, primary_effect_class: REMOTE_EFFECT, disposition: OPTIONAL_WITH_CONSTRAINTS, approval_rule: APPROVAL_REQUIRED}
+    GE-24: {case: EP-GIT-024, primary_effect_class: LOCAL_REVERSIBLE, disposition: SUPPORTED_WITH_CONSTRAINTS, qualifier: AS_ONE_SELECTABLE_REVIEW_FORM, approval_rule: NO_SEPARATE_APPROVAL}
+    GE-25: {case: EP-GIT-025, primary_effect_class: LOCAL_DESTRUCTIVE, qualifier: INTEGRATION_OR_HISTORY_CHANGE, disposition: PROHIBITED_V0_1, approval_rule: NOT_APPLICABLE_PROHIBITED}
+    GE-26: {case: EP-GIT-026, primary_effect_class: REMOTE_EFFECT, qualifier: PLUS_DIFFICULT_TO_RECOVER_CHANGE, disposition: PROHIBITED_V0_1, approval_rule: NOT_APPLICABLE_PROHIBITED}
+    GE-27: {case: EP-GIT-027, primary_effect_class: REMOTE_EFFECT, qualifier: PLUS_DESTRUCTIVE_DELETION, disposition: PROHIBITED_V0_1, approval_rule: NOT_APPLICABLE_PROHIBITED}
+    GE-28: {case: EP-GIT-028, primary_effect_class: LOCAL_REVERSIBLE, qualifier: SHARED_REF_MUTATION, disposition: PROHIBITED_V0_1, approval_rule: NOT_APPLICABLE_PROHIBITED}
+    GE-29: {case: EP-GIT-029, primary_effect_class: LOCAL_DESTRUCTIVE, qualifier: SHARED_REF_DELETION, disposition: PROHIBITED_V0_1, approval_rule: NOT_APPLICABLE_PROHIBITED}
+    GE-30: {case: EP-GIT-030, primary_effect_class: REMOTE_EFFECT, disposition: PROHIBITED_V0_1, approval_rule: NOT_APPLICABLE_PROHIBITED}
+  lifecycle_transition_coverage:
+    LT-01: {transition: CREATED_TO_READY, cases: [EP-WF-001]}
+    LT-02: {transition: CREATED_TO_WAIT_BLOCK_FAILED_OR_CANCELLED, cases: [EP-WF-002, EP-WF-015]}
+    LT-03: {transition: READY_TO_QUEUED, cases: [EP-WF-001]}
+    LT-04: {transition: QUEUED_TO_CLAIMED, cases: [EP-WF-001, EP-WF-007]}
+    LT-05: {transition: CLAIMED_TO_ANALYZING, cases: [EP-WF-003, EP-WF-004]}
+    LT-06: {transition: ANALYZING_TO_PLANNING, cases: [EP-WF-004, EP-WF-008]}
+    LT-07: {transition: PLANNING_TO_READY_TO_EXECUTE, cases: [EP-WF-004, EP-WF-009]}
+    LT-08: {transition: NONTERMINAL_TO_WAITING_FOR_APPROVAL, cases: [EP-FALSE-009, EP-APR-002]}
+    LT-09: {transition: READY_TO_EXECUTE_TO_EXECUTING, cases: [EP-WF-004, EP-APR-001]}
+    LT-10: {transition: EXECUTING_TO_OBSERVING, cases: [EP-WF-004, EP-WF-011]}
+    LT-11: {transition: OBSERVING_TO_EXECUTING, cases: [EP-WF-004]}
+    LT-12: {transition: OBSERVING_TO_READY_FOR_VERIFICATION, cases: [EP-WF-004, EP-WF-013]}
+    LT-13: {transition: READY_FOR_VERIFICATION_TO_VERIFYING, cases: [EP-EVID-012, EP-CONTRIB-006]}
+    LT-14: {transition: VERIFYING_TO_COMPLETED_AFTER_PASSED_GATE, cases: [EP-WF-004, EP-FALSE-021]}
+    LT-15: {transition: VERIFYING_CHANGES_REQUIRED_TO_OLD_SUPERSEDED_AND_NEW_PLANNING, cases: [EP-EVID-012, EP-CONTRIB-006]}
+    LT-16: {transition: VERIFYING_TO_BLOCKED_OR_INCONCLUSIVE, cases: [EP-FALSE-005, EP-EVID-012]}
+    LT-17: {transition: VERIFYING_TO_VERIFICATION_ERROR_AND_UNVERIFIED, cases: [EP-FALSE-004, EP-EVID-012]}
+    LT-18: {transition: NONTERMINAL_TO_WAITING_FOR_USER_OR_EXTERNAL_EVENT, cases: [EP-WF-002, EP-FALSE-017]}
+    LT-19: {transition: ACTIVE_TO_PAUSING, cases: [EP-CTL-001, EP-CTL-002, EP-CTL-003]}
+    LT-20: {transition: PAUSING_TO_PAUSED, cases: [EP-CTL-001, EP-CTL-002, EP-CTL-003]}
+    LT-21: {transition: PAUSED_TO_NONE_AND_RESUMED_PHASE, cases: [EP-CTL-012, EP-CTL-013]}
+    LT-22: {transition: NONTERMINAL_TO_STOPPING, cases: [EP-CTL-004, EP-CTL-005, EP-CTL-006]}
+    LT-23: {transition: STOPPING_TO_CANCELLED, cases: [EP-CTL-004, EP-CTL-005, EP-CTL-006, EP-FALSE-019]}
+    LT-24: {transition: ACTIVE_NONE_TO_RETRYING, cases: [EP-WF-017, EP-CTL-021, EP-CTL-023]}
+    LT-25: {transition: RETRYING_TO_NONE_PHASE_BLOCKER_OR_FAILED, cases: [EP-WF-017, EP-CTL-021, EP-CTL-023]}
+    LT-26: {transition: INTERRUPTED_NONTERMINAL_TO_RECOVERING, cases: [EP-CTL-014, EP-CTL-015, EP-CTL-017, EP-CTL-018]}
+    LT-27: {transition: RECOVERING_TO_NONE_PHASE_WAIT_CONTROL_BLOCKER_OR_NONCOMPLETE, cases: [EP-CTL-014, EP-CTL-015, EP-CTL-017, EP-CTL-018, EP-CTL-024]}
+    LT-28: {transition: NONTERMINAL_ADD_BLOCKER, cases: [EP-WF-002, EP-WF-005, EP-CTL-013]}
+    LT-29: {transition: RESOLVE_BLOCKER_TO_PHASE_OR_RECOVERING, cases: [EP-CTL-012, EP-CTL-013]}
+    LT-30: {transition: NONTERMINAL_TO_PARTIALLY_COMPLETED_OR_FAILED, cases: [EP-WF-005, EP-WF-015, EP-FALSE-012]}
+    LT-31: {transition: NONTERMINAL_TO_SUPERSEDED, cases: [EP-WF-008, EP-CTL-007, EP-CTL-008, EP-CTL-009, EP-CTL-010, EP-CTL-011]}
+    LT-32: {transition: TERMINAL_HAS_NO_IN_PLACE_EXIT, cases: [EP-WF-015, EP-EVID-007]}
+  operation_transition_coverage:
+    OT-01: {transition: PROPOSED_TO_AUTHORIZED_NO_SEPARATE_APPROVAL, cases: [EP-WF-011, EP-GIT-003]}
+    OT-02: {transition: PROPOSED_TO_WAITING_FOR_APPROVAL, cases: [EP-APR-002, EP-FALSE-009]}
+    OT-03: {transition: WAITING_FOR_APPROVAL_TO_AUTHORIZED, cases: [EP-APR-001]}
+    OT-04: {transition: PREDISPATCH_TO_KNOWN_NOT_STARTED, cases: [EP-APR-003, EP-APR-004, EP-APR-007]}
+    OT-05: {transition: AUTHORIZED_TO_DISPATCHED, cases: [EP-APR-001, EP-GIT-021, EP-GIT-023]}
+    OT-06: {transition: DISPATCHED_TO_RUNNING_RECONCILING_OR_TERMINAL, cases: [EP-WF-011, EP-CTL-018, EP-CTL-019]}
+    OT-07: {transition: RUNNING_TO_KNOWN_SUCCEEDED_FAILED_OR_CANCELLED, cases: [EP-WF-011, EP-CTL-004]}
+    OT-08: {transition: RUNNING_OR_DISPATCHED_TO_RECONCILING, cases: [EP-CTL-003, EP-CTL-018, EP-CTL-019, EP-NEG-SCHEMA-01]}
+    OT-09: {transition: RECONCILING_TO_TERMINAL_OUTCOME, cases: [EP-CTL-006, EP-CTL-018, EP-CTL-019, EP-NEG-EXT-01]}
+  agent_transition_coverage:
+    AT-01: {transition: IDENTITY_REGISTERED_TO_ENABLED, cases: [EP-WF-006]}
+    AT-02: {transition: IDENTITY_ENABLED_TO_DISABLED, cases: [EP-WF-006]}
+    AT-03: {transition: IDENTITY_DISABLED_TO_ENABLED, cases: [EP-WF-006]}
+    AT-04: {transition: IDENTITY_TO_RETIRED_WITH_HISTORY, cases: [EP-WF-006]}
+    AT-05: {transition: AVAILABILITY_OFFLINE_OR_STOPPED_TO_RECOVERING, cases: [EP-WF-006, EP-CTL-017]}
+    AT-06: {transition: AVAILABILITY_RECOVERING_TO_TRUTHFUL_ACTIVE_PROJECTION, cases: [EP-WF-006, EP-CTL-017]}
+    AT-07: {transition: AVAILABILITY_IDLE_TO_BUSY, cases: [EP-WF-006, EP-WF-007]}
+    AT-08: {transition: AVAILABILITY_BUSY_TO_WAITING_PAUSED_RECOVERING_OR_DEGRADED, cases: [EP-WF-006, EP-CTL-001, EP-CTL-017]}
+    AT-09: {transition: AVAILABILITY_WAITING_PAUSED_OR_DEGRADED_TO_BUSY, cases: [EP-WF-006, EP-CTL-012]}
+    AT-10: {transition: ACTIVE_AVAILABILITY_TO_IDLE_AFTER_RELEASE, cases: [EP-WF-006, EP-WF-015]}
+    AT-11: {transition: AVAILABILITY_TO_OFFLINE_ON_RUNTIME_LOSS, cases: [EP-WF-006, EP-CTL-016, EP-CTL-017]}
+    AT-12: {transition: AVAILABILITY_TO_STOPPED_ON_AUTHORIZED_RUNTIME_STOP, cases: [EP-WF-006, EP-CTL-004]}
+  completion_predicate_coverage:
+    CP-01: {predicate_set: COMMON_COMPLETION_CONJUNCTION, cases: [EP-WF-004, EP-FALSE-001, EP-FALSE-002, EP-FALSE-003, EP-FALSE-004, EP-FALSE-005, EP-FALSE-006, EP-FALSE-007, EP-FALSE-008, EP-FALSE-009, EP-FALSE-010, EP-FALSE-011, EP-FALSE-012, EP-FALSE-013, EP-FALSE-014, EP-FALSE-015, EP-FALSE-016, EP-FALSE-017, EP-FALSE-018, EP-FALSE-019, EP-FALSE-020, EP-FALSE-021]}
+    CP-02: {predicate_set: BOUNDED_CODE_CHANGE, cases: [EP-WF-001, EP-WF-004]}
+    CP-03: {predicate_set: DEFECT_REPRODUCTION_AND_FIX, cases: [EP-WF-001, EP-WF-005]}
+    CP-04: {predicate_set: REPOSITORY_DIAGNOSIS_OR_REVIEW, cases: [EP-WF-001, EP-WF-013]}
+    CP-05: {predicate_set: DOCUMENTATION_OR_REPOSITORY_METADATA_CHANGE, cases: [EP-WF-001, EP-CONTRIB-004]}
+    CP-06: {predicate_set: NO_CHANGE_REQUIRED, cases: [EP-WF-001, EP-WF-013]}
+    CP-07: {predicate_set: OPTIONAL_APPROVED_EXTERNAL_EFFECT, cases: [EP-WF-016, EP-APR-001, EP-GIT-021, EP-GIT-023]}
+  state_combination_coverage:
+    SC-01: {combination: PAUSING_PLUS_RECOVERING_VALID, cases: [EP-CTL-014, EP-EVID-008]}
+    SC-02: {combination: STOPPING_PLUS_RECOVERING_VALID, cases: [EP-CTL-006, EP-EVID-008]}
+    SC-03: {combination: PAUSED_PLUS_RECOVERING_VALID, cases: [EP-CTL-014, EP-EVID-008]}
+    SC-04: {combination: WAITING_FOR_APPROVAL_PLUS_RECOVERING_VALID_WITHOUT_DISPATCH, cases: [EP-CTL-015, EP-EVID-008]}
+    SC-05: {combination: BLOCKER_PLUS_PAUSED_VALID, cases: [EP-CTL-013, EP-EVID-008]}
+    SC-06: {combination: CANCELLED_PLUS_SETTLED_OR_UNVERIFIED_VERIFICATION_VALID, cases: [EP-FALSE-011, EP-FALSE-019, EP-EVID-008]}
+    SC-07: {combination: COMPLETED_PLUS_NONTERMINAL_OR_UNCERTAIN_OPERATION_INVALID, cases: [EP-FALSE-008, EP-FALSE-016, EP-FALSE-021]}
+    SC-08: {combination: PAUSED_AND_STOPPING_SAME_SCALAR_IMPOSSIBLE, cases: [EP-EVID-008]}
+    SC-09: {combination: CONTROL_ACTIVE_PLUS_RETRYING_INVALID, cases: [EP-FALSE-018, EP-EVID-008]}
+    SC-10: {combination: RETRYING_AND_RECOVERING_SAME_SCALAR_IMPOSSIBLE, cases: [EP-EVID-008]}
+    SC-11: {combination: TERMINAL_PLUS_ACTIVE_AXIS_OR_IN_PROGRESS_VERIFICATION_INVALID, cases: [EP-FALSE-017, EP-FALSE-018, EP-EVID-008]}
+    SC-12: {combination: PAUSED_PLUS_PRODUCTIVE_RUNNING_OPERATION_INVALID, cases: [EP-CTL-002, EP-EVID-008]}
+  evidence_contract_coverage:
+    canonical_profiles:
+      ADMISSION_REJECTION: [EP-EVID-001, EP-EVID-002]
+      ACTIVE: [EP-EVID-001, EP-EVID-008]
+      WAITING_OR_BLOCKED: [EP-EVID-001, EP-EVID-008]
+      TERMINAL_NONCOMPLETE: [EP-EVID-001, EP-EVID-007]
+      CANDIDATE_REVIEW: [EP-EVID-001, EP-EVID-012]
+      COMPLETED: [EP-EVID-001, EP-FALSE-021]
+    top_level_logical_keys:
+      - schema_version
+      - bundle_id
+      - bundle_revision
+      - prior_bundle_revision_ref
+      - profile
+      - request_id
+      - generated_at
+      - privacy_class
+      - redaction_scan
+      - task_id
+      - attempt_id
+      - task_class
+      - agent_id
+      - author_identity_ref
+      - executor_identity_refs
+      - challenger_identity_ref
+      - task_work_phase
+      - last_work_phase
+      - task_wait_reason_refs
+      - task_control
+      - task_reconciliation
+      - task_blocker_refs
+      - attempt_disposition
+      - verification_status
+      - verification_verdict
+      - verification_run_refs
+      - authoritative_verification_run_ref
+      - agent_availability_ref
+      - operation_refs
+      - repository_ref
+      - repository_condition_refs
+      - workspace_ref
+      - review_revision_ref
+      - authority_refs
+      - input_provenance_refs
+      - route_provenance_refs
+      - plan_ref
+      - predicate_coverage_map_ref
+      - predicate_results
+      - section_refs
+      - persistence_boundary
+      - final_validation_ref
+    logical_sections:
+      - authority_and_request
+      - repository_and_workspace
+      - plan_and_predicates
+      - inputs_and_provenance
+      - change_and_review_package
+      - operations
+      - tests_and_checks
+      - provider_model_tool_and_environment
+      - approvals_effects_and_readbacks
+      - artifacts
+      - failures_and_recovery
+      - verification
+      - final_disposition
+      - integrity_and_threat_evidence
+      - final_validation
+    validation_rules:
+      EVR-01: [EP-EVID-002, EP-NEG-SCHEMA-01]
+      EVR-02: [EP-EVID-003, EP-REPO-001, EP-REPO-016]
+      EVR-03: [EP-WF-009, EP-CONTRIB-003]
+      EVR-04: [EP-WF-012, EP-FALSE-010]
+      EVR-05: [EP-WF-005]
+      EVR-06: [EP-FALSE-008, EP-FALSE-015, EP-NEG-EXT-01]
+      EVR-07: [EP-ROUTE-002, EP-ROUTE-003, EP-ROUTE-004, EP-ROUTE-005, EP-ROUTE-006]
+      EVR-08: [EP-EVID-009, EP-EVID-010]
+      EVR-09: [EP-EVID-005, EP-CONTRIB-005]
+      EVR-10: [EP-CONTRIB-001, EP-CONTRIB-005]
+      EVR-11: [EP-FALSE-007, EP-FALSE-014, EP-EVID-003]
+      EVR-12: [EP-EVID-008, EP-FALSE-016, EP-FALSE-017, EP-FALSE-018]
+      EVR-13: [EP-FALSE-003, EP-FALSE-006, EP-FALSE-021]
+      EVR-14: [EP-FALSE-004, EP-EVID-012]
+      EVR-15: [EP-WF-013, EP-GIT-024]
+      EVR-16: [EP-EVID-004, EP-NEG-AUDIT-01]
+  validation_status:
+    authority: E1_002_AUTHOR_MECHANICAL_VALIDATION_ONLY
+    independence: AUTHOR_SIDE_NOT_INDEPENDENT
+    run_status: FINISHED
+    result: PASS
+    checks:
+      yaml_parse: PASS
+      case_ids_unique_and_exact: PASS
+      requirement_ids_exact_and_nonempty: PASS
+      requirement_references_resolve: PASS
+      security_negative_ids_exact_and_nonempty: PASS
+      repository_condition_keys_exact_and_nonempty: PASS
+      git_effect_keys_exact_and_nonempty: PASS
+      fixture_ids_exact_and_no_orphans: PASS
+      oracle_ids_exact_and_no_orphans: PASS
+      undefined_status_or_outcome_absent: PASS
+      contradictory_expected_outcome_absent: PASS
+      architecture_assumption_hidden_in_fixture_absent: PASS
+      fabricated_model_or_reliability_result_absent: PASS
+    consequence: DOES_NOT_VERIFY_E1_002_OR_E1_GATE
