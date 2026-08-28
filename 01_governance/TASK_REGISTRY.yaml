@@ -1262,10 +1262,10 @@ tasks:
     owner_role: AUTHOR
     assigned_model: "Codex (runtime model identifier not exposed) — E2-001 AUTHOR"
     reviewer_model: "Claude Fable 5 (claude-fable-5) via Claude Code — independent E2-001 challenger"
-    verifier_model: null
+    verifier_model: "Claude Fable 5 (claude-fable-5) via Claude Code — independent post-fix verifier (separate session; same model/product as the E2-001 challenger; independent of the Codex author/fixer; Claude Code is a named E3 candidate system and this verification selects no role occupant, architecture, candidate, or technology)"
     assignment_policy: "Assign at claim time. The challenger and verifier must be separate sessions independent of the author/fixer; assignment creates no E3 model-role eligibility."
-    status: READY_FOR_REVIEW
-    planning_status: FIXER_PASS_COMPLETE_NOT_VERIFIED
+    status: VERIFIED
+    planning_status: VERIFIED_BY_INDEPENDENT_VERIFIER
     author_started_at: null
     author_started_at_status: "UNKNOWN_NOT_CAPTURED; the exact author-pass start timestamp was not recorded and is not fabricated"
     author_claim_recorded_at: "2026-08-28T18:00:06Z"
@@ -1284,7 +1284,7 @@ tasks:
     challenger_completed_at: "2026-08-28T19:05:00Z (approximate)"
     challenger_reviewed_commit: 349a9f0fbd8f98c967f78c0bb5850aeae8e61dc4
     challenger_verdict: E2_001_CHANGES_REQUESTED
-    challenger_finding_counts: "BLOCKER 0, HIGH 0, MEDIUM 2, LOW 7, NOTE 6"
+    challenger_finding_counts: "BLOCKER 0, HIGH 0, MEDIUM 2, LOW 7, NOTE 10"
     fixer_evidence:
       - 05_architecture/ENGINEERING_PREVIEW_ARCHITECTURE_REQUIREMENTS.md
       - 05_architecture/ENGINEERING_PREVIEW_E1_ARCHITECTURE_TRACEABILITY.csv
@@ -1296,7 +1296,18 @@ tasks:
     fixer_finding_counts: "FIXED 9, DISPUTED 0, DEFERRED 0"
     fixer_requirement_summary: "65 implementation-neutral architecture requirements: 59 HARD_CONSTRAINT and 6 WEIGHTED_PREFERENCE; exact bidirectional equality across 296 AR↔E1 edges (127 primary, 169 secondary); 8 focused E3 validation obligations with architecture-handback rules; 25 decision domains; 10 architecture questions; 19 reconciled Level B candidate-pattern families; a 30-field E2-002 contract; and a 20-row threat-boundary checklist. Primary canonical dispositions remain 119 HARD_CONSTRAINT, 0 WEIGHTED_PREFERENCE, and 8 JUSTIFIED_NON_ARCHITECTURE_DRIVING. No E1 requirement is waived."
     fixer_required_test_status: "PASS_FIXER_MECHANICAL_AND_SEMANTIC_ONLY: strict YAML/duplicate-key and CSV checks; exact canonical extraction; 65 unique/no-orphan ARs; 296-edge bidirectional equality; one primary disposition for each of 127 IDs; exact source anchors; UF-11, FR-025/026, candidate-contract, Level B, E3 handback, lifecycle, threat-boundary, domain, class, frozen-byte, neutrality, clean-room, allowed-path, secret-pattern, counter/status, whitespace, and git-diff checks pass. This is fixer-side evidence only. REQUIRED_NEXT: a separate independent post-fix verifier must rerun the challenger checks; E2-001 remains NOT VERIFIED."
-    verification_status: NOT_VERIFIED_FIXER_PASS
+    verifier_evidence:
+      - 99_handoffs/completed/E2-001_verifier_review.yaml
+    verifier_started_at: "2026-08-28T22:20:00Z (approximate; after the founder's 2026-08-28T22:28:44Z commit of 0d702b8 was observed as HEAD)"
+    verifier_completed_at: "2026-08-28T22:55:00Z (approximate)"
+    verified_commit: 0d702b817509c275582cb27e7e08ac44f0145ab9
+    verifier_verdict: E2_001_VERIFIED
+    verifier_acceptance_results: "AC1 127/127 exactly one primary disposition (119 HARD / 0 WEIGHTED / 8 JUSTIFIED) with exact source anchors and no waiver: PASS; AC2 25/25 domains with ARs and ownership questions, §7 equal to AR bodies: PASS; AC3 ten quality categories derived with zero invented numeric thresholds: PASS; AC4 hard/preference/unknown/E3-obligation semantics non-compensating: PASS; AC5 threat-boundary (TB-01..20), recovery, evidence-integrity, independent-verification, provider-neutrality, Level A/B/C, local-first, future-compatibility criteria complete: PASS; AC6 weighting governance prospective, correlated groups disclosed, no score/winner: PASS. Required tests 4/4 re-run PASS."
+    verifier_original_finding_dispositions: "F-E2-001-01 RESOLVED, F-E2-001-02 RESOLVED, F-E2-001-03 RESOLVED, F-E2-001-04 RESOLVED, F-E2-001-05 RESOLVED, F-E2-001-06 RESOLVED, F-E2-001-07 RESOLVED, F-E2-001-08 RESOLVED, F-E2-001-09 RESOLVED (each re-checked against committed bytes at 0d702b8, not the fixer's labels)"
+    verifier_new_finding_counts: "BLOCKER 0, HIGH 0, MEDIUM 0, LOW 0, NOTE 9 (V-E2-001-N1 challenger NOTE count corrected 6->10 in this entry; N2 README stale, founder refresh; N3 §5.1 'nine fields' across eight columns; N4 §3 versus contract §13.2 record-class vocabulary unmapped but compatible; N5 UF anchors use unique heading form; N6 FR-025/026 rows inherit AR-TST-001 E3 obligations via the declared union rule; N7 AR-SEC-006 register ordering; N8 no explicit accepted-ADR counter in PROJECT_STATE; N9 author/fixer start timestamps UNKNOWN_NOT_CAPTURED) — none blocking"
+    verifier_section_results: "CANONICAL_E1_SET_PASS; ARCHITECTURE_REQUIREMENTS_PASS; UF11_PROTECTED_ENTRY_PASS; TRACEABILITY_EQUALITY_PASS; FR025_FR026_PASS; SOURCE_ANCHORS_PASS; E2_002_CONTRACT_PASS; LEVEL_B_RECONCILIATION_PASS; E3_BOUNDARY_PASS; LIFECYCLE_SEMANTICS_PASS; THREAT_BOUNDARY_MODEL_PASS; HARD_PREFERENCE_MODEL_PASS; DECISION_DOMAIN_PASS; ARCHITECTURE_NEUTRALITY_PASS; CORRECTNESS_RECOVERY_PASS; SECURITY_REGRESSION_PASS; EVIDENCE_VERIFICATION_PASS; TESTABILITY_PASS; E1_PRESERVATION_PASS"
+    verifier_mechanical_summary: "Re-run by the verifier from committed bytes at 0d702b8: 127 canonical IDs re-extracted (56 FR / 15 RR / 9 FC / 4 SLO / 4 MET / 16 UF / 23 NEG) set-equal to 127 unique 19-column CSV rows; 65 unique ARs x 13 fields, 59 HARD / 6 WEIGHTED with consistent flags; 296 AR source references all canonical; exact bidirectional AR<->CSV equality with 0 mismatches (127 primary + 169 secondary edges), 0 orphan ARs, 0 unreferenced canonical IDs; 127/127 row domain and E3 unions equal mapped-AR unions; §7 equals AR bodies for 25/25 domains; 8 E3V rows, 19 Level B rows, 30 §14 fields numbered 1..30, 10 AQ rows, 20 TB rows; 127/127 anchors exact with 0 stale forms; 51/51 YAML strict parse with no duplicate keys; 0 technology/vendor/mechanism, numeric-threshold, secret-pattern, or Level C identifier hits; 9/9 frozen E1 blobs identical to c2f7093 with zero diff; fixer diff exactly 6 allowed paths; git diff --check clean; no application-source, ADR, candidate, or spike files."
+    verification_status: VERIFIED_BY_INDEPENDENT_VERIFIER_AGAINST_0D702B8_2026-08-28
     priority: P0
     dependencies:
       - E0-001
@@ -1383,7 +1394,7 @@ tasks:
       - Any apparent conflict, gap, or required semantic change in frozen E1.
       - Any criterion that cannot be classified without choosing a mechanism.
       - Any requested edit outside allowed paths or any need for external/current product evidence.
-    next_command: "MODE: VERIFY_TASK_E2-001"
+    next_command: "MODE: EXECUTE_TASK_E2-002"
 
   - task_id: E2-002
     title: Generate credible end-to-end Engineering Preview architecture alternatives
@@ -1395,14 +1406,14 @@ tasks:
     reviewer_model: null
     verifier_model: null
     assignment_policy: "Assign only after E2-001 is independently VERIFIED; challenger/verifier independence is mandatory and creates no model-role eligibility."
-    status: BACKLOG
-    planning_status: PLANNED_NOT_EXECUTED
+    status: READY
+    planning_status: READY_NOT_CLAIMED_NOT_EXECUTED
     priority: P0
     dependencies:
       - E2-001
-    blocked_by:
-      - E2_001_NOT_INDEPENDENTLY_VERIFIED
+    blocked_by: []
     activation_condition: "E2-001 is independently VERIFIED with complete architecture requirements and criterion governance."
+    activation_condition_status: "SATISFIED on 2026-08-28 (UTC): E2-001 independently VERIFIED against 0d702b817509c275582cb27e7e08ac44f0145ab9 (99_handoffs/completed/E2-001_verifier_review.yaml). READY does not claim or execute the task; E2-002 generates candidates only and may not rank, select, create an ADR, run a spike, or write code."
     gate_invariant: "E2-002 generates candidates only; it may not rank them, name a winner, run a spike, or draft a final ADR decision."
     files_to_read:
       - MASTER_OPERATING_PROMPT.md
