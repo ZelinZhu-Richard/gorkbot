@@ -1260,12 +1260,25 @@ tasks:
     objective: Convert the frozen, independently verified E1 product, correctness, evaluation, security, and reliability baseline into a complete architecture-requirements and decision-criteria contract without generating candidates or selecting mechanisms.
     why_it_matters: Alternatives cannot be compared safely until hard constraints, preferences, unknowns, traceability, and cross-cutting security/recovery/evidence obligations are explicit and independently verified.
     owner_role: AUTHOR
-    assigned_model: null
+    assigned_model: "Codex (runtime model identifier not exposed) — E2-001 AUTHOR"
     reviewer_model: null
     verifier_model: null
     assignment_policy: "Assign at claim time. The challenger and verifier must be separate sessions independent of the author/fixer; assignment creates no E3 model-role eligibility."
-    status: READY
-    planning_status: PLANNED_NOT_EXECUTED
+    status: READY_FOR_REVIEW
+    planning_status: AUTHOR_PASS_COMPLETE_NOT_VERIFIED
+    author_started_at: null
+    author_started_at_status: "UNKNOWN_NOT_CAPTURED; the exact author-pass start timestamp was not recorded and is not fabricated"
+    author_claim_recorded_at: "2026-08-28T18:00:06Z"
+    author_completed_at: "2026-08-28T18:21:41Z"
+    author_claim: "Claim recorded during the bounded EXECUTE_TASK_E2-001 author pass after every files_to_read entry and the exact task contract were read. The pass is limited to implementation-neutral architecture requirements, exact E1 traceability, criterion/domain/E3 governance, authorized state/risk updates, and a factual handoff; it authorizes no candidate, comparison, architecture or technology selection, ADR, code, spike, evaluation execution, benchmark, paid call, external effect, model-role assignment, E3 activation, autonomous build, or S1-003 work."
+    author_evidence:
+      - 05_architecture/ENGINEERING_PREVIEW_ARCHITECTURE_REQUIREMENTS.md
+      - 05_architecture/ENGINEERING_PREVIEW_E1_ARCHITECTURE_TRACEABILITY.csv
+      - 99_handoffs/completed/E2-001_handoff.yaml
+    author_requirement_summary: "64 implementation-neutral architecture requirements: 58 HARD_CONSTRAINT and 6 WEIGHTED_PREFERENCE; 8 separately registered E3 validation obligations; exact 25-domain ownership coverage; and exactly one primary architecture disposition for each of 127 frozen E1 IDs: 119 HARD_CONSTRAINT, 0 WEIGHTED_PREFERENCE, 8 JUSTIFIED_NON_ARCHITECTURE_DRIVING SLO/MET empirical outcomes with mandatory measurement seams. No E1 requirement is waived."
+    author_required_test_status: "PASS_AUTHOR_MECHANICAL_ONLY: strict YAML/duplicate-key, CSV, Markdown, exact 127-ID/set and 701-case-plus-8-protocol trace, 64 unique/no-orphan AR, 25-domain/all-AR coverage, 8-obligation, frozen-byte, Level C/named-technology/forbidden-artifact, allowed-path, secret-pattern, dependency/status, counters/autonomy/startup, whitespace, staging, and git-diff checks pass. REQUIRED_NEXT: a fresh independent challenger and later separate post-fix verifier have not run; E2-001 remains NOT VERIFIED."
+    author_internal_review_status: "SOLE_AUTHOR_PASS; no internal subagents were used. This author evidence is not independent challenger or verifier evidence."
+    verification_status: NOT_VERIFIED_AUTHOR_PASS
     priority: P0
     dependencies:
       - E0-001
@@ -1352,7 +1365,7 @@ tasks:
       - Any apparent conflict, gap, or required semantic change in frozen E1.
       - Any criterion that cannot be classified without choosing a mechanism.
       - Any requested edit outside allowed paths or any need for external/current product evidence.
-    next_command: "MODE: EXECUTE_TASK_E2-001"
+    next_command: "MODE: REVIEW_TASK_E2-001"
 
   - task_id: E2-002
     title: Generate credible end-to-end Engineering Preview architecture alternatives
