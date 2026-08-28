@@ -1022,8 +1022,8 @@ tasks:
     owner_role: AUTHOR
     assigned_model: "Codex (runtime model identifier not exposed) — E1-001 AUTHOR"
     reviewer_model: "Claude Fable 5 (claude-fable-5) via Claude Code — independent E1-001 challenger (separate session; independent of the Codex author/fixer)"
-    verifier_model: "Independent post-fix verifier not yet assigned"
-    status: READY_FOR_REVIEW
+    verifier_model: "Claude Fable 5 (claude-fable-5) via Claude Code — independent post-fix verifier (separate session; same model/product as the E1-001 challenger; independent of the Codex author/fixer; Claude Code is one of the named E3 candidate systems and this verification selects no role occupant)"
+    status: VERIFIED
     author_started_at: "2026-08-27T15:13:18Z"
     author_completed_at: "2026-08-27T16:08:58Z"
     priority: P0
@@ -1128,8 +1128,19 @@ tasks:
     fixer_requirement_summary: "56 FR, 15 HARD_INVARIANT RR, 4 PREVIEW_SLO, 4 MEASURE_ONLY, 9 FUTURE_COMPATIBILITY, 23 security-negative families, and 16 user flows. The corrected contract separates nine semantic responsibilities, defines route-purpose/eligibility provenance, repository-condition and Git/effect matrices, closed instruction/secret precedence, workspace-before-reproduction, verification-run/error/rerun and independence/adequacy semantics, bounded force-stop, role/input/tamper evidence, draft-PR minimums, flaky checks, and axis-qualified vocabulary. These remain unverified requirements, not observed capability."
     fixer_internal_review_status: "AUTHOR/FIXER_INTERNAL_QA only: three read-only subagents reviewed state semantics, policy matrices, and traceability; their findings informed the fixer but they are not the registered independent post-fix verifier."
     fixer_validation_status: "PASS: 40 YAML files parse; canonical IDs/counts are 56 FR, 15 RR, 9 FC, 4 SLO, 4 MET, 23 NEG, and 16 UF with 127 specification references resolved; nine state responsibilities and zero ambiguous bare repeated-state tokens; 16 repository-condition rows; 30 Git/action rows; all twenty finding records complete/FIXED; exact nine-path scope; zero staged changes, E1-002 artifacts, application-source files, or high-confidence secret-pattern matches; git diff --check clean. These are fixer checks, not independent verification."
-    verification_status: NOT_VERIFIED
-    next_command: "MODE: VERIFY_TASK_E1-001"
+    verifier_evidence:
+      - 99_handoffs/completed/E1-001_verifier_review.yaml
+    verifier_started_at: "2026-08-27T22:30:00Z (approximate; after the founder's 2026-08-27T22:33:44Z commit of cced384 was observed as HEAD)"
+    verifier_completed_at: "2026-08-27T22:57:47Z"
+    verified_commit: cced38474c4fd71ee1d5bcc29fe0ed53929d53ac
+    verifier_verdict: E1_001_VERIFIED
+    verifier_acceptance_results: "AC1 primary user/workflow/FR/MVP scope/non-goals unambiguous and testable: PASS; AC2 task/agent lifecycle, authority boundaries, restart/resume, pause/stop/redirect, failure recovery, bounded autonomy defined without technology selection: PASS; AC3 reliability/security/approval/secret/tool-schema/verification/predicate/compaction/evidence requirements have objective acceptance evidence: PASS; AC4 baseline/audit used only as bounded evidence with clean-room caveats and no imported code/internal names/architecture: PASS; AC5 future extension paths preserved without adding future features: PASS. Required tests: independent challenger review RUN (cf27ef4, CHANGES_REQUESTED); cross-file terminology/authority/dependency/clean-room/no-technology/no-code/secret/Markdown checks RE-RUN PASS; independent post-fix verification RUN (this record)."
+    verifier_original_finding_dispositions: "F-E1-001-01 RESOLVED, F-E1-001-02 RESOLVED, F-E1-001-03 RESOLVED, F-E1-001-04 RESOLVED, F-E1-001-05 RESOLVED, F-E1-001-06 RESOLVED, F-E1-001-07 RESOLVED, F-E1-001-08 RESOLVED, F-E1-001-09 RESOLVED, F-E1-001-10 RESOLVED, F-E1-001-11 RESOLVED, F-E1-001-12 RESOLVED, F-E1-001-13 RESOLVED, F-E1-001-14 RESOLVED, F-E1-001-15 RESOLVED, F-E1-001-16 RESOLVED, F-E1-001-17 RESOLVED, F-E1-001-18 RESOLVED, F-E1-001-19 RESOLVED, F-E1-001-20 RESOLVED"
+    verifier_new_finding_counts: "BLOCKER 0, HIGH 0, MEDIUM 0, LOW 0, NOTE 8 (V-E1-N1 bare COMPLETED in prose is single-meaning; V-E1-N2 UF-02/contract §4.4 workspace-establishment phase-label nuance with identical ordering invariant; V-E1-N3 UF-03 not named individually in coverage matrices; V-E1-N4 dependency confusion covered by §8.5/§9.3 but not a named stimulus; V-E1-N5 README/spec-status/charter/A-020 self-status lines are historical and need founder refresh; V-E1-N6 same-model low-risk policy owner undefined, floor applies regardless; V-E1-N7 correction attempts bounded by task/retry ceilings only; V-E1-N8 P0 correctness-contract question closes at the E1 gate) — none blocking"
+    verifier_section_results: "STATE_MODEL_PASS; MODEL_ELIGIBILITY_PASS; REPOSITORY_CONDITIONS_PASS; GIT_EFFECT_POLICY_PASS; INSTRUCTION_PRECEDENCE_PASS; SECRET_POLICY_PASS; WORKSPACE_LIFECYCLE_PASS; VERIFICATION_RERUN_PASS; INDEPENDENCE_FLOOR_PASS; PREDICATE_ADEQUACY_PASS; STOP_SEMANTICS_PASS; COMPLETION_SEMANTICS_PASS; EVIDENCE_BUNDLE_PASS; SECURITY_NEGATIVES_PASS; ARCHITECTURE_NEUTRALITY_PASS; E1_002_BOUNDARY_PASS; TRACEABILITY_PASS"
+    verifier_mechanical_summary: "Re-run by the verifier: 40/40 YAML parse; 11 unique task IDs; 15 resolving acyclic dependencies; PROJECT_STATE lists reconcile with registry; 56 FR / 15 RR / 9 FC / 4 SLO / 4 MET / 23 NEG / 16 UF; 127 distinct referenced IDs (265 references) resolve; 16 repository-condition rows; 30 Git/effect rows; zero unqualified cross-axis state tokens; zero technology/vendor/model/reconstruction-identifier matches; zero secret-pattern matches; no application source; no E1-002 artifact; git diff --check clean; fixer diff exactly the nine allowed paths; challenger review, original handoff, and founder-brief attachment hashes recomputed and matching."
+    verification_status: VERIFIED_BY_INDEPENDENT_VERIFIER_AGAINST_CCED384_2026-08-27
+    next_command: "MODE: EXECUTE_TASK_E1-002"
 
   - task_id: E1-002
     title: Define open-source contribution workflow, evaluation suite, and v0.1 release acceptance criteria
@@ -1140,13 +1151,17 @@ tasks:
     assigned_model: null
     reviewer_model: null
     verifier_model: null
-    status: BACKLOG
+    status: READY
     priority: P0
     dependencies:
       - E1-001
-    blocked_by:
-      - E1_001_NOT_INDEPENDENTLY_VERIFIED
+    blocked_by: []
+    blocker_cleared: "E1_001_NOT_INDEPENDENTLY_VERIFIED cleared on 2026-08-27 (UTC) by independent E1-001 verification against cced38474c4fd71ee1d5bcc29fe0ed53929d53ac (99_handoffs/completed/E1-001_verifier_review.yaml)."
     activation_condition: "E1-001 is independently VERIFIED and E0-001 is independently VERIFIED."
+    activation_condition_status: "SATISFIED on 2026-08-27 (UTC): E1-001 VERIFIED against cced384 and E0-001 VERIFIED against 0b930e21910ffbc60b0c44eadcd017548e9f080d."
+    gate_invariant: "E1-002 may become READY only after every dependency, including E1-001, is independently VERIFIED. E1-001 READY_FOR_REVIEW is not sufficient. E1 is not gate-VERIFIED and E2 is not activated until E0-001, E1-001, and E1-002 are all independently VERIFIED."
+    readiness_basis: "READY as of 2026-08-27 (UTC): E1-001 was independently VERIFIED against cced38474c4fd71ee1d5bcc29fe0ed53929d53ac and E0-001 remains VERIFIED, so every dependency and the activation condition are satisfied. E1-001 verification was the sole remaining blocker; no parallel authoring occurred. READY is not execution: E1-002 is unclaimed and unstarted, is authoring-only (contribution workflow, evaluation suite, release acceptance criteria), must trace every FR/RR/SLO/MET/FC/NEG/flow/contract requirement, and selects no technology, runs no benchmark, and writes no application code."
+    readiness_recorded_by: "VERIFY_TASK_E1-001 independent verifier (Claude Fable 5 via Claude Code), acting on the founder's instruction to make E1-002 READY only if E1-001 verification was its sole remaining blocker; the verifier did not execute E1-002."
     files_to_read:
       - MASTER_OPERATING_PROMPT.md
       - AGENTS.md
