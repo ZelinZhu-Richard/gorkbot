@@ -3,16 +3,16 @@ project_name: "Working codename: GorkBot"
 repository: ZelinZhu-Richard/gorkbot
 source_of_truth: repository
 active_program: ENGINEERING_PREVIEW
-current_stage: E1
-current_stage_name: engineering_preview_product_specification
-current_stage_status: E1_GATE_VERIFIED_AWAITING_PLAN_STAGE_E2
-current_gate: engineering_preview_e1_specification_gate
-stage_gate_status: VERIFIED
-stage_gate_verdict: E1_GATE_PASSED
-stage_gate_verification_patch_status: UNCOMMITTED_FOR_FOUNDER
-stage_gate_verified_at: "2026-08-28T14:14:29Z"
-stage_gate_reviewed_commit: 7bbfebd2163b1a8aa0ec770de378c7087c6fee75
-stage_gate_evidence: 10_checkpoints/stage_checkpoints/ENGINEERING_PREVIEW_E1_SPECIFICATION_GATE_VERIFICATION.yaml
+current_stage: E2
+current_stage_name: engineering_preview_architecture_and_adrs
+current_stage_status: E2_PLANNED_E2_001_READY
+current_gate: engineering_preview_e2_architecture_gate
+stage_gate_status: NOT_EVALUATED
+stage_gate_verdict: null
+stage_gate_verification_patch_status: NOT_STARTED
+stage_gate_verified_at: null
+stage_gate_reviewed_commit: null
+stage_gate_evidence: null
 last_verified_engineering_phase: E1
 last_verified_engineering_gate: engineering_preview_e1_specification_gate
 last_verified_engineering_gate_status: VERIFIED
@@ -36,8 +36,14 @@ challenger_model: "Claude Fable 5 (claude-fable-5) via Claude Code — Stage 0 t
 verifier_model: "Claude Fable 5 (claude-fable-5) via Claude Code — S0-001, S0-002, S0-003, S1-001, S1-002, E0-001, E1-001, and E1-002 independent verifier and S0-003 re-verifier (separate sessions from the challenger and from each other; independent of the Codex author/fixers; for S0-003 the verifier is also a registry candidate and for S1-001 its vendor publishes two cited H2 substitute sources; every such check is pinned to quoted live page text; S1-002, E0-001, E1-001, and E1-002 required no live source retrieval; for E0-001, E1-001, and E1-002 the verifier's product, Claude Code, is one of the named E3 candidate systems and those verifications select no role occupant)"
 stage_gate_verifier_model: "Stage 0 gate: Codex (runtime model identifier not exposed) — independent repository-first Stage 0 gate session; same Codex product label as the original author is disclosed, exact runtime equality is UNKNOWN_NOT_EXPOSED under D-010. E1 specification gate: Claude Fable 5 (claude-fable-5) via Claude Code — independent E1 stage-gate verifier in a separate session (not the E1-001/E1-002 author/fixer, challenger, or task-verifier sessions; same model/product as those challenger/verifier sessions disclosed; Claude Code is a named E3 candidate system and the gate evaluation selects no role occupant)"
 active_task_ids: []
-ready_task_ids: []
-backlog_task_ids: []
+ready_task_ids:
+  - E2-001
+backlog_task_ids:
+  - E2-002
+  - E2-003
+  - E2-004
+  - E2-005
+  - E2-006
 completed_task_ids:
   - S0-001
   - S0-002
@@ -54,9 +60,9 @@ blocked_task_ids:
 current_architecture_version: null
 current_prd_version: "Engineering Preview v0.1 product and correctness specification (03_product/ENGINEERING_PREVIEW_PRD.md, ENGINEERING_PREVIEW_USER_FLOWS.md, ENGINEERING_PREVIEW_CORRECTNESS_CONTRACT.md) — E1-001 independently VERIFIED against cced38474c4fd71ee1d5bcc29fe0ed53929d53ac on 2026-08-27; the E1-002 contribution workflow, evaluation suite EP-EVAL-0.2, and v0.1 release-acceptance checkpoint were independently VERIFIED against 557e3354479b635b0872b4c60e914b8f29e50185 on 2026-08-28; the E1 specification gate was independently evaluated and VERIFIED (E1_GATE_PASSED) on 2026-08-28 against 7bbfebd2163b1a8aa0ec770de378c7087c6fee75 (10_checkpoints/stage_checkpoints/ENGINEERING_PREVIEW_E1_SPECIFICATION_GATE_VERIFICATION.yaml); this is the frozen product/correctness/evaluation baseline for E2 architecture comparison"
 current_code_commit: null
-working_tree_base_commit: 7bbfebd2163b1a8aa0ec770de378c7087c6fee75
+working_tree_base_commit: c2f70931ce13d0619a0dff4f48951e9278bb0c1c
 stage_0_author_commit: f151f28
-last_verified_checkpoint: "Stage 0 remains the last independently VERIFIED numbered-stage checkpoint (10_checkpoints/stage_checkpoints/STAGE_0_VERIFICATION.yaml). S0-001, S0-002, S0-003, S1-001, S1-002, E0-001, E1-001, and E1-002 retain their independent VERIFIED records. E1-001 remains byte-preserved and independently VERIFIED against cced38474c4fd71ee1d5bcc29fe0ed53929d53ac. E1-002 was independently VERIFIED on 2026-08-28 (UTC) against committed fixer HEAD 557e3354479b635b0872b4c60e914b8f29e50185 (99_handoffs/completed/E1-002_verifier_review.yaml): F-E1-002-01..11 all RESOLVED, 4/4 acceptance criteria PASS, 3/3 required tests satisfied, 0 new BLOCKER/HIGH/MEDIUM/LOW findings and 9 NOTEs. The verified but unimplemented/unrun suite EP-EVAL-0.2 specifies 170 cases and one typed canonical trace model with 701 case edges plus 8 keyed SLO/MET protocol edges for all 127 canonical IDs, 9 predicate-adequacy variants, 16 mandatory compositions, 11 fixture families, 18 oracles, and 8 measurement protocols. All three E1 gate prerequisites (E0-001, E1-001, E1-002) are independently VERIFIED, and the E1 specification gate was independently evaluated on 2026-08-28 (UTC) against committed HEAD 7bbfebd2163b1a8aa0ec770de378c7087c6fee75 with verdict E1_GATE_PASSED (10_checkpoints/stage_checkpoints/ENGINEERING_PREVIEW_E1_SPECIFICATION_GATE_VERIFICATION.yaml; 13/13 checkpoint required results PASS; charter §18 15/15 PASS; 100 independent mechanical assertions; 0 BLOCKER/HIGH/MEDIUM/LOW findings, 7 NOTEs); E2's activation condition is satisfied but E2 remains NOT_STARTED because no E2 task exists yet; E3 through E5 remain NOT_STARTED. Architecture is not selected, application code is absent, evaluation-case implementation/runs/model benchmarks/technical spikes/paid calls/external actions remain zero, autonomy eligibility is NOT_ELIGIBLE, and autonomous build is NOT_AUTHORIZED."
+last_verified_checkpoint: "Stage 0 remains the last independently VERIFIED numbered-stage checkpoint. E0-001, E1-001, and E1-002 retain independent VERIFIED records, and the E1 specification gate remains independently VERIFIED / E1_GATE_PASSED against 7bbfebd2163b1a8aa0ec770de378c7087c6fee75. PLAN_STAGE_E2 created the six-task architecture-planning graph against base c2f70931ce13d0619a0dff4f48951e9278bb0c1c; E2-001 is READY and E2-002 through E2-006 are BACKLOG, with no E2 task executed. Architecture remains unselected; E3-E5 remain NOT_STARTED; application code is absent; evaluation-case implementation/runs, model benchmarks, technical spikes, paid calls, and external actions remain zero; autonomy is NOT_ELIGIBLE / NOT_AUTHORIZED."
 unresolved_p0_questions:
   - engineering_preview_architecture_alternatives
   - prototype_budget
@@ -160,10 +166,29 @@ engineering_preview_track:
       gate_invariant: "E0-001 and all required E1 specification work must be independently VERIFIED before the E1 gate can be VERIFIED or E2 can be activated."
     E2:
       name: architecture_and_adr_selection
-      status: NOT_STARTED
+      status: PLANNED
+      task_ids:
+        - E2-001
+        - E2-002
+        - E2-003
+        - E2-004
+        - E2-005
+        - E2-006
+      task_statuses:
+        E2-001: READY
+        E2-002: BACKLOG
+        E2-003: BACKLOG
+        E2-004: BACKLOG
+        E2-005: BACKLOG
+        E2-006: BACKLOG
+      plan_artifact: 05_architecture/ENGINEERING_PREVIEW_E2_ARCHITECTURE_PLAN.md
       activation_condition: "E0-001 and the E1 specification gate are independently VERIFIED."
-      activation_condition_status: "SATISFIED on 2026-08-28 (UTC): E0-001 VERIFIED (0b930e2) and the E1 specification gate VERIFIED / E1_GATE_PASSED (7bbfebd). No E2 task exists in TASK_REGISTRY.yaml, so E2 stays NOT_STARTED until MODE: PLAN_STAGE_E2 defines the architecture-alternatives/ADR task graph within charter §19 and a founder-authorized transition activates its first task. The gate evaluation selected no architecture, client, language, database, event model, workflow engine, sandbox, cloud, framework, provider, model, or permanent role."
+      activation_condition_status: "SATISFIED on 2026-08-28 (UTC): E0-001 VERIFIED (0b930e2) and the E1 specification gate VERIFIED / E1_GATE_PASSED (7bbfebd). PLAN_STAGE_E2 created the bounded architecture task graph against base c2f7093. Only E2-001 is READY; E2-002 through E2-006 remain BACKLOG behind independent-verification dependencies. No E2 task was executed and no architecture, technology, provider, model, or permanent role was selected."
       gate_status: NOT_EVALUATED
+      gate_verdict: null
+      gate_mode: VERIFY_STAGE_E2
+      planned_gate_evidence: 10_checkpoints/stage_checkpoints/ENGINEERING_PREVIEW_E2_ARCHITECTURE_GATE_VERIFICATION.yaml
+      gate_question: "Do we have an independently verified architecture baseline that satisfies the frozen E1 specification, results from genuine alternative comparison, has no failed hard constraint or unresolved architecture-blocking uncertainty, records coherent ADRs, provides credible security/recovery/evidence and independent-verification architectures, preserves provider neutrality and bounded future compatibility, and supplies a stable E3 validation plan without beginning application implementation?"
     E3:
       name: technical_spikes_and_model_role_benchmarks
       status: NOT_STARTED
@@ -226,12 +251,16 @@ s1_003_authorization_reconciliation:
   scope_counters:
     architecture_selected: false
     application_code_written: false
+    evaluation_cases_implemented: 0
+    evaluation_cases_run: 0
     model_benchmarks_run: 0
     technical_spikes_run: 0
+    paid_api_calls: 0
     external_actions_performed: false
-next_recommended_action: "MODE: PLAN_STAGE_E2 — after the founder reviews and commits this E1 stage-gate patch (optionally refreshing README.md per G-E1-N1 in the same commit), create the E2 architecture-alternatives/ADR task graph in TASK_REGISTRY.yaml within charter §19 against the frozen E1 baseline (verified E1-001 at cced384, E1-002 at 557e335, gate at 7bbfebd): compare alternatives for every §19 subject, require ADRs with requirements/alternatives/choice/rationale/tradeoffs/migration/reversal cost/missing evidence, trace every chosen state/ownership/authority boundary to the correctness contract, and register the owner of the finite rerun/repetition/correction-ceiling policy values (G-E1-N3). Do not select architecture or models, execute E2/E3, run evaluation cases, benchmarks, or paid APIs, write application code, authorize autonomous build, perform external actions, or resume S1-003."
-updated_at: "2026-08-28T14:14:29Z"
+next_recommended_action: "MODE: EXECUTE_TASK_E2-001 — after founder review and commit of the PLAN_STAGE_E2 patch, derive architecture requirements, quality attributes, 25-domain coverage, criterion governance, and exact E1 traceability only. Do not generate alternatives, compare candidates, select architecture or technologies, create ADR decisions, execute spikes/E3, run evaluation cases or benchmarks, make paid calls, write application code, authorize autonomous build, perform external actions, or resume S1-003."
+updated_at: "2026-08-28T15:30:47Z"
 notes:
+  - "PLAN_STAGE_E2 AUTHOR PASS (2026-08-28 UTC): against base c2f70931ce13d0619a0dff4f48951e9278bb0c1c, created the bounded six-task E2 architecture graph and planning artifact. E2-001 architecture requirements is the only READY task; E2-002 alternatives, E2-003 comparison/uncertainty classification, E2-004 pre-selection blocker closure, E2-005 proposed ADR/baseline selection package, and E2-006 independent architecture verification remain BACKLOG behind serial VERIFIED dependencies; the separate mode-level VERIFY_STAGE_E2 gate follows. The plan requires all 25 architecture domains, at least three materially different end-to-end alternatives, hard-constraint-first comparison, bounded E2 spike contracts, separate ADRs, first-class security/recovery/evidence architectures, provider-neutral role interfaces, E3 obligations, and a registered future owner/review path for finite verification-rerun/check-repetition/correction ceilings. This is author-side planning evidence only: no E2 task, architecture alternative, comparison, ADR, spike, evaluation case, benchmark, paid call, external effect, application implementation, model assignment, autonomy transition, or S1-003 execution occurred. E1 remains VERIFIED / E1_GATE_PASSED; architecture remains NOT_SELECTED; E3-E5 remain NOT_STARTED; autonomy remains NOT_ELIGIBLE / NOT_AUTHORIZED."
   - "E1 SPECIFICATION GATE VERIFIED (2026-08-28T14:14:29Z UTC) against committed HEAD 7bbfebd2163b1a8aa0ec770de378c7087c6fee75 (10_checkpoints/stage_checkpoints/ENGINEERING_PREVIEW_E1_SPECIFICATION_GATE_VERIFICATION.yaml): verdict E1_GATE_PASSED. Preconditions re-derived: E0-001/E1-001/E1-002 each VERIFIED by a distinct independent verifier record (0b930e2 / cced384 / 557e335) with every challenger finding re-checked; no E1 task READY_FOR_REVIEW; gate NOT_EVALUATED before the pass; E2-E5 NOT_STARTED; architecture unselected; no application code; 0 cases implemented/run, 0 benchmarks, 0 paid calls; NOT_ELIGIBLE / NOT_AUTHORIZED; S1-003 DEFERRED. The verifier independently re-ran 100 mechanical assertions: 46/46 YAML parse with no duplicate keys; 11 tasks / 15 acyclic dependencies / lists reconcile; 127 canonical IDs re-extracted; 170 catalog rows x 7 cells; 34 range expansions; 701 case edges + 8 protocol edges = 709 with zero checkpoint-only/catalog-only edges; 119/119 case-backed IDs covered; 18/18 oracles used with non-claims; 11/11 fixtures; 9/9 adequacy variants and 16/16 compositions identical in suite and checkpoint; NEG 23/23, RC 16/16, GE 30/30 equal to the verified contract in order; 32/12/9/12/7 transition/combination rows and 42/15/16 evidence keys/sections/rules reconcile; E1-001 and E1-002 artifact blobs identical to cced384/557e335; zero technology selection, reconstruction identifier, secret-pattern, or application-source matches; git diff --check clean. Section results: REQUIREMENT_FREEZE_PASS, PRODUCT_EVALUATION_ALIGNMENT_PASS, FALSE_COMPLETION_BARRIER_PASS (15 stress scenarios), SECURITY_AUTHORITY_FREEZE_PASS, RECOVERY_DURABILITY_FREEZE_PASS, STATE_MODEL_SUFFICIENCY_PASS, EVIDENCE_CONTRACT_PASS, EVALUATION_SUITE_STABILITY_PASS, ORACLE_QUALITY_PASS, SPECIFICATION_GATE_DESIGN_PASS, charter §18 15/15 PASS, charter §22 11/11 testable with satisfaction DEFERRED_TO_LATER_GATE, OPEN_QUESTIONS_PASS (0 MUST_RESOLVE_BEFORE_E2), ARCHITECTURE_NEUTRALITY_PASS, CLEAN_ROOM_PASS, governance consistency PASS; checkpoint e1_specification_gate 13/13 PASS. New findings: 0 BLOCKER/HIGH/MEDIUM/LOW; 7 NOTEs (G-E1-N1 README stale; N2 checkpoint prerequisite self-status corrected in the gate block; N3 ceiling-policy owner task unregistered; N4 license/inbound terms should be decided before E4 contribution intake; N5 composition parent count method; N6 correctness-contract P0 question closed; N7 no E2 task exists so none invented). Consequence: E1 gate VERIFIED; E2 activation condition SATISFIED with E2 NOT_STARTED pending MODE: PLAN_STAGE_E2; E3/E4/E5 NOT_STARTED; architecture unselected; no application code; zero evaluation-case implementations/runs, benchmarks, spikes, paid calls, and external actions; AUTONOMY_ELIGIBLE NOT_ELIGIBLE; autonomous build NOT_AUTHORIZED; S1-003 BLOCKED/DEFERRED with zero execution; D-016 unchanged; TASK_REGISTRY.yaml unchanged (no gate field in its schema; no E2 task to activate). Patch left uncommitted for the founder."
   - "E1-002 was independently VERIFIED on 2026-08-28 (UTC) against committed fixer HEAD 557e3354479b635b0872b4c60e914b8f29e50185 (99_handoffs/completed/E1-002_verifier_review.yaml): all 4 acceptance criteria PASS, all 3 required tests satisfied, and F-E1-002-01..11 all RESOLVED as re-checked against the committed bytes, not the fixer's labels. The verifier independently re-ran every mechanical test (125 assertions): 45/45 YAML parse with no duplicate keys; 170 unique cases (WF 19 / CTL 24 / FALSE 21 / APR 9 / ROUTE 7 / EVID 12 / NEG 24 / REPO 16 / GIT 30 / CONTRIB 8); 127 canonical IDs re-extracted from the verified E1-001 artifacts; 34 ranges expanded; 701 canonical case-row edges over all 119 FR/RR/FC/UF/NEG IDs and 8 keyed SLO/MET protocol edges binding OR-METRIC-PROTOCOL; the checkpoint disposition projection is set-equal on all 127 keys with zero checkpoint-only and zero catalog-only edges and every disposition typed SPECIFIED_NOT_IMPLEMENTED/NOT_RUN; 18/18 oracles used with explicit non-claims; 11/11 fixtures used; 9/9 predicate-adequacy ground-truth variants and 16/16 risk-driven compositions identical in suite and checkpoint; 23/23 security-negative families, RC 16/16 and GE 30/30 equal to the verified contract in order; 32/9/12/7/12 transition/combination rows and 6/42/15/16 evidence items reconcile; EVR-03 traces the new workspace-ordering negative EP-WF-019; 12 observable secret-marker surfaces; 7 charter §22 documentation items; 13/13 release-gate stress vectors independently traced to REJECTED/BLOCKED; zero technology/vendor/model/reconstruction-identifier matches; zero secret-pattern matches; no application source; PRD/user flows/contract/charter/benchmark plan/model registry/decision log/source ledger blob-identical at cced384, cfafbbc, 557e335, and worktree; git diff --check clean; fixer diff exactly the nine allowed paths. Section results: TRACEABILITY_MODEL_PASS, PREDICATE_ADEQUACY_PASS, FIXTURE_MODEL_PASS, WORKSPACE_ORDERING_PASS, SECRET_SURFACES_PASS, RELEASE_GATE_PASS, COMPOSITION_COVERAGE_PASS, ORACLE_USAGE_PASS, CORRECTION_CEILING_PASS, RELIABILITY_PROTOCOLS_PASS, ORACLE_NONCLAIMS_PASS, FALSE_COMPLETION_PASS (20 scenarios), APPROVAL_EFFECT_PASS, SECURITY_NEGATIVES_PASS, REPOSITORY_GIT_MAPPING_PASS, E1_001_PRESERVATION_PASS, PHASE_BOUNDARY_PASS, CONTRIBUTION_WORKFLOW_PASS, E1_GATE_DESIGN_PASS. New findings: 0 BLOCKER/HIGH/MEDIUM/LOW and 9 NOTEs (suite §5 subvariant-source sentence omits §7.3; numeric rerun/repetition/correction values are policy-owned finite values with no registered owner task yet; composition evidence inherited from parents; provisional NA-SPECIFICATION-LANE record confirmed and artifact self-status lines become historical; README needs a founder refresh; no separate E1 gate task exists so the next step is the VERIFY_STAGE_E1 mode; 34 single-case requirements adequately covered; fixer-side vector/validation blocks independently re-traced; E1-001 notes V-E1-N2/N3/N4/N6/N7 addressed). Consequence: E1-002 VERIFIED; all three E1 gate prerequisites are independently VERIFIED but the E1 specification gate remains NOT_EVALUATED pending a separate independent stage-gate evaluation; E2/E3/E4/E5 NOT_STARTED and E2 not activated; architecture unselected; no application code; zero evaluation-case implementations/runs, benchmarks, spikes, paid calls, and external actions; autonomous build NOT_AUTHORIZED with AUTONOMY_ELIGIBLE still NOT_ELIGIBLE; S1-003 BLOCKED/DEFERRED with zero execution; D-016 unchanged. The verifier is the same model/product as the E1-002 challenger (Claude Fable 5 via Claude Code) in a separate session, independent of the Codex author/fixer; Claude Code is one of the named E3 candidate systems and this verification selects no role occupant. Patch left uncommitted for the founder."
   - "E1-002 FIXER PASS (2026-08-28 UTC): the original Codex author returned as fixer after the independent Claude Fable 5 challenger reviewed committed author HEAD 0044276289378051ecfe32ab04318c50aee3b4ad and requested 11 corrections (0 BLOCKER, 1 HIGH, 6 MEDIUM, 4 LOW). F-E1-002-01..11 are dispositioned FIXED with none disputed or deferred. The corrected EP-EVAL-0.2 catalog contains 170 specified/not-implemented/not-run cases and makes the case-row trace authoritative for 119 FR/RR/FC/UF/NEG IDs while eight keyed OR-METRIC-PROTOCOL measurement definitions authoritatively trace SLO/MET IDs; the checkpoint stores a mechanically checked 127-ID disposition projection equal to 701 case edges plus 8 protocol edges, with zero checkpoint-only or catalog-only edges. The fix adds nine deterministic predicate-adequacy ground-truth variants, complete semantic recipes for all 11 fixture families, a workspace-before-mutating-reproduction negative, observable secret-marker boundary coverage, exact mandatory/NOT_APPLICABLE/documentation rules, 16 mandatory risk-driven compositions, complete oracle non-claims with 18/18 use, finite governed correction ceilings, and versioned SLO/MET population/threshold amendment rules. Thirteen synthetic gate-logic vectors all resolve non-PASS; these are policy-structure checks, not evaluation-case or gate execution. Fixer-side mechanical validation passes 412 assertions, but it is not independent verification. E1-001 product/correctness artifacts remain byte-identical to their verified versions. E1-002 is READY_FOR_REVIEW and NOT VERIFIED; E1 gate NOT_EVALUATED; E2/E3/E4/E5 NOT_STARTED; architecture/model roles unselected; no application code, evaluation-case implementation/run, benchmark, spike, paid call, external effect, or S1-003 execution occurred; autonomy remains NOT_ELIGIBLE and NOT_AUTHORIZED. Next command: MODE: VERIFY_TASK_E1-002."

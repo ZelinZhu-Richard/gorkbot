@@ -1253,3 +1253,548 @@ tasks:
       - evaluation_coverage_matrix
       - release_gate_checklist
       - independent_verification_record
+
+  - task_id: E2-001
+    title: Derive Engineering Preview architecture requirements and decision criteria
+    stage: E2
+    objective: Convert the frozen, independently verified E1 product, correctness, evaluation, security, and reliability baseline into a complete architecture-requirements and decision-criteria contract without generating candidates or selecting mechanisms.
+    why_it_matters: Alternatives cannot be compared safely until hard constraints, preferences, unknowns, traceability, and cross-cutting security/recovery/evidence obligations are explicit and independently verified.
+    owner_role: AUTHOR
+    assigned_model: null
+    reviewer_model: null
+    verifier_model: null
+    assignment_policy: "Assign at claim time. The challenger and verifier must be separate sessions independent of the author/fixer; assignment creates no E3 model-role eligibility."
+    status: READY
+    planning_status: PLANNED_NOT_EXECUTED
+    priority: P0
+    dependencies:
+      - E0-001
+      - E1-001
+      - E1-002
+    blocked_by: []
+    activation_condition: "All dependencies are independently VERIFIED and the Engineering Preview E1 specification gate is VERIFIED with verdict E1_GATE_PASSED."
+    activation_condition_status: "SATISFIED at planning time: E0-001, E1-001, and E1-002 are VERIFIED and the E1 gate passed. READY does not claim or execute the task."
+    gate_invariant: "No E2 alternative, matrix score, spike, ADR, architecture selection, or E3 execution may be produced by E2-001."
+    files_to_read:
+      - MASTER_OPERATING_PROMPT.md
+      - AGENTS.md
+      - README.md
+      - SECURITY.md
+      - 01_governance/PROJECT_STATE.yaml
+      - 01_governance/TASK_REGISTRY.yaml
+      - 01_governance/DECISION_LOG.md
+      - 01_governance/ASSUMPTION_REGISTER.md
+      - 01_governance/RISK_REGISTER.md
+      - 01_governance/MODEL_REGISTRY.yaml
+      - 01_governance/SOURCE_LEDGER.csv
+      - 02_research/GROK_BOT_BASELINE_2026-08-21.md
+      - 02_research/GROK_BOT_018_RECONSTRUCTED_ARCHITECTURE_AUDIT.md
+      - 02_research/GROK_BOT_018_ARCHITECTURE_ADOPTION_MATRIX.csv
+      - 03_product/ENGINEERING_PREVIEW_CHARTER.md
+      - 03_product/ENGINEERING_PREVIEW_PRD.md
+      - 03_product/ENGINEERING_PREVIEW_USER_FLOWS.md
+      - 03_product/ENGINEERING_PREVIEW_CORRECTNESS_CONTRACT.md
+      - 03_product/ENGINEERING_PREVIEW_CONTRIBUTION_WORKFLOW.md
+      - 05_architecture/ENGINEERING_PREVIEW_E2_ARCHITECTURE_PLAN.md
+      - 06_evaluation/ENGINEERING_PREVIEW_EVALUATION_SUITE.md
+      - 06_evaluation/MODEL_ROLE_BENCHMARK_PLAN.md
+      - 10_checkpoints/stage_checkpoints/ENGINEERING_PREVIEW_V0_1_RELEASE_ACCEPTANCE.yaml
+      - 10_checkpoints/stage_checkpoints/ENGINEERING_PREVIEW_E1_SPECIFICATION_GATE_VERIFICATION.yaml
+      - 99_handoffs/completed/E0-001_verifier_review.yaml
+      - 99_handoffs/completed/E1-001_verifier_review.yaml
+      - 99_handoffs/completed/E1-002_verifier_review.yaml
+      - 99_handoffs/completed/S0-002_verifier_review.yaml
+      - 99_handoffs/completed/EXTERNAL_GROK_BOT_018_ARCHITECTURE_AUDIT_verifier_review.yaml
+      - 99_handoffs/completed/PLAN_STAGE_E2_handoff.yaml
+    deliverables:
+      - 05_architecture/ENGINEERING_PREVIEW_ARCHITECTURE_REQUIREMENTS.md
+      - 05_architecture/ENGINEERING_PREVIEW_E1_ARCHITECTURE_TRACEABILITY.csv
+      - 99_handoffs/completed/E2-001_handoff.yaml
+    allowed_files_to_change:
+      - 05_architecture/ENGINEERING_PREVIEW_ARCHITECTURE_REQUIREMENTS.md
+      - 05_architecture/ENGINEERING_PREVIEW_E1_ARCHITECTURE_TRACEABILITY.csv
+      - 01_governance/ASSUMPTION_REGISTER.md
+      - 01_governance/RISK_REGISTER.md
+      - 01_governance/PROJECT_STATE.yaml
+      - 01_governance/TASK_REGISTRY.yaml
+      - 99_handoffs/completed/E2-001_handoff.yaml
+      - 99_handoffs/completed/E2-001_fixer_handoff.yaml
+    forbidden_actions:
+      - Generate or recommend an architecture candidate.
+      - Select a client, language, runtime, framework, database, workflow engine, queue, event store, sandbox, container, VM, cloud, agent framework, model framework, provider, model, or permanent role occupant.
+      - Create or accept an ADR, application code, prototype, spike, evaluation case, benchmark, paid call, external effect, or autonomous-build authority.
+      - Modify a frozen E1 artifact or import Level C reconstructed material.
+    acceptance_criteria:
+      - Every one of the 127 canonical E1 requirement IDs has exactly one primary architecture disposition of HARD_CONSTRAINT, WEIGHTED_PREFERENCE, or JUSTIFIED_NON_ARCHITECTURE_DRIVING, with source anchors and no waiver semantics.
+      - All 25 required architecture decision domains are present with required evidence and explicit ownership/authority questions.
+      - Correctness, durability, security, execution, model abstraction, observability, extensibility, performance/cost, operability, and E1-suite testability are derived without invented quantitative requirements.
+      - Hard constraints, weighted preferences, UNKNOWN_REQUIRING_SPIKE, and E3_VALIDATION_OBLIGATION are defined so hard failures cannot be averaged away and unknowns cannot be scored favorably.
+      - Cross-cutting threat-boundary, recovery, evidence-integrity, independent-verification, provider-neutrality, clean-room Level A/B/C, local-first, and future-compatibility criteria are complete.
+      - Weighting governance, if proposed, is prospective, discloses correlated criteria and sensitivity requirements, and assigns no candidate-specific score or winner.
+    required_tests:
+      - Strict YAML/CSV/Markdown structural checks and exact 127-ID trace set equality against the frozen E1 sources.
+      - Exact 25-domain coverage and required quality-attribute/category checks.
+      - Frozen E1 byte-identity, no-candidate/no-technology/no-ADR/no-code/no-spike/no-benchmark/no-paid-call/no-autonomy assertions.
+      - Level C identifier/forbidden-artifact, allowed-path, secret-pattern, dependency/status, and git diff --check.
+    challenger_requirements:
+      - A fresh challenger must search for omitted or weakened E1 semantics, hard constraints mislabeled as preferences, circular evidence, architecture choices hidden in terminology, audit anchoring, missing security/recovery/evidence obligations, and speculative future scope.
+      - Every finding must have severity, exact evidence, consequence, and verification method; the challenger may not select an architecture.
+    verifier_requirements:
+      - A separate post-fix verifier must independently re-extract the 127 E1 IDs, re-derive the quality attributes and 25 domains, reproduce set/count checks, inspect every challenger disposition, and confirm that no candidate or technology was selected.
+      - The author, fixer, author-side assistants, or challenger may not serve as the sole verifier.
+    completion_transition: "Only an independent verifier may move E2-001 to VERIFIED. On VERIFIED, and only then, E2-002 may become READY; all later E2 tasks remain BACKLOG."
+    downstream_consumer: E2-002
+    unresolved_questions:
+      - Exact normalized hard-constraint list and E1 source anchors.
+      - Prospective weighting method, if any, after correlation review.
+      - Which E1 requirements are behaviorally mandatory but not architecture-discriminating.
+    escalation_conditions:
+      - Any apparent conflict, gap, or required semantic change in frozen E1.
+      - Any criterion that cannot be classified without choosing a mechanism.
+      - Any requested edit outside allowed paths or any need for external/current product evidence.
+    next_command: "MODE: EXECUTE_TASK_E2-001"
+
+  - task_id: E2-002
+    title: Generate credible end-to-end Engineering Preview architecture alternatives
+    stage: E2
+    objective: Produce at least three coherent, materially different, technology-unselected end-to-end architecture candidates that each address the verified E2-001 requirements and all 25 decision domains.
+    why_it_matters: The architecture choice must arise from real system-shape alternatives rather than cosmetic framework combinations or an audit-derived default.
+    owner_role: AUTHOR
+    assigned_model: null
+    reviewer_model: null
+    verifier_model: null
+    assignment_policy: "Assign only after E2-001 is independently VERIFIED; challenger/verifier independence is mandatory and creates no model-role eligibility."
+    status: BACKLOG
+    planning_status: PLANNED_NOT_EXECUTED
+    priority: P0
+    dependencies:
+      - E2-001
+    blocked_by:
+      - E2_001_NOT_INDEPENDENTLY_VERIFIED
+    activation_condition: "E2-001 is independently VERIFIED with complete architecture requirements and criterion governance."
+    gate_invariant: "E2-002 generates candidates only; it may not rank them, name a winner, run a spike, or draft a final ADR decision."
+    files_to_read:
+      - MASTER_OPERATING_PROMPT.md
+      - AGENTS.md
+      - SECURITY.md
+      - 01_governance/PROJECT_STATE.yaml
+      - 01_governance/TASK_REGISTRY.yaml
+      - 01_governance/DECISION_LOG.md
+      - 01_governance/ASSUMPTION_REGISTER.md
+      - 01_governance/RISK_REGISTER.md
+      - 02_research/GROK_BOT_018_RECONSTRUCTED_ARCHITECTURE_AUDIT.md
+      - 02_research/GROK_BOT_018_ARCHITECTURE_ADOPTION_MATRIX.csv
+      - 03_product/ENGINEERING_PREVIEW_CHARTER.md
+      - 03_product/ENGINEERING_PREVIEW_CORRECTNESS_CONTRACT.md
+      - 05_architecture/ENGINEERING_PREVIEW_E2_ARCHITECTURE_PLAN.md
+      - 05_architecture/ENGINEERING_PREVIEW_ARCHITECTURE_REQUIREMENTS.md
+      - 05_architecture/ENGINEERING_PREVIEW_E1_ARCHITECTURE_TRACEABILITY.csv
+      - 06_evaluation/ENGINEERING_PREVIEW_EVALUATION_SUITE.md
+      - 10_checkpoints/stage_checkpoints/ENGINEERING_PREVIEW_V0_1_RELEASE_ACCEPTANCE.yaml
+      - 99_handoffs/completed/E2-001_verifier_review.yaml
+    deliverables:
+      - 05_architecture/ENGINEERING_PREVIEW_ARCHITECTURE_ALTERNATIVES.md
+      - 05_architecture/candidates/
+      - 99_handoffs/completed/E2-002_handoff.yaml
+    allowed_files_to_change:
+      - 05_architecture/ENGINEERING_PREVIEW_ARCHITECTURE_ALTERNATIVES.md
+      - 05_architecture/candidates/
+      - 01_governance/ASSUMPTION_REGISTER.md
+      - 01_governance/RISK_REGISTER.md
+      - 01_governance/PROJECT_STATE.yaml
+      - 01_governance/TASK_REGISTRY.yaml
+      - 99_handoffs/completed/E2-002_handoff.yaml
+      - 99_handoffs/completed/E2-002_fixer_handoff.yaml
+    forbidden_actions:
+      - Rank candidates, choose a winner, assign weights after seeing candidate results, create an accepted ADR, or mark architecture selected.
+      - Treat a language/framework/vendor swap as a distinct architecture or an external-audit ADOPT/ADAPT label as a project decision.
+      - Run a spike, evaluation case, provider/model benchmark, paid call, external effect, or application implementation.
+      - Copy Level C reconstructed source, schemas, names, layouts, assets, or exact mechanisms.
+    acceptance_criteria:
+      - At least three credible end-to-end candidates differ materially across multiple structural axes, including authority/persistence, orchestration, execution/isolation, and client/runtime or control-plane boundaries.
+      - Every candidate covers all 25 domains and every E2-001 hard constraint with process, trust, data, control, effect, recovery, and verification boundaries.
+      - Every candidate separates v0.1 required behavior, interfaces reserved for compatibility, and deferred future features without speculative SaaS or multi-agent implementation.
+      - Assumptions, unknowns, reversibility/migration boundaries, contributor burden, E3 obligations, Level B inputs, and rejected Level C details are explicit for each candidate.
+      - No candidate is recommended, ranked, or described as selected.
+    required_tests:
+      - Candidate count, unique ID, 25-domain completeness, hard-constraint-reference, and boundary-model structural checks.
+      - Material-difference test proving candidates are not cosmetic technology permutations.
+      - No-ranking/no-winner/no-ADR-acceptance/no-technology-lock/no-code/no-run/no-paid-call and frozen-E1 byte checks.
+      - Clean-room identifier, allowed-path, secret-pattern, governance status, and git diff --check.
+    challenger_requirements:
+      - A fresh challenger must attempt to collapse allegedly different candidates into the same shape, find straw alternatives, omitted domains, hidden E1 violations, unjustified future machinery, vendor lock-in, and audit anchoring.
+      - The challenger may demand replacement or material differentiation of a candidate but may not choose a winner.
+    verifier_requirements:
+      - A separate verifier must independently confirm at least three credible shapes, full 25-domain and hard-constraint coverage, Level A/B/C discipline, and absence of ranking or selection.
+    completion_transition: "Only independent verification may move E2-002 to VERIFIED and release E2-003 to READY."
+    downstream_consumer: E2-003
+    unresolved_questions:
+      - Actual candidate shapes and identifiers.
+      - Which structural axes yield meaningful reversibility and testability differences.
+      - Which candidate assumptions remain unknown before comparison.
+    escalation_conditions:
+      - Fewer than three credible compliant shapes can be constructed.
+      - A candidate requires changing E1 semantics or importing a Level C implementation detail.
+      - Candidate definition depends on a paid/external experiment or premature technology choice.
+
+  - task_id: E2-003
+    title: Compare architecture alternatives and classify decision uncertainty
+    stage: E2
+    objective: Apply the verified criterion contract to every verified candidate, eliminate hard-constraint failures, compare surviving trade-offs, and classify every decision-relevant unknown without naming a winner.
+    why_it_matters: Selection must distinguish non-negotiable E1 compliance from preferences and from facts that require focused evidence.
+    owner_role: AUTHOR
+    assigned_model: null
+    reviewer_model: null
+    verifier_model: null
+    assignment_policy: "Assign only after E2-002 is independently VERIFIED; scorer, challenger, and verifier provenance must be explicit."
+    status: BACKLOG
+    planning_status: PLANNED_NOT_EXECUTED
+    priority: P0
+    dependencies:
+      - E2-002
+    blocked_by:
+      - E2_002_NOT_INDEPENDENTLY_VERIFIED
+    activation_condition: "E2-001 requirements and E2-002 alternatives are independently VERIFIED."
+    gate_invariant: "E2-003 may identify dominated or ineligible candidates but may not select, recommend, or encode a final architecture decision."
+    files_to_read:
+      - MASTER_OPERATING_PROMPT.md
+      - AGENTS.md
+      - SECURITY.md
+      - 01_governance/PROJECT_STATE.yaml
+      - 01_governance/TASK_REGISTRY.yaml
+      - 01_governance/ASSUMPTION_REGISTER.md
+      - 01_governance/RISK_REGISTER.md
+      - 03_product/ENGINEERING_PREVIEW_CHARTER.md
+      - 03_product/ENGINEERING_PREVIEW_CORRECTNESS_CONTRACT.md
+      - 05_architecture/ENGINEERING_PREVIEW_E2_ARCHITECTURE_PLAN.md
+      - 05_architecture/ENGINEERING_PREVIEW_ARCHITECTURE_REQUIREMENTS.md
+      - 05_architecture/ENGINEERING_PREVIEW_E1_ARCHITECTURE_TRACEABILITY.csv
+      - 05_architecture/ENGINEERING_PREVIEW_ARCHITECTURE_ALTERNATIVES.md
+      - 05_architecture/candidates/
+      - 06_evaluation/ENGINEERING_PREVIEW_EVALUATION_SUITE.md
+      - 10_checkpoints/stage_checkpoints/ENGINEERING_PREVIEW_V0_1_RELEASE_ACCEPTANCE.yaml
+      - 99_handoffs/completed/E2-001_verifier_review.yaml
+      - 99_handoffs/completed/E2-002_verifier_review.yaml
+    deliverables:
+      - 05_architecture/ENGINEERING_PREVIEW_ARCHITECTURE_COMPARISON.md
+      - 05_architecture/ENGINEERING_PREVIEW_ARCHITECTURE_DECISION_MATRIX.csv
+      - 05_architecture/ENGINEERING_PREVIEW_ARCHITECTURE_UNCERTAINTY_REGISTER.yaml
+      - 99_handoffs/completed/E2-003_handoff.yaml
+    allowed_files_to_change:
+      - 05_architecture/ENGINEERING_PREVIEW_ARCHITECTURE_COMPARISON.md
+      - 05_architecture/ENGINEERING_PREVIEW_ARCHITECTURE_DECISION_MATRIX.csv
+      - 05_architecture/ENGINEERING_PREVIEW_ARCHITECTURE_UNCERTAINTY_REGISTER.yaml
+      - 01_governance/ASSUMPTION_REGISTER.md
+      - 01_governance/RISK_REGISTER.md
+      - 01_governance/PROJECT_STATE.yaml
+      - 01_governance/TASK_REGISTRY.yaml
+      - 99_handoffs/completed/E2-003_handoff.yaml
+      - 99_handoffs/completed/E2-003_fixer_handoff.yaml
+    forbidden_actions:
+      - Name or imply a winning architecture, create a decision ADR, or mark architecture selected.
+      - Let a weighted score compensate for a hard-constraint failure or treat UNKNOWN as favorable evidence.
+      - Change weights, populations, criteria, or evidence rules after inspecting results without a prospective reviewed amendment.
+      - Run spikes, evaluation cases, model/provider benchmarks, paid calls, external effects, or application code.
+    acceptance_criteria:
+      - Every candidate and criterion cell records class, claim type, source/evidence, rationale, result, uncertainty, and consequence.
+      - Hard constraints are evaluated before weighted preferences; every hard failure eliminates the candidate without averaging.
+      - Criteria cover correctness, false completion, durability/recovery, security/isolation, approvals/effects, evidence, complexity, local experience, observability, E1-suite testability, provider neutrality, performance/resources, portability, maintainability, contributor accessibility, remote/SaaS/Finance compatibility, and migration/reversibility.
+      - Every unknown is exactly one of PAPER_RESOLVABLE, E2_PRESELECTION_SPIKE_REQUIRED, E3_POSTSELECTION_TECHNICAL_VALIDATION, E3_MODEL_OR_CONFIGURATION_BENCHMARK, or DEFERRED_OUT_OF_SCOPE, with owner, rationale, decision linkage, and blocking consequence.
+      - Every proposed E2 spike contract includes question, hypothesis, alternatives, minimal prototype, workload, success/failure criteria, security checks, finite budget, stop condition, artifact, decision rule, and ADR linkage; relevant SP-C contracts are reused or explicitly distinguished.
+      - The comparison reports surviving trade-offs and sensitivity without selecting or recommending a winner.
+    required_tests:
+      - Matrix schema, candidate/criterion set equality, unique cell, source-reference, and classification-closure checks.
+      - Hard-failure non-compensation, UNKNOWN-blocking, correlated-criterion, weight-freeze, and sensitivity-policy tests.
+      - Spike-contract completeness for every E2_PRESELECTION_SPIKE_REQUIRED item.
+      - No-winner/no-ADR/no-code/no-run/no-benchmark/no-paid-call/frozen-E1, clean-room, secret, scope, YAML/CSV, and git diff --check.
+    challenger_requirements:
+      - A fresh challenger must recompute sampled and high-risk cells, search for favorable unknown handling, double-counting, hidden hard violations, unsupported scoring, straw alternatives, and selection language.
+      - The challenger must specifically inspect security, recovery, evidence independence, provider neutrality, future-scope proportionality, and spike classification.
+    verifier_requirements:
+      - A separate verifier must reproduce the full hard-gate elimination set, criterion/candidate completeness, uncertainty partition, and any numeric arithmetic or sensitivity result from source data.
+      - Verification must confirm that no winner was selected and that every selection blocker flows to E2-004.
+    completion_transition: "Only independent verification may move E2-003 to VERIFIED and release E2-004 to READY."
+    downstream_consumer: E2-004
+    unresolved_questions:
+      - Comparative results and surviving candidates.
+      - Selection-blocking unknowns and whether any E2 spike is necessary.
+      - Which empirical questions are safely post-selection E3 obligations.
+    escalation_conditions:
+      - All candidates fail a hard E1 constraint.
+      - A criterion or weight would require post-result redefinition.
+      - An unknown cannot be bounded, classified, or resolved without application implementation, paid access, or an E1 amendment.
+
+  - task_id: E2-004
+    title: Close pre-selection architecture uncertainties
+    stage: E2
+    objective: Resolve every independently verified E2_PRESELECTION_SPIKE_REQUIRED blocker through bounded analysis or minimal synthetic/local architecture spikes, or publish an independently verified no-spike-required closure when the set is empty.
+    why_it_matters: ADR selection cannot rest on favorable guesses, while E2 must not turn uncertainty resolution into unbounded implementation or an E3 model benchmark.
+    owner_role: AUTHOR
+    assigned_model: null
+    reviewer_model: null
+    verifier_model: null
+    assignment_policy: "Assign only after E2-003 is independently VERIFIED. Each spike/result must retain author, challenger, and verifier provenance."
+    status: BACKLOG
+    planning_status: PLANNED_NOT_EXECUTED
+    priority: P0
+    dependencies:
+      - E2-003
+    blocked_by:
+      - E2_003_NOT_INDEPENDENTLY_VERIFIED
+    activation_condition: "E2-003 is independently VERIFIED and its uncertainty register prospectively freezes the exact E2 blocker set and complete contracts."
+    gate_invariant: "E2-004 resolves selection blockers only. It cannot choose the architecture, benchmark a provider/model, create production application code, or broaden a spike after results are visible."
+    files_to_read:
+      - MASTER_OPERATING_PROMPT.md
+      - AGENTS.md
+      - SECURITY.md
+      - 01_governance/PROJECT_STATE.yaml
+      - 01_governance/TASK_REGISTRY.yaml
+      - 01_governance/ASSUMPTION_REGISTER.md
+      - 01_governance/RISK_REGISTER.md
+      - 02_research/GROK_BOT_018_RECONSTRUCTED_ARCHITECTURE_AUDIT.md
+      - 03_product/ENGINEERING_PREVIEW_CORRECTNESS_CONTRACT.md
+      - 05_architecture/ENGINEERING_PREVIEW_E2_ARCHITECTURE_PLAN.md
+      - 05_architecture/ENGINEERING_PREVIEW_ARCHITECTURE_REQUIREMENTS.md
+      - 05_architecture/ENGINEERING_PREVIEW_ARCHITECTURE_ALTERNATIVES.md
+      - 05_architecture/ENGINEERING_PREVIEW_ARCHITECTURE_COMPARISON.md
+      - 05_architecture/ENGINEERING_PREVIEW_ARCHITECTURE_DECISION_MATRIX.csv
+      - 05_architecture/ENGINEERING_PREVIEW_ARCHITECTURE_UNCERTAINTY_REGISTER.yaml
+      - 06_evaluation/ENGINEERING_PREVIEW_EVALUATION_SUITE.md
+      - 99_handoffs/completed/E2-003_verifier_review.yaml
+    deliverables:
+      - 05_architecture/ENGINEERING_PREVIEW_PRESELECTION_UNCERTAINTY_CLOSURE.md
+      - 05_architecture/spikes/
+      - 99_handoffs/completed/E2-004_handoff.yaml
+    allowed_files_to_change:
+      - 05_architecture/ENGINEERING_PREVIEW_PRESELECTION_UNCERTAINTY_CLOSURE.md
+      - 05_architecture/ENGINEERING_PREVIEW_ARCHITECTURE_COMPARISON.md
+      - 05_architecture/ENGINEERING_PREVIEW_ARCHITECTURE_DECISION_MATRIX.csv
+      - 05_architecture/ENGINEERING_PREVIEW_ARCHITECTURE_UNCERTAINTY_REGISTER.yaml
+      - 05_architecture/spikes/
+      - 01_governance/ASSUMPTION_REGISTER.md
+      - 01_governance/RISK_REGISTER.md
+      - 01_governance/PROJECT_STATE.yaml
+      - 01_governance/TASK_REGISTRY.yaml
+      - 99_handoffs/completed/E2-004_handoff.yaml
+      - 99_handoffs/completed/E2-004_fixer_handoff.yaml
+    forbidden_actions:
+      - Execute an item not prospectively classified E2_PRESELECTION_SPIKE_REQUIRED in the verified E2-003 register.
+      - Run a provider/model benchmark, assign model roles, make a paid call, use real secrets/customer data, access an external runtime, or exceed the frozen budget/stop condition without a prospective authorized amendment.
+      - Build production/application breadth, select a technology or architecture, weaken a success criterion, discard an unfavorable run, or overwrite raw evidence.
+      - Blindly duplicate SP-C01..SP-C10 or execute Finance/security-harness work before its prerequisites.
+    acceptance_criteria:
+      - The independently verified E2 blocker set is closed exactly: each item has PASS, FAIL, INCONCLUSIVE_BLOCKING, or DEFERRED_TO_E3_NON_SELECTION_BLOCKING with evidence and no missing item.
+      - If the blocker set is empty, a NO_PRESELECTION_SPIKE_REQUIRED record explains why and technical_spikes_run remains unchanged.
+      - Every executed spike remains minimal, synthetic/local, finite, prospectively frozen, linked to one or more candidate decisions, and records exact environment, source/artifact identity, workload, raw results, failures, resource/time budget, actual cost, stop condition, security impact, and decision consequence.
+      - Any hard-gate failure or inconclusive selection blocker remains blocking; later success does not erase earlier evidence.
+      - Updated comparison/uncertainty records incorporate evidence without naming a winner or running E3 evaluation.
+    required_tests:
+      - Blocker-set equality and disposition closure; no-spike counter assertion when applicable.
+      - Per-spike contract, budget, stop, raw-evidence, decision-link, hard-gate, deterministic replay/fault, security-negative, and scope checks as declared prospectively.
+      - No application source outside 05_architecture/spikes, no provider/model calls, no paid/external effects, no selection/ADR acceptance, clean-room, secret, YAML/CSV, allowed-path, and git diff --check.
+    challenger_requirements:
+      - A fresh challenger must inspect every raw spike result or the no-spike rationale, attempt to falsify the oracle, check budget/stop compliance, detect prototype theater or hidden implementation, and search for result-driven contract changes.
+    verifier_requirements:
+      - A separate verifier must independently rerun deterministic local checks where safe, reconcile every blocker to evidence, verify the complete attempt history, and confirm that no model benchmark, paid call, app implementation, or architecture selection occurred.
+    completion_transition: "Only independent verification of complete blocker closure may move E2-004 to VERIFIED and release E2-005 to READY. INCONCLUSIVE_BLOCKING or an unbounded/new blocker prevents transition and requires escalation or a prospective task split."
+    downstream_consumer: E2-005
+    unresolved_questions:
+      - Whether the verified E2-003 blocker set is empty.
+      - Which SP-C contract, if any, is relevant and how it must be narrowed.
+      - What evidence is sufficient to remove each selection blocker.
+    escalation_conditions:
+      - A spike needs nonzero spend, provider/cloud access, credentials, customer/private data, destructive action, or application code.
+      - More work is needed than can remain one bounded independently reviewable task; create prospective E2-004 child tasks before execution.
+      - Any result implies an E1 semantic defect or eliminates every candidate.
+
+  - task_id: E2-005
+    title: Select a proposed architecture and author the E2 ADR baseline
+    stage: E2
+    objective: After verified comparison and uncertainty closure, recommend one compliant architecture, record major decisions in a coherent ADR set, and produce an explicit E3 technical/model validation-obligation plan without treating the proposal as independently verified.
+    why_it_matters: Irreversible choices need separate evidence-backed records, consequences, reversal paths, and E1/E3 traceability before a baseline can be trusted.
+    owner_role: AUTHOR
+    assigned_model: null
+    reviewer_model: null
+    verifier_model: null
+    assignment_policy: "The selector must not be the sole challenger or verifier. Model/provider use as an authoring surface creates no product-role eligibility."
+    status: BACKLOG
+    planning_status: PLANNED_NOT_EXECUTED
+    priority: P0
+    dependencies:
+      - E2-004
+    blocked_by:
+      - E2_004_NOT_INDEPENDENTLY_VERIFIED
+    activation_condition: "E2-001 through E2-004 are independently VERIFIED; every hard constraint has at least one passing candidate; every selection-blocking unknown is closed."
+    gate_invariant: "The author/fixer may create only PROPOSED_PENDING_INDEPENDENT_ARCHITECTURE_VERIFICATION ADRs and baseline. Architecture remains not independently selected until E2-006 passes."
+    e3_ceiling_policy_ownership:
+      accountable_registration_task: E2-005
+      obligation: "Register in the E3 validation plan a specific future task or qualification-policy authority, independent-review path, and blocking rule for finite verification-rerun, deterministic-check-repetition, and correction-attempt ceiling values before any scored freeze."
+      numeric_values_selected_by_this_task: false
+      missing_owner_consequence: E2_005_BLOCKED
+    files_to_read:
+      - MASTER_OPERATING_PROMPT.md
+      - AGENTS.md
+      - SECURITY.md
+      - 01_governance/PROJECT_STATE.yaml
+      - 01_governance/TASK_REGISTRY.yaml
+      - 01_governance/DECISION_LOG.md
+      - 01_governance/ASSUMPTION_REGISTER.md
+      - 01_governance/RISK_REGISTER.md
+      - 01_governance/MODEL_REGISTRY.yaml
+      - 02_research/GROK_BOT_018_RECONSTRUCTED_ARCHITECTURE_AUDIT.md
+      - 03_product/ENGINEERING_PREVIEW_CHARTER.md
+      - 03_product/ENGINEERING_PREVIEW_PRD.md
+      - 03_product/ENGINEERING_PREVIEW_USER_FLOWS.md
+      - 03_product/ENGINEERING_PREVIEW_CORRECTNESS_CONTRACT.md
+      - 05_architecture/ENGINEERING_PREVIEW_E2_ARCHITECTURE_PLAN.md
+      - 05_architecture/ENGINEERING_PREVIEW_ARCHITECTURE_REQUIREMENTS.md
+      - 05_architecture/ENGINEERING_PREVIEW_E1_ARCHITECTURE_TRACEABILITY.csv
+      - 05_architecture/ENGINEERING_PREVIEW_ARCHITECTURE_ALTERNATIVES.md
+      - 05_architecture/ENGINEERING_PREVIEW_ARCHITECTURE_COMPARISON.md
+      - 05_architecture/ENGINEERING_PREVIEW_ARCHITECTURE_DECISION_MATRIX.csv
+      - 05_architecture/ENGINEERING_PREVIEW_ARCHITECTURE_UNCERTAINTY_REGISTER.yaml
+      - 05_architecture/ENGINEERING_PREVIEW_PRESELECTION_UNCERTAINTY_CLOSURE.md
+      - 06_evaluation/ENGINEERING_PREVIEW_EVALUATION_SUITE.md
+      - 06_evaluation/MODEL_ROLE_BENCHMARK_PLAN.md
+      - 10_checkpoints/stage_checkpoints/ENGINEERING_PREVIEW_V0_1_RELEASE_ACCEPTANCE.yaml
+      - 99_handoffs/completed/E2-001_verifier_review.yaml
+      - 99_handoffs/completed/E2-002_verifier_review.yaml
+      - 99_handoffs/completed/E2-003_verifier_review.yaml
+      - 99_handoffs/completed/E2-004_verifier_review.yaml
+    deliverables:
+      - 05_architecture/ENGINEERING_PREVIEW_ARCHITECTURE_BASELINE.md
+      - 05_architecture/ENGINEERING_PREVIEW_E3_VALIDATION_OBLIGATIONS.md
+      - 05_architecture/adr/
+      - 99_handoffs/completed/E2-005_handoff.yaml
+    allowed_files_to_change:
+      - 05_architecture/ENGINEERING_PREVIEW_ARCHITECTURE_BASELINE.md
+      - 05_architecture/ENGINEERING_PREVIEW_E3_VALIDATION_OBLIGATIONS.md
+      - 05_architecture/adr/
+      - 01_governance/ASSUMPTION_REGISTER.md
+      - 01_governance/RISK_REGISTER.md
+      - 01_governance/PROJECT_STATE.yaml
+      - 01_governance/TASK_REGISTRY.yaml
+      - 99_handoffs/completed/E2-005_handoff.yaml
+      - 99_handoffs/completed/E2-005_fixer_handoff.yaml
+    forbidden_actions:
+      - Mark any ADR ACCEPTED, mark architecture independently selected/verified, or pass the E2 gate.
+      - Select a provider/model or permanent role occupant, run E3 technical/model work, make paid calls, write application code, authorize autonomous build, or resume S1-003.
+      - Revive a hard-failing candidate, ignore a selection blocker, change frozen criteria after results, or rely solely on weighted rank/audit precedent.
+      - Collapse the major decisions into one unreviewable ADR or omit negative consequences/reversal obligations.
+    acceptance_criteria:
+      - Exactly one candidate is recommended from the verified surviving set with a source-backed rationale; every hard constraint passes and the recommendation remains explicitly provisional.
+      - Separate ADRs cover all material boundaries in the E2 plan, remain mutually coherent, map every E1 architecture requirement and all 25 domains, and record context, constraints, options, evidence, decision, rejected alternatives, trade-offs, consequences, migration, reversibility/reversal cost, missing evidence, and E3 obligations.
+      - Security threat/capability boundaries, recovery/reconciliation matrix, evidence/verification independence, provider neutrality, local-first packaging, and bounded future compatibility are explicit in the proposed baseline.
+      - E3 technical obligations and E3 model/configuration benchmarks are separated; each has question, owner, prerequisite, evidence, hard gate, stop/budget/authorization boundary, failure consequence, ADR linkage, and reversal trigger.
+      - A specific future qualification-policy owner/task and independent-review path are registered for finite rerun/repetition/correction ceilings; values remain prospectively E3-owned and missing values block scored execution.
+      - Every ADR status is PROPOSED_PENDING_INDEPENDENT_ARCHITECTURE_VERIFICATION and architecture_selected remains false through the author/fixer lifecycle.
+    required_tests:
+      - ADR schema, cross-ADR reference, 127-requirement, 25-domain, decision-matrix survivor, uncertainty-closure, and E3-obligation completeness checks.
+      - Threat/recovery/evidence/provider-neutrality/future-scope and reversal-path review.
+      - No ACCEPTED ADR, no selected architecture flag, no application code/run/benchmark/paid call/autonomy/S1-003 change, frozen-E1, clean-room, secret, scope, YAML/Markdown, and git diff --check.
+    challenger_requirements:
+      - A fresh challenger must aggressively inspect hidden requirement violations, premature vendor lock-in, security/durability/evidence gaps, evaluation incompatibility, unjustified complexity, speculative future-proofing, poor reversibility, clean-room contamination, unsupported assumptions, matrix misuse, and incomplete E3 obligations.
+      - The challenger must compare the recommendation to every surviving alternative and must not accept the author's summary as evidence.
+    verifier_requirements:
+      - A separate post-fix task verifier confirms the selection package is complete, challenged, internally coherent, and still provisional; this verifier does not substitute for E2-006's fresh architecture-compliance re-derivation.
+    completion_transition: "After independent task verification, E2-005 may become VERIFIED as a complete PROPOSED selection package and E2-006 may become READY. ADRs remain proposed and architecture_selected remains false until E2-006 independently passes."
+    downstream_consumer: E2-006
+    unresolved_questions:
+      - The recommended candidate and precise ADR decomposition.
+      - The selected baseline's migration/reversal triggers and E3 evidence obligations.
+      - Exact registered E3 qualification-policy owner and later finite ceiling values.
+    escalation_conditions:
+      - No candidate remains compliant or two candidates cannot be distinguished responsibly with available evidence.
+      - A material selection blocker reappears, an ADR conflicts with E1, or an E1 amendment is required.
+      - The proposed baseline requires unsupported paid/external evidence, application implementation, or a consequential choice outside task authority.
+
+  - task_id: E2-006
+    title: Independently verify the Engineering Preview architecture baseline and E3 readiness
+    stage: E2
+    objective: Independently re-derive whether the proposed E2 architecture and ADR set satisfy the frozen E1 baseline, close architecture-blocking uncertainty, preserve security/recovery/evidence/provider-neutrality boundaries, and provide a stable E3 validation foundation.
+    why_it_matters: The architecture author, matrix, and ADR package cannot verify their own compliance or make a recommendation authoritative.
+    owner_role: INDEPENDENT_ARCHITECTURE_VERIFIER
+    assigned_model: null
+    reviewer_model: null
+    verifier_model: null
+    assignment_policy: "The executor must be a fresh session independent of every E2-005 author/fixer and author-side assistant. A separate fresh session must later evaluate VERIFY_STAGE_E2."
+    status: BACKLOG
+    planning_status: PLANNED_NOT_EXECUTED
+    priority: P0
+    dependencies:
+      - E2-005
+    blocked_by:
+      - E2_005_NOT_INDEPENDENTLY_VERIFIED
+    activation_condition: "E2-001 through E2-005 are independently VERIFIED and E2-005 supplies a challenged proposed baseline with no unresolved selection blocker."
+    gate_invariant: "E2-006 verifies or rejects the proposed baseline. It may not redesign/fix it, choose a model/provider, execute E3, write application code, or pass the separate E2 stage gate."
+    files_to_read:
+      - MASTER_OPERATING_PROMPT.md
+      - AGENTS.md
+      - README.md
+      - SECURITY.md
+      - 01_governance/PROJECT_STATE.yaml
+      - 01_governance/TASK_REGISTRY.yaml
+      - 01_governance/DECISION_LOG.md
+      - 01_governance/ASSUMPTION_REGISTER.md
+      - 01_governance/RISK_REGISTER.md
+      - 01_governance/MODEL_REGISTRY.yaml
+      - 02_research/GROK_BOT_BASELINE_2026-08-21.md
+      - 02_research/GROK_BOT_018_RECONSTRUCTED_ARCHITECTURE_AUDIT.md
+      - 02_research/GROK_BOT_018_ARCHITECTURE_ADOPTION_MATRIX.csv
+      - 03_product/ENGINEERING_PREVIEW_CHARTER.md
+      - 03_product/ENGINEERING_PREVIEW_PRD.md
+      - 03_product/ENGINEERING_PREVIEW_USER_FLOWS.md
+      - 03_product/ENGINEERING_PREVIEW_CORRECTNESS_CONTRACT.md
+      - 03_product/ENGINEERING_PREVIEW_CONTRIBUTION_WORKFLOW.md
+      - 05_architecture/
+      - 06_evaluation/ENGINEERING_PREVIEW_EVALUATION_SUITE.md
+      - 06_evaluation/MODEL_ROLE_BENCHMARK_PLAN.md
+      - 10_checkpoints/stage_checkpoints/ENGINEERING_PREVIEW_V0_1_RELEASE_ACCEPTANCE.yaml
+      - 10_checkpoints/stage_checkpoints/ENGINEERING_PREVIEW_E1_SPECIFICATION_GATE_VERIFICATION.yaml
+      - 99_handoffs/completed/E2-001_verifier_review.yaml
+      - 99_handoffs/completed/E2-002_verifier_review.yaml
+      - 99_handoffs/completed/E2-003_verifier_review.yaml
+      - 99_handoffs/completed/E2-004_verifier_review.yaml
+      - 99_handoffs/completed/E2-005_challenger_review.yaml
+      - 99_handoffs/completed/E2-005_verifier_review.yaml
+    deliverables:
+      - 10_checkpoints/stage_checkpoints/ENGINEERING_PREVIEW_E2_ARCHITECTURE_VERIFICATION.yaml
+      - 99_handoffs/completed/E2-006_verifier_review.yaml
+    allowed_files_to_change:
+      - 10_checkpoints/stage_checkpoints/ENGINEERING_PREVIEW_E2_ARCHITECTURE_VERIFICATION.yaml
+      - 01_governance/PROJECT_STATE.yaml
+      - 01_governance/TASK_REGISTRY.yaml
+      - 99_handoffs/completed/E2-006_verifier_review.yaml
+    forbidden_actions:
+      - Modify or fix architecture requirements, candidates, matrix, spike evidence, baseline, or ADR content.
+      - Trust author summaries, weighted scores, or prior verifier conclusions without re-deriving the underlying evidence.
+      - Pass a baseline with a hard failure, unresolved architecture blocker, incoherent ADR, missing threat/recovery/evidence model, or unowned E3 obligation.
+      - Pass VERIFY_STAGE_E2, execute E3, select models, make paid calls, write application code, authorize autonomy, or resume S1-003.
+    acceptance_criteria:
+      - The verifier independently reconstructs the 127-requirement and 25-domain compliance projections and finds no unresolved or falsely waived item.
+      - At least three genuine alternatives and the complete decision matrix are confirmed; all hard-gate eliminations and uncertainty dispositions reproduce from evidence.
+      - Every proposed ADR is coherent with the others, supported by comparison evidence, explicit about consequences/reversibility, and compliant with E1.
+      - Security/trust/capability/secret/isolation boundaries, recovery/idempotency/reconciliation behavior, exact-revision evidence, and structurally independent verification are credible and testable.
+      - Provider neutrality is preserved; no role occupant is selected; E3 technical versus model obligations, owners, authorization gates, ceiling-policy ownership, failure consequences, and reversal triggers are complete.
+      - Clean-room, local-first proportionality, future compatibility, E1-suite testability, no-application-code, no-E3-run, no-paid-call, no-autonomy, and no-S1-003-resumption invariants pass.
+      - No unresolved BLOCKER, HIGH, or MEDIUM architecture finding remains; any material finding returns E2-005 to a bounded fixer path.
+    required_tests:
+      - Independent strict YAML/CSV/Markdown parsing, duplicate-key, ID/set/count, dependency/DAG/status, 127-requirement, 25-domain, candidate, matrix, uncertainty, ADR, and E3-obligation reconstruction.
+      - Independent hard-constraint, threat-boundary, recovery/fault, evidence/revision, verifier-independence, provider-neutrality, clean-room, and reversal-path review.
+      - Frozen-E1 byte identity; no source/application implementation; no missing/accepted-without-verification ADR; no spike/benchmark/paid-call/autonomy/S1-003 regression; secret scan; allowed-path; git diff --check.
+    challenger_requirements:
+      - The verifier must inspect and independently disposition every E2 challenger finding, especially the E2-005 architecture challenge. A new material finding is recorded rather than fixed in this task.
+      - E2-005's challenger satisfies the selection-package challenge prerequisite; author-side challenge is never credited as independent evidence.
+    verifier_requirements:
+      - The E2-006 executor is the independent architecture verifier and must pin the exact reviewed commit/artifact digests, methods, commands, results, limitations, and verdict.
+      - A distinct later stage-gate verifier must re-evaluate E2-006 and the underlying artifacts in MODE: VERIFY_STAGE_E2; E2-006 may not self-pass the gate.
+    completion_transition: "On PASS, E2-006 becomes VERIFIED, ADRs and the architecture baseline may be recorded SELECTED_VERIFIED_PENDING_E2_GATE, and MODE: VERIFY_STAGE_E2 becomes the only next E-track operation. On any material failure, E2-006 does not verify and the affected prior task returns to a prospective fixer cycle."
+    downstream_consumer: VERIFY_STAGE_E2
+    unresolved_questions:
+      - Whether the proposed baseline independently satisfies every E1 constraint.
+      - Whether any material uncertainty was improperly deferred to E3.
+      - Whether E3 obligations are complete enough for a stable post-gate plan.
+    escalation_conditions:
+      - Any architecture or E1 semantic conflict, missing evidence, circular verification, clean-room concern, or unresolved material finding.
+      - Any need to edit an architecture artifact, expand scope, run a spike, or access external/current evidence.
+      - Any attempt to combine E2-006 with the separate E2 stage-gate decision.

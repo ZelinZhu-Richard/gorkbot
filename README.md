@@ -9,8 +9,8 @@ The long-term capability benchmark is clean-room functional parity with Grok Bot
 ## Current status
 
 - Active program: Engineering Preview
-- Current phase: E1 product specification; E1-001 is ready and not started
-- Engineering Preview task status: `E0-001`: `VERIFIED`; `E1-001`: `READY`; `E1-002`: `BACKLOG`; `E2-E5`: `NOT_STARTED`
+- Current phase: E2 architecture and ADR planning; the E1 specification gate is independently `VERIFIED / E1_GATE_PASSED`
+- Engineering Preview task status: `E0-001`, `E1-001`, and `E1-002`: `VERIFIED`; `E2-001`: `READY`; `E2-002` through `E2-006`: `BACKLOG`; `E3-E5`: `NOT_STARTED`
 - Startup/customer track: preserved and deferred by D-016; S1-003 was not executed
 - Architecture: not selected
 - Engineering Preview target: one local user and one persistent software-engineering agent working on real repositories with durable state, independent verification, and evidence bundles
@@ -35,12 +35,12 @@ Every planning or coding model must read these files in order:
 The next command for the planning model is:
 
 ```text
-MODE: PLAN_STAGE_E2
+MODE: EXECUTE_TASK_E2-001
 
-Read MASTER_OPERATING_PROMPT.md, AGENTS.md, PROJECT_STATE.yaml, TASK_REGISTRY.yaml, and every E1-001 files_to_read entry.
+Read MASTER_OPERATING_PROMPT.md, AGENTS.md, PROJECT_STATE.yaml, TASK_REGISTRY.yaml, and every E2-001 files_to_read entry.
 Treat the repository as the sole authoritative project state.
-Author only the Engineering Preview v0.1 product and correctness specification within E1-001's allowed paths; mark E1-001 READY_FOR_REVIEW, not VERIFIED, and create a factual handoff.
-Do not select architecture, execute E2/E3 work, run paid APIs or benchmarks, write application code, resume S1-003, or authorize autonomous build mode.
+Author only the architecture requirements, decision criteria, 25-domain coverage, and exact frozen-E1 traceability within E2-001's allowed paths; mark E2-001 READY_FOR_REVIEW, not VERIFIED, and create a factual handoff.
+Do not generate alternatives, compare candidates, select architecture or technologies, create ADR decisions, run spikes, execute E3, run evaluation cases or benchmarks, make paid calls, write application code, resume S1-003, or authorize autonomous build mode.
 ```
 
 ## Repository principles
