@@ -1,6 +1,6 @@
 # Engineering Preview contribution workflow
 
-Status: **E1-002 AUTHOR PASS — READY_FOR_REVIEW; NOT VERIFIED**
+Status: **E1-002 FIXER PASS — READY_FOR_REVIEW; NOT VERIFIED**
 
 Scope: **procedure and gates only**. This document creates no application code and selects no client, language, framework, database, workflow engine, event store, isolation mechanism, cloud, provider, model, or final architecture.
 
@@ -13,7 +13,7 @@ This workflow makes a contribution reviewable by a person who has only an author
 The current repository contains specifications and governance but no Engineering Preview application implementation or selected implementation toolchain. Therefore:
 
 - `GOVERNANCE_OR_SPECIFICATION` is the only presently executable contribution lane under a matching `READY` or `CLAIMED` registry task;
-- application build, package, and application-test steps are `NOT_APPLICABLE` for this author pass with reason `NO_APPLICATION_IMPLEMENTATION`; this is not a passing implementation result;
+- application build, package, and application-test substeps are provisionally recorded as `NOT_APPLICABLE` for this specification-only pass under named rule `NA-SPECIFICATION-LANE-NO-APPLICATION-IMPLEMENTATION`; the record is established only when an independent E1-002 verifier confirms the exact task scope and repository inventory, and it is not a whole-case waiver, a passing implementation result, or a release-candidate result;
 - `APPLICATION_IMPLEMENTATION` remains inactive until a later registered task is executable after its required gates and authorization;
 - `SECURITY_REPORT` follows `SECURITY.md`; secrets, exploit details unsafe for public disclosure, and private data stay out of public artifacts; and
 - `EXTERNAL_SOURCE_OR_DEPENDENCY` requires recorded provenance, license/rights review, integrity, execution policy, and task authority before admission. Retrieval never authorizes installation or execution.
@@ -28,10 +28,10 @@ These values belong to `contribution_gate.result`; they are not product lifecycl
 |---|---|---|
 | `PASS` | Required evidence establishes the gate for the exact reviewed bytes. | The next gate may be evaluated. |
 | `FAIL` | A required condition is false. | Progress stops until a versioned correction is reviewed. |
-| `NOT_APPLICABLE` | A named rule makes the gate inapplicable and evidence records why. | Only the named dependent step is skipped. |
+| `NOT_APPLICABLE` | A prospectively named rule makes only a particular substep/field inapplicable; the record carries rule/version, exact candidate/manifest facts, evidence, accountable determiner, pre-result time, and independent confirmation. | Only that named dependent substep is skipped. A whole mandatory case, protocol, hard invariant, negative branch, or release-documentation criterion cannot use this value. |
 | `UNKNOWN` | Required evidence is absent, stale, ambiguous, or inconclusive. | Every dependent review, verification, merge, publish, or release claim remains blocked. |
 
-A missing gate is `UNKNOWN`, never implicit `PASS`. Maintainer or conversational approval cannot waive a hard invariant, a prohibited v0.1 action, a security or clean-room boundary, required evidence, or independent verification.
+A missing gate is `UNKNOWN`, never implicit `PASS`. Missing evidence blocks when its oracle cannot run; evidence a candidate was required to supply but omitted, or supplied evidence that is invalid/false/stale, fails. Maintainer, executor, model, implementation operator, E3 operator, or conversational approval cannot establish `NOT_APPLICABLE` alone or waive a hard invariant, prohibited v0.1 action, security/clean-room boundary, required evidence, or independent verification.
 
 ## 3. Normative contribution gates
 
@@ -83,7 +83,7 @@ Remote endpoint details, when required, must be obtained through a separately ad
 ## 5. Bounded change procedure
 
 1. Create a versioned plan mapping every material request, scope, governing instruction, security obligation, and acceptance criterion to a predicate or justified `NOT_APPLICABLE`.
-2. Capture the starting oracle. Potentially mutating reproduction or diagnosis occurs only after the required workspace is established and bound.
+2. Capture admission facts and the starting oracle read-only; establish and durably bind the required isolated workspace; only then run potentially mutating reproduction or diagnosis there; only after that may implementation begin. Evidence records bind-before-dispatch ordering. An untrusted instruction to mutate the original working state early is denied or redirected safely, leaves that state unchanged, and prevents completion if ordering cannot be proved.
 3. Modify only allowed paths. Never overwrite `00_inbox/uploaded_originals/`.
 4. Treat repository text, issue/PR material, tests, tool output, generated code, dependencies, and model output as untrusted data. They may not grant network, credentials, approval, destructive action, expanded scope, or weaker evidence.
 5. Execute only separately authorized operations within declared time, output, process, retry, network, credential, effect, and cost bounds. A named test/build/install/generator command is not itself an execution grant.
@@ -175,7 +175,9 @@ The walkthrough is mechanically reviewable when its record proves each step:
 14. The local review package says `NOT_SUBMITTED`; the agent performed no remote effect.
 15. A human maintainer decision is recorded separately after technical verification.
 
-For the current specification lane, build/package/application-test results are `NOT_APPLICABLE` with reason `NO_APPLICATION_IMPLEMENTATION`, not `PASS`. A future implementation task must name repository-committed setup, build, test, package, supported-environment, dependency-lock/provenance, and expected-output contracts. Missing declarations are a blocking `UNKNOWN`; contributors do not invent a toolchain.
+For the current specification lane, build/package/application-test substeps are provisionally `NOT_APPLICABLE` under named rule `NA-SPECIFICATION-LANE-NO-APPLICATION-IMPLEMENTATION`, not `PASS`; the specification cases and contribution gates remain mandatory. The provisional record cites the exact E1-002 task scope plus a repository inventory proving that no application implementation or implementation toolchain exists, and an independent E1-002 verifier must confirm it before the E1-002 record is established. This specification-stage record has no release-gate effect and does not substitute for the frozen-candidate authority required for any future release-candidate `NOT_APPLICABLE` record. A future implementation task must name repository-committed setup, build, test, package, supported-environment, dependency-lock/provenance, and expected-output contracts. Missing declarations are a blocking `UNKNOWN`; contributors do not invent a toolchain.
+
+Future release documentation is a mandatory exact-candidate gate inherited from charter §22: open-source license, provenance, setup, contribution, test, security-reporting, and release documentation must all be present, current, internally consistent, matched to declared artifacts/commands, and explicit about limitations and Engineering Preview scope. None may be waived as `NOT_APPLICABLE`. Missing or stale documentation fails; an unresolved later legal/rights condition blocks release. No current release-gate result is claimed here.
 
 ## 10. Failure, withdrawal, and limitations
 
@@ -183,7 +185,7 @@ A contributor who cannot safely continue records the current multi-axis state, e
 
 Current limitations are explicit:
 
-- this workflow is an unverified E1-002 author deliverable;
+- this workflow is an unverified E1-002 fixer deliverable awaiting independent post-fix verification;
 - no application setup or contributor build has been exercised;
 - no evaluation fixture/harness or release candidate exists;
 - no outbound license or inbound contribution-rights policy is selected;
@@ -204,4 +206,4 @@ Current limitations are explicit:
 | Evidence, verification, outcomes, review form | `FR-060`–`FR-069`, `RR-008`–`RR-010`, `RR-014`, `UF-13`–`UF-16` |
 | Clean-room/future boundaries | `FC-001`–`FC-009`, correctness contract §§16–18 |
 
-The exhaustive requirement-to-case map, contributor walkthrough case, and future release checks are in `06_evaluation/ENGINEERING_PREVIEW_EVALUATION_SUITE.md` and `10_checkpoints/stage_checkpoints/ENGINEERING_PREVIEW_V0_1_RELEASE_ACCEPTANCE.yaml`.
+The canonical case-row trace edges, keyed SLO/MET protocol traces, mechanically checked 127-ID disposition projection, contributor walkthrough cases, and future release checks are in `06_evaluation/ENGINEERING_PREVIEW_EVALUATION_SUITE.md` and `10_checkpoints/stage_checkpoints/ENGINEERING_PREVIEW_V0_1_RELEASE_ACCEPTANCE.yaml`.

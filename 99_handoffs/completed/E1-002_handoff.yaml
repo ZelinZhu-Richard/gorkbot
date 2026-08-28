@@ -266,3 +266,42 @@ scope_control:
   interviews_conducted: 0
   spend_usd: 0
   s1_003_resumed: false
+
+fixer_correction_addendum:
+  addendum_status: APPEND_ONLY_SUPERSEDES_CURRENT_STATE_AND_COUNTS_ONLY
+  original_author_record_sha256_before_addendum: d43ce2f636f4a7717c0855a7759c494f15829aec49101a176d6febd823d5b981
+  challenger_record:
+    path: 99_handoffs/completed/E1-002_challenger_review.yaml
+    sha256: 5548d7a75cdb576e8b03fedcc59ab2e03595100dbf923693cbc6645ca4826301
+    reviewed_commit: 0044276289378051ecfe32ab04318c50aee3b4ad
+    verdict: E1_002_CHANGES_REQUESTED
+    finding_counts: "BLOCKER 0, HIGH 1, MEDIUM 6, LOW 4"
+  fixer_base_commit: 90df9ee5b1e84645f19921a10932dd97b6342bae
+  fixer_completed_at: "2026-08-28T04:18:28Z"
+  finding_disposition_summary: "F-E1-002-01..11 FIXED; DISPUTED 0; DEFERRED 0; independent post-fix verification required"
+  corrected_current_counts:
+    evaluation_cases_specified: 170
+    evaluation_cases_implemented: 0
+    evaluation_cases_run: 0
+    canonical_requirement_ids: 127
+    canonical_case_trace_edges: 701
+    canonical_protocol_trace_edges: 8
+    total_typed_trace_edges: 709
+    checkpoint_only_edges: 0
+    catalog_only_edges: 0
+    security_negative_families: 23
+    repository_condition_rows: 16
+    git_effect_rows: 30
+    predicate_adequacy_variants: 9
+    mandatory_composition_variants: 16
+    fixture_families: 11
+    used_fixture_families: 11
+    oracle_classes: 18
+    used_oracle_classes: 18
+    model_benchmarks_run: 0
+    paid_api_calls: 0
+  historical_record_rule: "Earlier 169-case, 695-row-edge, 907-checkpoint-edge, author-pass, and REVIEW_TASK_E1-002 statements above remain immutable historical author evidence and are not current corrected counts or next action."
+  current_status: READY_FOR_REVIEW_NOT_VERIFIED_FIXER_PASS
+  e1_gate_status: NOT_EVALUATED
+  next_command: "MODE: VERIFY_TASK_E1-002"
+  full_fixer_record: 99_handoffs/completed/E1-002_fixer_handoff.yaml

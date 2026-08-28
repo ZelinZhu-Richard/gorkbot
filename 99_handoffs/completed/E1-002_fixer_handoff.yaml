@@ -1,0 +1,346 @@
+handoff_id: H-E1-002-20260828-FIXER
+task_id: E1-002
+stage: E1
+mode: FIX_TASK_E1-002
+role: FIXER
+author_model: "Codex (runtime model identifier not exposed) — original E1-002 AUTHOR returning as FIXER"
+challenger_model: "Claude Fable 5 (claude-fable-5) via Claude Code — independent E1-002 challenger"
+reviewer_requested: "Independent post-fix VERIFIER bound to the exact resulting candidate; this fixer and its read-only QA subagents are not the verifier"
+started_at: null
+started_at_status: "UNKNOWN_NOT_CAPTURED; no exact start timestamp is fabricated"
+fixer_claim_recorded_at: "2026-08-28T03:51:52Z"
+completed_at: "2026-08-28T04:18:28Z"
+base_commit: 90df9ee5b1e84645f19921a10932dd97b6342bae
+base_branch: chore/initialize-project-materials
+initial_worktree_status: CLEAN
+repository_patch_status: UNCOMMITTED
+task_status: READY_FOR_REVIEW
+verification_status: NOT_VERIFIED_FIXER_PASS
+e1_001_status: VERIFIED
+e1_gate_status: NOT_EVALUATED
+
+challenger_authority:
+  path: 99_handoffs/completed/E1-002_challenger_review.yaml
+  sha256: 5548d7a75cdb576e8b03fedcc59ab2e03595100dbf923693cbc6645ca4826301
+  reviewed_commit: 0044276289378051ecfe32ab04318c50aee3b4ad
+  verdict: E1_002_CHANGES_REQUESTED
+  finding_counts:
+    BLOCKER: 0
+    HIGH: 1
+    MEDIUM: 6
+    LOW: 4
+  exact_finding_domain: [F-E1-002-01, F-E1-002-02, F-E1-002-03, F-E1-002-04, F-E1-002-05, F-E1-002-06, F-E1-002-07, F-E1-002-08, F-E1-002-09, F-E1-002-10, F-E1-002-11]
+
+scope_amendment:
+  amendment_id: E1-002-SA-01
+  recorded_before_new_file_creation: true
+  recorded_at: "2026-08-28T03:51:52Z"
+  authority: "Direct founder MODE: FIX_TASK_E1-002 instruction"
+  effect: "Added this factual fixer handoff path only; all original E1-002 boundaries remain in force."
+
+files_read:
+  - MASTER_OPERATING_PROMPT.md
+  - AGENTS.md
+  - README.md
+  - SECURITY.md
+  - 01_governance/PROJECT_STATE.yaml
+  - 01_governance/TASK_REGISTRY.yaml
+  - 01_governance/DECISION_LOG.md
+  - "D-016 within 01_governance/DECISION_LOG.md and all current Engineering Preview governance state"
+  - 01_governance/ASSUMPTION_REGISTER.md
+  - 01_governance/RISK_REGISTER.md
+  - 01_governance/MODEL_REGISTRY.yaml
+  - 03_product/ENGINEERING_PREVIEW_CHARTER.md
+  - 03_product/ENGINEERING_PREVIEW_PRD.md
+  - 03_product/ENGINEERING_PREVIEW_USER_FLOWS.md
+  - 03_product/ENGINEERING_PREVIEW_CORRECTNESS_CONTRACT.md
+  - 03_product/ENGINEERING_PREVIEW_CONTRIBUTION_WORKFLOW.md
+  - 06_evaluation/ENGINEERING_PREVIEW_EVALUATION_SUITE.md
+  - 06_evaluation/MODEL_ROLE_BENCHMARK_PLAN.md
+  - 10_checkpoints/stage_checkpoints/ENGINEERING_PREVIEW_V0_1_RELEASE_ACCEPTANCE.yaml
+  - 99_handoffs/HANDOFF_TEMPLATE.yaml
+  - 99_handoffs/completed/E1-001_verifier_review.yaml
+  - 99_handoffs/completed/E1-002_handoff.yaml
+  - 99_handoffs/completed/E1-002_challenger_review.yaml
+
+files_created:
+  - 99_handoffs/completed/E1-002_fixer_handoff.yaml
+
+files_modified:
+  - 01_governance/ASSUMPTION_REGISTER.md
+  - 01_governance/PROJECT_STATE.yaml
+  - 01_governance/RISK_REGISTER.md
+  - 01_governance/TASK_REGISTRY.yaml
+  - 03_product/ENGINEERING_PREVIEW_CONTRIBUTION_WORKFLOW.md
+  - 06_evaluation/ENGINEERING_PREVIEW_EVALUATION_SUITE.md
+  - 10_checkpoints/stage_checkpoints/ENGINEERING_PREVIEW_V0_1_RELEASE_ACCEPTANCE.yaml
+  - 99_handoffs/completed/E1-002_handoff.yaml
+
+files_deleted: []
+
+decisions_made:
+  - "The evaluation catalog's explicit case-row requirement traces are canonical for the 119 FR/RR/FC/UF/NEG IDs; the eight SLO/MET IDs are canonically traced by keyed measurement protocols."
+  - "The checkpoint requirement_dispositions map is a stored non-normative projection that must be regenerated/cross-checked for exact typed set equality; population membership is not coverage."
+  - "Every one of the 170 top-level catalog cases and all declared predicate/composition/protocol subvariants is mandatory; whole-case and whole-protocol NOT_APPLICABLE are forbidden."
+  - "No universal correction/retry ceiling or empirical SLO value was invented. Finite values must be owned, versioned, and frozen prospectively before a run; missing values block."
+  - "Observable provider dispatch/response boundaries are tested; inaccessible proprietary provider internals are explicitly outside the secret-scan claim."
+  - "The thirteen release-gate stress vectors exercise only the pure policy precedence function and do not evaluate a candidate, an E1 gate, or a release gate."
+
+assumptions_added: []
+assumptions_updated:
+  - A-020
+risks_added: []
+risks_updated:
+  - R-002
+  - R-009
+  - R-027
+risks_preserved:
+  - R-029
+
+counts:
+  suite_version: EP-EVAL-0.2
+  evaluation_cases_specified: 170
+  evaluation_case_groups:
+    WF: 19
+    CTL: 24
+    FALSE: 21
+    APR: 9
+    ROUTE: 7
+    EVID: 12
+    NEG: 24
+    REPO: 16
+    GIT: 30
+    CONTRIB: 8
+  evaluation_cases_implemented: 0
+  evaluation_cases_run: 0
+  canonical_requirement_ids: 127
+  canonical_requirement_families:
+    FR: 56
+    RR: 15
+    SLO: 4
+    MET: 4
+    FC: 9
+    UF: 16
+    NEG: 23
+  canonical_case_backed_requirement_ids: 119
+  canonical_protocol_backed_requirement_ids: 8
+  canonical_case_trace_edges: 701
+  canonical_protocol_trace_edges: 8
+  total_typed_trace_edges: 709
+  checkpoint_only_trace_edges: 0
+  catalog_only_trace_edges: 0
+  security_negative_requirement_families_covered: "23/23"
+  repository_condition_rows_covered: "16/16"
+  git_effect_rows_covered: "30/30"
+  false_completion_brief_scenarios_preserved: "20/20"
+  predicate_adequacy_ground_truth_variants: 9
+  mandatory_risk_driven_composition_variants: 16
+  oracle_classes_defined: 18
+  oracle_classes_used: 18
+  fixture_families_defined: 11
+  fixture_families_used: 11
+  slo_met_protocols: 8
+  release_gate_policy_logic_vectors: 13
+  model_benchmarks_run: 0
+  paid_api_calls: 0
+
+traceability_model:
+  canonical_case_truth: "Explicit case-row requirement tokens after deterministic range expansion for every FR/RR/FC/UF/NEG ID."
+  canonical_protocol_truth: "Exactly one keyed PROT-SLO-* or PROT-MET-* definition for each of the eight SLO/MET IDs, using OR-METRIC-PROTOCOL."
+  secondary_checkpoint_map: "requirement_dispositions is NON_NORMATIVE_STORED_PROJECTION; case lists must equal reverse C(r), and protocol IDs must equal P(r)."
+  intentional_projection_rule: "The two canonical domains are disjoint: 119 case-backed IDs plus 8 protocol-backed IDs equal 127. Population membership never creates a coverage edge."
+  mechanical_result: "701 projected case edges equal the catalog's 701 edges; 8 projected protocol edges equal the eight protocol definitions; both symmetric differences are empty."
+
+finding_dispositions:
+  - finding_id: F-E1-002-01
+    resolution: FIXED
+    files_changed:
+      - 06_evaluation/ENGINEERING_PREVIEW_EVALUATION_SUITE.md
+      - 10_checkpoints/stage_checkpoints/ENGINEERING_PREVIEW_V0_1_RELEASE_ACCEPTANCE.yaml
+    evidence:
+      - "Suite §7 defines disjoint canonical C(r)/P(r) truth, truthful CASE_BACKED/DEFERRED_CAPABILITY/E3_MEASUREMENT/E3_MEASURE_ONLY dispositions, and a mechanically checkable projection rule."
+      - "Checkpoint coverage.requirement_dispositions stores exactly 127 projected entries: 119 case-backed and 8 protocol-backed."
+      - "Every SLO/MET ID binds to one explicit measurement protocol and OR-METRIC-PROTOCOL; no paper-only coverage remains."
+    verification_method: "Re-extract all 170 rows, expand ranges, reverse-map by requirement, and compare sets to the checkpoint projection; compare keyed protocol requirement/protocol/oracle triples. Result: 701=701, 8=8, zero symmetric differences, all 127 IDs dispositioned."
+  - finding_id: F-E1-002-02
+    resolution: FIXED
+    files_changed:
+      - 06_evaluation/ENGINEERING_PREVIEW_EVALUATION_SUITE.md
+      - 10_checkpoints/stage_checkpoints/ENGINEERING_PREVIEW_V0_1_RELEASE_ACCEPTANCE.yaml
+    evidence:
+      - "Suite §5.1 defines VER-ADQ-01..09 with fixture state, request, insufficient predicate, verdict, evidence/oracle, and forbidden false pass."
+      - "Hidden pre-frozen obligation/reachability/integration/mutation ground truth controls; bounded judgment cannot override deterministic failure."
+    verification_method: "Mechanically confirm the exact nine-class set, every required field, the named parent cases, mandatory subvariant membership, and deterministic ground-truth authority."
+  - finding_id: F-E1-002-03
+    resolution: FIXED
+    files_changed:
+      - 06_evaluation/ENGINEERING_PREVIEW_EVALUATION_SUITE.md
+      - 10_checkpoints/stage_checkpoints/ENGINEERING_PREVIEW_V0_1_RELEASE_ACCEPTANCE.yaml
+    evidence:
+      - "Suite §5 defines version-2 semantic recipes for all 11 fixture families, a common topology/provenance contract, deterministic seed, primary projection, materialization fields, mutation regions, and adversarial variants."
+    verification_method: "Validate the 11 unique recipes against required semantic fields and resolve every case-to-fixture reference to a deterministic named primary variant; result 11/11 used, no orphan."
+  - finding_id: F-E1-002-04
+    resolution: FIXED
+    files_changed:
+      - 03_product/ENGINEERING_PREVIEW_CONTRIBUTION_WORKFLOW.md
+      - 06_evaluation/ENGINEERING_PREVIEW_EVALUATION_SUITE.md
+      - 10_checkpoints/stage_checkpoints/ENGINEERING_PREVIEW_V0_1_RELEASE_ACCEPTANCE.yaml
+    evidence:
+      - "EP-WF-019 and ORDER-PREMATURE-MUTATING-REPRODUCTION enforce read-only admission/base capture, workspace binding, then mutating reproduction, then implementation."
+      - "The oracle preserves the original state, records denial/redirection and reconciliation, blocks false completion, and assumes no isolation architecture."
+    verification_method: "Confirm EP-WF-019, suite §5.2 phase pinning, OR-CONTROL-TIMELINE/REPO/GIT evidence, and checkpoint EVR-03 all name the premature-mutation failure."
+  - finding_id: F-E1-002-05
+    resolution: FIXED
+    files_changed:
+      - 01_governance/RISK_REGISTER.md
+      - 06_evaluation/ENGINEERING_PREVIEW_EVALUATION_SUITE.md
+      - 10_checkpoints/stage_checkpoints/ENGINEERING_PREVIEW_V0_1_RELEASE_ACCEPTANCE.yaml
+    evidence:
+      - "OR-SECRET-MARKER enumerates prompts/context, model/provider payloads and structured fields, tools/env, terminals, argv/env/subprocesses, traces, artifacts, evidence, UI surfaces, and controlled network payloads."
+      - "EP-EVID-005, EP-NEG-SECRET-01, and EP-NEG-CRED-01 bind to the full surface set; aliases/symlinks/protected-location precedence fail closed."
+    verification_method: "Check the 12 checkpoint observable boundary classes against the suite oracle, verify synthetic-marker-only and missing-capture BLOCKED rules, and confirm no claim over inaccessible proprietary internals."
+  - finding_id: F-E1-002-06
+    resolution: FIXED
+    files_changed:
+      - 03_product/ENGINEERING_PREVIEW_CONTRIBUTION_WORKFLOW.md
+      - 10_checkpoints/stage_checkpoints/ENGINEERING_PREVIEW_V0_1_RELEASE_ACCEPTANCE.yaml
+    evidence:
+      - "release_case_policy defines exact catalog/protocol mandatory membership and nonwaivable selectors."
+      - "not_applicable_policy defines named scopes, evidence, prospective authority, independent confirmation, prohibited waivers, and a provisional specification-lane record with no release-gate effect."
+      - "The seven charter §22 documentation criteria are exact-candidate mandatory checks; required UNKNOWN/missing/invalid evidence precedence prevents PASS."
+    verification_method: "Mechanically compare mandatory case membership to all 170 catalog IDs and eight protocols; validate N/A authority/record fields/nonwaivers and all seven documentation keys; replay all 13 non-PASS policy vectors."
+  - finding_id: F-E1-002-07
+    resolution: FIXED
+    files_changed:
+      - 06_evaluation/ENGINEERING_PREVIEW_EVALUATION_SUITE.md
+      - 10_checkpoints/stage_checkpoints/ENGINEERING_PREVIEW_V0_1_RELEASE_ACCEPTANCE.yaml
+    evidence:
+      - "Suite §7.2 defines exactly 16 bounded risk-driven compositions covering the founder-specified interaction set, each with parents, frozen schedule, result, decisive oracle, and forbidden outcome."
+      - "All 16 are mandatory nonwaivable release subvariants."
+    verification_method: "Compare the exact COMP-01..16 set and required columns to the checkpoint mandatory subvariant set; reject missing/duplicate/late-selected compositions."
+  - finding_id: F-E1-002-08
+    resolution: FIXED
+    files_changed:
+      - 06_evaluation/ENGINEERING_PREVIEW_EVALUATION_SUITE.md
+      - 10_checkpoints/stage_checkpoints/ENGINEERING_PREVIEW_V0_1_RELEASE_ACCEPTANCE.yaml
+    evidence:
+      - "OR-METRIC-PROTOCOL is bound by every PROT-SLO-001..004 and PROT-MET-001..004 definition."
+    verification_method: "Compute defined and referenced oracle sets across cases and protocols; result 18 defined, 18 used, no orphan."
+  - finding_id: F-E1-002-09
+    resolution: FIXED
+    files_changed:
+      - 06_evaluation/ENGINEERING_PREVIEW_EVALUATION_SUITE.md
+      - 10_checkpoints/stage_checkpoints/ENGINEERING_PREVIEW_V0_1_RELEASE_ACCEPTANCE.yaml
+    evidence:
+      - "Suite §7.3 and scored_run_common_protocol require material risk class, ceiling policy/owner/value/version/freeze/exhaustion fields."
+      - "All scored tasks remain conservatively HIGH; finite values must be prospectively supplied, exhaustion records truthful noncompletion, and silent/unbounded retry is forbidden."
+    verification_method: "Validate required risk/ceiling fields, null universal numeric values, missing-value BLOCKED consequences, and mandatory BOUND-CORRECTION-EXHAUSTION coverage."
+  - finding_id: F-E1-002-10
+    resolution: FIXED
+    files_changed:
+      - 01_governance/RISK_REGISTER.md
+      - 06_evaluation/ENGINEERING_PREVIEW_EVALUATION_SUITE.md
+      - 10_checkpoints/stage_checkpoints/ENGINEERING_PREVIEW_V0_1_RELEASE_ACCEPTANCE.yaml
+    evidence:
+      - "Each of eight SLO/MET protocols defines numerator, denominator, eligible/excluded populations, blocked/unverified/cancelled treatment, evidence, uncertainty, threshold state, and amendment rule."
+      - "EP-MEASUREMENT-0.2 prohibits operator redefinition and post-result rescue; amendments require a prospective versioned E1-002 record plus independent challenge/verification, with E1-001 reverification if semantics change."
+    verification_method: "For each SLO/MET ID validate every required definition field and common governance reference; confirm no observed values and no silently mutable denominator or threshold."
+  - finding_id: F-E1-002-11
+    resolution: FIXED
+    files_changed:
+      - 06_evaluation/ENGINEERING_PREVIEW_EVALUATION_SUITE.md
+      - 10_checkpoints/stage_checkpoints/ENGINEERING_PREVIEW_V0_1_RELEASE_ACCEPTANCE.yaml
+    evidence:
+      - "All 18 oracle registry rows include a specific Does not establish clause; deterministic inputs retain priority and bounded judgment cannot override deterministic failure."
+    verification_method: "Parse the oracle registry, require four columns and a nonempty non-claim for every oracle, cross-check every reference, and confirm 18/18 use."
+
+finding_summary:
+  fixed: 11
+  disputed: 0
+  deferred: 0
+
+tests_run:
+  - "Ruby read-only E1-002 structural validator over the suite, checkpoint, verified E1-001 inputs, governance, scope, statuses, hashes, and repository inventory."
+  - "Pure synthetic release-gate precedence function over the 13 founder-required adverse vectors; no candidate or gate state was evaluated."
+  - "All-repository YAML parse and duplicate-key scan, Markdown/table/UTF-8 checks, secret-pattern scan, clean-room and allowed-path review, E1-001 SHA-256 preservation checks, application-source inventory, and git diff --check."
+
+test_results:
+  - "PASS: 412/412 E1-002 assertions."
+  - "PASS: 170/170 evaluation case IDs unique with exact group counts."
+  - "PASS: 127/127 canonical IDs resolved and meaningfully dispositioned; 701 case edges and 8 protocol edges reproduce exactly with zero projection differences."
+  - "PASS: all eight SLO/MET protocols complete; 9/9 predicate variants; 16/16 mandatory compositions; 11/11 fixtures used; 18/18 oracles used with non-claims."
+  - "PASS: 23/23 NEG, 16/16 repository-condition, 30/30 Git/effect coverage; 20/20 founder false-completion stress scenarios preserved."
+  - "PASS: all 13 pure gate-policy stress vectors resolve REJECTED or BLOCKED; release and E1 gates remain NOT_EVALUATED."
+  - "PASS: verified E1-001 product/correctness artifacts and verifier record retain expected SHA-256 values."
+  - "PASS: 45/45 YAML files parse with no duplicate keys; changed Markdown is UTF-8, structurally complete, and free of unresolved fences/table-shape defects."
+  - "PASS: changed paths are exactly the nine prospectively allowed paths; no application source, architecture selection, evaluation run, benchmark, provider/paid call, external effect, or autonomy authorization; secret and clean-room scans pass; git diff --check clean."
+
+security_checks:
+  - "Only synthetic marker strings are specified; no real secret, credential, customer/private data, remote endpoint, provider account, or paid API was accessed."
+  - "The expanded leak oracle covers every declared observable request/tool/process/trace/evidence/UI/network boundary and blocks on missing capture."
+  - "Protected-location precedence, path aliases, and symlink/path swaps remain fail-closed."
+  - "No untrusted repository content, hook, script, dependency, or retrieved content was executed as authority."
+  - "No reconstructed Grok Bot source, schema, internal identifier, constant, asset, copy, or implementation detail was imported."
+
+known_limitations:
+  - "E1-002 has not received independent post-fix verification and is not VERIFIED."
+  - "All 170 cases, 11 fixture families, 18 oracles, and 8 measurement protocols remain specifications only; none is implemented or run."
+  - "No empirical SLO/MET values exist; SLO-002/SLO-003 reference-environment values remain governed placeholders, and every reported observation field remains null."
+  - "Architecture, isolation/storage/provider/model/toolchain choices and permanent model-role occupants remain unselected."
+  - "Outbound license, inbound contribution terms, rights clearance, supported implementation environment, packaging/update/migration contract, and exact release candidate remain later release blockers."
+
+unverified_claims:
+  - "Whether any future implementation satisfies a functional, invariant, recovery, evidence, approval, security, reliability, or contribution requirement."
+  - "Whether the specified predicate and composition fixtures will be implementable without amendment."
+  - "Whether prospective SLO thresholds are achievable in a future frozen reference environment."
+  - "Whether E1-002 will pass independent post-fix verification or the later separate E1 gate evaluation."
+
+unknown_items:
+  - final_architecture
+  - implementation_toolchain_and_isolation_mechanism
+  - provider_model_route_and_verifier_eligibility
+  - funded_access_budget_and_account_quotas
+  - outbound_license_and_inbound_contribution_terms
+  - third_party_rights_clearance
+  - packaging_update_migration_and_exact_release_candidate
+  - observed_preview_slo_and_measure_only_values
+  - concrete_per_task_correction_and_retry_ceilings
+
+blockers:
+  - independent_post_fix_e1_002_verification_not_run
+  - e1_specification_gate_not_evaluated
+  - outbound_license_and_inbound_rights_not_selected_for_future_release
+
+recommended_next_task: VERIFY_TASK_E1-002
+next_command: "MODE: VERIFY_TASK_E1-002"
+repository_commit_or_patch: "Uncommitted E1-002 fixer patch based on 90df9ee5b1e84645f19921a10932dd97b6342bae on chore/initialize-project-materials; intentionally left uncommitted for the founder."
+
+scope_control:
+  e1_001_status: VERIFIED
+  e1_001_byte_preserved: true
+  e1_002_status: READY_FOR_REVIEW
+  e1_002_verified: false
+  e1_gate_status: NOT_EVALUATED
+  e2_status: NOT_STARTED_NON_EXECUTABLE
+  e3_status: NOT_STARTED
+  e4_status: NOT_STARTED
+  e5_status: NOT_STARTED
+  architecture_selected: false
+  model_roles_selected: false
+  application_code_written: false
+  evaluation_cases_implemented: 0
+  evaluation_cases_run: 0
+  observed_reliability_results: 0
+  model_benchmarks_run: 0
+  technical_spikes_run: 0
+  paid_api_calls_run: 0
+  external_actions_performed: false
+  release_authorized: false
+  autonomy_eligible: NOT_ELIGIBLE
+  autonomous_build_authorized: false
+  customer_evidence_records: 0
+  outreach_messages_sent: 0
+  interviews_conducted: 0
+  spend_usd: 0
+  s1_003_status: DEFERRED_NOT_EXECUTED
+  s1_003_resumed: false

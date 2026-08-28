@@ -1149,7 +1149,7 @@ tasks:
     why_it_matters: A durable open-source Engineering Preview needs a reproducible contributor path and objective release gates before implementation can claim readiness.
     owner_role: AUTHOR
     assigned_model: "Codex (runtime model identifier not exposed) — E1-002 AUTHOR"
-    reviewer_model: null
+    reviewer_model: "Claude Fable 5 (claude-fable-5) via Claude Code — independent E1-002 challenger (separate session; independent of the Codex author/fixer; Claude Code is a named E3 candidate system and this review selected no role occupant)"
     verifier_model: null
     status: READY_FOR_REVIEW
     author_started_at: null
@@ -1175,8 +1175,25 @@ tasks:
     author_requirement_summary: "169 uniquely identified evaluation cases map all 127 canonical E1-001 IDs: 56 FR, 15 HARD_INVARIANT RR, 4 PREVIEW_SLO, 4 MEASURE_ONLY, 9 FC, 16 UF, and 23 NEG. Separate mechanically keyed coverage reconciles 16 repository conditions, 30 Git/effect rows, 32 task-lifecycle transitions, 9 operation transitions, 12 agent transitions, 7 completion-predicate sets, 12 state combinations, 6 evidence profiles, 42 logical evidence keys, 15 sections, and 16 evidence-validation rules. Eleven synthetic clean-room fixture recipes and 18 oracle classes are specified but not implemented or run."
     author_required_test_status: "PASS_AUTHOR_MECHANICAL_ONLY: requirements/case/reference/oracle/fixture/matrix/transition/evidence traceability, cross-file gate consistency, Markdown/YAML/scope/no-code/no-architecture/no-benchmark/secret/clean-room/staged-index/git-diff checks passed. REQUIRED_NEXT: independent challenger review and independent post-fix verifier review have not run; E1-002 remains NOT VERIFIED."
     author_internal_review_status: "AUTHOR_SIDE_ASSISTANCE_ONLY: seven read-only subagents reviewed case coverage, contribution flow, fixtures, release gates, requirements, security/oracles, and final traceability. Their findings informed the sole author's artifacts; they are neither the registered independent challenger nor verifier and provide no independent lifecycle evidence."
-    verification_status: NOT_VERIFIED_AUTHOR_PASS
-    next_command: "MODE: REVIEW_TASK_E1-002"
+    challenger_evidence:
+      - 99_handoffs/completed/E1-002_challenger_review.yaml
+    challenger_reviewed_commit: 0044276289378051ecfe32ab04318c50aee3b4ad
+    challenger_verdict: E1_002_CHANGES_REQUESTED
+    challenger_finding_counts: "BLOCKER 0, HIGH 1, MEDIUM 6, LOW 4"
+    challenger_findings: "F-E1-002-01 through F-E1-002-11"
+    fixer_model: "Codex (runtime model identifier not exposed) — original E1-002 AUTHOR returning as FIXER"
+    fixer_started_at: null
+    fixer_started_at_status: "UNKNOWN_NOT_CAPTURED; no exact start timestamp is fabricated"
+    fixer_claim_recorded_at: "2026-08-28T03:51:52Z"
+    fixer_completed_at: "2026-08-28T04:18:28Z"
+    fixer_evidence:
+      - 99_handoffs/completed/E1-002_fixer_handoff.yaml
+    fixer_dispositions: "FIXED 11; DISPUTED 0; DEFERRED 0"
+    fixer_requirement_summary: "170 unique specified/not-implemented/not-run cases: WF 19, CTL 24, FALSE 21, APR 9, ROUTE 7, EVID 12, NEG 24, REPO 16, GIT 30, CONTRIB 8. One typed traceability truth covers all 127 canonical IDs through 701 canonical case-row edges for 119 FR/RR/FC/UF/NEG IDs and 8 keyed SLO/MET protocol edges; the stored disposition projection is set-equal with zero checkpoint-only or catalog-only edges. There are 23 security-negative families, 16 repository-condition rows, 30 Git/effect rows, 11 complete semantic fixture families, 18 oracle classes with no orphans and explicit non-claims, 9 predicate-adequacy ground-truth variants, and 16 mandatory risk-driven composition variants. All implementation/run/benchmark/paid-call counts remain zero."
+    fixer_internal_review_status: "FIXER_SIDE_QA_ONLY_NOT_INDEPENDENT: five read-only subagents audited traceability/orphan handling, suite fixtures/predicates/security/compositions, release gate/reliability policy, governance/scope, and mechanical validation. They neither verify E1-002 nor evaluate the E1 gate."
+    fixer_validation_status: "PASS_FIXER_MECHANICAL_ONLY_NOT_INDEPENDENT: YAML, case/canonical ID counts, 701-row/8-protocol trace equality, meaningful dispositions, SLO/MET completeness, predicate ground truth, fixture recipes, workspace ordering, secret surfaces, mandatory/NOT_APPLICABLE/docs rules, compositions, oracle nonclaims/usage, correction ceilings, measurement amendments, 13 pure policy-logic stress vectors, NEG/RC/GE, E1-001 hashes, scope/no-code/no-architecture/no-run/no-benchmark/no-paid-call/no-autonomy, clean-room/secret, and git-diff checks. Independent post-fix verification remains required."
+    verification_status: NOT_VERIFIED_FIXER_PASS
+    next_command: "MODE: VERIFY_TASK_E1-002"
     files_to_read:
       - MASTER_OPERATING_PROMPT.md
       - AGENTS.md
@@ -1199,6 +1216,14 @@ tasks:
       - 01_governance/PROJECT_STATE.yaml
       - 01_governance/TASK_REGISTRY.yaml
       - 99_handoffs/completed/E1-002_handoff.yaml
+      - 99_handoffs/completed/E1-002_fixer_handoff.yaml
+    scope_amendments:
+      - amendment_id: E1-002-SA-01
+        recorded_at: "2026-08-28T03:51:52Z"
+        authority: "Direct founder MODE: FIX_TASK_E1-002 instruction"
+        change: "Added 99_handoffs/completed/E1-002_fixer_handoff.yaml to allowed_files_to_change before creating it."
+        reason: "The founder explicitly requires a factual fixer handoff accounting for F-E1-002-01 through F-E1-002-11; the original E1-002 scope allowed only the author handoff path."
+        boundaries_preserved: "E1-002 specification correction and factual governance/handoff only; no E1-001 modification, E1 gate evaluation, E2/E3/E4/E5 execution, architecture or model selection, application code, evaluation-case execution, benchmark/provider/paid call, S1-003 resumption, external effect, autonomy eligibility, or autonomous-build authorization."
     deliverables:
       - open_source_contribution_workflow
       - evaluation_suite
