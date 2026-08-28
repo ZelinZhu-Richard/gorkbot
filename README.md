@@ -35,7 +35,7 @@ Every planning or coding model must read these files in order:
 The next command for the planning model is:
 
 ```text
-MODE: VERIFY_STAGE_E1
+MODE: PLAN_STAGE_E2
 
 Read MASTER_OPERATING_PROMPT.md, AGENTS.md, PROJECT_STATE.yaml, TASK_REGISTRY.yaml, and every E1-001 files_to_read entry.
 Treat the repository as the sole authoritative project state.

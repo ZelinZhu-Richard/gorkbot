@@ -59,34 +59,53 @@ status_vocabulary:
   undefined_status_or_outcome_permitted: false
 
 e1_specification_gate:
-  gate_status: NOT_EVALUATED
+  gate_status: VERIFIED
   evaluated_only_by: INDEPENDENT_E1_STAGE_GATE_VERIFIER
+  evaluated_by: "Claude Fable 5 (claude-fable-5) via Claude Code — independent E1 stage-gate verifier (separate session; not the E1-001/E1-002 author, fixer, challenger, or task-verifier session)"
+  evaluated_at_utc: "2026-08-28T14:14:29Z"
+  reviewed_commit: 7bbfebd2163b1a8aa0ec770de378c7087c6fee75
+  gate_record: 10_checkpoints/stage_checkpoints/ENGINEERING_PREVIEW_E1_SPECIFICATION_GATE_VERIFICATION.yaml
   question: "Do verified stable product, correctness, contribution, evaluation, and gate specifications now suffice for E2 without redefining success?"
+  answer: YES_E1_GATE_PASSED
   prerequisites:
     E0-001: VERIFIED
     E1-001: VERIFIED
-    E1-002: NOT_VERIFIED_FIXER_PASS
+    E1-002: VERIFIED
   prerequisite_rule: ALL_MUST_BE_INDEPENDENTLY_VERIFIED_BEFORE_GATE_EVALUATION
+  prerequisite_evidence:
+    E0-001: "99_handoffs/completed/E0-001_verifier_review.yaml (E0_VERIFIED at 0b930e2)"
+    E1-001: "99_handoffs/completed/E1-001_verifier_review.yaml (E1_001_VERIFIED at cced384)"
+    E1-002: "99_handoffs/completed/E1-002_verifier_review.yaml (E1_002_VERIFIED at 557e335)"
   required_results:
-    contribution_workflow_walkthrough: NOT_EVALUATED
-    evaluation_catalog_schema_and_case_count: NOT_EVALUATED
-    requirement_coverage_and_reference_resolution: NOT_EVALUATED
-    security_repository_and_git_matrix_reconciliation: NOT_EVALUATED
-    oracle_and_fixture_completeness: NOT_EVALUATED
-    release_checkpoint_mechanical_review: NOT_EVALUATED
-    cross_file_gate_consistency: NOT_EVALUATED
-    independent_challenger_and_post_fix_verifier_records: NOT_EVALUATED
-    no_architecture_selection: NOT_EVALUATED
-    no_application_code: NOT_EVALUATED
-    no_e2_or_e3_execution: NOT_EVALUATED
-    no_model_benchmark_or_paid_call: NOT_EVALUATED
-    no_autonomous_build_authorization: NOT_EVALUATED
+    contribution_workflow_walkthrough: PASS
+    evaluation_catalog_schema_and_case_count: PASS
+    requirement_coverage_and_reference_resolution: PASS
+    security_repository_and_git_matrix_reconciliation: PASS
+    oracle_and_fixture_completeness: PASS
+    release_checkpoint_mechanical_review: PASS
+    cross_file_gate_consistency: PASS
+    independent_challenger_and_post_fix_verifier_records: PASS
+    no_architecture_selection: PASS
+    no_application_code: PASS
+    no_e2_or_e3_execution: PASS
+    no_model_benchmark_or_paid_call: PASS
+    no_autonomous_build_authorization: PASS
   transition_rule: >-
     The E1-002 AUTHOR may move only E1-002 to READY_FOR_REVIEW. E1 remains
     NOT_EVALUATED and E2 remains NOT_STARTED until E1-002 receives independent
     challenger review, any bounded fixer response, independent post-fix
     verification, and a separate E1 stage-gate decision.
-  current_result: NOT_EVALUATED
+  transition_record: >-
+    The separate E1 stage-gate decision was recorded on 2026-08-28 (UTC) against committed HEAD
+    7bbfebd. E2 becomes activatable under PROJECT_STATE; no E2 task exists in TASK_REGISTRY.yaml,
+    so E2 task-graph definition (MODE: PLAN_STAGE_E2) is the next step. This record selects no
+    architecture, runs nothing, and authorizes no E3/E4/E5 work or autonomous build.
+  current_result: VERIFIED
+  prior_self_status_fields_are_historical: >-
+    The top-level author_pass_status, fixer_pass_status, coverage.status, validation_status, and
+    not_applicable_policy.current_specification_lane_record_status values describe the E1-002
+    author/fixer pass state and are historical after independent E1-002 verification
+    (V-E1-002-N4); TASK_REGISTRY.yaml and PROJECT_STATE.yaml are authoritative.
 
 future_release_candidate_binding:
   candidate_id: null
@@ -110,7 +129,7 @@ future_release_candidate_binding:
 
 future_stage_prerequisites:
   E0_gate: VERIFIED
-  E1_gate: NOT_EVALUATED
+  E1_gate: VERIFIED
   E2_gate: NOT_EVALUATED
   E3_gate: NOT_EVALUATED
   E4_autonomous_build_authorization_applicable_and_recorded: NOT_EVALUATED
