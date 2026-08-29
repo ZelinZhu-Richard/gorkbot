@@ -1403,11 +1403,11 @@ tasks:
     why_it_matters: The architecture choice must arise from real system-shape alternatives rather than cosmetic framework combinations or an audit-derived default.
     owner_role: AUTHOR
     assigned_model: "Codex (runtime model identifier not exposed) — E2-002 AUTHOR"
-    reviewer_model: null
+    reviewer_model: "Claude Fable 5 (claude-fable-5) via Claude Code — independent E2-002 challenger at d950e44b085cae95ca61ef6f03f33a0ca32fdc71"
     verifier_model: null
     assignment_policy: "Assign only after E2-001 is independently VERIFIED; challenger/verifier independence is mandatory and creates no model-role eligibility."
     status: READY_FOR_REVIEW
-    planning_status: READY_FOR_REVIEW_NOT_VERIFIED_AUTHOR_PASS
+    planning_status: READY_FOR_REVIEW_NOT_VERIFIED_FIXER_PASS
     priority: P0
     dependencies:
       - E2-001
@@ -1471,9 +1471,9 @@ tasks:
     completion_transition: "Only independent verification may move E2-002 to VERIFIED and release E2-003 to READY."
     downstream_consumer: E2-003
     unresolved_questions:
-      - Actual candidate shapes and identifiers.
-      - Which structural axes yield meaningful reversibility and testability differences.
-      - Which candidate assumptions remain unknown before comparison.
+      - Whether independent post-fix verification reproduces closure of F-E2-002-01..09.
+      - Whether the five normalized spike questions and their shared/candidate-specific classification survive independent verification.
+      - Which candidate assumptions remain unknown before E2-003 comparison; E2-003 remains blocked.
     escalation_conditions:
       - Fewer than three credible compliant shapes can be constructed.
       - A candidate requires changing E1 semantics or importing a Level C implementation detail.
@@ -1490,7 +1490,8 @@ tasks:
       - Integrated Transactional Local Core
       - Local Control Service with Replaceable Workers
       - Durable Event and Workflow Core with Rebuildable Projections
-    author_hard_constraint_status: "EP-ARCH-C01 50 SATISFIED_BY_DESIGN / 7 PLAUSIBLY_SATISFIABLE_BUT_REQUIRES_E2_003_ANALYSIS / 2 UNKNOWN_REQUIRING_SPIKE / 0 VIOLATED; EP-ARCH-C02 52 / 5 / 2 / 0; EP-ARCH-C03 51 / 6 / 2 / 0. All 59 hard constraints are explicit per candidate; no hard violation is hidden or scored."
+    original_author_hard_constraint_status: "Historical pre-challenge result: EP-ARCH-C01 50/7/2/0; EP-ARCH-C02 52/5/2/0; EP-ARCH-C03 51/6/2/0. Superseded by the fixer re-evaluation below."
+    current_hard_constraint_status: "Fixer re-evaluation under one status rule: EP-ARCH-C01 52 SATISFIED_BY_DESIGN / 5 PLAUSIBLY_SATISFIABLE_BUT_REQUIRES_E2_003_ANALYSIS / 2 UNKNOWN_REQUIRING_SPIKE / 0 VIOLATED; EP-ARCH-C02 52/5/2/0; EP-ARCH-C03 52/5/2/0. Common plausible: AR-DUR-005, AR-WSP-003, AR-SEC-003, AR-SEC-004, AR-PKG-001. Common spike unknown: AR-EXE-003, AR-SEC-006."
     author_coverage_summary: "Each candidate has exactly 30 verified contract fields, 65 AR entries (59 hard, 6 preferences), 127 unique canonical E1 IDs, 25 decision domains, 20 threat boundaries, 19 Level B dispositions, 8 E3 mappings, exact three-way capability stage classification, contributor burden, migration/reversibility, future compatibility and classified uncertainty."
     author_prohibited_action_summary: "No rank, score, weight, favorite, winner, recommendation, architecture selection, accepted/proposed ADR, spike execution, evaluation run, model/provider benchmark, live/paid call, external effect, application code, provider/model role assignment, autonomy change, or S1-003 execution."
     author_deliverables:
@@ -1500,7 +1501,24 @@ tasks:
       - 05_architecture/candidates/EP-ARCH-C03.yaml
       - 99_handoffs/completed/E2-002_handoff.yaml
     author_validation_status: "AUTHOR_CHECKS_PASS at 2026-08-29T00:31:32Z: 56/56 repository YAML files strict-parse with zero duplicate keys; 3 unique candidate IDs; every candidate has 30 fields, exact 65-AR (59 hard/6 preference) and 127-E1 set equality, 25 domains, 20 threat rows, 19 Level B rows and 8 E3 mappings; declared hard-status counts recompute; governance/frozen-byte/scope/no-code/no-run/no-spike/no-benchmark/no-paid-call/no-selection/clean-room/technology/secret/Markdown/git diff checks pass. Author-side checks do not independently verify the task."
-    next_command: "MODE: REVIEW_TASK_E2-002"
+    challenger_review_artifact: 99_handoffs/completed/E2-002_challenger_review.yaml
+    challenger_reviewed_commit: d950e44b085cae95ca61ef6f03f33a0ca32fdc71
+    challenger_verdict: CHANGES_REQUESTED
+    challenger_finding_counts: {BLOCKER: 0, HIGH: 2, MEDIUM: 3, LOW: 4}
+    fixer_mode: FIX_TASK_E2-002
+    fixer_findings_addressed: [F-E2-002-01, F-E2-002-02, F-E2-002-03, F-E2-002-04, F-E2-002-05, F-E2-002-06, F-E2-002-07, F-E2-002-08, F-E2-002-09]
+    fixer_finding_dispositions: {FIXED: 9, DISPUTED: 0, DEFERRED: 0}
+    fixer_candidate_contract_version: EP-ARCH-CANDIDATE-0.3
+    fixer_candidate_count: 3
+    fixer_status_counts_per_candidate: {SATISFIED_BY_DESIGN: 52, PLAUSIBLY_SATISFIABLE_BUT_REQUIRES_E2_003_ANALYSIS: 5, UNKNOWN_REQUIRING_SPIKE: 2, VIOLATED: 0}
+    fixer_lifetime_names_per_candidate: [CLIENT_LIFETIME, CONTROL_AUTHORITY_LIFETIME, EXECUTION_OWNER_LIFETIME, TASK_LIFETIME, WORKSPACE_LIFETIME]
+    fixer_testability_summary: "Nine family rows, one EP-CTL-016 row and 16 dangerous-composition rows per candidate; every row carries seam, injection, evidence, oracle, limitation, unsupported condition and instrumentation stage."
+    fixer_isolation_summary: "Four technology-neutral tiers; all candidates assume Tier 2 semantic properties for untrusted execution; AQ-003 and shared descendant feasibility SPQ-E2-002-01 are consistent."
+    fixer_spike_summary: "Five unique NOT_RUN E2-004 questions: two shared (descendant containment; protected acquisition) and one protected-delivery/routing question per candidate; nine candidate references."
+    fixer_structural_distinctness: "PRESERVED: task-bound integrated core/supervisor vs persistent service plus replaceable leased workers vs journal/reducer authority plus replay-replaceable coordinator and derived projections."
+    fixer_handoff: 99_handoffs/completed/E2-002_fixer_handoff.yaml
+    fixer_validation_status: "PASS_FIXER_MECHANICAL_AND_SEMANTIC_ONLY_NOT_INDEPENDENT_VERIFICATION: 58 YAML/YML strict parse with zero duplicate keys; 3 unique candidates; 30 fields / 65 ARs / 59 hard / 6 preferences / 127 E1 IDs / 25 domains / 20 TB / 19 Level B / 8 E3 each; identical 52/5/2/0 hard maps; five lifetimes; 9 family + 16 composition + EP-CTL-016; four-tier isolation/AQ-003; 5 unique spikes (2 shared/3 specific); partial-write and protected-boundary checks; exact allowed paths; frozen E1/E2-001; no selection/ADR/spike/code/run/benchmark/paid call; clean-room/secret/diff checks PASS. Independent verification remains required."
+    next_command: "MODE: VERIFY_TASK_E2-002"
 
   - task_id: E2-003
     title: Compare architecture alternatives and classify decision uncertainty
