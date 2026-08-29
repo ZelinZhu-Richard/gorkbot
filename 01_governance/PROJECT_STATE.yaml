@@ -5,7 +5,7 @@ source_of_truth: repository
 active_program: ENGINEERING_PREVIEW
 current_stage: E2
 current_stage_name: engineering_preview_architecture_and_adrs
-current_stage_status: E2_ACTIVE_E2_001_VERIFIED_E2_002_READY
+current_stage_status: E2_ACTIVE_E2_001_VERIFIED_E2_002_READY_FOR_REVIEW
 current_gate: engineering_preview_e2_architecture_gate
 stage_gate_status: NOT_EVALUATED
 stage_gate_verdict: null
@@ -37,8 +37,7 @@ verifier_model: "Claude Fable 5 (claude-fable-5) via Claude Code — S0-001, S0-
 stage_gate_verifier_model: "Stage 0 gate: Codex (runtime model identifier not exposed) — independent repository-first Stage 0 gate session; same Codex product label as the original author is disclosed, exact runtime equality is UNKNOWN_NOT_EXPOSED under D-010. E1 specification gate: Claude Fable 5 (claude-fable-5) via Claude Code — independent E1 stage-gate verifier in a separate session (not the E1-001/E1-002 author/fixer, challenger, or task-verifier sessions; same model/product as those challenger/verifier sessions disclosed; Claude Code is a named E3 candidate system and the gate evaluation selects no role occupant)"
 active_task_ids:
   - E2-002
-ready_task_ids:
-  - E2-002
+ready_task_ids: []
 backlog_task_ids:
   - E2-003
   - E2-004
@@ -61,9 +60,9 @@ blocked_task_ids:
 current_architecture_version: null
 current_prd_version: "Engineering Preview v0.1 product and correctness specification (03_product/ENGINEERING_PREVIEW_PRD.md, ENGINEERING_PREVIEW_USER_FLOWS.md, ENGINEERING_PREVIEW_CORRECTNESS_CONTRACT.md) — E1-001 independently VERIFIED against cced38474c4fd71ee1d5bcc29fe0ed53929d53ac on 2026-08-27; the E1-002 contribution workflow, evaluation suite EP-EVAL-0.2, and v0.1 release-acceptance checkpoint were independently VERIFIED against 557e3354479b635b0872b4c60e914b8f29e50185 on 2026-08-28; the E1 specification gate was independently evaluated and VERIFIED (E1_GATE_PASSED) on 2026-08-28 against 7bbfebd2163b1a8aa0ec770de378c7087c6fee75 (10_checkpoints/stage_checkpoints/ENGINEERING_PREVIEW_E1_SPECIFICATION_GATE_VERIFICATION.yaml); this is the frozen product/correctness/evaluation baseline for E2 architecture comparison"
 current_code_commit: null
-working_tree_base_commit: 0d702b817509c275582cb27e7e08ac44f0145ab9
+working_tree_base_commit: 38f673b82a1b40a277aa13b4e7ed17232521f3fa
 stage_0_author_commit: f151f28
-last_verified_checkpoint: "Stage 0 remains the last independently VERIFIED numbered-stage checkpoint. E0-001, E1-001, and E1-002 retain independent VERIFIED records, and the E1 specification gate remains independently VERIFIED / E1_GATE_PASSED against 7bbfebd2163b1a8aa0ec770de378c7087c6fee75. E2-001 was independently VERIFIED on 2026-08-28 (UTC) against committed fixer HEAD 0d702b817509c275582cb27e7e08ac44f0145ab9 (99_handoffs/completed/E2-001_verifier_review.yaml): all nine challenger findings RESOLVED, all six acceptance criteria PASS, zero new BLOCKER/HIGH/MEDIUM/LOW findings. The verified EP-ARCH-REQ-0.2 baseline defines 65 implementation-neutral architecture requirements (59 hard, 6 weighted preferences), exact equality across 296 AR↔E1 edges (127 primary, 169 secondary), 8 focused E3 validation obligations with handback rules, all 25 decision domains, 10 architecture questions, 19 Level B candidate-pattern families, a 30-field E2-002 input contract, and a 20-row threat-boundary checklist; canonical primary dispositions are 119 hard, 8 justified empirical/non-architecture-driving, and 0 primary weighted. E2-002 is READY (not claimed, not executed); E2-003 through E2-006 remain BACKLOG until their independently VERIFIED predecessors. Architecture remains unselected; E2 gate NOT_EVALUATED; E3-E5 remain NOT_STARTED; application code is absent; evaluation-case implementation/runs, model benchmarks, technical spikes, paid calls, and external actions remain zero; autonomy is NOT_ELIGIBLE / NOT_AUTHORIZED."
+last_verified_checkpoint: "Stage 0 remains the last independently VERIFIED numbered-stage checkpoint. E0-001, E1-001, and E1-002 retain independent VERIFIED records, and the E1 specification gate remains independently VERIFIED / E1_GATE_PASSED against 7bbfebd2163b1a8aa0ec770de378c7087c6fee75. E2-001 remains the last independently VERIFIED E2 task, verified on 2026-08-28 (UTC) against committed fixer HEAD 0d702b817509c275582cb27e7e08ac44f0145ab9 (99_handoffs/completed/E2-001_verifier_review.yaml). E2-002 completed an author-only candidate-generation pass against base 38f673b82a1b40a277aa13b4e7ed17232521f3fa and is READY_FOR_REVIEW / NOT VERIFIED: three unranked, unselected end-to-end candidates (EP-ARCH-C01 integrated transactional local core; EP-ARCH-C02 local control service with replaceable workers; EP-ARCH-C03 durable event/workflow core with rebuildable projections), each carrying exactly 30 contract fields, all 65 ARs (59 hard / 6 preferences), 127 E1 IDs, 25 domains, 20 threat boundaries, 19 Level B dispositions, and 8 E3 mappings. Hard-status summaries are C01 50 satisfied / 7 plausible / 2 spike-unknown / 0 violated, C02 52/5/2/0, and C03 51/6/2/0; these are author claims awaiting independent challenge and verification. E2-003 through E2-006 remain BACKLOG. Architecture remains NOT_SELECTED; preferred candidate NONE; accepted ADRs 0; E2 gate NOT_EVALUATED; E3-E5 NOT_STARTED; application code absent; evaluation-case implementation/runs, model benchmarks, architecture spikes, paid calls and external actions remain zero; autonomy NOT_ELIGIBLE / NOT_AUTHORIZED."
 unresolved_p0_questions:
   - engineering_preview_architecture_alternatives
   - prototype_budget
@@ -177,14 +176,20 @@ engineering_preview_track:
         - E2-006
       task_statuses:
         E2-001: VERIFIED
-        E2-002: READY
+        E2-002: READY_FOR_REVIEW
         E2-003: BACKLOG
         E2-004: BACKLOG
         E2-005: BACKLOG
         E2-006: BACKLOG
+      candidate_generation_status: READY_FOR_REVIEW_NOT_VERIFIED_AUTHOR_PASS
+      architecture_candidate_count: 3
+      architecture_candidate_ids:
+        - EP-ARCH-C01
+        - EP-ARCH-C02
+        - EP-ARCH-C03
       plan_artifact: 05_architecture/ENGINEERING_PREVIEW_E2_ARCHITECTURE_PLAN.md
       activation_condition: "E0-001 and the E1 specification gate are independently VERIFIED."
-      activation_condition_status: "SATISFIED on 2026-08-28 (UTC): E0-001 VERIFIED (0b930e2) and the E1 specification gate VERIFIED / E1_GATE_PASSED (7bbfebd). E2-001 was independently VERIFIED against 0d702b817509c275582cb27e7e08ac44f0145ab9 on 2026-08-28 (UTC); E2-002 is READY because that verification was its sole remaining blocker, and it has not been claimed or executed. E2-003 through E2-006 remain BACKLOG behind independent-verification dependencies. No architecture alternative, comparison, ADR, selection, technology, provider, model, or permanent role was selected."
+      activation_condition_status: "SATISFIED on 2026-08-28 (UTC): E0-001 VERIFIED (0b930e2) and the E1 specification gate VERIFIED / E1_GATE_PASSED (7bbfebd). E2-001 was independently VERIFIED against 0d702b817509c275582cb27e7e08ac44f0145ab9. E2-002 completed its author-only generation pass on 2026-08-29 (UTC) against base 38f673b82a1b40a277aa13b4e7ed17232521f3fa and is READY_FOR_REVIEW / NOT VERIFIED with three candidates; E2-003 through E2-006 remain BACKLOG behind independent-verification dependencies. No candidate was ranked, preferred, recommended, or selected; no ADR, spike, code, evaluation, benchmark, paid call, provider/model assignment, or permanent role was created."
       gate_status: NOT_EVALUATED
       gate_verdict: null
       gate_mode: VERIFY_STAGE_E2
@@ -211,6 +216,14 @@ engineering_preview_track:
       status: NOT_STARTED
       activation_condition: "Eligible E4 implementation work is independently verified and the release gate is explicitly opened."
   architecture_selected: false
+  architecture_candidate_count: 3
+  architecture_candidate_ids:
+    - EP-ARCH-C01
+    - EP-ARCH-C02
+    - EP-ARCH-C03
+  preferred_candidate: null
+  accepted_architecture_adrs: 0
+  architecture_spikes_run: 0
   model_roles_locked: false
   application_code_created: false
 
@@ -251,6 +264,9 @@ s1_003_authorization_reconciliation:
     spend_usd: 0
   scope_counters:
     architecture_selected: false
+    architecture_candidates_generated: 3
+    preferred_candidate: null
+    accepted_architecture_adrs: 0
     application_code_written: false
     evaluation_cases_implemented: 0
     evaluation_cases_run: 0
@@ -258,9 +274,10 @@ s1_003_authorization_reconciliation:
     technical_spikes_run: 0
     paid_api_calls: 0
     external_actions_performed: false
-next_recommended_action: "MODE: EXECUTE_TASK_E2-002 — after founder review and commit of the E2-001 verifier patch (and a README status refresh), a fresh author session may generate at least three materially different, technology-unselected end-to-end architecture candidates covering all 25 domains and every E2-001 hard constraint, then mark E2-002 READY_FOR_REVIEW with a factual handoff. Do not rank or select a candidate, create or accept an ADR, run a spike/evaluation/benchmark/paid call, write application code, authorize autonomous build, perform external actions, or resume S1-003."
-updated_at: "2026-08-28T22:55:00Z"
+next_recommended_action: "MODE: REVIEW_TASK_E2-002 — independently challenge the exact three-candidate author patch for straw/collapsed alternatives, missing hard constraints/domains/threat boundaries, favorable unknowns, hidden technology/Level C anchoring, unjustified future machinery, and any ranking or selection language. Do not compare toward a winner, release E2-003, create or accept an ADR, run a spike/evaluation/benchmark/paid call, write application code, authorize autonomous build, perform external actions, or resume S1-003."
+updated_at: "2026-08-29T00:24:35Z"
 notes:
+  - "E2-002 AUTHOR PASS (2026-08-29 UTC): against base 38f673b82a1b40a277aa13b4e7ed17232521f3fa, created three materially distinct, technology-unselected end-to-end candidate records plus the alternatives overview and factual handoff: EP-ARCH-C01 Integrated Transactional Local Core; EP-ARCH-C02 Local Control Service with Replaceable Workers; EP-ARCH-C03 Durable Event and Workflow Core with Rebuildable Projections. Each candidate contains exactly the verified 30 fields, all 65 ARs (59 hard / 6 preferences), 127 unique canonical E1 IDs, 25 domains, 20 threat boundaries, 19 Level B dispositions, all 8 E3 obligations, future stage classification, testability, contributor burden, migration/reversibility and classified uncertainty. Hard generation status: C01 50 SATISFIED_BY_DESIGN / 7 PLAUSIBLE_E2_003 / 2 UNKNOWN_REQUIRING_SPIKE / 0 VIOLATED; C02 52/5/2/0; C03 51/6/2/0. Six candidate-specific E2-004 spike candidates are identified but NOT_RUN. Preferences remain unweighted/unscored. This is author-side evidence only: E2-002 READY_FOR_REVIEW / NOT VERIFIED; E2-003..006 BACKLOG; architecture NOT_SELECTED; preferred candidate NONE; accepted ADRs 0; architecture spikes 0; no application code, evaluation case implementation/run, model benchmark, paid call, external action, model/provider role assignment, autonomy transition, or S1-003 execution. Next command: MODE: REVIEW_TASK_E2-002."
   - "E2-001 VERIFIED (2026-08-28 UTC) by an independent Claude Fable 5 post-fix verifier in a separate session against committed fixer HEAD 0d702b817509c275582cb27e7e08ac44f0145ab9 (99_handoffs/completed/E2-001_verifier_review.yaml): F-E2-001-01..09 all RESOLVED as re-checked against committed bytes; all six acceptance criteria PASS and all four required tests re-run PASS; 127 canonical E1 IDs (56/15/9/4/4/16/23) re-extracted and set-equal to the CSV; 65 unique ARs (59 hard / 6 weighted) with 296 exactly bidirectional AR↔E1 edges (127 primary / 169 secondary), 0 mismatches, 0 orphans; 119/0/8 primary dispositions with no waiver; 25/25 domains; 8 E3 obligations with handback rules; 19 Level B families; 30-field E2-002 contract; 20-row threat-boundary checklist; 127/127 exact anchors; UF-11 protected-entry/takeover boundary structurally represented by hard AR-SEC-006; FR-025/FR-026 primaries AR-COR-005/AR-EVD-001; 51/51 YAML strict; zero technology/secret/Level C hits; nine frozen E1 artifacts blob-identical to c2f7093; git diff --check clean. New findings: 0 BLOCKER/HIGH/MEDIUM/LOW, 9 NOTEs (challenger NOTE count corrected in the registry; README needs a founder refresh; cosmetic wording; vocabulary mapping; anchor form; union-rule inheritance; register ordering; no ADR counter; uncaptured start timestamps). Consequence: E2-001 VERIFIED; E2-002 READY (sole blocker cleared; not claimed or executed); E2-003..006 BACKLOG; E2 gate NOT_EVALUATED; architecture NOT_SELECTED; candidates/accepted ADRs/spikes/application code/evaluation runs/model benchmarks/paid calls remain zero; AUTONOMY_ELIGIBLE NOT_ELIGIBLE; autonomous build NOT_AUTHORIZED; S1-003 DEFERRED with zero execution; D-016 unchanged. The verifier edited no architecture or frozen E1 artifact and fixed no finding. Patch left uncommitted for the founder. Next command: MODE: EXECUTE_TASK_E2-002."
   - "E2-001 FIXER PASS (2026-08-28 UTC): the original Codex author returned as fixer after an independent Claude Fable 5 challenger reviewed committed author HEAD 349a9f0fbd8f98c967f78c0bb5850aeae8e61dc4 and requested nine corrections (0 BLOCKER, 0 HIGH, 2 MEDIUM, 7 LOW). F-E2-001-01..09 are dispositioned FIXED with none disputed or deferred. The corrected EP-ARCH-REQ-0.2 baseline defines 65 implementation-neutral requirements (59 hard, 6 weighted preferences); exact bidirectional equality across 296 AR↔E1 edges (127 primary, 169 secondary); substantive UF-11 protected human acquisition/takeover coverage; semantically corrected FR-025/FR-026 primary dispositions; exact anchors for all 56 FR and 15 RR rows; a 30-field E2-002 input contract; 19 reconciled Level B candidate-pattern families; 8 bounded E3 obligations with E2 handback rules; explicit duplicate-delivery, resume-revalidation, external-event, and retirement semantics; and a 20-row consolidated threat-boundary checklist. The 127 canonical primary dispositions remain 119 HARD_CONSTRAINT, 0 WEIGHTED_PREFERENCE, and 8 JUSTIFIED_NON_ARCHITECTURE_DRIVING; all 25 domains remain covered; frozen E1 bytes remain unchanged. Fixer-side checks pass but are not independent verification. E2-001 is READY_FOR_REVIEW / NOT_VERIFIED_FIXER_PASS; E2-002 through E2-006 remain BACKLOG; E2 gate NOT_EVALUATED; architecture NOT_SELECTED; candidates/accepted ADRs/spikes/application code/evaluation runs/model benchmarks/paid calls remain zero; autonomy stays NOT_ELIGIBLE / NOT_AUTHORIZED; S1-003 remains DEFERRED. Next command: MODE: VERIFY_TASK_E2-001."
   - "E2-001 AUTHOR PASS (2026-08-28 UTC): against base 0338c615c7098a7c7e7afd1f09ff44be9db94109, created the implementation-neutral Engineering Preview architecture-requirements baseline, exact 127-row frozen-E1 traceability CSV, and factual author handoff; updated R-030 mitigation and moved only E2-001 to READY_FOR_REVIEW / NOT_VERIFIED_AUTHOR_PASS. The baseline defines 64 architecture requirements (58 hard constraints and 6 weighted preferences), 8 E3 validation obligations, all 25 E2 decision domains and ownership questions, prospective correlation/sensitivity weighting governance, Level A/B/C discipline, and the E2-002 candidate-description input contract. Canonical primary dispositions are 119 HARD_CONSTRAINT, 0 WEIGHTED_PREFERENCE, and 8 JUSTIFIED_NON_ARCHITECTURE_DRIVING SLO/MET empirical outcomes with mandatory measurement seams; this waives no E1 requirement. Author mechanical checks pass but do not independently verify E2-001. E2-002 through E2-006 remain BACKLOG; E2 gate NOT_EVALUATED; architecture NOT_SELECTED; accepted ADRs 0; no application code, architecture spike, evaluation implementation/run, model benchmark, paid call, external action, model-role assignment, autonomy transition, or S1-003 execution occurred. Next command: MODE: REVIEW_TASK_E2-001."

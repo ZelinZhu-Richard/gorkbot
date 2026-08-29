@@ -1,0 +1,546 @@
+schema_version: EP-ARCH-CANDIDATE-0.2
+task_id: E2-002
+artifact_status: CANDIDATE_ONLY_UNRANKED_NOT_SELECTED
+candidate_contract:
+  f01_candidate_identity:
+    candidate_id: EP-ARCH-C01
+    name: Integrated Transactional Local Core
+    version: "0.1"
+    author_role: E2-002_AUTHOR
+    authored_at: "2026-08-29T00:03:38Z"
+    base_commit: 38f673b82a1b40a277aa13b4e7ed17232521f3fa
+    frozen_e1_gate_commit: 7bbfebd2163b1a8aa0ec770de378c7087c6fee75
+    verified_architecture_requirements_version: EP-ARCH-REQ-0.2
+    verified_architecture_requirements_commit: 0d702b817509c275582cb27e7e08ac44f0145ab9
+    decision_state: "Candidate only; no score, rank, preference, winner, architecture selection, or ADR acceptance."
+
+  f02_system_shape:
+    summary: >-
+      One persistent local application core owns policy, orchestration, canonical writes,
+      embedded durable state, client projections, and recovery. Untrusted execution and
+      independent verification run in owned child-process boundaries. Provider and tool
+      adapters are reached through explicit gateways, while no external service is required.
+    colocated:
+      - "Authenticated local interaction controller, task scheduler, policy kernel, state writer, and projection builder share the core process to keep one local authority boundary."
+      - "The durable store is embedded and private to the core; it is not directly writable by the client view, models, executors, or verifier."
+    separated:
+      - "Repository/tool commands execute under an execution supervisor in isolated child process trees."
+      - "Verification runs in a separately launched, least-privilege mutable context with its own review workspace and read-only access to authoritative evidence."
+      - "Provider-specific behavior is contained behind the provider gateway; protected input is handled by a dedicated acquisition controller."
+    end_to_end_flow: >-
+      Authenticated intent enters the core, is durably admitted and acknowledged, becomes a
+      versioned task/plan, produces validated operation intents, crosses approval and capability
+      gates, executes in an isolated workspace, is observed and reconciled, produces evidence,
+      and is independently verified before the core may derive a completed disposition.
+
+  f03_client_interaction_boundary:
+    conceptual_client: "Integrated local desktop-style interface; technology is unselected and this is a CANDIDATE ASSUMPTION, not a project decision."
+    authentication_and_intent: "A local principal session submits stable request IDs and expected task versions to the core policy boundary."
+    acknowledgement: "The client receives acceptance only after the authoritative mutation is committed and rereadable; duplicate request IDs return the first outcome."
+    reconnect: "The interface reconstructs an axis-qualified derived projection from the core and displays gaps, waits, blockers, controls, effects, verification, and limitations."
+    controls: "Pause, stop, redirect, resume, approval, denial, and revocation are commands to the durable core, never UI-only state."
+    approval_display: "The client renders inert, complete normalized action scope and the durable approval identity; display truncation cannot bind executable scope."
+    evidence_inspection: "The client can open underlying immutable records, artifact references, exact revision bindings, and verifier results rather than only an executor summary."
+
+  f04_process_boundaries:
+    orchestration_owner: "The single-writer local core process owns task scheduling, versions, ownership epochs, controls, and recovery decisions."
+    persistence_owner: "Only the core persistence port can commit authoritative records; store utilities operate offline under explicit migration/recovery authority."
+    execution_owner: "The execution supervisor creates bounded process groups, assigns operation/fence identities, captures I/O, cancels descendants, and reports observed state."
+    verification_owner: "A fresh verifier process/context owns a verification run and can read the exact candidate/evidence and rerun checks without author workspace write authority."
+    provider_call_owner: "A provider gateway validates route purpose, eligibility, data/network authority, budgets, and explicit fallback before an adapter can dispatch."
+    control_and_fencing_owner: "The core durably orders control; the supervisor enforces process cancellation/fencing and the core reconciles any uncertain effect."
+    communication_rule: "Every crossing uses versioned request/result envelopes with task, operation, owner epoch, policy, capability, deadline, and correlation identity."
+
+  f05_trust_boundaries_and_threat_model:
+    unsupported_host_compromise_assumption: >-
+      A fully compromised host kernel, privileged administrator, firmware, or physical storage
+      adversary is outside the v0.1 guarantee. The candidate must state this limitation and may
+      not claim protection from host-level capture; supported application/process boundaries
+      still fail closed when their enforcement prerequisites are absent.
+    boundaries:
+      TB-01: {trust_and_assets: "Authenticated but fallible user/founder; task authority, approvals, protected entry", authority_source: "Authenticated current user plus repository governance", allowed_flows: "Bounded task grants, controls, exact approvals, protected recipient designation", forbidden_flows: "Conversational text silently broadening scope or waiving hard policy", enforcement_point: "Core admission and policy kernel", failure_behavior: "Reject or WAITING_FOR_USER with zero dispatch", evidence: "Principal, request, authority version, decision, zero-effect record", recovery: "Reauthenticate and revalidate current authority; never infer consent"}
+      TB-02: {trust_and_assets: "Untrusted repository content; source and user-owned material", authority_source: "Admitted task/root policy, not repository prose", allowed_flows: "Bounded reads and authorized isolated writes", forbidden_flows: "Instruction, capability, network, secret, or approval escalation", enforcement_point: "Repository admission plus workspace broker", failure_behavior: "Deny, quarantine, or block unsupported condition", evidence: "Base identity, condition row, scope and before/after canaries", recovery: "Reread identity/topology and invalidate stale workspace"}
+      TB-03: {trust_and_assets: "Untrusted instruction files; workflow guidance", authority_source: "Higher project/user policy with instruction precedence", allowed_flows: "Narrow formatting, checks, paths, contribution procedure", forbidden_flows: "Granting execution, roots, credentials, effects, routing, or weaker predicates", enforcement_point: "Instruction interpreter plus policy kernel", failure_behavior: "Typed conflict denial or unmet-precondition wait", evidence: "Instruction source/trust label, conflict and applied restriction", recovery: "Reload current versions and discard poisoned/stale derived context"}
+      TB-04: {trust_and_assets: "Host filesystem; repository, workspace, artifacts, user data", authority_source: "Normalized admitted roots and ownership records", allowed_flows: "Descriptor-relative bounded access to proven targets", forbidden_flows: "Out-of-root, special-file, ambiguous-owner, or destructive access", enforcement_point: "Workspace/filesystem broker", failure_behavior: "Fail closed before access; quarantine ambiguous target", evidence: "Resolved identity, path decision, canaries, mutation inventory", recovery: "Reresolve every target and reconcile only task-owned material"}
+      TB-05: {trust_and_assets: "Protected secrets/private data; confidentiality and use scope", authority_source: "Protected-location policy and exact recipient/use grant", allowed_flows: "Opaque one-use delivery to exact authorized recipient", forbidden_flows: "Model/chat/log/evidence/screenshot/clipboard/ambient child exposure", enforcement_point: "Secret classifier and protected-entry controller", failure_behavior: "Do not read; wait/block and record non-secret reason", evidence: "Non-secret receipt identity, recipient, use, time, disposition", recovery: "Reacquire after revalidation; raw value is never persisted or replayed"}
+      TB-06: {trust_and_assets: "Untrusted links, aliases, traversal and topology races; root integrity", authority_source: "Pinned root and descriptor/identity checks", allowed_flows: "Access whose resolved object stays in admitted scope", forbidden_flows: "Traversal, symlink/hard-link swap, mount/device/archive escape", enforcement_point: "Workspace broker at open, mutation, and cleanup", failure_behavior: "Deny and preserve canaries", evidence: "Pre/post object identity and resolution decision", recovery: "Reresolve; stale topology forces recovery/block"}
+      TB-07: {trust_and_assets: "Untrusted subprocesses; host resources and task effects", authority_source: "Versioned capability grant and operation envelope", allowed_flows: "Bounded declared process tree in isolated workspace", forbidden_flows: "Orphans, scope escape, undeclared descendants/effects, self-declared noninterruptibility", enforcement_point: "Execution supervisor", failure_behavior: "Cancel/force/fence; classify remaining effect uncertainty", evidence: "Process tree, limits, timeline, exit/cancel/fence outcome", recovery: "Discover/fence surviving ownership and reconcile effects before resume"}
+      TB-08: {trust_and_assets: "Terminal I/O and protected human entry; commands, output, raw input", authority_source: "Operation contract or protected-entry recipient grant", allowed_flows: "Bounded inert output; isolated protected recipient input", forbidden_flows: "Output becoming authority; raw protected input entering ordinary capture", enforcement_point: "I/O multiplexer and protected-entry controller", failure_behavior: "Truncate safely, deny consumption, or fail to WAITING_FOR_USER", evidence: "Output bounds/provenance and non-secret protected receipt", recovery: "Do not replay raw input; rerun only after current grant/readback"}
+      TB-09: {trust_and_assets: "Untrusted package/lifecycle scripts; filesystem, process, network", authority_source: "Separately granted execution and network capabilities", allowed_flows: "Explicitly classified bounded script under declared support", forbidden_flows: "Install/retrieval implying execution, egress, secret or scope access", enforcement_point: "Capability gateway plus execution supervisor", failure_behavior: "Deny or sandbox unsupported script; visible unmet precondition", evidence: "Script identity, provenance, grant, process/network outcome", recovery: "Revalidate package/workspace; no blind rerun after ambiguous effect"}
+      TB-10: {trust_and_assets: "Untrusted Git hooks/helpers/filters/signers/transports; repository and credentials", authority_source: "Git/effect matrix and exact capability/approval", allowed_flows: "Only classified helper-free local Git or separately supported effect", forbidden_flows: "Implicit hooks, credential helpers, transports, prohibited ref/destructive actions", enforcement_point: "Git adapter and capability gateway", failure_behavior: "Zero dispatch/effect and typed denial", evidence: "GE row, sanitized invocation, before/after refs/index/worktree", recovery: "Fresh Git readback; uncertain remote effect remains noncomplete"}
+      TB-11: {trust_and_assets: "Untrusted network destinations and redirects; data, credentials, spend", authority_source: "Exact destination/data/credential/budget grant", allowed_flows: "Authorized route after effective-target revalidation", forbidden_flows: "Undeclared egress, proxy/redirect bypass, private/metadata targets", enforcement_point: "Network policy boundary before adapter dispatch", failure_behavior: "Transmit zero bytes and incur zero calls", evidence: "Requested/effective target, policy decision, bytes/calls/cost", recovery: "Revalidate destination and reconcile any dispatched uncertainty"}
+      TB-12: {trust_and_assets: "Remote Git; refs, repository data, credentials and external effects", authority_source: "Git/effect matrix plus one-shot exact approval", allowed_flows: "Only supported remote read/effect with receipt and fresh readback", forbidden_flows: "Force push, merge/rebase/cherry-pick, remote deletion, tag mutation or hidden credential flow", enforcement_point: "Git adapter, approval gate, network boundary", failure_behavior: "Deny; lost acknowledgement becomes UNKNOWN_EFFECT", evidence: "Intent, approval, attempt, receipt, remote readback", recovery: "Never blind retry; reconcile authoritative remote state"}
+      TB-13: {trust_and_assets: "External APIs; external state, data, credentials, cost", authority_source: "Capability policy and exact effect approval where consequential", allowed_flows: "Versioned bounded adapter request to supported endpoint", forbidden_flows: "Ambient authority, hidden retry/fallback, unapproved mutation", enforcement_point: "Capability/provider gateway and effect ledger", failure_behavior: "Deny before dispatch or classify outcome uncertain", evidence: "Normalized request, idempotency key, response, readback, usage", recovery: "Read back authoritative target; retain known success/failure/unknown"}
+      TB-14: {trust_and_assets: "Untrusted model/provider output and provider service; task data, routing, cost", authority_source: "Role-neutral routing policy and eligibility registry", allowed_flows: "Authorized purpose-specific request to explicit eligible or experimental route", forbidden_flows: "Model self-promotion, hidden fallback, output granting authority or proving completion", enforcement_point: "Provider gateway plus result validator", failure_behavior: "Zero dispatch or typed provider/model/transport/policy failure", evidence: "Requested/resolved route, eligibility, provenance, latency, usage/cost", recovery: "Explicit current fallback decision only; no hidden replay"}
+      TB-15: {trust_and_assets: "Untrusted tools/capabilities and results; effects and host access", authority_source: "Versioned schema, scoped capability receipt, policy", allowed_flows: "Validated exact request and correlated valid result", forbidden_flows: "Unknown schema/version, target substitution, ambient tool power", enforcement_point: "Capability gateway at request and result", failure_behavior: "Pre-dispatch deny; post-dispatch invalid result enters reconciliation", evidence: "Schema/version, grant, request/result validation, effect state", recovery: "Do not consume invalid result; read back possible effect"}
+      TB-16: {trust_and_assets: "Approval boundary; user authority and consequential action", authority_source: "Authenticated exact durable approval object", allowed_flows: "One current unexpired use matching full normalized intent", forbidden_flows: "Chat confirmation, replay, mutation, stale/revoked/hidden target use", enforcement_point: "Approval ledger serialized with dispatch", failure_behavior: "Deny with zero dispatch or reconcile crash ambiguity", evidence: "Approval identity/scope/version/display/revocation/consumption", recovery: "Current ownership and scope revalidated; ambiguous consumption blocks retry"}
+      TB-17: {trust_and_assets: "External-effect boundary; local/remote target truth", authority_source: "Approved operation plus target-specific authoritative readback", allowed_flows: "One idempotent/bounded attempt and reconciliation", forbidden_flows: "Guessed success, blind retry, duplicate effect, response-as-proof", enforcement_point: "Effect ledger and adapter readback", failure_behavior: "KNOWN_FAILED or UNKNOWN_EFFECT blocks completion", evidence: "Intent/approval/attempt/observed/confirmed chain", recovery: "Return first outcome for duplicates and reconcile target truth"}
+      TB-18: {trust_and_assets: "Evidence/integrity boundary; proof, artifacts, exact revision", authority_source: "Evidence schema, authoritative records, independent readback", allowed_flows: "Validated secret-safe references and immutable verification runs", forbidden_flows: "Telemetry/executor summary/self-hash replacing proof; gap or stale evidence", enforcement_point: "Evidence builder/validator and verifier", failure_behavior: "Mark invalid/incomplete and block verification/completion", evidence: "Manifest, provenance, integrity/gap/staleness results", recovery: "Rebuild derived bundle from retained authority/evidence; preserve tamper fact"}
+      TB-19: {trust_and_assets: "Recovery/replay boundary; ownership, operations, effects, controls", authority_source: "Durable history, first outcome, ownership epoch and current policy", allowed_flows: "Deterministic reconstruction and bounded reconciliation", forbidden_flows: "Stale writer, duplicate command/effect, fabricated continuity, secret replay", enforcement_point: "Core startup recovery coordinator", failure_behavior: "RECOVERING, blocked, failed, or explicit uncertainty", evidence: "Recovery owner, scan, revalidation, rejected stale activity", recovery: "Single-writer epoch; reconcile every nonterminal operation before productive work"}
+      TB-20: {trust_and_assets: "UI/protected entry boundary; human raw value and observation surfaces", authority_source: "Authenticated takeover request and exact protected recipient/use", allowed_flows: "Suspend ordinary capture and hand raw input only to exact recipient", forbidden_flows: "Chat/model/transcript/log/evidence capture or persistence of raw value", enforcement_point: "Dedicated protected-entry controller outside ordinary input pipeline", failure_behavior: "Fail to WAITING_FOR_USER/closed if exclusion cannot be guaranteed", evidence: "Non-secret receipt and capture-state transitions", recovery: "Receipt may survive; raw value must be reacquired and never replayed"}
+
+  f06_authoritative_state_ownership:
+    canonical_writer: "Single-writer core persistence port under an ownership epoch and compare-version precondition."
+    authoritative:
+      - "Task, request, plan, predicate, policy, authority, ownership and lifecycle axes"
+      - "Operation, control, approval, attempt, effect, failure, verification and disposition records"
+      - "Original conversation/message records, evidence metadata, artifact identities, routing provenance, retention and migration history"
+    derived:
+      - "Client status, transcript rendering, indexes, dashboards, aggregate state labels, evidence presentation"
+    ephemeral:
+      - "Live client session, in-memory scheduler queue, process handles, streaming buffers, prompt assembly cache"
+    lossy:
+      - "Context summaries and resume briefs with source IDs, versions, trust labels, omissions and invalidation state"
+    versioning_and_history: "Every material mutation records expected prior version, new version, actor, owner epoch, cause, time, policy/plan/predicate versions, and immutable history reference."
+    stale_writer_rule: "A store compare-version and owner-epoch mismatch rejects the write and any dispatch; rejected stale activity is retained."
+
+  f07_operation_model:
+    identity: "Stable request, task, attempt, operation, dispatch, process-tree, effect, and result IDs are distinct."
+    scheduling: "The core scheduler claims eligible work under one durable owner epoch and finite prospective limits."
+    lifecycle: "INTENT -> VALIDATED -> WAITING_FOR_APPROVAL when needed -> DISPATCHED -> RUNNING/RECONCILING -> terminal known outcome or OUTCOME_UNCERTAIN."
+    retries: "Attempts share the original operation/effect identity and retain cumulative count, cost and outcomes; retry requires declared retryability, ceiling, current authority, known effect state, and fresh workspace/provider checks."
+    pause_stop_redirect_resume: "Controls commit before acknowledgement, prevent later productive dispatch, quiesce/cancel/fence in-flight work, and resume only after full revalidation."
+    cancellation_fence: "The supervisor uses process-group ownership plus a durable fence epoch; post-fence results cannot mutate authority and are retained as stale observations."
+    duplicate_delivery: "Stable request identity returns the first durable outcome with provenance and launches no second task, mutation, dispatch, or effect."
+    retirement: "Agent disable stops claims; retirement is terminal for new work but preserves identity, in-flight disposition, evidence, and unresolved-effect responsibility."
+    result_validation: "Invalid pre-dispatch requests produce zero effect; an invalid or lost post-dispatch result triggers readback/reconciliation rather than zero-effect fiction."
+
+  f08_persistence_semantics:
+    candidate_choice: "Embedded transactional current-state records plus append-only material history and durable operation/effect outbox-inbox ledgers. This is a Level B candidate choice, not a project decision."
+    acknowledgement_boundary: "Acknowledge only after the current-state mutation, immutable history record, and required outbox/evidence references commit consistently and are rereadable."
+    durability_scope: "Process and declared supported host restart on the same healthy persistent volume; device/media loss and fully compromised storage are explicitly unsupported pending backup policy."
+    versioning: "Optimistic versions and one core ownership epoch serialize canonical writes and approval/effect consumption."
+    partial_write_and_corruption: "Atomic commit yields old or new state; startup integrity checks quarantine corrupt/unmigratable records, preserve original bytes, and block affected authority."
+    retention_and_deletion: "Policy-led holds and deletion records distinguish logical removal from physical deletion; evidence required for open effects or verification cannot be silently removed."
+    migration: "Forward schema migration uses versioned, restartable steps with pre-migration snapshot, validation, rollback boundary, and retained migration ledger."
+    backup_restore_assumption: "Export/restore is a declared local operation; restored state receives a new store instance identity, validates references, invalidates stale leases/verification, and reconciles effects."
+    artifact_storage: "Large outputs are immutable bounded local artifacts with stable IDs, integrity metadata, provenance, redaction state and lifecycle references; content addressing is not required."
+
+  f09_recovery_model:
+    startup_sequence: "Acquire a new single-writer epoch, validate store/schema/history integrity, reconstruct all authoritative axes, invalidate live handles, classify every nonterminal operation, reread repository/workspace/authority/approval/effect/verification state, then resume or remain recovering/blocked."
+    scenarios:
+      application_crash: "Transactional state recovers; uncommitted mutation is absent, acknowledged mutation is present; in-flight dispatches enter reconciliation."
+      host_restart: "Same startup sequence on the declared persistence volume; processes are rediscovered or treated as fenced/unknown under host support policy."
+      worker_failure: "Supervisor records terminal process evidence; known no-effect may retry within ceiling, otherwise reconcile."
+      model_timeout: "Record model versus provider/transport timeout, usage uncertainty and cancellation; no hidden fallback."
+      tool_timeout: "Request cancellation, enforce process-tree bound, retain output/effects, then terminal or uncertain outcome."
+      lost_tool_result: "Treat possible effect as unknown; validate result correlation and perform target-specific readback."
+      partial_write: "Recover old/new atomic state or quarantine with original bytes and explicit blocker; never fabricate missing history."
+      stale_workspace: "Identity/base/owner mismatch invalidates workspace and verification; reread/recreate only under current authority."
+      duplicate_operation: "Dedup by stable request/operation ID and return the first outcome; rejected duplicate is auditable."
+      duplicate_effect: "Effect identity/idempotency evidence plus readback prevents a second attempt; uncertainty blocks blind replay."
+      external_ack_loss: "Persist OUTCOME_UNCERTAIN until authoritative readback establishes known success or known non-success."
+      stop_force_termination: "Durable STOPPING orders cancellation, force/fence after bound, accounts descendants/effects, and closes CANCELLED only."
+      stale_approval: "Revalidate principal, owner, task/policy/base/target/scope, expiry and consumption; deny stale/revoked/replayed approval."
+      stale_verification: "Any material current-state or revision change preserves old run but sets aggregate UNVERIFIED."
+      waited_event: "Reread event identity, version, source and current authority before consuming; duplicate or stale delivery returns prior outcome."
+      protected_entry: "Persist only non-secret receipt; restart requires protected reacquisition and never reconstructs raw input."
+      agent_retirement: "No new claims; recover in-flight work into terminal/uncertain truthful disposition before releasing ownership."
+
+  f10_workspace_execution_model:
+    admission: "Read-only preflight records repository identity, exact revision, topology and all sixteen E1 repository-condition dispositions before mutation."
+    base_identity: "A pinned immutable base identity plus inventory of tracked, untracked, ignored, generated, nested and linked-worktree material binds the task."
+    isolation: "A workspace broker creates a separate mutable task workspace before any mutating reproduction or command; original user state is never the execution target."
+    path_scope: "Normalized roots and object-identity checks are enforced at open/mutate/cleanup; traversal, links, swaps, mounts, devices, FIFOs, sockets, archive escape/bombs and ambiguous ownership fail closed."
+    protected_locations: "Known and policy-classified secret/private locations override in-root permission; ambiguous paths are not inspected by the model or ordinary tools."
+    process_boundary: "All untrusted code executes through versioned capability envelopes in an owned process tree with cwd, environment, filesystem, network, time, output and descendant limits."
+    cancellation: "Cooperative cancel precedes force termination/fencing; killed work is never completion and surviving effect uncertainty is explicit."
+    package_scripts_hooks_network: "Package scripts, Git hooks/helpers and network-sensitive tools are separately classified capabilities; repository text cannot grant them."
+    reconciliation_and_cleanup: "Fresh identity/canary readback proves task-only change and cleanup scope; unknown ownership or stale topology blocks deletion."
+
+  f11_git_model:
+    classification: "Every action resolves to one of the frozen thirty Git/effect rows before dispatch; no unclassified Git operation runs."
+    authority: "Task scope, repository/base identity, path/ref target, capability class, network/credential scope and any exact approval are bound independently."
+    safe_invocation: "The Git adapter prevents implicit hooks, aliases, helpers, filters, signers, external diff/text conversion, submodule/LFS handlers and transports unless separately supported and granted."
+    local_remote_separation: "Local reads/writes, destructive actions, external reads and remote effects remain separate classes; approval cannot turn a prohibited v0.1 action into an allowed one."
+    readback: "Before/after HEAD, refs, index, worktree, untracked/ignored state and target-specific remote state are freshly reread as applicable."
+    review_package: "Draft package is local and NOT_SUBMITTED, bound to exact base/head or patch, changed files, checks, limitations, evidence and approval/effect state."
+    unauthorized_action_prevention: "No free-form Git command gains authority from chat, model output or repository instructions; arguments are data under the adapter schema."
+
+  f12_approval_effect_model:
+    state_chain: [INTENT, APPROVAL, ATTEMPT, OBSERVED_EFFECT, CONFIRMED_EFFECT, UNKNOWN_EFFECT]
+    intent: "Normalized action, full inert display, task/policy/plan/base/target/schema/capability/effect class, limits and effect ID."
+    approval: "Authenticated stable one-shot object with issuer, exact scope, versions, expiry, revocation and consumption state; a digest alone is insufficient."
+    attempt: "Serialized with approval consumption and dispatch identity; records known non-start, dispatch, adapter and idempotency key."
+    observed_effect: "Response/receipt is an observation, not proof; malformed/lost responses retain possible-effect state."
+    confirmed_effect: "Only target-specific authoritative readback can establish known success; known failure/non-success is separately terminal."
+    unknown_effect: "Acknowledgement loss, ambiguous target or unavailable readback remains explicit and blocks completion/blind retry."
+    replay_and_revocation: "Stale, revoked, mutated, recovered-ambiguous or reused approvals fail before dispatch; every denial is durable."
+    idempotency_and_reconciliation: "Stable operation/effect identities, provider idempotency where available, first-outcome deduplication and readback yield at most one committed effect."
+
+  f13_model_provider_boundary:
+    core_contract: "Logical AUTHOR/CHALLENGER/VERIFIER and task-purpose semantics are provider-neutral; no model or provider is assigned."
+    gateway: "An embedded provider gateway owns purpose, capability discovery, eligibility, route policy, data/network/credential authority, budgets and request/result normalization."
+    eligibility_classes: [ELIGIBLE_IF_LATER_VERIFIED, EVALUATION_ONLY, DISALLOWED, USER_CONFIGURED_UNVERIFIED_EXPERIMENTAL]
+    fallback: "Fallback is explicit, prospectively authorized and linked to the failed route; absence of an eligible fallback yields a typed non-dispatch/failure."
+    distinctions: "Provider, model, transport, policy, capability, tool, timeout, cancellation and content/result validation failures remain distinct."
+    provenance: "Requested/resolved route, purpose, eligibility, configuration, provider/model/tool versions, latency, token/usage/cost, cancellation and outcome are recorded."
+    offline_and_live_calls: "Offline deterministic adapter replays are supported; real or paid calls remain separately gated and are not run by E2-002."
+
+  f14_context_memory_model:
+    bounded_context: "Each invocation receives a versioned context manifest with explicit token/output/time bounds and omission list."
+    durable_sources: "Original messages, task/plan/predicate/policy, operations/effects, approvals, failures, artifacts, evidence and verification live outside disposable model context."
+    summary: "A summary is LOSSY, carries source IDs/versions/trust labels/corrections/omissions, and is rejected if stale, poisoned or inconsistent."
+    resume: "The core reconstructs current authoritative facts and selected evidence first, then optionally adds a derived summary; missing facts become visible unknowns."
+    non_compactable: "Security policy, authority, approval state, effect certainty, evidence inputs, predicate results, verification and final disposition cannot be compacted away."
+    retrieval_assumption: "No vector database or RAG stack is required; bounded deterministic lookup by stable identity is sufficient for the candidate."
+
+  f15_evidence_artifact_model:
+    bundle: "Versioned outcome-profile bundle bound to exact task/attempt, candidate store version, workspace, base/head/patch, policy/plan/predicate versions and final disposition."
+    provenance: "Records actor, route/model/tool, command/check, bounds, result, retry, approval/effect/readback, failure, artifact, predicate and verifier provenance."
+    artifacts: "Stable immutable local IDs reference bounded large outputs with integrity, media/type, size, source, redaction, retention and availability state."
+    integrity: "Causal sequence, version checks, manifest validation and independent readback detect gaps, mutation, substitution, reordering and staleness; digest alone is not correctness."
+    exact_revision: "Candidate mutation after evidence or verification preserves historical records but invalidates current aggregate verification."
+    redaction_and_limits: "Raw protected values and prohibited private data never enter evidence; exclusions and unavailable/unknown fields carry disposition consequences."
+    final_disposition: "Bundle validates required fields/predicates/operations/effects/verification and truthfully distinguishes completed, partial, blocked, failed, cancelled and unverified."
+
+  f16_independent_verification_path:
+    separation: "A fresh verifier process/context uses a separate review workspace and least-privilege authority; high-risk work cannot be verified by the author session."
+    input: "Verifier receives the exact candidate identity/revision, bounded context manifest, predicates, evidence references and underlying authoritative read access, not hidden reasoning."
+    actions: "Verifier independently rereads state/effects, reruns deterministic checks where possible, evaluates predicate adequacy and records disagreements."
+    lifecycle: "Runs are immutable and sequential; crash/timeout becomes VERIFICATION_ERROR with aggregate UNVERIFIED, never a substantive verdict."
+    reruns_and_corrections: "Finite rerun ceiling owner is a policy interface to be registered by E2-005; corrections create linked attempts/revisions and require fresh verification."
+    stale_invalidation: "Any material candidate/effect/predicate/policy mutation invalidates current pass while retaining the old run for its old revision."
+
+  f17_observability_failure_model:
+    structured_state: "Correlated records expose current axes, owners, operations, controls, waits/blockers, approvals/effects, route, budgets, evidence, verification and limitations."
+    telemetry_boundary: "Operational logs/metrics are derived diagnostics; mandatory audit/evidence records are unsampled and telemetry cannot grant authority or prove completion."
+    failure_contract: "Typed failures identify layer, code/class, retryability, cause, affected operation/effect/predicates, authority consequence, recovery owner and next safe action."
+    ambiguity: "Unknown remains UNKNOWN; a visible symptom does not collapse provider/model/transport/policy/tool/process/storage/effect/verification layers."
+    explanations: "User/reviewer explanations cite durable evidence and limitations without requiring private chain-of-thought."
+    observability_loss: "Loss or gap is itself recorded; missing mandatory audit/evidence blocks affected verification/completion."
+
+  f18_security_control_ownership:
+    policy_kernel: "Core-owned deterministic policy validates authority precedence, capability scope, action/effect class, limits and approval before dispatch; model judgment cannot override it."
+    workspace_broker: "Owns repository admission, path/object identity, original-state protection and cleanup scope."
+    execution_supervisor: "Owns process trees, I/O bounds, environment/network exposure, cancellation, force/fence and descendant evidence."
+    gateways: "Capability, Git, network, provider and evidence gateways validate versioned inputs/results at every crossing."
+    protected_human_entry: >-
+      A dedicated controller leaves ordinary chat/model/telemetry capture, authenticates a
+      takeover, suspends or excludes ordinary observation, sends the raw value only to one
+      exact authorized recipient/use, emits a non-secret receipt, then clears transient
+      buffers. If exclusion cannot be guaranteed, the task enters WAITING_FOR_USER or a hard
+      blocker. Recovery revalidates and reacquires; it never replays the value.
+    structural_fail_closed_rule: "Unavailable enforcement capability makes the operation unsupported/waiting/blocked; the architecture does not ask the model to behave safely in lieu of a control."
+
+  f19_packaging_local_first_behavior:
+    candidate_assumption: "One user-local application package with an embedded state store and bundled/declared worker entrypoints; concrete client/runtime/package technology remains unselected."
+    long_running_components: "One local core process while the application is active; execution and verification workers are bounded child processes, not hidden services."
+    setup: "A supported-host manifest, local data/workspace roots, prerequisite checker, migration version and security limitations are visible."
+    operation: "Core workflow, local repositories, evidence and offline fixtures work without undeclared cloud control state; provider work naturally requires separately authorized network access."
+    update_migration_cleanup: "Updates stop/fence work, snapshot/migrate/validate state, support declared rollback limits and preserve evidence; uninstall distinguishes application, state, task workspaces and held artifacts."
+    contributor_workflow: "A contributor can run deterministic offline adapters, store/recovery tests, fixture injection and verifier flows locally using the declared toolchain."
+    unsupported: "Unsupported host security/process classes and device/media failure remain explicit and block claims that depend on them."
+
+  f20_future_compatibility:
+    remote_execution: {classification: RESERVED_COMPATIBILITY, seam: "Versioned executor request/control/result/evidence port; extraction from the core is required before remote use", not_implemented: true}
+    cloud_workers: {classification: RESERVED_COMPATIBILITY, seam: "Serializable identities, owner epochs and fence tokens; no transport, scheduler or fleet", not_implemented: true}
+    concurrent_tasks: {classification: RESERVED_COMPATIBILITY, seam: "Task/workspace scopes and compare-version writes avoid identity reuse; v0.1 scheduler may serialize", not_implemented: true}
+    multiple_agents: {classification: RESERVED_COMPATIBILITY, seam: "Agent identity/retirement and per-task ownership exist without a multi-agent scheduler", not_implemented: true}
+    multiple_clients: {classification: RESERVED_COMPATIBILITY, seam: "Stable command IDs and reconnect projections exist; one active local principal is supported", not_implemented: true}
+    skills_routines: {classification: RESERVED_COMPATIBILITY, seam: "Versioned capability contract with provenance, authority, limits and tests", not_implemented: true}
+    connectors: {classification: RESERVED_COMPATIBILITY, seam: "Provider/capability/effect adapter boundary with explicit credentials and readback", not_implemented: true}
+    general_edition: {classification: DEFERRED_TO_LATER_STAGE, seam: "Domain-neutral task, authority, operation and evidence core", not_implemented: true}
+    finance_edition: {classification: DEFERRED_TO_LATER_STAGE, seam: "No finance semantics in core; vertical policy would be an extension", not_implemented: true}
+    saas: {classification: DEFERRED_TO_LATER_STAGE, seam: "Explicit principal/task/workspace scopes avoid machine-path truth; no tenancy/control plane", not_implemented: true}
+
+  f21_capability_feature_stage_classification:
+    classification_rule: "Every capability in this candidate inventory appears exactly once; reserved/deferred entries are interface compatibility only."
+    inventory:
+      C01-CAP-01: {capability: "Authoritative task/operation/control lifecycle", class: REQUIRED_NOW, source: "AR-COR/DUR", rationale: "Frozen E1 semantics", dependencies: "E2 selection then E4 authorization", target_stage: E4}
+      C01-CAP-02: {capability: "Embedded durable state/history/recovery", class: REQUIRED_NOW, source: "AR-DUR/DAT", rationale: "Acknowledgement and restart truth", dependencies: "E2-004 blockers closed; E3V-001", target_stage: E4}
+      C01-CAP-03: {capability: "Isolated workspace and bounded execution", class: REQUIRED_NOW, source: "AR-WSP/EXE", rationale: "User-state and process safety", dependencies: "E3V-002/003/006", target_stage: E4}
+      C01-CAP-04: {capability: "Git classification and local review package", class: REQUIRED_NOW, source: "AR-GIT", rationale: "Real-repository workflow", dependencies: "E3V-003", target_stage: E4}
+      C01-CAP-05: {capability: "Durable approval/effect reconciliation", class: REQUIRED_NOW, source: "AR-APR", rationale: "Consequential action safety", dependencies: "E3V-001/006", target_stage: E4}
+      C01-CAP-06: {capability: "Provider-neutral routing gateway", class: REQUIRED_NOW, source: "AR-MOD", rationale: "No provider/model lock", dependencies: "E3V-004/008", target_stage: E4}
+      C01-CAP-07: {capability: "Bounded context with durable continuity", class: REQUIRED_NOW, source: "AR-CTX", rationale: "Context is not task authority", dependencies: "E3V-005", target_stage: E4}
+      C01-CAP-08: {capability: "Evidence and independent verification", class: REQUIRED_NOW, source: "AR-EVD/VER", rationale: "Completion contract", dependencies: "E3V-005", target_stage: E4}
+      C01-CAP-09: {capability: "Protected human acquisition/takeover", class: REQUIRED_NOW, source: "AR-SEC-003/006", rationale: "UF-11 hard boundary", dependencies: "E2-004 candidate spike; E3V-006", target_stage: E4}
+      C01-CAP-10: {capability: "Integrated authenticated local interaction", class: REQUIRED_NOW, source: "AR-PKG-001 and D01", rationale: "Local-first user boundary", dependencies: "Client technology selection after E2", target_stage: E4}
+      C01-CAP-11: {capability: "Serializable remote-executor port", class: RESERVED_COMPATIBILITY, source: "AR-FUT-001", rationale: "Avoid irreversible local-only contracts", dependencies: "Actual transport deferred", target_stage: FUTURE}
+      C01-CAP-12: {capability: "Multi-owner/concurrency scoping", class: RESERVED_COMPATIBILITY, source: "AR-FUT-002", rationale: "Prevent identity reuse/global truth", dependencies: "No concurrent scheduler", target_stage: FUTURE}
+      C01-CAP-13: {capability: "Replaceable client projection", class: RESERVED_COMPATIBILITY, source: "AR-FUT-001", rationale: "Client is not authority", dependencies: "No second client", target_stage: FUTURE}
+      C01-CAP-14: {capability: "Versioned extension/connector contract", class: RESERVED_COMPATIBILITY, source: "AR-FUT-003", rationale: "Preserve bounded extensibility", dependencies: "No loader/marketplace", target_stage: FUTURE}
+      C01-CAP-15: {capability: "Cloud workers and remote execution", class: DEFERRED_TO_LATER_STAGE, source: "FC-001..004", rationale: "Compatibility only in v0.1", dependencies: "Future authorization and distributed design", target_stage: FUTURE_PRODUCT}
+      C01-CAP-16: {capability: "Actual concurrent tasks, multiple agents or multiple clients", class: DEFERRED_TO_LATER_STAGE, source: "FC-002..004", rationale: "Not v0.1 scope", dependencies: "Future scheduling/product policy", target_stage: FUTURE_PRODUCT}
+      C01-CAP-17: {capability: "Skills, routines and connectors implementation", class: DEFERRED_TO_LATER_STAGE, source: "FC-005", rationale: "Boundary only now", dependencies: "Future extension policy", target_stage: FUTURE_PRODUCT}
+      C01-CAP-18: {capability: "General Edition and Finance Edition", class: DEFERRED_TO_LATER_STAGE, source: "FC-006/007", rationale: "Vertical products deferred", dependencies: "Future product requirements", target_stage: FUTURE_PRODUCT}
+      C01-CAP-19: {capability: "SaaS, multi-user and multi-tenant operations", class: DEFERRED_TO_LATER_STAGE, source: "FC-008", rationale: "Local single-user preview", dependencies: "Future product/security/operations design", target_stage: FUTURE_PRODUCT}
+
+  f22_open_source_contributor_burden_accessibility:
+    setup_complexity: "One application setup plus declared local build/test toolchain and supported-host prerequisites."
+    processes_services: "One long-running local core while active; short-lived executor and verifier children; no external database, queue or daemon."
+    required_infrastructure: "Local filesystem, Git for supported repository workflows, declared process controls, and optional separately configured providers."
+    platform_assumptions: "Host must support the declared process-tree, path, protected-entry and local durability primitives; unsupported classes are explicit."
+    dependency_toolchain_burden: "Core/client/persistence are one distribution boundary, while adapters and workers can be bounded packages; concrete dependency count is UNKNOWN until implementation selection."
+    local_tests: "All architecture contracts expose offline fake provider/tool/effect adapters and fault points; no paid service is required for deterministic suite work."
+    reproduction_and_debugging: "One correlated local store/history and process tree simplify causal inspection, but core failures can span several colocated responsibilities."
+    bounded_component_change: "Adapter, policy, workspace, execution, evidence and verifier ports are explicit even though their orchestration is colocated."
+    documentation_burden: "Must document the core authority map, store/recovery invariants, each port, supported hosts, migration and protected-entry limitations."
+    preference_status: "AR-PRF-006 characterized only; no score or comparative conclusion."
+
+  f23_requirement_trace:
+    status_vocabulary:
+      contract: [SATISFIED_BY_DESIGN, FAILED_HARD, UNKNOWN]
+      generation: [SATISFIED_BY_DESIGN, PLAUSIBLY_SATISFIABLE_BUT_REQUIRES_E2_003_ANALYSIS, UNKNOWN_REQUIRING_SPIKE, VIOLATED, PREFERENCE_CHARACTERIZED_UNSCORED]
+      equivalence: "VIOLATED maps to FAILED_HARD; both plausible and spike unknown map to UNKNOWN."
+    summary:
+      architecture_requirements: 65
+      hard_constraints: {total: 59, satisfied_by_design: 50, plausible_e2_003: 7, unknown_requiring_spike: 2, violated: 0}
+      weighted_preferences: {total: 6, characterized_unscored: 6, weights_assigned: 0}
+      canonical_e1_ids: 127
+      runtime_evidence: SPECIFIED_NOT_IMPLEMENTED_NOT_RUN
+    architecture_requirements:
+      AR-COR-001: {class: HARD_CONSTRAINT, contract_status: SATISFIED_BY_DESIGN, generation_status: SATISFIED_BY_DESIGN, evidence: "f06/f07 stable IDs, first-outcome dedup", owner: CORE_STATE}
+      AR-COR-002: {class: HARD_CONSTRAINT, contract_status: SATISFIED_BY_DESIGN, generation_status: SATISFIED_BY_DESIGN, evidence: "f06 versioned authority/plan history", owner: CORE_STATE}
+      AR-COR-003: {class: HARD_CONSTRAINT, contract_status: SATISFIED_BY_DESIGN, generation_status: SATISFIED_BY_DESIGN, evidence: "f06 orthogonal records and derived projection", owner: CORE_STATE}
+      AR-COR-004: {class: HARD_CONSTRAINT, contract_status: SATISFIED_BY_DESIGN, generation_status: SATISFIED_BY_DESIGN, evidence: "f15/f16 noncompensating completion gate", owner: CORE_AND_VERIFIER}
+      AR-COR-005: {class: HARD_CONSTRAINT, contract_status: SATISFIED_BY_DESIGN, generation_status: SATISFIED_BY_DESIGN, evidence: "f15 predicate coverage and truthful disposition", owner: EVIDENCE_VALIDATOR}
+      AR-COR-006: {class: HARD_CONSTRAINT, contract_status: SATISFIED_BY_DESIGN, generation_status: SATISFIED_BY_DESIGN, evidence: "f15/f16 exact revision and stale invalidation", owner: CORE_AND_VERIFIER}
+      AR-COR-007: {class: HARD_CONSTRAINT, contract_status: SATISFIED_BY_DESIGN, generation_status: SATISFIED_BY_DESIGN, evidence: "f06 single writer, versions and epoch", owner: CORE_STATE}
+      AR-DUR-001: {class: HARD_CONSTRAINT, contract_status: SATISFIED_BY_DESIGN, generation_status: SATISFIED_BY_DESIGN, evidence: "f08 atomic acknowledgement boundary", owner: CORE_PERSISTENCE}
+      AR-DUR-002: {class: HARD_CONSTRAINT, contract_status: SATISFIED_BY_DESIGN, generation_status: SATISFIED_BY_DESIGN, evidence: "f09 startup and resume reconciliation", owner: RECOVERY_COORDINATOR}
+      AR-DUR-003: {class: HARD_CONSTRAINT, contract_status: SATISFIED_BY_DESIGN, generation_status: SATISFIED_BY_DESIGN, evidence: "f07/f12 stable operations and effect readback", owner: CORE_EFFECT_LEDGER}
+      AR-DUR-004: {class: HARD_CONSTRAINT, contract_status: SATISFIED_BY_DESIGN, generation_status: SATISFIED_BY_DESIGN, evidence: "f07/f09 durable ordered control", owner: CORE_AND_SUPERVISOR}
+      AR-DUR-005: {class: HARD_CONSTRAINT, contract_status: UNKNOWN, generation_status: PLAUSIBLY_SATISFIABLE_BUT_REQUIRES_E2_003_ANALYSIS, evidence: "f08 transactional old/new state and quarantine proposal", owner: CORE_PERSISTENCE}
+      AR-DUR-006: {class: HARD_CONSTRAINT, contract_status: SATISFIED_BY_DESIGN, generation_status: SATISFIED_BY_DESIGN, evidence: "f08 retention/deletion ledger", owner: CORE_PERSISTENCE}
+      AR-DAT-001: {class: HARD_CONSTRAINT, contract_status: SATISFIED_BY_DESIGN, generation_status: SATISFIED_BY_DESIGN, evidence: "f06 four state classes", owner: CORE_STATE}
+      AR-DAT-002: {class: HARD_CONSTRAINT, contract_status: SATISFIED_BY_DESIGN, generation_status: SATISFIED_BY_DESIGN, evidence: "f06/f08 causal immutable material history", owner: CORE_PERSISTENCE}
+      AR-CTX-001: {class: HARD_CONSTRAINT, contract_status: SATISFIED_BY_DESIGN, generation_status: SATISFIED_BY_DESIGN, evidence: "f14 durable continuity outside context", owner: CONTEXT_ASSEMBLER}
+      AR-CTX-002: {class: HARD_CONSTRAINT, contract_status: SATISFIED_BY_DESIGN, generation_status: SATISFIED_BY_DESIGN, evidence: "f14 provenanced invalidatable summaries", owner: CONTEXT_ASSEMBLER}
+      AR-WSP-001: {class: HARD_CONSTRAINT, contract_status: SATISFIED_BY_DESIGN, generation_status: SATISFIED_BY_DESIGN, evidence: "f10 read-only admission and 16-condition classification", owner: WORKSPACE_BROKER}
+      AR-WSP-002: {class: HARD_CONSTRAINT, contract_status: SATISFIED_BY_DESIGN, generation_status: SATISFIED_BY_DESIGN, evidence: "f10 isolation before mutation", owner: WORKSPACE_BROKER}
+      AR-WSP-003: {class: HARD_CONSTRAINT, contract_status: UNKNOWN, generation_status: PLAUSIBLY_SATISFIABLE_BUT_REQUIRES_E2_003_ANALYSIS, evidence: "f10 object-identity/path defense; host mechanism unselected", owner: WORKSPACE_BROKER}
+      AR-WSP-004: {class: HARD_CONSTRAINT, contract_status: SATISFIED_BY_DESIGN, generation_status: SATISFIED_BY_DESIGN, evidence: "f10 original-state inventory/canaries", owner: WORKSPACE_BROKER}
+      AR-WSP-005: {class: HARD_CONSTRAINT, contract_status: SATISFIED_BY_DESIGN, generation_status: SATISFIED_BY_DESIGN, evidence: "f09/f10 stale detection and scoped cleanup", owner: WORKSPACE_BROKER}
+      AR-EXE-001: {class: HARD_CONSTRAINT, contract_status: SATISFIED_BY_DESIGN, generation_status: SATISFIED_BY_DESIGN, evidence: "f04/f07 versioned envelopes and validation", owner: CAPABILITY_GATEWAY}
+      AR-EXE-002: {class: HARD_CONSTRAINT, contract_status: SATISFIED_BY_DESIGN, generation_status: SATISFIED_BY_DESIGN, evidence: "f07 declared lifecycle and bounded I/O", owner: EXECUTION_SUPERVISOR}
+      AR-EXE-003: {class: HARD_CONSTRAINT, contract_status: UNKNOWN, generation_status: UNKNOWN_REQUIRING_SPIKE, evidence: "f04/f10 proposed process-tree force/fence; supported-host feasibility unproven", owner: EXECUTION_SUPERVISOR}
+      AR-EXE-004: {class: HARD_CONSTRAINT, contract_status: SATISFIED_BY_DESIGN, generation_status: SATISFIED_BY_DESIGN, evidence: "f10/f11 classified hooks/scripts/network", owner: CAPABILITY_GATEWAY}
+      AR-GIT-001: {class: HARD_CONSTRAINT, contract_status: SATISFIED_BY_DESIGN, generation_status: SATISFIED_BY_DESIGN, evidence: "f11 thirty-row enforcement", owner: GIT_ADAPTER}
+      AR-GIT-002: {class: HARD_CONSTRAINT, contract_status: SATISFIED_BY_DESIGN, generation_status: SATISFIED_BY_DESIGN, evidence: "f11 exact state and package readback", owner: GIT_ADAPTER}
+      AR-SEC-001: {class: HARD_CONSTRAINT, contract_status: SATISFIED_BY_DESIGN, generation_status: SATISFIED_BY_DESIGN, evidence: "f05/f18 closed policy precedence", owner: POLICY_KERNEL}
+      AR-SEC-002: {class: HARD_CONSTRAINT, contract_status: SATISFIED_BY_DESIGN, generation_status: SATISFIED_BY_DESIGN, evidence: "f05/f18 scoped capability gateway", owner: POLICY_KERNEL}
+      AR-SEC-003: {class: HARD_CONSTRAINT, contract_status: UNKNOWN, generation_status: PLAUSIBLY_SATISFIABLE_BUT_REQUIRES_E2_003_ANALYSIS, evidence: "f05 TB-05 and exact recipient boundary", owner: PROTECTED_ENTRY_CONTROLLER}
+      AR-SEC-006: {class: HARD_CONSTRAINT, contract_status: UNKNOWN, generation_status: UNKNOWN_REQUIRING_SPIKE, evidence: "f18 proposed capture suspension/exclusion path; support-class feasibility unproven", owner: PROTECTED_ENTRY_CONTROLLER}
+      AR-SEC-004: {class: HARD_CONSTRAINT, contract_status: UNKNOWN, generation_status: PLAUSIBLY_SATISFIABLE_BUT_REQUIRES_E2_003_ANALYSIS, evidence: "f05 TB-11 and provider/network gateway; host enforcement unselected", owner: NETWORK_GATEWAY}
+      AR-SEC-005: {class: HARD_CONSTRAINT, contract_status: SATISFIED_BY_DESIGN, generation_status: SATISFIED_BY_DESIGN, evidence: "f10/f15 provenance and forbidden-artifact boundary", owner: PROVENANCE_VALIDATOR}
+      AR-APR-001: {class: HARD_CONSTRAINT, contract_status: SATISFIED_BY_DESIGN, generation_status: SATISFIED_BY_DESIGN, evidence: "f12 durable exact one-shot approval", owner: APPROVAL_LEDGER}
+      AR-APR-002: {class: HARD_CONSTRAINT, contract_status: SATISFIED_BY_DESIGN, generation_status: SATISFIED_BY_DESIGN, evidence: "f12 six distinct effect concepts", owner: EFFECT_LEDGER}
+      AR-APR-003: {class: HARD_CONSTRAINT, contract_status: SATISFIED_BY_DESIGN, generation_status: SATISFIED_BY_DESIGN, evidence: "f05/f11/f12 prohibited action gate", owner: POLICY_KERNEL}
+      AR-MOD-001: {class: HARD_CONSTRAINT, contract_status: SATISFIED_BY_DESIGN, generation_status: SATISFIED_BY_DESIGN, evidence: "f13 provider and role neutral core", owner: PROVIDER_GATEWAY}
+      AR-MOD-002: {class: HARD_CONSTRAINT, contract_status: SATISFIED_BY_DESIGN, generation_status: SATISFIED_BY_DESIGN, evidence: "f13 purpose/eligibility/capability/denial", owner: PROVIDER_GATEWAY}
+      AR-MOD-003: {class: HARD_CONSTRAINT, contract_status: SATISFIED_BY_DESIGN, generation_status: SATISFIED_BY_DESIGN, evidence: "f13 explicit fallback and typed distinctions", owner: PROVIDER_GATEWAY}
+      AR-EVD-001: {class: HARD_CONSTRAINT, contract_status: SATISFIED_BY_DESIGN, generation_status: SATISFIED_BY_DESIGN, evidence: "f15 versioned outcome profile", owner: EVIDENCE_BUILDER}
+      AR-EVD-002: {class: HARD_CONSTRAINT, contract_status: SATISFIED_BY_DESIGN, generation_status: SATISFIED_BY_DESIGN, evidence: "f15 stable artifacts/provenance/redaction", owner: ARTIFACT_STORE}
+      AR-EVD-003: {class: HARD_CONSTRAINT, contract_status: SATISFIED_BY_DESIGN, generation_status: SATISFIED_BY_DESIGN, evidence: "f15/f17 evidence distinct from telemetry", owner: EVIDENCE_VALIDATOR}
+      AR-VER-001: {class: HARD_CONSTRAINT, contract_status: SATISFIED_BY_DESIGN, generation_status: SATISFIED_BY_DESIGN, evidence: "f04/f16 separate verifier context", owner: VERIFIER_RUNTIME}
+      AR-VER-002: {class: HARD_CONSTRAINT, contract_status: SATISFIED_BY_DESIGN, generation_status: SATISFIED_BY_DESIGN, evidence: "f16 deterministic replay and adequacy", owner: VERIFIER_RUNTIME}
+      AR-VER-003: {class: HARD_CONSTRAINT, contract_status: SATISFIED_BY_DESIGN, generation_status: SATISFIED_BY_DESIGN, evidence: "f16 error/correction/stale lifecycle", owner: VERIFIER_RUNTIME}
+      AR-OBS-001: {class: HARD_CONSTRAINT, contract_status: SATISFIED_BY_DESIGN, generation_status: SATISFIED_BY_DESIGN, evidence: "f17 correlated structured state", owner: OBSERVABILITY_PORT}
+      AR-OBS-002: {class: HARD_CONSTRAINT, contract_status: SATISFIED_BY_DESIGN, generation_status: SATISFIED_BY_DESIGN, evidence: "f17 evidence-linked explanation", owner: OBSERVABILITY_PORT}
+      AR-FAIL-001: {class: HARD_CONSTRAINT, contract_status: SATISFIED_BY_DESIGN, generation_status: SATISFIED_BY_DESIGN, evidence: "f17 typed layers and next actions", owner: FAILURE_REGISTRY}
+      AR-FAIL-002: {class: HARD_CONSTRAINT, contract_status: SATISFIED_BY_DESIGN, generation_status: SATISFIED_BY_DESIGN, evidence: "f07/f17 ceilings and safety reserve", owner: POLICY_KERNEL}
+      AR-TST-001: {class: HARD_CONSTRAINT, contract_status: SATISFIED_BY_DESIGN, generation_status: SATISFIED_BY_DESIGN, evidence: "f25 fault-injectable ports", owner: TEST_HARNESS_PORT}
+      AR-TST-002: {class: HARD_CONSTRAINT, contract_status: SATISFIED_BY_DESIGN, generation_status: SATISFIED_BY_DESIGN, evidence: "f25 all frozen asset families", owner: TEST_HARNESS_PORT}
+      AR-TST-003: {class: HARD_CONSTRAINT, contract_status: SATISFIED_BY_DESIGN, generation_status: SATISFIED_BY_DESIGN, evidence: "f25 eight measurement interfaces; no threshold claim", owner: METRIC_PORT}
+      AR-PERF-001: {class: HARD_CONSTRAINT, contract_status: SATISFIED_BY_DESIGN, generation_status: SATISFIED_BY_DESIGN, evidence: "f07/f13 finite pre-dispatch ceilings", owner: POLICY_KERNEL}
+      AR-PERF-002: {class: HARD_CONSTRAINT, contract_status: SATISFIED_BY_DESIGN, generation_status: SATISFIED_BY_DESIGN, evidence: "f13/f17 raw timing/usage/cost", owner: METRIC_PORT}
+      AR-PKG-001: {class: HARD_CONSTRAINT, contract_status: UNKNOWN, generation_status: PLAUSIBLY_SATISFIABLE_BUT_REQUIRES_E2_003_ANALYSIS, evidence: "f19 local package shape; supported-host/toolchain proof pending", owner: PACKAGING_BOUNDARY}
+      AR-FUT-001: {class: HARD_CONSTRAINT, contract_status: UNKNOWN, generation_status: PLAUSIBLY_SATISFIABLE_BUT_REQUIRES_E2_003_ANALYSIS, evidence: "f04/f20 serializable ports but core extraction cost needs analysis", owner: ARCHITECTURE_BOUNDARY}
+      AR-FUT-002: {class: HARD_CONSTRAINT, contract_status: UNKNOWN, generation_status: PLAUSIBLY_SATISFIABLE_BUT_REQUIRES_E2_003_ANALYSIS, evidence: "f06/f20 scoped IDs and versions; single-process assumptions need analysis", owner: ARCHITECTURE_BOUNDARY}
+      AR-FUT-003: {class: HARD_CONSTRAINT, contract_status: SATISFIED_BY_DESIGN, generation_status: SATISFIED_BY_DESIGN, evidence: "f13/f20 versioned neutral adapters", owner: CAPABILITY_GATEWAY}
+      AR-PRF-001: {class: WEIGHTED_PREFERENCE, contract_status: UNKNOWN, generation_status: PREFERENCE_CHARACTERIZED_UNSCORED, evidence: "Colocated interactive/control path; future measurement only", owner: E2-003}
+      AR-PRF-002: {class: WEIGHTED_PREFERENCE, contract_status: UNKNOWN, generation_status: PREFERENCE_CHARACTERIZED_UNSCORED, evidence: "One long-running component with a broad core responsibility set", owner: E2-003}
+      AR-PRF-003: {class: WEIGHTED_PREFERENCE, contract_status: UNKNOWN, generation_status: PREFERENCE_CHARACTERIZED_UNSCORED, evidence: "State export possible; core extraction is a costly boundary", owner: E2-003}
+      AR-PRF-004: {class: WEIGHTED_PREFERENCE, contract_status: UNKNOWN, generation_status: PREFERENCE_CHARACTERIZED_UNSCORED, evidence: "Serializable ports reserved; no remote/concurrent implementation", owner: E2-003}
+      AR-PRF-005: {class: WEIGHTED_PREFERENCE, contract_status: UNKNOWN, generation_status: PREFERENCE_CHARACTERIZED_UNSCORED, evidence: "Local artifact references and one store; overhead unmeasured", owner: E2-003}
+      AR-PRF-006: {class: WEIGHTED_PREFERENCE, contract_status: UNKNOWN, generation_status: PREFERENCE_CHARACTERIZED_UNSCORED, evidence: "One package/process boundary; broad-core documentation burden", owner: E2-003}
+    canonical_e1_trace:
+      resolution_rule: "Every listed ID inherits contract_status, generation_status, evidence, and owner from its primary_ar above; runtime outcomes remain NOT_RUN."
+      empirical_rule: "SLO-* and MET-* inherit architecture-seam treatment only and remain PROTOCOL_SPECIFIED_NOT_RUN; all other IDs remain SPECIFIED_NOT_IMPLEMENTED_NOT_RUN."
+      groups:
+        - {primary_ar: AR-APR-001, ids: [FR-043, FR-044, UF-09, NEG-APR-01]}
+        - {primary_ar: AR-APR-002, ids: [FR-068, UF-10, NEG-EXT-01]}
+        - {primary_ar: AR-COR-001, ids: [FR-001, FR-002, UF-01]}
+        - {primary_ar: AR-COR-002, ids: [FR-003, FR-005, FR-006, UF-06]}
+        - {primary_ar: AR-COR-003, ids: [FR-007]}
+        - {primary_ar: AR-COR-004, ids: [FR-065, FR-066, RR-008]}
+        - {primary_ar: AR-COR-005, ids: [FR-025, FR-067, RR-009, UF-03, UF-15]}
+        - {primary_ar: AR-COR-006, ids: [FR-015, NEG-VER-02]}
+        - {primary_ar: AR-COR-007, ids: [FR-008, RR-004, NEG-RACE-01]}
+        - {primary_ar: AR-CTX-001, ids: [FR-036, UF-13]}
+        - {primary_ar: AR-CTX-002, ids: [NEG-CTX-01]}
+        - {primary_ar: AR-DAT-002, ids: [RR-014, NEG-AUDIT-01]}
+        - {primary_ar: AR-DUR-001, ids: [FR-030, RR-001]}
+        - {primary_ar: AR-DUR-002, ids: [FR-031, RR-002, UF-07, UF-08]}
+        - {primary_ar: AR-DUR-003, ids: [FR-032, RR-003]}
+        - {primary_ar: AR-DUR-004, ids: [FR-033, RR-006, UF-04, UF-05]}
+        - {primary_ar: AR-DUR-005, ids: [FR-014, FR-035, FC-008]}
+        - {primary_ar: AR-DUR-006, ids: [FR-048, RR-012]}
+        - {primary_ar: AR-EVD-001, ids: [FR-026, FR-064, RR-010]}
+        - {primary_ar: AR-EVD-002, ids: [FR-063, NEG-EVID-01]}
+        - {primary_ar: AR-EVD-003, ids: [FR-062]}
+        - {primary_ar: AR-EXE-001, ids: [FR-022, FR-040, FR-041, RR-011, NEG-CMD-01, NEG-SCHEMA-01]}
+        - {primary_ar: AR-EXE-002, ids: [FR-020, FR-021]}
+        - {primary_ar: AR-EXE-003, ids: [NEG-TERM-01]}
+        - {primary_ar: AR-EXE-004, ids: [FR-027, NEG-SUPPLY-01]}
+        - {primary_ar: AR-FAIL-001, ids: [FR-034]}
+        - {primary_ar: AR-FUT-001, ids: [FC-001]}
+        - {primary_ar: AR-FUT-002, ids: [FC-002, FC-003, FC-004, NEG-FUTURE-01]}
+        - {primary_ar: AR-FUT-003, ids: [FC-005, FC-006, FC-007]}
+        - {primary_ar: AR-GIT-001, ids: [FR-023, FR-024, NEG-GIT-01]}
+        - {primary_ar: AR-GIT-002, ids: [FR-069]}
+        - {primary_ar: AR-MOD-001, ids: [FR-050, FR-055, FC-009]}
+        - {primary_ar: AR-MOD-002, ids: [FR-051, FR-053, UF-12, NEG-PROVIDER-01]}
+        - {primary_ar: AR-MOD-003, ids: [FR-052, FR-054]}
+        - {primary_ar: AR-OBS-001, ids: [FR-060, MET-003]}
+        - {primary_ar: AR-OBS-002, ids: [FR-061]}
+        - {primary_ar: AR-PERF-001, ids: [RR-005, RR-013, NEG-DOS-01]}
+        - {primary_ar: AR-PERF-002, ids: [MET-001, MET-002]}
+        - {primary_ar: AR-PKG-001, ids: [UF-16]}
+        - {primary_ar: AR-SEC-001, ids: [FR-004, FR-009, NEG-AUTH-01]}
+        - {primary_ar: AR-SEC-002, ids: [FR-037, FR-042, RR-015, NEG-CRED-01]}
+        - {primary_ar: AR-SEC-003, ids: [FR-046, FR-047, NEG-SECRET-01]}
+        - {primary_ar: AR-SEC-004, ids: [FR-045, NEG-NET-01]}
+        - {primary_ar: AR-SEC-006, ids: [UF-11]}
+        - {primary_ar: AR-TST-003, ids: [SLO-001, SLO-002, SLO-003, SLO-004, MET-004]}
+        - {primary_ar: AR-VER-001, ids: [UF-14, NEG-VER-01]}
+        - {primary_ar: AR-WSP-001, ids: [FR-010]}
+        - {primary_ar: AR-WSP-002, ids: [FR-012, UF-02]}
+        - {primary_ar: AR-WSP-003, ids: [FR-013, NEG-FS-01]}
+        - {primary_ar: AR-WSP-004, ids: [FR-011, RR-007, NEG-DESTRUCT-01]}
+        - {primary_ar: AR-WSP-005, ids: [NEG-CLEAN-01]}
+
+  f24_decision_domain_trace:
+    D01_CLIENT_INTERACTION_BOUNDARY: {owner: "Integrated client controller; core remains authority", answer: "Durable request IDs/acks, reconnect projections, controls, approval display, evidence drilldown and protected entry are explicit."}
+    D02_CORE_APPLICATION_RUNTIME: {owner: "Local core", answer: "One single-writer runtime owns policy/orchestration/recovery; worker/verifier/provider ports remain separate."}
+    D03_TASK_WORKFLOW_ORCHESTRATION: {owner: "Core scheduler", answer: "Versioned orthogonal task axes, owner epochs, controls, retries and retirement are durable."}
+    D04_DURABLE_STATE_PERSISTENCE: {owner: "Core persistence port", answer: "Transactional current records plus material history/outbox define ack, migration and quarantine."}
+    D05_CANONICAL_TASK_CONVERSATION_EVIDENCE_MODEL: {owner: "Core state and evidence builder", answer: "Original messages and task/evidence facts are authoritative; transcript/status/summary are derived."}
+    D06_EVENT_OPERATION_HISTORY: {owner: "Core history/effect ledger", answer: "Immutable material mutations and operation/effect chains preserve causal history and gaps."}
+    D07_FILESYSTEM_WORKSPACE_ABSTRACTION: {owner: "Workspace broker", answer: "Admission, pinned base, isolated mutable workspace, stale detection and cleanup are centralized."}
+    D08_EXECUTION_PROCESS_CONTROL: {owner: "Execution supervisor", answer: "Versioned envelopes, process trees, I/O limits, cancellation and fencing form the boundary."}
+    D09_ISOLATION_SANDBOXING: {owner: "Workspace broker plus supervisor", answer: "Path/object, process, secret and network controls are structural; host support is declared."}
+    D10_GIT_INTEGRATION: {owner: "Git adapter", answer: "All thirty rows, helper suppression, ref/index/worktree readback and local/remote separation are enforced."}
+    D11_APPROVAL_PERMISSION_SYSTEM: {owner: "Policy kernel and approval ledger", answer: "Grants and one-shot approvals bind exact versions/targets; protected input is a separate path."}
+    D12_EXTERNAL_EFFECT_RECONCILIATION: {owner: "Effect ledger", answer: "Intent/approval/attempt/observation/readback keep known success, known non-success and unknown distinct."}
+    D13_MODEL_PROVIDER_GATEWAY: {owner: "Provider gateway", answer: "Role-neutral normalized contracts contain provider semantics, routing, data policy, failures and usage/cost."}
+    D14_ROUTING_CAPABILITY_DISCOVERY: {owner: "Provider/capability gateways", answer: "Purpose, eligibility, capability evidence, fallback and zero-dispatch denial are explicit."}
+    D15_CONTEXT_MEMORY_COMPACTION: {owner: "Context assembler", answer: "Bounded manifests derive from durable records; summaries are source-bound, lossy and invalidatable."}
+    D16_VERIFICATION_ARCHITECTURE: {owner: "Verifier runtime", answer: "Separate mutable context reads underlying state, reruns checks, judges adequacy and records verifier errors."}
+    D17_EVIDENCE_ARTIFACT_SYSTEM: {owner: "Evidence builder/validator", answer: "Profile bundles, exact revision, stable large-output refs, redaction, gaps and dispositions are validated."}
+    D18_OBSERVABILITY_LOGGING: {owner: "Observability port", answer: "Correlated diagnostics remain derived and cannot replace mandatory audit/evidence authority."}
+    D19_ERROR_FAILURE_MODEL: {owner: "Failure registry and recovery coordinator", answer: "Typed layer/retry/consequence/owner records preserve unknowns and determine safe next actions."}
+    D20_SECURITY_BOUNDARIES: {owner: "Policy kernel and named brokers/gateways", answer: "TB-01..20 map every enforcement point; no control rests on model self-restraint."}
+    D21_LOCAL_FIRST_PACKAGING: {owner: "Application packaging boundary", answer: "One local package/store/core plus child workers, explicit migrations and no hidden mandatory service."}
+    D22_FUTURE_REMOTE_EXECUTION: {owner: "Executor port", answer: "Serializable identity/control/result/evidence contract is reserved; transport is not implemented."}
+    D23_FUTURE_CONCURRENCY_MULTI_AGENT: {owner: "Core ownership model", answer: "Scoped IDs/versions/epochs reject cross-owner reuse; actual concurrency and multi-agent scheduling are deferred."}
+    D24_EXTENSION_SKILL_CONNECTOR_BOUNDARY: {owner: "Capability gateway", answer: "Versioned provenance/authority/limit/test contract is reserved without loader or ambient power."}
+    D25_E1_SUITE_TESTABILITY: {owner: "Test harness ports", answer: "Store, scheduler, supervisor, gateways, effect ledger, evidence and verifier expose injectable clocks/faults/readbacks."}
+
+  f25_testability_trace:
+    frozen_assets: {evaluation_cases: 170, oracle_classes: 18, fixture_families: 11, security_negative_families: 23, repository_conditions: 16, git_effect_classifications: 30, predicate_adequacy_variants: 9, dangerous_compositions: 16, reliability_protocols: 8}
+    seams:
+      task_state: "Transactional port can seed/compare task, control, ownership, blocker and disposition versions."
+      operation_effect: "Outbox/effect stub can lose acknowledgements, duplicate delivery, return wrong targets and expose readback truth."
+      persistence: "Commit fault point can interrupt before/after durable acknowledgement; corruption/migration fixtures can quarantine records."
+      workspace_git: "Synthetic repositories expose all condition/GE rows, path attacks, dirty state, mutation and canaries."
+      process_control: "Supervisor fake clock/process adapter injects timeout, cancellation resistance, descendant survival and fence events."
+      provider_model: "Offline adapters separately inject capability, policy, provider, model, transport, fallback, usage and cost outcomes."
+      approval_secret: "Approval clock/revocation/race controls and synthetic protected marker surfaces expose zero-dispatch/leakage/readback oracles."
+      context: "Manifest/summary versions can be omitted, poisoned, reordered and invalidated while authoritative records remain readable."
+      evidence_verification: "Evidence gaps/tamper/staleness and verifier crash/adequacy/check replay are independently injectable."
+      metrics: "Raw timestamps/counters/limits/usage/cost and missingness support eight future protocols without thresholds."
+    decisive_oracle_rule: "Every seam exposes authoritative state/readback; the harness may not rely on the executor/model's summary or mutate product truth to observe it."
+    unsupported_case_rule: "A host/repository/capability class that cannot expose the required seam is explicitly unsupported and cannot be counted as pass."
+
+  f26_known_weaknesses_and_assumptions:
+    facts:
+      - "Frozen E1/E2 inputs specify semantics but no implementation technology, empirical isolation proof, or supported-host matrix."
+      - "No architecture spike, evaluation case, benchmark, provider call, or application implementation has run."
+    candidate_assumptions:
+      - "A supported local platform can provide one reliable single-writer process and a healthy persistent-volume boundary."
+      - "A separate verifier process/context and review workspace can meet the verified independence floor."
+      - "Safe process-tree, path, network and protected-entry primitives can be declared for a bounded host class."
+    known_weaknesses:
+      - "A core-process crash affects interaction, scheduling, policy, persistence access and recovery presentation together, although durable truth survives."
+      - "The integrated boundary concentrates code and review responsibility; port discipline must prevent it becoming an untestable monolith."
+      - "Moving orchestration or persistence across a remote boundary later requires extracting interfaces currently colocated in one process."
+      - "Verifier separation is process/context based; project policy must still establish eligible verifier identities/configurations."
+    unsupported_environments:
+      - "Fully compromised/privileged host, untrusted persistent media, and process classes that cannot be bounded or authority-fenced."
+      - "Repository/filesystem topologies not classified as supported after composition of the sixteen E1 conditions."
+      - "Consequential external effects without idempotency evidence or authoritative readback."
+    correlated_risks:
+      - "Colocation couples contributor complexity, failure blast radius, migration cost and future remote adaptation; E2-003 must avoid double-counting."
+      - "Isolation, protected entry, packaging and supported-host scope are correlated feasibility questions, not favorable unknowns."
+
+  f27_selection_uncertainties:
+    ANALYSIS_RESOLVABLE_E2_003:
+      - {id: C01-U01, question: "Can the broad integrated core remain modular enough for independent testing and bounded contributor ownership?", evidence_needed: "Responsibility/port/dependency analysis", affected: [AR-PRF-002, AR-PRF-006]}
+      - {id: C01-U02, question: "Does the serializable port set meet the hard future floor despite colocated implementation?", evidence_needed: "Boundary/version/migration analysis", affected: [AR-FUT-001, AR-FUT-002]}
+      - {id: C01-U03, question: "What exact persistence and packaging support declaration is credible?", evidence_needed: "Failure-boundary and contributor workflow analysis", affected: [AR-DUR-005, AR-PKG-001]}
+    ARCHITECTURE_BLOCKING_SPIKE_E2_004:
+      - {id: C01-S01, question: "Can the declared supported host class guarantee bounded descendant force termination or durable authority fencing for untrusted execution?", why_existing_evidence_insufficient: "E1/E2 specify semantics but no mechanism or host evidence", affected: [AR-EXE-003, AQ-004], run_status: NOT_RUN}
+      - {id: C01-S02, question: "Can an integrated local client suspend/exclude every ordinary capture surface during protected entry while delivering only to the exact recipient?", why_existing_evidence_insufficient: "No selected client/runtime or capture-boundary evidence", affected: [AR-SEC-006, AQ-010], run_status: NOT_RUN}
+    E3_VALIDATION_OBLIGATION:
+      - {id: C01-U04, obligations: [E3V-001, E3V-002, E3V-003, E3V-004, E3V-005, E3V-006, E3V-007, E3V-008], note: "Postselection empirical validation only; not evidence of current compliance."}
+    E4_IMPLEMENTATION_DETAIL:
+      - {id: C01-U05, items: ["client/runtime", "embedded store", "schema/codec", "process API", "sandbox mechanism", "provider SDKs", "package/update tooling"], note: "Select only after architecture and E3 gates authorize implementation."}
+    FUTURE_PRODUCT:
+      - {id: C01-U06, items: ["remote/cloud workers", "multi-agent/client", "skills/connectors", "General/Finance", "SaaS"], note: "Compatibility seams only; product behavior is deferred."}
+
+  f28_migration_reversibility_profile:
+    easy_to_reverse:
+      - "Replace provider/tool/Git adapters behind versioned ports."
+      - "Replace derived client projections, transcript rendering, telemetry and summary strategy."
+      - "Change verifier implementation while retaining run/evidence contracts."
+    costly_to_reverse:
+      - "Split the integrated core into a persistent service because authority, lifecycle and local IPC must be extracted and migration-tested."
+      - "Replace the authoritative persistence/history representation after real task/effect/evidence records exist."
+      - "Change identity, approval/effect or evidence semantics because historical references and recovery depend on them."
+    data_state_migration: "Versioned export includes all authoritative records, immutable history, artifacts, integrity/gap state and migrations; import validates and invalidates leases/current verification."
+    provider_migration: "Provider-neutral logical records survive; adapter-specific request/result evidence remains retained and explicitly nonportable where necessary."
+    execution_boundary_migration: "The owned executor port can move to a local service or remote worker, but core scheduling/control assumptions and effect acknowledgement paths must be redesigned and reverified."
+    client_replacement: "Client is derived and replaceable; protected-entry and authenticated-control semantics must be reproduced before replacement."
+    local_to_remote: "Stable IDs/envelopes help, but extracting the single local authority and defining transport failure/identity/authentication is substantial future work."
+    lock_in: "Primary lock-in is to the integrated single-writer core and chosen persistent record semantics, not to a provider/model."
+    reversal_triggers: "Failure of process fencing, protected entry, durable ack/recovery, independent verification, or future-floor analysis returns the candidate to E2 rather than being patched by prose."
+    confidence: "PROPOSAL_WITH_SELECTION_BLOCKING_UNKNOWNS; no numeric score."
+
+  f29_level_a_b_c_record:
+    level_a_basis: "All hard properties are independently derived from frozen E1 through EP-ARCH-REQ-0.2; external reconstructed evidence is corroborative only."
+    level_c_exclusion: "No reconstructed source, internal identifier, exact schema/layout/module name, constant, asset, branding, copy, score, or external architecture authority is used."
+    patterns:
+      LB-01: {family: "Canonical authority/checkpoints/roots/reachability/migration", disposition: USED, why: "Single store root, snapshots and migration ledger support E1 durability/integrity", e1_reason: "AR-COR-001/006; AR-DUR-001/005/006; AR-DAT-001/002", excluded_level_c: "No engine, schema, namespace or algorithm selected"}
+      LB-02: {family: "Content-addressed identity/referents", disposition: NOT_USED, why: "Stable IDs plus integrity metadata suffice; content addressing is not mandatory", e1_reason: "AR-EVD-002 requires identity/integrity, not addressing", excluded_level_c: "No hash/blob layout or identifier syntax"}
+      LB-03: {family: "Derived projections/transcript rebuilding", disposition: USED, why: "Client and summary views rebuild from authority", e1_reason: "AR-DAT-001; AR-CTX-001/002", excluded_level_c: "No codec/event shape/module"}
+      LB-04: {family: "Authority/history persistence alternatives", disposition: USED, why: "Transactional current state plus history/outbox is this candidate's defining choice", e1_reason: "AR-DUR-001..005; AR-DAT-002", excluded_level_c: "No database or transaction technology"}
+      LB-05: {family: "Operation journal/recovery", disposition: USED, why: "Durable operation/effect ledgers support dedup and recovery", e1_reason: "AR-DUR-002/003; AR-APR-002", excluded_level_c: "No journal schema/framework"}
+      LB-06: {family: "Typed failure registry", disposition: USED, why: "Layered failures drive safe retry/recovery", e1_reason: "AR-FAIL-001/002", excluded_level_c: "No exact codes/classes"}
+      LB-07: {family: "Typed process ports/owned boundaries", disposition: USED, why: "Supervisor and gateways isolate untrusted execution", e1_reason: "AR-EXE-001..004", excluded_level_c: "No IPC/process library"}
+      LB-08: {family: "Provider/router abstraction", disposition: USED, why: "Embedded gateway preserves role/provider neutrality", e1_reason: "AR-MOD-001..003", excluded_level_c: "No provider/SDK/config format"}
+      LB-09: {family: "Explicit task/execution state", disposition: USED, why: "Orthogonal durable records and legal transitions", e1_reason: "AR-COR-003/004", excluded_level_c: "No enum/library names"}
+      LB-10: {family: "Structured approvals/capability receipts", disposition: USED, why: "Exact one-shot approval and scoped grants", e1_reason: "AR-APR-001/003; AR-SEC-002", excluded_level_c: "No token/UI/schema"}
+      LB-11: {family: "Local/remote execution abstraction", disposition: USED, why: "Local executor implements a versioned replaceable port; remote remains reserved", e1_reason: "AR-FUT-001", excluded_level_c: "No transport/cloud/container"}
+      LB-12: {family: "Long-running/cloud-agent lifecycle", disposition: SUBSUMED, why: "Local agent disable/retire/ownership semantics live in the task/control model; cloud lifecycle deferred", e1_reason: "AR-DUR-004; AR-FUT-002", excluded_level_c: "No fleet/scheduler/lease product"}
+      LB-13: {family: "Context compaction/structured summary blocks", disposition: USED, why: "Versioned lossy summary plus context manifest", e1_reason: "AR-CTX-001/002", excluded_level_c: "No block format/vector/RAG stack"}
+      LB-14: {family: "Direct adapters vs capability gateway", disposition: USED, why: "Central capability gateway before direct adapters", e1_reason: "AR-EXE-001; AR-SEC-002", excluded_level_c: "No plugin/tool framework"}
+      LB-15: {family: "Concurrency/multi-writer safety", disposition: USED, why: "Single writer plus versions/epochs rejects stale activity and preserves future scopes", e1_reason: "AR-COR-007; AR-FUT-002", excluded_level_c: "No consensus/queue/actor implementation"}
+      LB-16: {family: "Telemetry/audit/evidence/presentation topology", disposition: USED, why: "Semantic separation inside one local store boundary", e1_reason: "AR-EVD-003; AR-OBS-001/002", excluded_level_c: "No logging vendor/dashboard"}
+      LB-17: {family: "Corruption quarantine/salvage/migration recovery", disposition: USED, why: "Startup quarantine and versioned migrations are proposed", e1_reason: "AR-DUR-005/006", excluded_level_c: "No backup/repair implementation"}
+      LB-18: {family: "Evidence packets/manifests/anchors/drift/attestations", disposition: USED, why: "Versioned manifests and drift/stale checks; attestations not required", e1_reason: "AR-EVD-001..003; AR-VER-002", excluded_level_c: "No manifest/signing/attestation system"}
+      LB-19: {family: "Extension/vertical-package boundary", disposition: USED, why: "Versioned capability contract reserves bounded extensions", e1_reason: "AR-FUT-003", excluded_level_c: "No marketplace/loader/vertical implementation"}
+
+  f30_e3_handoff:
+    no_execution_statement: "All E3 obligations are mappings only. E2-002 ran no validation, evaluation, benchmark, spike, model/provider call, or paid call."
+    obligations:
+      E3V-001: {focus: "Transactional acknowledgement, owner epoch, crash points, duplicate intake, partial write and effect ambiguity", evidence: "Fault schedule, before/after store/history/effect records, first-outcome receipt and readback", owner: E3_TECHNICAL_VALIDATION_OWNER, e4_e5_remainder: "Complete adapters then full recovery/composition/release coverage", architecture_handback: "Acknowledged loss, stale writer, duplicate effect or unrecoverable semantic gap", implementation_adjustment: "Repairable store/adapter/fault-fixture defect", proposed_adr_linkage: "TBD only in E2-005 if candidate selected"}
+      E3V-002: {focus: "Supervisor pause/stop/force/fence and descendant/output bounds", evidence: "Process/control timeline, tree, fence state and effect endpoints", owner: E3_TECHNICAL_VALIDATION_OWNER, e4_e5_remainder: "Supported adapters and full control/race coverage", architecture_handback: "Supported class cannot be terminated or authority-fenced", implementation_adjustment: "Miswired process adapter or bound configuration", proposed_adr_linkage: "TBD only in E2-005 if candidate selected"}
+      E3V-003: {focus: "Workspace broker, supported repository/path classes, stale cleanup and local package", evidence: "Support matrix, canaries, inventories, bind ordering, setup reproduction", owner: E3_TECHNICAL_VALIDATION_OWNER, e4_e5_remainder: "Full 16 conditions/negative/package/release checks", architecture_handback: "Structural root/user-state escape or undeclared mandatory service", implementation_adjustment: "Bounded adapter/documentation defect", proposed_adr_linkage: "TBD only in E2-005 if candidate selected"}
+      E3V-004: {focus: "Embedded provider gateway semantic normalization and zero-dispatch", evidence: "Offline provider-shape replay, route/eligibility/fallback/failure/usage records", owner: E3_TECHNICAL_VALIDATION_OWNER, e4_e5_remainder: "Qualified adapters and exact release integration", architecture_handback: "Gateway interface cannot preserve required semantics", implementation_adjustment: "Provider/config/adapter defect with viable contract", proposed_adr_linkage: "TBD only in E2-005 if candidate selected"}
+      E3V-005: {focus: "Transactional state/history, evidence bundles and separate verifier process", evidence: "Stale/tamper/gap/adequacy/verifier-error injections and independent rereads", owner: E3_TECHNICAL_VALIDATION_OWNER, e4_e5_remainder: "All profiles, false-completion, adequacy and release cases", architecture_handback: "Executor-only proof, stale pass, telemetry authority or unavoidable evidence loss", implementation_adjustment: "Validator/projection implementation defect", proposed_adr_linkage: "TBD only in E2-005 if candidate selected"}
+      E3V-006: {focus: "Policy/workspace/execution/gateway/protected-entry enforcement points", evidence: "Threat map, markers/canaries, capture state, zero-dispatch/effect and non-secret receipt", owner: E3_SECURITY_VALIDATION_OWNER, e4_e5_remainder: "All boundaries, 23 negatives, compositions and release scan", architecture_handback: "Any required structural boundary cannot enforce the hard property", implementation_adjustment: "Miswired policy/adapter/fixture with feasible boundary", proposed_adr_linkage: "TBD only in E2-005 if candidate selected"}
+      E3V-007: {focus: "Core/supervisor/gateway timestamps, counters, ceilings and overhead records", evidence: "Raw focused protocol inputs, calculations, missingness and ceiling denial", owner: E3_MEASUREMENT_VALIDATION_OWNER, e4_e5_remainder: "Complete instrumentation and all eight full protocols", architecture_handback: "Required inputs unrepresentable or ceilings unenforceable", implementation_adjustment: "Instrumentation/configuration or observed performance miss", proposed_adr_linkage: "TBD only in E2-005 if candidate selected"}
+      E3V-008: {focus: "Logical role candidates against the unchanged provider-neutral gateway", evidence: "Separately authorized benchmark identities, outputs, failures, cost/latency and eligibility", owner: E3_MODEL_BENCHMARK_OWNER, e4_e5_remainder: "Only qualified/founder-authorized occupants then release configuration", architecture_handback: "Only if an ADR made a now-impossible capability indispensable with no compliant route", implementation_adjustment: "Leave role unassigned or change model/provider configuration", proposed_adr_linkage: "TBD only in E2-005 if candidate selected"}
