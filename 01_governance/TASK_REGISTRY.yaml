@@ -1738,12 +1738,12 @@ tasks:
     objective: Resolve every independently verified E2_PRESELECTION_SPIKE_REQUIRED blocker through bounded analysis or minimal synthetic/local architecture spikes, or publish an independently verified no-spike-required closure when the set is empty.
     why_it_matters: ADR selection cannot rest on favorable guesses, while E2 must not turn uncertainty resolution into unbounded implementation or an E3 model benchmark.
     owner_role: AUTHOR
-    assigned_model: null
+    assigned_model: "Codex (runtime model identifier not exposed)"
     reviewer_model: null
     verifier_model: null
     assignment_policy: "Assign only after E2-003 is independently VERIFIED. Each spike/result must retain author, challenger, and verifier provenance."
-    status: READY
-    planning_status: READY_NOT_CLAIMED_NOT_EXECUTED
+    status: READY_FOR_REVIEW
+    planning_status: READY_FOR_REVIEW_NOT_VERIFIED_AUTHOR_PASS
     priority: P0
     dependencies:
       - E2-003
@@ -1827,6 +1827,62 @@ tasks:
         - No spike was skipped merely to save effort.
       failure_consequence: E2_005_BLOCKED_WITH_EXACT_UNCLOSED_ITEM
       bypass_permitted: false
+    author_started_at: UNKNOWN_NOT_CAPTURED
+    author_completed_at: "2026-08-29T18:22:08Z"
+    author_base_commit: 7b4b0d51db54a52b6ce8fe49c65bfd7406b11b47
+    author_result: NO_PRESELECTION_SPIKE_REQUIRED
+    author_evidence:
+      - 05_architecture/ENGINEERING_PREVIEW_PRESELECTION_UNCERTAINTY_CLOSURE.md
+      - 99_handoffs/completed/E2-004_handoff.yaml
+    author_closure_condition_results:
+      all_analysis_owned_unknowns_resolved: PASS
+      no_architecture_blocking_empirical_uncertainty_remains: PASS
+      empirical_residuals_legitimately_owned_by_e3_or_e4: PASS
+      every_deferred_hard_property_has_architecture_seam: PASS
+      every_e3_deferral_has_explicit_evidence_and_scope: PASS
+      every_e3_deferral_fails_closed: PASS
+      every_e3_deferral_has_e2_or_adr_handback: PASS
+      no_missing_evidence_receives_favorable_interpretation: PASS
+      no_spike_skipped_for_convenience: PASS
+    author_recomputed_counts:
+      hard_requirements_per_candidate: 59
+      confirmed_satisfied_for_comparison_per_candidate: 57
+      architecture_seam_confirmed_e3_validation_outstanding_per_candidate: 2
+      architecture_blocking_spike_per_candidate: 0
+      confirmed_violated_per_candidate: 0
+      historical_candidate_uncertainty_records: 28
+      normalized_uncertainty_records: 28
+      analysis_owned_resolved: 10
+      analysis_owned_remaining: 0
+      e2_preselection_spike_required: 0
+      e3_postselection_technical_validation: 8
+      e3_model_or_configuration_benchmark: 3
+      e4_implementation_bundles: 3
+      future_product_bundles: 3
+      e2_005_preference_authority_records: 1
+      closure_conditions_pass: 9
+    author_execution_counters:
+      experiments_run: 0
+      technical_spikes_run_delta: 0
+      architecture_spikes_run: 0
+      evaluation_cases_run: 0
+      model_benchmarks_run: 0
+      paid_api_calls: 0
+      external_effects: 0
+    author_governance_result: "E2-004 is READY_FOR_REVIEW and NOT VERIFIED. E2-005 remains BACKLOG and blocked on E2_004_NOT_INDEPENDENTLY_VERIFIED. Architecture remains NOT_SELECTED, preferred candidate NONE, accepted ADRs 0, E2 gate NOT_EVALUATED, autonomy NOT_ELIGIBLE / NOT_AUTHORIZED, and S1-003 DEFERRED_NOT_EXECUTED."
+    author_validation_status: PASS_AUTHOR_MECHANICAL_CHECKS_NOT_INDEPENDENT_VERIFICATION
+    author_validation_results:
+      structured_assertions: "122/122 PASS"
+      strict_yaml_duplicate_key_parse: "65/65 PASS; 0 duplicate keys"
+      csv_parse: "6/6 PASS"
+      matrix: "195/195 unique cells; 65 criteria; 59 hard / 6 preferences"
+      uncertainty_reconciliation: "28/28 source records and 28/28 normalized records accounted for; 5/5 historical SPQs preserved"
+      hard_requirements: "59/59 per candidate; 57 confirmed + 2 seam/E3 outstanding + 0 blocking + 0 violated"
+      closure_contract: "9/9 conditions PASS; E3V-001..008 and ADR-E2-001..009 complete"
+      allowed_path_and_preservation: "PASS; exactly four authorized changed paths; frozen E1, verified E2-001/E2-002, and verified E2-003 artifacts unchanged"
+      secret_scan: "PASS; 0 credential/private-key pattern matches in changed files"
+      git_diff_check: PASS
+    next_command: "MODE: REVIEW_TASK_E2-004"
     escalation_conditions:
       - A spike needs nonzero spend, provider/cloud access, credentials, customer/private data, destructive action, or application code.
       - More work is needed than can remain one bounded independently reviewable task; create prospective E2-004 child tasks before execution.
