@@ -1537,12 +1537,12 @@ tasks:
     objective: Apply the verified criterion contract to every verified candidate, eliminate hard-constraint failures, compare surviving trade-offs, and classify every decision-relevant unknown without naming a winner.
     why_it_matters: Selection must distinguish non-negotiable E1 compliance from preferences and from facts that require focused evidence.
     owner_role: AUTHOR
-    assigned_model: null
+    assigned_model: "Codex (runtime model identifier not exposed) — E2-003 AUTHOR"
     reviewer_model: null
     verifier_model: null
     assignment_policy: "Assign only after E2-002 is independently VERIFIED; scorer, challenger, and verifier provenance must be explicit."
-    status: READY
-    planning_status: READY_NOT_CLAIMED_NOT_EXECUTED
+    status: READY_FOR_REVIEW
+    planning_status: READY_FOR_REVIEW_NOT_VERIFIED_AUTHOR_PASS
     priority: P0
     dependencies:
       - E2-002
@@ -1617,6 +1617,72 @@ tasks:
       - All candidates fail a hard E1 constraint.
       - A criterion or weight would require post-result redefinition.
       - An unknown cannot be bounded, classified, or resolved without application implementation, paid access, or an E1 amendment.
+    author_started_at: UNKNOWN_NOT_CAPTURED
+    author_completed_at: "2026-08-29T14:00:03Z"
+    author_base_commit: b5b35a7fc5190ddbe359bd99f51fea4189ccff6a
+    author_evidence:
+      - 05_architecture/ENGINEERING_PREVIEW_ARCHITECTURE_COMPARISON.md
+      - 05_architecture/ENGINEERING_PREVIEW_ARCHITECTURE_DECISION_MATRIX.csv
+      - 05_architecture/ENGINEERING_PREVIEW_ARCHITECTURE_UNCERTAINTY_REGISTER.yaml
+      - 99_handoffs/completed/E2-003_handoff.yaml
+    author_method: "Freeze the verified E2-001 contract and E2-002 candidates; evaluate all 59 hard constraints before the six preferences; preserve source generation status; resolve paper-only uncertainty without implementation claims; classify every remaining unknown under the frozen five-class taxonomy; compare all 25 domains qualitatively; run no spike or benchmark; do not score, rank, recommend, or select."
+    author_matrix_summary:
+      schema_version: EP-ARCH-MATRIX-0.1
+      candidate_count: 3
+      criterion_count: 65
+      cell_count: 195
+      unique_cell_count: 195
+      hard_criteria_per_candidate: 59
+      preference_criteria_per_candidate: 6
+      hard_results_per_candidate:
+        confirmed_satisfied_for_comparison: 57
+        architecture_blocking_spike: 2
+        confirmed_violated: 0
+      preference_result: QUALITATIVE_TRADEOFF_NO_SCORE
+      weights_assigned: false
+      winner_named: false
+      preferred_candidate: null
+    author_uncertainty_summary:
+      total: 28
+      paper_resolvable: 10
+      paper_resolved: 10
+      paper_remaining: 0
+      paper_resolution_effects: {favorable: 5, unfavorable: 1, neutral: 4}
+      e2_preselection_spike_required: 2
+      e3_postselection_technical_validation: 6
+      e3_model_or_configuration_benchmark: 3
+      deferred_out_of_scope: 7
+      retained_e2_spike_ids:
+        - E2U-S01-DESCENDANT-CONTAINMENT
+        - E2U-S02-PROTECTED-ACQUISITION
+      reclassified_candidate_delivery_spike_ids:
+        - SPQ-E2-002-03
+        - SPQ-E2-002-04
+        - SPQ-E2-002-05
+      reclassified_to: E3V-006
+    author_carried_finding_dispositions:
+      V-E2-002-01: "RESOLVED_AT_COMPARISON_LAYER — C02/C03 AR-DUR-005 is explicitly analyzed and linked to E2U-PAPER-C02-U03 / E2U-PAPER-C03-U04; candidate source records remain frozen."
+      V-E2-002-02: "RESOLVED_AT_COMPARISON_LAYER — SEC-003 protected delivery is design-confirmed and retained under E3V-006 postselection validation; only shared SEC-006 protected acquisition remains an E2 preselection blocker."
+    author_readiness:
+      EP-ARCH-C01: NEEDS_E2_004
+      EP-ARCH-C02: NEEDS_E2_004
+      EP-ARCH-C03: NEEDS_E2_004
+      conditional_after_both_shared_spikes_pass: READY_FOR_E2_005_IF_NO_NEW_MATERIAL_FINDING
+      dominance_result: NO_CANDIDATE_ANALYTICALLY_DOMINATES_ALL_OTHERS
+      selection_result: NO_SELECTION_AUTHORIZED_OR_MADE
+    author_boundary_counters:
+      accepted_architecture_adrs: 0
+      architecture_spikes_run: 0
+      evaluation_cases_run: 0
+      model_benchmarks_run: 0
+      paid_api_calls: 0
+      application_code_created: false
+      external_actions_performed: false
+      autonomy_eligible: NOT_ELIGIBLE
+      autonomous_build_authorized: false
+    author_validation_status: "PASS_AUTHOR_SIDE_NOT_INDEPENDENT_VERIFICATION: 1,716 structural/semantic assertions; 7 YAML files strict-parse with zero duplicate keys; 195/195 unique matrix cells set-equal to 3 candidates x 65 criteria; each candidate 59 hard / 6 preferences and 57 confirmed / 2 blocking / 0 violated; exact 28-item uncertainty partition 10/2/6/3/7 with 10/10 paper closure; 2/2 complete finite spike contracts; 25/25 domains, 20/20 threat boundaries and 19/19 Level B families present; frozen candidate hashes and E1/E2 inputs unchanged; exact 7 authorized paths; 0/82 clean-room external paths in architecture artifacts; 0 high-confidence secret or added absolute-external-path hits; no concrete technology/provider selection; no spike directory; zero staged changes; git diff --check PASS. No spike, evaluation, benchmark, paid call, external action, or application code was run/created."
+    author_handoff: 99_handoffs/completed/E2-003_handoff.yaml
+    next_command: "MODE: REVIEW_TASK_E2-003"
 
   - task_id: E2-004
     title: Close pre-selection architecture uncertainties

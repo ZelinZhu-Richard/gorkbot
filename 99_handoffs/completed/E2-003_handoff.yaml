@@ -1,0 +1,216 @@
+handoff_id: E2-003-AUTHOR-2026-08-29
+task_id: E2-003
+stage: E2
+author_model: "Codex (runtime model identifier not exposed)"
+reviewer_requested: "Fresh independent CHALLENGER, followed after any required fixer cycle by a separate independent VERIFIER"
+started_at: UNKNOWN_NOT_CAPTURED
+completed_at: "2026-08-29T14:00:03Z"
+base_commit: b5b35a7fc5190ddbe359bd99f51fea4189ccff6a
+task_status: READY_FOR_REVIEW_NOT_VERIFIED_AUTHOR_PASS
+files_read:
+  - MASTER_OPERATING_PROMPT.md
+  - AGENTS.md
+  - README.md
+  - SECURITY.md
+  - 01_governance/PROJECT_STATE.yaml
+  - 01_governance/TASK_REGISTRY.yaml
+  - 01_governance/DECISION_LOG.md
+  - 01_governance/ASSUMPTION_REGISTER.md
+  - 01_governance/RISK_REGISTER.md
+  - 01_governance/MODEL_REGISTRY.yaml
+  - 01_governance/SOURCE_LEDGER.csv
+  - 02_research/GROK_BOT_BASELINE_2026-08-21.md
+  - 02_research/GROK_BOT_018_RECONSTRUCTED_ARCHITECTURE_AUDIT.md
+  - 02_research/GROK_BOT_018_ARCHITECTURE_ADOPTION_MATRIX.csv
+  - 03_product/ENGINEERING_PREVIEW_CHARTER.md
+  - 03_product/ENGINEERING_PREVIEW_PRD.md
+  - 03_product/ENGINEERING_PREVIEW_USER_FLOWS.md
+  - 03_product/ENGINEERING_PREVIEW_CORRECTNESS_CONTRACT.md
+  - 03_product/ENGINEERING_PREVIEW_CONTRIBUTION_WORKFLOW.md
+  - 05_architecture/ENGINEERING_PREVIEW_E2_ARCHITECTURE_PLAN.md
+  - 05_architecture/ENGINEERING_PREVIEW_ARCHITECTURE_REQUIREMENTS.md
+  - 05_architecture/ENGINEERING_PREVIEW_E1_ARCHITECTURE_TRACEABILITY.csv
+  - 05_architecture/ENGINEERING_PREVIEW_ARCHITECTURE_ALTERNATIVES.md
+  - 05_architecture/candidates/EP-ARCH-C01.yaml
+  - 05_architecture/candidates/EP-ARCH-C02.yaml
+  - 05_architecture/candidates/EP-ARCH-C03.yaml
+  - 06_evaluation/ENGINEERING_PREVIEW_EVALUATION_SUITE.md
+  - 10_checkpoints/stage_checkpoints/ENGINEERING_PREVIEW_V0_1_RELEASE_ACCEPTANCE.yaml
+  - 10_checkpoints/stage_checkpoints/ENGINEERING_PREVIEW_E1_SPECIFICATION_GATE_VERIFICATION.yaml
+  - 99_handoffs/HANDOFF_TEMPLATE.yaml
+  - 99_handoffs/completed/E2-001_handoff.yaml
+  - 99_handoffs/completed/E2-001_challenger_review.yaml
+  - 99_handoffs/completed/E2-001_fixer_handoff.yaml
+  - 99_handoffs/completed/E2-001_verifier_review.yaml
+  - 99_handoffs/completed/E2-002_handoff.yaml
+  - 99_handoffs/completed/E2-002_challenger_review.yaml
+  - 99_handoffs/completed/E2-002_fixer_handoff.yaml
+  - 99_handoffs/completed/E2-002_verifier_review.yaml
+files_created:
+  - 05_architecture/ENGINEERING_PREVIEW_ARCHITECTURE_COMPARISON.md
+  - 05_architecture/ENGINEERING_PREVIEW_ARCHITECTURE_DECISION_MATRIX.csv
+  - 05_architecture/ENGINEERING_PREVIEW_ARCHITECTURE_UNCERTAINTY_REGISTER.yaml
+  - 99_handoffs/completed/E2-003_handoff.yaml
+files_modified:
+  - 01_governance/PROJECT_STATE.yaml
+  - 01_governance/TASK_REGISTRY.yaml
+  - 01_governance/RISK_REGISTER.md
+files_deleted: []
+decisions_made:
+  - "COMPARISON DISPOSITION: All three candidates survive paper analysis, each with 57 design-level hard properties confirmed for comparison, two shared hard blockers, zero confirmed hard violations, and six unscored preferences."
+  - "UNCERTAINTY DISPOSITION: Resolve all ten PAPER_RESOLVABLE items; retain exactly two shared E2 preselection blockers; separate candidate-specific protected delivery into E3V-006 postselection validation."
+  - "WEIGHTING DISPOSITION: Assign no numeric weights because authority is absent and the six preferences form correlated groups; publish qualitative sensitivity only."
+  - "NON-DECISION: No candidate is ranked, recommended, preferred, selected, or declared dominant; no ADR is created or accepted."
+assumptions_added: []
+comparison_method:
+  frozen_inputs:
+    requirement_contract: EP-ARCH-REQ-0.2
+    candidate_contract: EP-ARCH-CANDIDATE-0.3
+    candidate_commit: 1a1c5423da83d3dfe9c7f759300bf10d68e4281e
+    author_base_commit: b5b35a7fc5190ddbe359bd99f51fea4189ccff6a
+  sequence:
+    - Recompute candidate/criterion set equality and source generation statuses.
+    - Evaluate all hard constraints before preferences; no hard failure may be compensated.
+    - Resolve paper-only questions against the frozen contract without implementation claims.
+    - Classify every remaining unknown under the exact five-class taxonomy.
+    - Compare six correlated preferences and all 25 domains qualitatively without weights or scores.
+    - Report dominance, sensitivity, and decision readiness without naming a winner.
+  candidate_file_sha256:
+    EP-ARCH-C01: ea9ff609a2c89c96b721fef4f6005d28238940b17085ffc2d82a13ff5b688e92
+    EP-ARCH-C02: 899f7fa0933da3a7657a928f0aa5e2b4b94ffc80778bf6ba8d5a36fb6c45ba81
+    EP-ARCH-C03: 72cacf1cf6d7d99807b3d0c4c10180bb9dc079516443843ac3c87919d319e4f0
+comparison_results:
+  candidate_count: 3
+  criterion_count: 65
+  matrix_cell_count: 195
+  matrix_unique_cell_count: 195
+  hard_criteria_per_candidate: 59
+  hard_results_per_candidate:
+    confirmed_satisfied_for_comparison: 57
+    architecture_blocking_spike: 2
+    confirmed_violated: 0
+  preference_criteria_per_candidate: 6
+  preference_result: QUALITATIVE_TRADEOFF_NO_SCORE
+  decision_domains_compared: 25
+  threat_boundaries_compared: 20
+  level_b_families_compared: 19
+  frozen_testability_sets:
+    canonical_e1_ids: 127
+    evaluation_cases: 170
+    oracle_classes: 18
+    fixture_families: 11
+    security_negative_families: 23
+    repository_condition_families: 16
+    git_effect_classifications: 30
+    predicate_adequacy_variants: 9
+    dangerous_compositions: 16
+    reliability_protocols: 8
+uncertainty_results:
+  total_normalized: 28
+  source_record_count: 28
+  paper_resolvable: 10
+  paper_resolved: 10
+  paper_remaining: 0
+  paper_resolution_effects: {favorable: 5, unfavorable: 1, neutral: 4}
+  e2_preselection_spike_required: 2
+  e3_postselection_technical_validation: 6
+  e3_model_or_configuration_benchmark: 3
+  deferred_out_of_scope: 7
+  e2_spikes_retained:
+    - E2U-S01-DESCENDANT-CONTAINMENT
+    - E2U-S02-PROTECTED-ACQUISITION
+  e2_spikes_removed_or_reclassified:
+    - source_id: SPQ-E2-002-03
+      destination: E3U-C01-PROTECTED-DELIVERY
+      obligation: E3V-006
+    - source_id: SPQ-E2-002-04
+      destination: E3U-C02-PROTECTED-DELIVERY
+      obligation: E3V-006
+    - source_id: SPQ-E2-002-05
+      destination: E3U-C03-PROTECTED-DELIVERY
+      obligation: E3V-006
+carried_finding_dispositions:
+  V-E2-002-01:
+    disposition: RESOLVED_AT_COMPARISON_LAYER
+    evidence: "C02/C03 AR-DUR-005 cells explicitly link E2U-PAPER-C02-U03 / E2U-PAPER-C03-U04, with corruption, partial-write, evolution, quarantine/migration, and recovery rationale. Frozen candidate records are not edited."
+  V-E2-002-02:
+    disposition: RESOLVED_AT_COMPARISON_LAYER
+    evidence: "The affected-criterion scope is narrowed: SEC-003 candidate delivery is design-confirmed and carried to E3V-006; only SEC-006 protected human acquisition/capture is a shared E2 preselection blocker."
+dominance_and_sensitivity:
+  dominance_result: NO_CANDIDATE_ANALYTICALLY_DOMINATES_ALL_OTHERS
+  sensitivity_summary:
+    minimal_local_topology_priority: C01 gains qualitatively
+    recovery_reconstruction_priority: C03 gains qualitatively
+    replaceable_workers_and_remote_seam_priority: C02 gains qualitatively; C03 also gains on serializable boundaries
+    contributor_accessibility_priority: MIXED_AND_REQUIRES_E3_OBSERVATION
+    migration_reversibility_priority: DIFFERENT_FOUNDATIONAL_LOCK_IN_CENTERS_NO_UNIVERSAL_ORDER
+  score_or_rank: NONE
+candidate_readiness:
+  EP-ARCH-C01: NEEDS_E2_004
+  EP-ARCH-C02: NEEDS_E2_004
+  EP-ARCH-C03: NEEDS_E2_004
+  conditional_after_spikes: READY_FOR_E2_005_IF_BOTH_SHARED_SPIKES_PASS_AND_NO_NEW_MATERIAL_FINDING
+  preferred_candidate: null
+  architecture_selected: false
+downstream_contracts:
+  E2-004:
+    status: BACKLOG_BLOCKED_BY_E2_003_INDEPENDENT_VERIFICATION
+    frozen_spike_contract_count: 2
+    authorization: NOT_GRANTED_BY_THIS_HANDOFF
+  E2-005:
+    status: BACKLOG
+    entry_condition: "E2-003 and E2-004 independently VERIFIED; both shared spike contracts PASS for a candidate; no new material blocker."
+tests_run:
+  - "Ruby YAML safe-load of PROJECT_STATE.yaml, TASK_REGISTRY.yaml, uncertainty register, and handoff"
+  - "Ruby CSV parse, exact header/set/count/unique-cell/field/comparison-result checks over the 195-cell matrix"
+  - "Requirement/candidate set equality and per-candidate 59 hard / 6 preference reconstruction"
+  - "Uncertainty ID closure, exact taxonomy, class counts, owner/linkage/consequence fields, source reconciliation, and spike-contract completeness"
+  - "Comparison coverage for 25 domains, 20 threat boundaries, 19 Level B families, all six preferences, frozen testability families, V-E2-002-01/02, dominance, and sensitivity"
+  - "Hard-failure non-compensation, UNKNOWN blocking, correlated-criterion groups, no numeric weights, and no-winner policy checks"
+  - "Candidate SHA-256 and frozen-input preservation checks"
+  - "Allowed-path, no-application-code, no-run/no-benchmark/no-paid-call, clean-room, external-path, secret-pattern, and architecture-state checks"
+  - "git diff --check"
+test_results:
+  - "PASS — final author validation recorded after artifact completion; see author_validation below."
+security_checks:
+  - "No real protected input, secret, credential, network access, model/provider call, package install, or external effect used."
+  - "Both proposed spikes require synthetic local data, zero spend/calls, denied network, complete observer/accounting evidence, fail-closed outcomes, and no favorable reruns."
+  - "No application implementation, evaluation execution, architecture spike, model benchmark, or paid call was performed."
+known_limitations:
+  - "This is AUTHOR-side design comparison evidence, not independent challenge or verification."
+  - "The two shared hard properties cannot be credited from paper design and remain blocking until independently verified E2-004 evidence exists."
+  - "All implementation feasibility, model/configuration quality, performance, contributor operability, and future product decisions remain in their declared later classes."
+  - "No numeric preference weights exist; sensitivity is qualitative and cannot be converted into an E2-003 ranking."
+unverified_claims:
+  - "Every comparison result and paper-resolution disposition awaits fresh independent challenge and verification."
+  - "The spike contracts are prospective and NOT_RUN; no feasibility result is claimed."
+blockers:
+  - E2_003_REQUIRES_INDEPENDENT_CHALLENGE_AND_VERIFICATION
+  - E2U-S01-DESCENDANT-CONTAINMENT_NOT_RUN
+  - E2U-S02-PROTECTED-ACQUISITION_NOT_RUN
+recommended_next_task: "MODE: REVIEW_TASK_E2-003"
+repository_commit_or_patch: "Uncommitted working-tree patch against b5b35a7fc5190ddbe359bd99f51fea4189ccff6a; founder requested that changes remain uncommitted."
+author_validation:
+  status: PASS_AUTHOR_SIDE_NOT_INDEPENDENT_VERIFICATION
+  exact_result: >-
+    1,716 structural/semantic assertions PASS; 7 YAML files strict-parse with zero duplicate keys;
+    195/195 unique matrix cells set-equal to 3 candidates x 65 criteria; each candidate has 59 hard,
+    6 preferences, 57 confirmed hard results, 2 blocking hard results, and 0 violations; exact 28-item
+    uncertainty partition 10/2/6/3/7 with all 10 paper items resolved; 2/2 complete finite spike contracts;
+    25/25 domains, 20/20 threat boundaries, 19/19 Level B families, all six preferences and frozen
+    testability counts present; frozen candidate hashes and E1/E2 inputs unchanged; exactly 7 authorized
+    paths; 0/82 reconstructed external paths in architecture artifacts; 0 high-confidence secret hits;
+    0 added absolute-external-path hits; 0 concrete technology/provider/model hits; no spike directory;
+    0 staged changes; git diff --check PASS. No spike, evaluation case, benchmark, paid call, external action,
+    or application code was run or created. These are author checks and do not independently verify E2-003.
+boundary_counters:
+  accepted_architecture_adrs: 0
+  architecture_spikes_run: 0
+  evaluation_cases_run: 0
+  model_benchmarks_run: 0
+  paid_api_calls: 0
+  application_code_created: false
+  external_actions_performed: false
+  autonomy_eligible: NOT_ELIGIBLE
+  autonomous_build_authorized: false
+  S1-003_status: BLOCKED_DEFERRED
