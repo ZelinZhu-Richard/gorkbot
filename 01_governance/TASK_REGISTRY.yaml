@@ -1739,11 +1739,11 @@ tasks:
     why_it_matters: ADR selection cannot rest on favorable guesses, while E2 must not turn uncertainty resolution into unbounded implementation or an E3 model benchmark.
     owner_role: AUTHOR
     assigned_model: "Codex (runtime model identifier not exposed)"
-    reviewer_model: null
-    verifier_model: null
+    reviewer_model: "Claude Fable 5 (claude-fable-5) via Claude Code — independent challenger at 3fc9a462b49f5b754bdd1b9fcf07e68bf9dd7888 (separate session; independent of the Codex author; verdict E2_004_ACCEPTED with 0 BLOCKER / 0 HIGH / 0 MEDIUM / 7 LOW / 10 NOTE; 99_handoffs/completed/E2-004_challenger_review.yaml)"
+    verifier_model: "Claude Fable 5 (claude-fable-5) via Claude Code — independent verifier at 1f35f73288d4e899dd26ff27f2de1e3a29631093 (separate session; same model/product as the E2-004 challenger; independent of the Codex author; Claude Code is a named E3 candidate system and this verification selects no role occupant, architecture, candidate, or technology)"
     assignment_policy: "Assign only after E2-003 is independently VERIFIED. Each spike/result must retain author, challenger, and verifier provenance."
-    status: READY_FOR_REVIEW
-    planning_status: READY_FOR_REVIEW_NOT_VERIFIED_AUTHOR_PASS
+    status: VERIFIED
+    planning_status: VERIFIED_BY_INDEPENDENT_VERIFIER
     priority: P0
     dependencies:
       - E2-003
@@ -1807,9 +1807,8 @@ tasks:
     completion_transition: "Only independent verification of complete blocker closure may move E2-004 to VERIFIED and release E2-005 to READY. INCONCLUSIVE_BLOCKING or an unbounded/new blocker prevents transition and requires escalation or a prospective task split."
     downstream_consumer: E2-005
     unresolved_questions:
-      - Whether independent verification confirms the E2-003 preselection blocker set is empty.
-      - Whether all nine NO_PRESELECTION_SPIKE_REQUIRED closure conditions pass without favorable missing evidence.
-      - Whether every E3/E4 residual has a structural seam, evidence requirement, fail-closed behavior, and handback rule.
+      - Independently VERIFIED on 2026-08-29 (UTC) against 1f35f73288d4e899dd26ff27f2de1e3a29631093; the E2-003 preselection blocker set is confirmed empty and the closure verdict NO_PRESELECTION_SPIKE_REQUIRED stands; all nine closure conditions PASS without favorable missing evidence; 59 hard ARs per candidate recompute 57 confirmed / 2 seam-E3-outstanding (AR-EXE-003 -> E3V-002, AR-SEC-006 -> E3V-006) / 0 blocking / 0 violated.
+      - Every E3/E4 residual has a structural seam, evidence requirement, fail-closed behavior, and handback rule (11/11 E3 deferrals CORRECTLY_E3; 3/3 E4 deferrals CORRECTLY_E4; E3V-001..008 sufficient under canonical E2-001 section 9 meanings). F-E2-004-01..07 are all nonblocking; carry-forward items for E2-005 are V-E2-004-N2/N3/N4/N9 (canonical E3V definitions, one frozen ADR handback set per obligation, explicit f30 citations, protected-delivery obligation attached to ADR-E2-005).
     e2_003_fixer_input_contract:
       status: FROZEN_BY_E2_003_INDEPENDENT_VERIFICATION_AT_E5D541C
       retained_preselection_spike_ids: []
@@ -1882,7 +1881,26 @@ tasks:
       allowed_path_and_preservation: "PASS; exactly four authorized changed paths; frozen E1, verified E2-001/E2-002, and verified E2-003 artifacts unchanged"
       secret_scan: "PASS; 0 credential/private-key pattern matches in changed files"
       git_diff_check: PASS
-    next_command: "MODE: REVIEW_TASK_E2-004"
+    challenger_evidence:
+      - 99_handoffs/completed/E2-004_challenger_review.yaml
+    challenger_completed_at: "2026-08-29T18:54:39Z"
+    challenger_reviewed_commit: 3fc9a462b49f5b754bdd1b9fcf07e68bf9dd7888
+    challenger_verdict: E2_004_ACCEPTED
+    challenger_finding_counts: "BLOCKER 0, HIGH 0, MEDIUM 0, LOW 7 (F-E2-004-01..07), NOTE 10 (N1..N10); no fixer pass was required or run."
+    verifier_evidence:
+      - 99_handoffs/completed/E2-004_verifier_review.yaml
+    verifier_started_at: "2026-08-29T19:05:00Z (approximate; after committed HEAD 1f35f73 was observed with a clean working tree)"
+    verifier_completed_at: "2026-08-29T20:10:00Z (approximate)"
+    verified_commit: 1f35f73288d4e899dd26ff27f2de1e3a29631093
+    verifier_verdict: E2_004_VERIFIED
+    verifier_closure_verdict: NO_PRESELECTION_SPIKE_REQUIRED
+    verifier_acceptance_results: "AC1 verified blocker set closed exactly (empty; 5/5 historical SPQs DEFERRED_TO_E3_NON_SELECTION_BLOCKING with evidence) PASS; AC2 NO_PRESELECTION_SPIKE_REQUIRED record explains why and technical_spikes_run unchanged at 0 PASS; AC3 executed-spike contract NOT_APPLICABLE (no spike); AC4 no hard-gate failure or inconclusive blocker exists and nothing erased PASS; AC5 no comparison/register update needed, no winner named, no E3 run PASS. Required tests: RT1 PASS; RT2 NOT_APPLICABLE; RT3 PASS."
+    verifier_challenger_finding_dispositions: "F-E2-004-01 RESOLVED_OR_NONBLOCKING (NONBLOCKING_FOUNDER_COMMIT_REFRESH); F-E2-004-02 RESOLVED_OR_NONBLOCKING (NONBLOCKING_WORDING_PRECISION); F-E2-004-03 RESOLVED_OR_NONBLOCKING (NONBLOCKING_TRACEABILITY_CLEANUP); F-E2-004-04 RESOLVED_OR_NONBLOCKING (NONBLOCKING_PRESENTATION_GAP); F-E2-004-05 RESOLVED_OR_NONBLOCKING (NONBLOCKING_REFERENCE_ALIGNMENT); F-E2-004-06 RESOLVED_OR_NONBLOCKING (NONBLOCKING_AUDIT_DETAIL); F-E2-004-07 RESOLVED_OR_NONBLOCKING (NONBLOCKING_EXPLICITNESS_GAP); 0 MATERIAL_VERIFICATION_FAILURE; 0 INVALIDATED_BY_NEW_EVIDENCE."
+    verifier_new_finding_counts: "BLOCKER 0, HIGH 0, MEDIUM 0, LOW 0, NOTE 9 (V-E2-004-N1..N9; README refresh is a founder commit-time item; N2/N3/N4/N9 are E2-005 carry-forward obligations)."
+    verifier_section_results: "CLOSURE_CONDITIONS_PASS (C1-C9 all PASS); HIDDEN_BLOCKER_SEARCH_PASS (0 E2_PRESELECTION_SPIKE_REQUIRED); S01_E3_OWNERSHIP_PASS; S02_E3_OWNERSHIP_PASS; SPQ_ACCOUNTING_PASS; E3_DEFERRALS_PASS (11/11 CORRECTLY_E3); E4_DEFERRALS_PASS (3/3 CORRECTLY_E4); E3V_LEDGER_PASS; FAIL_CLOSED_PASS; HANDBACK_MODEL_PASS; HARD_CLOSURE_PASS; C01/C02/C03 READY_FOR_E2_005_AFTER_E2_004_VERIFICATION; DECISION_NEUTRALITY_PASS; ADR_READINESS_PASS (9/9 READY_FOR_PROPOSAL); CLOSURE_SUBSTANCE_PASS; NO_EXPERIMENT_PASS; NO_FAVORABLE_UNKNOWN_PASS; NO_SELECTION_PASS; FROZEN_ARTIFACTS_PASS; PROJECT_STATE_PASS."
+    verifier_mechanical_summary: "Re-run by the verifier from committed bytes at 1f35f73 with ruby 2.6 Psych/CSV, git, grep, find, shasum: 66/66 YAML strict parse with 0 duplicate keys; 6/6 CSV; matrix 195 rows / 195 unique cells / 65 criteria (59 hard / 6 preferences); hard results 57/2/0/0 per candidate with input map 52/5/2/0; result vocabulary contains no blocking/violated value; register 28 records 10/0/8/3/7 with 5/2/3 analytic resolutions, 28 source-reconciliation rows, retained preselection spike set []; 5 SPQ IDs NOT_RUN with provenance; closure tables 9/59/18/5/8/9 with section 4 set-equal to the matrix hard set; candidate SHA-256 equal to comparison pins; frozen E1, E2-001, E2-002, E2-003 diffs empty; 0 code/spike/dependency artifacts; 0 secret hits; git diff --check clean; author paths 4/4 and challenger path 1/1 authorized."
+    verification_status: VERIFIED_BY_INDEPENDENT_VERIFIER_AGAINST_1F35F73_2026-08-29
+    next_command: "MODE: EXECUTE_TASK_E2-005"
     escalation_conditions:
       - A spike needs nonzero spend, provider/cloud access, credentials, customer/private data, destructive action, or application code.
       - More work is needed than can remain one bounded independently reviewable task; create prospective E2-004 child tasks before execution.
@@ -1898,14 +1916,14 @@ tasks:
     reviewer_model: null
     verifier_model: null
     assignment_policy: "The selector must not be the sole challenger or verifier. Model/provider use as an authoring surface creates no product-role eligibility."
-    status: BACKLOG
-    planning_status: PLANNED_NOT_EXECUTED
+    status: READY
+    planning_status: READY_NOT_CLAIMED_NOT_EXECUTED
     priority: P0
     dependencies:
       - E2-004
-    blocked_by:
-      - E2_004_NOT_INDEPENDENTLY_VERIFIED
+    blocked_by: []
     activation_condition: "E2-001 through E2-004 are independently VERIFIED; every hard constraint has at least one passing candidate; every selection-blocking unknown is closed."
+    activation_condition_status: "SATISFIED on 2026-08-29 (UTC): E2-001 (0d702b8), E2-002 (1a1c542), E2-003 (e5d541c), and E2-004 (1f35f73; 99_handoffs/completed/E2-004_verifier_review.yaml) are independently VERIFIED; every hard constraint has three passing candidates (57 architecture-confirmed + 2 architecture-seam-confirmed/E3-validation-outstanding per candidate, 0 violations); the selection-blocking unknown set is independently confirmed empty (NO_PRESELECTION_SPIKE_REQUIRED). READY does not claim or execute the task: E2-005 must recommend exactly one provisional candidate, author PROPOSED_PENDING_INDEPENDENT_ARCHITECTURE_VERIFICATION ADRs only, carry canonical E2-001 section 9 E3V-001..008 definitions with one frozen ADR handback set each (V-E2-004-N2/N3/N4/N9), register the E3 ceiling-policy owner, and may not accept an ADR, set architecture_selected, run E3, benchmark a model, make a paid call, write application code, change autonomy, or resume S1-003."
     gate_invariant: "The author/fixer may create only PROPOSED_PENDING_INDEPENDENT_ARCHITECTURE_VERIFICATION ADRs and baseline. Architecture remains not independently selected until E2-006 passes."
     e3_ceiling_policy_ownership:
       accountable_registration_task: E2-005
