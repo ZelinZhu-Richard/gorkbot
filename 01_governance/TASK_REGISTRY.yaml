@@ -1539,10 +1539,10 @@ tasks:
     owner_role: AUTHOR
     assigned_model: "Codex (runtime model identifier not exposed) — original E2-003 AUTHOR returning as FIXER"
     reviewer_model: "Claude Fable 5 (claude-fable-5) via Claude Code — independent E2-003 challenger at c870c83a5f97c639c0c248c2e650ad31371c5164"
-    verifier_model: null
+    verifier_model: "Claude Fable 5 (claude-fable-5) via Claude Code — independent post-fix verifier at e5d541c53f663d77f6d07596751bf3b1c66ebf6b (separate session; same model/product as the E2-003 challenger; independent of the Codex author/fixer; Claude Code is a named E3 candidate system and this verification selects no role occupant, architecture, candidate, or technology)"
     assignment_policy: "Assign only after E2-002 is independently VERIFIED; scorer, challenger, and verifier provenance must be explicit."
-    status: READY_FOR_REVIEW
-    planning_status: READY_FOR_REVIEW_NOT_VERIFIED_FIXER_PASS
+    status: VERIFIED
+    planning_status: VERIFIED_BY_INDEPENDENT_VERIFIER
     priority: P0
     dependencies:
       - E2-002
@@ -1610,9 +1610,9 @@ tasks:
     completion_transition: "Only independent verification may move E2-003 to VERIFIED and release E2-004 to READY."
     downstream_consumer: E2-004
     unresolved_questions:
-      - Comparative results and surviving candidates.
-      - Selection-blocking unknowns and whether any E2 spike is necessary.
-      - Which empirical questions are safely post-selection E3 obligations.
+      - Independently VERIFIED on 2026-08-29 (UTC) against e5d541c53f663d77f6d07596751bf3b1c66ebf6b; F-E2-003-01..09 RESOLVED; all three candidates ANALYTICALLY_VIABLE and unranked with 57 architecture-confirmed and 2 architecture-seam-confirmed/E3-validation-outstanding hard properties each and 0 violations.
+      - The minimal E2 preselection spike set was independently re-derived as empty (NO_PRESELECTION_SPIKE_REQUIRED); S01 -> E3V-002 and S02 plus SPQ-E2-002-03/04/05 -> E3V-006 with evidence, tested-scope, fail-closed, and ADR handback rules. Independent confirmation of the nine-condition closure is now E2-004's input, not an open E2-003 question.
+      - Which implementation/E3 unknowns remain (E3V-001..008, E4 implementation bundles, future-scope policy, preference authority) is recorded in the verified register without favorable missing evidence.
     escalation_conditions:
       - All candidates fail a hard E1 constraint.
       - A criterion or weight would require post-result redefinition.
@@ -1718,7 +1718,19 @@ tasks:
       E2-005 input, six preference-group/five correlation-set, seven sensitivity-profile, nine-ADR-map,
       eleven-recovery-scenario, six-direction dominance, frozen-input, governance/status/counter, startup/autonomy,
       allowed-path, clean-room, secret, no-execution-artifact, and git-diff checks pass. No task was self-verified.
-    next_command: "MODE: VERIFY_TASK_E2-003"
+    verifier_evidence:
+      - 99_handoffs/completed/E2-003_verifier_review.yaml
+    verifier_started_at: "2026-08-29T15:55:00Z (approximate; after the founder's 2026-08-29T16:08:30Z commit of e5d541c was observed as HEAD)"
+    verifier_completed_at: "2026-08-29T16:30:00Z (approximate)"
+    verified_commit: e5d541c53f663d77f6d07596751bf3b1c66ebf6b
+    verifier_verdict: E2_003_VERIFIED
+    verifier_acceptance_results: "AC1 195/195 cells carry class, claim type, source, rationale, result, uncertainty, consequence PASS; AC2 hard gate before preferences with 0 violations and no compensation PASS; AC3 criteria/domain coverage PASS; AC4 28/28 unknowns in exactly one of five classes with owner, rationale, linkage, consequence PASS; AC5 zero proposed E2 spike contracts, historical questions dispositioned with provenance PASS (vacuous per-contract fields); AC6 tradeoffs and seven sensitivity profiles without winner PASS. Required tests 4/4 PASS."
+    verifier_original_finding_dispositions: "F-E2-003-01 RESOLVED, F-E2-003-02 RESOLVED, F-E2-003-03 RESOLVED, F-E2-003-04 RESOLVED, F-E2-003-05 RESOLVED, F-E2-003-06 RESOLVED, F-E2-003-07 RESOLVED, F-E2-003-08 RESOLVED, F-E2-003-09 RESOLVED (each re-checked against committed bytes at e5d541c, not the fixer labels)."
+    verifier_new_finding_counts: "BLOCKER 0, HIGH 0, MEDIUM 0, LOW 0, NOTE 8 (V-E2-003-N1..N8; README refresh is a founder commit-time item)."
+    verifier_section_results: "COMPARISON_BASELINE_PASS; COMPARISON_MATRIX_PASS; HARD_CONSTRAINT_MODEL_PASS; S01_RECLASSIFICATION_PASS; S02_RECLASSIFICATION_PASS; MINIMAL_E2_004_SET_PASS (NO_PRESELECTION_SPIKE_REQUIRED); E2_004_CLOSURE_CONTRACT_PASS; SPQ_03_05_PASS; E3V_002_HANDOFF_PASS; E3V_006_HANDOFF_PASS; ANALYTIC_RESOLUTION_MODEL_PASS; CONSEQUENCE_MODEL_PASS; HOST_CLASS_LANGUAGE_PASS; PREFERENCE_GROUP_PASS; SENSITIVITY_PROFILE_PASS; ADR_INPUT_MAP_PASS; RECOVERY_COMPARISON_PASS; COMPARISON_FAIRNESS_PASS; DOMINANCE_PASS (NO_CANDIDATE_DOMINATED); E2_005_INPUT_PASS; E2_E3_BOUNDARY_PASS; NO_SELECTION_PASS; FROZEN_ARTIFACTS_PASS; PROJECT_STATE_PASS."
+    verifier_mechanical_summary: "Re-run by the verifier from committed bytes at e5d541c: 63/63 YAML strict parse with 0 duplicate keys; CSV 195 rows / 195 unique cells / 65 criteria x 3 candidates; 59 hard / 6 preference per candidate; hard results 57/2/0/0 per candidate with input 52/5/2/0 preserved; register 28 items = 10/0/8/3/7; analytic 5/2/3; 7 consequence terms; 9 closure conditions; 6 primary preference groups; 5 correlation sets; 7 sensitivity profiles; 9 ADR rows; 11 recovery scenarios x 3 = 33 cells / 165 fields; 25 domains; 20 threat boundaries; 19 Level B rows; 6/6 dominance directions not dominated; candidate SHA-256 equal to comparison pins; frozen E1/E2-001/E2-002/plan diffs empty since 1a1c542; 0 secret hits; 0 technology identifiers; 8/8 fixer paths authorized; git diff --check clean."
+    verification_status: VERIFIED_BY_INDEPENDENT_VERIFIER_AGAINST_E5D541C_2026-08-29
+    next_command: "MODE: EXECUTE_TASK_E2-004"
 
   - task_id: E2-004
     title: Close pre-selection architecture uncertainties
@@ -1730,14 +1742,14 @@ tasks:
     reviewer_model: null
     verifier_model: null
     assignment_policy: "Assign only after E2-003 is independently VERIFIED. Each spike/result must retain author, challenger, and verifier provenance."
-    status: BACKLOG
-    planning_status: PLANNED_NOT_EXECUTED
+    status: READY
+    planning_status: READY_NOT_CLAIMED_NOT_EXECUTED
     priority: P0
     dependencies:
       - E2-003
-    blocked_by:
-      - E2_003_NOT_INDEPENDENTLY_VERIFIED
+    blocked_by: []
     activation_condition: "E2-003 is independently VERIFIED and its uncertainty register prospectively freezes the exact E2 blocker set or a complete no-spike closure input contract."
+    activation_condition_status: "SATISFIED on 2026-08-29 (UTC): E2-003 independently VERIFIED against e5d541c53f663d77f6d07596751bf3b1c66ebf6b (99_handoffs/completed/E2-003_verifier_review.yaml); the verified register freezes an empty E2_PRESELECTION_SPIKE_REQUIRED set and the complete nine-condition no-spike closure input contract. READY does not claim or execute the task: E2-004 must independently confirm NO_PRESELECTION_SPIKE_REQUIRED (or record E2_005_BLOCKED_WITH_EXACT_UNCLOSED_ITEM), keep technical_spikes_run at 0, run no experiment merely because a spike stage exists, and may not select an architecture or candidate, create an ADR, benchmark a model, make a paid call, or write application code."
     gate_invariant: "E2-004 resolves selection blockers only. It cannot choose the architecture, benchmark a provider/model, create production application code, or broaden a spike after results are visible."
     files_to_read:
       - MASTER_OPERATING_PROMPT.md
@@ -1799,7 +1811,7 @@ tasks:
       - Whether all nine NO_PRESELECTION_SPIKE_REQUIRED closure conditions pass without favorable missing evidence.
       - Whether every E3/E4 residual has a structural seam, evidence requirement, fail-closed behavior, and handback rule.
     e2_003_fixer_input_contract:
-      status: PROVISIONAL_PENDING_E2_003_INDEPENDENT_VERIFICATION
+      status: FROZEN_BY_E2_003_INDEPENDENT_VERIFICATION_AT_E5D541C
       retained_preselection_spike_ids: []
       expected_output_if_all_conditions_pass: NO_PRESELECTION_SPIKE_REQUIRED
       expected_technical_spikes_run_delta: 0
