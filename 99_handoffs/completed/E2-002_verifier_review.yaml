@@ -1,0 +1,514 @@
+review_id: R-E2-002-20260829-VERIFIER
+handoff_id: H-E2-002-VERIFY-20260829
+task_id: E2-002
+stage: E2
+mode: VERIFY_TASK_E2-002
+role: VERIFIER
+reviewer_model: "Claude Fable 5 (claude-fable-5) via Claude Code"
+reviewer_independence: >-
+  Independent post-fix verifier in a fresh session with no shared conversation state with the
+  E2-002 challenger session, the E2-001 verifier session, the PLAN_STAGE_E2 session, or any
+  prior S0/S1/E0/E1 session; same model/product as the E2-002 challenger (Claude Fable 5 via
+  Claude Code), disclosed per repository precedent. Independent of the recorded E2-002 author
+  and fixer ("Codex (runtime model identifier not exposed)"). Every count, set, status map,
+  blob identity, path set, and semantic judgement below was recomputed from the committed bytes
+  at 1a1c542 with scratch scripts (ruby 2.6 Psych strict parse plus duplicate-key AST walk,
+  ruby csv, git, grep); the author handoff, challenger review, fixer handoff, the fixer's FIXED
+  labels, the registry fixer_* fields, and PROJECT_STATE notes were read but not relied on.
+  Disclosure: the charter names "Claude Code" among the E3 candidate systems; this verification
+  selects no role occupant, architecture, candidate, technology, provider, or model. No
+  subagents, network retrieval, login, account, API key, paid call, spend, spike, benchmark,
+  evaluation-case implementation or execution, application code, ADR, ranking, or E2-003
+  execution was used or produced.
+started_at: "2026-08-29T03:09:00Z (approximate; after the founder's 2026-08-29T03:08:03Z commit of 1a1c542 was observed as HEAD)"
+completed_at: "2026-08-29T03:30:00Z (approximate)"
+reviewed_commit: 1a1c5423da83d3dfe9c7f759300bf10d68e4281e
+reviewed_state: >-
+  Branch chore/initialize-project-materials at committed HEAD 1a1c542 ("Fix Engineering
+  Preview architecture alternatives findings"), working tree clean at review start, nothing
+  staged. History: 38f673b (E2-001 verified) -> d950e44 (E2-002 author) -> 7819afc
+  (independent challenger, 1 path) -> 1a1c542 (fixer, 8 paths). The fixer diff 7819afc..1a1c542
+  touches exactly eight E2-002-authorized paths: 05_architecture/ENGINEERING_PREVIEW_ARCHITECTURE_ALTERNATIVES.md,
+  05_architecture/candidates/EP-ARCH-C01.yaml, EP-ARCH-C02.yaml, EP-ARCH-C03.yaml,
+  01_governance/PROJECT_STATE.yaml, 01_governance/TASK_REGISTRY.yaml (E2-002 entry only),
+  99_handoffs/completed/E2-002_handoff.yaml (fixer addendum), and the new
+  99_handoffs/completed/E2-002_fixer_handoff.yaml. ASSUMPTION_REGISTER.md and RISK_REGISTER.md
+  are untouched. git diff c2f7093..HEAD over 03_product, 06_evaluation, 10_checkpoints,
+  02_research, DECISION_LOG.md, MODEL_REGISTRY.yaml, SOURCE_LEDGER.csv, SECURITY.md,
+  MASTER_OPERATING_PROMPT.md and AGENTS.md is empty; frozen E1 blob IDs at HEAD equal the E1
+  gate record (PRD 4a817887, user flows e09e92f7, contract 8e11bdf0, contribution workflow
+  4c834fc0, evaluation suite 3d474bbd, charter 50f21ea0, release checkpoint f1c3fc21, E1 gate
+  record 3554fc1e). git diff 0d702b8..HEAD over the two verified E2-001 architecture artifacts
+  and the E2 plan is empty (requirements 4a68e44a, traceability 2e8f2abb, plan 51a1a59e). git
+  diff --check 38f673b..HEAD is clean. No application-source file, package manifest, ADR
+  directory, spike directory, or benchmark artifact exists anywhere in the repository.
+
+verdict: E2_002_VERIFIED
+verdict_rationale: >-
+  All nine challenger findings F-E2-002-01..09 are RESOLVED as independently re-checked against
+  the committed bytes at 1a1c542, not against the fixer's labels. All five E2-002 acceptance
+  criteria PASS and all four required tests were re-run and pass. The candidate set is exactly
+  three unique records with unique IDs and names, no hidden fourth candidate, preferred
+  candidate NONE, architecture NOT_SELECTED, accepted ADRs 0. The three shapes remain
+  structurally distinct after the lifetime fix: C01 is a task-bound integrated core whose
+  co-resident supervisor owns child trees and whose full loss ends the live owner (not a
+  permanent service, no replaceable worker authority); C02 is a persistent control service with
+  replaceable leased workers; C03 is journal/reducer authority independent of any live
+  coordinator with disposable projections. One written hard-status rule governs all 59 hard ARs
+  in every candidate; all three 59-entry generation-status maps are byte-identical and
+  recompute to 52 SATISFIED_BY_DESIGN / 5 PLAUSIBLY_SATISFIABLE_BUT_REQUIRES_E2_003_ANALYSIS /
+  2 UNKNOWN_REQUIRING_SPIKE / 0 VIOLATED, with the same five plausible ARs (AR-DUR-005,
+  AR-WSP-003, AR-SEC-003, AR-SEC-004, AR-PKG-001) and the same two spike ARs (AR-EXE-003,
+  AR-SEC-006); the equality was semantically challenged AR by AR and no legitimate
+  candidate-specific structural difference was found that the uniform statuses hide. Five
+  lifetimes, client-only interruption, no-live-owner deadline semantics, full-system shutdown,
+  stale-client rules, and one EP-CTL-016 seam exist per candidate. The normalized spike model
+  is exactly five unique NOT_RUN questions (two shared, three candidate-specific delivery
+  variants) with nine references and complete fields. Nine family-level testability rows,
+  sixteen composition rows, a four-tier technology-neutral isolation taxonomy with Tier 2
+  semantic assumption, nineteen Level B dispositions with candidate-specific LB-02/LB-14
+  rationale, C02 protected delivery, C03 payload/event ordering, and seven workspace
+  partial-write cases are present and coherent. Frozen E1 and verified E2-001 artifacts are
+  byte-identical; allowed paths, secret scan, clean-room path scan, technology/provider scan,
+  ranking scan, and git diff --check all pass; governance reconciles. New findings: 0 BLOCKER /
+  0 HIGH / 0 MEDIUM / 2 LOW (non-blocking bookkeeping items that E2-003 must carry) / 8 NOTE.
+
+method:
+  - "Read MASTER_OPERATING_PROMPT.md, AGENTS.md, CLAUDE.md, README.md, SECURITY.md, PROJECT_STATE.yaml, TASK_REGISTRY.yaml (full E2-001..E2-006 entries), DECISION_LOG.md D-016, charter §19, PRD FR-014/FR-031, user flows UF-08, contract §6.3 and RR-002/RR-006, evaluation suite EP-CTL-016 and COMP-01..16, E2-001 requirements §2/§3/§10/§13/§14/§15/§16 and AR-EXE-003/AR-DUR-003/AR-DUR-004/AR-FUT-001/AR-FUT-002/AR-TST-002/AR-SEC-003/AR-SEC-004/AR-SEC-006, the E2 plan §13, the E2-001 verifier review, and all three candidate records, the alternatives overview, the E2-002 author handoff (with fixer addendum), the challenger review, and the fixer handoff in full."
+  - "Strict Psych parse plus duplicate-key AST walk over all 58 tracked YAML/YML files."
+  - "Ruby recomputation from the candidate YAML: 30 contract fields; 65 AR entries set-equal to the 65 E2-001 §4 headings; 59 hard set-equal to the 59 HARD_CONSTRAINT headings; 6 preferences; per-AR generation/contract status projection consistency; hard-status counts; pairwise map equality; 127 canonical E1 IDs set-equal to the traceability CSV with every primary AR equal to the CSV primary column; 5 lifetimes; 20 TB rows x 8 keys with zero empty fields; 25 domains; 9 family rows x 7 fields; 16 COMP rows x 7 fields; EP_CTL_016 row; 4-tier taxonomy, assumed tier, 7 dependent ARs, 4 enforcement layers, AQ_003; 8 partial-write keys incl. global_atomicity_claim false; 19 LB rows; 8 E3V rows; uncertainty class counts; spike ID/class/candidate/AR/field/run-status completeness; capability inventory classes; f20 not_implemented flags."
+  - "Semantic re-reading of every f23 status difference (none) and every equality for AR-EXE-003, AR-DUR-003, AR-DUR-004, AR-FUT-001/002, AR-SEC-003/006, AR-TST-002, AR-PKG-001 against the candidate f02/f04/f07/f08/f09/f10/f25 text and the E2-001 AR definitions; pairwise structural comparison on twelve dimensions; lifetime scenario walk-through; recovery, evidence, security, E3, Level B, contributor/migration regression reading."
+  - "git diff --name-only and --check over 7819afc..1a1c542 and 38f673b..1a1c542; git hash-object of the frozen E1 and verified E2-001 artifacts versus the E1 gate/E2-001 verifier records; git diff --stat since c2f7093 and 0d702b8 over frozen directories; line-by-line review of the governance diff in the fixer commit."
+  - "grep scans: ranking/preference vocabulary with context inspection; technology/sandbox/database/queue/framework names; provider/model names; high-confidence secret patterns over all nine E2-002-lifecycle-changed files; exact external paths (82) and basename tokens from the verified adoption matrix and audit §4.1 module names; find for application source/manifests/ADR/spike directories."
+
+files_read:
+  - MASTER_OPERATING_PROMPT.md
+  - AGENTS.md
+  - CLAUDE.md
+  - README.md
+  - SECURITY.md
+  - 01_governance/PROJECT_STATE.yaml
+  - 01_governance/TASK_REGISTRY.yaml
+  - 01_governance/DECISION_LOG.md
+  - 01_governance/ASSUMPTION_REGISTER.md
+  - 01_governance/RISK_REGISTER.md
+  - 01_governance/MODEL_REGISTRY.yaml
+  - 03_product/ENGINEERING_PREVIEW_CHARTER.md
+  - 03_product/ENGINEERING_PREVIEW_PRD.md
+  - 03_product/ENGINEERING_PREVIEW_USER_FLOWS.md
+  - 03_product/ENGINEERING_PREVIEW_CORRECTNESS_CONTRACT.md
+  - 03_product/ENGINEERING_PREVIEW_CONTRIBUTION_WORKFLOW.md
+  - 06_evaluation/ENGINEERING_PREVIEW_EVALUATION_SUITE.md
+  - 10_checkpoints/stage_checkpoints/ENGINEERING_PREVIEW_V0_1_RELEASE_ACCEPTANCE.yaml
+  - 10_checkpoints/stage_checkpoints/ENGINEERING_PREVIEW_E1_SPECIFICATION_GATE_VERIFICATION.yaml
+  - 05_architecture/ENGINEERING_PREVIEW_E2_ARCHITECTURE_PLAN.md
+  - 05_architecture/ENGINEERING_PREVIEW_ARCHITECTURE_REQUIREMENTS.md
+  - 05_architecture/ENGINEERING_PREVIEW_E1_ARCHITECTURE_TRACEABILITY.csv
+  - 05_architecture/ENGINEERING_PREVIEW_ARCHITECTURE_ALTERNATIVES.md
+  - 05_architecture/candidates/EP-ARCH-C01.yaml
+  - 05_architecture/candidates/EP-ARCH-C02.yaml
+  - 05_architecture/candidates/EP-ARCH-C03.yaml
+  - 99_handoffs/completed/E2-001_verifier_review.yaml
+  - 99_handoffs/completed/E2-002_handoff.yaml
+  - 99_handoffs/completed/E2-002_challenger_review.yaml
+  - 99_handoffs/completed/E2-002_fixer_handoff.yaml
+  - 02_research/GROK_BOT_018_ARCHITECTURE_ADOPTION_MATRIX.csv (external_paths column for clean-room scan only)
+  - 02_research/GROK_BOT_018_RECONSTRUCTED_ARCHITECTURE_AUDIT.md (§4.1 module names for clean-room scan only)
+
+files_created:
+  - 99_handoffs/completed/E2-002_verifier_review.yaml
+files_modified:
+  - 01_governance/TASK_REGISTRY.yaml
+  - 01_governance/PROJECT_STATE.yaml
+files_deleted: []
+frozen_e1_files_modified: []
+architecture_artifacts_modified_by_verifier: false
+findings_fixed_by_verifier: false
+
+original_finding_dispositions:
+  - finding_id: F-E2-002-01
+    severity: HIGH
+    disposition: RESOLVED
+    evidence: >-
+      Overview §1 records one status-assignment rule (SATISFIED_BY_DESIGN = sufficiently
+      specified structural authority/mechanism/seam; PLAUSIBLE = credible design path with
+      unresolved paper analysis; UNKNOWN_REQUIRING_SPIKE = empirical feasibility that is
+      architecture-blocking and not decidable by analysis; VIOLATED = contradiction) and states
+      that preference elegance, cost, extraction burden, or contributor burden never sets a hard
+      status. Each f23 carries the same status_assignment_rule with cross_candidate_application
+      and specifically_rechecked [AR-EXE-003, AR-DUR-003, AR-FUT-001, AR-FUT-002, AR-TST-002].
+      Recomputed: all three 59-entry generation-status maps are identical; AR-EXE-003 is
+      UNKNOWN_REQUIRING_SPIKE in all (C01 l.374, C02 l.347, C03 l.352) with evidence that
+      separates logical fencing from descendant containment under shared SPQ-E2-002-01;
+      AR-DUR-003 is SATISFIED_BY_DESIGN in all with an explicit intent/attempt/correlation/
+      readback/known-failed-unknown bridge and no atomicity claim (C01 f08
+      external_effect_recovery_bridge, C02 f08, C03 f08); AR-FUT-001/002 SATISFIED_BY_DESIGN in
+      all at the hard seam floor with extraction cost moved to AR-PRF-003/004 (C01 l.406-407);
+      AR-TST-002 SATISFIED_BY_DESIGN in all pointing to the nine-row matrix, EP_CTL_016 and 16
+      compositions. Tallies 52/5/2/0 match each f23 summary, overview §4, handoff
+      hard_constraint_status_summary, registry current_hard_constraint_status, and PROJECT_STATE.
+      f27 spike entries (SPQ-01 for AR-EXE-003; SPQ-02..05 for AR-SEC-006/003) match the
+      statuses; no analysis entry contradicts a spike status.
+  - finding_id: F-E2-002-02
+    severity: HIGH
+    disposition: RESOLVED
+    evidence: >-
+      C01 f02 lifetime_model defines CLIENT/CONTROL_AUTHORITY/EXECUTION_OWNER/TASK/WORKSPACE
+      lifetimes and relationships; f03 disconnect_and_exit separates client-only close from
+      explicit full-system shutdown; f04 no_live_owner_semantics states that persisted deadlines
+      are not claimed to receive real-time enforcement while every owner is absent and that the
+      next startup immediately classifies overdue work; f04 full_system_shutdown; f09
+      client_only_interruption names EP-CTL-016; f19 long_running_components; f22
+      processes_services; f25 EP_CTL_016; f26 known_weaknesses discloses the deadline
+      consequence. C03 f02 lifetime_model, f03 disconnect_and_exit, f04
+      no_live_coordinator_semantics and full_system_shutdown, f07 coordinator_loss_and_deadlines
+      ("elapsed time is not itself evidence that cancellation/termination occurred"), f09
+      client_only_interruption, f19, f22, f25 EP_CTL_016 and f26 all present. C02 retains the
+      explicit service semantics and adds f04 no_live_service_semantics, full_system_shutdown,
+      f09 client_only_interruption and f25 EP_CTL_016. Overview §3 topology row and §7 lifetime
+      table compare all three on the same lifetime facts. AR-DUR-002/AR-DUR-004 statuses now
+      cite the lifetime model and no-live-owner classification. C01-versus-C02 distinction holds
+      on authority ownership (task-bound integrated core vs persistent service), worker
+      replaceability (children not independent authorities vs disposable leased workers), and
+      client boundary (presentation attached to the integrated runtime vs thin client over a
+      service boundary): C01 did not acquire C02's daemon/worker topology.
+  - finding_id: F-E2-002-03
+    severity: MEDIUM
+    disposition: RESOLVED
+    evidence: >-
+      Overview §10 and each f27 ARCHITECTURE_BLOCKING_SPIKE_E2_004 list use five normalized IDs
+      SPQ-E2-002-01..05. SPQ-01 (descendant containment, AR-EXE-003) and SPQ-02 (protected
+      acquisition/capture exclusion, AR-SEC-006) are SHARED_ARCHITECTURE_SPIKE referenced by all
+      three candidates with identical core text; SPQ-03/04/05 are CANDIDATE_SPECIFIC delivery
+      questions for C01/C02/C03 respectively. Every reference carries spike_question_id,
+      property_being_tested, affected_ARs, affected_candidates, shared_or_candidate_specific,
+      why_analysis_is_insufficient, minimal_mechanism_under_test, success_criterion,
+      failure_criterion, architecture_blocking_reason, reusable_result_scope, decision_linkage,
+      sp_c_reuse (SP-C01/C04/C05 named with distinguishing note) and run_status NOT_RUN. Nine
+      references, five unique questions, zero run. Classification authority is explicitly left
+      to E2-003.
+  - finding_id: F-E2-002-04
+    severity: MEDIUM
+    disposition: RESOLVED
+    evidence: >-
+      Each f25 contains family_level_matrix with exactly nine rows (170 cases, 18 oracles, 11
+      fixtures, 23 NEG, 16 RC, 30 GE, 9 adequacy, 16 compositions, 8 protocols), each with
+      non-empty architecture_seam, injectable_condition, observable_state_evidence,
+      oracle_access_path, candidate_limitation, unsupported_condition, instrumentation_stage;
+      named_case_mappings.EP_CTL_016 with the same seven fields; and
+      mandatory_dangerous_composition_matrix with COMP-01..16 each carrying the seven fields.
+      The DANGEROUS_COMPOSITIONS_16 row names a deterministic ordering/fault scheduler seam
+      across the candidate-specific boundaries (C01 transaction/supervisor/workspace; C02
+      service transaction/IPC/lease/worker; C03 causally ordered event stream). AR-TST-002
+      evidence in all three points to the matrix, EP_CTL_016 and the 16 composition seams.
+  - finding_id: F-E2-002-05
+    severity: MEDIUM
+    disposition: RESOLVED
+    evidence: >-
+      Each f10 isolation_classification declares the identical four-tier technology-neutral
+      taxonomy (TIER_0..TIER_3), minimum_required_properties (Tier 1 floor; Tier 2 semantics for
+      descendant-spawning untrusted code), candidate_assumed_tier
+      TIER_2_OS_ENFORCED_EXECUTION_ISOLATION, dependent_hard_ars (7), enforcement_layers for
+      path_scope / descendant_filesystem_and_network / process_termination / secret_exclusion
+      each stating broker-versus-required-host-primitive enforcement and the unsupported
+      consequence, filesystem/network/process-tree/secret expectations, not_guaranteed,
+      resolution_status and AQ_003 linking to shared SPQ-E2-002-01. f26
+      unsupported_environments and isolation_support_boundary derive the unsupported host
+      classes. AQ-003 appears in all three f27 analysis entries (C01-U03, C02-U03, C03-U04) with
+      the same classification. No sandbox/container/VM/worktree/product name appears (one
+      generic "namespace" token in C01 LB-01 exclusion text is a negation, not a selection).
+  - finding_id: F-E2-002-06
+    severity: LOW
+    disposition: RESOLVED
+    evidence: >-
+      Overview §9 states which charter §19 subjects the set varies and which it intentionally
+      shares, explains LB-02 NOT_USED (identity+integrity meets the floor; content addressing adds
+      privacy/retention/deletion questions) and LB-14 USED with three different placements. Each
+      f29 has shared_disposition_explanations (LB-02, LB-14, isolation_floor) and
+      candidate-specific LB-02/LB-14 why text (C01 in-process core gateway; C02 service gateway
+      plus opaque-authorized protected bypass; C03 current-head policy/event admission before
+      adapters). 19 rows per candidate; dispositions USED/NOT_USED/SUBSUMED only; no merit count.
+  - finding_id: F-E2-002-07
+    severity: LOW
+    disposition: RESOLVED
+    evidence: >-
+      C02 f04 protected_delivery_path defines protected_entry_begins, ordinary_capture_stops,
+      scope_validator (service validates recipient/use/operation/lease/fence/expiry/one-use
+      without receiving the raw value), delivery (service-issued opaque one-use authorization;
+      direct client-broker-to-recipient handoff bypassing ordinary service data handling;
+      transport unselected), forbidden_raw_observers (six classes), persisted_receipt,
+      worker_replacement (fence advance revokes handle; fresh acquisition), crash_semantics
+      (known-not-delivered when provable, otherwise DELIVERY_UNKNOWN with revocation and no
+      replay), replay_rule, revocation_and_fencing. TB-05 and TB-20 reference the same channel
+      and issuer-without-raw-access; f18 protected_entry and SPQ-E2-002-04 are consistent.
+      AR-SEC-003 remains PLAUSIBLE and AR-SEC-006 UNKNOWN_REQUIRING_SPIKE, same as the other
+      candidates.
+  - finding_id: F-E2-002-08
+    severity: LOW
+    disposition: RESOLVED
+    evidence: >-
+      C03 f06 canonical_writer requires a non-secret payload to be durable and
+      integrity-addressable before a referencing event may append and says the two structures
+      are not globally atomic; f08 acknowledgement_boundary states payload-before-event ordering
+      and that an event referencing an undurable payload is never appended or acknowledged; f08
+      protected_and_external_payload_ordering covers raw_protected_payload_in_durable_history
+      false, metadata_before_delivery, ordinary_payload_before_event, both crash orders
+      (intent_persisted_delivery_fails; delivery_succeeds_receipt_persistence_fails),
+      correlation_identity, retry_and_replay, crash_recovery (KNOWN_NOT_DELIVERED /
+      KNOWN_DELIVERED / OUTCOME_UNCERTAIN; absence of an event is not proof of absence of
+      delivery), cross_boundary_atomicity_claim false and atomicity_limit; f09 partial_write
+      quarantines orphan payloads and garbage-collects only through retention/deletion process.
+      f06 reducer_rule and f04 reducer_and_projection_authority keep projections non-authoritative.
+  - finding_id: F-E2-002-09
+    severity: LOW
+    disposition: RESOLVED
+    evidence: >-
+      Every f09 workspace_partial_write_recovery has the seven named cases
+      (process_dies_during_file_write, partially_written_file_exists,
+      interrupted_rename_or_replace, multi_file_edit_partially_completes,
+      git_index_differs_from_worktree, generated_artifact_partial_write,
+      uncertain_filesystem_on_recovery) plus global_atomicity_claim false, with the
+      candidate-specific detecting owner (C01 core supervisor/startup; C02 service reconstruction
+      with replacement worker withheld until reconciled; C03 workflow rebuild plus workspace
+      adapter observations), actual readback, pinned-base/operation reconciliation, retained
+      uncertainty evidence, invalidated verification, and PARTIAL/BLOCKED/UNVERIFIED or
+      known/unknown endpoints. COMP-14 is mapped in each f25 with force/fence during replacement
+      yielding actual bytes and PARTIAL/BLOCKED, never completion.
+
+section_results:
+  candidate_set: CANDIDATE_SET_PASS
+  structural_distinctness: STRUCTURAL_DISTINCTNESS_PASS
+  hard_status_rule: HARD_STATUS_RULE_PASS
+  hard_constraints_c01: "52 SATISFIED_BY_DESIGN / 5 PLAUSIBLE / 2 UNKNOWN_REQUIRING_SPIKE / 0 VIOLATED (recomputed)"
+  hard_constraints_c02: "52 / 5 / 2 / 0 (recomputed)"
+  hard_constraints_c03: "52 / 5 / 2 / 0 (recomputed)"
+  cross_candidate_status: CROSS_CANDIDATE_STATUS_PASS
+  execution_owner_lifetimes: EXECUTION_OWNER_LIFETIME_PASS
+  ep_ctl_016: EP_CTL_016_PASS
+  spike_model: SPIKE_MODEL_PASS
+  protected_entry_spikes: PROTECTED_ENTRY_SPIKE_PASS
+  testability_matrix: TESTABILITY_MATRIX_PASS
+  composition_testability: COMPOSITION_TESTABILITY_PASS
+  isolation_tiers: ISOLATION_TIER_PASS
+  level_b: LEVEL_B_PASS
+  c02_protected_delivery: C02_PROTECTED_DELIVERY_PASS
+  c03_payload_event_ordering: C03_PAYLOAD_EVENT_PASS
+  partial_write_recovery: PARTIAL_WRITE_RECOVERY_PASS
+  c01_transactional_model: C01_TRANSACTIONAL_MODEL_PASS
+  c02_fencing_model: C02_FENCING_PASS
+  c03_authority_model: C03_AUTHORITY_PASS
+  preference_model: PREFERENCE_MODEL_PASS
+  decision_domains: DECISION_DOMAIN_PASS
+  threat_boundaries: THREAT_BOUNDARY_PASS
+  recovery_model: RECOVERY_MODEL_PASS
+  evidence_verification: EVIDENCE_VERIFICATION_PASS
+  security: SECURITY_PASS
+  e3_mapping: E3_MAPPING_PASS
+  uncertainty_model: UNCERTAINTY_MODEL_PASS
+  contributor_migration: CONTRIBUTOR_MIGRATION_PASS
+  no_ranking: NO_RANKING_PASS
+  frozen_artifacts: FROZEN_ARTIFACTS_PASS
+
+section_evidence:
+  candidate_set: "3 records under 05_architecture/candidates/; IDs EP-ARCH-C01/C02/C03 unique; names unique; each record complete (30 fields); no other candidate file or referenced candidate; overview §14 preferred NONE, selected NO, ADRs 0; governance preferred_candidate null, architecture_selected false, accepted_architecture_adrs 0."
+  structural_distinctness: "Pairwise on twelve dimensions from f02/f04/f06/f07/f08/f09/f19/f20/f22/f28: authoritative owner (integrated single-writer core / persistent service / journal head plus reducer), process topology (task-bound integrated runtime that may run headless / persistent service plus optional clients plus leased workers / no mandatory daemon, replay-replaceable coordinator), execution ownership (co-resident supervisor under integrated epoch / lease-fenced disposable worker / coordinator-granted fenced adapter lease), persistence (transactional current state plus history/ledgers / service transactional state plus inbox-outbox / append-only journal plus immutable payloads), operation accounting (core outbox-inbox / service command-dispatch-result-effect ledgers / intent-dispatch-observation-readback events), recovery (validate store, rebuild projections, reconcile ledgers / new service epoch, invalidate leases, reconcile inbox-outbox / replay journal through reducers, rebuild projections), worker replaceability (children not independent authorities / defining property / replaceable by replay and new fence events), external-effect authority (core ledger / service bridge / ordered workflow events), client lifetime (presentation detaches from task-bound runtime / thin client over service / projection subscriber), projection-event model (transactional authority, events do not define all authority / service state authoritative / journal and reducer define authority), local-to-remote seam (in-core executor port needing extraction / worker lease contract already across a boundary / serializable dispatch events), contributor burden (broad core / service-IPC-lease lifecycle / event schema-reducer-replay). C01's headless task-bound core is not a permanent installed service, has no replaceable execution authority, and loses the live owner on full core exit (f02 relationships, f04 execution_owner, f19); C03's coordinator is a replaceable interpreter and journal/reducer authority survives its absence (f04 orchestration_owner, f02 CONTROL_AUTHORITY_LIFETIME), so C03 is not C02 with an event log."
+  hard_status_rule: "Rule text in overview §1 and each f23 status_assignment_rule; SATISFIED requires a specified structural mechanism/seam; PLAUSIBLE requires only paper analysis; SPIKE requires empirical architecture-blocking feasibility; VIOLATED is contradiction; preference/cost/burden explicitly excluded. Applied consistently: the seven non-SATISFIED ARs all concern host-mechanism or support-declaration feasibility (path defense, network enforcement, secret recipient boundary, corruption/partial-write mechanism, packaging support, descendant containment, capture exclusion); no SATISFIED status rests on preference language; no status depends on candidate identity."
+  cross_candidate_status: "Zero ARs with differing status. Semantic challenge of equalities: AR-EXE-003 all SPIKE (same supervisor-plus-fence structure in all three; host descendant containment is the shared unknown); AR-DUR-003 all SATISFIED (same intent/attempt/readback bridge class; C02's extra IPC hop and C03's event ordering are covered by f08 bridges and E3V-001, not a structural absence); AR-DUR-004 all SATISFIED (every candidate durably orders controls, fences on full shutdown, and truthfully classifies overdue work on restart; the no-live-owner interval after crash exists in all three including C02 service loss, and no candidate claims real-time enforcement without a live owner); AR-FUT-001/002 all SATISFIED at the seam floor; AR-SEC-003 all PLAUSIBLE and AR-SEC-006 all SPIKE (shared acquisition unknown, candidate delivery variants); AR-PKG-001 all PLAUSIBLE (conservative, uniform). No candidate receives SATISFIED where another receives SPIKE. Making the counts identical did not hide a legitimate difference: the real differences (persistent-service availability, coordinator absence by design, integrated blast radius) are correctly located in f22/f26/f28 and the AR-PRF characterizations rather than in hard status."
+  execution_owner_lifetimes: "Per candidate: CLIENT_LIFETIME, CONTROL_AUTHORITY_LIFETIME, EXECUTION_OWNER_LIFETIME, TASK_LIFETIME, WORKSPACE_LIFETIME with relationships (f02). Scenario walk: client close while idle or while a command runs -> presentation detach only, work continues or reaches policy-bounded wait (f03 disconnect_and_exit, f09 client_only_interruption); disconnect while approval pending -> durable WAITING state unaffected (controls/approvals are durable commands, never UI state); client absent during recovery -> startup sequence is owner-driven and client-independent (f09 startup); reconnect -> fresh axis-qualified projection (f03 reconnect); stale reconnect -> never regains old lease/approval/control authority (f03 stale_client_rule, overview §7); deliberate full-system shutdown -> distinct authenticated path with quiesce/cancel/fence/persist (f04 full_system_shutdown); control authority crash -> C01 core crash fences children and restart reconciles; C02 service crash invalidates leases and new epoch reconciles; C03 coordinator loss fences lease and replay reconciles (f04 no_live_* semantics, f09 application_crash); execution-owner crash -> worker_failure scenarios with readback before retry. Task/evidence state survives, completion never depends on a UI process, in-flight operations reconcile via known/failed/unknown."
+  ep_ctl_016: "Each f25 named_case_mappings.EP_CTL_016 gives an injectable client-only disconnect (close/drop client without full shutdown or cancel), observable durable state/lease/epoch continuity, oracle path OR-STATE-READBACK/OR-RECOVERY-REPLAY with projection rebuild, the limitation that full owner loss is a different case, an unsupported condition (platform unable to distinguish window close from shutdown / client technology owning the only authority), and instrumentation stage; stale-client authority is covered by f03 stale_client_rule."
+  spike_model: "5 unique IDs SPQ-E2-002-01..05; SPQ-01/02 SHARED (3 candidates each); SPQ-03/04/05 CANDIDATE_SPECIFIC (1 each); 9 references (3 per candidate); all 14 fields present in every reference; run_status NOT_RUN everywhere; no duplicate shared question disguised as candidate-specific; no analysis-resolvable item labelled spike (the five plausible ARs are in ANALYSIS_RESOLVABLE entries); no E3 model question in E2-004 items; E4_IMPLEMENTATION_DETAIL items are mechanism choices, not feasibility questions."
+  protected_entry_spikes: "Shared acquisition/capture exclusion appears once as SPQ-02 (not triplicated); candidate-specific delivery retained only where topology changes the mechanism: C01 co-resident in-boundary handoff, C02 cross-process client-to-leased-worker handoff bypassing the service, C03 out-of-event broker with payload/event ordering and append/delivery crash points."
+  testability_matrix: "9 family rows x 7 fields per candidate with candidate-specific seams (C01 integrated ports; C02 service/IPC/lease/worker; C03 command/event admission, reducer, adapters); each row states oracle access via authoritative state or independent target readback, a limitation, an unsupported condition that cannot count as pass, and E2/E3/E4/E5 stage; decisive_oracle_rule/unsupported_case_rule forbid executor/client/projection/model summary as sole oracle."
+  composition_testability: "COMP-01..16 present in all three with seam, injection point, observable evidence, oracle path, limitation, unsupported condition and stage; cross-checked against the frozen suite COMP rows (crash+approval, crash+external effect, stop+external effect, redirect+stale verification, dirty repo+recovery, secret path+injection, symlink+secret, malicious output+evidence, stale approval+restart, duplicate effect+lost ack, post-verify mutation+draft package, Git hook+commit, package script+network, force-stop+partial filesystem, fallback+cost ceiling, injection+capability escalation); no composition is marked supported without an injection/observation seam; non-atomic filesystem/external reality truthfully ends PARTIAL/UNKNOWN."
+  isolation_tiers: "Taxonomy is semantic (process-tree, filesystem, network/resource, credential boundaries for a declared workload class including descendants and owner loss) and names no container/VM/sandbox/worktree/product; Tier 2 assumption is justified by AR-EXE-003 descendant authority, NEG-TERM-01, AR-WSP-003, AR-SEC-002/003/004 (E1 requires descendant-level enforcement), not an over-strengthening; the assumption's feasibility is truthfully the SPQ-01 unknown; non-guarantees (compromised host, cross-tenant, side-channel, Tier 3) stated; AQ-003 consistent in all three f10 and f27."
+  level_b: "19/19 rows per candidate; C01 17 USED/1 NOT_USED/1 SUBSUMED; C02 18/1/0; C03 15/1/3; identical LB-02 NOT_USED and LB-14 USED explained; charter §19 axes vary materially (authority, topology, persistence, recovery, effects, workers, projections, remote seam, migration, burden); no artificial variation; no Level B pattern is a hard requirement; no merit count; external reconstruction used as pattern inventory only."
+  c02_protected_delivery: "f04 protected_delivery_path ten sub-fields; TB-05/TB-20 authority_source names the service as authorization issuer without raw access; f18 protected_entry; SPQ-04; transport unselected."
+  c03_payload_event_ordering: "f06 canonical_writer, f08 acknowledgement_boundary, f08 protected_and_external_payload_ordering (ten sub-fields), f09 partial_write orphan handling, f06 reducer_rule, f04 reducer_and_projection_authority."
+  partial_write_recovery: "7 cases + global_atomicity_claim false in all three; COMP-14 mapped; stale verification invalidated; success never inferred from intent."
+  c01_transactional_model: "f08 transactional_authority_scope limits 'transactional' to core-committed records and excludes filesystem, child processes, Git remotes, external APIs, provider dispatch; f08 nontransactional_reality uses intent/attempt/readback/reconciliation/known-failed-unknown; overview §6 repeats the limit; the lifetime fix left C01 with co-resident control and execution authority and non-replaceable children."
+  c02_fencing_model: "f07 fencing_distinctions CONTROL_PLANE_LEASE_FENCING / LOCAL_PROCESS_TREE_CONTAINMENT / REMOTE_EFFECT_FENCING with explicit non-implication; AR-EXE-003 UNKNOWN_REQUIRING_SPIKE; f10 process_tree_expectation and f26 isolation_support_boundary restate that lease fencing is not containment."
+  c03_authority_model: "f04 orchestration_owner (journal head plus reducer), event_admission_authority, reducer_and_projection_authority (no unsafe action from stale projection), execution_owner (coordinator-granted lease; real-time enforcement requires live coordinator), no_live_coordinator_semantics, full_system_shutdown; f07 coordinator_loss_and_deadlines; f06 reducer_rule and stale_writer_rule (expected sequence/owner/fence; duplicates rejected); f02/f19 no hidden always-on platform."
+  preference_model: "AR-PRF-001..006 PREFERENCE_CHARACTERIZED_UNSCORED in all three; weights_assigned 0; no score; hard statuses cite structural mechanisms only; the sole preference-flavoured hard evidence string (AR-PKG-001 C02 'lifecycle burden requires analysis') is a conservative uniform UNKNOWN, not a favorable or candidate-biased status."
+  decision_domains: "25/25 per candidate with owner and substantive candidate-specific answer (D01..D25 keys exact)."
+  threat_boundaries: "TB-01..20 per candidate, 8 keys carrying the nine §5.1 semantics, zero empty fields; post-fix rows topology-specific for client/control (TB-01), protected entry (TB-05/TB-08/TB-20), process (TB-07), recovery/replay (TB-19), evidence (TB-18); unsupported_host_compromise_assumption present."
+  recovery_model: "Each f09 covers application crash, host restart, worker failure, model/tool timeout, lost tool result, partial write, stale workspace, duplicate operation, duplicate effect, external ack loss, stop/force, stale approval, stale verification, waited event, protected-entry non-replay, retirement, plus client_only_interruption and workspace partial-write cases; KNOWN_SUCCESS/KNOWN_FAILURE/UNKNOWN_OUTCOME preserved (f08 nontransactional_reality, f12 unknown_effect, C02 crash_semantics DELIVERY_UNKNOWN, C03 crash_recovery)."
+  evidence_verification: "f15 exact revision/profile/provenance/integrity/redaction/final disposition and f16 separation/access/actions/lifecycle/reruns/stale invalidation per candidate; verifier reads underlying authoritative state, not executor self-report; deterministic reruns; approval/effect and route/model/tool provenance recorded."
+  security: "Authority hierarchy (TB-01/03, f18 policy kernel), untrusted repository (TB-02), filesystem/path (TB-04/06), secrets (TB-05), protected entry (TB-08/20, f18), process (TB-07), network (TB-11), package scripts (TB-09), Git hooks (TB-10), approvals (TB-16), effects (TB-12/13/17), provider dispatch (TB-14), capability enforcement (TB-15), evidence integrity (TB-18); every f18 states that model judgment cannot override or substitute for a structural control; no fix weakened any row."
+  e3_mapping: "E3V-001..008 per candidate with focus, evidence, owner class, E4/E5 remainder, architecture_handback, implementation_adjustment, proposed_adr_linkage TBD; E3V-008 assigns no provider/model; no E2-blocking unknown pushed to E3 (SPQ items remain E2-004); no full-suite obligation created (E5 remainder explicit)."
+  uncertainty_model: "28 records: C01 9 (3/3/1/1/1), C02 9 (3/3/1/1/1), C03 10 (4/3/1/1/1); class totals 10 analysis / 9 spike references / 3 E3 / 3 E4 / 3 future; all SPQ IDs resolve to overview §10; no favorable unknown; no architecture-blocking issue in E4/E3 classes."
+  contributor_migration: "f22 and f28 differ truthfully: C01 one integrated package with broad core, costly core split; C02 service/IPC/lease lifecycle and multi-process debugging, costly service/store/protocol change; C03 event schema/reducer/replay concepts, costly canonical event identity/order change; provider/model lock-in false in all; no ranking."
+  no_ranking: "Ranking vocabulary scan over overview, candidates and the fixer governance diff: every hit is a negation ('no score', 'ranks no candidate', 'Preferred candidate: NONE', 'not an alternative-quality score'); no asymmetric evidentiary bar (identical status maps, symmetric spike references, symmetric weakness disclosure)."
+  frozen_artifacts: "9/9 frozen E1 blob IDs identical to the E1 gate record; git diff c2f7093..HEAD over frozen directories empty; E2-001 requirements/traceability/plan blob-identical since 0d702b8; 0/82 external paths and 0 audit §4.1 module names in E2-002 artifacts (basename token hits 'coordinator', 'registry', 'package', 'verify', 'bounded', 'errors', 'pipeline', 'PROVENANCE' inspected as generic vocabulary, consistent with challenger N-E2-002-05); no Level C implementation detail copied."
+
+recomputed_counts:
+  yaml_files_strict_parse: "58/58, 0 duplicate keys"
+  candidates: 3
+  candidate_ids_unique: true
+  contract_fields_per_candidate: 30
+  architecture_requirements_per_candidate: 65
+  ar_set_equal_to_e2_001_headings: true
+  hard_constraints_per_candidate: 59
+  hard_set_equal_to_e2_001_hard: true
+  weighted_preferences_per_candidate: 6
+  hard_status_c01: {SATISFIED_BY_DESIGN: 52, PLAUSIBLY_SATISFIABLE_BUT_REQUIRES_E2_003_ANALYSIS: 5, UNKNOWN_REQUIRING_SPIKE: 2, VIOLATED: 0}
+  hard_status_c02: {SATISFIED_BY_DESIGN: 52, PLAUSIBLY_SATISFIABLE_BUT_REQUIRES_E2_003_ANALYSIS: 5, UNKNOWN_REQUIRING_SPIKE: 2, VIOLATED: 0}
+  hard_status_c03: {SATISFIED_BY_DESIGN: 52, PLAUSIBLY_SATISFIABLE_BUT_REQUIRES_E2_003_ANALYSIS: 5, UNKNOWN_REQUIRING_SPIKE: 2, VIOLATED: 0}
+  contract_projection_consistent: "59/59 per candidate (52 SATISFIED_BY_DESIGN, 7 UNKNOWN, 0 FAILED_HARD)"
+  hard_status_maps_identical: true
+  ars_with_differing_status: 0
+  common_plausible: [AR-DUR-005, AR-WSP-003, AR-SEC-003, AR-SEC-004, AR-PKG-001]
+  common_spike_unknown: [AR-EXE-003, AR-SEC-006]
+  canonical_e1_ids_per_candidate: "127 unique, set-equal to the CSV; 0 primary-AR mismatches"
+  lifetimes_per_candidate: 5
+  threat_boundaries_per_candidate: "20 rows x 8 keys, 0 empty"
+  decision_domains_per_candidate: 25
+  testability_family_rows_per_candidate: "9 x 7 fields"
+  dangerous_composition_rows_per_candidate: "16 x 7 fields"
+  ep_ctl_016_rows_per_candidate: 1
+  isolation_tiers: 4
+  assumed_tier: TIER_2_OS_ENFORCED_EXECUTION_ISOLATION
+  isolation_enforcement_layers: 4
+  partial_write_cases_per_candidate: "7 + global_atomicity_claim false"
+  level_b_rows_per_candidate: 19
+  e3_obligations_per_candidate: 8
+  spike_questions: {unique: 5, shared: 2, candidate_specific: 3, references: 9, run: 0}
+  uncertainty_records: {EP-ARCH-C01: 9, EP-ARCH-C02: 9, EP-ARCH-C03: 10, total: 28, analysis: 10, spike_references: 9, e3: 3, e4: 3, future: 3}
+  capability_inventory: {EP-ARCH-C01: "19 (10/4/5)", EP-ARCH-C02: "18 (9/4/5)", EP-ARCH-C03: "19 (10/4/5)"}
+  future_compatibility_entries_per_candidate: "10, all not_implemented true"
+  fixer_changed_paths: "8/8 authorized"
+  lifecycle_changed_paths_since_38f673b: "9/9 authorized (including the challenger review)"
+  frozen_e1_blob_matches: "9/9"
+  e2_001_artifacts_unchanged_since_0d702b8: true
+  secret_pattern_hits: 0
+  clean_room_exact_path_hits: "0/82"
+  technology_or_provider_selection_hits: 0
+  ranking_positive_hits: 0
+  git_diff_check: CLEAN
+
+acceptance_criteria_results:
+  - criterion: "At least three credible end-to-end candidates differ materially across multiple structural axes, including authority/persistence, orchestration, execution/isolation, and client/runtime or control-plane boundaries."
+    result: PASS
+    basis: "Three credible shapes differ on authority/persistence, orchestration/scheduling, execution ownership and worker replaceability, and client/runtime boundary as re-derived on twelve dimensions; the isolation *tier* is a deliberately shared hard floor disclosed in overview §9, while execution ownership/replaceability differs (F-E2-002-02 resolved without collapsing C01 into C02)."
+  - criterion: "Every candidate covers all 25 domains and every E2-001 hard constraint with process, trust, data, control, effect, recovery, and verification boundaries."
+    result: PASS
+    basis: "25/25 domains; 59/59 hard ARs with consistent statuses; f04 process, f05 trust, f06/f08 data, f07 control, f12 effect, f09 recovery, f16 verification boundaries per candidate."
+  - criterion: "Every candidate separates v0.1 required behavior, interfaces reserved for compatibility, and deferred future features without speculative SaaS or multi-agent implementation."
+    result: PASS
+    basis: "f20 10 entries all not_implemented; f21 three-way classification (19/18/19 capabilities); no distributed, tenancy, fleet, loader, or vertical machinery specified."
+  - criterion: "Assumptions, unknowns, reversibility/migration boundaries, contributor burden, E3 obligations, Level B inputs, and rejected Level C details are explicit for each candidate."
+    result: PASS
+    basis: "f26/f27/f28/f22/f30/f29 present; unknown classifications are now consistent across candidates for the same underlying questions (F-E2-002-01/03/05 resolved); two LOW bookkeeping gaps recorded below do not make any unknown favorable."
+  - criterion: "No candidate is recommended, ranked, or described as selected."
+    result: PASS
+    basis: "Zero positive ranking/selection language; preferred NONE; accepted ADRs 0; architecture NOT_SELECTED in all artifacts and governance."
+
+required_test_results:
+  - test: "Candidate count, unique ID, 25-domain completeness, hard-constraint-reference, and boundary-model structural checks."
+    result: PASS
+    basis: "3 candidates; unique IDs/names; 25/25; 65/65 ARs and 59/59 hard with exact set equality; TB-01..20 and f04 owners present; recomputed independently."
+  - test: "Material-difference test proving candidates are not cosmetic technology permutations."
+    result: PASS
+    basis: "STRUCTURAL_DISTINCTNESS_PASS on twelve dimensions; no technology permutation; C01/C02 distinction re-confirmed after the lifetime fix; C03 remains journal/reducer-authority centric."
+  - test: "No-ranking/no-winner/no-ADR-acceptance/no-technology-lock/no-code/no-run/no-paid-call and frozen-E1 byte checks."
+    result: PASS
+    basis: "0 positive ranking hits; 0 ADRs; 0 technology/provider selections; no application source; counters 0; 9/9 frozen blobs; E2-001 artifacts unchanged."
+  - test: "Clean-room identifier, allowed-path, secret-pattern, governance status, and git diff --check."
+    result: PASS
+    basis: "0/82 external path hits; 8/8 fixer paths and 9/9 lifecycle paths authorized; 0 secrets; governance reconciles; git diff --check clean."
+
+governance_state_before_transition:
+  e2_001: VERIFIED
+  e2_002: "READY_FOR_REVIEW / READY_FOR_REVIEW_NOT_VERIFIED_FIXER_PASS in TASK_REGISTRY and PROJECT_STATE (consistent); verifier_model null"
+  e2_003: "BACKLOG, blocked_by E2_002_NOT_INDEPENDENTLY_VERIFIED (sole blocker)"
+  e2_004_to_e2_006: "BACKLOG behind unverified predecessors"
+  e2_gate: NOT_EVALUATED
+  architecture: NOT_SELECTED
+  architecture_candidates: 3
+  preferred_candidate: null
+  accepted_adrs: 0
+  architecture_spikes_run: 0
+  application_code: NONE
+  evaluation_cases_run: 0
+  model_benchmarks_run: 0
+  paid_api_calls: 0
+  autonomy_eligible: NOT_ELIGIBLE
+  autonomous_build_authorized: false
+  s1_003: "BLOCKED / DEFERRED, not executed"
+  reconciliation: "TASK_REGISTRY and PROJECT_STATE reconcile on every field above."
+
+new_findings:
+  actionable:
+    - finding_id: V-E2-002-01
+      severity: LOW
+      candidate_or_component: "EP-ARCH-C02 f27 ANALYSIS_RESOLVABLE_E2_003 (C02-U01..U03); EP-ARCH-C03 f27 ANALYSIS_RESOLVABLE_E2_003 (C03-U01..U04)"
+      requirement_or_domain: "AR-DUR-005 (PLAUSIBLY_SATISFIABLE_BUT_REQUIRES_E2_003_ANALYSIS in all three f23); E2-001 §14 field 27 (paper-resolvable questions listed); E2-003 unknown-partition acceptance criterion"
+      evidence: "C01-U03 names AR-DUR-005 among its affected ARs; no C02 or C03 analysis-resolvable record names AR-DUR-005 (grep count 0 in each f27), although both f23 entries carry the PLAUSIBLE status and both f08 sections describe the corruption/partial-write/migration proposal."
+      why_it_matters: "E2-003 must classify every unknown from the candidate records; a PLAUSIBLE hard AR without a matching f27 pointer could be overlooked in the paper-resolvable partition for C02/C03 while it is enumerated for C01. The status itself is uniform and projects to UNKNOWN, so no favorable treatment or fairness asymmetry results."
+      required_fix: "Non-blocking: E2-003 must include AR-DUR-005 corruption/partial-write/evolution mechanism analysis for all three candidates in its paper-resolvable partition (derived from f23 status and f08), or a bounded E2-002 fixer edit may add AR-DUR-005 to C02-U03 and C03-U04 affected lists. No E2-002 re-verification is required for the E2-003 route."
+      verification_method: "E2-003 challenger/verifier confirms AR-DUR-005 appears in the uncertainty register for all three candidates; if a fixer edit is taken, grep f27 of C02/C03 for AR-DUR-005."
+    - finding_id: V-E2-002-02
+      severity: LOW
+      candidate_or_component: "SPQ-E2-002-03/04/05 affected_ARs in the three f27 spike references and overview §10"
+      requirement_or_domain: "AR-SEC-003 (PLAUSIBLY_SATISFIABLE_BUT_REQUIRES_E2_003_ANALYSIS in all three) versus AR-SEC-006 (UNKNOWN_REQUIRING_SPIKE in all three); E2-001 §2 status semantics"
+      evidence: "The three candidate-specific delivery spikes list affected_ARs [AR-SEC-003, AR-SEC-006] and describe the exact-recipient delivery half of protected entry, which is AR-SEC-003's recipient-boundary property; f23 nevertheless classifies AR-SEC-003 as analysis-resolvable and only AR-SEC-006 as spike-unknown, uniformly across candidates."
+      why_it_matters: "A hard AR named as affected by an architecture-blocking spike question but classified PLAUSIBLE is a minor classification inconsistency that E2-003 must reconcile when it freezes spike contracts. Both generation statuses project to the verified contract's UNKNOWN, all three candidates carry the same pair, and the delivery question is retained in the spike model, so no unknown is treated favorably and comparability is unaffected."
+      required_fix: "Non-blocking: E2-003 must state explicitly whether AR-SEC-003 recipient-delivery feasibility is covered by SPQ-E2-002-03/04/05 (in which case it is E2_PRESELECTION_SPIKE_REQUIRED for delivery and PAPER_RESOLVABLE for classification/precedence) or remains paper-resolvable, and record that decision uniformly for all three candidates. No E2-002 re-fix is required."
+      verification_method: "E2-003 verifier checks that the uncertainty register carries one uniform AR-SEC-003 disposition per candidate that references the SPQ-03/04/05 linkage."
+  notes:
+    - "V-E2-002-N1: C01 f02 summary (line 22) still opens with 'One persistent local application core'; the corrected lifetime model, f04, f19 and f22 make clear that 'persistent' means durable task-bound authority, not a permanently installed service. Cosmetic wording; E2-003 should read the lifetime model, not the summary adjective."
+    - "V-E2-002-N2: README.md still states E2-001 READY, E2-002..006 BACKLOG and next command MODE: EXECUTE_TASK_E2-002 with E2-001 instructions; README is outside the E2-002 allowed paths, so this is a non-blocking founder commit-time refresh item (same pattern as N-E2-002-01 and V-E2-001-N2). After this verification README should read E2-002 VERIFIED, E2-003 READY, next command MODE: EXECUTE_TASK_E2-003."
+    - "V-E2-002-N3: The fixer handoff and author-handoff addendum describe the patch as intentionally uncommitted; the founder committed it as 1a1c542 (2026-08-29T03:08:03Z). This verification is against the committed bytes; the committed path set equals the eight paths the fixer describes."
+    - "V-E2-002-N4: C02's f23 status_assignment_rule PLAUSIBLE wording omits the phrase 'candidate-specific' present in C01/C03; the semantics are identical. Cosmetic."
+    - "V-E2-002-N5: AR-PKG-001 is PLAUSIBLE in all three with evidence strings that mention lifecycle/tooling 'burden'; the underlying question (supported-host/toolchain/no-hidden-service proof) is a hard packaging property, the status is conservative and uniform, and preference burden is separately characterized under AR-PRF-006. No change required; E2-003 must not double-count it."
+    - "V-E2-002-N6: All three candidates share a no-live-owner interval after full owner loss (C01 core exit, C02 service loss, C03 coordinator absence) during which durable deadlines are not enforced in real time; only C01 and C03 may be absent by design between tasks. Every candidate records this truthfully (f04 no_live_* semantics, f07/f26). This is an operability/availability characteristic for E2-003's preference comparison, not a hard-status difference; overview §7 phrases it for C01/C03 only, which E2-003 should read together with C02 f04 no_live_service_semantics."
+    - "V-E2-002-N7: C02's capability inventory has 18 entries versus 19 for C01/C03 because C02-CAP-07 merges context/evidence/verification services; every required capability class is still represented exactly once. Not a coverage gap."
+    - "V-E2-002-N8: Fixer start timestamp remains UNKNOWN_NOT_CAPTURED and PROJECT_STATE updated_at was recorded as a date only; both are disclosed honestly and follow precedent. This verifier records approximate timestamps for the same reason."
+
+security_checks:
+  - "No secret, credential, private data, account, provider/model call, paid call, network retrieval, or external effect was used or produced by this verification."
+  - "High-confidence secret-pattern scan over the nine E2-002-lifecycle-changed files: 0 hits."
+  - "Untrusted repository content and the reconstructed-audit material were treated as evidence only; nothing was imported; 0/82 exact external paths appear in E2-002 artifacts."
+  - "This verification confirms every candidate keeps trust, capability, secret-use, protected-entry, filesystem, process, network, Git, approval, external-effect, evidence, provider, and verifier boundaries structurally outside sole LLM judgment, and that no fixer change weakened any TB row or f18 control."
+
+blockers: []
+recommended_next_task: >-
+  E2-003 (Compare architecture alternatives and classify decision uncertainty) is now READY
+  because E2-002 independent verification was its sole remaining blocker. Founder should review
+  and commit this uncommitted verifier patch and refresh README status/next-command lines at
+  commit time. E2-003 may then be executed by a fresh author session; it must carry
+  V-E2-002-01/02 into its uncertainty register, may identify dominated or ineligible candidates,
+  and may not select, recommend, or encode a final architecture decision, create an ADR, run a
+  spike, evaluation case, benchmark, paid call, or application code.
+next_command: "MODE: EXECUTE_TASK_E2-003"
+repository_commit_or_patch: "Uncommitted E2-002 verifier patch based on 1a1c5423da83d3dfe9c7f759300bf10d68e4281e on chore/initialize-project-materials; intentionally left uncommitted for the founder."
+
+scope_control:
+  e2_002_status: VERIFIED
+  e2_002_verified: true
+  e2_003_status: READY
+  e2_003_executed: false
+  e2_004_through_e2_006_status: BACKLOG
+  e2_gate_status: NOT_EVALUATED
+  e2_gate_evaluated_by_this_review: false
+  architecture_selected: false
+  architecture_candidates: 3
+  preferred_candidate: null
+  candidates_ranked_or_compared_toward_winner: false
+  accepted_architecture_adrs: 0
+  adr_decisions_written: 0
+  architecture_spikes_run: 0
+  application_code_created: false
+  evaluation_cases_implemented: 0
+  evaluation_cases_run: 0
+  model_benchmarks_run: 0
+  paid_api_calls: 0
+  external_actions_performed: false
+  model_roles_locked: false
+  e3_started: false
+  autonomy_eligible: NOT_ELIGIBLE
+  autonomous_build_authorized: false
+  s1_003_status: DEFERRED_NOT_EXECUTED
+  frozen_e1_modified: false
+  e2_001_artifacts_modified: false
+  architecture_artifacts_edited_by_verifier: false
+  findings_fixed_by_verifier: false

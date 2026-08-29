@@ -1404,10 +1404,10 @@ tasks:
     owner_role: AUTHOR
     assigned_model: "Codex (runtime model identifier not exposed) — E2-002 AUTHOR"
     reviewer_model: "Claude Fable 5 (claude-fable-5) via Claude Code — independent E2-002 challenger at d950e44b085cae95ca61ef6f03f33a0ca32fdc71"
-    verifier_model: null
+    verifier_model: "Claude Fable 5 (claude-fable-5) via Claude Code — independent post-fix verifier (separate session; same model/product as the E2-002 challenger; independent of the Codex author/fixer; Claude Code is a named E3 candidate system and this verification selects no role occupant, architecture, candidate, or technology)"
     assignment_policy: "Assign only after E2-001 is independently VERIFIED; challenger/verifier independence is mandatory and creates no model-role eligibility."
-    status: READY_FOR_REVIEW
-    planning_status: READY_FOR_REVIEW_NOT_VERIFIED_FIXER_PASS
+    status: VERIFIED
+    planning_status: VERIFIED_BY_INDEPENDENT_VERIFIER
     priority: P0
     dependencies:
       - E2-001
@@ -1471,9 +1471,8 @@ tasks:
     completion_transition: "Only independent verification may move E2-002 to VERIFIED and release E2-003 to READY."
     downstream_consumer: E2-003
     unresolved_questions:
-      - Whether independent post-fix verification reproduces closure of F-E2-002-01..09.
-      - Whether the five normalized spike questions and their shared/candidate-specific classification survive independent verification.
-      - Which candidate assumptions remain unknown before E2-003 comparison; E2-003 remains blocked.
+      - Independently VERIFIED on 2026-08-29 (UTC) against 1a1c5423da83d3dfe9c7f759300bf10d68e4281e; F-E2-002-01..09 RESOLVED; the five normalized spike questions and their shared/candidate-specific classification survived verification and remain NOT_RUN pending E2-003 classification.
+      - Which candidate assumptions remain unknown before E2-003 comparison (seven uniform hard unknowns per candidate plus V-E2-002-01/02 bookkeeping items) is now E2-003's input, not an open E2-002 question.
     escalation_conditions:
       - Fewer than three credible compliant shapes can be constructed.
       - A candidate requires changing E1 semantics or importing a Level C implementation detail.
@@ -1518,7 +1517,19 @@ tasks:
     fixer_structural_distinctness: "PRESERVED: task-bound integrated core/supervisor vs persistent service plus replaceable leased workers vs journal/reducer authority plus replay-replaceable coordinator and derived projections."
     fixer_handoff: 99_handoffs/completed/E2-002_fixer_handoff.yaml
     fixer_validation_status: "PASS_FIXER_MECHANICAL_AND_SEMANTIC_ONLY_NOT_INDEPENDENT_VERIFICATION: 58 YAML/YML strict parse with zero duplicate keys; 3 unique candidates; 30 fields / 65 ARs / 59 hard / 6 preferences / 127 E1 IDs / 25 domains / 20 TB / 19 Level B / 8 E3 each; identical 52/5/2/0 hard maps; five lifetimes; 9 family + 16 composition + EP-CTL-016; four-tier isolation/AQ-003; 5 unique spikes (2 shared/3 specific); partial-write and protected-boundary checks; exact allowed paths; frozen E1/E2-001; no selection/ADR/spike/code/run/benchmark/paid call; clean-room/secret/diff checks PASS. Independent verification remains required."
-    next_command: "MODE: VERIFY_TASK_E2-002"
+    verifier_evidence:
+      - 99_handoffs/completed/E2-002_verifier_review.yaml
+    verifier_started_at: "2026-08-29T03:09:00Z (approximate; after the founder's 2026-08-29T03:08:03Z commit of 1a1c542 was observed as HEAD)"
+    verifier_completed_at: "2026-08-29T03:30:00Z (approximate)"
+    verified_commit: 1a1c5423da83d3dfe9c7f759300bf10d68e4281e
+    verifier_verdict: E2_002_VERIFIED
+    verifier_acceptance_results: "AC1 three credible shapes materially distinct on twelve structural dimensions (authority/persistence, orchestration, execution ownership/replaceability, client/runtime boundary) with the isolation tier disclosed as a shared hard floor: PASS; AC2 25/25 domains and 59/59 hard constraints with process/trust/data/control/effect/recovery/verification boundaries per candidate: PASS; AC3 f20/f21 three-way stage classification with no speculative SaaS/multi-agent implementation: PASS; AC4 assumptions, unknowns, migration, contributor burden, E3, Level B and Level C exclusions explicit and now cross-candidate consistent: PASS; AC5 zero ranking/selection language, preferred NONE, ADRs 0, architecture NOT_SELECTED: PASS"
+    verifier_original_finding_dispositions: "F-E2-002-01 RESOLVED, F-E2-002-02 RESOLVED, F-E2-002-03 RESOLVED, F-E2-002-04 RESOLVED, F-E2-002-05 RESOLVED, F-E2-002-06 RESOLVED, F-E2-002-07 RESOLVED, F-E2-002-08 RESOLVED, F-E2-002-09 RESOLVED (each re-checked against committed bytes at 1a1c542, not the fixer's labels)"
+    verifier_new_finding_counts: "BLOCKER 0, HIGH 0, MEDIUM 0, LOW 2, NOTE 8 (V-E2-002-01 AR-DUR-005 PLAUSIBLE in C02/C03 without an f27 analysis pointer, non-blocking, carried to E2-003; V-E2-002-02 AR-SEC-003 listed as affected by SPQ-03/04/05 while classified PLAUSIBLE, uniform across candidates, non-blocking, E2-003 must reconcile; N1 C01 f02 'persistent' wording; N2 README stale, founder refresh; N3 patch committed as 1a1c542; N4 C02 rule wording; N5 AR-PKG-001 conservative uniform; N6 shared no-live-owner interval is a preference-comparison characteristic; N7 C02 18-capability inventory; N8 approximate timestamps)"
+    verifier_section_results: "CANDIDATE_SET_PASS; STRUCTURAL_DISTINCTNESS_PASS; HARD_STATUS_RULE_PASS; CROSS_CANDIDATE_STATUS_PASS; EXECUTION_OWNER_LIFETIME_PASS; EP_CTL_016_PASS; SPIKE_MODEL_PASS; PROTECTED_ENTRY_SPIKE_PASS; TESTABILITY_MATRIX_PASS; COMPOSITION_TESTABILITY_PASS; ISOLATION_TIER_PASS; LEVEL_B_PASS; C02_PROTECTED_DELIVERY_PASS; C03_PAYLOAD_EVENT_PASS; PARTIAL_WRITE_RECOVERY_PASS; C01_TRANSACTIONAL_MODEL_PASS; C02_FENCING_PASS; C03_AUTHORITY_PASS; PREFERENCE_MODEL_PASS; DECISION_DOMAIN_PASS; THREAT_BOUNDARY_PASS; RECOVERY_MODEL_PASS; EVIDENCE_VERIFICATION_PASS; SECURITY_PASS; E3_MAPPING_PASS; UNCERTAINTY_MODEL_PASS; CONTRIBUTOR_MIGRATION_PASS; NO_RANKING_PASS; FROZEN_ARTIFACTS_PASS"
+    verifier_mechanical_summary: "Re-run by the verifier from committed bytes at 1a1c542: 58/58 YAML strict parse with 0 duplicate keys; 3 unique candidates x 30 fields; 65 ARs set-equal to the E2-001 headings (59 hard / 6 preference); three identical 59-entry hard-status maps each 52/5/2/0 with contract projection consistent (52 SATISFIED_BY_DESIGN / 7 UNKNOWN / 0 FAILED_HARD); 127 canonical E1 IDs set-equal to the CSV with 0 primary-AR mismatches; 5 lifetimes; 20 TB x 8 keys with 0 empty fields; 25 domains; 9 family rows x 7 fields; 16 COMP rows x 7 fields; 1 EP_CTL_016 row; 4 tiers / Tier 2 assumed / 7 dependent ARs / 4 enforcement layers / AQ_003; 7 partial-write cases plus global_atomicity_claim false; 19 Level B rows; 8 E3V rows; 5 unique spike questions (2 shared / 3 specific / 9 references / 0 run); 28 uncertainty records (10/9/3/3/3); 8/8 fixer paths and 9/9 lifecycle paths authorized; 9/9 frozen E1 blobs and E2-001 artifacts unchanged; 0 secrets; 0/82 external paths; 0 technology/provider/ranking hits; git diff --check clean"
+    verification_status: VERIFIED_BY_INDEPENDENT_VERIFIER_AGAINST_1A1C542_2026-08-29
+    next_command: "MODE: EXECUTE_TASK_E2-003"
 
   - task_id: E2-003
     title: Compare architecture alternatives and classify decision uncertainty
@@ -1530,14 +1541,14 @@ tasks:
     reviewer_model: null
     verifier_model: null
     assignment_policy: "Assign only after E2-002 is independently VERIFIED; scorer, challenger, and verifier provenance must be explicit."
-    status: BACKLOG
-    planning_status: PLANNED_NOT_EXECUTED
+    status: READY
+    planning_status: READY_NOT_CLAIMED_NOT_EXECUTED
     priority: P0
     dependencies:
       - E2-002
-    blocked_by:
-      - E2_002_NOT_INDEPENDENTLY_VERIFIED
+    blocked_by: []
     activation_condition: "E2-001 requirements and E2-002 alternatives are independently VERIFIED."
+    activation_condition_status: "SATISFIED on 2026-08-29 (UTC): E2-001 independently VERIFIED against 0d702b817509c275582cb27e7e08ac44f0145ab9 and E2-002 independently VERIFIED against 1a1c5423da83d3dfe9c7f759300bf10d68e4281e (99_handoffs/completed/E2-002_verifier_review.yaml). READY does not claim or execute the task; E2-003 compares and classifies only, must carry V-E2-002-01/02 into its uncertainty register, and may not select, recommend, create an ADR, run a spike, or write code."
     gate_invariant: "E2-003 may identify dominated or ineligible candidates but may not select, recommend, or encode a final architecture decision."
     files_to_read:
       - MASTER_OPERATING_PROMPT.md
