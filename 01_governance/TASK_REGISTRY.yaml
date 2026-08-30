@@ -2173,7 +2173,7 @@ tasks:
       proposal_state_after_verification: "EP-ARCH-C01 remains PROPOSED_PENDING_INDEPENDENT_ARCHITECTURE_VERIFICATION; architecture_selected false; authoritative preferred candidate null; accepted ADRs 0; verified ADRs 0; E2 gate NOT_EVALUATED; E2-006 READY (not executed)"
     verification_status: VERIFIED_BY_INDEPENDENT_VERIFIER_AGAINST_2C4B3FA_2026-08-30
     unresolved_questions:
-      - Independently VERIFIED on 2026-08-30 (UTC) against 2c4b3fa3170ef15836b4c78331239c97763820cd as a complete PROPOSED selection package; whether the fresh E2-006 architecture verifier upholds or rejects the C01 proposal and nine-ADR package remains open.
+      - Independently VERIFIED on 2026-08-30 (UTC) against 2c4b3fa3170ef15836b4c78331239c97763820cd as a complete PROPOSED selection package; whether the fresh E2-006 architecture verifier upholds or rejects the C01 proposal and nine-ADR package remains open. Resolved on 2026-08-30 (UTC) by E2-006 (E2_006_VERIFIED against 85902bfc61f9ebb8363f6b4d69194c3a1a275f14; 99_handoffs/completed/E2-006_verifier_review.yaml), which upholds the C01 proposal and the nine-ADR package as SELECTED_VERIFIED_PENDING_E2_GATE; the E2 stage gate remains NOT_EVALUATED.
       - The finite numeric E3 verification-rerun, deterministic-check-repetition, and correction-attempt ceilings, which E3-QPA-001 must set prospectively and independently review before scored execution.
     escalation_conditions:
       - No candidate remains compliant or two candidates cannot be distinguished responsibly with available evidence.
@@ -2186,18 +2186,41 @@ tasks:
     objective: Independently re-derive whether the proposed E2 architecture and ADR set satisfy the frozen E1 baseline, close architecture-blocking uncertainty, preserve security/recovery/evidence/provider-neutrality boundaries, and provide a stable E3 validation foundation.
     why_it_matters: The architecture author, matrix, and ADR package cannot verify their own compliance or make a recommendation authoritative.
     owner_role: INDEPENDENT_ARCHITECTURE_VERIFIER
-    assigned_model: null
-    reviewer_model: null
-    verifier_model: null
+    assigned_model: "Claude Fable 5 (claude-fable-5) via Claude Code — independent E2-006 architecture verifier in a fresh session with no shared state with the Codex E2-005 author/fixer session, any author-side assistant, or the E2-005 challenger/verifier sessions (same model/product as those challenger and verifier sessions, disclosed per repository precedent; Claude Code is a named E3 candidate system and this verification selects no role occupant, provider, model, or technology)"
+    reviewer_model: "NOT_APPLICABLE — E2-006 is itself the independent architecture verification; the E2-005 challenger (99_handoffs/completed/E2-005_challenger_review.yaml) satisfies the selection-package challenge prerequisite; a distinct later stage-gate session evaluates VERIFY_STAGE_E2"
+    verifier_model: "Claude Fable 5 (claude-fable-5) via Claude Code — same session as assigned_model (E2-006 is the verification task); every material claim re-derived from committed bytes at 85902bfc61f9ebb8363f6b4d69194c3a1a275f14; no subagents, retrieval, spend, spike, benchmark, evaluation run, application code, ADR acceptance, gate evaluation, or E3 execution"
     assignment_policy: "The executor must be a fresh session independent of every E2-005 author/fixer and author-side assistant. A separate fresh session must later evaluate VERIFY_STAGE_E2."
-    status: READY
-    planning_status: READY_NOT_CLAIMED_NOT_EXECUTED
+    status: VERIFIED
+    planning_status: VERIFIED_BY_INDEPENDENT_ARCHITECTURE_VERIFIER
+    verifier_started_at: "2026-08-30T05:20:00Z (approximate; session start not captured; verification began after committed HEAD 85902bf was observed with a clean working tree)"
+    verifier_completed_at: "2026-08-30T06:17:00Z"
+    verifier_base_commit: 85902bfc61f9ebb8363f6b4d69194c3a1a275f14
+    verifier_result: E2_006_VERIFIED
+    verification_status: VERIFIED_BY_INDEPENDENT_ARCHITECTURE_VERIFIER_AGAINST_85902BF_2026-08-30
+    verifier_review: 99_handoffs/completed/E2-006_verifier_review.yaml
+    verifier_checkpoint: 10_checkpoints/stage_checkpoints/ENGINEERING_PREVIEW_E2_ARCHITECTURE_VERIFICATION.yaml
+    architecture_verification:
+      candidate_id: EP-ARCH-C01
+      candidate_name: Integrated Transactional Local Core
+      architecture_status: SELECTED_VERIFIED_PENDING_E2_GATE
+      adr_status: SELECTED_VERIFIED_PENDING_E2_GATE
+      adr_ids: [ADR-E2-001, ADR-E2-002, ADR-E2-003, ADR-E2-004, ADR-E2-005, ADR-E2-006, ADR-E2-007, ADR-E2-008, ADR-E2-009]
+      verified_adr_count: 9
+      accepted_adr_count: 0
+      e2_gate_status: NOT_EVALUATED
+      e2_gate_evaluated_by_e2_006: false
+      adr_file_self_status_lines: "unchanged (PROPOSED_PENDING_INDEPENDENT_ARCHITECTURE_VERIFICATION); the baseline, E3 register, and ADR files are outside the E2-006 allowed paths and are forbidden content changes, so the verified status is recorded in this registry, PROJECT_STATE, and the E2 architecture verification checkpoint only; artifact self-status lines are historical per repository precedent"
+    verifier_section_results: "40/40 prompt-required section checks PASS: C01 selection rationale, no hidden hybrid, AR coverage 65/65 (59 hard = 57 ARCHITECTURE_CONFIRMED + 2 E3_VALIDATION_OUTSTANDING (AR-EXE-003 -> E3V-002; AR-SEC-006 -> E3V-006) + 0 VIOLATED + 0 UNMAPPED; 6 preferences qualitative), E3-outstanding truth, ADR set 9/9 with uniform 17-section structure, ADR status authority, cross-ADR consistency (13 pairs, 0 contradictory ownership), state ownership (four classes), recovery 25 scenarios x 12 fields plus 7 partial-filesystem subcases, approval/effect chain, threat model TB-01..20 cell-equal to verified C01 f05, execution/isolation (Tier 2 semantic floor, no mechanism selected), protected entry (E3V-006 outstanding), model/provider neutrality, evidence/verification independence, observability subordination, testability seams (170/18/11/23/16/30/9/16/8/EP-CTL-016), E3V handback closure (8/8 primary-owner closed; 75 representations set-equal), E3V-001..008 contracts, E3V-002, E3V-006, E3-QPA-001 plan-only with no numeric value, E4 deferrals 3/3, reversibility/migration, rejected alternatives, decision rule (non-numeric, best fit for current verified scope), clean room (0 Level-C imports), technology neutrality, no implementation"
+    verifier_challenger_finding_dispositions: "F-E2-005-01..09 independently re-dispositioned RESOLVED against committed bytes at 85902bf; F-E2-001/002/003 (9/9/9) RESOLVED and F-E2-004 (7/7) RESOLVED_OR_NONBLOCKING by their independent verifiers (recomputed from the records); carry-forward notes V-E2-004-N2/N3/N4/N9 and V-E2-005-N5/N6/N9 satisfied in the current baseline; author-side challenge not credited"
+    verifier_new_finding_counts: "BLOCKER 0, HIGH 0, MEDIUM 0, LOW 0, NOTE 11 (V-E2-006-N1..N11: README founder refresh; ADR/baseline self-status lines historical outside allowed paths; D02 ownership via ADR-E2-001 cross-cutting list; E1 operation-outcome and record-class vocabularies mapped without redefinition; E3-QPA-001 founder acknowledgement not yet in DECISION_LOG; six vs eleven logical roles role-count neutral; release-checkpoint fields gate-owned; ADR-E2-009 REVERSIBLE_EARLY applies to packaging mechanics; representation-count method difference; Level-C probe slash-phrase coincidences)"
+    verifier_mechanical_summary: "Recomputed from committed bytes at 85902bf with ruby 2.6 Psych/CSV, git, grep, find and shasum: 71/71 YAML strict parse with 0 duplicate keys; 6/6 CSV; 195-cell matrix with C01/C02/C03 each 57/2/0/0 on 59 hard ARs; 127-row trace (56/15/9/4/4/16/23) fully projected to primary ADRs with the eight SLO/MET rows owned by ADR-E2-008 under E3V-007 and no waiver; baseline section 13 65/65 exactly once and set-equal to ADR primary lines; 9 ADR files with uniform headings, PROPOSED status, C01 candidate, closed three-class reversibility vocabulary; E3V closure recomputed from E2-001 section 9 sources plus C01 matrix links with 0 unmapped ARs and only the stated secondaries; TB 20 x 9 cell-equal to C01 f05; REC 25 x 12 plus 7 subcases equal to C01 f09; 25 domains equal to E2-001 section 7; 19 Level-B rows equal to C01 f29; six SHA-256 pins reproduced and 39 artifact digests pinned; nine frozen E1 blobs identical to the E1 gate record; verified E2-001..E2-005 artifact diffs empty; 0 secret hits; 0 technology/provider/model/role-occupant selections; 0 Level-C identifiers; tracked files md/yaml/csv/json/gitignore only; git diff --check clean; post-transition governance reconciliation PASS"
+    next_command: "MODE: VERIFY_STAGE_E2"
     priority: P0
     dependencies:
       - E2-005
     blocked_by: []
     activation_condition: "E2-001 through E2-005 are independently VERIFIED and E2-005 supplies a challenged proposed baseline with no unresolved selection blocker."
-    activation_condition_status: "SATISFIED on 2026-08-30 (UTC): E2-001 (0d702b8), E2-002 (1a1c542), E2-003 (e5d541c), E2-004 (1f35f73), and E2-005 (2c4b3fa; 99_handoffs/completed/E2-005_verifier_review.yaml) are independently VERIFIED; E2-005 supplies a challenged (F-E2-005-01..09, all RESOLVED) proposed EP-ARCH-C01 baseline with nine PROPOSED_PENDING_INDEPENDENT_ARCHITECTURE_VERIFICATION ADRs, canonical E3V-001..008 obligations with primary-owner-closed handback sets, and E3-QPA-001 registered; no unresolved selection blocker exists. READY does not claim or execute the task: E2-006 must be a fresh session independent of every E2-005 author/fixer and author-side assistant, may verify or reject but not fix the baseline, and may not pass VERIFY_STAGE_E2, execute E3, select a model/provider, make a paid call, write application code, authorize autonomy, or resume S1-003. Architecture remains NOT_SELECTED; accepted ADRs 0; E2 gate NOT_EVALUATED."
+    activation_condition_status: "SATISFIED on 2026-08-30 (UTC): E2-001 (0d702b8), E2-002 (1a1c542), E2-003 (e5d541c), E2-004 (1f35f73), and E2-005 (2c4b3fa; 99_handoffs/completed/E2-005_verifier_review.yaml) are independently VERIFIED; E2-005 supplies a challenged (F-E2-005-01..09, all RESOLVED) proposed EP-ARCH-C01 baseline with nine PROPOSED_PENDING_INDEPENDENT_ARCHITECTURE_VERIFICATION ADRs, canonical E3V-001..008 obligations with primary-owner-closed handback sets, and E3-QPA-001 registered; no unresolved selection blocker exists. READY does not claim or execute the task: E2-006 must be a fresh session independent of every E2-005 author/fixer and author-side assistant, may verify or reject but not fix the baseline, and may not pass VERIFY_STAGE_E2, execute E3, select a model/provider, make a paid call, write application code, authorize autonomy, or resume S1-003. Architecture remains NOT_SELECTED; accepted ADRs 0; E2 gate NOT_EVALUATED. Post-execution: E2-006 was executed by a fresh independent architecture verifier and VERIFIED on 2026-08-30 (UTC) against 85902bfc61f9ebb8363f6b4d69194c3a1a275f14; EP-ARCH-C01 and ADR-E2-001..009 are now SELECTED_VERIFIED_PENDING_E2_GATE; accepted ADRs 0; E2 gate still NOT_EVALUATED."
     gate_invariant: "E2-006 verifies or rejects the proposed baseline. It may not redesign/fix it, choose a model/provider, execute E3, write application code, or pass the separate E2 stage gate."
     files_to_read:
       - MASTER_OPERATING_PROMPT.md
@@ -2263,9 +2286,9 @@ tasks:
     completion_transition: "On PASS, E2-006 becomes VERIFIED, ADRs and the architecture baseline may be recorded SELECTED_VERIFIED_PENDING_E2_GATE, and MODE: VERIFY_STAGE_E2 becomes the only next E-track operation. On any material failure, E2-006 does not verify and the affected prior task returns to a prospective fixer cycle."
     downstream_consumer: VERIFY_STAGE_E2
     unresolved_questions:
-      - Whether the proposed baseline independently satisfies every E1 constraint.
-      - Whether any material uncertainty was improperly deferred to E3.
-      - Whether E3 obligations are complete enough for a stable post-gate plan.
+      - Independently VERIFIED on 2026-08-30 (UTC) against 85902bfc61f9ebb8363f6b4d69194c3a1a275f14 (99_handoffs/completed/E2-006_verifier_review.yaml): the proposed EP-ARCH-C01 baseline and ADR-E2-001..009 independently satisfy every E1-derived hard architecture requirement at the architecture level (57 ARCHITECTURE_CONFIRMED, 2 E3_VALIDATION_OUTSTANDING, 0 VIOLATED, 0 UNMAPPED); no material uncertainty was improperly deferred to E3; the E3 obligation plan (E3V-001..008, E3-QPA-001, three E4 bundles) is complete enough for a stable post-gate plan.
+      - Whether the separate VERIFY_STAGE_E2 stage-gate evaluation passes E2 and records ADR acceptance remains open; E2-006 does not evaluate the gate and no ADR is ACCEPTED.
+      - The finite numeric E3 verification-rerun, deterministic-check-repetition, and correction-attempt ceilings remain E3-QPA-001-owned and unset; founder acknowledgement of the E3-QPA-001 accountable role is not yet recorded in DECISION_LOG.md (V-E2-006-N6).
     escalation_conditions:
       - Any architecture or E1 semantic conflict, missing evidence, circular verification, clean-room concern, or unresolved material finding.
       - Any need to edit an architecture artifact, expand scope, run a spike, or access external/current evidence.
