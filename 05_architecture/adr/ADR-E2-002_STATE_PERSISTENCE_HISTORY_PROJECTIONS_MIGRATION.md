@@ -8,17 +8,21 @@ Candidate: `EP-ARCH-C01`
 
 Decision class: `FOUNDATIONAL_HIGH_COST`
 
+Decision status and reversibility class are separate governance axes.
+
 ## Context
 
-Frozen E1 requires durable acknowledged authority, explicit authoritative/derived/ephemeral/lossy classes, recoverable causal/operation evidence, corruption and partial-write handling, retention/deletion accountability and migration. Transcript, context, UI and telemetry cannot become truth. External reality is not transactionally owned.
+Frozen E1 requires durable acknowledged authority and the closed architecture-level classes `AUTHORITATIVE STATE`, `DERIVED PROJECTION`, `EPHEMERAL WORKING CONTEXT`, and `LOSSY SUMMARY`, plus recoverable causal/operation evidence, corruption and partial-write handling, retention/deletion accountability and migration. Transcript, context, UI and telemetry cannot become truth. External reality is not transactionally owned.
 
 ## Decision
 
-Propose C01's embedded persistence pattern: transactional current authoritative state plus append-only material history and explicit outbox/effect records, all owned by the sole core writer. The transaction boundary covers only core-owned authoritative records. Durable acknowledgement occurs only after the applicable authoritative commit is confirmed/reread.
+Propose C01's embedded persistence pattern: transactional current `AUTHORITATIVE STATE` plus append-only authoritative material history and explicit outbox/effect records, all owned by the sole core writer. These are descriptions/subtypes within `AUTHORITATIVE STATE`, not new architecture-level classes. The transaction boundary covers only core-owned authoritative records. Durable acknowledgement occurs only after the applicable authoritative commit is confirmed/reread.
 
 Material history retains the causal, version, integrity and operation/effect facts required for audit, recovery, reconciliation and migration. It does not make C01 an event-sourced C03 hybrid: current authoritative records remain normative, and no deterministic reducer over an immutable journal is introduced as system authority.
 
-Presentation/transcript/search/activity/context/telemetry projections are derived, versioned and rebuildable. Ephemeral buffers and lossy telemetry may disappear. A final validated evidence bundle is an immutable authoritative artifact derived from, but never able to manufacture, authoritative source records.
+Presentation/transcript/search/activity projections are `DERIVED PROJECTION`; transient model/tool buffers are `EPHEMERAL WORKING CONTEXT`; compacted summaries are `LOSSY SUMMARY` even when retained. Operational logs/telemetry are rebuildable observations over those sources and never a source of truth. A final validated evidence bundle is an immutable `AUTHORITATIVE STATE` evidence artifact owned by ADR-E2-007 and derived from, but never able to manufacture, authoritative source records.
+
+ADR-E2-002 exclusively owns the canonical durable task/operation/approval/effect/evidence/material-history semantics required for correctness, recovery and migration. ADR-E2-008 may expose operational audit/log projections of those records, but it cannot create a second authoritative history. If an audit fact is required to recover, authorize, reconcile, verify or prove completion, it belongs here (or in ADR-E2-007 for evidence artifacts), not in telemetry merely because a log sink is durable.
 
 Schema/history evolution is explicit, versioned, fail-closed and reversible where declared. Corrupt/incompatible records are quarantined with retained evidence; neither silent reset nor summary reconstruction is allowed.
 
@@ -75,12 +79,13 @@ Every principal/agent/task/message/workspace/operation/approval/artifact/provide
 ## E3 validation obligations
 
 - `E3V-001`: acknowledgement, partial-write, duplicate, owner and effect recovery.
+- `E3V-003`: durable workspace/base identity and recovery source for package/workspace validation.
 - `E3V-005`: authority/derived separation, evidence integrity, deterministic readback and stale invalidation.
 - `E3V-007`: raw measurement inputs and enforceable finite limits without telemetry authority.
 
 ## Handback and reopen conditions
 
-Frozen handback sets: `E3V-001 -> ADR-E2-002/003/004/005`; `E3V-005 -> ADR-E2-002/003/005/007/008`; `E3V-007 -> ADR-E2-002/007/008/009`. Reopen on unavoidable acknowledged loss, nondeterministic authority, unrepairable schema/history ambiguity, required evidence loss or unrepresentable gate inputs. Ordinary store/codec/migration implementation defects remain correction work when a conforming C01 realization exists.
+Canonical handback sets: `E3V-001 -> ADR-E2-002/003/004/005/007/008/009`; `E3V-003 -> ADR-E2-001/002/004/009`; `E3V-005 -> ADR-E2-002/003/004/005/006/007/008`; `E3V-007 -> ADR-E2-001/002/007/008/009`. Reopen on unavoidable acknowledged loss, nondeterministic authority, unrepairable schema/history ambiguity, required evidence loss or unrepresentable gate inputs. Ordinary store/codec/migration implementation defects remain correction work when a conforming C01 realization exists.
 
 ## Unresolved implementation details
 

@@ -8,6 +8,8 @@ Candidate: `EP-ARCH-C01`
 
 Decision class: `MODERATELY_COSTLY`
 
+Decision status and reversibility class are separate governance axes.
+
 ## Context
 
 Core product truth must remain provider/model neutral while preserving provider-specific streaming, tools, refusal, usage, stop, cancellation and error semantics. Route purpose and eligibility must be explicit; hidden fallback is forbidden. Model context is bounded and lossy; durable conversation, authority, effects and evidence must survive outside it. E2 may select the gateway shape but no provider, model, configuration or permanent role occupant.
@@ -67,7 +69,7 @@ No provider adapter, routing implementation, semantic-conformance fixture result
 
 ## Reversibility and migration
 
-Provider adapters and routing policies are `REVERSIBLE_EARLY_TO_MODERATELY_COSTLY`; the provider-neutral semantic envelope/provenance is a stable compatibility contract. Replacement requires offline conformance, preserved raw evidence links, no semantic loss, explicit fallback and context reconstruction equivalence.
+Provider adapters and routing policies are `REVERSIBLE_EARLY`; the provider-neutral semantic envelope/provenance is `MODERATELY_COSTLY`. Replacement requires offline conformance, preserved raw evidence links, no semantic loss, explicit fallback and context reconstruction equivalence.
 
 ## Future compatibility
 
@@ -81,7 +83,7 @@ New providers, open/self-hosted models or remote gateways may enter through the 
 
 ## Handback and reopen conditions
 
-Frozen handbacks: `E3V-004 -> ADR-E2-001/005/006/008`; `E3V-005 -> ADR-E2-002/003/005/007/008`; `E3V-008 -> ADR-E2-006` only if an indispensable ADR capability is impossible through every compliant route. Ordinary provider/model/config failure leaves the role unassigned. Reopen if the envelope structurally erases required semantics or provider-native state must become product authority.
+Canonical handbacks: `E3V-004 -> ADR-E2-001/004/005/006/007/008/009`; `E3V-005 -> ADR-E2-002/003/004/005/006/007/008`; `E3V-008 -> ADR-E2-006` only if an indispensable ADR capability is impossible through every compliant route. Ordinary provider/model/config failure leaves the role unassigned. Reopen if the envelope structurally erases required semantics or provider-native state must become product authority.
 
 ## Unresolved implementation details
 

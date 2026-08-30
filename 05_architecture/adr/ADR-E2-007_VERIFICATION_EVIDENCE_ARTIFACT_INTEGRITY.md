@@ -8,13 +8,15 @@ Candidate: `EP-ARCH-C01`
 
 Decision class: `FOUNDATIONAL_HIGH_COST`
 
+Decision status and reversibility class are separate governance axes.
+
 ## Context
 
 Engineering Preview is correct only when a reviewable candidate and evidence bundle let an independent verifier check an adequate predicate set against the exact state. Executor narrative, transcript, activity, telemetry, a digest or a passing but irrelevant check is insufficient. Evidence must survive restart, expose gaps/tamper/staleness, remain secret-safe and bind author/challenger/verifier roles.
 
 ## Decision
 
-Propose C01's integrated evidence builder over authoritative state/material history plus stable artifact references, followed by a separate least-privilege verifier process/context/workspace.
+Propose C01's integrated evidence builder over ADR-E2-002 `AUTHORITATIVE STATE`/material history plus stable artifact references, followed by a separate least-privilege verifier process/context/workspace. A validated evidence bundle and immutable verification run are `AUTHORITATIVE STATE` evidence subtypes. Manifests and review views rebuilt from them are `DERIVED PROJECTION`; transient verifier buffers are `EPHEMERAL WORKING CONTEXT`; compacted result summaries are `LOSSY SUMMARY` and never substitute for the underlying evidence.
 
 The evidence builder creates a versioned outcome-profile bundle binding task/attempt/actor, governing inputs, plan/predicate coverage, repository/base/workspace/candidate identity, changed-file inventory and diff/package, operations, exact commands/results/repetitions, approvals/effects/readbacks, routes/models/tools/configs, artifacts/provenance/retention, errors/recovery, limitations and disposition. Large outputs use bounded stable references. Raw protected values and forbidden/private material are excluded.
 
@@ -74,12 +76,16 @@ Actor, verifier, artifact, policy and candidate scopes are explicit, enabling la
 
 ## E3 validation obligations
 
+- `E3V-001`: recovery retains authoritative evidence inputs and certainty.
+- `E3V-002`: process containment claims have independent readback/evidence.
+- `E3V-004`: provider semantic preservation has raw-linked, exact-route evidence.
 - `E3V-005`: stale/gap/tamper/adequacy/verifier-error and exact-revision behavior.
+- `E3V-006`: security/capture exclusions and denials are independently evidenced without raw secrets.
 - `E3V-007`: evidence/large-output measurement inputs and limit enforcement.
 
 ## Handback and reopen conditions
 
-Frozen handbacks: `E3V-005 -> ADR-E2-002/003/005/007/008`; `E3V-007 -> ADR-E2-002/007/008/009`. Reopen on unavoidable executor-self-report dependence, stale-pass acceptance, telemetry authority, nondeterministic canonical evidence, unavoidable required-evidence loss or structurally unrepresentable protocol inputs. Validator/manifest/tool defects remain correction if the boundary is feasible.
+Canonical handbacks: `E3V-001 -> ADR-E2-002/003/004/005/007/008/009`; `E3V-002 -> ADR-E2-003/004/007`; `E3V-004 -> ADR-E2-001/004/005/006/007/008/009`; `E3V-005 -> ADR-E2-002/003/004/005/006/007/008`; `E3V-006 -> ADR-E2-001/004/005/007/008/009`; `E3V-007 -> ADR-E2-001/002/007/008/009`. Reopen on unavoidable executor-self-report dependence, stale-pass acceptance, telemetry authority, nondeterministic canonical evidence, unavoidable required-evidence loss or structurally unrepresentable protocol inputs. Validator/manifest/tool defects remain correction if the boundary is feasible.
 
 ## Unresolved implementation details
 

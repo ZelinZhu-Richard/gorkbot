@@ -8,6 +8,8 @@ Candidate: `EP-ARCH-C01`
 
 Decision class: `FOUNDATIONAL_HIGH_COST`
 
+Decision status and reversibility class are separate governance axes.
+
 ## Context
 
 The product requires durable task and operation lifecycle semantics, one accountable owner, ordered pause/stop/redirect/resume, restart reconciliation, duplicate intake/effect prevention, honest unknown outcomes and a future path beyond a local single writer. No durable workflow engine or queue technology has been selected.
@@ -18,7 +20,7 @@ Propose a versioned explicit task/operation state loop inside the integrated cor
 
 The core persists control requests before changing dispatch authority. It creates no new productive operation while paused/stopping/blocked, while separately preauthorized safety/control/readback/evidence reserve operations may run. Each operation records admission, start, progress where material, cancel/timeout/fence, result validation, effect state and first terminal outcome.
 
-On owner loss, a successor obtains a new epoch, loads authoritative state, scans every nonterminal operation/effect, discovers/fences surviving children and revalidates workspace, policy, approvals, routing, budgets and predicates before resuming. Duplicate input or operation identity returns the first result. Effect ambiguity is reconciled through ADR-E2-005, never blind replay.
+On owner loss, a successor obtains a new epoch, loads `AUTHORITATIVE STATE`, scans every nonterminal operation/effect, discovers/fences surviving children and revalidates workspace, policy, approvals, routing, budgets and predicates before resuming. Duplicate input or operation identity returns the first result. Effect ambiguity is reconciled through ADR-E2-005, never blind replay. Scheduler cursors and rendered activity are `DERIVED PROJECTION`; in-flight buffers are `EPHEMERAL WORKING CONTEXT`; compacted operational summaries are `LOSSY SUMMARY` and cannot grant authority.
 
 ## E1/E2 constraints and trace
 
@@ -78,7 +80,7 @@ Current ownership is scoped rather than global: principal, agent, task, workspac
 
 ## Handback and reopen conditions
 
-Frozen handback sets: `E3V-001 -> ADR-E2-002/003/004/005`; `E3V-002 -> ADR-E2-003/004`; `E3V-005 -> ADR-E2-002/003/005/007/008`. Reopen if C01 cannot prevent stale authority or duplicate effect, cannot reconstruct a legal state after required faults, or needs an unrecorded/global singleton to preserve correctness. Adapter or fixture failures stay correction when semantics remain feasible.
+Canonical handback sets: `E3V-001 -> ADR-E2-002/003/004/005/007/008/009`; `E3V-002 -> ADR-E2-003/004/007`; `E3V-005 -> ADR-E2-002/003/004/005/006/007/008`. Reopen if C01 cannot prevent stale authority or duplicate effect, cannot reconstruct a legal state after required faults, or needs an unrecorded/global singleton to preserve correctness. Adapter or fixture failures stay correction when semantics remain feasible.
 
 ## Unresolved implementation details
 

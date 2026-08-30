@@ -6,7 +6,9 @@ Status: `PROPOSED_PENDING_INDEPENDENT_ARCHITECTURE_VERIFICATION`
 
 Candidate: `EP-ARCH-C01`
 
-Decision class: `MODERATELY_COSTLY_WITH_FOUNDATIONAL_SECURITY_CONTRACT`
+Decision class: `MODERATELY_COSTLY`
+
+Decision status and reversibility class are separate governance axes. The security contract remains non-compensating; that fact does not create a fourth reversibility class.
 
 ## Context
 
@@ -79,11 +81,13 @@ The execution port is serializable and replaces local placement without making c
 - `E3V-001`: partial writes, operation/effect recovery at workspace boundaries.
 - `E3V-002`: descendant accounting, pause/stop/force-or-fence on declared hosts.
 - `E3V-003`: repository/workspace/Git/local package support matrix and contributor setup.
+- `E3V-004`: execution-facing provider contract test/readback seam.
+- `E3V-005`: Git/effect readback and independent-evidence seam.
 - `E3V-006`: path/process/network/secret/capability enforcement and protected-entry process/terminal surfaces.
 
 ## Handback and reopen conditions
 
-Frozen handbacks: `E3V-001 -> ADR-E2-002/003/004/005`; `E3V-002 -> ADR-E2-003/004`; `E3V-003 -> ADR-E2-001/004/009`; `E3V-006 -> ADR-E2-001/004/005/008`. Reopen on structural root/user-state escape, unavoidable stale productive/effect authority, undeclared mandatory service, or inability to expose required deterministic seams for a required class. Narrow unsupported optional classes before architecture reopening.
+Canonical handbacks: `E3V-001 -> ADR-E2-002/003/004/005/007/008/009`; `E3V-002 -> ADR-E2-003/004/007`; `E3V-003 -> ADR-E2-001/002/004/009`; `E3V-004 -> ADR-E2-001/004/005/006/007/008/009`; `E3V-005 -> ADR-E2-002/003/004/005/006/007/008`; `E3V-006 -> ADR-E2-001/004/005/007/008/009`. Reopen on structural root/user-state escape, unavoidable stale productive/effect authority, undeclared mandatory service, or inability to expose required deterministic seams for a required class. Narrow unsupported optional classes before architecture reopening.
 
 ## Unresolved implementation details
 

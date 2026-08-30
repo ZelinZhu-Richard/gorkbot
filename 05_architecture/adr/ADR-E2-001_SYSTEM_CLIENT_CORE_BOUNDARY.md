@@ -8,6 +8,8 @@ Candidate: `EP-ARCH-C01`
 
 Decision class: `FOUNDATIONAL_HIGH_COST`
 
+Decision status and reversibility class are separate governance axes.
+
 ## Context
 
 Engineering Preview v0.1 needs one local user, one persistent named engineering agent, durable task ownership through client interruption, protected human takeover and a contributor-operable local lifecycle. The client must not become authoritative. Future remote or multi-client operation is compatibility scope, not current implementation scope.
@@ -76,12 +78,14 @@ The client/core command/result and projection ports must be serializable and sco
 - `E3V-003`: local packaging, client/core lifecycle and contributor setup.
 - `E3V-004`: provider-gateway placement/semantic conformance.
 - `E3V-006`: protected acquisition and ordinary-capture exclusion.
+- `E3V-007`: contributor-facing runtime instrumentation and finite-limit surface.
 
 ## Handback and reopen conditions
 
-- `E3V-003` structural mandatory-service or local-boundary contradiction hands back the frozen `ADR-E2-001/004/009` set.
-- `E3V-004` interface-level placement/semantic contradiction hands back `ADR-E2-001/005/006/008`.
-- `E3V-006` inability to provide a conforming protected client boundary hands back `ADR-E2-001/004/005/008`.
+- `E3V-003` structural mandatory-service or local-boundary contradiction hands back the canonical `ADR-E2-001/002/004/009` set.
+- `E3V-004` interface-level placement/semantic contradiction hands back `ADR-E2-001/004/005/006/007/008/009`.
+- `E3V-006` inability to provide a conforming protected client boundary hands back `ADR-E2-001/004/005/007/008/009`.
+- `E3V-007` structural inability to expose the required runtime measurement/limit surface hands back `ADR-E2-001/002/007/008/009`.
 - Reopen if a prospective verified E1 amendment makes service continuity, remote execution or multi-client ownership required now.
 
 ## Unresolved implementation details

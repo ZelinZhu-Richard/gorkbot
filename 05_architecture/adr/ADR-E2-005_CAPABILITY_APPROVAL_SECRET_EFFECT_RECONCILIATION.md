@@ -8,6 +8,8 @@ Candidate: `EP-ARCH-C01`
 
 Decision class: `FOUNDATIONAL_HIGH_COST`
 
+Decision status and reversibility class are separate governance axes.
+
 ## Context
 
 Untrusted repository/tool/model content must not broaden authority. Capabilities need typed runtime validation and deny-by-default scope. Consequential effects need exact human approval, durable receipts and authoritative readback. Protected values must never traverse ordinary model/input/log/evidence surfaces. External reality cannot share the core transaction, so uncertainty is a first-class outcome.
@@ -81,7 +83,7 @@ Explicit principal/task/workspace/capability/target/policy scopes prevent today'
 
 ## Handback and reopen conditions
 
-Frozen handbacks: `E3V-001 -> ADR-E2-002/003/004/005`; `E3V-004 -> ADR-E2-001/005/006/008`; `E3V-005 -> ADR-E2-002/003/005/007/008`; `E3V-006 -> ADR-E2-001/004/005/008`. Reopen if normalized identity cannot bind approval to execution/readback, if unknown effects cannot remain noncomplete, or if no conforming C01 protected acquisition/delivery path exists. A failed carrier/policy/adapter with another conforming realization is correction or unsupported class, not automatic handback.
+Canonical handbacks: `E3V-001 -> ADR-E2-002/003/004/005/007/008/009`; `E3V-004 -> ADR-E2-001/004/005/006/007/008/009`; `E3V-005 -> ADR-E2-002/003/004/005/006/007/008`; `E3V-006 -> ADR-E2-001/004/005/007/008/009`. Reopen if normalized identity cannot bind approval to execution/readback, if unknown effects cannot remain noncomplete, or if no conforming C01 protected acquisition/delivery path exists. A failed carrier/policy/adapter with another conforming realization is correction or unsupported class, not automatic handback.
 
 ## Unresolved implementation details
 

@@ -6,7 +6,9 @@ Status: `PROPOSED_PENDING_INDEPENDENT_ARCHITECTURE_VERIFICATION`
 
 Candidate: `EP-ARCH-C01`
 
-Decision class: `REVERSIBLE_EARLY_TO_MODERATELY_COSTLY`
+Decision class: `REVERSIBLE_EARLY`
+
+Decision status and reversibility class are separate governance axes. Later ecosystem adoption may raise migration cost, but that future condition does not create a fourth current class.
 
 ## Context
 
@@ -79,13 +81,15 @@ Before ecosystem/release adoption, package and client mechanics are `REVERSIBLE_
 
 ## E3 validation obligations
 
+- `E3V-001`: package/runtime lifecycle preserves recoverability and future port identities.
 - `E3V-003`: package/setup/support matrix and no hidden mandatory service.
+- `E3V-004`: packaged provider boundary preserves explicit adapter/fallback semantics.
 - `E3V-006`: packaged enforcement/capture boundaries remain complete.
 - `E3V-007`: package/runtime instrumentation and enforceable limits.
 
 ## Handback and reopen conditions
 
-Frozen handbacks: `E3V-003 -> ADR-E2-001/004/009`; `E3V-006 -> ADR-E2-001/004/005/008`; `E3V-007 -> ADR-E2-002/007/008/009`. Reopen if local operation necessarily requires an undeclared service/cloud, required setup/support is structurally unreproducible, or future compatibility cannot be preserved without breaking current authority semantics. Ordinary installer/docs/platform defects remain correction or narrow support.
+Canonical handbacks: `E3V-001 -> ADR-E2-002/003/004/005/007/008/009`; `E3V-003 -> ADR-E2-001/002/004/009`; `E3V-004 -> ADR-E2-001/004/005/006/007/008/009`; `E3V-006 -> ADR-E2-001/004/005/007/008/009`; `E3V-007 -> ADR-E2-001/002/007/008/009`. Reopen if local operation necessarily requires an undeclared service/cloud, required setup/support is structurally unreproducible, or future compatibility cannot be preserved without breaking current authority semantics. Ordinary installer/docs/platform defects remain correction or narrow support.
 
 ## Unresolved implementation details
 

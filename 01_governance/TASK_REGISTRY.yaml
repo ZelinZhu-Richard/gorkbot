@@ -1913,11 +1913,11 @@ tasks:
     why_it_matters: Irreversible choices need separate evidence-backed records, consequences, reversal paths, and E1/E3 traceability before a baseline can be trusted.
     owner_role: AUTHOR
     assigned_model: null
-    reviewer_model: null
+    reviewer_model: "Claude Fable 5 (claude-fable-5) via Claude Code — independent E2-005 challenger; verdict E2_005_CHANGES_REQUESTED with 0 BLOCKER / 0 HIGH / 2 MEDIUM / 7 LOW"
     verifier_model: null
     assignment_policy: "The selector must not be the sole challenger or verifier. Model/provider use as an authoring surface creates no product-role eligibility."
     status: READY_FOR_REVIEW
-    planning_status: AUTHOR_PASS_COMPLETE_NOT_VERIFIED
+    planning_status: FIXER_PASS_COMPLETE_READY_FOR_INDEPENDENT_TASK_VERIFICATION
     author_model: "Codex (runtime model identifier not exposed)"
     author_started_at: "2026-08-30T01:38:16Z"
     author_completed_at: "2026-08-30T02:10:35Z"
@@ -1931,8 +1931,8 @@ tasks:
       architecture_selected: false
       authoritative_preferred_candidate: null
       accepted_adr_count: 0
-      decision_method: QUALITATIVE_D016_CURRENT_SCOPE_PRIORITY_NO_WEIGHT_NO_SCORE
-      rationale: "All three candidates retain the identical verified hard result (57 confirmed, 2 seam/E3-outstanding, 0 blocking, 0 violated). C01 is proposed for the D-016 REQUIRED_NOW local-first single-user scope because it has the shortest mandatory current authority/control path and does not require a persistent local service/IPC/lease lifecycle or event/reducer/projection authority model. The proposal expressly retains C01 broad-core coupling, crash radius and future extraction costs; C02 remains the clearest direct remote-worker seam and C03 the strongest causal replay/reconstruction alternative."
+      decision_method: QUALITATIVE_CURRENT_SCOPE_PROPORTIONALITY_NO_WEIGHT_NO_SCORE
+      rationale: "All three candidates retain the identical verified hard result (57 confirmed, 2 seam/E3-outstanding, 0 blocking, 0 violated). After that non-compensating tie, D-016 bounds current scope and E2 plan section 15 plus AR-PRF-002/004 supply a qualitative proportionality rule that scrutinizes mandatory present complexity more than reserved future machinery without assigning numeric or hidden weights. Contributor accessibility comes from the verified comparison rather than process count, and no sensitivity profile is an overall winner. C01 is proposed as best fit for the current verified local-first single-user scope, not as an objectively best architecture. Its broad-core coupling, crash radius and future extraction costs remain; C02 retains the clearest direct remote-worker seam and C03 the strongest causal replay/reconstruction alternative."
       hybrid_created: false
     author_artifacts:
       baseline: 05_architecture/ENGINEERING_PREVIEW_ARCHITECTURE_BASELINE.md
@@ -1978,7 +1978,17 @@ tasks:
       canonical_obligations: 8
       technical_mechanism_obligations: 7
       model_configuration_obligations: 1
-      frozen_adr_handback_sets: 8
+      canonical_adr_handback_sets: 8
+      handback_sets:
+        E3V-001: ADR-E2-002/003/004/005/007/008/009
+        E3V-002: ADR-E2-003/004/007
+        E3V-003: ADR-E2-001/002/004/009
+        E3V-004: ADR-E2-001/004/005/006/007/008/009
+        E3V-005: ADR-E2-002/003/004/005/006/007/008
+        E3V-006: ADR-E2-001/004/005/007/008/009
+        E3V-007: ADR-E2-001/002/007/008/009
+        E3V-008: ADR-E2-006
+      handback_closure_rule: "Union canonical E2-001 section 9 and C01 matrix-linked ARs, join each to the baseline primary ADR owner, add only justified structurally affected secondary ADRs, and require normalized set equality across every representation; frozen E2-001 AR ownership remains unchanged."
       c01_protected_delivery_question: SPQ-E2-002-03
       c01_protected_delivery_adr: ADR-E2-005
       e4_implementation_bundles_preserved: 3
@@ -1997,27 +2007,46 @@ tasks:
       autonomy_changes: 0
       s1_003_actions: 0
     author_governance_result: "E2-005 is READY_FOR_REVIEW and NOT VERIFIED. EP-ARCH-C01 and ADR-E2-001..009 are proposals only; architecture_selected remains false, authoritative preferred candidate remains null, accepted ADRs remain 0, E2-006 stays BACKLOG, E2 gate stays NOT_EVALUATED, E3-E5 stay NOT_STARTED, autonomy stays NOT_ELIGIBLE/NOT_AUTHORIZED, and S1-003 stays DEFERRED."
-    author_validation_status: PASS_AUTHOR_MECHANICAL_CHECKS_NOT_INDEPENDENT_VERIFICATION
+    author_validation_status: PASS_FIXER_MECHANICAL_CHECKS_NOT_INDEPENDENT_VERIFICATION
     author_validation_results:
-      strict_yaml_duplicate_key_parse: "68/68 PASS; 0 duplicate keys"
+      comprehensive_fixer_suite: "577/577 PASS; author-side mechanical evidence only, not independent task verification"
+      strict_yaml_duplicate_key_parse: "70/70 PASS; 0 duplicate keys"
       csv_parse: "6/6 PASS"
       matrix: "195/195 unique cells; 3 candidates; 65 criteria; 59 hard / 6 preferences; each candidate 57/2/0/0 hard results"
       trace_and_coverage: "127/127 unique frozen E1 rows; all 65 ARs assigned exactly once across nine proposed ADRs"
-      architecture_surface: "25/25 domains; 20/20 threat boundaries; 19/19 Level-B families; 15/15 recovery scenarios; seven sensitivity profiles; 25 Markdown tables structurally consistent"
+      architecture_surface: "25/25 domains; 20/20 threat boundaries with complete C01 fields; 19/19 Level-B families; 25 recovery scenarios plus seven partial-filesystem subcases; seven sensitivity profiles"
       adr_contract: "9/9 unique ADR IDs; required headings complete; every status PROPOSED_PENDING_INDEPENDENT_ARCHITECTURE_VERIFICATION; 0 accepted/verified"
-      e3_e4_contract: "E3V-001..008 complete with 8/8 frozen handback sets; E3-QPA-001 registered; 3/3 E4 bundles preserved"
+      e3_e4_contract: "E3V-001..008 complete with 8/8 primary-owner-closed canonical handback sets and explicit bundle/SP-C provenance; E3-QPA-001 remains plan-only with no numeric values; 3/3 E4 bundles preserved"
       provenance: "trace, matrix, C01/C02/C03, and E2-004 closure SHA-256 values match pinned inputs"
-      allowed_path_and_preservation: "PASS; exactly 16 authorized changed paths; frozen E1 and verified E2-001/E2-002/E2-003/E2-004 inputs unchanged"
+      allowed_path_and_preservation: "PASS; exactly 15 authorized changed paths (14 modified, one created); frozen E1 and verified E2-001/E2-002/E2-003/E2-004 inputs unchanged"
       clean_room_and_model_technology_neutrality: "PASS; no Level-C import and no concrete implementation technology or model assignment in proposal artifacts"
       secret_scan: "PASS; 0 high-confidence credential/private-key matches in changed files"
       governance_counters: "PASS; architecture_selected false; authoritative preferred candidate null; accepted ADRs 0; E2-006 BACKLOG; E2 gate NOT_EVALUATED; execution counters zero"
       git_diff_check: PASS
+    challenger_review:
+      artifact: 99_handoffs/completed/E2-005_challenger_review.yaml
+      verdict: E2_005_CHANGES_REQUESTED
+      finding_counts: {blocker: 0, high: 0, medium: 2, low: 7}
+      finding_ids: [F-E2-005-01, F-E2-005-02, F-E2-005-03, F-E2-005-04, F-E2-005-05, F-E2-005-06, F-E2-005-07, F-E2-005-08, F-E2-005-09]
+    fixer_pass:
+      artifact: 99_handoffs/completed/E2-005_fixer_handoff.yaml
+      role: ORIGINAL_AUTHOR_RETURNING_AS_FIXER
+      completed_at: "2026-08-30T03:50:16Z"
+      result: ALL_NINE_CHALLENGER_FINDINGS_FIXED_PENDING_INDEPENDENT_TASK_VERIFICATION
+      finding_counts: {fixed: 9, disputed: 0, deferred: 0}
+      architecture_conflict_found: false
+      proposal_after_rederivation: EP-ARCH-C01
+      proposal_status: PROPOSED_PENDING_INDEPENDENT_ARCHITECTURE_VERIFICATION
+      architecture_selected: false
+      accepted_adr_count: 0
+      e2_006_status: BACKLOG_BLOCKED_PENDING_E2_005_INDEPENDENT_VERIFICATION
+      mechanical_validation: "577/577 PASS; 70/70 strict YAML; 6/6 CSV; scope, frozen-artifact, secret, Markdown, and git diff checks PASS; not independent verification"
     priority: P0
     dependencies:
       - E2-004
     blocked_by: []
     activation_condition: "E2-001 through E2-004 are independently VERIFIED; every hard constraint has at least one passing candidate; every selection-blocking unknown is closed."
-    activation_condition_status: "SATISFIED on 2026-08-29 (UTC): E2-001 (0d702b8), E2-002 (1a1c542), E2-003 (e5d541c), and E2-004 (1f35f73; 99_handoffs/completed/E2-004_verifier_review.yaml) are independently VERIFIED; every hard constraint has three passing candidates (57 architecture-confirmed + 2 architecture-seam-confirmed/E3-validation-outstanding per candidate, 0 violations); the selection-blocking unknown set is independently confirmed empty (NO_PRESELECTION_SPIKE_REQUIRED). READY does not claim or execute the task: E2-005 must recommend exactly one provisional candidate, author PROPOSED_PENDING_INDEPENDENT_ARCHITECTURE_VERIFICATION ADRs only, carry canonical E2-001 section 9 E3V-001..008 definitions with one frozen ADR handback set each (V-E2-004-N2/N3/N4/N9), register the E3 ceiling-policy owner, and may not accept an ADR, set architecture_selected, run E3, benchmark a model, make a paid call, write application code, change autonomy, or resume S1-003."
+    activation_condition_status: "SATISFIED on 2026-08-29 (UTC): E2-001 (0d702b8), E2-002 (1a1c542), E2-003 (e5d541c), and E2-004 (1f35f73; 99_handoffs/completed/E2-004_verifier_review.yaml) are independently VERIFIED; every hard constraint has three passing candidates (57 architecture-confirmed + 2 architecture-seam-confirmed/E3-validation-outstanding per candidate, 0 violations); the selection-blocking unknown set is independently confirmed empty (NO_PRESELECTION_SPIKE_REQUIRED). READY does not claim or execute the task: E2-005 must recommend exactly one provisional candidate, author PROPOSED_PENDING_INDEPENDENT_ARCHITECTURE_VERIFICATION ADRs only, carry canonical E2-001 section 9 E3V-001..008 definitions with one primary-owner-closed canonical ADR handback set each (V-E2-004-N2/N3/N4/N9), register the E3 ceiling-policy owner, and may not accept an ADR, set architecture_selected, run E3, benchmark a model, make a paid call, write application code, change autonomy, or resume S1-003."
     gate_invariant: "The author/fixer may create only PROPOSED_PENDING_INDEPENDENT_ARCHITECTURE_VERIFICATION ADRs and baseline. Architecture remains not independently selected until E2-006 passes."
     e3_ceiling_policy_ownership:
       accountable_registration_task: E2-005

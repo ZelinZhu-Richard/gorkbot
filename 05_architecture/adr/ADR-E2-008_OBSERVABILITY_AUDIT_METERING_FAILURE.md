@@ -6,7 +6,9 @@ Status: `PROPOSED_PENDING_INDEPENDENT_ARCHITECTURE_VERIFICATION`
 
 Candidate: `EP-ARCH-C01`
 
-Decision class: `MODERATELY_COSTLY_WITH_STABLE_SEMANTIC_CONTRACTS`
+Decision class: `MODERATELY_COSTLY`
+
+Decision status and reversibility class are separate governance axes. Stable non-compensating semantics do not create a fourth reversibility class.
 
 ## Context
 
@@ -14,14 +16,13 @@ Users and verifiers need structured task/operation/control/approval/effect/recov
 
 ## Decision
 
-Propose four semantically separate C01 observability classes over a correlated identity backbone:
+Propose operational observability over a correlated identity backbone, not a new state authority:
 
-1. authoritative domain/operation/effect state owned by ADRs 002/003/005;
-2. append-only material audit facts required for recovery, denial, approval/revocation, effect and verification history;
-3. evidence records/artifacts owned by ADR-E2-007; and
-4. optional lossy logs, telemetry, metrics projections and exporters.
+1. ADR-E2-002 owns all `AUTHORITATIVE STATE` task/operation/approval/effect/material-history records required for correctness and recovery; ADR-E2-007 owns authoritative evidence artifacts and immutable verification runs.
+2. ADR-E2-008 owns `DERIVED PROJECTION` operational audit/activity/failure views over those records, plus secret-safe diagnostic presentation and metering calculations.
+3. Transient instrumentation buffers are `EPHEMERAL WORKING CONTEXT`; compacted diagnostic summaries and optional logs/telemetry/exporters are `LOSSY SUMMARY` or rebuildable operational observations according to their source contract, never another authoritative class.
 
-They may share physical infrastructure later only if authority, retention, confidentiality, integrity and failure consequences remain explicit. Telemetry/logs never authorize, recover or prove completion.
+An “audit record” required to authorize, recover, reconcile, verify or prove completion is an ADR-E2-002 material-history record or ADR-E2-007 evidence record. ADR-E2-008 may durably project/reference it by stable evidence/history ID, but durability does not transfer ownership or truth. Its audit/failure/metric projections may be rebuilt or lost without losing canonical history. Telemetry/logs never authorize, recover, prove completion, or become the only evidence source.
 
 Every failure is a bounded versioned record with stable semantic code, accountable layer, safe public description, protected internal reference, retryability, terminal/unknown state, operation/correlation identity, cause/effect/readback facts and next permitted action. Provider/model/tool/fixture/verifier failures remain distinguishable.
 
@@ -80,6 +81,7 @@ Explicit actor/task/workspace/operation/provider/policy scopes permit later remo
 
 ## E3 validation obligations
 
+- `E3V-001`: recovery/failure projections preserve certainty without becoming recovery authority.
 - `E3V-004`: provider/failure/usage semantic preservation.
 - `E3V-005`: audit/evidence/telemetry separation and gap/tamper behavior.
 - `E3V-006`: secret/protected-entry capture and log/telemetry exclusion.
@@ -87,7 +89,7 @@ Explicit actor/task/workspace/operation/provider/policy scopes permit later remo
 
 ## Handback and reopen conditions
 
-Frozen handbacks: `E3V-004 -> ADR-E2-001/005/006/008`; `E3V-005 -> ADR-E2-002/003/005/007/008`; `E3V-006 -> ADR-E2-001/004/005/008`; `E3V-007 -> ADR-E2-002/007/008/009`. Reopen on unavoidable telemetry authority, unrepresentable required failure/measurement semantics, unenforceable mandatory limits or inability to exclude protected input from ordinary capture. Ordinary exporter/instrumentation/performance defects remain correction/evidence.
+Canonical handbacks: `E3V-001 -> ADR-E2-002/003/004/005/007/008/009`; `E3V-004 -> ADR-E2-001/004/005/006/007/008/009`; `E3V-005 -> ADR-E2-002/003/004/005/006/007/008`; `E3V-006 -> ADR-E2-001/004/005/007/008/009`; `E3V-007 -> ADR-E2-001/002/007/008/009`. Reopen on unavoidable telemetry authority, unrepresentable required failure/measurement semantics, unenforceable mandatory limits or inability to exclude protected input from ordinary capture. Ordinary exporter/instrumentation/performance defects remain correction/evidence.
 
 ## Unresolved implementation details
 
