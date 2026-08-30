@@ -1916,8 +1916,102 @@ tasks:
     reviewer_model: null
     verifier_model: null
     assignment_policy: "The selector must not be the sole challenger or verifier. Model/provider use as an authoring surface creates no product-role eligibility."
-    status: READY
-    planning_status: READY_NOT_CLAIMED_NOT_EXECUTED
+    status: READY_FOR_REVIEW
+    planning_status: AUTHOR_PASS_COMPLETE_NOT_VERIFIED
+    author_model: "Codex (runtime model identifier not exposed)"
+    author_started_at: "2026-08-30T01:38:16Z"
+    author_completed_at: "2026-08-30T02:10:35Z"
+    author_base_commit: 7f70f0eb4b4b0b28bbcee158c101f20bb6e4c0a7
+    author_result: PROPOSE_EP_ARCH_C01_PENDING_INDEPENDENT_ARCHITECTURE_VERIFICATION
+    author_proposed_candidate:
+      candidate_id: EP-ARCH-C01
+      candidate_name: Integrated Transactional Local Core
+      candidate_record_changed: false
+      proposal_status: PROPOSED_PENDING_INDEPENDENT_ARCHITECTURE_VERIFICATION
+      architecture_selected: false
+      authoritative_preferred_candidate: null
+      accepted_adr_count: 0
+      decision_method: QUALITATIVE_D016_CURRENT_SCOPE_PRIORITY_NO_WEIGHT_NO_SCORE
+      rationale: "All three candidates retain the identical verified hard result (57 confirmed, 2 seam/E3-outstanding, 0 blocking, 0 violated). C01 is proposed for the D-016 REQUIRED_NOW local-first single-user scope because it has the shortest mandatory current authority/control path and does not require a persistent local service/IPC/lease lifecycle or event/reducer/projection authority model. The proposal expressly retains C01 broad-core coupling, crash radius and future extraction costs; C02 remains the clearest direct remote-worker seam and C03 the strongest causal replay/reconstruction alternative."
+      hybrid_created: false
+    author_artifacts:
+      baseline: 05_architecture/ENGINEERING_PREVIEW_ARCHITECTURE_BASELINE.md
+      e3_validation_plan: 05_architecture/ENGINEERING_PREVIEW_E3_VALIDATION_OBLIGATIONS.md
+      handoff: 99_handoffs/completed/E2-005_handoff.yaml
+      proposed_adrs:
+        - 05_architecture/adr/ADR-E2-001_SYSTEM_CLIENT_CORE_BOUNDARY.md
+        - 05_architecture/adr/ADR-E2-002_STATE_PERSISTENCE_HISTORY_PROJECTIONS_MIGRATION.md
+        - 05_architecture/adr/ADR-E2-003_ORCHESTRATION_OWNERSHIP_RECOVERY_IDEMPOTENCY.md
+        - 05_architecture/adr/ADR-E2-004_WORKSPACE_EXECUTION_ISOLATION_GIT_REMOTE_SEAM.md
+        - 05_architecture/adr/ADR-E2-005_CAPABILITY_APPROVAL_SECRET_EFFECT_RECONCILIATION.md
+        - 05_architecture/adr/ADR-E2-006_MODEL_PROVIDER_ROUTING_CONTEXT_BOUNDARY.md
+        - 05_architecture/adr/ADR-E2-007_VERIFICATION_EVIDENCE_ARTIFACT_INTEGRITY.md
+        - 05_architecture/adr/ADR-E2-008_OBSERVABILITY_AUDIT_METERING_FAILURE.md
+        - 05_architecture/adr/ADR-E2-009_LOCAL_PACKAGING_FUTURE_COMPATIBILITY.md
+    author_adr_state:
+      proposed_adr_count: 9
+      unique_adr_ids: 9
+      status_for_every_adr: PROPOSED_PENDING_INDEPENDENT_ARCHITECTURE_VERIFICATION
+      accepted_adr_count: 0
+    author_recomputed_inputs:
+      decision_matrix_cells: 195
+      candidates: 3
+      architecture_requirements: 65
+      hard_requirements_per_candidate: 59
+      preferences_per_candidate: 6
+      confirmed_satisfied_for_comparison_per_candidate: 57
+      architecture_seam_confirmed_e3_validation_outstanding_per_candidate: 2
+      architecture_blocking_spike_per_candidate: 0
+      confirmed_violated_per_candidate: 0
+      frozen_e1_trace_rows: 127
+      decision_domains: 25
+      threat_boundaries: 20
+      level_b_pattern_families: 19
+      sensitivity_profiles: 7
+      normalized_uncertainty_records: 28
+      uncertainty_partition: "10 PAPER_RESOLVABLE / 0 E2_PRESELECTION_SPIKE_REQUIRED / 8 E3_POSTSELECTION_TECHNICAL_VALIDATION / 3 E3_MODEL_OR_CONFIGURATION_BENCHMARK / 7 DEFERRED_OUT_OF_SCOPE"
+      retained_preselection_spike_count: 0
+      residual_hard_seams:
+        AR-EXE-003: E3V-002
+        AR-SEC-006: E3V-006
+    author_e3_plan_state:
+      canonical_obligations: 8
+      technical_mechanism_obligations: 7
+      model_configuration_obligations: 1
+      frozen_adr_handback_sets: 8
+      c01_protected_delivery_question: SPQ-E2-002-03
+      c01_protected_delivery_adr: ADR-E2-005
+      e4_implementation_bundles_preserved: 3
+      e3_executed: false
+      e4_executed: false
+    author_execution_counters:
+      experiments_run: 0
+      technical_spikes_run: 0
+      architecture_spikes_run: 0
+      evaluation_cases_implemented: 0
+      evaluation_cases_run: 0
+      model_benchmarks_run: 0
+      paid_api_calls: 0
+      external_actions: 0
+      application_code_files_created: 0
+      autonomy_changes: 0
+      s1_003_actions: 0
+    author_governance_result: "E2-005 is READY_FOR_REVIEW and NOT VERIFIED. EP-ARCH-C01 and ADR-E2-001..009 are proposals only; architecture_selected remains false, authoritative preferred candidate remains null, accepted ADRs remain 0, E2-006 stays BACKLOG, E2 gate stays NOT_EVALUATED, E3-E5 stay NOT_STARTED, autonomy stays NOT_ELIGIBLE/NOT_AUTHORIZED, and S1-003 stays DEFERRED."
+    author_validation_status: PASS_AUTHOR_MECHANICAL_CHECKS_NOT_INDEPENDENT_VERIFICATION
+    author_validation_results:
+      strict_yaml_duplicate_key_parse: "68/68 PASS; 0 duplicate keys"
+      csv_parse: "6/6 PASS"
+      matrix: "195/195 unique cells; 3 candidates; 65 criteria; 59 hard / 6 preferences; each candidate 57/2/0/0 hard results"
+      trace_and_coverage: "127/127 unique frozen E1 rows; all 65 ARs assigned exactly once across nine proposed ADRs"
+      architecture_surface: "25/25 domains; 20/20 threat boundaries; 19/19 Level-B families; 15/15 recovery scenarios; seven sensitivity profiles; 25 Markdown tables structurally consistent"
+      adr_contract: "9/9 unique ADR IDs; required headings complete; every status PROPOSED_PENDING_INDEPENDENT_ARCHITECTURE_VERIFICATION; 0 accepted/verified"
+      e3_e4_contract: "E3V-001..008 complete with 8/8 frozen handback sets; E3-QPA-001 registered; 3/3 E4 bundles preserved"
+      provenance: "trace, matrix, C01/C02/C03, and E2-004 closure SHA-256 values match pinned inputs"
+      allowed_path_and_preservation: "PASS; exactly 16 authorized changed paths; frozen E1 and verified E2-001/E2-002/E2-003/E2-004 inputs unchanged"
+      clean_room_and_model_technology_neutrality: "PASS; no Level-C import and no concrete implementation technology or model assignment in proposal artifacts"
+      secret_scan: "PASS; 0 high-confidence credential/private-key matches in changed files"
+      governance_counters: "PASS; architecture_selected false; authoritative preferred candidate null; accepted ADRs 0; E2-006 BACKLOG; E2 gate NOT_EVALUATED; execution counters zero"
+      git_diff_check: PASS
     priority: P0
     dependencies:
       - E2-004
@@ -1927,9 +2021,22 @@ tasks:
     gate_invariant: "The author/fixer may create only PROPOSED_PENDING_INDEPENDENT_ARCHITECTURE_VERIFICATION ADRs and baseline. Architecture remains not independently selected until E2-006 passes."
     e3_ceiling_policy_ownership:
       accountable_registration_task: E2-005
+      authority_id: E3-QPA-001
+      authority_name: Engineering Preview E3 Qualification Policy Authority
+      accountable_owner: Founder
+      drafting_role: FUTURE_E3_AUTHOR_MAY_DRAFT_BUT_MAY_NOT_SELF_APPROVE
+      independent_review_path:
+        - FRESH_INDEPENDENT_CHALLENGER
+        - SEPARATE_POST_FIX_VERIFIER
+      owned_values:
+        - finite_verification_rerun_ceiling
+        - finite_deterministic_check_repetition_ceiling
+        - finite_correction_attempt_ceiling
+      value_timing: BEFORE_ANY_SCORED_RUN_AND_BEFORE_OBSERVING_SCORED_RESULTS
       obligation: "Register in the E3 validation plan a specific future task or qualification-policy authority, independent-review path, and blocking rule for finite verification-rerun, deterministic-check-repetition, and correction-attempt ceiling values before any scored freeze."
       numeric_values_selected_by_this_task: false
       missing_owner_consequence: E2_005_BLOCKED
+      missing_or_invalid_value_consequence: E3_SCORED_EXECUTION_BLOCKED
     e2_003_future_input_contract:
       entry_condition: E2-003 and E2-004 are independently VERIFIED and E2-004 records NO_PRESELECTION_SPIKE_REQUIRED.
       candidate_state:
@@ -2017,10 +2124,14 @@ tasks:
       - A separate post-fix task verifier confirms the selection package is complete, challenged, internally coherent, and still provisional; this verifier does not substitute for E2-006's fresh architecture-compliance re-derivation.
     completion_transition: "After independent task verification, E2-005 may become VERIFIED as a complete PROPOSED selection package and E2-006 may become READY. ADRs remain proposed and architecture_selected remains false until E2-006 independently passes."
     downstream_consumer: E2-006
+    author_provisional_answers:
+      recommended_candidate: EP-ARCH-C01_PENDING_INDEPENDENT_CHALLENGE_FIX_TASK_VERIFICATION_AND_E2_006
+      adr_decomposition: ADR-E2-001_THROUGH_ADR-E2-009_PROPOSED_ONLY
+      migration_reversal_and_e3_obligations: RECORDED_IN_BASELINE_ADRS_AND_E3_PLAN_PENDING_REVIEW
+      e3_qualification_policy_authority: E3-QPA-001_FOUNDER_ACCOUNTABLE
     unresolved_questions:
-      - The recommended candidate and precise ADR decomposition.
-      - The selected baseline's migration/reversal triggers and E3 evidence obligations.
-      - Exact registered E3 qualification-policy owner and later finite ceiling values.
+      - Whether the fresh challenger, any fixer pass, the independent E2-005 task verifier, and later E2-006 architecture verifier uphold or change the C01 proposal and nine-ADR package.
+      - The finite numeric E3 verification-rerun, deterministic-check-repetition, and correction-attempt ceilings, which E3-QPA-001 must set prospectively and independently review before scored execution.
     escalation_conditions:
       - No candidate remains compliant or two candidates cannot be distinguished responsibly with available evidence.
       - A material selection blocker reappears, an ADR conflicts with E1, or an E1 amendment is required.
