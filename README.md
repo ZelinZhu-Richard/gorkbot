@@ -9,10 +9,10 @@ The long-term capability benchmark is clean-room functional parity with Grok Bot
 ## Current status
 
 - Active program: Engineering Preview
-- Current phase: E2 architecture and ADR planning; the E1 specification gate is independently `VERIFIED / E1_GATE_PASSED`
-- Engineering Preview task status: `E0-001`, `E1-001`, and `E1-002`: `VERIFIED`; `E2-001`: `READY`; `E2-002` through `E2-006`: `BACKLOG`; `E3-E5`: `NOT_STARTED`
+- Current phase: E3 technical validation and model/system qualification planning; the E1 specification gate and E2 architecture gate are independently `VERIFIED / PASSED`
+- Engineering Preview task status: `E0-001`, `E1-001`, `E1-002`, and `E2-001` through `E2-006`: `VERIFIED`; `E3-001`: `READY`; `E3-002` through `E3-008`: `BACKLOG` (empirical E3-005/E3-006 are `DO_NOT_RUN`); `E4-E5`: `NOT_STARTED`
 - Startup/customer track: preserved and deferred by D-016; S1-003 was not executed
-- Architecture: not selected
+- Architecture: `EP-ARCH-C01` Integrated Transactional Local Core accepted at the E2 gate; `ADR-E2-001..009` accepted; no implementation authorized
 - Engineering Preview target: one local user and one persistent software-engineering agent working on real repositories with durable state, independent verification, and evidence bundles
 - Customer wedge: not selected or validated; S1-001 and S1-002 remain verified research inputs
 - Model roles: not locked; benchmarks have not run
@@ -35,12 +35,12 @@ Every planning or coding model must read these files in order:
 The next command for the planning model is:
 
 ```text
-MODE: PLAN_STAGE_E3
+MODE: EXECUTE_TASK_E3-001
 
-Read MASTER_OPERATING_PROMPT.md, AGENTS.md, PROJECT_STATE.yaml, TASK_REGISTRY.yaml, and every E2-001 files_to_read entry.
+Read MASTER_OPERATING_PROMPT.md, AGENTS.md, PROJECT_STATE.yaml, TASK_REGISTRY.yaml, and every E3-001 files_to_read entry.
 Treat the repository as the sole authoritative project state.
-Author only the architecture requirements, decision criteria, 25-domain coverage, and exact frozen-E1 traceability within E2-001's allowed paths; mark E2-001 READY_FOR_REVIEW, not VERIFIED, and create a factual handoff.
-Do not generate alternatives, compare candidates, select architecture or technologies, create ADR decisions, run spikes, execute E3, run evaluation cases or benchmarks, make paid calls, write application code, resume S1-003, or authorize autonomous build mode.
+Author only the common E3-QPA-001 authority, qualification, evidence, budget/credential/data, contamination, and RUN_ADMISSION governance within E3-001's allowed paths; record Founder acknowledgement and exact numeric values as `FOUNDER_DECISION_REQUIRED`, mark E3-001 `READY_FOR_REVIEW`, not `VERIFIED`, and create a factual handoff.
+Do not run a harness or technical validation, call a model/provider, benchmark a configuration, make a paid call, access a credential, assign a model role, create an eligibility result, alter accepted E2/ADR semantics, write application code, resume S1-003, mark `AUTONOMY_ELIGIBLE`, or authorize autonomous build.
 ```
 
 ## Repository principles

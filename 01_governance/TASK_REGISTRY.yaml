@@ -2293,3 +2293,980 @@ tasks:
       - Any architecture or E1 semantic conflict, missing evidence, circular verification, clean-room concern, or unresolved material finding.
       - Any need to edit an architecture artifact, expand scope, run a spike, or access external/current evidence.
       - Any attempt to combine E2-006 with the separate E2 stage-gate decision.
+
+  - task_id: E3-001
+    title: Freeze common E3 qualification governance and run-admission policy
+    stage: E3
+    objective: Define and independently verify the common E3-QPA-001 authority boundary, protocol-freeze rules, run-admission schema, budget lanes, credential/data/fixture policy, raw-evidence contract, contamination controls, and founder-decision dependencies without selecting numeric values or executing a run.
+    why_it_matters: No technical or model result is trustworthy if retry, correction, cost, evidence, data, credential, and stopping rules can be invented or changed after results are observed.
+    owner_role: AUTHOR
+    assigned_model: null
+    reviewer_model: null
+    verifier_model: null
+    assignment_policy: "The E3-001 author may draft policy but may not acknowledge or approve the Founder-owned E3-QPA-001 role, self-challenge, self-verify, authorize a run, or create eligibility evidence. Authoring-surface identity creates no model-role eligibility."
+    status: READY
+    planning_status: PLANNED_NOT_CLAIMED_NOT_EXECUTED
+    priority: P0
+    dependencies:
+      - E2-006
+    blocked_by: []
+    decision_dependencies:
+      - decision: FOUNDER_DECISION_REQUIRED_E3_QPA_001_ACKNOWLEDGEMENT_AND_EXACT_VALUES
+        required_before: "Any E3-002/E3-003 protocol may become execution-ready and independently VERIFIED; any RUN_ADMISSION PASS; any empirical attempt; any eligibility credit."
+        not_required_before: "E3-001 authoring/challenge/task verification or E3-002/E3-003 author drafting."
+      - decision: FOUNDER_DECISION_REQUIRED_FOR_ANY_PAID_EXTERNAL_VALIDATION
+        required_before: "Any paid/external run only; no paid budget is inferred from prior assumptions."
+    activation_condition: "The E1 specification gate and E2 architecture gate are independently VERIFIED; EP-ARCH-C01 and ADR-E2-001..009 are accepted; E3 planning is permitted under D-016."
+    activation_condition_status: "SATISFIED on 2026-08-30 (UTC): E1_GATE_PASSED at 7bbfebd and E2_GATE_PASSED at f413dd8; E3-001 is the sole READY E3 task. Founder QPA acknowledgement/values are intentionally not an authoring blocker but are a mandatory later protocol-verification and run-admission blocker."
+    gate_invariant: "E3-001 freezes governance only. It selects no numeric QPA value, mechanism, host, client, provider, model, role occupant, eligibility verdict, architecture change, E4 authority, or application implementation."
+    files_to_read:
+      - MASTER_OPERATING_PROMPT.md
+      - AGENTS.md
+      - README.md
+      - SECURITY.md
+      - 01_governance/PROJECT_STATE.yaml
+      - 01_governance/TASK_REGISTRY.yaml
+      - 01_governance/DECISION_LOG.md
+      - 01_governance/ASSUMPTION_REGISTER.md
+      - 01_governance/RISK_REGISTER.md
+      - 01_governance/MODEL_REGISTRY.yaml
+      - 03_product/ENGINEERING_PREVIEW_CHARTER.md
+      - 03_product/ENGINEERING_PREVIEW_PRD.md
+      - 03_product/ENGINEERING_PREVIEW_CORRECTNESS_CONTRACT.md
+      - 03_product/ENGINEERING_PREVIEW_CONTRIBUTION_WORKFLOW.md
+      - 05_architecture/ENGINEERING_PREVIEW_ARCHITECTURE_BASELINE.md
+      - 05_architecture/ENGINEERING_PREVIEW_E3_VALIDATION_OBLIGATIONS.md
+      - 05_architecture/adr/
+      - 06_evaluation/ENGINEERING_PREVIEW_E3_PLAN.md
+      - 06_evaluation/ENGINEERING_PREVIEW_EVALUATION_SUITE.md
+      - 06_evaluation/MODEL_ROLE_BENCHMARK_PLAN.md
+      - 10_checkpoints/stage_checkpoints/ENGINEERING_PREVIEW_V0_1_RELEASE_ACCEPTANCE.yaml
+      - 10_checkpoints/stage_checkpoints/ENGINEERING_PREVIEW_E2_ARCHITECTURE_GATE_VERIFICATION.yaml
+    inputs:
+      accepted_architecture: EP-ARCH-C01
+      accepted_adrs: ADR-E2-001..009
+      qpa_authority: E3-QPA-001
+      qpa_accountable_owner: Founder
+      qpa_numeric_values_at_activation: null
+      current_paid_budget_authorization_usd: 0
+      current_run_authorization: NONE
+      current_account_credential_evidence: UNKNOWN_OR_NOT_AUTHORIZED
+      frozen_suite: EP-EVAL-0.2
+    deliverables:
+      - 06_evaluation/e3_governance/E3_QUALIFICATION_AND_RUN_ADMISSION_POLICY.yaml
+      - 06_evaluation/e3_governance/E3_RUN_ADMISSION_MANIFEST.schema.yaml
+      - 99_handoffs/completed/E3-001_handoff.yaml
+      - independent E3-001 challenger, fixer if needed, and verifier records
+    allowed_files_to_change:
+      - 06_evaluation/e3_governance/
+      - 01_governance/PROJECT_STATE.yaml
+      - 01_governance/TASK_REGISTRY.yaml
+      - 01_governance/ASSUMPTION_REGISTER.md
+      - 01_governance/RISK_REGISTER.md
+      - 99_handoffs/completed/E3-001_handoff.yaml
+      - 99_handoffs/completed/E3-001_challenger_review.yaml
+      - 99_handoffs/completed/E3-001_fixer_handoff.yaml
+      - 99_handoffs/completed/E3-001_verifier_review.yaml
+    conditional_allowed_files_to_change:
+      01_governance/DECISION_LOG.md: "Only after a separate explicit Founder instruction supplies the exact acknowledgement/approval; an E3 author may not draft consent on the Founder's behalf."
+    forbidden_actions:
+      - Invent a QPA, repetition, rerun, correction, retry, cost, latency, resource, confidence, or termination numeric value or treat an existing default/proposal as Founder-approved.
+      - Run a fixture, harness, technical mechanism, model/provider, account check, paid call, network call, credential validation, or empirical smoke attempt.
+      - Select a mechanism, host, client, provider/model, role occupant, eligibility verdict, architecture amendment, or E4 envelope.
+      - Modify frozen E1 semantics, accepted E2 architecture/ADR content, model candidate results, raw evidence, or application code.
+      - Mark AUTONOMY_ELIGIBLE, AUTONOMOUS_BUILD_AUTHORIZED, or any E3 gate/result as passed.
+    acceptance_criteria:
+      - E3-QPA-001 ownership is exact: the Founder is accountable; future E3 authors may propose but not approve values; the canonical rerun, deterministic-repetition and correction fields remain explicit nulls with DO_NOT_RUN consequences until approved.
+      - A versioned protocol-freeze and amendment rule forbids result-informed threshold, population, exclusion, retry, correction, grader, or analysis changes and requires a new whole affected block while preserving old evidence.
+      - RUN_ADMISSION has only PASS, DO_NOT_RUN, and EXPIRED_REQUIRES_REFREEZE outcomes and checks task/protocol verification, exact configuration/scope, QPA, route, budget, account/credential, data/region/network, isolation, effects, evidence, stop and handback fields.
+      - NO_COST_LOCAL_VALIDATION and PAID_EXTERNAL_VALIDATION are distinct; paid authority remains USD 0 until an exact Founder decision, and S0-005 is honestly reconciled for real-provider work.
+      - Credential, protected-entry, synthetic-marker-only, clean-room fixture, no-private-data, raw/derived/decision separation, retention, integrity, quarantine and contamination rules are complete.
+      - The Founder acknowledgement/value decision is recorded as FOUNDER_DECISION_REQUIRED at the protocol-verification/run boundary, not fabricated and not made a blocker to policy/protocol drafting.
+      - The policy cannot itself authorize a run, qualify a configuration, promote a route, alter an ADR, activate autonomy, or start E4.
+    required_tests:
+      - Strict YAML and duplicate-key validation; schema required-field and enum tests; missing-field/adversarial manifests must all return DO_NOT_RUN.
+      - Cross-check QPA ownership and null-value semantics against the accepted E3 register, frozen E1 suite/checkpoint, TASK_REGISTRY and PROJECT_STATE.
+      - Validate budget/account/credential/data/network/effect combinations, no-cost versus paid lanes, amendment/refreeze, raw evidence, contamination, expiry and stop/handback precedence.
+      - Exactly-one-READY, dependency/DAG, frozen E1/E2, no-run/no-call/no-code/no-role/no-autonomy, startup-deferred, allowed-path, clean-room, secret-scan and git diff --check tests.
+    challenger_requirements:
+      - A fresh challenger attacks favorable-retry incentives, post-result tuning, hidden paid authority, credential leakage, missing data/region facts, admission self-approval, evidence deletion, overly permissive local validation, ambiguous external effects and false-completion loopholes.
+      - The challenger must distinguish canonical E1 fixed repetitions/thresholds from the still-null QPA fields and reject any implicit numeric approval.
+    verifier_requirements:
+      - A separate post-fix verifier re-derives the policy from accepted sources, validates every negative admission vector and confirms that Founder acknowledgement/values remain required and unclaimed.
+      - Verification of this governance framework does not verify any future QPA numeric value; E3-002/E3-003 exact protocol values need Founder approval, challenge and separate verification before admission.
+    run_authorization_requirement: "NONE_PERMITTED; this is non-empirical policy authoring. The resulting policy is necessary but never sufficient to authorize a run."
+    budget_requirement: "USD 0; no paid or external usage. Future paid caps require exact Founder authorization per admitted block."
+    credential_requirement: "No credential access. References and protected-entry rules only; raw secrets forbidden."
+    data_fixture_policy: "Read-only governance/product/architecture/evaluation records only; no private customer data, proprietary code, reconstructed source, real secret, or empirical fixture execution."
+    raw_evidence_policy: "Define the policy only; create no run evidence. Policy review artifacts are ordinary governance records, not empirical raw evidence."
+    stop_conditions:
+      - Any need to invent or infer Founder approval or a numeric value.
+      - Any architecture/E1 semantic conflict, empirical action, credential exposure, external effect, scope expansion, or material clean-room/security concern.
+      - Any attempt to make policy verification count as run admission or eligibility evidence.
+    architecture_handback_conditions: "None may be decided from policy authoring. A discovered conflict between the required admission contract and an accepted indispensable ADR is escalated and E3-001 stops; it does not edit E2."
+    completion_transition: "After AUTHOR -> independent CHALLENGER -> FIXER if needed -> separate VERIFIER, E3-001 may become VERIFIED as a governance framework with QPA numeric values still FOUNDER_DECISION_REQUIRED. E3-002 and E3-003 may then become READY in parallel for protocol drafting; no empirical task becomes READY."
+    downstream_consumer:
+      - E3-002
+      - E3-003
+      - RUN_ADMISSION_FOR_E3-005_AND_E3-006
+    unresolved_questions:
+      - Exact Founder-approved QPA values and policy version.
+      - Exact paid-provider/account, spend, credentials, region/data policy and run scopes, if any.
+      - Exact no-cost local resource ceilings to be proposed and approved in the relevant protocol.
+    escalation_conditions:
+      - Founder acknowledgement or value-setting is requested or appears to conflict with frozen E1 requirements.
+      - A requested admission lane requires a real credential, network, private data, consequential effect, or positive spend.
+      - The common schema cannot represent an E3V-specific safety, handback, or evidence requirement.
+    next_command: "MODE: EXECUTE_TASK_E3-001"
+
+  - task_id: E3-002
+    title: Freeze E3V-001 through E3V-007 technical-validation protocols
+    stage: E3
+    objective: Author and independently verify seven separately verdictable, prospectively frozen technical protocols that preserve every canonical E3V field, select justified frozen-E1 subsets, define exact harness/oracle/fault/evidence contracts and QPA values for Founder approval, and retain exact E2/ADR handbacks without executing validation.
+    why_it_matters: Accepted architecture seams cannot be validated by a generic spike or a post-hoc test; each property needs a bounded mechanism/configuration question and decisive evidence before implementation.
+    owner_role: AUTHOR
+    accountable_e3_roles:
+      - E3_TECHNICAL_VALIDATION_OWNER
+      - E3_SECURITY_VALIDATION_OWNER
+      - E3_MEASUREMENT_VALIDATION_OWNER
+    assigned_model: null
+    reviewer_model: null
+    verifier_model: null
+    assignment_policy: "The protocol author cannot approve QPA values, operate the later scored blocks, perform the sole security review, or verify the protocols. No authoring system receives role eligibility."
+    status: BACKLOG
+    planning_status: PLANNED_DEPENDENCY_GATED_NOT_EXECUTED
+    priority: P0
+    dependencies:
+      - E3-001
+    blocked_by: []
+    decision_dependencies:
+      - decision: FOUNDER_DECISION_REQUIRED_E3_QPA_001_ACKNOWLEDGEMENT_AND_TECHNICAL_PROTOCOL_VALUES
+        required_before: "E3-002 may become execution-ready and independently VERIFIED; not required to begin author drafting after E3-001 verification."
+    activation_condition: "E3-001 is independently VERIFIED and its common admission/QPA/evidence schema is frozen."
+    activation_condition_status: BLOCKED_PENDING_E3_001_INDEPENDENT_VERIFICATION
+    gate_invariant: "E3-002 specifies E3V-001..007 only. It runs nothing, selects no final mechanism/product technology, changes no accepted ADR, and cannot treat missing evidence or an unsupported class as pass."
+    files_to_read:
+      - MASTER_OPERATING_PROMPT.md
+      - AGENTS.md
+      - SECURITY.md
+      - 01_governance/PROJECT_STATE.yaml
+      - 01_governance/TASK_REGISTRY.yaml
+      - 01_governance/DECISION_LOG.md
+      - 01_governance/RISK_REGISTER.md
+      - 03_product/ENGINEERING_PREVIEW_CHARTER.md
+      - 03_product/ENGINEERING_PREVIEW_PRD.md
+      - 03_product/ENGINEERING_PREVIEW_USER_FLOWS.md
+      - 03_product/ENGINEERING_PREVIEW_CORRECTNESS_CONTRACT.md
+      - 03_product/ENGINEERING_PREVIEW_CONTRIBUTION_WORKFLOW.md
+      - 05_architecture/ENGINEERING_PREVIEW_ARCHITECTURE_REQUIREMENTS.md
+      - 05_architecture/ENGINEERING_PREVIEW_ARCHITECTURE_BASELINE.md
+      - 05_architecture/ENGINEERING_PREVIEW_E3_VALIDATION_OBLIGATIONS.md
+      - 05_architecture/adr/
+      - 06_evaluation/ENGINEERING_PREVIEW_E3_PLAN.md
+      - 06_evaluation/ENGINEERING_PREVIEW_EVALUATION_SUITE.md
+      - 10_checkpoints/stage_checkpoints/ENGINEERING_PREVIEW_V0_1_RELEASE_ACCEPTANCE.yaml
+      - 06_evaluation/e3_governance/E3_QUALIFICATION_AND_RUN_ADMISSION_POLICY.yaml
+    inputs:
+      obligations: [E3V-001, E3V-002, E3V-003, E3V-004, E3V-005, E3V-006, E3V-007]
+      mandatory_architecture_seams:
+        AR-EXE-003: E3V-002
+        AR-SEC-006: E3V-006
+      frozen_asset_counts: "170 cases; 18 oracles; 11 fixtures; 23 NEG families; 16 repository conditions; 30 Git/effect rows; 9 adequacy variants; 16 compositions; 8 protocols; EP-CTL-016"
+      protocol_results_at_activation: NONE
+    deliverables:
+      - 06_evaluation/technical_validation/E3_TECHNICAL_VALIDATION_PROTOCOLS.yaml
+      - 06_evaluation/technical_validation/E3V_E1_TRACEABILITY.csv
+      - 06_evaluation/technical_validation/E3_TECHNICAL_HARNESS_CONTRACT.md
+      - 99_handoffs/completed/E3-002_handoff.yaml
+      - independent E3-002 challenger, fixer if needed, and verifier records
+    allowed_files_to_change:
+      - 06_evaluation/technical_validation/E3_TECHNICAL_VALIDATION_PROTOCOLS.yaml
+      - 06_evaluation/technical_validation/E3V_E1_TRACEABILITY.csv
+      - 06_evaluation/technical_validation/E3_TECHNICAL_HARNESS_CONTRACT.md
+      - 01_governance/PROJECT_STATE.yaml
+      - 01_governance/TASK_REGISTRY.yaml
+      - 01_governance/ASSUMPTION_REGISTER.md
+      - 01_governance/RISK_REGISTER.md
+      - 99_handoffs/completed/E3-002_handoff.yaml
+      - 99_handoffs/completed/E3-002_challenger_review.yaml
+      - 99_handoffs/completed/E3-002_fixer_handoff.yaml
+      - 99_handoffs/completed/E3-002_verifier_review.yaml
+    forbidden_actions:
+      - Execute any technical case, fault, process, provider replay/call, protected-entry test, harness, benchmark, network action, credential check, or external effect.
+      - Choose final process containment, store, isolation, client, protected carrier, provider SDK, package/runtime, model, or product implementation technology.
+      - Modify E1 expected outcomes, release thresholds, accepted E2 baseline/ADRs, canonical handback sets, or E4 bundles.
+      - Use real secrets/private data, invent QPA values as approved, or qualify an architecture/mechanism by paper design.
+    acceptance_criteria:
+      - Seven protocol records exist and each separately preserves exact property, linked ARs, linked ADRs, architecture assumption, selected mechanism/configuration dependency, evidence required, supported scope, unsupported scope, success condition, implementation/configuration failure, architecture-assumption failure, missing/inconclusive behavior, fail-closed rule, exact E2/ADR handback set and downstream consumer, plus owner and classification.
+      - E3V-002 freezes representative descendant/tree, control race, force/termination, output/timeout, survivor/fence, owner-loss/recovery and unsupported-host coverage for each claimed class without selecting a final mechanism in this task.
+      - E3V-006 freezes synthetic-marker-only protected acquisition, complete capture exclusion, exact-recipient one-use delivery, unauthorized surfaces, approval/revocation/replay, crash/replacement/reacquisition, non-secret receipt and fail-to-WAITING_FOR_USER coverage.
+      - Every protocol has exact question, hypotheses where useful, mechanism/configuration/host/client/support identity fields, E1 case/fixture/oracle/composition/protocol subset, fault schedule, pass/fail/inconclusive, root-cause decision, repetitions, retries/reruns/corrections, time/resource/cost, evidence, stop, admission, handback and E4/E5 remainder.
+      - Selected E1 subsets are risk-justified and traceable; all eight reliability protocols are represented by E3V-007 focused slices; full 170-case/release execution is not claimed.
+      - Protocol-specific QPA and limit values are prospectively proposed, explicitly Founder-approved, freshly challenged and independently verified before the protocol receives execution-ready status; no result existed when frozen.
+      - Cross-protocol evidence reuse is declared without collapsing any E3V verdict, and all seven exact canonical ADR sets are set-equal to accepted records.
+    required_tests:
+      - Strict YAML/CSV parse, duplicate IDs/keys, schema completeness, E3V set equality, AR/ADR ownership and canonical handback equality.
+      - Case/oracle/fixture/protocol selectors resolve to frozen E1 IDs; coverage includes 170/18/11/23/16/30/9/16/8/EP-CTL-016 source surfaces with explicit selected or deferred dispositions.
+      - E3V-002 supported-host/fencing/termination/recovery and E3V-006 capture/recipient/no-replay/WAITING_FOR_USER negative protocol reviews.
+      - QPA Founder-approval provenance, pre-result freeze, budget/data/credential/run-admission, no-run/no-code/no-ADR-change, clean-room, secret, scope and git diff --check.
+    challenger_requirements:
+      - A fresh challenger searches for generic-spike collapse, missing hard boundaries, overgeneralized host/client support, weak or circular oracles, post-hoc flexibility, incomplete E3V-002/E3V-006 coverage, hidden architecture redesign and incorrect ADR handbacks.
+      - The security portion must be challenged by a reviewer capable of independently tracing all selected enforcement/capture surfaces; model judgment cannot substitute for structural oracles.
+    verifier_requirements:
+      - A separate post-fix verifier re-extracts all seven canonical obligations and handbacks, checks every protocol field and selected E1 trace, and confirms Founder-approved exact values predate empirical results.
+      - The verifier records EXECUTION_READY_PROTOCOL only on complete evidence; it runs no protocol and grants no architecture-validation result.
+    run_authorization_requirement: "NO EXECUTION. Protocol verification is necessary but not sufficient; E3-005 requires E3-004 plus a fresh per-block RUN_ADMISSION PASS."
+    budget_requirement: "USD 0 for protocol authoring; future protocol manifests distinguish local USD 0 blocks from separately authorized paid/external blocks."
+    credential_requirement: "No credential access. Live/provider paths are described only and remain conditional on later S0-005 and Founder authorization."
+    data_fixture_policy: "Synthetic/public/open/repository-owned clean-room fixtures only; fixture selection and rights are specified but not executed. E3V-006 permits synthetic markers only."
+    raw_evidence_policy: "No run evidence is created. Protocol drafts/reviews remain governance artifacts and must not be mislabeled raw evidence."
+    stop_conditions:
+      - Any required protocol needs a real secret, private data, destructive user-state effect, unapproved network/paid call, or unavailable decisive oracle during authoring.
+      - A canonical hard property cannot be tested without altering it, a handback set is inconsistent, or protocol specificity would silently choose E4 product technology.
+      - Founder approval is absent when the task attempts to enter execution-ready independent verification.
+    architecture_handback_conditions: "Protocol design itself cannot prove handback. A discovered internal contradiction or untestable indispensable ADR assumption stops the task and is escalated to the accepted E2 governance path; no ADR is edited here."
+    completion_transition: "After full lifecycle and independent verification, E3-002 becomes VERIFIED. E3-004 remains blocked until E3-003 is also VERIFIED; E3-005 remains BACKLOG/DO_NOT_RUN until E3-004 verification and per-block admission."
+    downstream_consumer:
+      - E3-004
+      - E3-005
+      - E3-007
+    unresolved_questions:
+      - Exact mechanisms/configurations, supported host/client classes and focused E1 subsets to freeze.
+      - Exact Founder-approved QPA/time/resource/cost values and whether any E3V-004 live phase is necessary.
+      - Whether verified protocols can reuse existing harness components or require bounded new ones.
+    escalation_conditions:
+      - Any architecture semantic amendment, unavailable oracle, unbounded portfolio, real-provider requirement, or material mismatch with frozen E1.
+      - Any proposed tested class cannot fail closed or cannot expose independent evidence.
+    next_command: "MODE: EXECUTE_TASK_E3-002"
+
+  - task_id: E3-003
+    title: Freeze exact-configuration model/system role benchmark protocols
+    stage: E3
+    objective: Author and independently verify the E3V-008 benchmark protocol for all canonical logical roles, including configuration identity, role/task-specific cases and hard gates, exact provenance, fallback/escalation, cost/latency measurement, contamination controls, QPA values for Founder approval, and configuration-specific eligibility vocabulary without running or preselecting a candidate.
+    why_it_matters: Vendor names, public specifications, generic benchmark scores, cheap/strong intuitions, and authoring-surface performance cannot establish product-specific role eligibility or verifier independence.
+    owner_role: AUTHOR
+    accountable_e3_roles:
+      - E3_MODEL_BENCHMARK_OWNER
+    assigned_model: null
+    reviewer_model: null
+    verifier_model: null
+    assignment_policy: "The protocol author cannot shortlist by preference, approve QPA/budget/account/data policy, grade its own benchmark as sole judge, verify the protocol, or create an eligibility result. Candidate systems used to author/review remain unqualified."
+    status: BACKLOG
+    planning_status: PLANNED_DEPENDENCY_GATED_NOT_EXECUTED
+    priority: P0
+    dependencies:
+      - E3-001
+    blocked_by: []
+    decision_dependencies:
+      - decision: FOUNDER_DECISION_REQUIRED_E3_QPA_001_ACKNOWLEDGEMENT_AND_BENCHMARK_PROTOCOL_VALUES
+        required_before: "E3-003 may become execution-ready and independently VERIFIED; not required to begin author drafting after E3-001 verification."
+      - decision: FOUNDER_DECISION_REQUIRED_FOR_ANY_EXACT_PAID_PROVIDER_ACCOUNT_CONFIGURATION_BLOCK
+        required_before: "Any paid/external E3-006 block; E3-003 may define conditional manifests without this authorization."
+    activation_condition: "E3-001 is independently VERIFIED and its common admission/QPA/evidence schema is frozen."
+    activation_condition_status: BLOCKED_PENDING_E3_001_INDEPENDENT_VERIFICATION
+    gate_invariant: "E3-003 freezes a provider-neutral protocol only. It does not run a model/system, prove account access, select a shortlist by reputation, assign a role, promote a route, or authorize paid usage/autonomy/E4."
+    files_to_read:
+      - MASTER_OPERATING_PROMPT.md
+      - AGENTS.md
+      - SECURITY.md
+      - 01_governance/PROJECT_STATE.yaml
+      - 01_governance/TASK_REGISTRY.yaml
+      - 01_governance/DECISION_LOG.md
+      - 01_governance/ASSUMPTION_REGISTER.md
+      - 01_governance/RISK_REGISTER.md
+      - 01_governance/MODEL_REGISTRY.yaml
+      - 01_governance/SOURCE_LEDGER.csv
+      - 03_product/ENGINEERING_PREVIEW_CHARTER.md
+      - 03_product/ENGINEERING_PREVIEW_PRD.md
+      - 03_product/ENGINEERING_PREVIEW_USER_FLOWS.md
+      - 03_product/ENGINEERING_PREVIEW_CORRECTNESS_CONTRACT.md
+      - 05_architecture/ENGINEERING_PREVIEW_ARCHITECTURE_BASELINE.md
+      - 05_architecture/ENGINEERING_PREVIEW_E3_VALIDATION_OBLIGATIONS.md
+      - 05_architecture/adr/ADR-E2-006_MODEL_PROVIDER_ROUTING_CONTEXT_BOUNDARY.md
+      - 06_evaluation/ENGINEERING_PREVIEW_E3_PLAN.md
+      - 06_evaluation/ENGINEERING_PREVIEW_EVALUATION_SUITE.md
+      - 06_evaluation/MODEL_ROLE_BENCHMARK_PLAN.md
+      - 10_checkpoints/stage_checkpoints/ENGINEERING_PREVIEW_V0_1_RELEASE_ACCEPTANCE.yaml
+      - 06_evaluation/e3_governance/E3_QUALIFICATION_AND_RUN_ADMISSION_POLICY.yaml
+    inputs:
+      obligation: E3V-008
+      canonical_logical_roles:
+        - AUTONOMOUS_CONTROLLER
+        - PLANNER
+        - EXECUTOR
+        - CODER
+        - COMPUTER_CONTROLLER
+        - VISION_INTERPRETER
+        - VERIFIER
+        - SECURITY_REVIEWER
+        - MEMORY_EXTRACTOR
+        - SUMMARIZER
+        - ROUTER
+      gate_critical_roles: [AUTONOMOUS_CONTROLLER, PLANNER, EXECUTOR, CODER, VERIFIER, SECURITY_REVIEWER]
+      candidate_result_state: HYPOTHESIS_ONLY_NOT_RUN
+      current_route_for_any_future_benchmark: EVALUATION_ONLY
+      current_paid_authorization_usd: 0
+    deliverables:
+      - 06_evaluation/model_role_benchmark/E3_MODEL_ROLE_BENCHMARK_PROTOCOL.yaml
+      - 06_evaluation/model_role_benchmark/E3_ROLE_CASE_TRACEABILITY.csv
+      - 06_evaluation/model_role_benchmark/E3_CONFIGURATION_MANIFEST.schema.yaml
+      - 01_governance/MODEL_REGISTRY.yaml planning/candidate-configuration fields only
+      - 99_handoffs/completed/E3-003_handoff.yaml
+      - independent E3-003 challenger, fixer if needed, and verifier records
+    allowed_files_to_change:
+      - 06_evaluation/model_role_benchmark/E3_MODEL_ROLE_BENCHMARK_PROTOCOL.yaml
+      - 06_evaluation/model_role_benchmark/E3_ROLE_CASE_TRACEABILITY.csv
+      - 06_evaluation/model_role_benchmark/E3_CONFIGURATION_MANIFEST.schema.yaml
+      - 01_governance/MODEL_REGISTRY.yaml
+      - 01_governance/SOURCE_LEDGER.csv
+      - 01_governance/PROJECT_STATE.yaml
+      - 01_governance/TASK_REGISTRY.yaml
+      - 01_governance/ASSUMPTION_REGISTER.md
+      - 01_governance/RISK_REGISTER.md
+      - 99_handoffs/completed/E3-003_handoff.yaml
+      - 99_handoffs/completed/E3-003_challenger_review.yaml
+      - 99_handoffs/completed/E3-003_fixer_handoff.yaml
+      - 99_handoffs/completed/E3-003_verifier_review.yaml
+    forbidden_actions:
+      - Invoke or smoke-test any model/provider/system, inspect a credential/account, incur cost, make network calls for account access, or produce benchmark output.
+      - Preassign Luna, Terra, Sol, Fable, Codex, Claude Code, DeepSeek, a provider, a cheap/strong tier, or any other system to a role.
+      - Qualify a family name, copy vendor benchmark claims as project evidence, use self/same-family grading for selection credit, or hide an interface/data-policy/configuration difference.
+      - Modify frozen E1 outcomes, accepted ADR-E2-006 semantics, application code, raw results, or existing NOT_RUN fields with fabricated evidence.
+      - Treat EVALUATION_ONLY permission as normal-route eligibility or make fallback implicit.
+    acceptance_criteria:
+      - The E3V-008 protocol separately preserves exact property, linked ARs, linked ADRs, architecture assumption, selected configuration dependency, evidence required, supported scope, unsupported scope, success condition, implementation/configuration failure, architecture-assumption failure, missing/inconclusive behavior, fail-closed rule, exact ADR-E2-006 handback and downstream consumer, plus owner and classification.
+      - The protocol owns all eleven canonical roles and separately identifies the six gate-critical roles; each role has product-derived task classes, cases, oracles, metrics, hard failures, eligibility consequence and escalation behavior.
+      - AUTONOMOUS_CONTROLLER coverage spans authoritative state, READY/dependency selection, routing, budgets, approvals, interruption/recovery, acceptance failure, evidence, independent verification, ceilings and mandatory stop/escalation; generic coding cases cannot qualify it.
+      - VERIFIER coverage binds exact candidate state, deterministic rereads/oracles, predicate adequacy, bounded independent context, identity/configuration, stale-pass rejection and UNVERIFIED on insufficient evidence; independence configurations are explicit.
+      - SECURITY_REVIEWER coverage maps applicable `NEG-AUTH-01`, `NEG-SECRET-01`, `NEG-FS-01`, `NEG-GIT-01`, `NEG-SUPPLY-01`, `NEG-NET-01`, `NEG-APR-01`, `NEG-RACE-01`, `NEG-CRED-01`, `NEG-PROVIDER-01`, `NEG-EVID-01`, `NEG-AUDIT-01` and `TB-01..20` cases with subset rationale while preserving structural-control authority and forbidding model-only enforcement.
+      - Every tested unit is an exact configuration across system/provider/model/version/interface/account/data/region/reasoning/prompt/tools/context/fallback/verifier/cost policy, and eligibility is role/task/scope/configuration/window specific with expiry/revalidation triggers.
+      - The fifteen existing MB templates are challenged against E1/E2, retained/modified/excluded with traceability, and supplemented by frozen product-specific cases where necessary; development/tuning and held-out decision sets are separated.
+      - "`ELIGIBLE`, `ELIGIBLE_WITH_CONSTRAINTS`, `INELIGIBLE`, `INCONCLUSIVE`, and `NOT_TESTED` semantics, route-vocabulary separation, explicit fallback qualification and role-specific non-compensating failures are mechanically represented."
+      - Cost/latency evidence records wall-clock and observable provider latency, exposed input/output/cache/reasoning usage, direct monetary cost and pricing reference, attempts/retries/reruns/corrections, tool-call counts, completion outcome and independent verification result in role/task/configuration context; missing fields remain unknown and no context-free cost winner is allowed.
+      - An evidence-driven escalation matrix uses role/task difficulty, hard gates, capability/tool/data constraints, verified quality, retry/correction behavior, latency/resource evidence and authorized budget; lower-cost and stronger configurations receive no role preference from price tier or reputation.
+      - Exact QPA/repetition/rerun/correction/retry/time/resource/cost and evidence-sufficiency values are prospectively proposed, Founder-approved, challenged and independently verified before execution-ready status; thresholds cannot move after results.
+      - MODEL_REGISTRY schema can record exact evidence and supersession but every current candidate remains HYPOTHESIS_ONLY/NOT_RUN with zero assignment or eligibility result.
+    required_tests:
+      - Strict YAML/CSV parse, duplicate IDs/keys, all-eleven-role coverage, six gate-critical roles, case/oracle/fixture references, exact configuration-schema completeness and route/eligibility enum validation.
+      - Role-specific controller/verifier/security-review hard-gate review; false-completion/security failures cannot be averaged; fallback and escalation matrices have no hidden route.
+      - Candidate-order seed, blinding, grader independence, self/same-family exclusion, held-out contamination, whole-block invalidation, immutable attempt and post-result-amendment tests.
+      - MODEL_REGISTRY diff proves no candidate result/assignment/access claim; QPA Founder-approval provenance, no-run/no-call/no-cost/no-code/no-autonomy, source/clean-room/secret/scope and git diff --check.
+    challenger_requirements:
+      - A fresh challenger attacks role leakage, generic benchmarks, vendor reputation/preselection, correlated graders, same-label pseudo-independence, weak controller cases, missing security/false-completion gates, hidden fallback, small-sample overclaim, cost-only selection and stale configuration identity.
+      - The challenger must compare every retained/excluded MB case to the frozen product need and inspect whether any candidate-specific knowledge influenced held-out design after labels/results.
+    verifier_requirements:
+      - A separate post-fix verifier re-derives eleven-role ownership, exact configuration semantics, role/task case traceability, grader independence, QPA pre-result approval and no-result registry state.
+      - The verifier may mark the protocol execution-ready only; it does not test a system, establish account access, assign a role or promote route eligibility.
+    run_authorization_requirement: "NO EXECUTION. E3-006 additionally requires E3-004 verification and a per-block RUN_ADMISSION PASS; every benchmark route remains EVALUATION_ONLY."
+    budget_requirement: "USD 0 for protocol work. Paid/external candidates remain conditional on exact future Founder provider/account/configuration/spend/repetition/data/credential authorization."
+    credential_requirement: "No credential access. Candidate account/access facts stay UNKNOWN until separately authorized evidence exists."
+    data_fixture_policy: "Synthetic/public/open/repository-owned clean-room fixtures only; development and held-out partitions plus rights/provenance are frozen, not executed."
+    raw_evidence_policy: "No run evidence is created. Protocol, schema, source and review records cannot be relabelled benchmark results."
+    stop_conditions:
+      - Any request to favor/assign a candidate, infer access, call a provider, inspect a credential, use private data, or set a post-result threshold.
+      - Any required role lacks decisive product-specific coverage, the controller/verifier/security floor cannot be tested independently, or a fallback cannot retain exact eligibility/security/cost semantics.
+      - Founder approval is absent when the task attempts to enter execution-ready independent verification.
+    architecture_handback_conditions: "Ordinary candidate/configuration limitations are not handback. Only a protocol-level demonstration that ADR-E2-006's required interface is intrinsically untestable/unsatisfiable through every compliant route is escalated to E2; no ADR edit occurs here."
+    completion_transition: "After full lifecycle and independent verification, E3-003 becomes VERIFIED. E3-004 remains blocked until E3-002 is also VERIFIED; E3-006 remains BACKLOG/DO_NOT_RUN until E3-004 verification and per-block admission."
+    downstream_consumer:
+      - E3-004
+      - E3-006
+      - E3-007
+    unresolved_questions:
+      - Exact current candidates/configurations that pass source, access, interface, data and budget screening.
+      - Exact Founder-approved QPA/benchmark thresholds and paid/external authorizations.
+      - Which auxiliary roles are required by the eventual bounded E4 envelope; NOT_TESTED roles cannot be used.
+    escalation_conditions:
+      - Current primary-source drift changes a candidate/interface/data-policy fact materially.
+      - No independent grader/verifier configuration exists within the authorized envelope.
+      - The required candidate matrix cannot fit a finite authorized budget without losing gate-critical coverage.
+    next_command: "MODE: EXECUTE_TASK_E3-003"
+
+  - task_id: E3-004
+    title: Build and independently verify bounded E3 validation harnesses and fixtures
+    stage: E3
+    objective: Implement only the minimal shared validation infrastructure required by the verified E3-002/E3-003 contracts, prove fixture/oracle/admission integrity with deterministic meta-tests, and freeze exact harness versions before any evidence-producing run.
+    why_it_matters: Invalid fixtures, adapters, graders, capture surfaces or admission checks can manufacture false architecture/model evidence; the harness must be verified before it evaluates a candidate.
+    owner_role: AUTHOR
+    assigned_model: null
+    reviewer_model: null
+    verifier_model: null
+    assignment_policy: "Harness authors cannot be sole graders/verifiers of open-ended outputs, cannot operate later eligibility synthesis, and cannot convert validation infrastructure into application code."
+    status: BACKLOG
+    planning_status: PLANNED_DEPENDENCY_GATED_NOT_EXECUTED
+    priority: P0
+    dependencies:
+      - E3-002
+      - E3-003
+    blocked_by: []
+    activation_condition: "E3-002 and E3-003 are independently VERIFIED with exact protocol, fixture/oracle, QPA, data/evidence and harness contracts."
+    activation_condition_status: BLOCKED_PENDING_E3_002_AND_E3_003_INDEPENDENT_VERIFICATION
+    gate_invariant: "E3-004 may create VALIDATION_HARNESS_CODE only. It performs deterministic harness meta-tests but no candidate mechanism experiment, model/provider call, scored attempt, eligibility decision, architecture redesign or application implementation."
+    files_to_read:
+      - MASTER_OPERATING_PROMPT.md
+      - AGENTS.md
+      - SECURITY.md
+      - 01_governance/PROJECT_STATE.yaml
+      - 01_governance/TASK_REGISTRY.yaml
+      - 03_product/ENGINEERING_PREVIEW_CORRECTNESS_CONTRACT.md
+      - 05_architecture/ENGINEERING_PREVIEW_E3_VALIDATION_OBLIGATIONS.md
+      - 06_evaluation/ENGINEERING_PREVIEW_E3_PLAN.md
+      - 06_evaluation/ENGINEERING_PREVIEW_EVALUATION_SUITE.md
+      - 06_evaluation/e3_governance/
+      - 06_evaluation/technical_validation/E3_TECHNICAL_VALIDATION_PROTOCOLS.yaml
+      - 06_evaluation/technical_validation/E3V_E1_TRACEABILITY.csv
+      - 06_evaluation/technical_validation/E3_TECHNICAL_HARNESS_CONTRACT.md
+      - 06_evaluation/model_role_benchmark/E3_MODEL_ROLE_BENCHMARK_PROTOCOL.yaml
+      - 06_evaluation/model_role_benchmark/E3_ROLE_CASE_TRACEABILITY.csv
+      - 06_evaluation/model_role_benchmark/E3_CONFIGURATION_MANIFEST.schema.yaml
+    inputs:
+      protocol_versions: [E3_002_VERIFIED_VERSION_REQUIRED, E3_003_VERIFIED_VERSION_REQUIRED]
+      candidate_results_visible_to_harness_author: false
+      application_code_authorized: false
+    deliverables:
+      - 06_evaluation/technical_validation/harness/
+      - 06_evaluation/technical_validation/fixtures/
+      - 06_evaluation/technical_validation/schemas/
+      - 06_evaluation/model_role_benchmark/harness/
+      - 06_evaluation/model_role_benchmark/fixtures/
+      - 06_evaluation/model_role_benchmark/schemas/
+      - 06_evaluation/e3_governance/admission_validator/
+      - 06_evaluation/E3_HARNESS_READINESS_REPORT.yaml
+      - 99_handoffs/completed/E3-004_handoff.yaml
+      - independent E3-004 challenger, fixer if needed, and verifier records
+    allowed_files_to_change:
+      - 06_evaluation/technical_validation/harness/
+      - 06_evaluation/technical_validation/fixtures/
+      - 06_evaluation/technical_validation/schemas/
+      - 06_evaluation/model_role_benchmark/harness/
+      - 06_evaluation/model_role_benchmark/fixtures/
+      - 06_evaluation/model_role_benchmark/schemas/
+      - 06_evaluation/e3_governance/admission_validator/
+      - 06_evaluation/E3_HARNESS_READINESS_REPORT.yaml
+      - .gitignore
+      - 01_governance/PROJECT_STATE.yaml
+      - 01_governance/TASK_REGISTRY.yaml
+      - 01_governance/RISK_REGISTER.md
+      - 99_handoffs/completed/E3-004_handoff.yaml
+      - 99_handoffs/completed/E3-004_challenger_review.yaml
+      - 99_handoffs/completed/E3-004_fixer_handoff.yaml
+      - 99_handoffs/completed/E3-004_verifier_review.yaml
+    forbidden_actions:
+      - Create or modify production/application runtime, client, orchestration, persistence, workspace, provider, protected-entry, packaging or E4 implementation code.
+      - Run a candidate technical mechanism, provider/model/system, real account/credential/network, paid call, external effect or scored/development benchmark attempt.
+      - Change a verified protocol, threshold, fixture meaning, oracle outcome, ADR, model assignment, support/eligibility verdict or autonomy state.
+      - Store real secrets/private/proprietary data or commit sensitive raw-run material.
+    acceptance_criteria:
+      - Every required harness component maps to a verified protocol and is classified VALIDATION_HARNESS_CODE; unnecessary components receive a reasoned NO_NEW_HARNESS_REQUIRED disposition.
+      - Schemas enforce exact run/configuration/protocol/evidence identity, immutable attempt linkage, raw/normalized/analysis separation, E3V verdict separation and admission status.
+      - Deterministic fixtures/oracles reproduce their frozen expected outcomes; mutation/negative tests prove they fail when the candidate, binding, capture, evidence, grader or policy is wrong.
+      - Admission-validator negative vectors deny every missing/stale/unapproved QPA, budget, account, credential, data, network, effect, scope, evidence, isolation, stop or handback field.
+      - Security fixtures use synthetic markers/canaries only and the capture inventory can observe every E3V-006 forbidden surface without echoing raw protected input into ordinary evidence.
+      - Development/tuning and held-out sets, seeds, blinding labels, grader independence, raw retention/ignore rules and whole-block invalidation are implemented as verified protocols specify.
+      - The readiness report pins hashes/versions, commands/tests/results, limitations, known unsupported classes and confirms zero candidate/model/technical validation run.
+    required_tests:
+      - Unit/schema/property/negative tests for every harness, oracle, fixture, grader, capture adapter and admission condition; deterministic replay from a clean environment.
+      - Deliberately corrupted fixture/oracle/evidence/config/identity and secret-marker tests; no false PASS, no capture leak, no raw overwrite and no favorable exclusion.
+      - Coverage set equality to verified E3-002/E3-003 contracts and all required E3V/role surfaces; application-code/path denylist and dependency provenance/license checks.
+      - Strict YAML/JSON/CSV parse, no network/provider/credential/cost/run, clean-room, secret, allowed-path, immutable-fixture, and git diff --check.
+    challenger_requirements:
+      - A fresh challenger attempts to make the harness admit a forbidden run, leak a marker, misbind a revision/configuration, misgrade a hard failure, unblind labels, omit a bad attempt, cross tuning/held-out partitions or masquerade as application code.
+      - Open-ended grading, capture exclusion and admission enforcement receive dedicated adversarial review; harness self-tests alone are insufficient.
+    verifier_requirements:
+      - A separate post-fix verifier rebuilds/reruns meta-tests from clean state, independently checks expected outcomes and confirms exact verified-protocol hashes.
+      - The verifier grants HARNESS_READY only, never mechanism/model eligibility or run admission; each future run still needs its own manifest PASS.
+    run_authorization_requirement: "Only deterministic harness/fixture meta-tests explicitly enumerated by E3-004; no candidate evidence-producing run, external model/provider, credential, network or effect."
+    budget_requirement: "USD 0 external/provider spend with prospectively frozen local time/process/output/disk limits from the verified protocol."
+    credential_requirement: "None; synthetic credential markers only. Any real credential need stops the task."
+    data_fixture_policy: "Synthetic/public/open/repository-owned clean-room fixtures with rights/provenance; held-out bytes protected from candidate/tuning paths; no private customer or proprietary source."
+    raw_evidence_policy: "Meta-test outputs are harness-verification evidence, not candidate run evidence. Candidate raw directories remain empty; immutable fixture versions and hashes are retained."
+    stop_conditions:
+      - Any harness operation would exercise the candidate property, invoke a model/provider, spend, use a real credential, access unauthorized data/network, or make an external effect.
+      - A fixture/oracle cannot be made deterministic/independently inspectable, a capture surface cannot be observed safely, or a required admission denial fails.
+      - Implementation begins to resolve an E4 bundle or final product technology instead of a validation seam.
+    architecture_handback_conditions: "A harness defect is not architecture handback. If a verified protocol's decisive evidence is structurally impossible to observe for a required ADR property, stop and return the finding to E3-002/E3-003 and, only if confirmed as indispensable impossibility, the exact E2 handback path."
+    completion_transition: "After full lifecycle and independent verification, E3-004 becomes VERIFIED. E3-005 and E3-006 remain BACKLOG/DO_NOT_RUN until each proposed run block independently passes all admission and authorization gates."
+    downstream_consumer:
+      - E3-005
+      - E3-006
+    unresolved_questions:
+      - Whether verified protocols require new code or can reuse independently verified fixtures/tools.
+      - Exact implementation-neutral tools needed for fault injection, capture, deterministic grading and raw evidence integrity.
+    escalation_conditions:
+      - Any dependency/download/license/network requirement not already authorized and pinned.
+      - Any material protocol ambiguity, unsafe host behavior, non-deterministic oracle or application-code boundary conflict.
+    next_command: "MODE: EXECUTE_TASK_E3-004"
+
+  - task_id: E3-005
+    title: Execute admitted E3V-001 through E3V-007 technical validation
+    stage: E3
+    objective: Execute only independently admitted technical-validation blocks against the exact verified protocols and harness, preserve immutable raw/normalized evidence for each E3V, classify protocol fidelity and observed root-cause inputs without self-certifying architecture validity, and stop on hard failure or handback.
+    why_it_matters: E3 technical claims require observed, reproducible evidence from exact configurations; paper architecture and harness readiness cannot validate process control, protected entry, recovery, isolation, evidence or limits.
+    owner_role: E3_TECHNICAL_VALIDATION_OPERATOR
+    accountable_e3_roles:
+      - E3_TECHNICAL_VALIDATION_OWNER
+      - E3_SECURITY_VALIDATION_OWNER
+      - E3_MEASUREMENT_VALIDATION_OWNER
+    assigned_model: null
+    reviewer_model: null
+    verifier_model: null
+    assignment_policy: "The operator may produce raw evidence and protocol-fidelity records only. It cannot change protocols/QPA, erase or relabel attempts, declare architecture valid, decide model eligibility, perform the sole security review, pass E3-005, or pass the E3 gate."
+    status: BACKLOG
+    planning_status: PLANNED_DO_NOT_RUN_ADMISSION_REQUIRED
+    run_admission_status: DO_NOT_RUN
+    priority: P0
+    dependencies:
+      - E3-002
+      - E3-004
+    blocked_by: []
+    conditional_blockers:
+      - "Every run block: no independently verified protocol/harness/QPA version and no immutable RUN_ADMISSION=PASS manifest."
+      - "Any real-provider/live E3V-004 block: S0-005/account/budget/credential/data/region/network/run authorization absent."
+    activation_condition: "E3-002 and E3-004 are independently VERIFIED; the exact block has current Founder-approved QPA values and every applicable admission item passes before launch."
+    activation_condition_status: BLOCKED_DO_NOT_RUN_PENDING_VERIFIED_PROTOCOL_HARNESS_QPA_AND_PER_BLOCK_ADMISSION
+    gate_invariant: "Only tested-scope technical evidence is produced. No result silently changes E2, implements the product, qualifies a model/role, promotes a route, establishes release compliance, marks AUTONOMY_ELIGIBLE, or starts E4."
+    files_to_read:
+      - MASTER_OPERATING_PROMPT.md
+      - AGENTS.md
+      - SECURITY.md
+      - 01_governance/PROJECT_STATE.yaml
+      - 01_governance/TASK_REGISTRY.yaml
+      - 01_governance/DECISION_LOG.md
+      - 03_product/ENGINEERING_PREVIEW_CORRECTNESS_CONTRACT.md
+      - 05_architecture/ENGINEERING_PREVIEW_ARCHITECTURE_BASELINE.md
+      - 05_architecture/ENGINEERING_PREVIEW_E3_VALIDATION_OBLIGATIONS.md
+      - 05_architecture/adr/
+      - 06_evaluation/ENGINEERING_PREVIEW_E3_PLAN.md
+      - 06_evaluation/ENGINEERING_PREVIEW_EVALUATION_SUITE.md
+      - 06_evaluation/e3_governance/
+      - 06_evaluation/technical_validation/E3_TECHNICAL_VALIDATION_PROTOCOLS.yaml
+      - 06_evaluation/technical_validation/E3V_E1_TRACEABILITY.csv
+      - 06_evaluation/technical_validation/E3_TECHNICAL_HARNESS_CONTRACT.md
+      - 06_evaluation/technical_validation/harness/
+      - 06_evaluation/technical_validation/fixtures/
+      - 06_evaluation/technical_validation/schemas/
+      - 06_evaluation/E3_HARNESS_READINESS_REPORT.yaml
+    inputs:
+      obligations: [E3V-001, E3V-002, E3V-003, E3V-004, E3V-005, E3V-006, E3V-007]
+      protocol_status_required: INDEPENDENTLY_VERIFIED
+      harness_status_required: INDEPENDENTLY_VERIFIED
+      qpa_status_required: FOUNDER_APPROVED_CHALLENGED_INDEPENDENTLY_VERIFIED
+      run_manifest_status_required: PASS
+      results_before_first_admitted_launch: NONE
+    deliverables:
+      - 06_evaluation/technical_validation/runs/<run_id>/manifest.yaml
+      - 06_evaluation/technical_validation/runs/<run_id>/raw/ or approved non-secret locator/digests
+      - 06_evaluation/technical_validation/runs/<run_id>/normalized/
+      - 06_evaluation/technical_validation/analysis/E3_TECHNICAL_EXECUTION_REPORT.yaml
+      - 06_evaluation/technical_validation/RUN_INDEX.csv
+      - 99_handoffs/completed/E3-005_handoff.yaml
+      - independent E3-005 challenger, fixer/new-block if needed, and verifier records
+    allowed_files_to_change:
+      - 06_evaluation/technical_validation/runs/
+      - 06_evaluation/technical_validation/analysis/E3_TECHNICAL_EXECUTION_REPORT.yaml
+      - 06_evaluation/technical_validation/RUN_INDEX.csv
+      - 01_governance/PROJECT_STATE.yaml
+      - 01_governance/TASK_REGISTRY.yaml
+      - 01_governance/RISK_REGISTER.md
+      - 99_handoffs/completed/E3-005_handoff.yaml
+      - 99_handoffs/completed/E3-005_challenger_review.yaml
+      - 99_handoffs/completed/E3-005_fixer_handoff.yaml
+      - 99_handoffs/completed/E3-005_verifier_review.yaml
+    forbidden_actions:
+      - Launch without an exact PASS manifest, change a frozen protocol/QPA/harness, inspect results before freeze, omit an unfavorable valid attempt, overwrite raw evidence, or retry outside the frozen rule.
+      - Use a real secret/private customer/proprietary fixture, uncontrolled user repository/state, unapproved host/network/provider/account/credential, or consequential external effect.
+      - Run full E5 release populations, build product/runtime/client/application code, choose final technology, edit an ADR, or silently narrow/expand supported scope after results.
+      - Declare VALIDATED_FOR_TESTED_SCOPE_ONLY, architecture acceptance, model/role eligibility, autonomy eligibility, build authorization, or E4 readiness as the operator.
+    acceptance_criteria:
+      - Every launched attempt has a pre-launch PASS manifest, exact protocol/harness/QPA/config/environment/support identity, immutable raw locator/digest and complete status/cost/effect/stop evidence; every nonlaunched block is truthfully DO_NOT_RUN.
+      - E3V-001..007 each have separately indexed attempted/not-attempted cases and evidence; reuse links are explicit and no aggregate conceals an obligation.
+      - E3V-002 evidence covers every claimed host/process class's descendants, signals/force permissions, output/time bounds, survivors/orphans, stale authority fence and recovery; unsupported classes remain fenced and unclaimed.
+      - E3V-006 uses synthetic markers only and records protected acquisition, capture-state/surface scans, exact recipient/use/fence, unauthorized denial, non-secret receipt, revocation/replay and crash/replacement/reacquisition; missing protection becomes WAITING_FOR_USER/blocked.
+      - E3V-007 raw timestamps/outcomes/usage/cost/limit/missingness reproduce derived calculations and ceiling denials for focused slices of all eight protocols without a release-SLO claim.
+      - Failures/inconclusive results, exclusions, retries, corrections, resource exhaustion, security events and possible handbacks remain immutable; a confirmed harness defect invalidates the whole affected versioned block rather than deleting it.
+      - The execution report separates observed facts, protocol-fidelity determination and root-cause inputs from E3-007 technical verdicts and lists all limitations/E4/E5 remainders.
+    required_tests:
+      - Pre-launch admission validation and post-run manifest/raw hash reconciliation for every block; set equality among RUN_INDEX, manifests, raw/normalized records and protocol selectors.
+      - Independent replay/readback of decisive deterministic oracles, fault schedules, canaries, process/accounting, capture surfaces, evidence bindings, calculations and ceiling denials.
+      - E3V-002 and E3V-006 dedicated hard-boundary audits; no unauthorized effect/marker occurrence/false completion/stale authority; protocol stop behavior tested.
+      - No protocol/ADR/E1/harness mutation, no unadmitted network/credential/paid call/application code/model benchmark, clean-room, secret, allowed-path and git diff --check.
+    challenger_requirements:
+      - A fresh challenger inspects raw rather than summaries, searches for missing attempts, invalid exclusions, favorable retries, fault-schedule drift, unsupported-scope projection, false-completion language, E3V-002 survivor authority and every E3V-006 marker/capture surface.
+      - Any analysis affecting architecture validity or security receives independent challenge; the operator's root-cause label is not authoritative.
+    verifier_requirements:
+      - A separate post-fix verifier independently reconstructs every admitted block, checks raw lineage, reruns decisive read-only/deterministic analyses where safe, and reports protocol-fidelity/evidence sufficiency without making E3-007's synthesis decision.
+      - A security reviewer who did not author/operate the E3V-006 mechanism must independently verify the synthetic-marker and structural-boundary evidence.
+    run_authorization_requirement: "MANDATORY PER BLOCK. Current state DO_NOT_RUN. PASS requires verified E3-002/E3-004, Founder-approved verified QPA, exact local or separately authorized live lane, data/credential/network/effect policy and independent admission signature."
+    budget_requirement: "Default NO_COST_LOCAL_VALIDATION / USD 0 external spend. Any real/provider/paid E3V-004 block requires a separate Founder cap and S0-005/account/data/credential authorization; stop before cap and at every protocol limit."
+    credential_requirement: "None for default local/synthetic blocks. Any live block uses an approved non-secret reference and protected entry; E3V-006 always uses synthetic values, never a real credential."
+    data_fixture_policy: "Only exact verified synthetic/public/open/repository-owned fixtures; task-owned isolated paths; no private customer, reconstructed source, unlicensed proprietary code or real secret."
+    raw_evidence_policy: "Append-only immutable raw per attempt; separate normalized and execution-report layers; unfavorable/failed/inconclusive data retained; sensitive material quarantined outside repo with locator/digest and no echo."
+    stop_conditions:
+      - Any hard correctness/security violation, containment escape, unauthorized effect/dispatch, survivor with authority, marker escape, unsafe capture, raw-secret ambiguity, original/user-state canary mutation or uncertain real effect.
+      - QPA/budget/time/resource ceiling, missing mandatory evidence/cost field, protocol/config/environment mutation, invalid independence or run-admission expiry.
+      - Evidence suggests an indispensable accepted architecture assumption is disproven; stop the affected and dependent blocks immediately.
+    architecture_handback_conditions: "On reproducible ARCHITECTURE_ASSUMPTION_DISPROVEN evidence, preserve the exact fault chain, stop affected progression, and hand back only the canonical E3V ADR set through the governed E2 process. Configuration defects may use a new pre-frozen admitted block; raw failures remain."
+    completion_transition: "After all required admitted blocks finish or truthfully cannot run, the evidence is challenged and independently task-verified, E3-005 may become VERIFIED as an execution-evidence package. It does not certify architecture validity. E3-007 remains blocked until E3-006 is also VERIFIED."
+    downstream_consumer:
+      - E3-007
+      - CANONICAL_E2_ADR_HANDBACK_IF_TRIGGERED
+    unresolved_questions:
+      - Which exact technical mechanisms/configurations and support classes the verified protocol admits.
+      - Whether any live E3V-004 evidence is necessary after offline conformance coverage.
+      - Observed technical outcomes; none exist at planning time.
+    escalation_conditions:
+      - Any hard violation, possible architecture handback, unsafe host/process/protected-entry behavior, unapproved effect, evidence-integrity failure or need to broaden run authority.
+      - Any need for application implementation rather than bounded validation infrastructure.
+    next_command: "MODE: EXECUTE_TASK_E3-005"
+
+  - task_id: E3-006
+    title: Execute admitted exact-configuration model/system role benchmarks
+    stage: E3
+    objective: Execute only admitted E3V-008 benchmark blocks for exact configurations on EVALUATION_ONLY routes, preserve immutable provenance/results/costs/failures and independent grades for all tested roles, and produce protocol-fidelity evidence without self-assigning eligibility.
+    why_it_matters: Future autonomous work needs evidence-backed occupants for role/task envelopes, but benchmark permission, public access, and strong average scores do not establish normal-route eligibility or safe controller/verifier behavior.
+    owner_role: E3_MODEL_BENCHMARK_OPERATOR
+    accountable_e3_roles:
+      - E3_MODEL_BENCHMARK_OWNER
+    assigned_model: null
+    reviewer_model: null
+    verifier_model: null
+    assignment_policy: "The operator cannot select winners, alter protocols, grade itself as sole judge, suppress failures, decide eligibility, promote a route, verify E3-006 or pass the E3 gate. Candidate/self/same-family grading receives no selection credit under the verified policy."
+    status: BACKLOG
+    planning_status: PLANNED_DO_NOT_RUN_ADMISSION_REQUIRED
+    run_admission_status: DO_NOT_RUN
+    priority: P0
+    dependencies:
+      - E3-003
+      - E3-004
+    blocked_by: []
+    conditional_blockers:
+      - "Every run block: no independently verified protocol/harness/QPA version and no immutable RUN_ADMISSION=PASS manifest."
+      - "PAID_EXTERNAL_VALIDATION: S0-005/funded account/entitlement/budget/credential/data/region/network/configuration/run authorization absent unless later explicitly supplied."
+      - "NO_COST_LOCAL_VALIDATION: exact local system/configuration and finite local resource authority absent unless later admitted."
+    activation_condition: "E3-003 and E3-004 are independently VERIFIED; each exact configuration-role-task block has current Founder-approved QPA values and all applicable admission/account/budget/data/credential/independence fields pass before launch."
+    activation_condition_status: BLOCKED_DO_NOT_RUN_PENDING_VERIFIED_PROTOCOL_HARNESS_QPA_AND_PER_BLOCK_ADMISSION
+    gate_invariant: "Every call/attempt remains EVALUATION_ONLY. E3-006 creates benchmark evidence, not eligibility, normal-route activation, role assignment, architecture redesign, autonomy or E4 authority."
+    files_to_read:
+      - MASTER_OPERATING_PROMPT.md
+      - AGENTS.md
+      - SECURITY.md
+      - 01_governance/PROJECT_STATE.yaml
+      - 01_governance/TASK_REGISTRY.yaml
+      - 01_governance/DECISION_LOG.md
+      - 01_governance/MODEL_REGISTRY.yaml
+      - 01_governance/SOURCE_LEDGER.csv
+      - 03_product/ENGINEERING_PREVIEW_CHARTER.md
+      - 03_product/ENGINEERING_PREVIEW_CORRECTNESS_CONTRACT.md
+      - 05_architecture/ENGINEERING_PREVIEW_E3_VALIDATION_OBLIGATIONS.md
+      - 05_architecture/adr/ADR-E2-006_MODEL_PROVIDER_ROUTING_CONTEXT_BOUNDARY.md
+      - 06_evaluation/ENGINEERING_PREVIEW_E3_PLAN.md
+      - 06_evaluation/ENGINEERING_PREVIEW_EVALUATION_SUITE.md
+      - 06_evaluation/MODEL_ROLE_BENCHMARK_PLAN.md
+      - 06_evaluation/e3_governance/
+      - 06_evaluation/model_role_benchmark/E3_MODEL_ROLE_BENCHMARK_PROTOCOL.yaml
+      - 06_evaluation/model_role_benchmark/E3_ROLE_CASE_TRACEABILITY.csv
+      - 06_evaluation/model_role_benchmark/E3_CONFIGURATION_MANIFEST.schema.yaml
+      - 06_evaluation/model_role_benchmark/harness/
+      - 06_evaluation/model_role_benchmark/fixtures/
+      - 06_evaluation/model_role_benchmark/schemas/
+      - 06_evaluation/E3_HARNESS_READINESS_REPORT.yaml
+    inputs:
+      obligation: E3V-008
+      route_purpose: E3_EVALUATION
+      route_eligibility: EVALUATION_ONLY
+      canonical_roles: 11
+      gate_critical_roles: 6
+      current_candidate_results: 0
+      current_paid_authorization_usd: 0
+    deliverables:
+      - 06_evaluation/model_role_benchmark/runs/<run_id>/manifest.yaml
+      - 06_evaluation/model_role_benchmark/runs/<run_id>/raw/ or approved non-secret locator/digests
+      - 06_evaluation/model_role_benchmark/runs/<run_id>/normalized/
+      - 06_evaluation/model_role_benchmark/analysis/E3_BENCHMARK_EXECUTION_REPORT.yaml
+      - 06_evaluation/model_role_benchmark/RUN_INDEX.csv
+      - 99_handoffs/completed/E3-006_handoff.yaml
+      - independent E3-006 challenger, fixer/new-block if needed, and verifier records
+    allowed_files_to_change:
+      - 06_evaluation/model_role_benchmark/runs/
+      - 06_evaluation/model_role_benchmark/analysis/E3_BENCHMARK_EXECUTION_REPORT.yaml
+      - 06_evaluation/model_role_benchmark/RUN_INDEX.csv
+      - 01_governance/PROJECT_STATE.yaml
+      - 01_governance/TASK_REGISTRY.yaml
+      - 01_governance/RISK_REGISTER.md
+      - 99_handoffs/completed/E3-006_handoff.yaml
+      - 99_handoffs/completed/E3-006_challenger_review.yaml
+      - 99_handoffs/completed/E3-006_fixer_handoff.yaml
+      - 99_handoffs/completed/E3-006_verifier_review.yaml
+    forbidden_actions:
+      - Launch without PASS admission, exceed or infer budget, use an unapproved account/credential/data/region/network path, call a DISALLOWED or USER_CONFIGURED_UNVERIFIED route for score credit, or hide fallback.
+      - Change prompt/cases/oracles/config/seed/order/thresholds/graders after results, tune on held-out decision cases, selectively retry/omit results, overwrite raw output, or collapse provider/model/harness failures.
+      - Assign or promote a configuration to any role, record ELIGIBLE*, declare account/production suitability from access, or let a candidate/self/same-family grader determine selection.
+      - Build application code, edit ADR-E2-006, authorize autonomy/E4, use private customer/proprietary data or expose credentials/secrets.
+    acceptance_criteria:
+      - Every launched attempt has an immutable pre-launch PASS manifest with exact configuration/role/task/protocol/fixture/harness/grader/account/data/route/QPA/budget identity; every attempted and nonattempted block is indexed.
+      - All calls use E3_EVALUATION/EVALUATION_ONLY; fallback, if tested, is a separately named configuration/block and receives no primary credit.
+      - Raw outputs/traces, refusals, transport/capacity/policy failures, task failures, tool/environment failures, harness/grader disputes, retries, corrections, usage, cost and latency remain separated and immutable.
+      - Deterministic graders run first; blinded independent graders/verifiers satisfy the protocol; self/same-family grades remain diagnostic and excluded from eligibility-affecting thresholds.
+      - Role/task results remain separate across all tested roles; controller, verifier and security-review hard boundaries are explicit; no catastrophic violation is averaged away.
+      - Development/tuning attempts are preserved and excluded from held-out scores; block order/seeds and whole-block invalidation rules are obeyed; material configuration drift creates a new block.
+      - The execution report states facts and protocol fidelity only, with `NOT_TESTED`/`INCONCLUSIVE` where evidence is absent; it proposes no winner, eligibility or normal-route promotion.
+    required_tests:
+      - Pre-launch admission and post-run manifest/raw/cost reconciliation for every attempt; RUN_INDEX set equality and exact configuration/role/task provenance.
+      - Deterministic oracle replays, blinded-grade audit, grader independence, candidate-label concealment, seed/order, held-out separation, retry/exclusion and failure-layer denominator checks.
+      - Role-specific hard-failure assertions for false completion, unauthorized effect, secret exposure, approval bypass, stale verification, hidden fallback, scope escape and mandatory stop/escalation.
+      - No registry eligibility/assignment mutation, no unadmitted paid/network/credential/data use, no application/ADR/autonomy change, clean-room, secret, allowed-path and git diff --check.
+    challenger_requirements:
+      - A fresh challenger reads raw samples and cost/account evidence, audits every exclusion/retry/fallback and attacks candidate-order, label, grader, held-out, provider-family and survivorship bias.
+      - Controller, verifier and security-review evidence receive explicit independent challenge; high aggregate quality cannot compensate for a hard violation or invalid independence.
+    verifier_requirements:
+      - A separate post-fix verifier independently reconstructs configurations, manifests, raw lineage, costs/latency, denominators, deterministic results and grader independence without selecting eligibility.
+      - The verifier confirms each result remains EVALUATION_ONLY and every current MODEL_REGISTRY eligibility/assignment field is unchanged until E3-007.
+    run_authorization_requirement: "MANDATORY PER CONFIGURATION-ROLE-TASK BLOCK. Current state DO_NOT_RUN. Paid/external blocks need explicit Founder provider/account/configuration/spend/repetitions/data/credential/region/network authority and S0-005 evidence; local blocks need exact USD 0 resource authority."
+    budget_requirement: "Current external/provider budget USD 0. Future conservative per-block and cumulative caps are Founder-approved; stop launching before the cap per verified policy and hard-stop at it; all failures/retries count."
+    credential_requirement: "No current credential authority. Future references use protected entry and least privilege; no raw value enters repository/model context/evidence except an explicitly indispensable authorized recipient path."
+    data_fixture_policy: "Synthetic/public/open/repository-owned clean-room fixtures only by default; no private customer data, reconstructed source, unlicensed proprietary repository or real secret."
+    raw_evidence_policy: "Append-only raw attempts separate from normalization/reporting/eligibility; failures and unfavorable results retained; sensitive outputs outside repo with locator/digest and approved retention."
+    stop_conditions:
+      - Any non-compensating correctness/security failure, secret/credential exposure, unauthorized dispatch/effect, hidden fallback, invalid grader independence or candidate-label contamination.
+      - QPA/budget/rate/time/resource ceiling, missing/unknown cost, account/data/region/policy mismatch, configuration/protocol/fixture mutation or admission expiry.
+      - Any attempt to assign eligibility or broaden the tested scope from the operator report.
+    architecture_handback_conditions: "Ordinary model/provider/configuration failure leaves the configuration unassigned and is not E2 handback. Stop and consider ADR-E2-006 handback only if reproducible evidence shows every compliant route cannot preserve an indispensable accepted gateway property."
+    completion_transition: "After all required admitted blocks finish or truthfully cannot run, evidence is challenged and independently task-verified, E3-006 may become VERIFIED as a benchmark-evidence package. It creates no eligibility verdict. E3-007 remains blocked until E3-005 is also VERIFIED."
+    downstream_consumer:
+      - E3-007
+      - ADR-E2-006_HAND_BACK_ONLY_ON_STRUCTURAL_GATEWAY_IMPOSSIBILITY
+    unresolved_questions:
+      - Exact candidates/configurations/accounts and authorized shortlist, if any.
+      - Whether the Founder authorizes paid/external validation, at what cap and under which data/credential/region policy.
+      - Observed role/task performance, costs, latency and failures; none exist at planning time.
+    escalation_conditions:
+      - Any access/data/legal/jurisdiction ambiguity, unbounded projected cost, lack of independent grader/verifier, hard failure, possible structural ADR-E2-006 issue or need to broaden run authority.
+      - Current primary-source or served-version drift that invalidates a frozen manifest.
+    next_command: "MODE: EXECUTE_TASK_E3-006"
+
+  - task_id: E3-007
+    title: Synthesize E3 technical verdicts and configuration-role eligibility proposals
+    stage: E3
+    objective: Derive separately challenged technical verdicts for E3V-001..007 and configuration-specific role eligibility proposals for E3V-008 from independently verified execution evidence, with exact scope, constraints, cost/latency, hard failures, missingness, expiry and ADR handbacks, without passing E3 or authorizing E4.
+    why_it_matters: Raw runs do not interpret themselves, but synthesis must remain downstream of immutable evidence and independent from operators so unfavorable results, unsupported scope and architecture failures cannot be hidden.
+    owner_role: AUTHOR
+    assigned_model: null
+    reviewer_model: null
+    verifier_model: null
+    assignment_policy: "The synthesis author cannot have been the sole E3-005/E3-006 operator or verifier, cannot change raw evidence/protocols, cannot self-verify eligibility, and cannot pass E3 or authorize build. Any model/system used remains an authoring surface without eligibility credit."
+    status: BACKLOG
+    planning_status: PLANNED_DEPENDENCY_GATED_NOT_EXECUTED
+    priority: P0
+    dependencies:
+      - E3-005
+      - E3-006
+    blocked_by: []
+    activation_condition: "E3-005 and E3-006 are independently VERIFIED as complete, immutable execution-evidence packages, including truthful NOT_RUN/INCONCLUSIVE blocks and all protocol-fidelity findings."
+    activation_condition_status: BLOCKED_PENDING_E3_005_AND_E3_006_INDEPENDENT_VERIFICATION
+    gate_invariant: "E3-007 proposes evidence-backed verdicts only. It cannot rerun/tune, alter a threshold or raw result, accept an ADR handback itself, pass E3, set AUTONOMY_ELIGIBLE, promote operational routes, assign permanent occupants, authorize autonomous build or start E4."
+    files_to_read:
+      - MASTER_OPERATING_PROMPT.md
+      - AGENTS.md
+      - SECURITY.md
+      - 01_governance/PROJECT_STATE.yaml
+      - 01_governance/TASK_REGISTRY.yaml
+      - 01_governance/DECISION_LOG.md
+      - 01_governance/ASSUMPTION_REGISTER.md
+      - 01_governance/RISK_REGISTER.md
+      - 01_governance/MODEL_REGISTRY.yaml
+      - 03_product/ENGINEERING_PREVIEW_CHARTER.md
+      - 03_product/ENGINEERING_PREVIEW_CORRECTNESS_CONTRACT.md
+      - 05_architecture/ENGINEERING_PREVIEW_ARCHITECTURE_BASELINE.md
+      - 05_architecture/ENGINEERING_PREVIEW_E3_VALIDATION_OBLIGATIONS.md
+      - 05_architecture/adr/
+      - 06_evaluation/ENGINEERING_PREVIEW_E3_PLAN.md
+      - 06_evaluation/ENGINEERING_PREVIEW_EVALUATION_SUITE.md
+      - 06_evaluation/e3_governance/
+      - 06_evaluation/technical_validation/
+      - 06_evaluation/model_role_benchmark/
+      - 99_handoffs/completed/E3-005_verifier_review.yaml
+      - 99_handoffs/completed/E3-006_verifier_review.yaml
+    inputs:
+      technical_execution_package: E3_005_INDEPENDENTLY_VERIFIED_REQUIRED
+      benchmark_execution_package: E3_006_INDEPENDENTLY_VERIFIED_REQUIRED
+      technical_verdict_vocabulary:
+        - VALIDATED_FOR_TESTED_SCOPE_ONLY
+        - IMPLEMENTATION_CONFIGURATION_FAILURE
+        - PRODUCT_CLASS_UNSUPPORTED
+        - EVIDENCE_MISSING_FAIL_CLOSED
+        - ARCHITECTURE_HANDBACK
+      eligibility_verdict_vocabulary:
+        - ELIGIBLE
+        - ELIGIBLE_WITH_CONSTRAINTS
+        - INELIGIBLE
+        - INCONCLUSIVE
+        - NOT_TESTED
+    deliverables:
+      - 06_evaluation/E3_TECHNICAL_VALIDATION_REPORT.yaml
+      - 06_evaluation/E3_MODEL_SYSTEM_ELIGIBILITY_REPORT.yaml
+      - 06_evaluation/E3_EVIDENCE_SYNTHESIS.md
+      - 01_governance/MODEL_REGISTRY.yaml evidence-backed proposal fields only
+      - 99_handoffs/completed/E3-007_handoff.yaml
+      - independent E3-007 challenger, fixer if needed, and verifier records
+    allowed_files_to_change:
+      - 06_evaluation/E3_TECHNICAL_VALIDATION_REPORT.yaml
+      - 06_evaluation/E3_MODEL_SYSTEM_ELIGIBILITY_REPORT.yaml
+      - 06_evaluation/E3_EVIDENCE_SYNTHESIS.md
+      - 01_governance/MODEL_REGISTRY.yaml
+      - 01_governance/PROJECT_STATE.yaml
+      - 01_governance/TASK_REGISTRY.yaml
+      - 01_governance/ASSUMPTION_REGISTER.md
+      - 01_governance/RISK_REGISTER.md
+      - 99_handoffs/completed/E3-007_handoff.yaml
+      - 99_handoffs/completed/E3-007_challenger_review.yaml
+      - 99_handoffs/completed/E3-007_fixer_handoff.yaml
+      - 99_handoffs/completed/E3-007_verifier_review.yaml
+    forbidden_actions:
+      - Modify/delete raw or normalized attempts, exclude a valid unfavorable result, move a threshold/denominator, rerun/tune a block, fabricate missing account/cost/data/credential evidence or overgeneralize tested scope.
+      - Average away a hard correctness/security failure, infer normal eligibility from EVALUATION_ONLY access, qualify a family name, hide fallback or turn INCONCLUSIVE/NOT_TESTED into favorable credit.
+      - Silently fix/redesign E2, edit an accepted ADR, build application code, authorize/run E4, pass the E3 gate, mark AUTONOMY_ELIGIBLE or record AUTONOMOUS_BUILD_AUTHORIZED.
+      - Record a permanent role assignment; eligibility proposals remain exact configuration-role-task classifications pending E3-008 and the stage gate.
+    acceptance_criteria:
+      - Each E3V-001..007 has an independent technical verdict, evidence chain, tested/unsupported scope, limitations, root-cause basis, handback status and E4/E5 remainder; no generic aggregate substitutes.
+      - E3V-002 and E3V-006 conclusions explicitly cover required host/client/support classes and either validate them for tested scope, fail closed, or trigger exact handback; missing/inconclusive cannot pass.
+      - Every tested configuration-role-task tuple has one eligibility verdict with exact identity, evidence/protocol version, capability/tool/context/fallback/cost policy, result counts, correctness/security/cost/latency basis, constraints, qualification window, expiry/revalidation and supersession fields.
+      - All eleven roles have an explicit disposition; six gate-critical roles are separately analyzed; any auxiliary NOT_TESTED role is excluded from proposed E4 use.
+      - Controller, verifier and security-review proposals meet their special floors; verifier/grader independence is evidence-based, and one catastrophic hard failure makes the affected tuple INELIGIBLE regardless of averages.
+      - Cost analysis includes failures, retries, corrections, tool/verification cost and cost per independently verified success; latency/resource/missingness and uncertainty remain contextual and no target is invented after results.
+      - Technical implementation/configuration failure is separated from architecture assumption failure; every ARCHITECTURE_HANDBACK names the exact canonical ADR set and stops affected downstream progression.
+      - MODEL_REGISTRY additions are append-only evidence-backed proposal records; existing public facts and raw NOT_RUN history are not rewritten; no operational route or permanent occupant is activated.
+    required_tests:
+      - Recompute every technical/eligibility metric from immutable raw/normalized evidence; verify RUN_INDEX/manifest/evidence/report set equality, denominators, exclusions, costs, latency and confidence treatment.
+      - E3V 8/8 completeness and canonical handback equality; eleven-role and six-gate-critical-role coverage; exact configuration schema, verdict enum, constraints and stale/supersession tests.
+      - Non-compensating false-completion/security hard-failure logic; fallback/route separation; controller/verifier/security independence and unsupported-scope checks.
+      - No raw/protocol/ADR mutation, no new run/call/cost/code, no E3 gate/autonomy/E4 transition, clean-room, secret, allowed-path and git diff --check.
+    challenger_requirements:
+      - A fresh challenger independently recomputes results and searches for cherry-picking, invalid exclusion, denominator drift, scope inflation, correlated grading, role leakage, hidden fallback, stale configuration, cost bias and architecture/configuration misclassification.
+      - Every conclusion affecting architecture validity, security, model eligibility or autonomy eligibility is challenged against raw evidence rather than operator prose.
+    verifier_requirements:
+      - A separate post-fix task verifier confirms the synthesis is complete, challenged, internally coherent, evidence-bound and still a proposal; it does not substitute for E3-008's fresh full-stage re-derivation.
+      - Any unresolved BLOCKER/HIGH/MEDIUM finding prevents E3-007 verification and E3-008 activation.
+    run_authorization_requirement: "NONE; read-only synthesis of already verified evidence. New execution requires a new admitted task/block and cannot occur inside E3-007."
+    budget_requirement: "USD 0 new spend. Report actual admitted costs and authorization limits without modifying them."
+    credential_requirement: "No credential access. Use non-secret account/configuration provenance already present in verified evidence."
+    data_fixture_policy: "Read existing approved evidence only; preserve fixture rights/privacy/sensitivity labels and do not reveal held-out or quarantined raw content unnecessarily."
+    raw_evidence_policy: "Raw evidence is read-only and immutable; derived analysis/report/registry proposal records are separate and link by stable locator/digest."
+    stop_conditions:
+      - Raw/normalized lineage mismatch, missing material evidence, invalid protocol/admission/QPA, unresolved hard failure, unresolvable grader dispute or attempted post-hoc redefinition.
+      - Any probable ARCHITECTURE_HANDBACK, secret/privacy issue, or request for new run/authority.
+    architecture_handback_conditions: "A conclusion of ARCHITECTURE_ASSUMPTION_DISPROVEN stops affected synthesis and creates the exact canonical ADR evidence package for governed E2 reopen. E3-007 cannot patch the ADR or treat an alternate architecture as selected."
+    completion_transition: "After full lifecycle and independent task verification, E3-007 becomes VERIFIED as a proposal package and E3-008 may become READY. No eligibility is stage-gate final and autonomy/build remain unchanged."
+    downstream_consumer:
+      - E3-008
+      - CANONICAL_E2_ADR_HANDBACK_IF_TRIGGERED
+    unresolved_questions:
+      - Actual technical and eligibility verdicts; none exist at planning time.
+      - Whether all six gate-critical role/task envelopes have eligible exact configurations.
+      - Whether any evidence requires E2 handback or only E4 implementation/configuration correction.
+    escalation_conditions:
+      - Any disputed hard failure, architecture handback, invalid independence, missing account/cost/data evidence or material synthesis uncertainty.
+      - Any request to activate a route, assign a role, pass E3, authorize autonomy or start E4.
+    next_command: "MODE: EXECUTE_TASK_E3-007"
+
+  - task_id: E3-008
+    title: Independently verify E3 evidence, technical verdicts, and role eligibility
+    stage: E3
+    objective: In a fresh independent session, re-derive protocol/QPA/admission compliance, raw evidence lineage, all eight E3V verdicts, exact configuration-role eligibility, hard security/correctness outcomes, architecture handbacks and E3 gate readiness from authoritative artifacts without fixing them or passing the stage gate.
+    why_it_matters: The synthesis author and run operators cannot establish the evidence basis that might make the project autonomy-eligible; a separate verifier must reconstruct it before a still-separate gate decision.
+    owner_role: INDEPENDENT_E3_VERIFIER
+    assigned_model: null
+    reviewer_model: null
+    verifier_model: null
+    assignment_policy: "Must be a fresh verifier distinct from every E3-001..007 author, operator, fixer, challenger, task verifier and author-side helper. The exact verifier system/configuration and independence basis are recorded. It may verify or reject, never fix."
+    status: BACKLOG
+    planning_status: PLANNED_DEPENDENCY_GATED_NOT_EXECUTED
+    priority: P0
+    dependencies:
+      - E3-007
+    blocked_by: []
+    activation_condition: "E3-001 through E3-007 are independently VERIFIED, E3-007 supplies a challenged synthesis package, and no unresolved material task finding blocks re-derivation."
+    activation_condition_status: BLOCKED_PENDING_E3_007_INDEPENDENT_VERIFICATION
+    gate_invariant: "E3-008 independently verifies or rejects the E3 package. It cannot repair it, pass VERIFY_STAGE_E3, set AUTONOMY_ELIGIBLE, authorize build, activate routes/roles, start E4 or modify accepted E2 semantics."
+    files_to_read:
+      - MASTER_OPERATING_PROMPT.md
+      - AGENTS.md
+      - README.md
+      - SECURITY.md
+      - 01_governance/PROJECT_STATE.yaml
+      - 01_governance/TASK_REGISTRY.yaml
+      - 01_governance/DECISION_LOG.md
+      - 01_governance/ASSUMPTION_REGISTER.md
+      - 01_governance/RISK_REGISTER.md
+      - 01_governance/MODEL_REGISTRY.yaml
+      - 01_governance/SOURCE_LEDGER.csv
+      - 03_product/
+      - 05_architecture/
+      - 06_evaluation/
+      - 10_checkpoints/stage_checkpoints/ENGINEERING_PREVIEW_V0_1_RELEASE_ACCEPTANCE.yaml
+      - 10_checkpoints/stage_checkpoints/ENGINEERING_PREVIEW_E1_SPECIFICATION_GATE_VERIFICATION.yaml
+      - 10_checkpoints/stage_checkpoints/ENGINEERING_PREVIEW_E2_ARCHITECTURE_GATE_VERIFICATION.yaml
+      - 99_handoffs/completed/E3-001_verifier_review.yaml
+      - 99_handoffs/completed/E3-002_verifier_review.yaml
+      - 99_handoffs/completed/E3-003_verifier_review.yaml
+      - 99_handoffs/completed/E3-004_verifier_review.yaml
+      - 99_handoffs/completed/E3-005_verifier_review.yaml
+      - 99_handoffs/completed/E3-006_verifier_review.yaml
+      - 99_handoffs/completed/E3-007_challenger_review.yaml
+      - 99_handoffs/completed/E3-007_verifier_review.yaml
+    inputs:
+      verified_prerequisite_tasks: [E3-001, E3-002, E3-003, E3-004, E3-005, E3-006, E3-007]
+      stage_gate_evaluated_by_this_task: false
+      autonomy_transition_allowed_by_this_task: false
+    deliverables:
+      - 10_checkpoints/stage_checkpoints/ENGINEERING_PREVIEW_E3_VALIDATION_VERIFICATION.yaml
+      - 99_handoffs/completed/E3-008_verifier_review.yaml
+    allowed_files_to_change:
+      - 10_checkpoints/stage_checkpoints/ENGINEERING_PREVIEW_E3_VALIDATION_VERIFICATION.yaml
+      - 01_governance/MODEL_REGISTRY.yaml
+      - 01_governance/PROJECT_STATE.yaml
+      - 01_governance/TASK_REGISTRY.yaml
+      - 99_handoffs/completed/E3-008_verifier_review.yaml
+    forbidden_actions:
+      - Modify/fix protocols, harnesses, fixtures, raw/normalized evidence, synthesis reports, E1/E2 artifacts or accepted ADRs.
+      - Trust task summaries/labels without re-deriving raw lineage, metrics, exclusions, hard failures, supported scope, role/config identity and handbacks.
+      - Run/retry a technical/model block, call a provider, spend, access credentials/private data, or create application/harness implementation.
+      - Pass the E3 stage gate, mark AUTONOMY_ELIGIBLE, record AUTONOMOUS_BUILD_AUTHORIZED, make an E4 task READY or operationally activate any configuration/route.
+    acceptance_criteria:
+      - Independently re-derive E3-QPA Founder approval/pre-result freeze, protocol/harness versions, every RUN_ADMISSION PASS, immutable raw lineage and contamination controls; invalid/missing items receive no credit.
+      - Reconstruct E3V-001..008 separately from canonical definitions and verify property, AR/ADR, evidence, scope, failure/missing behavior, root cause, exact handback and E4/E5 remainder for each.
+      - Independently verify mandatory E3V-002 process/host containment/fencing/termination/recovery and E3V-006 synthetic protected-acquisition/capture/recipient/no-replay/WAITING_FOR_USER evidence for every required claimed support class.
+      - Recompute all technical results, role/task/configuration metrics, hard failures, costs/latency, confidence/precision, exclusions and eligibility verdicts from raw/normalized evidence.
+      - Confirm all eleven roles have truthful dispositions, six gate-critical roles have the required scoped evidence, controller/verifier/security special floors hold, and verifier/grader independence is structural/evidentiary rather than label-only.
+      - Confirm no unresolved architecture handback, hard correctness/security violation, unsupported-scope promotion, hidden fallback, stale configuration, missing account/budget/data/credential evidence or material finding is concealed.
+      - Verify MODEL_REGISTRY records exact scoped evidence without permanent assignment/operational activation and that E4 remains implementation-level, NOT_STARTED and unauthorized.
+      - Produce an E3 readiness verdict for the separate gate, with exact reviewed commit/digests, methods, commands, results, findings, limitations and no self-gate transition.
+    required_tests:
+      - Independent strict YAML/JSON/CSV/Markdown, duplicate-key/ID, dependency/DAG/status and cross-artifact set-equality validation.
+      - E3V 8/8 canonical field/handback, eleven-role/six-critical-role, exact configuration, QPA/admission/run/raw/report/registry and gate-condition reconstruction.
+      - Recompute decisive deterministic oracles, hard-failure precedence, metrics/cost/latency/denominators/confidence, stale/supersession and unsupported-scope logic from authoritative evidence.
+      - Frozen E1 and accepted E2/ADR preservation; no new run/call/cost/code, no secret/clean-room/scope violation, no autonomy/E4 transition, git diff --check.
+    challenger_requirements:
+      - The independent E3-007 challenge is a prerequisite and every finding must be re-dispositioned from underlying evidence. E3-008 may record new findings but may not fix them.
+      - The later VERIFY_STAGE_E3 session is a distinct gate-level challenge/re-derivation and cannot be the same running session as E3-008.
+    verifier_requirements:
+      - E3-008 is itself the fresh independent verifier and must disclose exact configuration, independence limits, reviewed revision/digests and any same-provider/model relationships.
+      - Any unresolved BLOCKER/HIGH/MEDIUM, invalid admission, hard violation, missing gate-critical role or unresolved handback yields NOT_VERIFIED/BLOCKED and prevents stage-gate eligibility.
+    run_authorization_requirement: "No empirical execution. Read-only evidence re-derivation only; new evidence needs a prospectively admitted prior task/block."
+    budget_requirement: "USD 0 new spend; verify recorded costs against prior authorizations without making calls."
+    credential_requirement: "No credential access; verify secret-safe references/receipts only."
+    data_fixture_policy: "Read existing approved evidence under its retention/access policy; do not expose held-out, private, quarantined or raw sensitive content unnecessarily."
+    raw_evidence_policy: "Raw evidence is immutable/read-only; verifier outputs are separate records with stable evidence links and cannot repair source evidence."
+    stop_conditions:
+      - Any need to fix source artifacts, run a missing test, access a credential/provider/private datum or broaden scope.
+      - Any invalid independence, evidence gap/tamper, hard violation, unresolved handback or material finding that prevents truthful verification.
+    architecture_handback_conditions: "Independently confirmed architecture-assumption failure records the canonical ADR handback and blocks E3 readiness. E3-008 cannot reopen/fix E2 itself."
+    completion_transition: "On PASS, E3-008 becomes VERIFIED and MODE: VERIFY_STAGE_E3 becomes the only next E-track operation; E3 gate remains NOT_EVALUATED and autonomy/build unchanged. On material failure, the exact prior task returns to a prospective fixer/new-block or governed E2 handback path."
+    downstream_consumer: VERIFY_STAGE_E3
+    unresolved_questions:
+      - Whether the future evidence package supports E3 verification and gate readiness.
+      - Whether the separate stage-gate verifier will independently pass or block E3.
+      - The later Founder autonomous-build authorization envelope, which cannot be created by E3-008.
+    escalation_conditions:
+      - Any evidence-integrity, independence, security, architecture-handback or gate-critical eligibility failure.
+      - Any attempt to combine E3-008 with VERIFY_STAGE_E3 or a Founder build authorization.
+    next_command: "MODE: EXECUTE_TASK_E3-008"

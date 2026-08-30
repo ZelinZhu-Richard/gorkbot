@@ -4,6 +4,92 @@ public_source_access_window_utc: "2026-08-22T04:13:42Z..2026-08-22T04:13:51Z"
 account_access_verified_on: null
 benchmark_plan: 06_evaluation/MODEL_ROLE_BENCHMARK_PLAN.md
 
+e3_eligibility_schema_plan:
+  status: PLANNED_NOT_POPULATED_NO_RESULTS
+  planning_authority: PLAN_STAGE_E3
+  planned_protocol: 06_evaluation/model_role_benchmark/E3_MODEL_ROLE_BENCHMARK_PROTOCOL.yaml
+  population_authority: "E3-007 may add evidence-backed proposal records only after E3-006 is independently VERIFIED; E3-008 must independently confirm them. PLAN_STAGE_E3 adds no result."
+  current_qualification_record_count: 0
+  current_eligible_configuration_count: 0
+  current_role_assignment_count: 0
+  configuration_role_verdict_vocabulary:
+    ELIGIBLE: "The exact configuration passes every frozen hard gate and threshold for the named role, task classes, scope and qualification window; classification alone does not authorize use."
+    ELIGIBLE_WITH_CONSTRAINTS: "The exact configuration passes only inside explicitly recorded task, capability, tool, data, route, budget, latency/resource, fallback or environment constraints; outside them it is not eligible."
+    INELIGIBLE: "Valid evidence fails a hard gate or required threshold for the named role/task/scope."
+    INCONCLUSIVE: "Admitted evidence is insufficient, invalid, conflicting, incomplete or too imprecise for a favorable decision."
+    NOT_TESTED: "No admitted qualifying block exists; no eligibility or normal-route credit."
+  preserved_route_eligibility_vocabulary:
+    - PRODUCTION_OR_NORMAL_ELIGIBLE
+    - EVALUATION_ONLY
+    - USER_CONFIGURED_UNVERIFIED
+    - DISALLOWED
+  route_separation_rule: "Every E3 benchmark attempt uses route_purpose E3_EVALUATION and route_eligibility EVALUATION_ONLY. Benchmark admission is not normal-task eligibility. USER_CONFIGURED_UNVERIFIED supplies no E3 gate credit; DISALLOWED never runs."
+  canonical_logical_roles:
+    - AUTONOMOUS_CONTROLLER
+    - PLANNER
+    - EXECUTOR
+    - CODER
+    - COMPUTER_CONTROLLER
+    - VISION_INTERPRETER
+    - VERIFIER
+    - SECURITY_REVIEWER
+    - MEMORY_EXTRACTOR
+    - SUMMARIZER
+    - ROUTER
+  e3_gate_critical_roles:
+    - AUTONOMOUS_CONTROLLER
+    - PLANNER
+    - EXECUTOR
+    - CODER
+    - VERIFIER
+    - SECURITY_REVIEWER
+  required_future_configuration_identity_fields:
+    - system_or_product
+    - provider
+    - exact_model_id
+    - served_version_or_snapshot
+    - interface_and_service_tier
+    - account_data_region_policy_refs
+    - reasoning_effort_and_sampling
+    - role_prompt_and_policy_version
+    - tools_and_capability_configuration
+    - context_truncation_cache_policy
+    - fallback_policy
+    - verifier_separation_configuration
+    - cost_latency_resource_policy
+  required_future_qualification_record_fields:
+    - configuration_id
+    - route_purpose
+    - route_eligibility_during_run
+    - logical_role
+    - task_classes_and_tested_scope
+    - unsupported_scope
+    - protocol_fixture_harness_grader_versions
+    - admitted_run_and_attempt_counts
+    - raw_and_normalized_evidence_refs
+    - correctness_and_false_completion_results
+    - security_and_hard_boundary_results
+    - cost_latency_usage_retry_and_correction_results
+    - eligibility_verdict
+    - constraints
+    - independent_verifier
+    - qualification_date_and_window
+    - expiry_and_revalidation_triggers
+    - supersedes_or_superseded_by
+  stale_or_revalidation_triggers:
+    - moving_alias_or_served_version_change
+    - prompt_tool_context_fallback_or_policy_change
+    - account_data_region_or_credential_policy_change
+    - role_task_requirement_or_protocol_change
+    - qualification_window_expiry
+    - security_incident_or_material_provider_drift
+  invariants:
+    - "A model family name is never eligible without an exact tested configuration."
+    - "One configuration needs a separate verdict for each role and task-class envelope."
+    - "A fallback is a separately eligible exact configuration; hidden fallback is forbidden."
+    - "Superseded and unfavorable records remain append-only evidence."
+    - "No eligibility record activates E4 without E3_GATE_PASSED and a separate explicit Founder AUTONOMOUS_BUILD_AUTHORIZED decision."
+
 claim_status_vocabulary:
   VERIFIED_PUBLIC: "Current first-party public source directly supports the claim."
   FOUNDER_ACCOUNT_VERIFIED: "Authorized account evidence or a minimal authorized call supports the claim for the founder's account."
