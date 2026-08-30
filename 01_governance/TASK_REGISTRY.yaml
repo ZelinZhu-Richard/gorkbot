@@ -2202,12 +2202,12 @@ tasks:
     architecture_verification:
       candidate_id: EP-ARCH-C01
       candidate_name: Integrated Transactional Local Core
-      architecture_status: SELECTED_VERIFIED_PENDING_E2_GATE
-      adr_status: SELECTED_VERIFIED_PENDING_E2_GATE
+      architecture_status: SELECTED_VERIFIED_ACCEPTED_E2_GATE_PASSED
+      adr_status: "ACCEPTED by the E2 stage gate on 2026-08-30T07:10:34Z against f413dd8decc2964c042d911e96e5982681b13017 (10_checkpoints/stage_checkpoints/ENGINEERING_PREVIEW_E2_ARCHITECTURE_GATE_VERIFICATION.yaml)"
       adr_ids: [ADR-E2-001, ADR-E2-002, ADR-E2-003, ADR-E2-004, ADR-E2-005, ADR-E2-006, ADR-E2-007, ADR-E2-008, ADR-E2-009]
       verified_adr_count: 9
-      accepted_adr_count: 0
-      e2_gate_status: NOT_EVALUATED
+      accepted_adr_count: 9
+      e2_gate_status: "VERIFIED / E2_GATE_PASSED (2026-08-30T07:10:34Z, f413dd8decc2964c042d911e96e5982681b13017, 10_checkpoints/stage_checkpoints/ENGINEERING_PREVIEW_E2_ARCHITECTURE_GATE_VERIFICATION.yaml)"
       e2_gate_evaluated_by_e2_006: false
       adr_file_self_status_lines: "unchanged (PROPOSED_PENDING_INDEPENDENT_ARCHITECTURE_VERIFICATION); the baseline, E3 register, and ADR files are outside the E2-006 allowed paths and are forbidden content changes, so the verified status is recorded in this registry, PROJECT_STATE, and the E2 architecture verification checkpoint only; artifact self-status lines are historical per repository precedent"
     verifier_section_results: "40/40 prompt-required section checks PASS: C01 selection rationale, no hidden hybrid, AR coverage 65/65 (59 hard = 57 ARCHITECTURE_CONFIRMED + 2 E3_VALIDATION_OUTSTANDING (AR-EXE-003 -> E3V-002; AR-SEC-006 -> E3V-006) + 0 VIOLATED + 0 UNMAPPED; 6 preferences qualitative), E3-outstanding truth, ADR set 9/9 with uniform 17-section structure, ADR status authority, cross-ADR consistency (13 pairs, 0 contradictory ownership), state ownership (four classes), recovery 25 scenarios x 12 fields plus 7 partial-filesystem subcases, approval/effect chain, threat model TB-01..20 cell-equal to verified C01 f05, execution/isolation (Tier 2 semantic floor, no mechanism selected), protected entry (E3V-006 outstanding), model/provider neutrality, evidence/verification independence, observability subordination, testability seams (170/18/11/23/16/30/9/16/8/EP-CTL-016), E3V handback closure (8/8 primary-owner closed; 75 representations set-equal), E3V-001..008 contracts, E3V-002, E3V-006, E3-QPA-001 plan-only with no numeric value, E4 deferrals 3/3, reversibility/migration, rejected alternatives, decision rule (non-numeric, best fit for current verified scope), clean room (0 Level-C imports), technology neutrality, no implementation"
@@ -2287,7 +2287,7 @@ tasks:
     downstream_consumer: VERIFY_STAGE_E2
     unresolved_questions:
       - Independently VERIFIED on 2026-08-30 (UTC) against 85902bfc61f9ebb8363f6b4d69194c3a1a275f14 (99_handoffs/completed/E2-006_verifier_review.yaml): the proposed EP-ARCH-C01 baseline and ADR-E2-001..009 independently satisfy every E1-derived hard architecture requirement at the architecture level (57 ARCHITECTURE_CONFIRMED, 2 E3_VALIDATION_OUTSTANDING, 0 VIOLATED, 0 UNMAPPED); no material uncertainty was improperly deferred to E3; the E3 obligation plan (E3V-001..008, E3-QPA-001, three E4 bundles) is complete enough for a stable post-gate plan.
-      - Whether the separate VERIFY_STAGE_E2 stage-gate evaluation passes E2 and records ADR acceptance remains open; E2-006 does not evaluate the gate and no ADR is ACCEPTED.
+      - "Post-gate: the separate VERIFY_STAGE_E2 evaluation recorded E2_GATE_PASSED on 2026-08-30T07:10:34Z against f413dd8decc2964c042d911e96e5982681b13017 (10_checkpoints/stage_checkpoints/ENGINEERING_PREVIEW_E2_ARCHITECTURE_GATE_VERIFICATION.yaml); EP-ARCH-C01 is the accepted architecture baseline and ADR-E2-001..009 are ACCEPTED (accepted 9 / verified 9). E2-006 itself did not evaluate the gate. No E3 task exists; MODE: PLAN_STAGE_E3 is the next E-track operation."
       - The finite numeric E3 verification-rerun, deterministic-check-repetition, and correction-attempt ceilings remain E3-QPA-001-owned and unset; founder acknowledgement of the E3-QPA-001 accountable role is not yet recorded in DECISION_LOG.md (V-E2-006-N6).
     escalation_conditions:
       - Any architecture or E1 semantic conflict, missing evidence, circular verification, clean-room concern, or unresolved material finding.

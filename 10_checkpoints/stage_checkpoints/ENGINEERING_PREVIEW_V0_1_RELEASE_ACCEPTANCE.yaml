@@ -130,7 +130,7 @@ future_release_candidate_binding:
 future_stage_prerequisites:
   E0_gate: VERIFIED
   E1_gate: VERIFIED
-  E2_gate: NOT_EVALUATED
+  E2_gate: VERIFIED
   E3_gate: NOT_EVALUATED
   E4_autonomous_build_authorization_applicable_and_recorded: NOT_EVALUATED
   E4_applicable_work_independently_verified: NOT_EVALUATED
