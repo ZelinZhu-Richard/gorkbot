@@ -1,0 +1,199 @@
+handoff_id: E3-001-author-2026-08-31
+task_id: E3-001
+stage: E3
+author_model: "Codex (runtime model identifier not exposed)"
+reviewer_requested: FRESH_INDEPENDENT_CHALLENGER_THEN_FIXER_IF_NEEDED_THEN_SEPARATE_POST_FIX_VERIFIER
+started_at: UNKNOWN_NOT_CAPTURED
+completed_at: "2026-08-31T13:43:55Z"
+author_base_commit: fd3a7e7c2076a2a21475cb2cf9d6b376a58735dc
+branch: chore/initialize-project-materials
+author_result: COMMON_E3_QUALIFICATION_AND_RUN_ADMISSION_GOVERNANCE_READY_FOR_REVIEW_NOT_VERIFIED
+authority_boundary:
+  task_role: AUTHOR_ONLY
+  project_challenger_or_verifier_credit: NONE
+  founder_decision_authority: NONE
+  run_or_qualification_authority: NONE
+  architecture_or_adr_authority: NONE
+  autonomy_or_e4_authority: NONE
+policy_summary:
+  policy_id: E3-QPA-POLICY-001
+  policy_version: 0.1.0-author-draft
+  policy_status: READY_FOR_REVIEW_NOT_INDEPENDENTLY_VERIFIED
+  manifest_schema_id: E3_RUN_ADMISSION_MANIFEST
+  manifest_schema_version: 0.1.0-author-draft
+  run_admission_outcomes: [PASS, DO_NOT_RUN, EXPIRED_REQUIRES_REFREEZE]
+  current_run_admission: DO_NOT_RUN
+  exact_pass_route:
+    route_purpose: E3_EVALUATION
+    route_eligibility: EVALUATION_ONLY
+  qpa:
+    id: E3-QPA-001
+    accountable_owner: Founder
+    founder_acknowledgement_recorded: false
+    founder_value_approval_recorded: false
+    status: FOUNDER_DECISION_REQUIRED_NO_NUMERIC_VALUES
+    canonical_scope_aware_values:
+      finite_verification_rerun_ceiling_per_case_or_task: null
+      finite_deterministic_required_check_repetition_rule_per_check_or_class: null
+      finite_correction_attempt_ceiling_per_case_or_task: null
+  current_paid_validation_authorization_usd: 0
+  credential_dependency: UNKNOWN_OR_NOT_AUTHORIZED
+  evidence_layers: [RAW_RUN_EVIDENCE, DERIVED_ANALYSIS, ELIGIBILITY_DECISION]
+  founder_decisions_required:
+    before_protocol_authoring: []
+    before_execution_ready_protocol_verification_or_any_run_admission_PASS:
+      - E3_QPA_001_ACCOUNTABLE_ROLE_ACKNOWLEDGEMENT
+      - EXACT_SCOPE_AWARE_QPA_VALUES
+    conditional_before_paid_external_validation:
+      - EXACT_PROVIDER_ACCOUNT_CONFIGURATION_PURPOSE_AND_SPEND_AUTHORIZATION
+    conditional_before_real_credential_restricted_data_or_controlled_external_effect_use:
+      - EXACT_CURRENT_FOUNDER_AUTHORIZATION_FOR_THE_REQUESTED_SCOPE
+    before_autonomous_build: SEPARATE_POST_E3_FOUNDER_DECISION_NOT_E3_001
+  admission_expiry: "No invented calendar TTL. Any material change to the policy/schema, verified task/protocol/harness, exact configuration/scope/route, QPA, budget/account/credential, data/region/network/effect, isolation/security, architecture/ADR, evidence/contamination, provider version, support scope, or consumed single-use PASS requires a new freeze and manifest; prior PASS plus drift is EXPIRED_REQUIRES_REFREEZE, while missing authority without a prior PASS is DO_NOT_RUN."
+  budget_policy: "NO_COST_LOCAL_VALIDATION and PAID_EXTERNAL_VALIDATION are distinct, but both require the full gate. Local admission binds prospectively approved finite time/output/process/disk/network/cost limits. Paid validation remains NOT_AUTHORIZED with USD 0; any future paid block requires an exact current Founder authorization for provider/account, purpose, configurations, per-run/protocol/stage caps, repetitions and corrections, data/credential/network scope, stop threshold, actor, and provenance."
+  credential_policy: "Governance and ordinary evidence may contain only opaque nonsecret references and redacted metadata, never raw credentials. Any future use requires an exact provider/account scope, least privilege, protected entry where applicable, current validity/revocation and recipient checks, disabled ambient inheritance, capture-surface exclusion, no model-context or fixture copying, and fail-closed admission. Current dependency is UNKNOWN_OR_NOT_AUTHORIZED and no credential was accessed."
+  s0_005_reconciliation: "Historical provider account, entitlement, billing/quota, token/credential availability, and external-service accessibility remain UNKNOWN_OR_NOT_AUTHORIZED. Protocol drafting may proceed without resolving them, but every dependent real-provider or paid run remains DO_NOT_RUN until exact current evidence and authorization exist; no Stage 0 work is reopened by E3-001."
+  data_fixture_policy: "Default admissible classes are SYNTHETIC, REPOSITORY_OWNED, PUBLIC_OPEN_WITH_RIGHTS, and CLEAN_ROOM_DERIVED with exact provenance, rights, region, retention, privacy, and training-use facts. Private customer discovery/interviews, proprietary or reconstructed Grok Bot source, real secrets/credentials, and unauthorized personal/private data are prohibited; RESTRICTED is currently DO_NOT_RUN. E3V-002 uses safe synthetic process fixtures and E3V-006 uses synthetic protected markers only."
+  network_and_external_effect_policy: "NETWORK_READ and REMOTE_SIDE_EFFECT are separate dimensions. The local lane is offline with zero consequential external effect. Any future egress needs an exact allowlist, bounds, redirects, destinations, data classes, account/credential and authority; any remote mutation additionally needs an indispensable frozen-question basis, exact target/action/idempotency/reconciliation/rollback contract, and specific authorization. Git push, PR/branch mutation, arbitrary upload, webhook, account change, or other unapproved effect remains forbidden."
+  raw_evidence_policy: "RAW_RUN_EVIDENCE is append-only, immutable, integrity-checked, and separately addressed from analysis and decisions. It retains every failed, inconclusive, retried, rerun, corrected, excluded, stopped, and hard-failure attempt with stable IDs, exact protocol/configuration/environment/input/tool/provider provenance, outputs or protected references, timing, usage/cost, stop reason, and integrity state. Amendments preserve the original and record reason, actor, time, impact, and recomputation scope."
+  derived_analysis_policy: "DERIVED_ANALYSIS references immutable raw evidence and a prospectively frozen analysis/exclusion/denominator rule. It may compute scoped correctness, reliability, cost/latency, role outcomes, and failure classes, but may not overwrite raw evidence, omit unfavorable attempts, invent missing facts, move criteria after results, or generalize beyond tested scope."
+  eligibility_decision_policy: "ELIGIBILITY_DECISION is a distinct versioned layer keyed by exact configuration, logical role, task class/scope, and protocol version. Admission PASS and raw or derived results create no eligibility credit or route promotion. E3-007 may only synthesize; E3-008 must independently rederive; VERIFY_STAGE_E3 may establish AUTONOMY_ELIGIBLE only, and separate Founder authorization is still required for AUTONOMOUS_BUILD_AUTHORIZED."
+  model_eligibility_vocabulary:
+    ELIGIBLE: SATISFIES_ALL_REQUIRED_EVIDENCE_FOR_THE_EXACT_ROLE_CONFIGURATION_TASK_AND_PROTOCOL_SCOPE
+    ELIGIBLE_WITH_CONSTRAINTS: ELIGIBLE_ONLY_UNDER_EXPLICIT_RECORDED_BOUNDS
+    INELIGIBLE: FAILS_A_REQUIRED_CONDITION_OR_HARD_INVARIANT_FOR_THE_SCOPE
+    INCONCLUSIVE: EVIDENCE_IS_INSUFFICIENT_CONFLICTING_OR_INVALID_FOR_A_VERDICT
+    NOT_TESTED: NO_QUALIFYING_EVIDENCE_EXISTS
+    current_candidate_assignments: NONE
+  benchmark_contamination_policy: "Development/smoke and held-out decision partitions remain separate. Held-out bytes, labels, and expected results are unavailable to candidate tuning; grading is blinded and independent where judgment is used. Favorable seed/order selection, selective retry/rerun or omission, post-result exclusion/denominator/threshold changes, and promotion of development or smoke evidence are forbidden and trigger stop, quarantine, and blocked credit."
+  retry_semantics: "RETRY is a new attempt ID under the same frozen block/run semantics after an eligible transient operational failure; it preserves the original and consumes the frozen execution-retry and budget reservations. Denials, stale authority, uncertain non-idempotent effects, exhausted limits, and hard failures are not automatically retryable."
+  rerun_semantics: "RERUN is a new run ID and new evidence-producing execution under the same frozen protocol/configuration. A scheduled protocol repetition consumes its protocol repetition slot; a same-revision verification-error rerun consumes the affected QPA rerun scope and no protocol repetition slot. The prior run remains evidence and selective failure-only reruns are forbidden."
+  correction_semantics: "CORRECTION is a material change before a new execution, requiring exact diff, new affected configuration/protocol/policy version where applicable, a new whole affected block and manifest, and preserved prior evidence. A membership-independent series plus versioned membership snapshot and global stable member registry preserve every overlapping, removed, or re-added case/task ledger; only never-before-seen members initialize state, and each added member needs a prospectively Founder-approved QPA assignment."
+  flaky_check_policy: "Mixed ordered outcomes for the same revision/configuration/environment/check are FLAKY. A later pass erases neither the flake nor failure; credit requires the complete prospectively declared deterministic repetition rule, and unresolved mixed or insufficient evidence blocks eligibility."
+  hard_failure_policy: "Non-compensating failures include false completion, unauthorized effect, duplicate/unresolved consequential effect, secret/private exposure, scope escape or data loss, approval/admission bypass, stale evidence, hidden fallback, fabricated/deleted/omitted evidence, invalid independence, failure to stop/fence/wait, clean-room violation, and any frozen hard-invariant failure. They immediately stop productive dispatch, quarantine evidence, preserve the record, block the affected tuple, and require independent classification; averages or later passes cannot compensate."
+  e3v_admission:
+    common: "Every E3V-001..008 block needs exact independently verified task/protocol/harness bindings, current Founder-approved QPA values, exact configuration/tested and unsupported scope, route, budget, credentials, data/region/retention, network/effects, isolation/security, evidence/contamination, stop/currentness, and its exact canonical ADR handback set. E3-001 authoring alone makes none executable."
+    E3V-002: "Additionally binds tested host/platform/support scope, safe synthetic process tree, bounded privilege, containment/force/fence/descendant and recovery observations, no destructive real-user workload, stop rules, and ADR-E2-003/004/007 handback; no mechanism is selected or run."
+    E3V-006: "Additionally binds exact selected client/configuration and recipient, protected entry, synthetic marker only, unauthorized-surface observations, capture exclusion, exact-recipient/no-replay/fail-to-WAITING_FOR_USER evidence, and ADR-E2-001/004/005/007/008/009 handback; no client implementation is selected or run."
+    model_benchmark: "Additionally binds exact configuration/version, logical role, task class, EVALUATION_ONLY route, provider/model/served version, reasoning/tool/context/prompt/fallback policy, verifier separation, budget/credential, benchmark case/oracle set, and hard-failure rules. A family name is insufficient and no candidate is currently assigned or qualified."
+  downstream_activation:
+    E3-002: BACKLOG_UNTIL_FRESH_INDEPENDENT_E3_001_VERIFICATION
+    E3-003: BACKLOG_UNTIL_FRESH_INDEPENDENT_E3_001_VERIFICATION
+    E3-004: BACKLOG_UNTIL_BOTH_E3_002_AND_E3_003_ARE_INDEPENDENTLY_VERIFIED
+    E3-005: BACKLOG_DO_NOT_RUN
+    E3-006: BACKLOG_DO_NOT_RUN
+  future_harness_boundary: "Any later E3-004 code is bounded VALIDATION_HARNESS_CODE linked to verified protocols, uses synthetic/open fixtures, receives independent review and deterministic replay where applicable, may not hide application implementation or call a provider without separate admission, and cannot generate accepted empirical evidence before the harness itself is independently VERIFIED. No harness code was written or run in E3-001."
+  integrity_model: "One manifest-global, separately versioned integrity profile governs every digest. The pre-decision admission payload excludes both digest fields and the admission decision; the external decision and single-use binding records bind that payload; the final envelope then excludes only its own digest. E3-001 selects no hash, storage, locator, or sealing implementation."
+  admission_capture_model: "Every submission is captured once inside the protected boundary before parsing or secret classification under one authenticated trusted preparse context. Ordinary records receive only capability-free, non-dereferenceable, history-independent attestations for the current index entry, slot, preparse context, and universal protected-history screen; protected locators, counters, versions, content-derived tokens, and access handles never cross that boundary. A prior protected match remains secret-boundary rejected under later checker/classifier versions. Capture terminal classes remain separate from the exact three run-admission dispositions."
+  attempt_model: "Every INITIAL, RETRY, RERUN, and CORRECTION requires a fresh single-use manifest and independent PASS. Verification reruns project over the current block; deterministic repetition reserves its exact scheduled attempt; a membership-independent correction-series subject binds a versioned per-block membership snapshot; and each global stable scope-member ledger survives removal, readdition, series, group-set, block, manifest, and version changes. Only a never-before-seen member may initialize state. Protocol per-attempt resources bind the exact operation-schedule entry. Typed authoritative attempt-index history, fixed project/stage/task material-fact epochs, and atomic reservations prevent reset or stale-fact launch."
+  direct_dispatch_model: "Every DIRECT PASS seals one prospective consumption plan binding the exact launch/final set, attempt-index member, all applicable scopes of the three QPA families, all eight protocol-limit members, budget member, and fallback selector/claim disposition. One external authoritative execution record atomically consumes the launch and every required direct member before process start; a post-record readback rederives the terminal tuple, and partial, mismatched, separate, unknown, or unreceipted transition blocks execution pending reconciliation."
+  fallback_model: "Fallback depth is one. Every child is a separately admitted FALLBACK_ONLY manifest with direct dispatch structurally forbidden. Before the parent launch, the system seals only prospective selector, selected-child, parent-transition, child-release, and exact four-branch no-selection plans plus an identifier-only runtime-resolution locator. After actual trigger observations, one authoritative route-resolution execution deterministically applies FIRST_MATCH_IN_FROZEN_ORDER, atomically transitions the parent and selector, consumes at most one selected child, releases every unused child or all children on no-selection, records one receipt, and completes post-record readback before any child process starts. No realized selection, terminal class, receipt, transition, or runtime digest is embedded in a prelaunch plan."
+  handback_model: "Admission cannot manufacture an architecture handback. It can truthfully bind a pre-existing independently verified handback, exact canonical ADR set, and stopped lane; ordinary configuration failure remains non-architectural."
+current_task_and_gate_state:
+  E3-001: READY_FOR_REVIEW_NOT_VERIFIED
+  E3-002: BACKLOG_BLOCKED_ON_INDEPENDENT_E3_001_VERIFICATION
+  E3-003: BACKLOG_BLOCKED_ON_INDEPENDENT_E3_001_VERIFICATION
+  E3-004: BACKLOG
+  E3-005: BACKLOG_DO_NOT_RUN
+  E3-006: BACKLOG_DO_NOT_RUN
+  E3-007: BACKLOG
+  E3-008: BACKLOG
+  e3_gate: NOT_EVALUATED
+  autonomy_eligible: NOT_ELIGIBLE
+  autonomous_build_authorized: false
+execution_counters:
+  technical_validation_runs: 0
+  model_benchmarks_run: 0
+  paid_api_calls: 0
+  credentials_accessed: 0
+  network_or_provider_calls: 0
+  external_effects: 0
+  model_role_assignments: 0
+  application_code_files_created: 0
+  e4_actions: 0
+files_read:
+  - MASTER_OPERATING_PROMPT.md
+  - AGENTS.md
+  - README.md
+  - SECURITY.md
+  - 01_governance/PROJECT_STATE.yaml
+  - 01_governance/TASK_REGISTRY.yaml
+  - 01_governance/DECISION_LOG.md
+  - 01_governance/SOURCE_LEDGER.csv
+  - 01_governance/ASSUMPTION_REGISTER.md
+  - 01_governance/RISK_REGISTER.md
+  - 01_governance/MODEL_REGISTRY.yaml
+  - 02_research/GROK_BOT_018_RECONSTRUCTED_ARCHITECTURE_AUDIT.md
+  - 03_product/ENGINEERING_PREVIEW_CHARTER.md
+  - 03_product/ENGINEERING_PREVIEW_PRD.md
+  - 03_product/ENGINEERING_PREVIEW_USER_FLOWS.md
+  - 03_product/ENGINEERING_PREVIEW_CORRECTNESS_CONTRACT.md
+  - 03_product/ENGINEERING_PREVIEW_CONTRIBUTION_WORKFLOW.md
+  - 05_architecture/ENGINEERING_PREVIEW_ARCHITECTURE_BASELINE.md
+  - 05_architecture/ENGINEERING_PREVIEW_ARCHITECTURE_REQUIREMENTS.md
+  - 05_architecture/ENGINEERING_PREVIEW_E3_VALIDATION_OBLIGATIONS.md
+  - 05_architecture/adr/ADR-E2-001_SYSTEM_CLIENT_CORE_BOUNDARY.md
+  - 05_architecture/adr/ADR-E2-002_STATE_PERSISTENCE_HISTORY_PROJECTIONS_MIGRATION.md
+  - 05_architecture/adr/ADR-E2-003_ORCHESTRATION_OWNERSHIP_RECOVERY_IDEMPOTENCY.md
+  - 05_architecture/adr/ADR-E2-004_WORKSPACE_EXECUTION_ISOLATION_GIT_REMOTE_SEAM.md
+  - 05_architecture/adr/ADR-E2-005_CAPABILITY_APPROVAL_SECRET_EFFECT_RECONCILIATION.md
+  - 05_architecture/adr/ADR-E2-006_MODEL_PROVIDER_ROUTING_CONTEXT_BOUNDARY.md
+  - 05_architecture/adr/ADR-E2-007_VERIFICATION_EVIDENCE_ARTIFACT_INTEGRITY.md
+  - 05_architecture/adr/ADR-E2-008_OBSERVABILITY_AUDIT_METERING_FAILURE.md
+  - 05_architecture/adr/ADR-E2-009_LOCAL_PACKAGING_FUTURE_COMPATIBILITY.md
+  - 06_evaluation/ENGINEERING_PREVIEW_E3_PLAN.md
+  - 06_evaluation/ENGINEERING_PREVIEW_EVALUATION_SUITE.md
+  - 06_evaluation/MODEL_ROLE_BENCHMARK_PLAN.md
+  - 10_checkpoints/stage_checkpoints/ENGINEERING_PREVIEW_V0_1_RELEASE_ACCEPTANCE.yaml
+  - 10_checkpoints/stage_checkpoints/ENGINEERING_PREVIEW_E2_ARCHITECTURE_VERIFICATION.yaml
+  - 10_checkpoints/stage_checkpoints/ENGINEERING_PREVIEW_E2_ARCHITECTURE_GATE_VERIFICATION.yaml
+  - 99_handoffs/HANDOFF_TEMPLATE.yaml
+  - 99_handoffs/completed/PLAN_STAGE_E3_handoff.yaml
+  - 99_handoffs/completed/E2-005_verifier_review.yaml
+  - 99_handoffs/completed/E2-006_verifier_review.yaml
+files_created:
+  - 06_evaluation/e3_governance/E3_QUALIFICATION_AND_RUN_ADMISSION_POLICY.yaml
+  - 06_evaluation/e3_governance/E3_RUN_ADMISSION_MANIFEST.schema.yaml
+  - 99_handoffs/completed/E3-001_handoff.yaml
+files_modified:
+  - 01_governance/PROJECT_STATE.yaml
+  - 01_governance/TASK_REGISTRY.yaml
+files_deleted: []
+decisions_made:
+  - "PROPOSAL: common fail-closed E3 qualification and run-admission semantics, pending fresh independent challenge and separate post-fix verification."
+  - "PROPOSAL: technology-neutral closed manifest shape with explicit shared E3V gates, route, evidence, retry/rerun/correction, stop, expiry, and handback contracts."
+  - "No Founder decision, QPA numeric value, provider/account/credential authorization, eligibility verdict, model-role assignment, architecture/ADR decision, autonomy transition, or E4 authorization was made."
+assumptions_added: []
+risks_added_or_updated: []
+tests_run:
+  - "ruby /tmp/e3_001_validate.rb"
+  - "ruby /tmp/e3_repo_reconcile.rb /Users/richardzhu/dev/grok_bot/gork_bot"
+  - "Attempted local Draft 2020-12 metaschema check with Python jsonschema; dependency discovery only, with no install or network action."
+  - "Strict Psych AST parsing of both authored YAML artifacts plus duplicate-key, alias, merge-key, custom-tag, and multi-document negative inputs."
+  - "Closed-schema required-key, local-reference, enum, conditional, and adversarial manifest checks over complete DO_NOT_RUN plus hypothetical future INITIAL/RETRY/RERUN/CORRECTION PASS shapes, all three admission-capture branches, capability-free ordinary attestations backed by authenticated protected preparse context and universal history screening, fixed-key material-fact currentness, stable correction-series/member continuity, exact protocol dimensions, direct-dispatch all-member consumption, and prospective fallback plans with external selected-child/no-selection execution/readback."
+  - "Author-side read-only source trace, policy, schema, security, and final cross-artifact adversarial reviews; no reviewer edited repository files."
+test_results:
+  - "158/158 author-side strict-YAML, closed-schema, semantic-join, positive-shape, and adversarial assertions PASS with zero failures."
+  - "64/64 author-side repository reconciliation assertions PASS: exact five-file uncommitted patch; strict YAML; conjunctive E3 DAG/statuses; null QPA/zero authority and counters; handoff accounting; frozen paths; unchanged hypothesis-only MODEL_REGISTRY; whitespace, conflict-marker, and high-confidence secret scans."
+  - "1638/1638 local schema references resolve across 100 definitions; all 2826 required-property occurrences are declared."
+  - "Exactly three canonical QPA families; every current assignment is explicit null; paid authority exactly USD 0."
+  - "Author-side validation covers protected preparse capture with capability-free ordinary attestations, all nonsecret/secret branches, cross-version classifier continuity, membership-independent correction series with stable-member cumulative ledgers, typed attempt-index projections, fixed-key monotonic material-fact epochs, exact eight protocol dimensions, atomic direct-dispatch all-member consumption, and cycle-safe depth-one FALLBACK_ONLY prospective plans plus external selected-child/no-selection execution/readback; this creates no independent lifecycle credit."
+  - "Third-party Draft 2020-12 metaschema check was NOT RUN because the local Python jsonschema package is absent (ModuleNotFoundError); no dependency install was authorized or attempted."
+security_checks:
+  - "No credential, account, provider, network, paid, external-effect, or protected-entry operation was attempted."
+  - "Schema requires opaque nonsecret references, ambient-secret inheritance denial, capture-surface scans, synthetic markers for E3V-006, fail-closed network/effect admission, and raw/derived/decision evidence separation."
+  - "Restricted data and the current paid lane cannot PASS under current authority."
+known_limitations:
+  - "The temporary author validator implements the Draft 2020-12 subset used by this schema, and no local third-party jsonschema package was available for a full metaschema pass; a fresh independent challenger and separate post-fix verifier must revalidate the artifacts from repository bytes."
+  - "No E3-QPA-001 numeric value, protocol-specific resource limit, mechanism, host/client support class, provider/account configuration, credential dependency, or empirical result is established."
+  - "No run-admission PASS exists; no technical or model eligibility credit exists."
+unverified_claims:
+  - "The policy and schema are complete enough for downstream protocol authoring only after independent E3-001 verification."
+  - "Every future manifest fact, external decision record, digest, authority, reservation, and evidence control remains unverified until checked for the exact future block."
+blockers:
+  - "Fresh independent E3-001 challenger review and, after any fix, separate post-fix verification."
+  - "Founder acknowledgement and exact scope-aware E3-QPA-001 values before protocol execution-ready verification, any admission PASS, empirical attempt, or eligibility credit."
+  - "Verified E3-002/E3-003 protocols and E3-004 harness before any E3-005/E3-006 admission can PASS."
+  - "Any paid/external/provider, credential, data, region, network, or controlled-effect lane requires its own exact current authority and evidence; current paid authority is USD 0."
+recommended_next_task: "MODE: REVIEW_TASK_E3-001"
+repository_commit_or_patch: "UNCOMMITTED working-tree patch against fd3a7e7c2076a2a21475cb2cf9d6b376a58735dc on chore/initialize-project-materials; leave uncommitted for Founder review."

@@ -2117,6 +2117,7 @@ tasks:
       - 99_handoffs/completed/E2-004_verifier_review.yaml
     deliverables:
       - 05_architecture/ENGINEERING_PREVIEW_ARCHITECTURE_BASELINE.md
+      - 05_architecture/ENGINEERING_PREVIEW_ARCHITECTURE_REQUIREMENTS.md
       - 05_architecture/ENGINEERING_PREVIEW_E3_VALIDATION_OBLIGATIONS.md
       - 05_architecture/adr/
       - 99_handoffs/completed/E2-005_handoff.yaml
@@ -2300,12 +2301,55 @@ tasks:
     objective: Define and independently verify the common E3-QPA-001 authority boundary, protocol-freeze rules, run-admission schema, budget lanes, credential/data/fixture policy, raw-evidence contract, contamination controls, and founder-decision dependencies without selecting numeric values or executing a run.
     why_it_matters: No technical or model result is trustworthy if retry, correction, cost, evidence, data, credential, and stopping rules can be invented or changed after results are observed.
     owner_role: AUTHOR
-    assigned_model: null
+    assigned_model: "Codex (runtime model identifier not exposed) — E3-001 AUTHOR"
     reviewer_model: null
     verifier_model: null
     assignment_policy: "The E3-001 author may draft policy but may not acknowledge or approve the Founder-owned E3-QPA-001 role, self-challenge, self-verify, authorize a run, or create eligibility evidence. Authoring-surface identity creates no model-role eligibility."
-    status: READY
-    planning_status: PLANNED_NOT_CLAIMED_NOT_EXECUTED
+    status: READY_FOR_REVIEW
+    planning_status: AUTHOR_PASS_COMPLETE_PENDING_FRESH_INDEPENDENT_CHALLENGE_AND_VERIFICATION
+    author_model: "Codex (runtime model identifier not exposed)"
+    author_started_at: UNKNOWN_NOT_CAPTURED
+    author_completed_at: "2026-08-31T13:43:55Z"
+    author_base_commit: fd3a7e7c2076a2a21475cb2cf9d6b376a58735dc
+    author_result: COMMON_E3_QUALIFICATION_AND_RUN_ADMISSION_GOVERNANCE_AUTHORED_PENDING_INDEPENDENT_REVIEW
+    author_artifacts:
+      policy: 06_evaluation/e3_governance/E3_QUALIFICATION_AND_RUN_ADMISSION_POLICY.yaml
+      manifest_schema: 06_evaluation/e3_governance/E3_RUN_ADMISSION_MANIFEST.schema.yaml
+      handoff: 99_handoffs/completed/E3-001_handoff.yaml
+    author_policy_state:
+      policy_status: READY_FOR_REVIEW_NOT_INDEPENDENTLY_VERIFIED
+      admission_outcomes: [PASS, DO_NOT_RUN, EXPIRED_REQUIRES_REFREEZE]
+      current_admission: DO_NOT_RUN
+      qpa_status: FOUNDER_DECISION_REQUIRED_NO_NUMERIC_VALUES
+      qpa_canonical_family_count: 3
+      qpa_values_selected: 0
+      paid_validation_authorization_usd: 0
+      credential_dependency: UNKNOWN_OR_NOT_AUTHORIZED
+      technical_validation_runs: 0
+      model_benchmarks_run: 0
+      eligibility_credit_created: false
+    author_internal_review_status: "AUTHOR_SIDE_ASSISTANCE_ONLY: read-only repository tracing plus policy, schema, security, and trace adversarial reviews informed the sole author's artifacts. These agents did not edit files, are not the required fresh project CHALLENGER or separate post-fix VERIFIER, and create zero independent lifecycle credit."
+    author_execution_counters:
+      technical_validation_runs: 0
+      model_benchmarks_run: 0
+      paid_api_calls: 0
+      credentials_accessed: 0
+      network_or_provider_calls: 0
+      external_effects: 0
+      model_role_assignments: 0
+      application_code_files_created: 0
+      e4_actions: 0
+      autonomy_changes: 0
+    author_governance_result: "E3-001 is READY_FOR_REVIEW and NOT VERIFIED. E3-002/E3-003 remain BACKLOG blocked on fresh independent E3-001 verification; E3-005/E3-006 remain BACKLOG_DO_NOT_RUN. E3-QPA-001 acknowledgement and exact scope-aware values remain FOUNDER_DECISION_REQUIRED, paid authority remains USD 0, credential dependencies remain unverified, the E3 gate remains NOT_EVALUATED, autonomy remains NOT_ELIGIBLE/NOT_AUTHORIZED, and no empirical or application work occurred."
+    author_validation_status: PASS_AUTHOR_SIDE_STATIC_AND_SCHEMA_CHECKS_NOT_INDEPENDENT_VERIFICATION
+    author_validation_results:
+      manifest_schema_suite: "158/158 PASS using a temporary author-side strict-YAML and Draft-2020-12-subset validator; includes complete DO_NOT_RUN and hypothetical future PASS/RETRY/RERUN/CORRECTION shapes, all three admission-capture branches with capability-free ordinary attestations backed by authenticated protected preparse context and universal history screening, membership-independent correction series with versioned snapshots and stable-member cumulative ledgers, typed attempt-index history, fixed-key monotonic material-fact dispatch currentness, exact protocol dimensions, atomic DIRECT all-member consumption, prospective depth-one FALLBACK_ONLY plans, external selected-child/no-selection runtime execution/readback, and adversarial denials; no empirical fixture, harness, model, provider, network, credential, paid, or external-effect action"
+      strict_yaml_profile: "PASS for policy and schema; duplicate keys, aliases, merge keys, custom tags, and multi-document inputs denied"
+      schema_local_refs: "1638/1638 resolved across 100 local definitions; all 2826 required-property occurrences declared"
+      canonical_qpa: "PASS; exactly three canonical scope-aware families and every current assignment is explicit null"
+      current_authority: "PASS; paid authorization USD 0, credentials UNKNOWN_OR_NOT_AUTHORIZED, RUN_ADMISSION DO_NOT_RUN"
+      negative_admission_vectors: "PASS; missing facts, wrong route, wrong Founder actor, inactive reservation, current-attempt result, paid lane, restricted data, secret reclassification, correction-scope rekey, hidden or stranded fallback reservation, consumed-parent refund, incomplete no-selection closure, hard failure, fabricated handback, evidence-integrity failure, E3V-002/E3V-006 fixture violations, and expired/stop precedence are fail closed"
+      author_side_review: "Author-side adversarial passes reported protected-history capture, correction-series membership, material-epoch, direct-dispatch atomicity, fallback temporal/DAG and terminal-release issues; the sole author amended the drafts and reran the static suite. These reviews are not a registered project challenge or verification, and fresh independent review remains required."
     priority: P0
     dependencies:
       - E2-006
@@ -2317,7 +2361,7 @@ tasks:
       - decision: FOUNDER_DECISION_REQUIRED_FOR_ANY_PAID_EXTERNAL_VALIDATION
         required_before: "Any paid/external run only; no paid budget is inferred from prior assumptions."
     activation_condition: "The E1 specification gate and E2 architecture gate are independently VERIFIED; EP-ARCH-C01 and ADR-E2-001..009 are accepted; E3 planning is permitted under D-016."
-    activation_condition_status: "SATISFIED on 2026-08-30 (UTC): E1_GATE_PASSED at 7bbfebd and E2_GATE_PASSED at f413dd8; E3-001 is the sole READY E3 task. Founder QPA acknowledgement/values are intentionally not an authoring blocker but are a mandatory later protocol-verification and run-admission blocker."
+    activation_condition_status: "AUTHOR PASS completed on 2026-08-31 (UTC) against base fd3a7e7c2076a2a21475cb2cf9d6b376a58735dc after the satisfied E1/E2 gate prerequisites. E3-001 is READY_FOR_REVIEW, not independently challenged or verified. Founder QPA acknowledgement/values remain mandatory later protocol-verification and run-admission blockers, not authoring blockers."
     gate_invariant: "E3-001 freezes governance only. It selects no numeric QPA value, mechanism, host, client, provider, model, role occupant, eligibility verdict, architecture change, E4 authority, or application implementation."
     files_to_read:
       - MASTER_OPERATING_PROMPT.md
@@ -2327,21 +2371,30 @@ tasks:
       - 01_governance/PROJECT_STATE.yaml
       - 01_governance/TASK_REGISTRY.yaml
       - 01_governance/DECISION_LOG.md
+      - 01_governance/SOURCE_LEDGER.csv
       - 01_governance/ASSUMPTION_REGISTER.md
       - 01_governance/RISK_REGISTER.md
       - 01_governance/MODEL_REGISTRY.yaml
       - 03_product/ENGINEERING_PREVIEW_CHARTER.md
       - 03_product/ENGINEERING_PREVIEW_PRD.md
+      - 03_product/ENGINEERING_PREVIEW_USER_FLOWS.md
       - 03_product/ENGINEERING_PREVIEW_CORRECTNESS_CONTRACT.md
       - 03_product/ENGINEERING_PREVIEW_CONTRIBUTION_WORKFLOW.md
+      - 02_research/GROK_BOT_018_RECONSTRUCTED_ARCHITECTURE_AUDIT.md
       - 05_architecture/ENGINEERING_PREVIEW_ARCHITECTURE_BASELINE.md
+      - 05_architecture/ENGINEERING_PREVIEW_ARCHITECTURE_REQUIREMENTS.md
       - 05_architecture/ENGINEERING_PREVIEW_E3_VALIDATION_OBLIGATIONS.md
       - 05_architecture/adr/
       - 06_evaluation/ENGINEERING_PREVIEW_E3_PLAN.md
       - 06_evaluation/ENGINEERING_PREVIEW_EVALUATION_SUITE.md
       - 06_evaluation/MODEL_ROLE_BENCHMARK_PLAN.md
       - 10_checkpoints/stage_checkpoints/ENGINEERING_PREVIEW_V0_1_RELEASE_ACCEPTANCE.yaml
+      - 10_checkpoints/stage_checkpoints/ENGINEERING_PREVIEW_E2_ARCHITECTURE_VERIFICATION.yaml
       - 10_checkpoints/stage_checkpoints/ENGINEERING_PREVIEW_E2_ARCHITECTURE_GATE_VERIFICATION.yaml
+      - 99_handoffs/HANDOFF_TEMPLATE.yaml
+      - 99_handoffs/completed/PLAN_STAGE_E3_handoff.yaml
+      - 99_handoffs/completed/E2-005_verifier_review.yaml
+      - 99_handoffs/completed/E2-006_verifier_review.yaml
     inputs:
       accepted_architecture: EP-ARCH-C01
       accepted_adrs: ADR-E2-001..009
@@ -2417,7 +2470,7 @@ tasks:
       - Founder acknowledgement or value-setting is requested or appears to conflict with frozen E1 requirements.
       - A requested admission lane requires a real credential, network, private data, consequential effect, or positive spend.
       - The common schema cannot represent an E3V-specific safety, handback, or evidence requirement.
-    next_command: "MODE: EXECUTE_TASK_E3-001"
+    next_command: "MODE: REVIEW_TASK_E3-001"
 
   - task_id: E3-002
     title: Freeze E3V-001 through E3V-007 technical-validation protocols
