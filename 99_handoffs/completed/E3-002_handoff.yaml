@@ -1,0 +1,359 @@
+handoff_id: H-E3-002-20260902-AUTHOR
+task_id: E3-002
+stage: E3
+mode: EXECUTE_TASK_E3-002
+role: AUTHOR
+author_model: "Codex (runtime model identifier not exposed)"
+reviewer_requested: "A fresh independent E3-002 CHALLENGER, including a security-capable reviewer able to re-derive E3V-006 capture and enforcement coverage; the author receives no challenge or verification credit."
+started_at: null
+started_at_status: "UNKNOWN_NOT_CAPTURED; no exact start timestamp is fabricated"
+completed_at: "2026-09-02T17:52:55Z"
+base_commit: 47ebf70c47eac021b1b2caf2dcedaf0c30937e85
+base_branch: chore/initialize-project-materials
+initial_worktree_status: CLEAN
+repository_patch_status: UNCOMMITTED_FOR_FOUNDER_REVIEW
+task_status: READY_FOR_REVIEW
+verification_status: NOT_VERIFIED
+execution_ready_status: NOT_EXECUTION_READY
+empirical_authority: NONE
+
+authority_boundary:
+  authorized_work: "Author seven separately verdictable E3V-001..007 technical-validation protocol specifications, frozen-E1 traceability, and the technology-neutral input contract for a future E3-004 harness."
+  explicitly_not_authorized:
+    - technical_validation_execution
+    - process_or_fault_execution
+    - provider_replay_or_live_call
+    - model_benchmark_execution
+    - mechanism_configuration_host_client_or_product_technology_selection
+    - validation_harness_implementation
+    - application_implementation
+    - paid_or_network_action
+    - account_or_credential_access
+    - Founder_QPA_acknowledgement_or_value_approval
+    - run_admission_PASS
+    - model_role_assignment
+    - eligibility_verdict
+    - architecture_or_ADR_change
+    - autonomy_transition
+    - E4_work
+  author_independence_credit: NONE
+  subagents_or_delegated_reviewers_used: false
+
+summary:
+  disposition: >-
+    Seven technology-neutral protocol records are specified and statically traceable. Each remains
+    READY_FOR_REVIEW_EXECUTION_BLOCKED because exact mechanisms/configurations/environments,
+    host/client/support classes, fault order/seeds, evidence destinations, QPA values, and every
+    time/resource/cost limit remain unresolved and no independent challenge or verification exists.
+  protocol_count: 7
+  protocol_artifacts:
+    - 06_evaluation/technical_validation/E3_TECHNICAL_VALIDATION_PROTOCOLS.yaml
+    - 06_evaluation/technical_validation/E3V_E1_TRACEABILITY.csv
+    - 06_evaluation/technical_validation/E3_TECHNICAL_HARNESS_CONTRACT.md
+  common_contract: >-
+    Every material protocol dimension must be prospectively frozen before any result; any material
+    amendment creates a new version and whole affected block while preserving unfavorable evidence.
+    Missing decisive evidence fails closed, unsupported scope never passes, and evidence reuse may
+    not duplicate attempt credit or substitute one E3V verdict for another.
+  outcome_vocabulary:
+    - VALIDATED_FOR_TESTED_SCOPE_ONLY
+    - IMPLEMENTATION_CONFIGURATION_FAILURE
+    - PRODUCT_CLASS_UNSUPPORTED
+    - EVIDENCE_MISSING_FAIL_CLOSED
+    - ARCHITECTURE_HANDBACK
+  hard_failure_semantics: "HARD_FAILURE is an orthogonal, non-compensating stop/fence/quarantine overlay and does not replace the separately verified root-cause outcome."
+
+protocols:
+  E3V-001:
+    protocol_id: E3V-001-PERSISTENCE-RECOVERY-VALIDATION
+    protocol_version: 0.1.0-author-draft
+    owner: E3_TECHNICAL_VALIDATION_OWNER
+    property: acknowledged authoritative persistence, ownership/fencing, effect reconciliation, and truthful recovery
+    canonical_handback: [ADR-E2-002, ADR-E2-003, ADR-E2-004, ADR-E2-005, ADR-E2-007, ADR-E2-008, ADR-E2-009]
+  E3V-002:
+    protocol_id: E3V-002-PROCESS-CONTAINMENT-FENCING-VALIDATION
+    protocol_version: 0.1.0-author-draft
+    owner: E3_TECHNICAL_VALIDATION_OWNER
+    property: descendant-tree control, durable control ordering, termination or authority fencing, survivor/orphan discovery, owner-loss recovery, and unsupported-host denial
+    canonical_handback: [ADR-E2-003, ADR-E2-004, ADR-E2-007]
+  E3V-003:
+    protocol_id: E3V-003-WORKSPACE-GIT-ISOLATION-PACKAGING-VALIDATION
+    protocol_version: 0.1.0-author-draft
+    owner: E3_TECHNICAL_VALIDATION_OWNER
+    property: workspace/filesystem/Git isolation, original-user-state protection, truthful repository support dispositions, and reproducible local packaging
+    canonical_handback: [ADR-E2-001, ADR-E2-002, ADR-E2-004, ADR-E2-009]
+  E3V-004:
+    protocol_id: E3V-004-PROVIDER-GATEWAY-SEMANTIC-CONFORMANCE
+    protocol_version: 0.1.0-author-draft
+    owner: E3_TECHNICAL_VALIDATION_OWNER
+    property: provider-gateway semantic preservation and denied-route zero dispatch, offline synthetic/licensed shapes first
+    canonical_handback: [ADR-E2-001, ADR-E2-004, ADR-E2-005, ADR-E2-006, ADR-E2-007, ADR-E2-008, ADR-E2-009]
+  E3V-005:
+    protocol_id: E3V-005-EVIDENCE-AND-INDEPENDENT-VERIFIER-VALIDATION
+    protocol_version: 0.1.0-author-draft
+    owner: E3_TECHNICAL_VALIDATION_OWNER
+    property: authoritative-state/evidence distinctions, revision binding, tamper/gap/staleness detection, adequacy, replay, and independent verifier behavior
+    canonical_handback: [ADR-E2-002, ADR-E2-003, ADR-E2-004, ADR-E2-005, ADR-E2-006, ADR-E2-007, ADR-E2-008]
+  E3V-006:
+    protocol_id: E3V-006-PROTECTED-ENTRY-SECURITY-BOUNDARY-VALIDATION
+    protocol_version: 0.1.0-author-draft
+    owner: E3_SECURITY_VALIDATION_OWNER
+    property: synthetic-marker-only protected acquisition, exact-recipient one-use delivery, complete capture exclusion, no replay, revocation, crash/replacement reacquisition, non-secret receipt, and fail-to-WAITING_FOR_USER
+    canonical_handback: [ADR-E2-001, ADR-E2-004, ADR-E2-005, ADR-E2-007, ADR-E2-008, ADR-E2-009]
+  E3V-007:
+    protocol_id: E3V-007-INSTRUMENTATION-FINITE-LIMITS-MEASUREMENT-VALIDATION
+    protocol_version: 0.1.0-author-draft
+    owner: E3_MEASUREMENT_VALIDATION_OWNER
+    property: raw attributed measurement, missingness, reproducible derivation, and prospectively finite limit enforcement across focused slices of all eight reliability protocols
+    canonical_handback: [ADR-E2-001, ADR-E2-002, ADR-E2-007, ADR-E2-008, ADR-E2-009]
+
+support_scope_model:
+  supported_claims_created: 0
+  future_positive_verdict: VALIDATED_FOR_TESTED_SCOPE_ONLY
+  claim_unit: "Exact prospectively frozen mechanism/configuration/environment/host/client/support class and selected case/fixture/oracle/fault/limit/evidence tuple only."
+  universal_or_untested_generalization_allowed: false
+  unsupported_disposition: PRODUCT_CLASS_UNSUPPORTED
+  missing_or_inconclusive_disposition: EVIDENCE_MISSING_FAIL_CLOSED
+  per_protocol_claim_units:
+    E3V-001: exact_configuration_host_store_codec_fault_boundary_and_readback_set
+    E3V-002: exact_host_platform_privilege_supervisor_process_topology_control_and_restart_class
+    E3V-003: exact_client_runtime_package_host_filesystem_repository_Git_and_isolation_class
+    E3V-004: exact_gateway_adapter_schema_offline_provider_shape_route_policy_and_failure_class
+    E3V-005: exact_candidate_revision_state_evidence_integrity_verifier_predicate_and_fault_class
+    E3V-006: exact_client_host_carrier_recipient_use_fence_capture_and_recovery_class
+    E3V-007: exact_instrumentation_clock_limiter_derivation_environment_and_protocol_slice
+  unsupported_scope_summary: >-
+    Every unbound, untested, drifted, unobservable, or excluded mechanism/configuration, host/client,
+    repository/provider/verifier/protected-entry/measurement class remains explicit and receives no
+    pass credit. E5 release-scale, duration, population, packaging, live-provider, operational,
+    incident-response, and production-suitability claims remain out of scope.
+
+qpa_and_limits:
+  qpa_id: E3-QPA-001
+  accountable_owner: Founder
+  status: FOUNDER_DECISION_REQUIRED_NO_NUMERIC_VALUES
+  founder_acknowledgement_recorded: false
+  founder_value_approval_recorded: false
+  values:
+    finite_verification_rerun_ceiling_per_case_or_task: null
+    finite_deterministic_required_check_repetition_rule_per_check_or_class: null
+    finite_correction_attempt_ceiling_per_case_or_task: null
+  every_protocol_numeric_retry_repetition_correction_and_time_resource_cost_limit: null
+  pseudo_numeric_value_inferred: false
+  required_before_execution_ready_verification: true
+  current_run_admission: DO_NOT_RUN
+
+traceability:
+  frozen_e1_cases_total: 170
+  selected_case_union: 149
+  explicitly_deferred_case_complement: 21
+  full_release_execution_claimed: false
+  source_surfaces:
+    oracles: {catalog: 18, selected_union: 18}
+    fixtures: {catalog: 11, selected_union: 11}
+    canonical_NEG_families: {catalog: 23, selected: 23}
+    repository_conditions: {catalog: 16, selected: 16}
+    git_effect_rows: {catalog: 30, selected: 17, deferred: 13}
+    adequacy_variants: {catalog: 9, selected: 9}
+    risk_compositions: {catalog: 16, selected_union: 16}
+    reliability_protocols: {catalog: 8, represented_by_E3V_007: 8}
+    EP_CTL_016: {selected_by: [E3V-001, E3V-002]}
+  supply_family_note: "The canonical NEG-SUPPLY-01 family resolves through EP-NEG-SUPPLY-01 and the additional dependency-confusion case EP-NEG-SUPPLY-02; the canonical family count remains 23."
+
+specialist_contracts:
+  E3V_002_containment_and_fencing:
+    required_surfaces:
+      - task_owned_parent_child_and_grandchild_identity
+      - cooperative_and_uncooperative_descendants
+      - durable_control_acceptance_ordering
+      - pause_stop_timeout_cancel_force_or_authority_fence
+      - output_and_resource_pressure
+      - survivor_and_orphan_discovery
+      - productive_repository_effect_credential_network_and_authority_fencing
+      - supervisor_or_owner_loss_and_recovery
+      - client_disconnect_distinct_from_execution_owner_loss
+      - host_restart_where_claimed
+      - explicit_unsupported_host_denial
+    mechanism_selected: false
+  E3V_006_protected_entry:
+    fixture_class: SYNTHETIC_MARKER_ONLY
+    mandatory_surface_inventory_count: 13
+    required_semantics:
+      - protected acquisition outside ordinary capture and dereference paths
+      - exact current recipient use attempt owner epoch and fence
+      - one use and no replay
+      - approval currentness and revocation
+      - wrong-recipient stale alias symlink and link-swap denial
+      - complete independently scanned capture inventory
+      - non-secret opaque receipt only
+      - crash and replacement require fresh protected reacquisition
+      - unavailable protected delivery becomes WAITING_FOR_USER or BLOCKED never success
+    real_secret_or_credential_used: false
+    protected_carrier_or_client_selected: false
+
+fixture_policy:
+  allowed: [SYNTHETIC, REPOSITORY_OWNED, PUBLIC_OPEN_WITH_RIGHTS, CLEAN_ROOM_DERIVED]
+  prohibited:
+    - REAL_SECRET_OR_CREDENTIAL
+    - PRIVATE_CUSTOMER_OR_INTERVIEW_DATA
+    - RECONSTRUCTED_OR_PROPRIETARY_GROK_BOT_SOURCE
+    - UNLICENSED_OR_UNKNOWN_RIGHTS_MATERIAL
+    - DESTRUCTIVE_REAL_USER_WORKLOAD
+  execution_in_this_pass: NONE
+
+oracle_and_evidence_policy:
+  oracle_precedence: "Authoritative readback and deterministic harness ground truth precede structured comparison; bounded independent judgment is residual only."
+  subject_self_report_is_decisive: false
+  model_judgment_can_override_deterministic_failure: false
+  layers: [RAW_RUN_EVIDENCE, DERIVED_ANALYSIS, ELIGIBILITY_DECISION]
+  raw_run_evidence_created: false
+  protocol_governance_artifacts_mislabeled_as_run_evidence: false
+  evidence_reuse: "Exact applicability and integrity may permit shared raw references, never duplicate attempt credit or cross-protocol verdict substitution."
+
+architecture_failure_and_handback:
+  default_nonarchitectural_classes:
+    - IMPLEMENTATION_CONFIGURATION_FAILURE
+    - PRODUCT_CLASS_UNSUPPORTED
+    - EVIDENCE_MISSING_FAIL_CLOSED
+  architecture_handback_requirement: >-
+    A separate independent investigation and verifier must prove that an indispensable accepted
+    property in the exact required support class is structurally impossible across every compliant
+    realization route. Ordinary mechanism, fixture, adapter, host, oracle, or evidence failure is
+    not architecture handback.
+  adr_edited_in_this_pass: false
+  architecture_changed_in_this_pass: false
+  handback_opened_in_this_pass: false
+
+future_task_contracts:
+  E3_004:
+    status: BACKLOG
+    input: "Both E3-002 and E3-003 independently VERIFIED and execution-ready with exact configurations, values, limits, selectors, evidence destinations, and no unresolved material finding."
+    implementation_authorized_by_this_handoff: false
+  E3_005:
+    status: BACKLOG_DO_NOT_RUN
+    input: "Current independently verified E3-001/E3-002/E3-004 refs, Founder-approved challenged/verified QPA and limits, exact configuration/support/data/budget/account/credential/network/effect/isolation/evidence facts, and a fresh single-use RUN_ADMISSION=PASS per block."
+    execution_authorized_by_this_handoff: false
+
+current_task_and_gate_state:
+  E3-001: VERIFIED
+  E3-002: READY_FOR_REVIEW_NOT_VERIFIED_NOT_EXECUTION_READY
+  E3-003: READY
+  E3-004: BACKLOG
+  E3-005: BACKLOG_DO_NOT_RUN
+  E3-006: BACKLOG_DO_NOT_RUN
+  E3-007: BACKLOG
+  E3-008: BACKLOG
+  e3_gate: NOT_EVALUATED
+  autonomy_eligible: NOT_ELIGIBLE
+  autonomous_build_authorized: false
+
+execution_counters:
+  technical_validation_runs: 0
+  model_benchmarks_run: 0
+  provider_or_network_calls: 0
+  paid_api_calls: 0
+  credentials_accessed: 0
+  model_role_assignments: 0
+  eligibility_verdicts_created: 0
+  application_code_files_created: 0
+  validation_harness_code_files_created: 0
+  e4_actions: 0
+
+files_read:
+  - MASTER_OPERATING_PROMPT.md
+  - AGENTS.md
+  - README.md
+  - SECURITY.md
+  - 01_governance/PROJECT_STATE.yaml
+  - 01_governance/TASK_REGISTRY.yaml
+  - 01_governance/DECISION_LOG.md
+  - 01_governance/ASSUMPTION_REGISTER.md
+  - 01_governance/RISK_REGISTER.md
+  - 01_governance/MODEL_REGISTRY.yaml
+  - 02_research/GROK_BOT_018_RECONSTRUCTED_ARCHITECTURE_AUDIT.md
+  - 03_product/ENGINEERING_PREVIEW_CHARTER.md
+  - 03_product/ENGINEERING_PREVIEW_PRD.md
+  - 03_product/ENGINEERING_PREVIEW_USER_FLOWS.md
+  - 03_product/ENGINEERING_PREVIEW_CORRECTNESS_CONTRACT.md
+  - 03_product/ENGINEERING_PREVIEW_CONTRIBUTION_WORKFLOW.md
+  - 05_architecture/ENGINEERING_PREVIEW_ARCHITECTURE_REQUIREMENTS.md
+  - 05_architecture/ENGINEERING_PREVIEW_ARCHITECTURE_BASELINE.md
+  - 05_architecture/ENGINEERING_PREVIEW_E3_VALIDATION_OBLIGATIONS.md
+  - 05_architecture/adr/ADR-E2-001_SYSTEM_CLIENT_CORE_BOUNDARY.md
+  - 05_architecture/adr/ADR-E2-002_STATE_PERSISTENCE_HISTORY_PROJECTIONS_MIGRATION.md
+  - 05_architecture/adr/ADR-E2-003_ORCHESTRATION_OWNERSHIP_RECOVERY_IDEMPOTENCY.md
+  - 05_architecture/adr/ADR-E2-004_WORKSPACE_EXECUTION_ISOLATION_GIT_REMOTE_SEAM.md
+  - 05_architecture/adr/ADR-E2-005_CAPABILITY_APPROVAL_SECRET_EFFECT_RECONCILIATION.md
+  - 05_architecture/adr/ADR-E2-006_MODEL_PROVIDER_ROUTING_CONTEXT_BOUNDARY.md
+  - 05_architecture/adr/ADR-E2-007_VERIFICATION_EVIDENCE_ARTIFACT_INTEGRITY.md
+  - 05_architecture/adr/ADR-E2-008_OBSERVABILITY_AUDIT_METERING_FAILURE.md
+  - 05_architecture/adr/ADR-E2-009_LOCAL_PACKAGING_FUTURE_COMPATIBILITY.md
+  - 06_evaluation/ENGINEERING_PREVIEW_E3_PLAN.md
+  - 06_evaluation/ENGINEERING_PREVIEW_EVALUATION_SUITE.md
+  - 06_evaluation/MODEL_ROLE_BENCHMARK_PLAN.md
+  - 06_evaluation/e3_governance/E3_QUALIFICATION_AND_RUN_ADMISSION_POLICY.yaml
+  - 06_evaluation/e3_governance/E3_RUN_ADMISSION_MANIFEST.schema.yaml
+  - 10_checkpoints/stage_checkpoints/ENGINEERING_PREVIEW_V0_1_RELEASE_ACCEPTANCE.yaml
+  - 10_checkpoints/stage_checkpoints/ENGINEERING_PREVIEW_E2_ARCHITECTURE_VERIFICATION.yaml
+  - 10_checkpoints/stage_checkpoints/ENGINEERING_PREVIEW_E2_ARCHITECTURE_GATE_VERIFICATION.yaml
+  - 99_handoffs/HANDOFF_TEMPLATE.yaml
+  - 99_handoffs/completed/PLAN_STAGE_E3_handoff.yaml
+  - 99_handoffs/completed/E3-001_handoff.yaml
+  - 99_handoffs/completed/E3-001_challenger_review.yaml
+  - 99_handoffs/completed/E3-001_fixer_handoff.yaml
+  - 99_handoffs/completed/E3-001_verifier_review.yaml
+
+files_created:
+  - 06_evaluation/technical_validation/E3_TECHNICAL_VALIDATION_PROTOCOLS.yaml
+  - 06_evaluation/technical_validation/E3V_E1_TRACEABILITY.csv
+  - 06_evaluation/technical_validation/E3_TECHNICAL_HARNESS_CONTRACT.md
+  - 99_handoffs/completed/E3-002_handoff.yaml
+files_modified:
+  - 01_governance/PROJECT_STATE.yaml
+  - 01_governance/TASK_REGISTRY.yaml
+files_deleted: []
+
+decisions_made:
+  - "PROPOSAL: seven separately verdictable technical protocol shapes and risk-justified frozen-E1 subsets, pending fresh independent challenge and separate verification."
+  - "PROPOSAL: technology-neutral future E3-004 capability and evidence contract; no harness implementation or product technology is selected."
+  - "No Founder decision, QPA or protocol-limit value, mechanism/configuration/host/client/support claim, provider/account/credential authorization, run admission, technical verdict, role assignment, eligibility verdict, architecture/ADR decision, autonomy transition, or E4 authorization was made."
+assumptions_added: []
+risks_added_or_updated: []
+
+tests_run:
+  - "ruby /private/tmp/e3_002_validate.rb"
+  - "E3_002_FINAL=1 ruby /private/tmp/e3_002_validate.rb"
+  - "git diff --check"
+  - "Static protocol-version/required execution-contract field count and numeric or pseudo-numeric threshold-pattern review."
+  - "Static changed-path, non-code, conflict-marker, and high-confidence secret-pattern reconciliation over the final patch."
+test_results:
+  - "1074/1074 final protocol, strict-YAML, CSV, catalog-selector, per-record execution-contract, E3V, AR/ADR, QPA/limit, containment, protected-entry, status-boundary, frozen-digest, governance, and handoff assertions PASS across 83 repository YAML files."
+  - "Selected/deferred case partition 149/21 = 170 with no overlap; unions resolve 18/18 oracles, 11/11 fixtures, 23/23 NEG families, 16/16 repository conditions, 30/30 Git/effect rows, 9/9 adequacy variants, 16/16 compositions, 8/8 reliability protocols, and EP-CTL-016."
+  - "Frozen requirement, architecture baseline, E3 obligation, E1 suite/release, E3-001 policy/schema, MODEL_REGISTRY, and DECISION_LOG SHA-256 digests reproduce exactly."
+  - "All seven protocol versions and all eleven explicit per-record execution-contract fields are present; no numeric or pseudo-numeric threshold pattern appears in the authored protocol, harness-contract, or handoff artifacts."
+  - "Final allowed-path, non-code, conflict-marker, high-confidence secret-pattern, and git diff --check reconciliation PASS."
+  - "All checks are AUTHOR-side static validation and create no independent review or verification credit."
+security_checks:
+  - "E3V-006 synthetic-marker-only, 13-surface capture inventory, exact-recipient/one-use/no-replay/revocation/crash/reacquisition/non-secret-receipt/WAITING_FOR_USER contract statically checked."
+  - "E3V-002 descendant/tree, race, termination/fencing, output/timeout, survivor/orphan, owner-loss/recovery, and unsupported-host boundaries statically checked."
+  - "No real secret, private data, credential, account, provider, network, external effect, process fixture, or executable harness was accessed or run."
+
+known_limitations:
+  - "All QPA values and every protocol retry/repetition/correction/time/resource/cost limit are null; the protocols cannot become execution-ready until the Founder approves exact values and those values receive fresh challenge and separate verification."
+  - "No mechanism, configuration, environment, host, client, support class, evidence destination, fault order/seed, or live-provider phase is selected."
+  - "Static author validation cannot establish feasibility, support, architecture validation, harness correctness, security, performance, or empirical truth."
+  - "The 21-case deferred complement and unselected Git/effect rows remain governed E1/E5 or other frozen-gate work; this task claims no full-suite execution."
+unverified_claims:
+  - "Every positive future protocol result, mechanism/configuration feasibility claim, support-class claim, and any architecture handback remains unverified."
+  - "The authored protocol completeness and traceability require fresh independent challenge and separate post-fix verification."
+blockers:
+  - FOUNDER_E3_QPA_001_ACKNOWLEDGEMENT_AND_EXACT_VALUES_ABSENT
+  - EXACT_MECHANISMS_CONFIGURATIONS_HOSTS_CLIENTS_SUPPORT_CLASSES_AND_LIMITS_UNSELECTED
+  - FRESH_INDEPENDENT_E3_002_CHALLENGE_ABSENT
+  - SEPARATE_E3_002_VERIFICATION_ABSENT
+  - E3_003_NOT_INDEPENDENTLY_VERIFIED
+  - E3_004_HARNESS_NOT_BUILT_OR_VERIFIED
+  - RUN_ADMISSION_DO_NOT_RUN
+
+recommended_next_task: "MODE: REVIEW_TASK_E3-002"
+repository_commit_or_patch: "Uncommitted patch against 47ebf70c47eac021b1b2caf2dcedaf0c30937e85; leave uncommitted for Founder review."

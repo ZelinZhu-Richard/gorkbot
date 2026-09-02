@@ -2524,12 +2524,12 @@ tasks:
       - E3_TECHNICAL_VALIDATION_OWNER
       - E3_SECURITY_VALIDATION_OWNER
       - E3_MEASUREMENT_VALIDATION_OWNER
-    assigned_model: null
+    assigned_model: "Codex (runtime model identifier not exposed)"
     reviewer_model: null
     verifier_model: null
     assignment_policy: "The protocol author cannot approve QPA values, operate the later scored blocks, perform the sole security review, or verify the protocols. No authoring system receives role eligibility."
-    status: READY
-    planning_status: PLANNED_NOT_CLAIMED_NOT_EXECUTED
+    status: READY_FOR_REVIEW
+    planning_status: AUTHOR_COMPLETE_READY_FOR_FRESH_INDEPENDENT_CHALLENGE_NOT_VERIFIED_NOT_EXECUTION_READY
     priority: P0
     dependencies:
       - E3-001
@@ -2538,7 +2538,7 @@ tasks:
       - decision: FOUNDER_DECISION_REQUIRED_E3_QPA_001_ACKNOWLEDGEMENT_AND_TECHNICAL_PROTOCOL_VALUES
         required_before: "E3-002 may become execution-ready and independently VERIFIED; not required to begin author drafting after E3-001 verification."
     activation_condition: "E3-001 is independently VERIFIED and its common admission/QPA/evidence schema is frozen."
-    activation_condition_status: "SATISFIED on 2026-09-02 (UTC): E3-001 independently VERIFIED against 641a52241bfddefb6560ec5ab25d3419d558baad (99_handoffs/completed/E3-001_verifier_review.yaml); the common admission/QPA/evidence policy and manifest schema are frozen at their verified versions. READY does not claim or execute the task: E3-002 drafts protocols and proposes QPA values for Founder approval only, runs nothing, selects no mechanism/host/technology, and requires its own fresh challenge and separate verification; Founder E3-QPA-001 acknowledgement/values remain required before execution-ready verification, any RUN_ADMISSION PASS, or any empirical attempt."
+    activation_condition_status: "SATISFIED on 2026-09-02 (UTC): E3-001 independently VERIFIED against 641a52241bfddefb6560ec5ab25d3419d558baad (99_handoffs/completed/E3-001_verifier_review.yaml); the common admission/QPA/evidence policy and manifest schema are frozen at their verified versions. E3-002 completed its AUTHOR pass on 2026-09-02T17:52:55Z against base 47ebf70c47eac021b1b2caf2dcedaf0c30937e85 and is READY_FOR_REVIEW, NOT VERIFIED, and NOT EXECUTION_READY. The pass specified seven technology-neutral protocols, selected and deferred frozen-E1 subsets, and future harness contracts; it ran nothing, selected no mechanism/host/client/product technology, and left every E3-QPA-001 and protocol-limit value null. Fresh independent challenge, Founder acknowledgement and exact value approval, separate verification, E3-004 harness verification, and later per-block admission remain required before execution."
     gate_invariant: "E3-002 specifies E3V-001..007 only. It runs nothing, selects no final mechanism/product technology, changes no accepted ADR, and cannot treat missing evidence or an unsupported class as pass."
     files_to_read:
       - MASTER_OPERATING_PROMPT.md
@@ -2620,19 +2620,46 @@ tasks:
       - A canonical hard property cannot be tested without altering it, a handback set is inconsistent, or protocol specificity would silently choose E4 product technology.
       - Founder approval is absent when the task attempts to enter execution-ready independent verification.
     architecture_handback_conditions: "Protocol design itself cannot prove handback. A discovered internal contradiction or untestable indispensable ADR assumption stops the task and is escalated to the accepted E2 governance path; no ADR is edited here."
+    author_completion:
+      completed_at: "2026-09-02T17:52:55Z"
+      author_base_commit: 47ebf70c47eac021b1b2caf2dcedaf0c30937e85
+      author_branch: chore/initialize-project-materials
+      disposition: READY_FOR_REVIEW_NOT_VERIFIED_NOT_EXECUTION_READY
+      protocol_count: 7
+      protocol_ids:
+        - E3V-001-PERSISTENCE-RECOVERY-VALIDATION
+        - E3V-002-PROCESS-CONTAINMENT-FENCING-VALIDATION
+        - E3V-003-WORKSPACE-GIT-ISOLATION-PACKAGING-VALIDATION
+        - E3V-004-PROVIDER-GATEWAY-SEMANTIC-CONFORMANCE
+        - E3V-005-EVIDENCE-AND-INDEPENDENT-VERIFIER-VALIDATION
+        - E3V-006-PROTECTED-ENTRY-SECURITY-BOUNDARY-VALIDATION
+        - E3V-007-INSTRUMENTATION-FINITE-LIMITS-MEASUREMENT-VALIDATION
+      traceability_summary: "149 unique frozen E1 cases selected across separately justified protocol subsets plus an exact 21-case deferred complement = 170; selected unions cover all 18 oracles, 11 fixtures, 23 canonical NEG families, 16 repository conditions, 30 Git/effect rows through a 17/13 selected/deferred partition, 9 adequacy variants, 16 compositions, all 8 reliability protocols through E3V-007, and EP-CTL-016 through E3V-001/E3V-002."
+      qpa_status: FOUNDER_DECISION_REQUIRED_NO_NUMERIC_VALUES
+      qpa_values:
+        finite_verification_rerun_ceiling_per_case_or_task: null
+        finite_deterministic_required_check_repetition_rule_per_check_or_class: null
+        finite_correction_attempt_ceiling_per_case_or_task: null
+      run_admission: DO_NOT_RUN
+      mechanism_configuration_host_client_support_selection: NOT_SELECTED
+      author_side_static_validation: "1074/1074 final static assertions PASS, including governance and handoff reconciliation. This is AUTHOR evidence only."
+      independent_challenge_credit: NONE
+      independent_verification_credit: NONE
+      empirical_execution_credit: NONE
+      next_lifecycle_step: "MODE: REVIEW_TASK_E3-002"
     completion_transition: "After full lifecycle and independent verification, E3-002 becomes VERIFIED. E3-004 remains blocked until E3-003 is also VERIFIED; E3-005 remains BACKLOG/DO_NOT_RUN until E3-004 verification and per-block admission."
     downstream_consumer:
       - E3-004
       - E3-005
       - E3-007
     unresolved_questions:
-      - Exact mechanisms/configurations, supported host/client classes and focused E1 subsets to freeze.
+      - Exact mechanisms/configurations and supported host/client classes remain unselected and must be prospectively frozen before execution-ready verification.
       - Exact Founder-approved QPA/time/resource/cost values and whether any E3V-004 live phase is necessary.
       - Whether verified protocols can reuse existing harness components or require bounded new ones.
     escalation_conditions:
       - Any architecture semantic amendment, unavailable oracle, unbounded portfolio, real-provider requirement, or material mismatch with frozen E1.
       - Any proposed tested class cannot fail closed or cannot expose independent evidence.
-    next_command: "MODE: EXECUTE_TASK_E3-002"
+    next_command: "MODE: REVIEW_TASK_E3-002"
 
   - task_id: E3-003
     title: Freeze exact-configuration model/system role benchmark protocols
