@@ -5251,6 +5251,8 @@ $defs:
       verifier_actor_id: {$ref: "#/$defs/id"}
       current_status: {const: CURRENT_NOT_REVOKED}
   admission_evaluation_entry_ref:
+    x-root-reachability: EXTERNAL_RECORD_CONTRACT_DEPENDENCY
+    x-external-schema-consumer: E3-004_INDEPENDENT_SEMANTIC_VALIDATOR
     type: object
     additionalProperties: false
     required:
@@ -5423,6 +5425,8 @@ $defs:
             capture_terminal_class: {const: SECRET_BOUNDARY_REJECTED}
             run_admission_disposition: {const: DO_NOT_RUN}
   admission_equivalence_search_proof_ref:
+    x-root-reachability: EXTERNAL_RECORD_CONTRACT_DEPENDENCY
+    x-external-schema-consumer: E3-004_INDEPENDENT_SEMANTIC_VALIDATOR
     type: object
     additionalProperties: false
     required:
@@ -5470,6 +5474,8 @@ $defs:
       verifier_actor_id: {$ref: "#/$defs/id"}
       current_status: {const: VERIFIED_CURRENT_NOT_REVOKED}
   raw_submission_equivalence_search_proof_ref:
+    x-root-reachability: EXTERNAL_RECORD_CONTRACT_DEPENDENCY
+    x-external-schema-consumer: E3-004_INDEPENDENT_SEMANTIC_VALIDATOR
     type: object
     additionalProperties: false
     required:
@@ -5515,6 +5521,8 @@ $defs:
       verifier_actor_id: {$ref: "#/$defs/id"}
       current_status: {const: VERIFIED_CURRENT_NOT_REVOKED}
   protected_submission_history_screen_ref:
+    x-root-reachability: EXTERNAL_RECORD_CONTRACT_DEPENDENCY
+    x-external-schema-consumer: E3-004_INDEPENDENT_SEMANTIC_VALIDATOR
     type: object
     additionalProperties: false
     required:
@@ -5593,6 +5601,8 @@ $defs:
               minimum: 1
             screen_result: {const: PRIOR_PROTECTED_EQUIVALENT_SECRET_BOUNDARY_REJECTION_FOUND}
   protected_secret_submission_equivalence_search_proof_ref:
+    x-root-reachability: EXTERNAL_RECORD_CONTRACT_DEPENDENCY
+    x-external-schema-consumer: E3-004_INDEPENDENT_SEMANTIC_VALIDATOR
     type: object
     additionalProperties: false
     required:
@@ -5780,6 +5790,8 @@ $defs:
       semantic_resolution_by_admission_checker_required: {const: true}
       current_status: {const: CURRENT_NOT_REVOKED}
   trusted_preparse_capture_context_ref:
+    x-root-reachability: EXTERNAL_RECORD_CONTRACT_DEPENDENCY
+    x-external-schema-consumer: E3-004_INDEPENDENT_SEMANTIC_VALIDATOR
     type: object
     additionalProperties: false
     required:
@@ -5851,6 +5863,12 @@ $defs:
       ordinary_manifest_embedding_permitted: {const: false}
       current_status: {const: VERIFIED_CURRENT_NOT_REVOKED}
   protected_admission_evaluation_index_record_ref:
+    description: >-
+      External protected-store record contract consumed by the independently verified E3-004
+      semantic validator. It is intentionally not reachable from the ordinary manifest root,
+      is never embedded in an ordinary manifest, and cannot authorize run admission.
+    x-root-reachability: INTENTIONALLY_UNREFERENCED_EXTERNAL_RECORD_CONTRACT
+    x-external-schema-consumer: E3-004_INDEPENDENT_SEMANTIC_VALIDATOR
     type: object
     additionalProperties: false
     required:
@@ -5988,6 +6006,12 @@ $defs:
       protected_match_result_count_and_equivalence_material_visibility: {const: PROTECTED_ADMISSION_CONTROL_ONLY}
       untrusted_submitter_model_or_general_evidence_visibility: {const: false}
   protected_admission_evaluation_slot_record_ref:
+    description: >-
+      External protected-store record contract consumed by the independently verified E3-004
+      semantic validator. It is intentionally not reachable from the ordinary manifest root,
+      is never embedded in an ordinary manifest, and cannot authorize run admission.
+    x-root-reachability: INTENTIONALLY_UNREFERENCED_EXTERNAL_RECORD_CONTRACT
+    x-external-schema-consumer: E3-004_INDEPENDENT_SEMANTIC_VALIDATOR
     type: object
     additionalProperties: false
     required:
@@ -7211,6 +7235,12 @@ $defs:
             fallback_child_claim_reservation_digests: {maxItems: 0}
             fallback_reservation_disposition: {const: NOT_PRESENT}
   direct_dispatch_consumption_execution_ref:
+    description: >-
+      External runtime atomic-consumption receipt contract consumed by the independently verified
+      E3-004 semantic validator. It is intentionally not reachable from the prelaunch manifest root
+      and cannot authorize run admission or substitute for authoritative runtime readback.
+    x-root-reachability: INTENTIONALLY_UNREFERENCED_EXTERNAL_RECORD_CONTRACT
+    x-external-schema-consumer: E3-004_INDEPENDENT_SEMANTIC_VALIDATOR
     type: object
     additionalProperties: false
     required:
@@ -7290,6 +7320,12 @@ $defs:
       committed_at: {$ref: "#/$defs/timestamp"}
       current_status: {const: COMMITTED_CURRENT_NOT_REVOKED}
   direct_dispatch_consumption_readback_attestation_ref:
+    description: >-
+      External runtime readback-attestation contract consumed by the independently verified E3-004
+      semantic validator. It is intentionally not reachable from the prelaunch manifest root and
+      cannot authorize run admission or substitute for current authoritative governance.
+    x-root-reachability: INTENTIONALLY_UNREFERENCED_EXTERNAL_RECORD_CONTRACT
+    x-external-schema-consumer: E3-004_INDEPENDENT_SEMANTIC_VALIDATOR
     type: object
     additionalProperties: false
     required:
@@ -7995,12 +8031,6 @@ $defs:
             block_equivalence_key_digest: {type: "null"}
             operation_schedule_entry_digest: {type: "null"}
             correction_lineage_ref: {$ref: "#/$defs/correction_lineage_ref"}
-  qpa_resolution_set:
-    type: array
-    minItems: 1
-    uniqueItems: true
-    items:
-      $ref: "#/$defs/qpa_resolution_and_consumption"
   verification_qpa_resolution_set:
     type: array
     minItems: 1
@@ -8034,28 +8064,6 @@ $defs:
             scope_kind: {const: CASE_OR_TASK}
             limit_family: {const: CORRECTION_ATTEMPT}
           required: [scope_kind, limit_family]
-  case_or_task_qpa_resolution_set:
-    type: array
-    minItems: 1
-    uniqueItems: true
-    items:
-      allOf:
-        - $ref: "#/$defs/qpa_resolution_and_consumption"
-        - properties:
-            scope_kind:
-              const: CASE_OR_TASK
-          required: [scope_kind]
-  check_or_class_qpa_resolution_set:
-    type: array
-    minItems: 1
-    uniqueItems: true
-    items:
-      allOf:
-        - $ref: "#/$defs/qpa_resolution_and_consumption"
-        - properties:
-            scope_kind:
-              const: CHECK_OR_CLASS
-          required: [scope_kind]
   risk_and_correction_binding:
     type: object
     additionalProperties: false
@@ -9124,6 +9132,8 @@ $defs:
                     - planned_parent_atomic_set_transition
                     - planned_parent_execution_member_transition
   fallback_trigger_evaluation_ref:
+    x-root-reachability: EXTERNAL_RECORD_CONTRACT_DEPENDENCY
+    x-external-schema-consumer: E3-004_INDEPENDENT_SEMANTIC_VALIDATOR
     type: object
     additionalProperties: false
     required:
@@ -9155,6 +9165,8 @@ $defs:
       evaluated_at: {$ref: "#/$defs/timestamp"}
       current_status: {const: VERIFIED_CURRENT_NOT_REVOKED}
   fallback_child_release_execution_ref:
+    x-root-reachability: EXTERNAL_RECORD_CONTRACT_DEPENDENCY
+    x-external-schema-consumer: E3-004_INDEPENDENT_SEMANTIC_VALIDATOR
     type: object
     additionalProperties: false
     required:
@@ -9220,6 +9232,12 @@ $defs:
       unknown_outcome_crash_reconciliation_rule_ref: {$ref: "#/$defs/artifact_ref"}
       current_status: {const: COMMITTED_CURRENT_NOT_REVOKED}
   fallback_route_resolution_execution_ref:
+    description: >-
+      External runtime fallback-resolution receipt contract consumed by the independently verified
+      E3-004 semantic validator. It is intentionally not reachable from the prelaunch manifest root
+      and cannot authorize run admission or substitute for authoritative route-state readback.
+    x-root-reachability: INTENTIONALLY_UNREFERENCED_EXTERNAL_RECORD_CONTRACT
+    x-external-schema-consumer: E3-004_INDEPENDENT_SEMANTIC_VALIDATOR
     type: object
     additionalProperties: false
     required:
@@ -9420,6 +9438,12 @@ $defs:
             no_selection_all_children_not_matched: {const: true}
             no_fallback_child_remains_dispatchable_on_no_selection: {const: true}
   fallback_route_resolution_readback_attestation_ref:
+    description: >-
+      External runtime fallback-resolution readback contract consumed by the independently verified
+      E3-004 semantic validator. It is intentionally not reachable from the prelaunch manifest root
+      and cannot authorize run admission or substitute for current authoritative governance.
+    x-root-reachability: INTENTIONALLY_UNREFERENCED_EXTERNAL_RECORD_CONTRACT
+    x-external-schema-consumer: E3-004_INDEPENDENT_SEMANTIC_VALIDATOR
     type: object
     additionalProperties: false
     required:
@@ -10058,6 +10082,70 @@ x-strict-yaml-profile:
   date_time_format_assertion: REQUIRED
   parse_or_profile_failure_outcome: DO_NOT_RUN
 
+x-authority-model:
+  annotation_class: IMMUTABLE_SCHEMA_DOCUMENTATION
+  schema_role: VALIDATE_MANIFEST_STRUCTURE_AND_INVARIANTS_ONLY
+  schema_is_authority_for_current_governance_state: false
+  mutable_current_policy_state_snapshot_extension_embedded: false
+  current_governance_facts_must_not_be_read_from_schema_annotations: true
+  manifest_role: BIND_EXACT_POLICY_DECISION_CONFIGURATION_PROTOCOL_AND_AUTHORIZATION_REFERENCES_WITH_VERSIONS_AND_DIGESTS
+  semantic_verifier_role: RESOLVE_RECOMPUTE_AND_RECHECK_EVERY_REFERENCE_AGAINST_CURRENT_AUTHORITATIVE_REPOSITORY_STATE
+  current_governance_role: DETERMINE_WHETHER_THE_EXACT_ADMISSION_MAY_PASS
+  authority_chain:
+    - SCHEMA_VALIDATES_MANIFEST_STRUCTURE
+    - MANIFEST_BINDS_EXACT_AUTHORITY_AND_CONFIGURATION_REFERENCES
+    - INDEPENDENT_SEMANTIC_VERIFIER_RESOLVES_CURRENT_REFERENCED_STATE
+    - CURRENT_REPOSITORY_GOVERNANCE_DETERMINES_ADMISSION
+  schema_validity_alone_can_authorize_pass: false
+  current_authorization_truth_change_requires_schema_revision: false
+  schema_version_fail_closed_restrictions_may_remain_stricter_than_current_governance: true
+  schema_revision_is_for_structural_contract_or_versioned_restriction_changes_not_state_bookkeeping: true
+  stale_missing_unresolved_revoked_or_conflicting_current_authority_outcome: DO_NOT_RUN
+
+x-definition-reachability:
+  active_manifest_root_unreachable_definitions_permitted: false
+  external_reference_contracts:
+    purpose: >-
+      Versioned structural contracts for protected-store and post-admission runtime records that
+      the independently verified E3-004 semantic validator resolves outside the ordinary manifest.
+      Their presence creates no admission authority and ordinary manifests must not embed them.
+    reference_base: "urn:gorkbot:e3:run-admission-manifest:0.1.0-author-draft#/$defs/"
+    consumer: E3-004_INDEPENDENT_SEMANTIC_VALIDATOR
+    authority: STRUCTURAL_EXTERNAL_RECORD_CONTRACT_ONLY_NOT_RUN_ADMISSION_AUTHORITY
+    direct_unreferenced_external_contract_root_definitions:
+      - protected_admission_evaluation_index_record_ref
+      - protected_admission_evaluation_slot_record_ref
+      - direct_dispatch_consumption_execution_ref
+      - direct_dispatch_consumption_readback_attestation_ref
+      - fallback_route_resolution_execution_ref
+      - fallback_route_resolution_readback_attestation_ref
+    root_unreachable_external_contract_dependency_definitions:
+      - admission_equivalence_search_proof_ref
+      - admission_evaluation_entry_ref
+      - fallback_child_release_execution_ref
+      - fallback_trigger_evaluation_ref
+      - protected_secret_submission_equivalence_search_proof_ref
+      - protected_submission_history_screen_ref
+      - raw_submission_equivalence_search_proof_ref
+      - trusted_preparse_capture_context_ref
+    intentionally_root_unreachable_definition_allowlist:
+      - admission_equivalence_search_proof_ref
+      - admission_evaluation_entry_ref
+      - direct_dispatch_consumption_execution_ref
+      - direct_dispatch_consumption_readback_attestation_ref
+      - fallback_child_release_execution_ref
+      - fallback_route_resolution_execution_ref
+      - fallback_route_resolution_readback_attestation_ref
+      - fallback_trigger_evaluation_ref
+      - protected_admission_evaluation_index_record_ref
+      - protected_admission_evaluation_slot_record_ref
+      - protected_secret_submission_equivalence_search_proof_ref
+      - protected_submission_history_screen_ref
+      - raw_submission_equivalence_search_proof_ref
+      - trusted_preparse_capture_context_ref
+  superseded_generic_qpa_resolution_definitions_permitted: false
+  unintended_unreachable_definitions_permitted: false
+
 x-semantic-validation:
   required: true
   planned_owner_task: E3-004
@@ -10158,15 +10246,3 @@ x-semantic-validation:
     - exact_dependency_set_matches_E3_005_or_E3_006
     - result_verifier_and_qualification_window_bindings_match_the_frozen_protocol
   any_failed_or_unknown_check_outcome: DO_NOT_RUN
-
-x-current-policy-state:
-  e3_qpa_values: null
-  founder_acknowledgement_recorded: false
-  founder_value_approval_recorded: false
-  paid_authorization_status: NOT_AUTHORIZED
-  paid_authorization_usd: 0
-  credential_dependency: UNKNOWN_OR_NOT_AUTHORIZED
-  run_admission: DO_NOT_RUN
-  technical_validation_runs: 0
-  model_benchmarks_run: 0
-  paid_api_calls: 0

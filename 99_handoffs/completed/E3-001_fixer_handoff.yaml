@@ -1,0 +1,362 @@
+handoff_id: E3-001-FIXER-20260902
+task_id: E3-001
+stage: E3
+mode: FIX_TASK_E3-001
+role: FIXER
+author_model: "Codex (runtime model identifier not exposed) — original E3-001 AUTHOR returning as FIXER"
+reviewer_requested: SEPARATE_POST_FIX_VERIFIER
+started_at: UNKNOWN_NOT_CAPTURED
+completed_at: "2026-09-02T14:55:49Z"
+author_commit: 3766786699abd145a5f6bc38d88491fd58723107
+author_commit_parent: fd3a7e7c2076a2a21475cb2cf9d6b376a58735dc
+challenger_state_base_commit: 708a805e5cee7ce9c428b37d768348c63688417e
+challenger_review:
+  artifact: 99_handoffs/completed/E3-001_challenger_review.yaml
+  reviewer_model: "Claude Fable 5 (claude-fable-5) via Claude Code"
+  reviewed_commit: 3766786699abd145a5f6bc38d88491fd58723107
+  verdict: E3_001_CHANGES_REQUESTED
+  finding_counts: {BLOCKER: 0, HIGH: 0, MEDIUM: 1, LOW: 2, NOTE: 4}
+fixer_result: FIXER_PASS_COMPLETE_READY_FOR_SEPARATE_VERIFICATION_NOT_VERIFIED
+scope_statement: >-
+  Addressed exactly F-E3-001-C01, F-E3-001-C02, and F-E3-001-C03. The four
+  challenger NOTEs were not promoted into fixer scope. README, task-status vocabulary,
+  the scalar uniqueItems note, and historical author wording remain verifier/founder
+  bookkeeping except for live PROJECT_STATE next-action text required to record this fixer pass.
+
+diff_origin:
+  method:
+    - "Resolved the author commit and its first parent from committed git history."
+    - "Diffed fd3a7e7c2076a2a21475cb2cf9d6b376a58735dc..3766786699abd145a5f6bc38d88491fd58723107 for 01_governance/TASK_REGISTRY.yaml."
+    - "Parsed both registry revisions and compared every task entry structurally."
+  author_changed_task_entries:
+    - E2-005
+    - E3-001
+  historical_task_entries_changed_outside_e3_001:
+    - E2-005
+  exact_outside_entry_change: >-
+    The author commit added 05_architecture/ENGINEERING_PREVIEW_ARCHITECTURE_REQUIREMENTS.md
+    to E2-005.deliverables. No other pre-E3 or historical task entry differed.
+  additional_equivalent_unauthorized_historical_mutations_found: []
+  correction_scope: >-
+    Removed only that deliverable attribution. The same path remains in E2-005.files_to_read
+    as a legitimate prior-stage input and remains an E2-001 deliverable.
+
+finding_dispositions:
+  - finding_id: F-E3-001-C01
+    severity: MEDIUM
+    resolution: FIXED
+    files_changed:
+      - 01_governance/TASK_REGISTRY.yaml
+      - 99_handoffs/completed/E3-001_handoff.yaml
+      - 99_handoffs/completed/E3-001_fixer_handoff.yaml
+    before: >-
+      The E3-001 author commit silently added the E2-001 architecture-requirements artifact
+      to the already VERIFIED E2-005 deliverables list, while the E3-001 handoff disclosed
+      no historical task-provenance mutation.
+    after: >-
+      E2-005.deliverables is structurally identical to its pre-E3-001 verified-era record:
+      ENGINEERING_PREVIEW_ARCHITECTURE_BASELINE.md,
+      ENGINEERING_PREVIEW_E3_VALIDATION_OBLIGATIONS.md, 05_architecture/adr/, and the
+      E2-005 handoff. E2-001 still owns ENGINEERING_PREVIEW_ARCHITECTURE_REQUIREMENTS.md;
+      E2-005 still reads it as input but does not claim to have produced it. The original
+      E3-001 handoff now carries an attributed fixer correction addendum.
+    evidence:
+      - "Author boundary: fd3a7e7c2076a2a21475cb2cf9d6b376a58735dc..3766786699abd145a5f6bc38d88491fd58723107."
+      - "Structural registry comparison: author_changed_task_entries=[E2-005,E3-001]; after correction current_changed_task_entries=[E3-001]."
+      - "Current E2-005 full task object equals its fd3a7e7 pre-E3-001 task object."
+      - "E2-001 deliverables contains the requirements artifact; E2-005 deliverables does not; E2-005 files_to_read still contains it."
+      - "E2-001..E2-006 status, planning_status, and verification_status fields remain unchanged."
+    verification_method: >-
+      Parse the registries at fd3a7e7, 3766786, and the fixer candidate; compare task objects,
+      exact deliverable sets, input/reference membership, and E2 lifecycle fields; confirm the
+      E3-001 handoff addendum enumerates the correction.
+
+  - finding_id: F-E3-001-C02
+    severity: LOW
+    resolution: FIXED
+    files_changed:
+      - 06_evaluation/e3_governance/E3_RUN_ADMISSION_MANIFEST.schema.yaml
+      - 99_handoffs/completed/E3-001_handoff.yaml
+      - 99_handoffs/completed/E3-001_fixer_handoff.yaml
+    before: >-
+      The schema ended with an unlabeled x-current-policy-state snapshot containing mutable
+      QPA, Founder, paid-budget, credential, admission, and execution-counter state.
+    after: >-
+      x-current-policy-state is removed. Immutable x-authority-model documentation states the
+      chain: schema validates structure; manifest binds exact versioned/digested policy,
+      decision, configuration, protocol, authorization, and evidence references; the independent
+      semantic verifier resolves them against current authoritative repository state; current
+      governance determines admission. Schema validity alone cannot authorize PASS, and stale,
+      missing, unresolved, revoked, or conflicting authority remains DO_NOT_RUN.
+    evidence:
+      - "No x-current-policy-state key remains anywhere in the parsed schema."
+      - "The master PASS conditional still requires CLAIMED task state, exact current E3-001/protocol/E3-004 verification references, Founder QPA acknowledgement and exact-value decision references, budget reservation bindings, and all-pass admission checks."
+      - "founder_qpa_decision_ref still binds 01_governance/DECISION_LOG.md, deciding_actor Founder, E3-QPA-001, version/digests, decision type, decided_at, and CURRENT_NOT_REVOKED."
+      - "x-semantic-validation remains required and resolves current governance, QPA, protocol, task, budget, credential, material-fact, and drift state; failed or unknown checks produce DO_NOT_RUN."
+      - "Focused authority-chain validation: 12/12 PASS."
+      - "Current QPA nulls, Founder decision absence, USD 0 / NOT_AUTHORIZED paid state, credential NONE/unknown state, and DO_NOT_RUN live outside schema annotations."
+    verification_method: >-
+      Strictly parse the schema; recursively reject any x-current-policy-state key; inspect the
+      master PASS conditional and typed Founder decision contract; verify x-authority-model and
+      x-semantic-validation; cross-check current values in policy, PROJECT_STATE, TASK_REGISTRY,
+      and DECISION_LOG. A future Founder QPA decision is represented by the existing status/ref
+      branches and does not require schema state-bookkeeping revision.
+
+  - finding_id: F-E3-001-C03
+    severity: LOW
+    resolution: FIXED
+    files_changed:
+      - 06_evaluation/e3_governance/E3_RUN_ADMISSION_MANIFEST.schema.yaml
+      - 99_handoffs/completed/E3-001_handoff.yaml
+      - 99_handoffs/completed/E3-001_fixer_handoff.yaml
+    before: >-
+      The schema had 100 definitions and 1,638 local reference occurrences. Nine definitions
+      had no incoming/root reference: six intended external protected/runtime record contracts
+      plus three superseded generic QPA resolution-set variants with weaker family pinning.
+    after: >-
+      The three generic definitions qpa_resolution_set, case_or_task_qpa_resolution_set, and
+      check_or_class_qpa_resolution_set are removed. The six external contract roots and their
+      eight root-unreachable dependency definitions are explicitly annotated for the E3-004
+      independent semantic validator and exactly allowlisted. The active manifest root reaches
+      83 of 97 definitions; the remaining 14 are the declared external-contract closure; zero
+      unintended definitions are unreachable. All 1,635 local refs resolve. The only active QPA
+      representations are the three family-specific canonical resolution sets.
+    evidence:
+      - "Total definitions: 97; active-root reachable: 83; intentionally root-unreachable external closure: 14; unintended unreachable: 0."
+      - "Direct no-incoming-reference external roots: 6; each is annotated INTENTIONALLY_UNREFERENCED_EXTERNAL_RECORD_CONTRACT and named in the external root list."
+      - "External-only dependency closure: 8; each is annotated EXTERNAL_RECORD_CONTRACT_DEPENDENCY and named in the dependency list."
+      - "The computed 14-name unreachable set equals intentionally_root_unreachable_definition_allowlist exactly."
+      - "All 1,635 local $ref occurrences resolve; direct external roots and complete closure use the declared schema $id reference base."
+      - "Canonical active QPA definitions: verification_qpa_resolution_set, deterministic_check_qpa_resolution_set, correction_qpa_resolution_set."
+    verification_method: >-
+      Strictly parse the schema, enumerate every definition and local reference, build the root
+      and per-definition directed reference graph, compute transitive reachability, compare the
+      unreachable set to the explicit allowlist, verify annotations, resolve every reference,
+      and enumerate every QPA resolution definition.
+
+schema_authority_validation:
+  result: PASS_12_OF_12
+  authority_chain:
+    - SCHEMA_VALIDATES_MANIFEST_STRUCTURE
+    - MANIFEST_BINDS_EXACT_AUTHORITY_AND_CONFIGURATION_REFERENCES
+    - INDEPENDENT_SEMANTIC_VERIFIER_RESOLVES_CURRENT_REFERENCED_STATE
+    - CURRENT_REPOSITORY_GOVERNANCE_DETERMINES_ADMISSION
+  schema_validity_alone_authorizes_pass: false
+  mutable_current_state_snapshot_present: false
+  stale_semantic_state_outcome: DO_NOT_RUN
+  qpa_null_state_authority: 06_evaluation/e3_governance/E3_QUALIFICATION_AND_RUN_ADMISSION_POLICY.yaml_AND_01_governance/PROJECT_STATE.yaml
+  founder_decision_authority: 01_governance/DECISION_LOG.md
+  budget_and_credential_authority: CURRENT_GOVERNANCE_AND_EXACT_REFERENCED_AUTHORIZATIONS
+
+definition_reachability:
+  total_definitions: 97
+  total_local_ref_occurrences: 1635
+  active_root_reachable_definitions: 83
+  intentionally_root_unreachable_definitions: 14
+  unintentionally_root_unreachable_definitions: 0
+  direct_unreferenced_external_contract_roots: 6
+  intentionally_root_unreachable_external_contract_dependencies: 8
+  removed_definitions:
+    - qpa_resolution_set
+    - case_or_task_qpa_resolution_set
+    - check_or_class_qpa_resolution_set
+  unresolved_local_refs: 0
+  canonical_qpa_resolution_definitions:
+    - verification_qpa_resolution_set
+    - deterministic_check_qpa_resolution_set
+    - correction_qpa_resolution_set
+
+preserved_regressions:
+  RUN_ADMISSION_FAIL_CLOSED_PASS: PASS
+  QPA_NULL_STATE_PASS: PASS
+  FOUNDER_AUTHORITY_PASS: PASS
+  ADMISSION_STATE_MACHINE_PASS: PASS
+  ATOMIC_ADMISSION_PASS: PASS
+  BUDGET_POLICY_PASS: PASS
+  NO_COST_GOVERNANCE_PASS: PASS
+  CREDENTIAL_POLICY_PASS: PASS
+  DATA_FIXTURE_POLICY_PASS: PASS
+  NETWORK_EFFECT_POLICY_PASS: PASS
+  RAW_EVIDENCE_PASS: PASS
+  EVIDENCE_LAYERING_PASS: PASS
+  ATTEMPT_ACCOUNTING_PASS: PASS
+  CUMULATIVE_ACCOUNTING_PASS: PASS
+  FLAKY_POLICY_PASS: PASS
+  CONTAMINATION_POLICY_PASS: PASS
+  HARD_FAILURE_POLICY_PASS: PASS
+  ARCHITECTURE_HANDBACK_PASS: PASS
+  E3V_ADMISSION_COVERAGE_PASS: PASS
+  E3V_002_GOVERNANCE_PASS: PASS
+  E3V_006_GOVERNANCE_PASS: PASS
+  MODEL_BENCHMARK_ADMISSION_PASS: PASS
+  ROUTE_ELIGIBILITY_SEPARATION_PASS: PASS
+  MODEL_REGISTRY_PASS: PASS
+  PROTOCOL_ACTIVATION_PASS: PASS
+  RUN_TASK_BLOCKING_PASS: PASS
+  HARNESS_BOUNDARY_PASS: PASS
+  AUTONOMY_GOVERNANCE_PASS: PASS
+  E2_BASELINE_PRESERVATION_PASS: PASS
+  ADMISSION_SCHEMA_PASS: PASS
+  MANIFEST_SEMANTIC_VERIFICATION_PASS: PASS
+  NO_EXECUTION_PASS: PASS
+
+preservation_evidence:
+  policy_sha256_unchanged: daffd6188f5c089ddfc1e75f80aee3974df6ecbda8b9de6a168dae294ed3159b
+  schema_fixer_candidate_sha256: 077efcab87d5a27f4c842bf7b16de7fedab96e3813ee515da508aed47d4b8e27
+  normalized_schema_comparison: >-
+    PASS: after removing the original x-current-policy-state and three obsolete QPA definitions,
+    and ignoring only the fixer's external-contract and authority/reachability annotations, the
+    current schema object is structurally identical to the challenger-reviewed schema at HEAD.
+  accepted_e2_sha256:
+    architecture_baseline: 6a80babee9cb23ee58241663c2cc73d5e36916a3e1270cfa65330a17755b599d
+    architecture_requirements: 6d2a17d9b1f6c1fec1bcecd09fc845a005636f98ad4df07782b4ac969731f955
+    e3_validation_obligations: 5c8b5b26bfdc593800200d7c60451676a426fc2477263df1ccba2812c9f51f4b
+    ADR-E2-001: abcbe273e762a14c39328d28bc2c2fd6414bf803929336c8e26d18d36e93df23
+    ADR-E2-002: 71572486589bfe68fdce42ee7307f7eef3df55d49dd589fda7b524580e481441
+    ADR-E2-003: 77ae13e6db508afb1ed8cb4c1ba8bdf80623f76185dd89869f9946207bc60277
+    ADR-E2-004: c07f75f2697c80a1abbc85dc0a75f26b858642cb1886cf1a90fe58cd5f86b29f
+    ADR-E2-005: 3a363d8df54aca75d9e0273c1feb17d4f9e3a99aa957f747c873492f6063a0f9
+    ADR-E2-006: a80be98a2897ce86ad3055bcf1106b018c5f163d1114876e8f0588f9966441c9
+    ADR-E2-007: ee81d671157f5408bb36193d3a9ee7ad985d68107bf91f2f70471af753bf4ecd
+    ADR-E2-008: 4dc30f868ba36a3b11a3f2ca8a4533d4159ac13e4cef752bf122e4944409919e
+    ADR-E2-009: 44c4f3db29d1bcd8aa9b609aad84b50e5da953f4e5d2f484a7d99db3b8c109d3
+
+current_task_and_gate_state:
+  E3-001: READY_FOR_REVIEW_NOT_VERIFIED_FIXER_PASS_COMPLETE
+  E3-002: BACKLOG_BLOCKED_ON_E3_001_INDEPENDENT_VERIFICATION
+  E3-003: BACKLOG_BLOCKED_ON_E3_001_INDEPENDENT_VERIFICATION
+  E3-004: BACKLOG
+  E3-005: BACKLOG_DO_NOT_RUN
+  E3-006: BACKLOG_DO_NOT_RUN
+  E3-007: BACKLOG
+  E3-008: BACKLOG
+  e3_gate: NOT_EVALUATED
+  run_admission: DO_NOT_RUN
+  qpa_status: FOUNDER_DECISION_REQUIRED_NO_NUMERIC_VALUES
+  paid_validation: NOT_AUTHORIZED_USD_0
+  credential_dependency: UNKNOWN_OR_NOT_AUTHORIZED
+  autonomy_eligible: NOT_ELIGIBLE
+  autonomous_build_authorized: false
+
+execution_counters:
+  technical_validation_runs: 0
+  model_benchmarks_run: 0
+  paid_api_calls: 0
+  credentials_accessed: 0
+  network_or_provider_calls: 0
+  external_effects: 0
+  model_role_assignments: 0
+  eligibility_verdicts_created: 0
+  application_code_files_created: 0
+  validation_harness_code_files_created: 0
+  e4_actions: 0
+  autonomy_changes: 0
+
+files_read:
+  - MASTER_OPERATING_PROMPT.md
+  - AGENTS.md
+  - README.md
+  - SECURITY.md
+  - 01_governance/PROJECT_STATE.yaml
+  - 01_governance/TASK_REGISTRY.yaml
+  - 01_governance/DECISION_LOG.md
+  - 01_governance/ASSUMPTION_REGISTER.md
+  - 01_governance/RISK_REGISTER.md
+  - 01_governance/MODEL_REGISTRY.yaml
+  - 05_architecture/ENGINEERING_PREVIEW_ARCHITECTURE_REQUIREMENTS.md
+  - 05_architecture/ENGINEERING_PREVIEW_ARCHITECTURE_BASELINE.md
+  - 05_architecture/ENGINEERING_PREVIEW_E3_VALIDATION_OBLIGATIONS.md
+  - 05_architecture/adr/ADR-E2-001_SYSTEM_CLIENT_CORE_BOUNDARY.md
+  - 05_architecture/adr/ADR-E2-002_STATE_PERSISTENCE_HISTORY_PROJECTIONS_MIGRATION.md
+  - 05_architecture/adr/ADR-E2-003_ORCHESTRATION_OWNERSHIP_RECOVERY_IDEMPOTENCY.md
+  - 05_architecture/adr/ADR-E2-004_WORKSPACE_EXECUTION_ISOLATION_GIT_REMOTE_SEAM.md
+  - 05_architecture/adr/ADR-E2-005_CAPABILITY_APPROVAL_SECRET_EFFECT_RECONCILIATION.md
+  - 05_architecture/adr/ADR-E2-006_MODEL_PROVIDER_ROUTING_CONTEXT_BOUNDARY.md
+  - 05_architecture/adr/ADR-E2-007_VERIFICATION_EVIDENCE_ARTIFACT_INTEGRITY.md
+  - 05_architecture/adr/ADR-E2-008_OBSERVABILITY_AUDIT_METERING_FAILURE.md
+  - 05_architecture/adr/ADR-E2-009_LOCAL_PACKAGING_FUTURE_COMPATIBILITY.md
+  - 06_evaluation/ENGINEERING_PREVIEW_E3_PLAN.md
+  - 06_evaluation/e3_governance/E3_QUALIFICATION_AND_RUN_ADMISSION_POLICY.yaml
+  - 06_evaluation/e3_governance/E3_RUN_ADMISSION_MANIFEST.schema.yaml
+  - 10_checkpoints/stage_checkpoints/ENGINEERING_PREVIEW_E2_ARCHITECTURE_VERIFICATION.yaml
+  - 10_checkpoints/stage_checkpoints/ENGINEERING_PREVIEW_E2_ARCHITECTURE_GATE_VERIFICATION.yaml
+  - 99_handoffs/HANDOFF_TEMPLATE.yaml
+  - 99_handoffs/completed/PLAN_STAGE_E3_handoff.yaml
+  - 99_handoffs/completed/E2-001_verifier_review.yaml
+  - 99_handoffs/completed/E2-005_handoff.yaml
+  - 99_handoffs/completed/E2-005_challenger_review.yaml
+  - 99_handoffs/completed/E2-005_fixer_handoff.yaml
+  - 99_handoffs/completed/E2-005_verifier_review.yaml
+  - 99_handoffs/completed/E2-006_verifier_review.yaml
+  - 99_handoffs/completed/E3-001_handoff.yaml
+  - 99_handoffs/completed/E3-001_challenger_review.yaml
+
+files_created:
+  - 99_handoffs/completed/E3-001_fixer_handoff.yaml
+files_modified:
+  - 01_governance/PROJECT_STATE.yaml
+  - 01_governance/TASK_REGISTRY.yaml
+  - 06_evaluation/e3_governance/E3_RUN_ADMISSION_MANIFEST.schema.yaml
+  - 99_handoffs/completed/E3-001_handoff.yaml
+files_deleted: []
+
+decisions_made:
+  - "FIX: restore the verified E2-005 deliverables provenance without reopening E2 or changing any E2 status/verdict."
+  - "FIX: remove the mutable schema snapshot and document the single current-authority chain."
+  - "FIX: retain the six external E3-004 contracts with an explicit external-reference convention and remove only three superseded generic QPA definitions."
+  - "No Founder, architecture, provider/model, role, eligibility, run, budget, credential, autonomy, or E4 decision was made."
+assumptions_added: []
+
+tests_run:
+  - "git log/show/diff reconstruction of fd3a7e7..3766786 and structural task-object comparison across base, author commit, and fixer candidate"
+  - "Original /tmp/e3_001_validate.rb unchanged: expected schema-pin failure after an intentional schema fix"
+  - "Original 158-case author static schema/adversarial suite with only EXPECTED_SCHEMA_SHA256 rebound in memory to the fixer candidate; no validator file edit"
+  - "Independent focused 32-regression repository/policy/schema reconciliation"
+  - "Focused 12-check schema authority-chain validation"
+  - "Strict schema $defs/$ref graph enumeration, transitive root reachability, annotation/allowlist equality, unresolved-ref, and canonical-QPA-definition checks"
+  - "Normalized structural comparison of the fixer schema against the challenger-reviewed schema"
+  - "Strict YAML single-document and duplicate-key/alias/merge-key/custom-tag checks"
+  - "Accepted E2 file SHA-256 and no-diff checks; task dependency/state/counter/model-registry checks; secret-pattern scan; git diff --check"
+  - "Full replay of the 39 SHA-256 entries recorded by the earlier E2-006 architecture-verification checkpoint, followed by committed-history diagnosis of the one expected later-stage bookkeeping difference"
+  - "Python jsonschema dependency probe only; no install or network action"
+
+test_results:
+  - "158/158 fixer-candidate static schema/adversarial assertions PASS after in-memory digest rebind; 1,635 refs, 97 defs, 2,824 required-property occurrences. The untouched validator's original author hash pin correctly fails and is not reported as a pass."
+  - "32/32 named challenger-passed regression checks PASS."
+  - "12/12 schema authority-chain checks PASS."
+  - "80/80 repository YAML files strictly parse as one document with 0 duplicate keys, aliases, merge keys, custom tags, or parse errors."
+  - "Provenance comparison PASS: current E2-005 object exactly equals the pre-E3-001 record; E2-001 ownership and E2-005 input/reference use are both correct; no E2 lifecycle field changed."
+  - "Reachability PASS: 97 total / 83 active-root reachable / 14 explicitly external and allowlisted / 0 unintended; 1,635/1,635 local refs resolve; 3 obsolete defs removed; exactly 3 family-specific active QPA sets."
+  - "Normalized active schema semantics are unchanged; policy and all accepted E2 architecture/ADR bytes are unchanged."
+  - "E2-006 checkpoint digest replay: 38/39 current files match that historical checkpoint. The sole mismatch is ENGINEERING_PREVIEW_V0_1_RELEASE_ACCEPTANCE.yaml, changed later by committed E2 gate record c8c1c36 from E2_gate NOT_EVALUATED to VERIFIED; this fixer did not modify it. All 14 architecture/provenance artifacts relevant to this correction match their recorded E2 digests."
+  - "Current governance reconciliation: 14/14 PASS; all eight E3 task states, QPA nulls, DO_NOT_RUN, zero counters, 13 HYPOTHESIS_ONLY/NOT_RUN candidates, zero eligibility/assignments, and autonomy invariants remain exact."
+  - "Canonical E3V handback equality: 16/16 PASS across policy and schema for E3V-001..008."
+  - "Allowed-path check: exact five-path fixer set; git diff --check PASS; high-confidence secret scan 5/5 touched artifacts with 0 hits."
+  - "The local Python jsonschema package is absent (ModuleNotFoundError); no dependency was installed."
+
+security_checks:
+  - "No credential, account, provider, network, paid, external-effect, protected-entry, fixture, harness, model, or benchmark operation was attempted."
+  - "No raw secret or credential was read, written, logged, or requested."
+  - "No application code or validation-harness code was created or modified."
+  - "High-confidence committed-secret pattern scan over fixer-touched artifacts returned zero hits."
+
+known_limitations:
+  - "This is fixer-side static/mechanical evidence, not the required separate post-fix verification and not empirical validation."
+  - "The bundled author validator is a repository-external scratch artifact and pins the author schema digest; its substantive suite was rerun only after an in-memory candidate-digest rebind, which is disclosed above."
+  - "A third-party Draft 2020-12 metaschema validator is not locally installed; no installation or network access was authorized."
+  - "The four challenger NOTEs remain outside this bounded fixer disposition unless a later verifier/founder chooses to address them."
+
+unverified_claims:
+  - "F-E3-001-C01..C03 are fixer-marked FIXED; a separate verifier must independently re-derive each disposition from current committed bytes."
+  - "E3-001 is complete enough to be VERIFIED only if the separate post-fix verifier passes all acceptance criteria and regressions."
+
+blockers:
+  - "Separate post-fix E3-001 verification is required before E3-001 may become VERIFIED."
+  - "E3-002/E3-003 remain blocked until E3-001 is independently VERIFIED."
+  - "Founder acknowledgement and exact scope-aware E3-QPA-001 values remain required before execution-ready protocol verification, any RUN_ADMISSION PASS, empirical attempt, or eligibility credit."
+  - "E3-005/E3-006 remain DO_NOT_RUN; paid authority remains USD 0 and credentials remain unauthorized/unverified."
+
+recommended_next_task: "MODE: VERIFY_TASK_E3-001"
+repository_commit_or_patch: >-
+  UNCOMMITTED fixer patch against 708a805e5cee7ce9c428b37d768348c63688417e on
+  chore/initialize-project-materials; leave uncommitted for Founder review and separate verification.

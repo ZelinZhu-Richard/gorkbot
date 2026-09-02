@@ -2117,7 +2117,6 @@ tasks:
       - 99_handoffs/completed/E2-004_verifier_review.yaml
     deliverables:
       - 05_architecture/ENGINEERING_PREVIEW_ARCHITECTURE_BASELINE.md
-      - 05_architecture/ENGINEERING_PREVIEW_ARCHITECTURE_REQUIREMENTS.md
       - 05_architecture/ENGINEERING_PREVIEW_E3_VALIDATION_OBLIGATIONS.md
       - 05_architecture/adr/
       - 99_handoffs/completed/E2-005_handoff.yaml
@@ -2301,12 +2300,12 @@ tasks:
     objective: Define and independently verify the common E3-QPA-001 authority boundary, protocol-freeze rules, run-admission schema, budget lanes, credential/data/fixture policy, raw-evidence contract, contamination controls, and founder-decision dependencies without selecting numeric values or executing a run.
     why_it_matters: No technical or model result is trustworthy if retry, correction, cost, evidence, data, credential, and stopping rules can be invented or changed after results are observed.
     owner_role: AUTHOR
-    assigned_model: "Codex (runtime model identifier not exposed) — E3-001 AUTHOR"
-    reviewer_model: null
+    assigned_model: "Codex (runtime model identifier not exposed) — original E3-001 AUTHOR returning as FIXER"
+    reviewer_model: "Claude Fable 5 (claude-fable-5) via Claude Code — fresh independent E3-001 challenger at 3766786699abd145a5f6bc38d88491fd58723107; verdict E3_001_CHANGES_REQUESTED with 0 BLOCKER / 0 HIGH / 1 MEDIUM / 2 LOW / 4 NOTE"
     verifier_model: null
     assignment_policy: "The E3-001 author may draft policy but may not acknowledge or approve the Founder-owned E3-QPA-001 role, self-challenge, self-verify, authorize a run, or create eligibility evidence. Authoring-surface identity creates no model-role eligibility."
     status: READY_FOR_REVIEW
-    planning_status: AUTHOR_PASS_COMPLETE_PENDING_FRESH_INDEPENDENT_CHALLENGE_AND_VERIFICATION
+    planning_status: FIXER_PASS_COMPLETE_READY_FOR_SEPARATE_POST_FIX_VERIFICATION
     author_model: "Codex (runtime model identifier not exposed)"
     author_started_at: UNKNOWN_NOT_CAPTURED
     author_completed_at: "2026-08-31T13:43:55Z"
@@ -2350,6 +2349,34 @@ tasks:
       current_authority: "PASS; paid authorization USD 0, credentials UNKNOWN_OR_NOT_AUTHORIZED, RUN_ADMISSION DO_NOT_RUN"
       negative_admission_vectors: "PASS; missing facts, wrong route, wrong Founder actor, inactive reservation, current-attempt result, paid lane, restricted data, secret reclassification, correction-scope rekey, hidden or stranded fallback reservation, consumed-parent refund, incomplete no-selection closure, hard failure, fabricated handback, evidence-integrity failure, E3V-002/E3V-006 fixture violations, and expired/stop precedence are fail closed"
       author_side_review: "Author-side adversarial passes reported protected-history capture, correction-series membership, material-epoch, direct-dispatch atomicity, fallback temporal/DAG and terminal-release issues; the sole author amended the drafts and reran the static suite. These reviews are not a registered project challenge or verification, and fresh independent review remains required."
+    challenger_artifact: 99_handoffs/completed/E3-001_challenger_review.yaml
+    challenger_started_at: "2026-08-31T23:55:00Z (approximate; session start not captured)"
+    challenger_completed_at: "2026-09-01T00:43:08Z"
+    challenger_reviewed_commit: 3766786699abd145a5f6bc38d88491fd58723107
+    challenger_verdict: E3_001_CHANGES_REQUESTED
+    challenger_finding_counts: {BLOCKER: 0, HIGH: 0, MEDIUM: 1, LOW: 2, NOTE: 4}
+    fixer_artifact: 99_handoffs/completed/E3-001_fixer_handoff.yaml
+    fixer_started_at: UNKNOWN_NOT_CAPTURED
+    fixer_completed_at: "2026-09-02T14:55:49Z"
+    fixer_base_commit: 708a805e5cee7ce9c428b37d768348c63688417e
+    fixer_result: FIXER_PASS_COMPLETE_READY_FOR_SEPARATE_VERIFICATION_NOT_VERIFIED
+    fixer_finding_counts: {FIXED: 3, DISPUTED: 0, DEFERRED: 0}
+    fixer_finding_dispositions:
+      F-E3-001-C01: FIXED
+      F-E3-001-C02: FIXED
+      F-E3-001-C03: FIXED
+    fixer_provenance_result: "PASS: fd3a7e7..3766786 changed only E2-005 and E3-001 task objects; the sole historical mutation was the requirements artifact added to E2-005.deliverables. Removing that line restores the complete E2-005 object to the pre-E3-001 verified record; E2-001 ownership and E2-005 input/reference use remain correct; no E2 status or verdict changed."
+    fixer_schema_authority_result: "PASS: x-current-policy-state removed; immutable documentation makes schema structural only, manifests bind exact versioned/digested refs, E3-004 semantic verification resolves current repository authority, and current governance decides admission. Schema validity alone cannot authorize PASS; stale/missing/unresolved/revoked/conflicting state remains DO_NOT_RUN."
+    fixer_schema_reachability_result: "PASS: 97 definitions, 1,635 local reference occurrences, 83 active-root reachable, 14 intentionally root-unreachable E3-004 external contract roots/dependencies exactly annotated and allowlisted, 0 unintended unreachable, 0 unresolved; three superseded generic QPA definitions removed; exactly three family-specific canonical QPA resolution sets remain."
+    fixer_validation_status: PASS_FIXER_SIDE_STATIC_AND_MECHANICAL_CHECKS_NOT_INDEPENDENT_VERIFICATION
+    fixer_validation_results:
+      static_schema_and_adversarial_suite: "158/158 PASS against the fixer candidate after only the author validator's expected schema digest was rebound in memory; validator file unchanged; original author digest pin correctly fails after the intentional schema correction and is not counted as a pass. Result: 1,635 local refs, 97 definitions, 2,824 required-property occurrences."
+      challenger_regressions: "32/32 PASS, including fail closure, QPA nulls, Founder authority, state machine, atomic admission, budget/no-cost/credential/data/network/effect/evidence/accounting/flaky/contamination/hard-failure/handback/E3V/model/route/task/harness/autonomy/E2/schema/semantic/no-execution checks."
+      schema_authority: "12/12 PASS: no mutable snapshot; structural-only schema; exact governance/protocol/Founder-QPA/budget/admission bindings; required current semantic resolution; current truth external; fail-closed stale state; QPA decision changes require no schema state-bookkeeping revision."
+      schema_reachability: "97 total / 83 active-root reachable / 14 intentionally external and allowlisted / 0 unintended; 1,635/1,635 local refs resolve; 6 direct external roots plus 8 dependencies annotated; 3 obsolete definitions removed."
+      semantic_preservation: "PASS: after normalizing away only the intended snapshot/obsolete-definition removals and fixer annotations, the current schema object equals the challenger-reviewed schema; policy and accepted E2 architecture/ADR bytes unchanged."
+      prohibited_actions: "PASS: 0 technical runs, 0 benchmarks, 0 paid/provider/network calls, 0 credential accesses, 0 model assignments, 0 eligibility verdicts, 0 application or harness code, 0 architecture/ADR changes, 0 autonomy/E4 changes."
+    verification_status: FIXER_PASS_COMPLETE_PENDING_SEPARATE_POST_FIX_VERIFICATION
     priority: P0
     dependencies:
       - E2-006
@@ -2470,7 +2497,7 @@ tasks:
       - Founder acknowledgement or value-setting is requested or appears to conflict with frozen E1 requirements.
       - A requested admission lane requires a real credential, network, private data, consequential effect, or positive spend.
       - The common schema cannot represent an E3V-specific safety, handback, or evidence requirement.
-    next_command: "MODE: REVIEW_TASK_E3-001"
+    next_command: "MODE: VERIFY_TASK_E3-001"
 
   - task_id: E3-002
     title: Freeze E3V-001 through E3V-007 technical-validation protocols

@@ -197,3 +197,79 @@ blockers:
   - "Any paid/external/provider, credential, data, region, network, or controlled-effect lane requires its own exact current authority and evidence; current paid authority is USD 0."
 recommended_next_task: "MODE: REVIEW_TASK_E3-001"
 repository_commit_or_patch: "UNCOMMITTED working-tree patch against fd3a7e7c2076a2a21475cb2cf9d6b376a58735dc on chore/initialize-project-materials; leave uncommitted for Founder review."
+
+fixer_correction_addendum:
+  recorded_at: "2026-09-02T14:55:49Z"
+  role: "Original E3-001 AUTHOR returning as FIXER"
+  lifecycle_status: FIXER_PASS_COMPLETE_READY_FOR_SEPARATE_VERIFICATION_NOT_VERIFIED
+  challenger_artifact: 99_handoffs/completed/E3-001_challenger_review.yaml
+  challenger_reviewed_commit: 3766786699abd145a5f6bc38d88491fd58723107
+  fixer_base_commit: 708a805e5cee7ce9c428b37d768348c63688417e
+  finding_dispositions:
+    F-E3-001-C01: FIXED
+    F-E3-001-C02: FIXED
+    F-E3-001-C03: FIXED
+  provenance_correction: >-
+    Mechanical history reconstruction established author parent
+    fd3a7e7c2076a2a21475cb2cf9d6b376a58735dc and author commit
+    3766786699abd145a5f6bc38d88491fd58723107. That author pass changed task objects
+    E2-005 and E3-001; the only historical/out-of-E3-001 mutation was one line adding
+    05_architecture/ENGINEERING_PREVIEW_ARCHITECTURE_REQUIREMENTS.md to E2-005.deliverables.
+    This addendum discloses that prior author mutation. The fixer removed only that line,
+    restoring the complete E2-005 task object to its pre-E3-001 verified record. The artifact
+    remains correctly owned by E2-001 and remains a legitimate E2-005 files_to_read input.
+    No other historical task mutation was found or corrected; no E2 status, verdict,
+    architecture artifact, ADR, checkpoint, or accepted semantic byte changed.
+  schema_authority_correction: >-
+    Removed x-current-policy-state. The schema now documents one non-authoritative structural
+    role and the exact schema -> manifest -> independent semantic verifier -> current repository
+    governance authority chain. Schema validity alone remains insufficient for PASS; the
+    manifest binds exact versions/digests/references, and stale, missing, unresolved, revoked,
+    or conflicting current authority remains DO_NOT_RUN. Current QPA/Founder/budget/credential/
+    task/protocol truth is resolved from current authoritative records, not schema annotations.
+  schema_definition_correction: >-
+    Removed only qpa_resolution_set, case_or_task_qpa_resolution_set, and
+    check_or_class_qpa_resolution_set. Annotated the six intentionally direct-unreferenced
+    protected/runtime record roots and their eight root-unreachable dependency definitions as
+    E3-004 external contracts, with an exact 14-name allowlist. Mechanical graph result:
+    97 definitions, 1,635 local reference occurrences, 83 active-root reachable, 14 intentional
+    external closure, 0 unintended unreachable, 0 unresolved references, and exactly three
+    canonical family-specific QPA resolution sets.
+  fixer_files_created:
+    - 99_handoffs/completed/E3-001_fixer_handoff.yaml
+  fixer_files_modified:
+    - 01_governance/PROJECT_STATE.yaml
+    - 01_governance/TASK_REGISTRY.yaml
+    - 06_evaluation/e3_governance/E3_RUN_ADMISSION_MANIFEST.schema.yaml
+    - 99_handoffs/completed/E3-001_handoff.yaml
+  fixer_validation_summary:
+    - "158/158 fixer-candidate static schema/adversarial assertions PASS after disclosed in-memory schema-digest rebind; original validator file unchanged."
+    - "32/32 named challenger-passed regression checks PASS."
+    - "12/12 focused schema-authority checks PASS."
+    - "Schema reachability/reference and E2 provenance restoration checks PASS."
+    - "Policy and normalized active schema semantics preserved; accepted E2/ADR bytes unchanged."
+  execution_counters:
+    technical_validation_runs: 0
+    model_benchmarks_run: 0
+    paid_api_calls: 0
+    credentials_accessed: 0
+    network_or_provider_calls: 0
+    external_effects: 0
+    model_role_assignments: 0
+    eligibility_verdicts_created: 0
+    application_code_files_created: 0
+    validation_harness_code_files_created: 0
+    autonomy_changes: 0
+    e4_actions: 0
+  current_state: >-
+    E3-001 remains READY_FOR_REVIEW / NOT VERIFIED. E3-002/E3-003 remain BACKLOG and
+    blocked on E3-001 independent verification. E3-005/E3-006 remain BACKLOG / DO_NOT_RUN.
+    E3-QPA-001 remains FOUNDER_DECISION_REQUIRED_NO_NUMERIC_VALUES with all three values null;
+    paid authority remains NOT_AUTHORIZED / USD 0; credentials remain unauthorized/unverified;
+    the E3 gate remains NOT_EVALUATED; MODEL_REGISTRY remains 13 HYPOTHESIS_ONLY / NOT_RUN,
+    0 eligibility records, and 0 role assignments; autonomy remains NOT_ELIGIBLE / NO.
+  detailed_fixer_record: 99_handoffs/completed/E3-001_fixer_handoff.yaml
+  recommended_next_task: "MODE: VERIFY_TASK_E3-001"
+  repository_commit_or_patch: >-
+    UNCOMMITTED fixer patch against 708a805e5cee7ce9c428b37d768348c63688417e on
+    chore/initialize-project-materials; leave uncommitted for Founder review and separate verification.
