@@ -1,0 +1,693 @@
+review_id: R-E3-001-20260901-CHALLENGER
+task_id: E3-001
+stage: E3
+mode: REVIEW_TASK_E3-001
+role: CHALLENGER
+reviewer_model: "Claude Fable 5 (claude-fable-5) via Claude Code"
+reviewer_independence: >-
+  Fresh independent challenger in a new session with no shared conversation state with the E3-001
+  author session ("Codex (runtime model identifier not exposed)") or its author-side helper
+  reviews, and none with any earlier S0/S1/E0/E1/E2 or PLAN_STAGE_E3 session; same model/product
+  as earlier Claude Fable 5 challenger/verifier sessions, disclosed per repository precedent.
+  Disclosure: Claude Code is a named E3 candidate system in MODEL_REGISTRY/charter; this review
+  selects no role occupant, provider, model, mechanism, host, client, or technology, creates no
+  eligibility evidence, and does not verify E3-001. Every count, status map, set equality, diff,
+  parse result, and coherence judgement below was recomputed from the committed bytes at 3766786
+  with scratch commands (ruby 2.6 Psych strict-parse AST walks with duplicate-key/alias/merge-key/
+  custom-tag/multi-document detection, git, grep, sed, awk). The author's handoff, registry
+  author_* fields, PROJECT_STATE author note, and 158/158 + 64/64 author-side claims were read but
+  not relied on as evidence for any PASS. No subagent lifecycle credit, network retrieval, login,
+  account, API key, credential access, paid call, spend, fixture/harness execution, model/provider
+  call, benchmark, application or harness code, model-role assignment, eligibility verdict,
+  architecture/ADR change, autonomy transition, or E4 action was used or produced. No finding was
+  fixed. No policy, schema, governance, architecture, or frozen E1/E2 file was modified.
+started_at: "2026-08-31T23:55:00Z (approximate; session start not captured; review began after committed HEAD 3766786 was observed with a clean working tree)"
+completed_at: "2026-09-01T00:43:08Z"
+reviewed_commit: 3766786699abd145a5f6bc38d88491fd58723107
+reviewed_state: >-
+  Branch chore/initialize-project-materials at committed HEAD 3766786 ("Define E3 qualification
+  and run admission policy"), clean working tree. The founder committed the author's declared
+  five-file patch against author base fd3a7e7 exactly: 06_evaluation/e3_governance/
+  E3_QUALIFICATION_AND_RUN_ADMISSION_POLICY.yaml (+1679), 06_evaluation/e3_governance/
+  E3_RUN_ADMISSION_MANIFEST.schema.yaml (+10172), 99_handoffs/completed/E3-001_handoff.yaml
+  (+199), 01_governance/PROJECT_STATE.yaml (+40/-20 net), 01_governance/TASK_REGISTRY.yaml
+  (+63/-20 net). E3-001 is READY_FOR_REVIEW / NOT VERIFIED; E3-002/E3-003 BACKLOG blocked on
+  independent E3-001 verification; E3-004/E3-007/E3-008 BACKLOG; E3-005/E3-006 BACKLOG with
+  run_admission_status DO_NOT_RUN; E3 gate NOT_EVALUATED; RUN_ADMISSION current DO_NOT_RUN; QPA
+  values all null; paid authority USD 0; credentials UNKNOWN_OR_NOT_AUTHORIZED; all empirical/
+  application counters 0; AUTONOMY_ELIGIBLE NOT_ELIGIBLE; AUTONOMOUS_BUILD_AUTHORIZED NO;
+  S1-003 DEFERRED. DECISION_LOG ends at D-016 with no founder QPA/paid/credential decision.
+verdict: E3_001_CHANGES_REQUESTED
+verdict_rationale: >-
+  The common qualification and run-admission governance itself survives adversarial review on
+  every safety dimension I attacked: fail-closure is structural, not prose (schema outcome enum
+  is exactly PASS/DO_NOT_RUN/EXPIRED_REQUIRES_REFREEZE; default outcome DO_NOT_RUN; the master
+  PASS conditional structurally forces founder acknowledgement + exact-value approval refs bound
+  to 01_governance/DECISION_LOG.md with deciding_actor const Founder and CURRENT_NOT_REVOKED,
+  zero-material-finding QPA challenge and separate verification records, protocol
+  EXECUTION_READY_VERIFIED, harness VERIFIED, E3-001 governance-verification and E2-gate subject
+  refs with recomputed digests, CLAIMED task status, independent checker, all-SATISFIED admission
+  checks with evidence, clean stop/handback, zero drift triggers, and a 35-field single-use
+  launch binding with atomic CAS, receipt, readback, and crash-reconciliation semantics; the
+  PAID_EXTERNAL_VALIDATION lane and RESTRICTED data class force DO_NOT_RUN as consts under this
+  schema version; REMOTE_EXTERNAL transport forces the paid lane, so free credits, trials, or
+  prepaid subscriptions cannot ride the no-cost lane; the no-cost lane forces LOCAL_OFFLINE,
+  zero egress/calls/effects, and credentials NOT_APPLICABLE while still requiring the full gate).
+  All three canonical E3-QPA-001 families match the E2-frozen §11 registration byte-for-byte in
+  substance, remain explicit null with DO_NOT_RUN consequences, and no default/fallback value
+  exists anywhere in policy or schema (zero JSON-Schema "default" keywords; assignment values
+  are integer minimum 1 with nulls representable only as whole-field nulls that PASS forbids).
+  Frozen E1 verification-rerun/FLAKY/correction semantics are inherited accurately
+  (VERIFICATION_ERROR-only same-revision rerun, CHANGES_REQUIRED/BLOCKED/INCONCLUSIVE excluded,
+  later-pass-erasure forbidden), and E1/benchmark-plan numerics are explicitly quarantined from
+  QPA nulls. Correction accounting binds ceilings to harness-selected membership-independent
+  series and per-scope stable-member registries keyed by project/stage/task/scope so
+  remove/re-add, rename-adjacent, clone, fresh-ID, and new-series resets fail closed with 95
+  unique negative vectors (93 DO_NOT_RUN, 2 EXPIRED). Evidence layers, contamination, hard
+  failures, handback (sets equal to the canonical E2 sets in policy overlay and schema consts),
+  E3V-002/E3V-006 overlays, model-benchmark exact-configuration identity, EVALUATION_ONLY route
+  separation, autonomy invariants, and the byte-level preservation of every frozen E1/E2/ADR/
+  checkpoint artifact all re-derive PASS. However, one MEDIUM defect prevents acceptance under
+  the no-unresolved-BLOCKER/HIGH/MEDIUM rule: the author's TASK_REGISTRY edit reached outside the
+  E3-001 entry and retroactively inserted 05_architecture/ENGINEERING_PREVIEW_ARCHITECTURE_REQUIREMENTS.md
+  into the deliverables list of the independently VERIFIED E2-005 task — a factually wrong
+  attribution (the file is an E2-001 deliverable created at 349a9f0/0d702b8; E2-005's allowed
+  paths exclude it and its handoff/verifier records do not list it as created or modified) that
+  silently mutates the recorded history of a verified task and is disclosed nowhere in the E3-001
+  handoff. Two LOW findings (a mutable governance-state snapshot embedded in the schema artifact;
+  nine dead/unreferenced $defs including three superseded qpa_resolution_set variants) and four
+  NOTEs are recorded. None of these weakens fail-closure, creates authority, fabricates a founder
+  decision, or changes accepted E2 semantics; all are bounded fixer work. This verdict does not
+  mark E3-001 VERIFIED and does not activate E3-002 or E3-003.
+method:
+  - Read the current E3-001 TASK_REGISTRY entry first and treated repository authority as controlling.
+  - Read every controlling source listed in E3-001 files_to_read plus E3-002..E3-008 entries, both E2 checkpoint records, the E3 plan, PLAN_STAGE_E3 handoff, E2-005/E2-006 review records, and both E3-001 artifacts end to end (policy fully; schema by complete structural passes over all 23 property sections, all root allOf conditionals, and all 100 $defs).
+  - Recomputed all mechanical results with an independent ruby 2.6/Psych suite (143 assertions) plus targeted AST/def-graph audits; did not execute or trust the author's /tmp validators.
+  - Diffed fd3a7e7..3766786 per file to verify allowed-path compliance and byte-level preservation of frozen artifacts.
+  - Attacked each mandated dimension (sections 3-34 of the review mode) with concrete adversarial scenarios documented in section_evidence.
+files_read:
+  - MASTER_OPERATING_PROMPT.md
+  - AGENTS.md
+  - README.md
+  - SECURITY.md
+  - CLAUDE.md
+  - 01_governance/PROJECT_STATE.yaml
+  - 01_governance/TASK_REGISTRY.yaml
+  - 01_governance/DECISION_LOG.md
+  - 01_governance/ASSUMPTION_REGISTER.md
+  - 01_governance/RISK_REGISTER.md
+  - 01_governance/MODEL_REGISTRY.yaml
+  - 03_product/ENGINEERING_PREVIEW_CHARTER.md (autonomy/§18-19 sections)
+  - 03_product/ENGINEERING_PREVIEW_CORRECTNESS_CONTRACT.md (verification/rerun/flaky/risk sections)
+  - 03_product/ENGINEERING_PREVIEW_CONTRIBUTION_WORKFLOW.md (referenced state)
+  - 06_evaluation/ENGINEERING_PREVIEW_EVALUATION_SUITE.md (EP-EVAL-0.2 token, risk/ceiling/oracle rows)
+  - 06_evaluation/MODEL_ROLE_BENCHMARK_PLAN.md (numeric-proposal quarantine check)
+  - 06_evaluation/ENGINEERING_PREVIEW_E3_PLAN.md
+  - 05_architecture/ENGINEERING_PREVIEW_E3_VALIDATION_OBLIGATIONS.md
+  - 05_architecture/adr/ADR-E2-005_CAPABILITY_APPROVAL_SECRET_EFFECT_RECONCILIATION.md (protected entry)
+  - 05_architecture/adr/ADR-E2-007_VERIFICATION_EVIDENCE_ARTIFACT_INTEGRITY.md (evidence layers)
+  - 10_checkpoints/stage_checkpoints/ENGINEERING_PREVIEW_E2_ARCHITECTURE_GATE_VERIFICATION.yaml (via grep/state)
+  - 99_handoffs/completed/PLAN_STAGE_E3_handoff.yaml
+  - 99_handoffs/completed/E2-005_handoff.yaml
+  - 99_handoffs/completed/E2-005_challenger_review.yaml (format precedent)
+  - 99_handoffs/completed/E2-005_verifier_review.yaml
+  - 99_handoffs/completed/E2-006_verifier_review.yaml (via state records)
+  - 06_evaluation/e3_governance/E3_QUALIFICATION_AND_RUN_ADMISSION_POLICY.yaml
+  - 06_evaluation/e3_governance/E3_RUN_ADMISSION_MANIFEST.schema.yaml
+  - 99_handoffs/completed/E3-001_handoff.yaml
+recomputed_outputs:
+  strict_yaml: "6/6 target files (policy, schema, handoff, TASK_REGISTRY, PROJECT_STATE, MODEL_REGISTRY) parse as single documents with 0 duplicate keys, 0 aliases, 0 merge keys, 0 custom tags"
+  schema_refs: "1638 $ref occurrences all resolve into 100 local $defs; 9 $defs are unreferenced by the manifest shape (see F-E3-001-C03)"
+  schema_strictness: "0 object schemas carrying properties lack additionalProperties: false"
+  hidden_defaults: "0 JSON-Schema default keywords in policy or schema; qpa assignment values are integer minimum 1; protocol limit fields are nullable-typed with PASS-side hard constraints"
+  qpa_families: "exactly 3 canonical scope-aware families, names and scope kinds equal to E2-frozen ENGINEERING_PREVIEW_E3_VALIDATION_OBLIGATIONS.md §11; all default_value/assignments null; approval/challenge/verification refs null; missing consequence DO_NOT_RUN_E3_SCORED_EXECUTION_BLOCKED"
+  admission_outcomes: "policy and schema both exactly [PASS, DO_NOT_RUN, EXPIRED_REQUIRES_REFREEZE]; capture terminal classes are a separate 3-value vocabulary mapped to DO_NOT_RUN for parser/secret rejections"
+  negative_vectors: "95 unique DENY ids; expected outcomes 93 DO_NOT_RUN + 2 EXPIRED_REQUIRES_REFREEZE (DENY-PROTO-002, DENY-EXPIRY-001)"
+  handback_sets: "8/8 policy overlay canonical_handback_adrs and 8/8 schema per-E3V const arrays set-equal to the E2-005/PROJECT_STATE canonical sets"
+  paid_authority: "policy USD 0 / NOT_AUTHORIZED / DO_NOT_RUN; schema governance_paid_authorization_usd const 0, status const NOT_AUTHORIZED, PAID lane conditional forces outcome const DO_NOT_RUN; future_paid_authorization requires founder decision ref, approving_actor const Founder, four exclusiveMinimum-0 caps, S0-005 VERIFIED ref, freshness rule"
+  model_registry: "13 candidates; 13/13 role_assignment_status HYPOTHESIS_ONLY; 13/13 benchmark_status NOT_RUN; current_role_assignment_count 0; 0 eligibility verdicts; benchmark_policy PLAN_ONLY_NOT_AUTHORIZED_TO_RUN"
+  task_graph: "E3-001 READY_FOR_REVIEW; E3-002/E3-003 BACKLOG with activation 'E3-001 is independently VERIFIED'; E3-004 BACKLOG on E3-002+E3-003; E3-005 BACKLOG/DO_NOT_RUN on E3-002+E3-004; E3-006 BACKLOG/DO_NOT_RUN on E3-003+E3-004; 0 READY, 0 CLAIMED tasks repo-wide"
+  diff_scope: "exactly 5 files changed fd3a7e7..3766786; 0 bytes changed in 05_architecture/, 03_product/, evaluation suite, benchmark plan, E3 plan, 10_checkpoints/, DECISION_LOG.md, MODEL_REGISTRY.yaml, ASSUMPTION_REGISTER.md, RISK_REGISTER.md"
+  counters: "handoff 9/9 zero; PROJECT_STATE E3 counters 6/6 zero; no code files added anywhere in the diff"
+  secret_scan: "0 high-confidence secret-pattern hits across the three new artifacts; git diff --check clean"
+  validator_totals: "140/143 independent assertions PASS; the 3 initial failures were reviewer-side extraction assumptions, re-verified manually as PASS (registry E3-005/E3-006 carry DO_NOT_RUN in run_admission_status; MODEL_REGISTRY candidates under models: key)"
+section_results:
+  run_admission_fail_closed: RUN_ADMISSION_FAIL_CLOSED_PASS
+  qpa_null_state: QPA_NULL_STATE_PASS
+  founder_authority: FOUNDER_AUTHORITY_PASS
+  admission_state_machine: ADMISSION_STATE_MACHINE_PASS
+  atomic_admission: ATOMIC_ADMISSION_PASS
+  budget_policy: BUDGET_POLICY_PASS
+  no_cost_governance: NO_COST_GOVERNANCE_PASS
+  credential_policy: CREDENTIAL_POLICY_PASS
+  data_fixture_policy: DATA_FIXTURE_POLICY_PASS
+  network_effect_policy: NETWORK_EFFECT_POLICY_PASS
+  raw_evidence: RAW_EVIDENCE_PASS
+  evidence_layering: EVIDENCE_LAYERING_PASS
+  attempt_accounting: ATTEMPT_ACCOUNTING_PASS
+  cumulative_accounting: CUMULATIVE_ACCOUNTING_PASS
+  flaky_policy: FLAKY_POLICY_PASS
+  contamination_policy: CONTAMINATION_POLICY_PASS
+  hard_failure_policy: HARD_FAILURE_POLICY_PASS
+  architecture_handback: ARCHITECTURE_HANDBACK_PASS
+  e3v_admission_coverage: E3V_ADMISSION_COVERAGE_PASS
+  e3v_002: E3V_002_GOVERNANCE_PASS
+  e3v_006: E3V_006_GOVERNANCE_PASS
+  model_benchmark_admission: MODEL_BENCHMARK_ADMISSION_PASS
+  route_eligibility_separation: ROUTE_ELIGIBILITY_SEPARATION_PASS
+  model_registry: MODEL_REGISTRY_PASS
+  protocol_activation: PROTOCOL_ACTIVATION_PASS
+  run_task_blocking: RUN_TASK_BLOCKING_PASS
+  harness_boundary: HARNESS_BOUNDARY_PASS
+  autonomy_governance: AUTONOMY_GOVERNANCE_PASS
+  e2_baseline_preservation: E2_BASELINE_PRESERVATION_PASS
+  no_execution: NO_EXECUTION_PASS
+  admission_schema: ADMISSION_SCHEMA_PASS
+  manifest_semantic_verification: MANIFEST_SEMANTIC_VERIFICATION_PASS
+section_evidence:
+  run_admission_fail_closed: >-
+    Structural, not prose. default_outcome DO_NOT_RUN; every missing/unknown/unapproved/invalid/
+    conflicting/stale required fact is a DO_NOT_RUN trigger; the master PASS allOf conditional
+    pins ~60 facts (founder ACKNOWLEDGED + APPROVED with DECISION_LOG-bound refs, QPA
+    challenge/verification refs with unresolved_material_findings_count const 0, protocol
+    EXECUTION_READY_VERIFIED, harness VERIFIED, E3-001/E2-gate subject refs, CLAIMED task,
+    independent checker const true, self-admission const false, all_pass_checks with SATISFIED +
+    evidence minItems 1, freshness prior_pass_consumed false + material_change_triggers maxItems
+    0, stop_and_handback all clear, launch binding + reservation intent + atomic set +
+    dispatch predicate non-null). Attack paths tried and blocked: missing QPA values (PASS forces
+    non-null assignment sets whose items are integers >= 1); expired admission (EXPIRED conditional
+    + PRIOR_SINGLE_USE_PASS_CONSUMED trigger enum); missing protocol verification (const
+    EXECUTION_READY_VERIFIED + verification_ref non-null); configuration drift (13-trigger
+    material-change enum + epoch/fence + dispatch zero-drift predicate); budget absence
+    (cost_is_bounded_and_known const true + reservation refs); credential absence when REQUIRED
+    (VALID/NOT_REVOKED/protected-entry consts + security_review_ref); data authorization
+    (rights_verified true, clean_room PASSED, RESTRICTED forces DO_NOT_RUN); network (NONE forces
+    zero egress/calls; AUTHORIZED requires allowlist/bounds); evidence destination (three
+    destination objects + integrity VERIFIED + controls verified consts); isolation (required
+    section + supported_class_verified true); handback binding (canonical set consts per E3V +
+    PASS requires no pending handback). Schema validity is explicitly insufficient
+    (schema_conformance_is_sufficient_for_pass false) and semantic failure is DO_NOT_RUN.
+  qpa_null_state: >-
+    The three governed values equal the E2-frozen §11 scope-aware families (verification-rerun
+    per case/task; deterministic required-check repetition rule/value per check/class;
+    correction-attempt per case/task); no fourth family exists in any source; no unauthorized
+    value was invented (policy values_selected_by_e3_001 false; registry qpa_values_selected 0;
+    zero numeric assignments anywhere); nulls block admission (DENY-QPA-001/002; resolution rule
+    rejects null/zero/negative/noninteger/nonfinite); protocol authoring is not blocked
+    (founder_decision_timing.not_required_before includes E3-002/E3-003 author drafting); no
+    default substitutes for null (0 "default" keywords; explicit non-inference rules quarantine
+    frozen E1 repetitions/thresholds and MODEL_ROLE_BENCHMARK_PLAN design proposals, which I
+    confirmed exist as labelled DESIGN PROPOSAL text only).
+  founder_authority: >-
+    DECISION_LOG.md ends at D-016; no QPA acknowledgement, value approval, budget, provider
+    access, entitlement, credential availability, restricted-data or remote-effect authorization
+    is recorded or claimed anywhere; policy/schema/handoff/PROJECT_STATE uniformly record
+    founder_acknowledgement_recorded false, founder_value_approval_recorded false, refs null,
+    USD 0, credentials UNKNOWN_OR_NOT_AUTHORIZED. Every unresolved founder decision carries an
+    explicit required status, correct earliest blocking boundary (protocol execution-ready
+    verification / any RUN_ADMISSION PASS / any empirical attempt / any eligibility credit),
+    and explicit may-proceed work (E3-001 lifecycle, E3-002/E3-003 drafting). The schema's
+    founder_qpa_decision_ref structurally requires decision_log_path const
+    01_governance/DECISION_LOG.md and deciding_actor const Founder, so a manifest cannot
+    self-assert founder consent.
+  admission_state_machine: >-
+    Transitions unambiguous under the three-outcome precedence: never admitted / missing
+    authority without prior PASS -> DO_NOT_RUN (EXPIRED structurally requires
+    prior_pass_manifest_ref non-null + triggers minItems 1, so missing authority cannot
+    masquerade as EXPIRED); prior PASS + any of 13 drift triggers or consumption -> EXPIRED (the
+    consumed-only case is representable because PRIOR_SINGLE_USE_PASS_CONSUMED is itself an
+    enum trigger); PASS cannot survive drift (PASS forces triggers maxItems 0 +
+    all_required_facts_current true + epoch/fence currentness + dispatch-time zero-drift
+    predicate; fact commits atomically advance epoch and fence prior PASSes). Hard stop during a
+    valid launch does not rewrite the historical PASS. Handback is a governed consequence, not
+    a fourth outcome. Rerun-after-PASS, retry-after-transient, and correction-after-failure each
+    require a fresh single-use manifest and independent PASS.
+  atomic_admission: >-
+    Two launchers/one admission: single-use launch binding + UNCONSUMED_RESERVED -> CONSUMED CAS
+    + one terminal decision per gap-free capture slot + concurrent/replay rejection. Double
+    budget spend: one atomic reservation set in canonical member order, no partial commit,
+    ledgers append-only and complete from first attempt. Validate-then-policy-change: material
+    fact epoch + fence bound into grants/decision/final set/launch and rechecked in one atomic
+    dispatch predicate. Credential revocation between validation and launch: dispatch-time grant
+    recheck incl. revocation. Version drift: SERVED_VERSION drift trigger fences the PASS.
+    Post-handback launch: PASS requires no pending handback and handback advance is a drift
+    trigger. Retry reusing consumed admission: every operation kind requires a fresh manifest and
+    fresh PASS. Crash after reservation: durable consumption receipt + post-record readback +
+    reconciliation before any retry; unknown outcomes block terminal visibility. Ownership:
+    one current owner epoch/fence across reservations; authority transfer atomically fences old
+    reservations. Semantics are architecture-compatible contracts; no implementation algorithm is
+    selected, matching E3-001 scope.
+  budget_policy: >-
+    PAID lane is structurally DO_NOT_RUN under schema 0.1.0 (outcome const), so a future paid
+    block requires a new governance version through the amendment path rather than a value edit.
+    Subscription/free-credit/trial bypass fails: any provider dispatch or external network is
+    forbidden in the no-cost lane (consts) and REMOTE_EXTERNAL transport forces the paid lane.
+    Estimated-cost ambiguity: cost_is_bounded_and_known const true for PASS; unknown/unbounded
+    cost is DO_NOT_RUN (DENY-BUDGET-004). Retries/reruns/corrections/parallel/failed/refused/
+    inconclusive attempts all count against caps. Delayed billing/unknown tokens: conservative
+    remaining-budget calculation required. Tool charges: cost exists only in the budget family
+    (cost may not be a protocol dimension, DENY-PROTO-005) with cumulative stage-scope
+    projection. Future authorization requires four finite exclusiveMinimum-0 caps, exact
+    provider/account/actor/configs/data/credential/network/effect scopes, stop rule, S0-005
+    VERIFIED ref, and freshness rule.
+  no_cost_governance: >-
+    still_requires_full_admission true; the master PASS conditional is lane-independent, so the
+    no-cost lane still requires verified protocol/harness, founder-approved QPA, admission, data
+    policy, evidence controls, isolation section, stop rules, handback binding, and contamination
+    gates; missing finite local time/output/process/disk/network limits are DO_NOT_RUN
+    (DENY-BUDGET-002; NO_COST conditional pins network_call_ceiling and cost_ceiling_usd to 0
+    while the PASS conditional requires the remaining protocol_limits integers >= 1).
+  credential_policy: >-
+    Raw secrets forbidden on seven enumerated surfaces incl. manifests, evidence, env dumps,
+    argv, fixtures, logs, model context; raw_secret_present_in_manifest_or_evidence const false;
+    references_only; ambient inheritance disabled const true for PASS; stale/revoked/wrong-scope
+    credentials DO_NOT_RUN (DENY-CRED-002); cross-provider reuse blocked by exact
+    provider/account/endpoint scope binding and envelope keys; protected-entry ambiguity fails to
+    WAITING_FOR_USER_OR_BLOCKED; suspected exposure stops/quarantines/escalates; secret-boundary
+    capture keeps content-derived identifiers out of ordinary evidence. S0-005 mapped honestly:
+    status BLOCKED, funded account false, protocol planning may continue, paid/real-provider
+    execution may not; schema paid path requires an S0-005 VERIFIED ref before any future paid
+    admission.
+  data_fixture_policy: >-
+    Default deny; four admissible classes with immutable id/version/digest, provenance, rights,
+    classification, clean-room review, partition, region/retention; RESTRICTED forces DO_NOT_RUN
+    now and future use requires explicit separate founder authorization plus full admission.
+    Ambiguity attacks resolve correctly: unclear-license webpage fails
+    PUBLIC_OPEN_WITH_RIGHTS (rights_or_license_ref + rights_verified true required); restrictive-
+    license repo fails rights verification; derivatives of reconstructed Grok source are
+    prohibited (contains_reconstructed_or_unlicensed_material const false + prohibited class);
+    private customer text in a "synthetic" fixture violates contains_private_customer_data const
+    false and clean-room review; production credential disguised as marker violates
+    contains_real_secret_or_credential const false plus capture-surface scan; personal data is a
+    prohibited class. E3V-006 synthetic markers only: policy flag, schema marker_class const
+    SYNTHETIC_MARKER_ONLY, e3v_006_real_credentials_permitted false, DENY-E3V006-001.
+  network_effect_policy: >-
+    NETWORK_READ_OR_PROVIDER_INVOCATION and REMOTE_SIDE_EFFECT are separate dimensions; network
+    is_not_remote_mutation_authority true; never_inferred_from_network_access true. Hypotheticals
+    classify correctly: provider inference/metadata fetch/clone/git fetch = network read needing
+    exact allowlist/bounds/purpose/credential scope; git push, remote branch/PR creation,
+    artifact upload, webhook, issue comment, account setting change = REMOTE_SIDE_EFFECT needing
+    indispensable frozen-question basis, exact target/action/idempotency/receipt/readback and
+    specific authorization, with INTENT/APPROVAL/ATTEMPT/OBSERVED/CONFIRMED and refusal
+    sequences; unknown effect prohibits blind retry (DENY-EFFECT-001); zero-effect mode forces
+    all effect refs null; no-cost lane exception NONE.
+  raw_evidence: >-
+    Append-only immutable raw layer retains every failed/inconclusive/retried/rerun/corrected/
+    excluded/stopped/hard-failure attempt with stable IDs and full provenance; overwrite
+    forbidden; amendments append-only with actor/reason/time/original locator+digest/impact;
+    parser failures are captured by a wrapper with byte digests (nonsecret) or opaque quarantine
+    receipts (secret); duplicate/forked identities blocked by gap-free capture ordinals, one
+    terminal decision per slot, and equivalence search across all keys/profiles from first
+    submission; deletion/omission/fresh-index forum shopping is DO_NOT_RUN; redaction policy
+    cannot remove material proof (proof digests cover safe metadata; unfavorable attempts must
+    be preserved for any credit).
+  evidence_layering: >-
+    Three distinct layers with distinct locators (same-locator DO_NOT_RUN, DENY-EVID-001),
+    distinct write authorities, and no decision authority in raw; derived may not overwrite or
+    filter raw; admission PASS creates no credit (eligibility_credit_created const false;
+    creates_technical_or_eligibility_credit false); run pass does not create eligibility
+    (e3_005/e3_006 may_be_created false); E3-007 proposes only; E3-008 independent verification
+    and stage-gate authorities are separate.
+  attempt_accounting: >-
+    Relabeling failed evidence is blocked: attempt class immutable; non-scored->scored relabel
+    forbidden; RETRY requires eligible transient prior outcome with all ineligible classes
+    absent (denials, stale authority, uncertain non-idempotent effects, exhaustion, hard
+    failures are non-retryable), preserves the original, and reserves exactly one execution
+    retry; RERUN requires a new run ID, same frozen block, preserved prior run, and either
+    VERIFICATION_ERROR (consumes QPA rerun scope, zero protocol repetition) or scheduled
+    PROTOCOL_REPETITION (consumes exactly one repetition slot); CORRECTION requires exact
+    material diff, new version where material, new whole block at ordinal 1, preserved prior
+    evidence, cumulative lineage consumption, and founder-approved QPA assignments for newly
+    added scopes; basis mismatches are DO_NOT_RUN (DENY-CONTAM-003, DENY-LAUNCH-006).
+  cumulative_accounting: >-
+    Attacked with rename/clone/remove-recreate/new-series/whitespace/alias/role-relabel/fresh-
+    manifest resets: ceilings bind to harness-selected series subjects and per-scope stable
+    member subjects keyed by project/stage/task/scope_kind/scope_ref, with configuration/block/
+    manifest/attempt identifiers excluded from lineage identity; removed members remain
+    authoritative; re-added members resume prior consumption; only never-before-seen members may
+    initialize state after a required complete cross-set overlap search; manifests cannot select
+    or fork registries; DENY-QPA-010/011/012 and DENY-MFACT-001 close reset paths. A renamed
+    case becomes a truly-new member only through a CORRECTION with material diff plus a
+    prospectively founder-approved QPA assignment and fresh review cycle, which is a defensible
+    governance rule rather than perfect semantic identity.
+  flaky_policy: >-
+    Mixed ordered outcomes are FLAKY; a later pass erases nothing (consts in schema and policy);
+    credit requires the complete prospectively declared repetition rule; deterministic
+    repetition is a per-scheduled-attempt requirement (consumed_before 0, reserved equals the
+    frozen resolved value, remaining 0), never a decrementing lifetime ceiling (DENY-QPA-009);
+    missing/inconclusive/flaky treated as pass is DO_NOT_RUN (DENY-STOP-002); numbers stay
+    QPA-owned nulls. Matches frozen E1 EP-FALSE-010 and correctness-contract §745 semantics.
+  contamination_policy: >-
+    Development/smoke/scored partitions immutable and lane-matched (attempt_class ->
+    partition conditionals); held-out bytes/labels/expected results unavailable to tuning with
+    digest and access-actor recording; blinding and grader independence for scored PASS;
+    tuning-on-held-out, decision-case reuse, favorable seed/order, selective retry/rerun/
+    omission, post-result exclusion/denominator/threshold changes, label exposure, dev/smoke
+    promotion, and candidate-specific defect exclusion are enumerated forbidden practices with
+    DENY-CONTAM-001/002, DENY-GRADE-001, DENY-EVID-002; prompt correction without a new version
+    is impossible (configuration/prompt change requires a new configuration version);
+    contamination consequence is stop/quarantine/blocked credit/independent review.
+  hard_failure_policy: >-
+    Fifteen non-compensating classes cover unauthorized effect, secret exposure, fabricated/
+    deleted/omitted evidence, false completion, approval/admission bypass or replay, stale
+    verification, hidden fallback, scope escape, stop/fence/wait failure, clean-room violation,
+    and frozen hard-invariant failure; averages and later passes cannot compensate; immediate
+    actions stop dispatch, fence effects, quarantine and preserve evidence, record truthful
+    noncomplete status, and escalate for independent classification; schema forces
+    lane-stop + non-PASS outcome whenever hard_failure_status is unresolved or any exhaustion/
+    stop flag is set; benchmark scores cannot average a hard failure away (INELIGIBLE path
+    reserved to the authorized synthesis/verification chain).
+  architecture_handback: >-
+    IMPLEMENTATION_CONFIGURATION_FAILURE and ARCHITECTURE_HANDBACK are distinct root-cause
+    classes; downgrade attacks fail because the root-cause record must be independently
+    verified with distinct operator/investigator/verifier, bind the exact fault chain and
+    canonical ADR set, and prove all-compliant-route exhaustion and structural impossibility
+    (consts in the PENDING conditional; DENY-HANDBACK-001/002); admission can bind but never
+    manufacture a handback (this_admission_creates_architecture_handback const false); all eight
+    canonical ADR sets re-derive set-equal to the E2-accepted sets in both artifacts; E3V-002
+    (ADR-E2-003/004/007), E3V-006 (ADR-E2-001/004/005/007/008/009) and E3V-008 (ADR-E2-006
+    structural-gateway-impossibility-only) receive the special treatments the E2 baseline
+    requires; e3_may_edit_or_redesign_accepted_adr false and e3_edits_accepted_adr const false.
+  e3v_admission_coverage: >-
+    ALL_E3V_COMMON_GATES profile is inherited by every E3V (every_e3v_inherits_profile true) and
+    carries the ten shared gates; schema conditionals pin per-E3V handback consts, E3-005 ->
+    E3V-001..007 + E3-002 protocol, E3-006 -> E3V-008 + E3-003 protocol; specialization objects
+    are structurally forced non-null exactly for E3V-002/E3V-006 and null otherwise; no E3V has
+    a bypass — E3V-008 adds requirements (exact configuration identity, EVALUATION_ONLY route,
+    fallback cross-binding) rather than exemptions.
+  e3v_002: >-
+    Overlay + specialization require exact host/platform/process/privilege/supervisor/support
+    class, safe synthetic task-owned descendant fixtures only (const true), containment/
+    termination/survivor/orphan/fence/restart/recovery evidence refs, survivor-loses-authority
+    rule, no real-user/destructive workload (const false), stale-authority rejection and
+    recovery/readback in the common isolation binding, unsupported classes
+    BLOCK_OR_FENCE_AND_MARK_UNSUPPORTED, stop rules, and ADR-E2-003/004/007 handback. No
+    mechanism/host is selected (technology_selected_by_e3_001 false) and no validation run
+    occurred (counters 0; no harness/fixture files exist).
+  e3v_006: >-
+    Synthetic marker only (const), exact client/runtime/carrier/recipient ref, complete
+    capture-surface inventory ref, exact one-use recipient/use/fence binding, stale/replay/
+    wrong-recipient denial, crash/replacement reacquisition, marker outside exact recipient
+    forbidden (const false), replay forbidden (const false), missing protected delivery ->
+    WAITING_FOR_USER/BLOCKED enum, independent security review as a VERIFIED ref plus
+    security_review_required_for E3V-006; credentials structurally NOT_APPLICABLE for E3V-006
+    (synthetic markers are not credentials; protected-entry semantics live in the
+    specialization). Matches ADR-E2-005 protected-acquisition semantics and the E2U-S02 chain.
+    No real secret, no client mechanism selected, no run occurred.
+  model_benchmark_admission: >-
+    A model name alone cannot run: E3-006 conditional requires nonempty provider/model_id/
+    served_model_version, reasoning and tool configuration refs, envelope/eligibility key
+    digests, context and prompt versions, logical_role enum, grader/verifier identities and
+    independence, registry candidate ref; configuration identity requires system/provider,
+    served version, reasoning parameters, tools/gateway, fallback policy and every fallback
+    configuration, context/prompt versions, grader/verifier configuration; family aliases are
+    explicitly not exact configurations (DENY-ROUTE-001); budget/credential/evidence-destination
+    requirements ride the common gates; hard-failure rules bind via stop/handback and
+    contamination sections.
+  route_eligibility_separation: >-
+    Every PASS pins route_purpose E3_EVALUATION and route_eligibility EVALUATION_ONLY (consts);
+    PASS creates no credit, qualifies nothing, promotes nothing, authorizes no later run
+    (consts/flags); no_global_family_eligibility true; normal_route_promotion_automatic false;
+    eligibility remains downstream of E3-007 synthesis (propose-only) + E3-008 independent
+    verification + stage gate (AUTONOMY_ELIGIBLE only) + future governance; benchmark PASS ->
+    ELIGIBLE transition does not exist anywhere in policy, schema, or registry.
+  model_registry: >-
+    Recomputed: 13 candidate templates under models:; 13/13 HYPOTHESIS_ONLY role_assignment_
+    status; 13/13 NOT_RUN benchmark_status; current_role_assignment_count 0; 0 eligibility
+    verdicts; registry untouched by the E3-001 diff; schema-like additions (verdict vocabulary,
+    planned protocol pointer) read as plan-only text, not results; no provider/model preselected.
+  protocol_activation: >-
+    E3-002/E3-003 remain BACKLOG with activation "E3-001 is independently VERIFIED and its
+    common admission/QPA/evidence schema is frozen" — not too weak (author completion,
+    challenger pass, or author-side helpers cannot activate them; completion_transition assigns
+    activation to post-verifier lifecycle) and not needlessly strong (drafting needs no founder
+    decision: decision_dependencies.not_required_before covers author drafting; empirical
+    execution additionally requires E3-004, QPA approval, and per-block admission). This
+    challenger review activates nothing.
+  run_task_blocking: >-
+    E3-005/E3-006 are BACKLOG with planning_status PLANNED_DO_NOT_RUN_ADMISSION_REQUIRED and
+    run_admission_status DO_NOT_RUN; dependencies E3-002+E3-004 / E3-003+E3-004; conditional
+    blockers name verified protocol/harness/QPA and per-block admission, plus S0-005/account/
+    budget/credential/data/region/network for real-provider work; nothing in E3-001's outputs
+    can make either READY (policy task_and_gate_boundaries: any_empirical_task_may_become_ready
+    false after E3-001 verification).
+  harness_boundary: >-
+    e3_004_boundary VALIDATION_HARNESS_CODE_ONLY_NO_SCORED_OR_CANDIDATE_RUN; future harness is
+    bounded, protocol-linked, independently reviewed, cannot hide application implementation,
+    cannot call a provider without separate admission, and cannot produce accepted empirical
+    evidence before the harness itself is VERIFIED; E3-004 registry entry carries the
+    application-code/path denylist test; no harness code exists at HEAD.
+  autonomy_governance: >-
+    Everywhere consistent: gate_effect AUTONOMY_ELIGIBLE_ONLY; does_not_authorize_e4 true;
+    AUTONOMY_ELIGIBLE NOT_ELIGIBLE; AUTONOMOUS_BUILD_AUTHORIZED NO/false with separate explicit
+    founder decision required (charter §18/19, MASTER_OPERATING_PROMPT D-016, PROJECT_STATE E4
+    block, policy non_authorizations, handoff); run admission cannot be confused with build
+    authorization (policy: admission PASS authorizes exactly one launch and nothing else).
+  e2_baseline_preservation: >-
+    git diff fd3a7e7..3766786 over 05_architecture/ (EP-ARCH-C01 candidate, baseline, ADR-E2-001
+    ..009, E3 validation obligations), 03_product/, 06_evaluation/ENGINEERING_PREVIEW_EVALUATION_
+    SUITE.md, MODEL_ROLE_BENCHMARK_PLAN.md, E3_PLAN.md, 10_checkpoints/, DECISION_LOG.md,
+    MODEL_REGISTRY.yaml is empty — zero semantic or byte modifications to EP-ARCH-C01,
+    ADR-E2-001..009, canonical E3V definitions, or the E2 gate result. The registry deliverables
+    edit in F-E3-001-C01 damages E2-005 bookkeeping provenance but changes no accepted E2
+    semantic content; it is dispositioned as its own MEDIUM finding rather than a baseline
+    failure.
+  no_execution: >-
+    Mechanically confirmed: 5-file YAML-only diff; no code files; all execution counters 0 in
+    registry, PROJECT_STATE, and handoff; no credential/network/provider/paid action recorded or
+    implied; DECISION_LOG unchanged; no eligibility or role assignment created.
+  admission_schema: >-
+    Root and all 23 sections plus 100 $defs are closed (additionalProperties false everywhere an
+    object carries properties — recomputed 0 exceptions); required fields cover every section;
+    nullable fields are explicit oneOf null unions whose null branches PASS structurally
+    forbids; enums closed; versions/digests/ids typed; state-specific fields constrained
+    (DO_NOT_RUN forces launch/plan nulls + blocker reasons; EXPIRED forces prior-pass ref +
+    triggers + refreeze + nulled launch; PASS forces the full authority set). "Schema-valid but
+    semantically unauthorized" manifests cannot launch: the policy makes semantic verification
+    mandatory, explicit, and fail-closed (independent_semantic_fact_verification_required true;
+    x-semantic-validation any_failed_or_unknown_check_outcome DO_NOT_RUN; ~100 named semantic
+    checks including ref resolution, digest recomputation, founder record currentness, ledger
+    projections, and consumption state). Residual hygiene items are LOW/NOTE (F-C02, F-C03,
+    stray no-op uniqueItems, x-current-policy-state snapshot).
+  manifest_semantic_verification: >-
+    The semantic layer independently verifies: referenced IDs/artifacts exist and digests
+    recompute under the single global integrity profile; referenced versions and approvals
+    current/nonrevoked (CURRENT_NOT_REVOKED consts + currentness checks); budget arithmetic and
+    conservative remaining; reservation uniqueness and atomic set membership; credential
+    validity/scope/revocation; protocol verified with frozen-field-set digest equality;
+    configuration exactness incl. served version; evidence destination separation/integrity;
+    handback ID and canonical-set equality; route validity; zero material drift with epoch/
+    fence readback; launch not already consumed (UNCONSUMED state + CAS + receipt + readback).
+    Failure outcome DO_NOT_RUN. Owner task is E3-004 with harness-selected stores so manifests
+    cannot select their own validators, indexes, or ledgers.
+acceptance_criteria_evaluation:
+  - criterion: "E3-QPA-001 ownership exact; Founder accountable; authors propose only; canonical fields explicit nulls with DO_NOT_RUN consequences"
+    result: PASS
+    evidence: "policy authority_and_separation + e3_qpa_001 blocks; schema founder_qpa_decision_ref consts; three null families equal to E2-frozen §11; DENY-QPA-001..012"
+  - criterion: "Versioned protocol-freeze and amendment rule forbids result-informed changes and requires new whole affected block preserving old evidence"
+    result: PASS
+    evidence: "protocol_freeze_and_amendment: 17 frozen fields, 13 forbidden result-informed change classes, material_change_consequence with preserved prior evidence, harness-defect whole-block invalidation"
+  - criterion: "RUN_ADMISSION has only PASS/DO_NOT_RUN/EXPIRED_REQUIRES_REFREEZE and checks all mandated dimensions"
+    result: PASS
+    evidence: "policy only_outcomes + 16 dimensions; schema outcome enum + 17 admission_checks + master PASS conditional; capture classes separate and mapped to DO_NOT_RUN"
+  - criterion: "NO_COST_LOCAL_VALIDATION and PAID_EXTERNAL_VALIDATION distinct; paid USD 0 until exact Founder decision; S0-005 honestly reconciled"
+    result: PASS
+    evidence: "two lanes with lane-specific consts; governance_paid_authorization_usd const 0; PAID lane forces DO_NOT_RUN; s0_005_current_facts BLOCKED with protocol planning permitted; future_paid_authorization requires S0-005 VERIFIED ref"
+  - criterion: "Credential, protected-entry, synthetic-marker-only, clean-room fixture, no-private-data, raw/derived/decision separation, retention, integrity, quarantine and contamination rules complete"
+    result: PASS
+    evidence: "credential_and_protected_entry_policy, data_and_fixture_policy, evidence_policy three-layer model, contamination_policy, quarantine/redaction/retention refs required in schema"
+  - criterion: "Founder acknowledgement/value decision recorded as FOUNDER_DECISION_REQUIRED at the protocol-verification/run boundary, not fabricated, not a drafting blocker"
+    result: PASS
+    evidence: "founder_decision_timing not_required_before/required_before; DECISION_LOG untouched; all refs null; PROJECT_STATE/registry/policy/schema/handoff consistent"
+  - criterion: "The policy cannot itself authorize a run, qualify a configuration, promote a route, alter an ADR, activate autonomy, or start E4"
+    result: PASS
+    evidence: "policy_identity all-authority NONE; non_authorizations block; policy_verification_is_run_admission false; schema eligibility_credit_created const false"
+required_tests_evaluation:
+  - test: "Strict YAML and duplicate-key validation; schema required-field and enum tests; missing-field/adversarial manifests all DO_NOT_RUN"
+    result: PASS
+    evidence: "independent Psych AST suite: 6/6 files strict-clean; 1638/1638 local refs; closed-shape audit 0 exceptions; structural tracing of the DO_NOT_RUN/EXPIRED/PASS conditionals plus the 95 declared negative vectors; x-strict-yaml-profile parse failure -> DO_NOT_RUN"
+  - test: "Cross-check QPA ownership and null semantics against accepted E3 register, frozen E1 suite/checkpoint, TASK_REGISTRY and PROJECT_STATE"
+    result: PASS
+    evidence: "family names/scope kinds equal E2-frozen §11; E1 correctness-contract VERIFICATION_ERROR/FLAKY/ceiling semantics inherited; registry+PROJECT_STATE qpa blocks identical nulls; non-inference rules quarantine E1/benchmark numerics"
+  - test: "Budget/account/credential/data/network/effect combinations, no-cost vs paid, amendment/refreeze, raw evidence, contamination, expiry and stop/handback precedence"
+    result: PASS
+    evidence: "lane conditionals, REMOTE_EXTERNAL->PAID->DO_NOT_RUN chain, E3V-002/E3V-006 fixture conditionals, 13-trigger expiry enum with consumed-pass trigger, precedence rules incl. EXPIRED-over-stop for qualifying prior-PASS, stop conditional forcing non-PASS"
+  - test: "Exactly-one-READY, dependency/DAG, frozen E1/E2, no-run/no-call/no-code/no-role/no-autonomy, startup-deferred, allowed-path, clean-room, secret-scan and git diff --check"
+    result: PASS
+    evidence: "0 READY / 0 CLAIMED post-author (correct state; E3-002/003 activate only on verification); conjunctive E3 DAG re-derived; frozen artifacts byte-identical; all counters 0; S1-003 DEFERRED preserved; 5 changed paths all inside allowed_files_to_change (content anomaly in one file recorded as F-E3-001-C01); 0 secret-pattern hits; git diff --check clean"
+mechanical_checks:
+  - "ruby 2.6 Psych strict parse + duplicate-key/alias/merge-key/custom-tag/multi-document AST walk over policy, schema, handoff, TASK_REGISTRY, PROJECT_STATE, MODEL_REGISTRY: all clean"
+  - "schema $ref graph: 1638 refs -> 100 defs, 0 unresolved; 9 unreferenced defs enumerated"
+  - "closed-shape audit: 0 object schemas with properties lacking additionalProperties: false"
+  - "default-keyword hunt: 0 occurrences in both artifacts"
+  - "DENY vector audit: 95 unique ids; 93 DO_NOT_RUN + 2 EXPIRED_REQUIRES_REFREEZE"
+  - "canonical handback set equality: 8/8 policy overlays and 8/8 schema consts equal PROJECT_STATE canonical sets"
+  - "git diff --name-only fd3a7e7..3766786: exactly the 5 declared files; frozen-artifact diff empty; git diff --check clean"
+  - "MODEL_REGISTRY recompute: 13/13 HYPOTHESIS_ONLY + NOT_RUN, 0 assignments, 0 verdicts"
+  - "secret regex scan over the three new artifacts: 0 hits"
+new_findings:
+  - finding_id: F-E3-001-C01
+    severity: MEDIUM
+    title: Undisclosed retroactive edit of the VERIFIED E2-005 task's deliverables in TASK_REGISTRY
+    evidence: >-
+      git diff fd3a7e7..3766786 hunk at TASK_REGISTRY.yaml line ~2117 adds
+      "05_architecture/ENGINEERING_PREVIEW_ARCHITECTURE_REQUIREMENTS.md" to the E2-005 entry's
+      deliverables list. That file is an E2-001 deliverable (authored 349a9f0, fixed 0d702b8;
+      listed under E2-001 deliverables and allowed_files_to_change). E2-005's
+      allowed_files_to_change excludes it, and E2-005's handoff files_created/files_modified and
+      verifier record do not list it (it appears there only under files_read). The E3-001
+      handoff's decisions_made, notes, and files_modified narrative disclose no edit outside the
+      E3-001 entry, and the author-side "64/64 repository reconciliation ... exact five-file
+      uncommitted patch ... frozen paths" claim did not surface it.
+    affected_artifacts:
+      - 01_governance/TASK_REGISTRY.yaml
+      - 99_handoffs/completed/E3-001_handoff.yaml
+    why_it_matters: >-
+      The registry is the authoritative record of what each verified task delivered. Silently
+      rewriting a VERIFIED task's recorded scope after verification — with a factually wrong
+      attribution — is exactly the class of unreviewed history mutation this governance regime
+      treats as a first-class hazard (cf. hard-failure classes for stale/wrong-revision evidence
+      and the amendment rules requiring disclosed, attributed changes). It creates no run
+      authority and changes no accepted architecture bytes, but it corrupts provenance an
+      independent verifier previously certified and undermines confidence in the author's
+      self-reported patch accounting.
+    required_change: >-
+      Fixer reverts the deliverables line in the E2-005 entry (restoring the verified record),
+      or — only if the founder explicitly directs a historical correction — records the change
+      as a disclosed, attributed amendment with rationale in the appropriate governance note
+      rather than a silent list edit; the E3-001 handoff is amended to account accurately for
+      every out-of-entry registry change.
+    verification_method: >-
+      Verifier diffs the fixed TASK_REGISTRY E2-005 entry against the fd3a7e7 (verified-era)
+      bytes for the deliverables list, confirms the E3-001 handoff enumerates every registry
+      hunk outside the E3-001 entry, and re-runs strict parse.
+  - finding_id: F-E3-001-C02
+    severity: LOW
+    title: Mutable governance-state snapshot embedded in the schema artifact can silently go stale
+    evidence: >-
+      E3_RUN_ADMISSION_MANIFEST.schema.yaml ends with x-current-policy-state (e3_qpa_values null,
+      founder_acknowledgement_recorded false, founder_value_approval_recorded false, paid USD 0,
+      run_admission DO_NOT_RUN, counters 0). A future founder acknowledgement/approval changes
+      DECISION_LOG/PROJECT_STATE without necessarily revving the schema, leaving this block
+      factually wrong inside a frozen governance artifact; nothing in the file labels it
+      non-authoritative or freeze-time-only.
+    affected_artifacts:
+      - 06_evaluation/e3_governance/E3_RUN_ADMISSION_MANIFEST.schema.yaml
+    why_it_matters: >-
+      Cross-artifact contradictions are the seed of "which record controls?" disputes. The
+      snapshot currently points in the fail-safe direction (all null/false/zero), so it cannot
+      grant authority, but a stale "founder_acknowledgement_recorded: false" after a real
+      decision would put two committed artifacts in conflict.
+    required_change: >-
+      Label the block as a non-authoritative freeze-time snapshot subordinate to
+      PROJECT_STATE/DECISION_LOG (one annotation line), or remove it from the schema artifact.
+    verification_method: "Read the amended block; confirm an explicit non-authoritative/as-of marker or its removal; strict parse."
+  - finding_id: F-E3-001-C03
+    severity: LOW
+    title: Nine unreferenced $defs, including three superseded generic QPA resolution-set variants
+    evidence: >-
+      $defs unreachable from the manifest shape: protected_admission_evaluation_index_record_ref,
+      protected_admission_evaluation_slot_record_ref, direct_dispatch_consumption_execution_ref,
+      direct_dispatch_consumption_readback_attestation_ref, fallback_route_resolution_execution_ref,
+      fallback_route_resolution_readback_attestation_ref (shapes for deliberately external
+      protected/runtime records), plus qpa_resolution_set, case_or_task_qpa_resolution_set,
+      check_or_class_qpa_resolution_set (generic variants superseded by the three family-specific
+      sets that the manifest actually uses).
+    affected_artifacts:
+      - 06_evaluation/e3_governance/E3_RUN_ADMISSION_MANIFEST.schema.yaml
+    why_it_matters: >-
+      The six external-record shapes are load-bearing for E3-004's semantic validator, but the
+      schema never says they are external-contract-only, so nothing exercises them and they can
+      drift from the policy's external-record contracts unnoticed; the three generic QPA set
+      variants are dead code in a frozen governance artifact and invite accidental future use
+      with weaker constraints (they omit the family/scope pinning of the specific sets).
+    required_change: >-
+      Annotate the six external-record defs as external-record contracts consumed by the E3-004
+      validator (not manifest-reachable), and remove or equivalently annotate the three
+      superseded generic QPA resolution-set defs.
+    verification_method: "Re-run the def-reference audit; confirm every remaining unreferenced def carries an explicit external-contract annotation."
+  - finding_id: F-E3-001-C04
+    severity: NOTE
+    title: "Uncommitted-patch wording overtaken by the founder's commit"
+    evidence: >-
+      The handoff's repository_commit_or_patch says "UNCOMMITTED working-tree patch ... leave
+      uncommitted for Founder review" and PROJECT_STATE next_recommended_action says the
+      challenger "must attack the uncommitted ... policy"; the founder has since committed the
+      patch as 3766786 and the tree is clean.
+    affected_artifacts:
+      - 99_handoffs/completed/E3-001_handoff.yaml
+      - 01_governance/PROJECT_STATE.yaml
+    why_it_matters: "Statements were true at authoring time; per repo precedent this is a founder-commit-time refresh item, recorded so the verifier does not treat the wording as a live discrepancy."
+    required_change: "Optional wording refresh during the fixer/verifier pass; no semantic effect."
+    verification_method: "Read the two fields after any refresh."
+  - finding_id: F-E3-001-C05
+    severity: NOTE
+    title: Dual status vocabulary for E3-005/E3-006 across registry and derived records
+    evidence: >-
+      TASK_REGISTRY records status BACKLOG plus planning_status PLANNED_DO_NOT_RUN_ADMISSION_
+      REQUIRED plus run_admission_status DO_NOT_RUN, while PROJECT_STATE/handoff/policy use the
+      composite token BACKLOG_DO_NOT_RUN. Substantively identical; the split predates E3-001
+      (PLAN_STAGE_E3) and E3-001 merely inherited it.
+    affected_artifacts:
+      - 01_governance/TASK_REGISTRY.yaml
+      - 01_governance/PROJECT_STATE.yaml
+    why_it_matters: "A future mechanical reconciler comparing status fields literally will flag a false mismatch; documenting the equivalence avoids a spurious drift alarm."
+    required_change: "None required for E3-001; optional future vocabulary alignment."
+    verification_method: "N/A (informational)."
+  - finding_id: F-E3-001-C06
+    severity: NOTE
+    title: "README status line still says E3-001: READY"
+    evidence: "README.md current-status bullet reads \"E3-001: `READY`\" while the registry records READY_FOR_REVIEW; README is not in E3-001's allowed paths and prior gates treat README refresh as a founder commit-time item."
+    affected_artifacts:
+      - README.md
+    why_it_matters: "Stale top-level status can mislead a casual reader; authoritative state is unaffected."
+    required_change: "Founder-side README refresh at a convenient commit."
+    verification_method: "Read the README bullet after refresh."
+  - finding_id: F-E3-001-C07
+    severity: NOTE
+    title: Stray no-op uniqueItems keyword on a scalar digest field
+    evidence: "architecture_and_e3v_binding.properties.canonical_handback_set_digest carries uniqueItems: true beneath a oneOf digest/null scalar union; uniqueItems constrains only arrays, so the keyword is inert."
+    affected_artifacts:
+      - 06_evaluation/e3_governance/E3_RUN_ADMISSION_MANIFEST.schema.yaml
+    why_it_matters: "Pure hygiene; no validation effect in Draft 2020-12."
+    required_change: "Optional removal during any future schema rev."
+    verification_method: "Grep the property after any rev."
+security_checks:
+  - "No credential, account, provider, network, paid, external-effect, or protected-entry operation attempted or observed; counters 0 everywhere."
+  - "Secret-pattern scan over all three new artifacts clean; no environment/argv dumps; schema forbids raw secrets structurally."
+  - "No fabricated founder decision: DECISION_LOG byte-identical to fd3a7e7."
+files_created:
+  - 99_handoffs/completed/E3-001_challenger_review.yaml
+files_modified: []
+files_deleted: []
+policy_or_schema_modified_by_challenger: false
+governance_files_modified_by_challenger: false
+findings_fixed_by_challenger: false
+scope_control:
+  e3_002_or_e3_003_executed: false
+  e3_validation_runs: 0
+  model_benchmarks_run: 0
+  provider_or_model_calls: 0
+  paid_api_calls: 0
+  credentials_accessed: 0
+  validation_harness_code_written: false
+  application_code_written: false
+  model_role_assignments: 0
+  eligibility_changes: 0
+  autonomy_eligible_marked: false
+  autonomous_build_authorized: false
+  e3_002_status_change: NONE_REMAINS_BACKLOG
+  e3_003_status_change: NONE_REMAINS_BACKLOG
+  task_status_changed_by_challenger: false
+blockers: []
+finding_counts: {BLOCKER: 0, HIGH: 0, MEDIUM: 1, LOW: 2, NOTE: 4}
+recommended_next_task: >-
+  MODE: FIX_TASK_E3-001 — the original author (or assigned fixer) addresses F-E3-001-C01
+  (mandatory), F-E3-001-C02/C03 (low, materially useful), and optionally the NOTEs, without
+  weakening any fail-closed semantics; then MODE: VERIFY_TASK_E3-001 by a separate post-fix
+  verifier. E3-002/E3-003 remain BACKLOG until that independent verification.
+next_command: "MODE: FIX_TASK_E3-001"
+repository_commit_or_patch: >-
+  Review performed against committed HEAD 3766786699abd145a5f6bc38d88491fd58723107 on
+  chore/initialize-project-materials with a clean working tree; this challenger review file is
+  the only change and is left uncommitted for founder review.
