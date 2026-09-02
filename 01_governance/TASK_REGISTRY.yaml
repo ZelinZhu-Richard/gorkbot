@@ -2302,10 +2302,10 @@ tasks:
     owner_role: AUTHOR
     assigned_model: "Codex (runtime model identifier not exposed) — original E3-001 AUTHOR returning as FIXER"
     reviewer_model: "Claude Fable 5 (claude-fable-5) via Claude Code — fresh independent E3-001 challenger at 3766786699abd145a5f6bc38d88491fd58723107; verdict E3_001_CHANGES_REQUESTED with 0 BLOCKER / 0 HIGH / 1 MEDIUM / 2 LOW / 4 NOTE"
-    verifier_model: null
+    verifier_model: "Claude Fable 5 (claude-fable-5) via Claude Code — separate fresh post-fix E3-001 verifier session (not the author/fixer or challenger session; same model/product as the challenger disclosed per repository precedent); verdict E3_001_VERIFIED against 641a52241bfddefb6560ec5ab25d3419d558baad"
     assignment_policy: "The E3-001 author may draft policy but may not acknowledge or approve the Founder-owned E3-QPA-001 role, self-challenge, self-verify, authorize a run, or create eligibility evidence. Authoring-surface identity creates no model-role eligibility."
-    status: READY_FOR_REVIEW
-    planning_status: FIXER_PASS_COMPLETE_READY_FOR_SEPARATE_POST_FIX_VERIFICATION
+    status: VERIFIED
+    planning_status: VERIFIED_BY_INDEPENDENT_VERIFIER
     author_model: "Codex (runtime model identifier not exposed)"
     author_started_at: UNKNOWN_NOT_CAPTURED
     author_completed_at: "2026-08-31T13:43:55Z"
@@ -2376,7 +2376,22 @@ tasks:
       schema_reachability: "97 total / 83 active-root reachable / 14 intentionally external and allowlisted / 0 unintended; 1,635/1,635 local refs resolve; 6 direct external roots plus 8 dependencies annotated; 3 obsolete definitions removed."
       semantic_preservation: "PASS: after normalizing away only the intended snapshot/obsolete-definition removals and fixer annotations, the current schema object equals the challenger-reviewed schema; policy and accepted E2 architecture/ADR bytes unchanged."
       prohibited_actions: "PASS: 0 technical runs, 0 benchmarks, 0 paid/provider/network calls, 0 credential accesses, 0 model assignments, 0 eligibility verdicts, 0 application or harness code, 0 architecture/ADR changes, 0 autonomy/E4 changes."
-    verification_status: FIXER_PASS_COMPLETE_PENDING_SEPARATE_POST_FIX_VERIFICATION
+    verifier_artifact: 99_handoffs/completed/E3-001_verifier_review.yaml
+    verifier_started_at: "2026-09-02T15:05:00Z (approximate; session start not captured)"
+    verifier_completed_at: "2026-09-02T15:55:00Z"
+    verifier_reviewed_commit: 641a52241bfddefb6560ec5ab25d3419d558baad
+    verifier_verdict: E3_001_VERIFIED
+    verifier_finding_dispositions:
+      F-E3-001-C01: RESOLVED
+      F-E3-001-C02: RESOLVED
+      F-E3-001-C03: RESOLVED
+      F-E3-001-C04: STILL_NOTE
+      F-E3-001-C05: STILL_NOTE
+      F-E3-001-C06: STILL_NOTE
+      F-E3-001-C07: STILL_NOTE
+    verifier_new_finding_counts: {BLOCKER: 0, HIGH: 0, MEDIUM: 0, LOW: 0, NOTE: 0}
+    verifier_result: "E3_001_VERIFIED: all three actionable challenger findings independently re-derived RESOLVED from committed bytes at 641a522 (E2-005 provenance restored byte-identically with only E3-001 differing from the fd3a7e7 base across all 25 task objects; x-current-policy-state removed with the schema->manifest->semantic-verifier->current-governance authority chain and stale-state DO_NOT_RUN; recomputed 97 defs / 1,635 refs / 83 reachable / 14 exactly-allowlisted external / 0 unintended unreachable with the 3 generic QPA definitions gone). Policy bytes unchanged since the challenger review; normalized schema semantics preserved; acceptance criteria 7/7 and required tests 4/4 PASS; run admission remains structurally fail-closed with QPA nulls, founder authority intact, paid USD 0, credentials unaccessed, E3-005/E3-006 DO_NOT_RUN, zero empirical/application/eligibility/autonomy activity, and accepted E2 architecture byte-identical. Verification covers the governance framework only and no future QPA numeric value."
+    verification_status: VERIFIED_BY_INDEPENDENT_VERIFIER_AGAINST_641A522_2026-09-02
     priority: P0
     dependencies:
       - E2-006
@@ -2497,7 +2512,7 @@ tasks:
       - Founder acknowledgement or value-setting is requested or appears to conflict with frozen E1 requirements.
       - A requested admission lane requires a real credential, network, private data, consequential effect, or positive spend.
       - The common schema cannot represent an E3V-specific safety, handback, or evidence requirement.
-    next_command: "MODE: VERIFY_TASK_E3-001"
+    next_command: "MODE: EXECUTE_TASK_E3-002"
 
   - task_id: E3-002
     title: Freeze E3V-001 through E3V-007 technical-validation protocols
@@ -2513,8 +2528,8 @@ tasks:
     reviewer_model: null
     verifier_model: null
     assignment_policy: "The protocol author cannot approve QPA values, operate the later scored blocks, perform the sole security review, or verify the protocols. No authoring system receives role eligibility."
-    status: BACKLOG
-    planning_status: PLANNED_DEPENDENCY_GATED_NOT_EXECUTED
+    status: READY
+    planning_status: PLANNED_NOT_CLAIMED_NOT_EXECUTED
     priority: P0
     dependencies:
       - E3-001
@@ -2523,7 +2538,7 @@ tasks:
       - decision: FOUNDER_DECISION_REQUIRED_E3_QPA_001_ACKNOWLEDGEMENT_AND_TECHNICAL_PROTOCOL_VALUES
         required_before: "E3-002 may become execution-ready and independently VERIFIED; not required to begin author drafting after E3-001 verification."
     activation_condition: "E3-001 is independently VERIFIED and its common admission/QPA/evidence schema is frozen."
-    activation_condition_status: BLOCKED_PENDING_E3_001_INDEPENDENT_VERIFICATION
+    activation_condition_status: "SATISFIED on 2026-09-02 (UTC): E3-001 independently VERIFIED against 641a52241bfddefb6560ec5ab25d3419d558baad (99_handoffs/completed/E3-001_verifier_review.yaml); the common admission/QPA/evidence policy and manifest schema are frozen at their verified versions. READY does not claim or execute the task: E3-002 drafts protocols and proposes QPA values for Founder approval only, runs nothing, selects no mechanism/host/technology, and requires its own fresh challenge and separate verification; Founder E3-QPA-001 acknowledgement/values remain required before execution-ready verification, any RUN_ADMISSION PASS, or any empirical attempt."
     gate_invariant: "E3-002 specifies E3V-001..007 only. It runs nothing, selects no final mechanism/product technology, changes no accepted ADR, and cannot treat missing evidence or an unsupported class as pass."
     files_to_read:
       - MASTER_OPERATING_PROMPT.md
@@ -2631,8 +2646,8 @@ tasks:
     reviewer_model: null
     verifier_model: null
     assignment_policy: "The protocol author cannot shortlist by preference, approve QPA/budget/account/data policy, grade its own benchmark as sole judge, verify the protocol, or create an eligibility result. Candidate systems used to author/review remain unqualified."
-    status: BACKLOG
-    planning_status: PLANNED_DEPENDENCY_GATED_NOT_EXECUTED
+    status: READY
+    planning_status: PLANNED_NOT_CLAIMED_NOT_EXECUTED
     priority: P0
     dependencies:
       - E3-001
@@ -2643,7 +2658,7 @@ tasks:
       - decision: FOUNDER_DECISION_REQUIRED_FOR_ANY_EXACT_PAID_PROVIDER_ACCOUNT_CONFIGURATION_BLOCK
         required_before: "Any paid/external E3-006 block; E3-003 may define conditional manifests without this authorization."
     activation_condition: "E3-001 is independently VERIFIED and its common admission/QPA/evidence schema is frozen."
-    activation_condition_status: BLOCKED_PENDING_E3_001_INDEPENDENT_VERIFICATION
+    activation_condition_status: "SATISFIED on 2026-09-02 (UTC): E3-001 independently VERIFIED against 641a52241bfddefb6560ec5ab25d3419d558baad (99_handoffs/completed/E3-001_verifier_review.yaml); the common admission/QPA/evidence policy and manifest schema are frozen at their verified versions. READY does not claim or execute the task: E3-003 drafts the E3V-008 benchmark protocol and proposes QPA values for Founder approval only, runs no model/system, preselects no candidate, and requires its own fresh challenge and separate verification; Founder E3-QPA-001 acknowledgement/values and any paid/provider/account authorization remain required before execution-ready verification, any RUN_ADMISSION PASS, or any empirical attempt."
     gate_invariant: "E3-003 freezes a provider-neutral protocol only. It does not run a model/system, prove account access, select a shortlist by reputation, assign a role, promote a route, or authorize paid usage/autonomy/E4."
     files_to_read:
       - MASTER_OPERATING_PROMPT.md
