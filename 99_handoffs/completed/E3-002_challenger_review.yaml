@@ -1,0 +1,399 @@
+review_id: R-E3-002-20260902-CHALLENGER
+task_id: E3-002
+stage: E3
+mode: REVIEW_TASK_E3-002
+role: CHALLENGER
+reviewer_model: "Claude Fable 5 (claude-fable-5) via Claude Code"
+reviewer_independence: >-
+  Fresh independent challenger in a new session with no shared conversation state with the E3-002
+  author session ("Codex (runtime model identifier not exposed)") or any earlier S0/S1/E0/E1/E2/
+  E3-001 session; same model/product as earlier Claude Fable 5 challenger/verifier sessions,
+  disclosed per repository precedent. Disclosure: Claude Code is a named E3 candidate system in
+  MODEL_REGISTRY/charter; this review selects no role occupant, provider, model, mechanism, host,
+  client, or technology, creates no eligibility evidence, and does not verify E3-002. Every count,
+  set equality, digest, parse result, and semantic judgement below was recomputed from the
+  committed bytes at bebf9fd with scratch commands (ruby 2.6 Psych strict-parse AST walks with
+  duplicate-key detection, ruby CSV/Set recomputation, SHA-256 digest reproduction, git, grep,
+  sed). The author's handoff, 1074/1074 author-side claim, and traceability_summary were read but
+  not relied on as evidence for any PASS. The security portion (E3V-006 capture/enforcement
+  surfaces and the E3V-002 containment/fencing boundary) was independently re-derived from the
+  canonical E2 obligations and E1 suite rather than from the author's restatements. No subagent
+  lifecycle credit, network retrieval, login, account, credential access, paid call, spend,
+  fixture/protocol/harness execution, model/provider call, benchmark, application or harness code,
+  model-role assignment, eligibility verdict, architecture/ADR change, autonomy transition, or E4
+  action was used or produced. No finding was fixed. No protocol, policy, schema, governance,
+  architecture, or frozen E1/E2 file was modified.
+started_at: "2026-09-02T17:58:00Z (approximate; session start not captured; review began after committed HEAD bebf9fd was observed with a clean working tree)"
+completed_at: "2026-09-02T18:29:14Z"
+reviewed_commit: bebf9fdb11c4b496e167c04f47a815b25319c03f
+reviewed_state: >-
+  Branch chore/initialize-project-materials at committed HEAD bebf9fd ("Define E3 technical
+  validation protocols"), clean working tree. The founder committed the author's declared
+  six-file patch against author base 47ebf70 exactly: E3_TECHNICAL_VALIDATION_PROTOCOLS.yaml
+  (+2746), E3V_E1_TRACEABILITY.csv (+33), E3_TECHNICAL_HARNESS_CONTRACT.md (+313),
+  99_handoffs/completed/E3-002_handoff.yaml (+359), PROJECT_STATE.yaml (+36/-partial),
+  TASK_REGISTRY.yaml (+39/-partial); no other path changed. E3-002 is READY_FOR_REVIEW /
+  NOT VERIFIED / NOT EXECUTION_READY; E3-003 READY; E3-004 BACKLOG; E3-005/E3-006
+  BACKLOG_DO_NOT_RUN; E3-007/E3-008 BACKLOG; E3 gate NOT_EVALUATED; RUN_ADMISSION DO_NOT_RUN;
+  all E3-QPA-001 values and every protocol retry/repetition/time/resource/cost limit null;
+  paid authority USD 0; all empirical/application counters 0; AUTONOMY_ELIGIBLE NOT_ELIGIBLE;
+  AUTONOMOUS_BUILD_AUTHORIZED false.
+verdict: E3_002_CHANGES_REQUESTED
+verdict_rationale: >-
+  The seven protocol records are substantially faithful, complete, and unusually well armored
+  against the classic failure modes this review was ordered to attack. Recomputed from bytes:
+  exactly seven separately verdictable protocols own E3V-001..007 with no E3V-008 capture; all
+  seven canonical ADR handback sets are set-equal to the accepted E2 obligations register in all
+  three per-protocol representations; all 70 per-protocol AR references (62 unique) equal the
+  canonical linked-AR sets exactly; the 149-selected/21-deferred partition reproduces exactly,
+  is disjoint, and sums to the reconstructed 170-case frozen catalog with no duplicate or
+  missing case; oracle/fixture/composition/reliability-protocol unions resolve 18/18, 11/11,
+  16/16, 8/8 plus 23/23 NEG families, 16/16 repository conditions, a 17/13 GE partition whose
+  selected rows cover every effect class including prohibited destructive and denied remote
+  rows, 9/9 adequacy variants, and EP-CTL-016; all nine frozen source digests reproduce; no
+  hidden numeric threshold, no invented QPA value, no mechanism/technology selection, no secret
+  pattern, and no execution exists. Containment-versus-fencing is structurally separated
+  (process death explicitly insufficient; both facts separately proved), the E3V-006 marker
+  oracle forbids digests/reversible encodings/content-derived correlates in ordinary evidence,
+  subject/harness/oracle separation is explicit, and run admission stays DO_NOT_RUN with the
+  protocol artifacts granting no launch authority. However, three MEDIUM defects prevent
+  acceptance under the no-unresolved-BLOCKER/HIGH/MEDIUM rule. F-E3-002-C01: the
+  architecture-failure boundary is drifted stronger than the accepted E2 semantics — every
+  implementation_configuration_failure_rule avoids handback whenever a conforming realization
+  "remains plausible" (canonical E2 text: the architecture still "admits" a conforming
+  realization — a structural fact, not an assertion of plausibility), the common classification
+  demands that "every compliant allowed realization route" be "exhausted" over an undefined,
+  potentially unbounded route set, and the canonical per-E3V reproducible-violation handback
+  evidence (e.g. E3V-001 "reproducible acknowledged loss, duplicate effect, stale acceptance,
+  fabricated continuity") has been reduced to hard-failure/configuration status unless universal
+  impossibility is separately proven, making ARCHITECTURE_HANDBACK practically unreachable and
+  shifting the burden of proof from the accepted architecture onto its challenger. F-E3-002-C02:
+  the independently VERIFIED E3-001 policy assigns protocol-specific QPA value drafting (and
+  candidate mechanism-class proposal) to E3-002 ("Protocol-specific finite values and mechanisms
+  will be proposed by E3-002 or E3-003, not here"; protocol_value_draft_tasks includes E3-002),
+  but this author pass proposed nothing, records value_proposal_created_by_e3_002: false, and
+  schedules no E3-002 proposal step, leaving acceptance criterion 5 unsatisfiable as authored
+  and the Founder with no exact value set to approve. F-E3-002-C03: the author artifacts define
+  execution-readiness inconsistently — the handoff makes E3-004 require E3-002 "VERIFIED and
+  execution-ready with exact configurations, values, limits, selectors, evidence destinations"
+  while the protocols' freeze_timing_rule makes the execution-ready freeze depend on the exact
+  E3-004 harness identity, a circular E3-002<->E3-004 dependency as written; the harness
+  contract §14 states the correct two-phase rule (VERIFIED to begin harness implementation;
+  execution-ready later) and must be made the single controlling definition. Three LOW and
+  three NOTE findings are also recorded. None of these weakens fail-closure, creates run
+  authority, fabricates a Founder decision, or changes accepted E1/E2 semantics; all are
+  bounded fixer work. This verdict does not mark E3-002 VERIFIED and does not activate E3-004
+  or execute E3-003.
+method:
+  - Read the current E3-002 TASK_REGISTRY entry first and treated repository authority as controlling.
+  - Read the canonical E3V source (05_architecture/ENGINEERING_PREVIEW_E3_VALIDATION_OBLIGATIONS.md) end to end and independently re-derived every E3V-001..007 property, AR set, ADR handback set, assumption, evidence contract, scope, and failure split before reading the author's restatements.
+  - Read all four E3-002 author artifacts end to end, the verified E3-001 policy (targeted full sections for QPA, correction lineage, hard failures, stop/handback, overlays), the E3 plan, the E1 release-acceptance RC/GE registers, E1 suite case/fixture definitions for deferred cases, and the E3-003/E3-004/E3-005 registry entries.
+  - Recomputed all mechanical results with independent ruby 2.6/Psych scripts (strict parse, duplicate keys, field completeness, canonical AR/ADR set equality, CSV partition/union recomputation against a reconstructed 170-case catalog, oracle/fixture/composition/protocol union equality, QPA/limit null scan, digest reproduction, hidden-threshold scan); did not execute or trust the author's /tmp validator.
+  - Attacked each mandated dimension (sections 3-44 of the review mode) with the canonical bytes as ground truth; adversarial results recorded in section_results and new_findings.
+files_read:
+  - MASTER_OPERATING_PROMPT.md
+  - AGENTS.md
+  - README.md
+  - SECURITY.md
+  - CLAUDE.md
+  - 01_governance/PROJECT_STATE.yaml
+  - 01_governance/TASK_REGISTRY.yaml
+  - 01_governance/DECISION_LOG.md (state via targeted reads)
+  - 01_governance/MODEL_REGISTRY.yaml (digest reproduction)
+  - 05_architecture/ENGINEERING_PREVIEW_E3_VALIDATION_OBLIGATIONS.md
+  - 05_architecture/ENGINEERING_PREVIEW_ARCHITECTURE_BASELINE.md (digest reproduction)
+  - 05_architecture/ENGINEERING_PREVIEW_ARCHITECTURE_REQUIREMENTS.md (digest reproduction)
+  - 06_evaluation/ENGINEERING_PREVIEW_E3_PLAN.md
+  - 06_evaluation/ENGINEERING_PREVIEW_EVALUATION_SUITE.md (case families, fixtures, deferred-case definitions)
+  - 06_evaluation/e3_governance/E3_QUALIFICATION_AND_RUN_ADMISSION_POLICY.yaml
+  - 06_evaluation/e3_governance/E3_RUN_ADMISSION_MANIFEST.schema.yaml (digest reproduction)
+  - 10_checkpoints/stage_checkpoints/ENGINEERING_PREVIEW_V0_1_RELEASE_ACCEPTANCE.yaml (RC/GE registers)
+  - 06_evaluation/technical_validation/E3_TECHNICAL_VALIDATION_PROTOCOLS.yaml
+  - 06_evaluation/technical_validation/E3V_E1_TRACEABILITY.csv
+  - 06_evaluation/technical_validation/E3_TECHNICAL_HARNESS_CONTRACT.md
+  - 99_handoffs/completed/E3-002_handoff.yaml
+  - 99_handoffs/completed/E3-001_challenger_review.yaml (format precedent)
+recomputed_outputs:
+  strict_yaml: "4/4 target YAML files (protocols, handoff, TASK_REGISTRY, PROJECT_STATE) parse as single documents with 0 duplicate keys"
+  protocol_set: "7 protocols, e3v_id sequence exactly E3V-001..E3V-007; no E3V-008 content; all 31 required per-protocol fields and all 11 execution-contract fields present in each record"
+  handback_sets: "21/21 representations (canonical_handback_adr_ids, architecture_handback_rule.canonical_adr_ids, protocol_execution_contract.linked_architecture_decisions x 7) set-equal to the accepted E2 obligations register"
+  ar_sets: "7/7 linked_architecture_requirements set-equal to canonical; 70 references, 62 unique"
+  traceability: "selected union 149, deferred 21, disjoint, 149+21=170 equal to the reconstructed frozen catalog (19 WF + 24 CTL + 21 FALSE + 9 APR + 12 EVID + 16 REPO + 30 GIT + 7 ROUTE + 8 CONTRIB + 24 NEG cases in 23 families); per-protocol case_ids equal their CSV selector rows"
+  coverage_unions: "oracles 18/18, fixtures 11/11, compositions 16/16, reliability protocols 8/8, NEG families 23/23, repository conditions 16/16, GE 17 selected + 13 deferred = 30, adequacy variants 9/9, EP-CTL-016 in E3V-001 and E3V-002"
+  ge_class_representation: "selected GE rows include READ_ONLY, LOCAL_REVERSIBLE, package/review form (GE-24), LOCAL_DESTRUCTIVE prohibited (GE-14/16/19/25), destructive-cleanup optional (GE-18), REMOTE approval-required (GE-21), and REMOTE prohibited (GE-22/30); deferred rows are class-represented duplicates"
+  qpa_and_limits: "all 21 per-protocol QPA bindings and every time/resource/cost limit field null; authoring_external_spend_usd 0 in all 7; no numeric or pseudo-numeric threshold pattern in any authored artifact"
+  digests: "9/9 frozen source SHA-256 digests reproduce exactly"
+  allowed_paths: "commit bebf9fd touches exactly the six declared files, all within allowed_files_to_change; git diff --check clean; no secret-pattern match; no harness or application code file"
+section_results:
+  E3V_SCOPE: PASS
+  CANONICAL_E3V_FIDELITY: PASS
+  ARCHITECTURE_FAILURE_FALSIFIABILITY: FAIL  # F-E3-002-C01
+  CONFIGURATION_FAILURE_ESCALATION: PASS  # cumulative non-resettable correction lineage in verified E3-001 policy; residual cross-mechanism portfolio gap folded into F-E3-002-C01/L03
+  PREREGISTRATION: PASS  # remaining nulls (seed/order, configs, limits) are execution-blocking by design, marked REQUIRED_BEFORE_EXECUTION, and do not undermine protocol completeness
+  QPA_BINDING: PASS  # no invented value, no implicit default, no pseudo-numeric; proposal-duty gap recorded separately as F-E3-002-C02
+  NO_HIDDEN_THRESHOLD: PASS  # only immutable frozen-asset counts (13 surfaces, 18 oracles, 20 TBs, 8 protocols) appear
+  OUTCOME_VOCABULARY: PASS  # five canonical outcomes + orthogonal HARD_FAILURE exactly match E3-001/E2 §1.1; INCONCLUSIVE maps explicitly to EVIDENCE_MISSING_FAIL_CLOSED
+  UNSUPPORTED_SCOPE_DISCIPLINE: PASS  # E3V-003 unsupported RC-13/14 match frozen REJECTED_V0_1, RC-16 matches UNKNOWN_E2_E3; all 16 RC rows remain selected for truthful-disposition testing; no required hard class is laundered to unsupported
+  SUPPORT_SCOPE: PASS  # per-protocol exact claim units bind mechanism/config/environment/host/client/filesystem/privilege/provider/network/fixture/fault/harness/protocol-version; generalization forbidden
+  E3V_001_PROTOCOL: PASS  # authoritative state vs intent vs effect vs receipt/readback vs UNKNOWN_OUTCOME separated; narration/projection/telemetry cannot repair mismatches
+  E3V_002_PROTOCOL: PASS  # child/grandchild, reparenting, races, timeout, owner/supervisor loss, claimed-only host restart, orphans, stale authority, output pressure, actual-state readback, unsupported-host denial; containment != fencing structurally enforced
+  E3V_002_SAFETY: PASS  # synthetic task-owned descendants only, stop/fence/quarantine, bounded limits required before execution, no destructive/real workload
+  E3V_003_PROTOCOL: PASS  # bind-before-mutation, partial write, symlink/path escape, worktree/index, concurrent user change, hooks/package scripts, disposition truthfulness, recovery, local packaging; Git status alone cannot prove success
+  E3V_004_PROTOCOL: PASS  # offline-only, zero-dispatch readback, fallback identity closure, provenance, provider/tool failure layers; real-provider claims explicitly unsupported so mock success cannot establish them
+  E3V_005_PROTOCOL: PASS  # context separation, exact revision, underlying-state rebuild, deterministic checks precede bounded residual judgment, all nine VER-ADQ variants, tamper/gap/stale/verifier-error injection, independence constraints bound
+  E3V_006_PROTOCOL: PASS  # 13-surface inventory covers and exceeds the canonical input/model/provider/tool/terminal/process/log/telemetry/evidence/UI scan list; limitations truthful; see F-E3-002-L01 for the subject-writable non-repository filesystem surface
+  E3V_006_MARKER_ORACLE: PASS  # digest/reversible-encoding/content-derived-correlate prohibition, per-surface independent scan, missing capture fail-closed, fresh marker per rerun, crash/replay/stale covered; see F-E3-002-L01
+  E3V_007_PROTOCOL: PASS  # raw/derived separation, explicit missingness never imputed, clock/ordering faults, retry/correction accounting, all eight protocol shapes, unsupported provider metrics cannot become estimates
+  CROSS_PROTOCOL_DEPENDENCIES: PASS  # E3V-005 circularity explicitly averted via harness-held canaries; see F-E3-002-L02 for the "must be verified" wording ambiguity
+  VALIDATION_ORDER: PASS  # no arbitrary total order imposed; safety dependencies declared; adequate
+  HARNESS_CONTRACT: PASS  # capability matrix, fixture/fault/observer/marker/evidence/corruption/restart/run-identity/digest/support-scope requirements sufficient for E3-004 to implement without inventing semantics
+  SUBJECT_ORACLE_SEPARATION: PASS  # explicit role table; subject and oracle cannot share an unverified authority source; self-report is not evidence
+  ORACLE_ADEQUACY: PASS  # all 18 oracles appropriately assigned; OR-BOUNDED-RUBRIC residual-only and cannot override deterministic ground truth
+  E1_TRACEABILITY: PASS  # 170/170 recomputed; deferred cases are product-workflow/admission/contribution and class-represented GE rows, legitimately later-gate work; see F-E3-002-L03 for the thin aggregate deferred rationale
+  AR_TRACE_DISCIPLINE: PASS  # 70/62 recomputed; AR linkage mirrors canonical closure only; no inflated coverage claim
+  HANDBACK_SETS: PASS
+  HANDBACK_TRIGGER: PASS  # operator cannot decide alone; independent investigation + separate verification required; reachability defect recorded under F-E3-002-C01
+  HARD_FAILURE_MAPPING: PASS  # all 15 E3-001 common classes present with stop/fence/preserve/block/classify actions; per-E3V additions sound; see F-E3-002-N02 for one reworded class
+  CONTAMINATION_CONTROL: PASS  # prospective versioning, whole-block invalidation, immutable unfavorable history, no favorable retry/rerun/omission, fresh marker per E3V-006 rerun
+  EVIDENCE_CONTRACT: PASS  # raw layer binds run/protocol/config/harness/environment/fixture/admission/QPA/actions/timestamps/observations/oracle/failures/retries/stop/cost/integrity/handback; no critical fact lives only in derived analysis
+  EVIDENCE_ADEQUACY: PASS  # per-protocol raw_required lists include process/filesystem/marker/revision/failure/environment facts; missing evidence fails closed everywhere
+  RUN_ADMISSION_BINDING: PASS  # DO_NOT_RUN everywhere; PASS requires verified E3-001/E3-002/E3-004, Founder QPA, exact configuration, single-use manifest; no protocol artifact authorizes launch
+  E3_004_INPUT_CONTRACT: FAIL  # F-E3-002-C03
+  E3_005_INPUT_CONTRACT: PASS  # harness contract §15 complete; no missing or impossible dependency
+  E3_003_BOUNDARY: PASS  # no model selection, role assignment, benchmark design, winner, or eligibility content; E3V-007 explicitly refuses E3V-008 claims; E3-003 remains READY
+  NO_MECHANISM_SELECTION: PASS  # all selection_status NOT_SELECTED_BY_E3_002; scan found no containment/store/isolation/client/carrier/gateway/database/packaging product named
+  NO_EXECUTION: PASS  # all counters zero; only six governance/specification files changed; no harness or application code
+  TASK_STATE: PASS  # PROJECT_STATE and TASK_REGISTRY reconcile (E3-002 READY_FOR_REVIEW, E3-003 READY, E3-004 BACKLOG, E3-005/006 BACKLOG_DO_NOT_RUN, E3-007/008 BACKLOG, gate NOT_EVALUATED)
+acceptance_criteria_evaluation:
+  AC1_seven_records_preserve_canonical_fields: PASS
+  AC2_e3v_002_coverage_without_mechanism_selection: PASS
+  AC3_e3v_006_protected_entry_freeze: PASS
+  AC4_per_protocol_completeness: PASS
+  AC5_qpa_values_proposed_approved_challenged_verified_before_execution_ready: PARTIAL  # structure and sequencing present, but no E3-002 value proposal exists and none is scheduled (F-E3-002-C02); Founder approval necessarily absent
+  AC6_reuse_without_verdict_collapse_and_adr_set_equality: PASS
+required_tests_evaluation:
+  RT1_strict_parse_dup_ids_schema_completeness_set_equality: PASS
+  RT2_selector_resolution_and_full_coverage_dispositions: PASS
+  RT3_e3v_002_and_e3v_006_negative_protocol_reviews: PASS
+  RT4_qpa_provenance_freeze_budget_no_run_no_code_clean_room_secret_scope_git_diff: PASS
+new_findings:
+  - id: F-E3-002-C01
+    severity: MEDIUM
+    classification: ARCHITECTURE_FAILURE_UNREACHABLE_BURDEN_OF_PROOF_DRIFT
+    artifacts:
+      - 06_evaluation/technical_validation/E3_TECHNICAL_VALIDATION_PROTOCOLS.yaml (architecture_failure_classification; every per-protocol implementation_configuration_failure_rule and architecture_failure_rule)
+      - 06_evaluation/technical_validation/E3_TECHNICAL_HARNESS_CONTRACT.md (§13)
+      - 99_handoffs/completed/E3-002_handoff.yaml (architecture_failure_and_handback)
+    finding: >-
+      The architecture-failure boundary is materially stronger than the accepted E2 semantics and
+      is not falsifiable in practice as written. (a) Every per-protocol
+      implementation_configuration_failure_rule avoids handback whenever a conforming EP-ARCH-C01
+      realization "remains plausible"/"remains available" — the canonical E2 register (§1.1) uses
+      "the architecture still admits a conforming realization", a structural fact; a plausibility
+      assertion is an unfalsifiable escape hatch that lets any structural failure be relabelled
+      configuration failure indefinitely. (b) architecture_handback_requires includes
+      "every_compliant_allowed_realization_route_for_that_property_and_scope_is_exhausted", but no
+      artifact defines the compliant-allowed-route set or makes it finite; read as empirical
+      enumeration it can never terminate, so ARCHITECTURE_HANDBACK cannot occur. (c) The canonical
+      per-E3V handback evidence enumerations (E3V-001: "Reproducible acknowledged loss, duplicate
+      effect, stale acceptance, fabricated continuity, or architecture-incapable recovery with no
+      conforming C01 realization"; analogous rows for E3V-002..007) are dropped: under E3-002 those
+      reproducible violations are hard failures that default to configuration failure unless
+      universal impossibility is separately proven. Accepted governance requires disproving the
+      ADR's stated architecture assumption for the declared required support class — not proving
+      universal impossibility over an unbounded mechanism space — and the E2 register's
+      handback trigger is disjunctive ("disproves an indispensable selected interface/property OR
+      shows a required hard boundary cannot exist for the declared required support class").
+      Combined with the absence of any rule converting repeated materially-distinct-mechanism
+      configuration failures into mandatory architecture reconsideration, the burden of proof
+      shifts from the accepted architecture to its challenger and PASS/retry becomes the only
+      practically reachable path.
+    required_fix_direction: >-
+      Restate the handback standard in canonical terms: independent, separately verified,
+      reproducible disproof of the protocol's stated architecture_assumption for the exact
+      declared required support class within its claimed required design envelope. Replace
+      "remains plausible" with the canonical structural "still admits a conforming realization"
+      and require that any invoked alternate conforming realization be named as a concrete
+      candidate class in the correction record, not merely asserted. Define the compliant-route
+      set boundedly (e.g. the prospectively frozen candidate mechanism classes for that E3V) or
+      make route exhaustion an explicitly structural argument. Add a governed escalation rule
+      (owner: Founder/E3-QPA authority; no numeric value invented here) under which repeated
+      cross-mechanism IMPLEMENTATION_CONFIGURATION_FAILURE outcomes for the same indispensable
+      property trigger mandatory independent architecture review rather than unlimited fresh
+      candidate blocks. Note: the verified E3-001 policy carries a similar
+      "all_compliant_route_exhaustion_and_structural_impossibility_predicate" binding; the fixer
+      should reconcile wording with that policy rather than silently diverging from it, and may
+      need a coordinated E3-001-consistent clarification.
+  - id: F-E3-002-C02
+    severity: MEDIUM
+    classification: QPA_VALUE_AND_MECHANISM_PROPOSAL_DUTY_UNFULFILLED_AND_UNSCHEDULED
+    artifacts:
+      - 06_evaluation/technical_validation/E3_TECHNICAL_VALIDATION_PROTOCOLS.yaml (qpa_binding.value_proposal_created_by_e3_002: false)
+      - 99_handoffs/completed/E3-002_handoff.yaml (qpa_and_limits)
+      - 01_governance/TASK_REGISTRY.yaml (E3-002 acceptance criterion 5)
+    finding: >-
+      The independently VERIFIED E3-001 policy assigns protocol-specific QPA value drafting to
+      E3-002 (authority_and_separation.e3_qpa_001.protocol_value_draft_tasks includes E3-002) and
+      states "Protocol-specific finite values and mechanisms will be proposed by E3-002 or
+      E3-003, not here" (policy proposals, line 83). The E3-002 author pass proposed no values
+      and no candidate mechanism classes, recorded value_proposal_created_by_e3_002: false, and
+      framed the three canonical values and every protocol limit purely as
+      FOUNDER_DECISION_REQUIRED with no scheduled E3-002 proposal step. As authored, acceptance
+      criterion 5 ("values are prospectively proposed, explicitly Founder-approved, freshly
+      challenged and independently verified before ... execution-ready status") cannot be
+      satisfied by these artifacts, and the Founder has no exact scope-aware value set to
+      acknowledge or approve — a mutual-wait stall on the critical path. Leaving values null in
+      the author draft is correct and required; leaving the proposal duty unowned is not.
+    required_fix_direction: >-
+      Either add a clearly-marked NOT_APPROVED prospective value/mechanism-class proposal
+      (per scope, per QPA family, per protocol limit dimension) to the E3-002 artifacts for
+      Founder review, or record explicitly in the protocols file, handoff, and registry which
+      E3-002 lifecycle step (e.g. a designated post-challenge proposal amendment before
+      verification) produces the proposal, so the Founder-approval path defined by E3-001
+      §authority_and_separation can actually begin.
+  - id: F-E3-002-C03
+    severity: MEDIUM
+    classification: EXECUTION_READY_SEMANTICS_INCONSISTENT_POTENTIAL_E3_004_DEADLOCK
+    artifacts:
+      - 99_handoffs/completed/E3-002_handoff.yaml (future_task_contracts.E3_004.input)
+      - 06_evaluation/technical_validation/E3_TECHNICAL_VALIDATION_PROTOCOLS.yaml (common_protocol_contract.freeze_timing_rule)
+      - 06_evaluation/technical_validation/E3_TECHNICAL_HARNESS_CONTRACT.md (§14)
+    finding: >-
+      The author artifacts define execution-readiness three inconsistent ways. The handoff makes
+      E3-004's input "Both E3-002 and E3-003 independently VERIFIED and execution-ready with
+      exact configurations, values, limits, selectors, evidence destinations..."; the protocols'
+      freeze_timing_rule makes the execution-ready freeze depend on binding "to the exact future
+      E3-004 harness" and lists "harness identity" among the unresolved execution-ready inputs.
+      Read together these are circular: E3-004 waits for execution-ready E3-002 while
+      execution-ready E3-002 waits for the E3-004 harness identity. Additionally, no registered
+      task owns the "resolved exact configuration, host/client/support class, fault order/seed,
+      evidence destinations" selection that §14 requires before execution-ready implementation
+      (E3-002 may propose but not finally choose; E3-004 builds harnesses only; E3-005 executes
+      admitted blocks). The harness contract §14 already states the correct two-phase rule —
+      independent VERIFICATION gates the start of E3-004 implementation, and execution-readiness
+      (with harness binding) is a later, separately verified state gating admission — but the
+      handoff contradicts it, and the registry verifier requirement ("records
+      EXECUTION_READY_PROTOCOL only on complete evidence") plus E3 plan §"verified as
+      execution-ready" wording invite the wrong one-phase reading, under which either E3-004 can
+      never activate or the E3-002 verifier is pressured to stamp EXECUTION_READY_PROTOCOL
+      without harness binding.
+    required_fix_direction: >-
+      Make harness contract §14's two-phase semantics the single controlling definition: state in
+      the handoff and, via the registry maintainers, in the E3-002/E3-004 entries that E3-004
+      activation requires E3-002 (and E3-003) task VERIFICATION of the protocol contracts only,
+      while EXECUTION_READY_PROTOCOL is a distinct later status requiring Founder-approved
+      challenged/verified QPA values, resolved exact configurations, and the verified E3-004
+      harness binding, checked again at per-block admission. Name the owner of the exact
+      configuration/support-class/seed/evidence-destination resolution step.
+  - id: F-E3-002-L01
+    severity: LOW
+    classification: E3V_006_CAPTURE_INVENTORY_NON_REPOSITORY_FILESYSTEM_GAP
+    artifacts:
+      - 06_evaluation/technical_validation/E3_TECHNICAL_VALIDATION_PROTOCOLS.yaml (E3V-006 oracle_contract.mandatory_capture_surfaces)
+      - 06_evaluation/technical_validation/E3_TECHNICAL_HARNESS_CONTRACT.md (§8)
+    finding: >-
+      The 13 mandatory capture surfaces cover and exceed the canonical
+      input/model/provider/tool/terminal/process/log/telemetry/evidence/UI scan list, but the
+      only filesystem surface is "repository, worktree, diff, temp, cache, artifact, and
+      evidence paths". Ordinary subject-writable non-repository filesystem locations — OS
+      temporary directories, home dotfiles, shell history files, crash-dump/spool locations —
+      are not named. A marker written there is an ordinary file write, not a "host side channel"
+      excluded by the unsupported-scope list, yet it would evade every enumerated scan while the
+      success rule reads "no unauthorized surface contains the raw marker". The truthful
+      limitation exists (OR-SECRET-MARKER "proves only the frozen marker and observable
+      surfaces"), so this is a completeness/claim-precision gap rather than a false guarantee.
+    required_fix_direction: >-
+      Bind the subject's complete writable filesystem view into the mandatory inventory (or
+      require the harness to prove the subject's writable view is restricted to scanned paths),
+      or scope the success-rule wording explicitly to the enumerated inventory.
+  - id: F-E3-002-L02
+    severity: LOW
+    classification: CROSS_PROTOCOL_PRECONDITION_WORDING_SELF_REFERENTIAL
+    artifacts:
+      - 06_evaluation/technical_validation/E3_TECHNICAL_VALIDATION_PROTOCOLS.yaml (cross_protocol_order_and_reuse.preconditions)
+    finding: >-
+      "E3V-002 containment controls must be verified for any fixture that spawns descendants"
+      (and the parallel E3V-003/E3V-006 lines) is ambiguous between (a) E3-004-verified harness
+      containment/isolation/capture capability — the reading the harness contract §11 uses
+      ("must protect") — and (b) a verified E3V verdict, which would be circular because
+      E3V-002's own fixtures spawn descendants, E3V-003's own fixtures mutate workspaces, and
+      E3V-006's own fixtures use markers.
+    required_fix_direction: >-
+      Reword the three preconditions to reference the E3-004-verified harness controls
+      explicitly, matching harness contract §11.
+  - id: F-E3-002-L03
+    severity: LOW
+    classification: DEFERRED_CASE_RATIONALE_AGGREGATE_AND_OWNER_VAGUE
+    artifacts:
+      - 06_evaluation/technical_validation/E3V_E1_TRACEABILITY.csv (CASE-DEFERRED, GE-DEFERRED rows)
+    finding: >-
+      The 21-case deferred rationale is circular ("Exact complement of the selected union") and
+      the owner label "DEFERRED_TO_E5_OR_OTHER_FROZEN_E1_GATE" names no specific later gate. I
+      independently inspected all 21 deferred cases and the 13 deferred GE rows: they are product
+      task-admission/plan-amendment/optional-capability workflow cases (EP-WF-001/002/005/008/016),
+      contributor-lifecycle cases whose E3-relevant slice is carried by EP-CONTRIB-003/006/008,
+      and Git-effect rows whose effect classes are represented by selected rows — so no
+      E3-002-critical case is wrongly deferred and the deferral is substantively legitimate; the
+      recorded justification is nonetheless too thin to audit without redoing that work.
+    required_fix_direction: >-
+      Record a per-family deferred rationale and the exact expected later owner (E5 release
+      execution vs other frozen E1 gate) in the CSV or protocols file.
+  - id: F-E3-002-N01
+    severity: NOTE
+    classification: TOKEN_TYPO
+    finding: >-
+      E3V-004 fault_schedule injected condition "zero_call_denial_and unknown_usage_or_cost"
+      contains an embedded space where every sibling token uses underscores (protocols yaml
+      line ~1487). Parses fine; style/consistency only.
+  - id: F-E3-002-N02
+    severity: NOTE
+    classification: COMMON_HARD_FAILURE_CLASS_REWORDED
+    finding: >-
+      The E3-001 common class "duplicate_or_unresolved_consequential_effect" appears in the
+      protocols as "duplicate_or_unresolved_consequential_effect_reported_as_success". The
+      qualification is semantically defensible (a truthful UNKNOWN_OUTCOME is a legal state and
+      per-protocol hard failures still catch unqualified duplicate effects and blind retries),
+      but the divergence from the verified policy wording should be recorded as deliberate.
+  - id: F-E3-002-N03
+    severity: NOTE
+    classification: HANDOFF_COMMIT_STATEMENT_STALE
+    finding: >-
+      The handoff says "Uncommitted patch ... leave uncommitted for Founder review", but the
+      work is committed at bebf9fd (consistent with founder-commit precedent from E3-001). The
+      statement is now stale; no content impact.
+security_checks:
+  - "E3V-006 re-derived from AR-SEC-006/E2 obligations §8 and the E2U-S02/E3U-C01 bundles: synthetic-marker-only, 13-surface inventory superset of the canonical scan list, exact recipient/use/attempt/owner-epoch/fence binding, one-use/no-replay, revocation, alias/symlink/link-swap denial, crash/replacement fresh reacquisition, non-secret opaque receipt with digest/encoding/correlate prohibition, fail-to-WAITING_FOR_USER/BLOCKED, marker-leak hard failure with marker retirement and quarantine. One LOW capture-surface completeness gap recorded (F-E3-002-L01)."
+  - "E3V-002 re-derived from AR-EXE-003/E2U-S01: containment and fencing are separate mandatory proofs; process death insufficient; survivor-without-authority may be fenced, unobserved or authority-bearing survivor is hard failure; unsupported-host denial truthful; safe synthetic descendants only."
+  - "No real secret, credential, private data, provider, network, or destructive-workload reference in any authored artifact; secret-pattern scan clean; fixture policy prohibits all real-secret classes."
+files_created:
+  - 99_handoffs/completed/E3-002_challenger_review.yaml
+files_modified: []
+files_deleted: []
+protocols_modified_by_challenger: false
+governance_files_modified_by_challenger: false
+findings_fixed_by_challenger: false
+scope_control:
+  technical_validation_runs: 0
+  model_benchmarks_run: 0
+  provider_or_network_calls: 0
+  paid_api_calls: 0
+  credentials_accessed: 0
+  model_role_assignments: 0
+  eligibility_verdicts_created: 0
+  validation_harness_code_files_created: 0
+  application_code_files_created: 0
+  e3_003_executed: false
+  e3_004_built: false
+  qpa_values_invented: 0
+  architecture_handback_opened: false
+  autonomy_state_changed: false
+blockers: []
+finding_counts: {BLOCKER: 0, HIGH: 0, MEDIUM: 3, LOW: 3, NOTE: 3}
+recommended_next_task: >-
+  MODE: FIX_TASK_E3-002 — a fixer (not this challenger) should resolve F-E3-002-C01..C03 and the
+  LOW findings, then a separate post-fix verifier re-derives the full protocol set. E3-003 may
+  proceed independently in parallel. E3-004 remains BACKLOG; run admission remains DO_NOT_RUN.
+next_command: "MODE: FIX_TASK_E3-002"
+repository_commit_or_patch: >-
+  This review is left uncommitted for Founder review per repository convention, as a single new
+  file 99_handoffs/completed/E3-002_challenger_review.yaml against committed HEAD bebf9fd.
