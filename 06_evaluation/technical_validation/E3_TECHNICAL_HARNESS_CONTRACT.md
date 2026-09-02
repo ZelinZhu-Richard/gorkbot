@@ -1,6 +1,6 @@
 # E3 technical-validation harness contract
 
-Status: E3-002 AUTHOR DRAFT — READY_FOR_REVIEW; NOT VERIFIED; NOT EXECUTION-READY
+Status: E3-002 FIXER DRAFT — READY_FOR_POST-FIX VERIFICATION; NOT VERIFIED; NOT EXECUTION-READY
 
 Authority: `E3_TECHNICAL_VALIDATION_PROTOCOLS.yaml`, `E3-QPA-POLICY-001`, the accepted
 EP-ARCH-C01 baseline and ADR-E2-001..009, and frozen E1 suite `EP-EVAL-0.2`.
@@ -23,8 +23,11 @@ This contract authorizes none of the following:
   mechanism qualification, model/role assignment, eligibility verdict, architecture handback,
   `AUTONOMY_ELIGIBLE`, `AUTONOMOUS_BUILD_AUTHORIZED`, or E4 work.
 
-Current admission is `DO_NOT_RUN`. Every QPA and protocol-limit value remains `null` and
-`FOUNDER_DECISION_REQUIRED`.
+Current admission is `DO_NOT_RUN`. Every authoritative QPA and protocol-limit value remains `null`
+and `FOUNDER_DECISION_REQUIRED`. E3-002 now supplies the non-authoritative author proposal
+`E3-002-QPA-PROP-001` (1 same-revision verification-error rerun, exactly 3 ordered invocations per
+applicable deterministic check, and 2 material corrections after the initial block). Founder review,
+any required fresh challenge, and separate verification remain pending; the proposal authorizes nothing.
 
 ## 2. Trust and responsibility boundaries
 
@@ -55,7 +58,9 @@ as the production application, and no validation double silently satisfies an ap
 requirement. E3-004 must end with its own author, fresh challenger, bounded fixer if needed, and
 separate verifier lifecycle before any empirical block can be admitted.
 
-At minimum E3-004 must produce independently verifiable contracts for:
+After E3-002 and E3-003 protocol-criteria Phase A verification, E3-004 may implement this parameterized
+contract without an exact execution manifest, selected production mechanism, approved QPA number, or
+empirical protocol result. At minimum E3-004 must produce independently verifiable contracts for:
 
 1. strict manifest parsing plus current semantic admission verification;
 2. immutable block, attempt, case, fixture, oracle, fault, seed/order, environment, and configuration identity;
@@ -153,7 +158,14 @@ approval/revocation state, one-use rule, and capture inventory.
 The mandatory capture inventory includes:
 
 - ordinary chat input/transcript and user-visible summaries;
-- repository, worktree, diff, temp, cache, artifact, and evidence paths;
+- repository, worktree, diff, artifact, evidence, and repository-local temp/cache paths;
+- every operating-system or user temp root writable by the subject process tree;
+- runtime, framework, dependency, tool, and package-manager temp/cache/log/state roots writable by it;
+- application-support, cache, preference, session, autosave, local-database, and persistence roots writable by it;
+- user-home dotfiles plus tool configuration and state paths writable or updated by it;
+- crash reports, core dumps, minidumps, diagnostics, profiles, and debug bundles it can cause to be emitted;
+- filesystem-backed spool, queue, socket metadata, lock, and interprocess-transfer paths writable by it;
+- shell, terminal, editor, and tool history/transcript/recovery/session paths it can update;
 - generated prompts/context packets before model dispatch;
 - serialized model/provider requests and controlled responses at the adapter boundary;
 - every tool argument/result and dispatched/received environment value;
@@ -163,6 +175,20 @@ The mandatory capture inventory includes:
 - approval, summary, UI, notification, accessibility, screenshot, and clipboard surfaces;
 - controlled network payloads at the local interceptor; and
 - the exact protected recipient boundary.
+
+The filesystem portion is the exact frozen subject-process-tree writable view, not a repository-only
+list. Before generating a marker, E3-004 must inventory the effective user/group, sandbox/container,
+mount namespace, path configuration, crash/diagnostic policy, and observed create/write/rename/link/
+delete targets. It must enumerate each writable or causally emitted path class or independently prove
+that the exact process tree cannot write it. A sandbox may reduce the inventory only when E3-004
+verifies both the scanned roots and enforced denial of writes elsewhere. Deleted or rotated content
+requires write-time observation sufficient for the marker oracle.
+
+An unobservable, unbounded, or incompletely scanned relevant writable class yields
+`PRODUCT_CLASS_UNSUPPORTED` or `EVIDENCE_MISSING_FAIL_CLOSED`; it cannot support a leakage-absence
+claim. A favorable result is limited to the exact frozen client/host/runtime/process tree and complete
+inventory. It does not claim coverage of swap, hibernation, hypervisor, firmware, proprietary
+vendor-internal, or other surfaces outside the prospectively declared observable boundary.
 
 The marker may be present only inside the exact protected recipient boundary under its frozen
 expected-presence rule. Any raw marker on an unauthorized surface is a hard failure. Any missing,
@@ -223,9 +249,12 @@ Each raw attempt must make these facts reconstructable without the subject narra
 E3-004 verification is a prerequisite for all empirical work. Within a future admitted execution
 portfolio, these safety dependencies apply:
 
-- E3V-003 isolation must protect any fixture that mutates a workspace.
-- E3V-002 containment must protect any fixture that spawns descendants.
-- E3V-006 protected capture must protect every synthetic-marker fixture.
+- E3-004 must first verify E3V-003-required harness isolation controls before any mutating fixture;
+  an empirical E3V-003 verdict is not its own or another protocol's prerequisite.
+- E3-004 must first verify E3V-002-required descendant discovery/control/fencing controls before any
+  descendant-spawning fixture; an empirical E3V-002 verdict is not a prerequisite.
+- E3-004 must first verify E3V-006-required marker/capture controls before any marker fixture; an
+  empirical E3V-006 verdict is not a prerequisite.
 - E3V-005 is the evidence-credit gate for all affected protocol results; it is itself judged with
   harness-held canaries and state/readback to avoid circular self-validation.
 - E3V-007 may recompute metrics from applicable immutable records only after integrity and
@@ -235,6 +264,9 @@ portfolio, these safety dependencies apply:
 One raw attempt may support several derived analyses only if every exact applicability dimension
 matches. The attempt is indexed once and cannot be counted twice. Each E3V receives a separate
 root-cause disposition; a pass in one never compensates for another's failure or missing evidence.
+The prospective DAG is: verified E3-002/E3-003 Phase A criteria -> E3-004 build and verification ->
+Phase B execution-block binding and verification -> E3-005 per-launch admission -> admitted protocol
+attempt -> integrity-gated synthesis. It contains no empirical protocol self-dependency.
 
 ## 12. Stop, contamination, and amendment behavior
 
@@ -259,29 +291,62 @@ whole affected block; the fix cannot rescue the old result.
 ## 13. Architecture-failure and handback behavior
 
 An ordinary subject, fixture, adapter, harness, observer, oracle, configuration, host, or evidence
-failure is not an architecture handback. The default root cause is
-`IMPLEMENTATION_CONFIGURATION_FAILURE`, `PRODUCT_CLASS_UNSUPPORTED`, or
-`EVIDENCE_MISSING_FAIL_CLOSED` as the evidence requires.
+failure is not automatically an architecture handback—or automatically a configuration failure.
+`IMPLEMENTATION_CONFIGURATION_FAILURE` requires reproducible localization to the exact realization
+and at least one concrete, prospectively identified, materially distinct candidate that the accepted
+architecture admits for the same property and scope. Mere plausibility is insufficient.
 
-`ARCHITECTURE_HANDBACK` requires a separate independent investigation and verification proving that
-an indispensable accepted property in the exact required support class is structurally impossible
-across every compliant realization route. The record must bind the preserved raw fault chain and the
-protocol's exact canonical ADR set. E3 does not edit an ADR. It stops the affected lane and returns to
-governed E2 challenge/fix, fresh architecture verification, and a renewed E2 gate before a new E3 freeze.
+Candidate identities form a finite prospective envelope. Material distinction requires a different
+property-relevant enforcement, authority, capture, observation, or recovery primitive; renaming,
+repackaging, prompt-only changes, and trivial configuration variants remain one cumulative correction
+lineage. When the envelope or Founder-approved correction ceiling is exhausted, or no concrete
+alternative exists, the lane stops for mandatory independent architecture classification. Insufficient
+evidence is `EVIDENCE_MISSING_FAIL_CLOSED`, not indefinite retry.
 
-## 14. E3-004 input contract
+`ARCHITECTURE_HANDBACK` is reachable when a separate independent investigation and verification use
+the preserved exact fault chain to disprove a named accepted architecture assumption, or show that an
+indispensable accepted property cannot be satisfied in the architecture's claimed design envelope for
+the exact tested support class. It does not require enumerating every imaginable implementation or
+mathematical proof over future technology. The record must bind the protocol's set-equal canonical ADR
+set. E3 does not edit an ADR: it stops the lane and returns through governed E2 challenge/fix, fresh
+architecture verification, and a renewed E2 gate before a new E3 freeze.
 
-E3-004 must not begin implementation until both E3-002 and E3-003 are independently `VERIFIED` under
-their completion rules. For E3-002 specifically, execution-ready implementation requires:
+For the unchanged E3-001 manifest binding named
+`all_compliant_route_exhaustion_and_structural_impossibility_predicate`, “all compliant routes” means
+the exact prospectively frozen materially distinct finite envelope for the same property and support
+scope. It is not permission for an unbounded implementation search. A separately verified named
+assumption disproof or required-property impossibility inside the claimed design envelope can establish
+the structural predicate without executing nominal variants; finite-envelope exhaustion alone still
+requires independent classification and is not automatic handback.
 
-- a final protocol version/digest for every E3V-001..007 record;
-- exact Founder acknowledgement and approved E3-QPA-001 scope-aware values;
-- fresh independent challenge and separate verification of those values and protocols;
-- resolved exact configuration, host/client/support class, selected assets, fault order/seed,
-  evidence destinations, oracle identities, and every finite protocol/resource/cost limit;
-- no unresolved material protocol finding or accepted-architecture conflict.
+## 14. Two-phase freeze and E3-004 input contract
 
-This author draft intentionally fails those execution-ready conditions. E3-004 remains `BACKLOG`.
+`PHASE_A_PROTOCOL_CRITERIA_FROZEN_HARNESS_IMPLEMENTABLE` requires both E3-002 and E3-003 to be
+independently `VERIFIED` for their questions, fixtures, observations, oracle/outcome semantics, hard
+failures, support/evidence/handback contracts, QPA binding points, and parameterized mechanism metadata.
+Phase A is sufficient for E3-004 implementation. It does not require an exact harness digest, selected
+mechanism, Founder-approved QPA values, final runtime/resource limits, a closed execution manifest,
+admission, or execution readiness.
+
+E3-004 therefore builds and independently verifies strict schemas and enforcement interfaces using
+explicit non-authoritative test fixtures for QPA/limit fields. Test fixture numbers cannot become
+approved E3-QPA-001 values. E3-004 remains `BACKLOG` until E3-002 and E3-003 Phase A verification; it
+then implements validation-only code and still creates no scored protocol evidence.
+
+Only after E3-004 is independently `VERIFIED` may
+`PHASE_B_EXECUTION_BLOCK_FROZEN_EXECUTION_READINESS_CANDIDATE` bind:
+
+- the exact current protocol and harness versions/digests;
+- one exact prospectively reviewed mechanism/configuration/environment/support class from the finite
+  candidate envelope;
+- Founder-approved, freshly challenged where required, and separately verified E3-QPA-001 values;
+- exact fixtures, selectors/order/seeds, oracle implementations, evidence destinations, and every
+  retry/repetition/repeated-failure/time/output/process/disk/network/cost limit; and
+- all current authorities plus a complete immutable execution block.
+
+The registered E3-005 prelaunch execution-block preparer, acting for the accountable validation owner
+and distinct from the run operator/admission checker, owns this exact Phase B binding. The Phase B
+candidate requires independent verification before any launch; it is still not admission by itself.
 
 E3-004 acceptance must include strict parsing, selector resolution, fixture/oracle negative tests,
 subject-oracle separation, admission bypass tests, process and protected-entry specialist review,
@@ -293,7 +358,7 @@ verifying the harness.
 
 E3-005 remains `BACKLOG` / `DO_NOT_RUN`. Each future technical-validation block requires all of:
 
-- E3-001, E3-002, and E3-004 exact current independent verification references;
+- E3-001, E3-002 Phase A/Phase B, E3-003 Phase A, and E3-004 exact current independent verification references;
 - exact protocol/configuration/support/fixture/oracle/fault/environment identities and digests;
 - Founder-approved, challenged, and verified QPA values plus all finite protocol limits;
 - exact no-cost or separately authorized paid lane, budget, account, credential, data, region,
@@ -305,9 +370,20 @@ E3-005 remains `BACKLOG` / `DO_NOT_RUN`. Each future technical-validation block 
 Protocol verification is necessary but never sufficient for execution. E3-005 cannot create a model
 eligibility verdict, assign a role, promote a route, establish the E3 gate, or authorize E4.
 
-## 16. Completion boundary
+## 16. E3-006 benchmark-lane input contract
 
-This contract is ready for independent E3-002 challenge when it remains technology-neutral,
+The benchmark lane uses the same phase boundary. Independently verified E3-003 Phase A criteria and
+E3-004's parameterized verified harness are sufficient inputs for harness construction only; they do
+not admit a benchmark. After E3-004 verification, the registered E3-006 prelaunch benchmark-block
+preparer—distinct from the benchmark operator and admission checker—must bind an exact Phase B
+configuration/role/task/environment/support class, exact harness digest, Founder-approved QPA and
+protocol limits, fixtures/order/graders/evidence destinations, and every account/budget/data/credential/
+region/network/independence authority. Phase B receives separate verification and then a fresh
+per-block admission. E3-006 remains `BACKLOG` / `DO_NOT_RUN`; no role or route is assigned by this contract.
+
+## 17. Completion boundary
+
+This fixed contract is ready for independent E3-002 post-fix verification when it remains technology-neutral,
 represents all seven separately verdictable protocols, preserves exact E1/E2/QPA/admission boundaries,
 and passes static repository checks. It remains `NOT VERIFIED`, with zero empirical runs and zero
-harness or application code. The next lifecycle command is `MODE: REVIEW_TASK_E3-002`.
+harness or application code. The next lifecycle command is `MODE: VERIFY_TASK_E3-002`.

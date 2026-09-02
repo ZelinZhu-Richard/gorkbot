@@ -1,11 +1,12 @@
 document_identity:
   document_id: E3_TECHNICAL_VALIDATION_PROTOCOLS
-  version: 0.1.0-author-draft
+  version: 0.2.0-fixer-draft
   task_id: E3-002
   stage: E3
   status: READY_FOR_REVIEW_NOT_VERIFIED
-  protocol_status: PROTOCOL_SPECIFIED_EXECUTION_BLOCKED_PENDING_FOUNDER_QPA_AND_INDEPENDENT_VERIFICATION
+  protocol_status: PHASE_A_PROTOCOL_CRITERIA_FIXER_DRAFT_READY_FOR_POST_FIX_VERIFICATION_NOT_EXECUTION_READY
   authored_at: "2026-09-02T17:52:55Z"
+  fixed_at: "2026-09-02T20:29:25Z"
   author_model: "Codex (runtime model identifier not exposed)"
   empirical_result_count: 0
   application_code_created: false
@@ -97,6 +98,7 @@ common_protocol_contract:
     - architecture_failure_rule
     - missing_or_inconclusive_rule
     - root_cause_decision_rule
+    - outcome_reachability_sanity_test
     - qpa_bindings
     - retry_rerun_correction_semantics
     - time_resource_and_cost_limits
@@ -133,10 +135,16 @@ common_protocol_contract:
     - stop_hard_failure_contamination_and_handback_rules
     - supported_and_unsupported_scope
   freeze_timing_rule: >-
-    Every frozen field must be complete, independently challenged, separately verified, and bound
-    to the exact future E3-004 harness before any result is available or inspected. This author
-    draft is not the execution-ready freeze because QPA values, exact configurations, limits,
-    harness identity, evidence destinations, and independent review records remain unresolved.
+    Freeze is two phase. PHASE_A_PROTOCOL_CRITERIA_FROZEN_HARNESS_IMPLEMENTABLE independently
+    verifies the question, required fixtures and observations, oracle and outcome semantics,
+    hard failures, support/evidence/handback contracts, QPA binding points, and mechanism metadata
+    interface. Phase A is sufficient for E3-004 to implement and verify a parameterized harness;
+    it does not require or imply an exact harness digest, selected mechanism, approved QPA values,
+    final limits, admission, or execution readiness. Only after E3-004 is independently VERIFIED
+    may PHASE_B_EXECUTION_BLOCK_FROZEN_EXECUTION_READINESS_CANDIDATE bind the exact harness,
+    mechanism/configuration/environment/support class, Founder-approved QPA values, all limits,
+    selectors/order, evidence destinations, and other material run inputs. Phase B then requires
+    its own independent verification and per-launch admission before any result exists or is inspected.
   amendment_rule: >-
     Any material change creates a new protocol or configuration version, a new complete affected
     block and single-use manifest, and a new prospective freeze. Prior raw evidence and unfavorable
@@ -168,7 +176,7 @@ outcome_vocabulary:
 qpa_binding:
   qpa_id: E3-QPA-001
   accountable_owner: Founder
-  status: FOUNDER_DECISION_REQUIRED_NO_NUMERIC_VALUES
+  status: FOUNDER_REVIEW_REQUIRED_AUTHOR_PROPOSAL_EXISTS_AUTHORITATIVE_VALUES_NULL
   founder_acknowledgement_recorded: false
   founder_value_approval_recorded: false
   independent_challenge_ref: null
@@ -177,15 +185,288 @@ qpa_binding:
     finite_verification_rerun_ceiling_per_case_or_task: null
     finite_deterministic_required_check_repetition_rule_per_check_or_class: null
     finite_correction_attempt_ceiling_per_case_or_task: null
-  value_proposal_created_by_e3_002: false
+  value_proposal_created_by_e3_002: true
+  author_proposal_ref: E3-002-QPA-PROP-001@0.1.0
   numeric_or_pseudo_numeric_value_inferred: false
   missing_value_consequence: DO_NOT_RUN_E3_SCORED_EXECUTION_BLOCKED
   author_drafting_permitted_with_null_values: true
   required_before:
-    - protocol_execution_ready_status
+    - PHASE_B_execution_block_freeze_and_execution_readiness_status
     - any_RUN_ADMISSION_PASS
     - any_empirical_attempt
     - any_eligibility_credit
+
+qpa_author_proposal_for_founder_review:
+  proposal_package_id: E3-002-QPA-PROP-001
+  proposal_version: 0.1.0
+  proposal_status: AUTHOR_PROPOSAL_FOR_FOUNDER_REVIEW_NOT_APPROVED
+  proposal_basis: ENGINEERING_REASONING_FROM_FROZEN_REQUIREMENTS_WITH_ZERO_EMPIRICAL_E3_RESULTS
+  applies_to_protocols: [E3V-001, E3V-002, E3V-003, E3V-004, E3V-005, E3V-006, E3V-007]
+  authoritative_E3_QPA_001_values_remain_null: true
+  founder_acknowledgement_recorded: false
+  founder_value_approval_recorded: false
+  proposals:
+    - proposal_id: E3-002-QPA-PROP-001-A
+      qpa_family: finite_verification_rerun_ceiling_per_case_or_task
+      proposed_value: 1
+      approved_value: null
+      unit_and_scope: >-
+        At most one same-revision verification-error rerun for every exact scored E3V-001..007
+        case-or-task scope; the ceiling is cumulative across equivalent blocks and does not reset
+        with a new manifest, configuration label, protocol version, removal, or re-addition.
+      rationale: >-
+        One bounded rerun permits recovery from a genuine VERIFICATION_ERROR while preventing
+        favorable repeated checking of unchanged evidence. It never permits rerun after
+        CHANGES_REQUIRED, BLOCKED, INCONCLUSIVE, a hard failure, or a changed candidate.
+      source_constraints:
+        - E3_QPA_001_requires_a_finite_positive_integer_for_every_applicable_scope
+        - E3_001_allows_same_revision_verification_rerun_only_after_VERIFICATION_ERROR
+        - E1_mixed_ordered_results_remain_FLAKY_and_prior_results_are_immutable
+      affected_protocols: [E3V-001, E3V-002, E3V-003, E3V-004, E3V-005, E3V-006, E3V-007]
+      expected_effect_on_evidence_sufficiency: >-
+        Allows one independently admitted recovery from verifier infrastructure failure; it adds
+        no credit unless the complete frozen verification subject is rerun and every result remains visible.
+      expected_cost_and_runtime_effect: >-
+        Worst-case verifier work for an affected exact scope can be repeated once; no monetary or
+        elapsed-time estimate is claimed before an exact harness and environment exist.
+      contamination_implications: >-
+        Same revision and frozen subject only, fresh single-use admission required, no result-based
+        check selection, and the failed verification record remains immutable.
+      retry_rerun_correction_implications: >-
+        Consumes the global verification-rerun ledger only; it is not an execution retry, protocol
+        repetition, or correction and cannot be relabelled as one.
+      failure_mode_if_too_low: >-
+        A single genuine verifier infrastructure error could permanently prevent decisive evidence
+        even when the unchanged subject remains independently checkable.
+      failure_mode_if_too_high: >-
+        Repeated verifier attempts would increase favorable-outcome shopping, runtime, and the chance
+        that changing ambient state is mistaken for unchanged evidence.
+      alternatives_considered:
+        - "No rerun: rejected as too brittle for genuine VERIFICATION_ERROR."
+        - "More than one rerun: rejected absent empirical need because it weakens anti-shopping governance."
+      founder_decision_required: true
+      approval_status: NOT_APPROVED
+      downstream_tasks_blocked_pending_approval: [PHASE_B_EXECUTION_BLOCK_FREEZE, E3-005, ANY_RUN_ADMISSION_PASS]
+    - proposal_id: E3-002-QPA-PROP-001-B
+      qpa_family: finite_deterministic_required_check_repetition_rule_per_check_or_class
+      proposed_value: 3
+      proposed_rule: >-
+        Execute each applicable required deterministic check exactly three ordered times per
+        scheduled scored attempt against the same frozen subject and environment. Every ordered
+        outcome is retained; any mixed outcome is FLAKY with no pass credit. A stricter frozen E1
+        source-specific protocol remains additionally binding and is never reduced to three.
+      approved_value: null
+      unit_and_scope: >-
+        Three ordered invocations per applicable required deterministic check in every scored
+        E3V-001..007 scheduled attempt; no lower-risk class is proposed because E3-001 retains HIGH
+        as the frozen default risk class.
+      rationale: >-
+        Three invocations are the smallest proposed odd finite sequence that can expose one-off
+        nondeterminism without treating majority vote as correctness. Unanimity is still required.
+      source_constraints:
+        - E3_QPA_001_requires_a_finite_positive_integer_for_every_applicable_check_or_class
+        - E1_requires_mixed_equivalent_results_to_be_FLAKY_and_forbids_pass_once_credit
+        - frozen_E1_protocol_repetitions_remain_source_specific_and_are_not_replaced
+      affected_protocols: [E3V-001, E3V-002, E3V-003, E3V-004, E3V-005, E3V-006, E3V-007]
+      expected_effect_on_evidence_sufficiency: >-
+        Supplies a uniform minimum nondeterminism probe for deterministic checks while requiring
+        all three ordered results and every stricter source-specific rule for favorable credit.
+      expected_cost_and_runtime_effect: >-
+        Triples each applicable deterministic check invocation relative to a single run; exact
+        elapsed, process, disk, output, network, and cost bounds remain Phase-B inputs.
+      contamination_implications: >-
+        Order, subject, environment, seed where applicable, and expected result are frozen before
+        execution; majority voting, selective retention, and rerunning only a failure are forbidden.
+      retry_rerun_correction_implications: >-
+        The three invocations are one scheduled-attempt requirement, not three retries or lifetime
+        correction consumption; a mixed result is FLAKY and cannot be repaired by omitting an outcome.
+      failure_mode_if_too_low: >-
+        A pass-once intermittent defect could appear deterministic and receive false favorable credit.
+      failure_mode_if_too_high: >-
+        Repetition cost and resource pressure could dominate focused validation without providing
+        commensurate evidence in the absence of an empirical variance basis.
+      alternatives_considered:
+        - "Two invocations: rejected because one pass/one fail exposes flakiness but provides less repeated-state evidence."
+        - "Five or more invocations: rejected absent empirical variance evidence; a future prospective amendment may propose it."
+      founder_decision_required: true
+      approval_status: NOT_APPROVED
+      downstream_tasks_blocked_pending_approval: [PHASE_B_EXECUTION_BLOCK_FREEZE, E3-005, ANY_RUN_ADMISSION_PASS]
+    - proposal_id: E3-002-QPA-PROP-001-C
+      qpa_family: finite_correction_attempt_ceiling_per_case_or_task
+      proposed_value: 2
+      approved_value: null
+      unit_and_scope: >-
+        At most two material CORRECTION attempts after the initial block for every stable scored
+        E3V-001..007 case-or-task scope across protocol, mechanism, configuration, and block versions;
+        each correction creates a new whole affected block and preserves all prior evidence.
+      rationale: >-
+        Two corrections allow one direct remediation and one independently reviewed follow-up while
+        bounding mechanism shopping. The stable scope-member lineage prevents renamed or repackaged
+        variants from receiving a fresh allowance.
+      source_constraints:
+        - E3_001_correction_accounting_is_cumulative_non_resettable_and_membership_independent
+        - every_material_change_requires_a_new_version_whole_block_and_manifest
+        - E2_distinguishes_implementation_correction_from_governed_architecture_handback
+      affected_protocols: [E3V-001, E3V-002, E3V-003, E3V-004, E3V-005, E3V-006, E3V-007]
+      expected_effect_on_evidence_sufficiency: >-
+        Permits bounded evidence that a localized realization defect was corrected while retaining
+        failed blocks and forcing escalation when the finite correction envelope ends.
+      expected_cost_and_runtime_effect: >-
+        Allows at most two additional corrected whole blocks per stable scope beyond the initial
+        block; exact block cost and runtime remain unknown until Phase B.
+      contamination_implications: >-
+        Correction may respond to a known failure only through an explicit material diff and new
+        version; prior failures remain evidence and the new block cannot retroactively rescue them.
+      retry_rerun_correction_implications: >-
+        Every mechanism/configuration replacement for the same property/scope consumes correction
+        allowance; new names, packaging, or trivial policy/prompt changes do not reset the ledger.
+      failure_mode_if_too_low: >-
+        One imperfect remediation could end the authorized engineering learning path before a
+        separately reviewed correction can be evaluated.
+      failure_mode_if_too_high: >-
+        Additional corrected blocks increase cost and invite candidate shopping or repeated local
+        optimization against frozen fixtures.
+      alternatives_considered:
+        - "One correction: rejected as too brittle for a first bounded mechanism realization."
+        - "Three or more corrections: rejected absent empirical justification because it expands shopping opportunity."
+      founder_decision_required: true
+      approval_status: NOT_APPROVED
+      downstream_tasks_blocked_pending_approval: [PHASE_B_EXECUTION_BLOCK_FREEZE, E3-005, ANY_RUN_ADMISSION_PASS]
+  founder_decision_required: true
+  approval_status: NOT_APPROVED
+  fresh_challenge_status: PENDING_POST_FIX_CHALLENGE_OR_VERIFICATION_REVIEW
+  independent_verification_status: NOT_VERIFIED
+  proposal_does_not_authorize_execution: true
+
+mechanism_candidate_governance:
+  status: MECHANISM_CANDIDATE_CRITERIA_SPECIFIED_MECHANISM_NOT_SELECTED
+  final_mechanism_selection: NOT_SELECTED
+  technology_product_or_provider_selected: false
+  required_candidate_record_fields:
+    - mechanism_or_configuration_id
+    - version_and_digest
+    - platform_host_client_and_support_scope
+    - declared_semantics_and_architecture_property_mapping
+    - known_limitations_and_unsupported_scope
+    - provenance_rights_and_clean_room_status
+    - capability_enforcement_and_observation_points
+    - fixture_and_fault_compatibility
+    - decisive_oracle_observability
+    - QPA_limit_evidence_and_admission_binding
+  protocol_candidate_classes:
+    E3V-001:
+      - TRANSACTIONALLY_COMMITTED_LOCAL_AUTHORITY_WITH_DURABLE_ACK_AND_EFFECT_INTENT_RECEIPT_LEDGER
+      - APPEND_ONLY_RECOVERY_JOURNAL_WITH_DETERMINISTIC_STATE_PROJECTION_AND_OWNER_FENCE
+      - ATOMIC_REPLACE_SNAPSHOT_WITH_WRITE_AHEAD_MUTATION_EFFECT_AND_RECOVERY_RECORDS
+    E3V-002:
+      - KERNEL_SCOPED_PROCESS_GROUP_OR_JOB_STYLE_CONTAINMENT_WITH_INDEPENDENT_SURVIVOR_OBSERVER
+      - EXTERNAL_SUPERVISOR_REAPER_WITH_DESCENDANT_LINEAGE_DISCOVERY_AND_DURABLE_AUTHORITY_FENCE
+      - SANDBOX_OR_CONTAINER_SCOPED_EXECUTION_WITH_REVOCABLE_TASK_CAPABILITY_AND_EFFECT_FENCE
+    E3V-003:
+      - IMMUTABLE_BASE_PLUS_TASK_OWNED_WORKING_COPY_WITH_PATH_AND_HELPER_GUARDS
+      - NATIVE_ISOLATED_WORKTREE_WITH_SHARED_STATE_GUARD_AND_SEPARABLE_LOCAL_PACKAGE
+      - SNAPSHOT_OR_OVERLAY_WORKSPACE_WITH_WRITE_CONFINEMENT_AND_REPRODUCIBLE_EXPORT
+    E3V-004:
+      - DIRECT_TYPED_EVENT_ADAPTER_WITH_RAW_PROVIDER_EXTENSION_PRESERVATION
+      - CANONICAL_NORMALIZER_PLUS_LINKED_RAW_EXTENSION_SIDECAR_AND_EXPLICIT_UNSUPPORTED_SEMANTICS
+      - PROVIDER_ISOLATED_ADAPTER_WITH_PRE_DISPATCH_ROUTE_GATE_AND_CLOSED_FALLBACK_GRAPH
+    E3V-005:
+      - APPEND_ONLY_RAW_EVENT_EVIDENCE_WITH_SEPARATE_RECONSTRUCTION_AND_VERIFIER
+      - SEALED_EVIDENCE_BUNDLE_PLUS_INDEPENDENT_AUTHORITATIVE_STATE_READBACK
+      - REPRODUCIBLE_EVIDENCE_MANIFEST_WITH_EXTERNAL_CANARIES_AND_VERSIONED_DERIVATION
+    E3V-006:
+      - PROTECTED_STORE_REFERENCE_WITH_BROKERED_ONE_USE_RUNTIME_INJECTION
+      - CLIENT_MEDIATED_SINGLE_USE_PROTECTED_CHANNEL_BOUND_TO_RECIPIENT_ATTEMPT_OWNER_AND_FENCE
+      - TASK_SCOPED_NONEXPORTABLE_PROTECTED_HANDLE_WITH_REVOCABLE_CAPABILITY_DELIVERY
+    E3V-007:
+      - HARNESS_SIDE_RAW_EVENT_CAPTURE_WITH_PRE_DISPATCH_RESOURCE_RESERVATION_AND_GATE
+      - PROCESS_AND_HOST_RESOURCE_OBSERVER_WITH_CORRELATED_IMMUTABLE_MEASUREMENT_LEDGER
+      - ADAPTER_BOUNDARY_USAGE_OBSERVER_WITH_INDEPENDENT_CLOCK_ATTRIBUTION_AND_LIMIT_ENFORCEMENT
+  selection_criteria_by_protocol:
+    E3V-001: DURABLE_ACK_OWNER_FENCE_EFFECT_READBACK_RECOVERY_AND_PROJECTION_NONAUTHORITY_OBSERVABLE
+    E3V-002: DESCENDANT_DISCOVERY_CONTROL_SURVIVOR_OBSERVATION_EFFECT_FENCE_AND_OWNER_RECOVERY_OBSERVABLE
+    E3V-003: BIND_BEFORE_MUTATION_PATH_CONFINEMENT_UNRELATED_STATE_CANARIES_HELPER_DENIAL_AND_LOCAL_EXPORT_OBSERVABLE
+    E3V-004: REQUIRED_SEMANTICS_REPRESENTABLE_RAW_PROVENANCE_RETAINED_UNSUPPORTED_EXPLICIT_AND_DENIED_ROUTE_ZERO_DISPATCH_OBSERVABLE
+    E3V-005: EXACT_STATE_RECONSTRUCTABLE_RAW_IMMUTABLE_TAMPER_GAPS_VISIBLE_AND_VERIFIER_INDEPENDENCE_ENFORCEABLE
+    E3V-006: NONORDINARY_ACQUISITION_EXACT_ONE_USE_RECIPIENT_BINDING_REVOCATION_AND_COMPLETE_CAPTURE_EXCLUSION_OBSERVABLE
+    E3V-007: RAW_INPUT_ATTRIBUTION_MISSINGNESS_RESOURCE_RESERVATION_DENIAL_AND_INDEPENDENT_DERIVATION_OBSERVABLE
+  discriminating_evidence_by_protocol:
+    E3V-001:
+      - durable_ack_and_effect_intent_receipts_at_every_frozen_crash_and_partial_write_boundary
+      - authoritative_state_and_projection_readback_after_restart_owner_loss_duplicate_delivery_and_migration
+      - candidate_specific_recovery_latency_integrity_and_unsupported_scope_records_under_identical_fault_order
+    E3V-002:
+      - independent_process_tree_and_control_timeline_for_every_descendant_race_timeout_and_termination_path
+      - survivor_orphan_productive_effect_and_fence_readback_after_cooperative_force_and_owner_loss_actions
+      - candidate_specific_host_support_and_cleanup_or_recovery_evidence_under_identical_topology_and_faults
+    E3V-003:
+      - repository_path_mount_and_unrelated_state_canaries_before_during_and_after_every_mutating_fixture
+      - exact_Git_state_helper_invocation_effect_denial_and_local_package_provenance_readback
+      - candidate_specific_reproduction_and_cleanup_evidence_across_each_prospectively_claimed_repository_class
+    E3V-004:
+      - byte_preserved_raw_provider_shapes_linked_to_typed_projections_and_explicit_unsupported_fields
+      - predispatch_route_fallback_zero_call_effect_credential_and_cost_receipts_for_every_denied_path
+      - candidate_specific_semantic_loss_cancellation_tool_refusal_usage_and_provenance_differences
+    E3V-005:
+      - independent_exact_state_reconstruction_from_immutable_raw_records_with_tamper_gap_and_staleness_canaries
+      - verifier_identity_context_revision_and_independence_evidence_plus_deterministic_ground_truth_replay
+      - candidate_specific_bundle_reconstruction_retention_and_failure_visibility_under_identical_corruptions
+    E3V-006:
+      - complete_per_surface_synthetic_marker_scan_for_the_frozen_subject_writable_and_nonfilesystem_inventory
+      - exact_recipient_consumption_approval_revocation_replay_fence_crash_replacement_and_reacquisition_receipts
+      - candidate_specific_acquisition_and_capture_exclusion_results_under_identical_attack_and_failure_order
+    E3V-007:
+      - raw_clock_resource_route_usage_cost_and_limit_reservation_enforcement_readback_at_every_boundary
+      - independent_metric_recomputation_with_missing_unknown_zero_not_applicable_corrupt_and_gap_variants
+      - candidate_specific_attribution_precision_overhead_failure_visibility_and_unsupported_resource_evidence
+  materially_distinct_rule: >-
+    A candidate is materially distinct only when its property-relevant enforcement, authority,
+    capture, observation, or recovery primitive differs in a way that could change the decisive
+    oracle result. A renamed, repackaged, trivially reconfigured, prompt-only, or nominal variant
+    is the same correction lineage and cannot enlarge the authorized envelope.
+  phase_A_output: CANDIDATE_METADATA_AND_SELECTION_CRITERIA_ONLY
+  phase_B_resolution_owner: >-
+    The registered E3-005 prelaunch execution-block preparer, acting for the accountable technical,
+    security, or measurement validation owner and distinct from the run operator/admission checker,
+    must select the exact candidate from a prospectively reviewed finite envelope after E3-004 is
+    VERIFIED and before any launch result exists.
+  e3_004_duty: >-
+    E3-004 implements and verifies the parameterized candidate metadata interface, fixtures,
+    observers, oracles, QPA/limit enforcement points, and harness identity; it does not select a
+    final production mechanism or create an empirical result.
+  protocol_limit_resolution_duty: >-
+    The Phase-B execution-block preparer must propose exact mechanism/environment-calibrated values
+    for every protocol-owned retry, repetition, repeated-failure, elapsed-time, output, process,
+    disk, network, and cost dimension; identify rationale, failure modes, and affected scope; obtain
+    Founder approval where the task contract requires it; and receive fresh independent review and
+    verification before execution readiness. Current values remain null and no default applies.
+  protocol_limit_proposal_schedule:
+    status: DESIGNATED_PHASE_B_STEP_NOT_YET_RUN_VALUES_NULL
+    owner: E3_005_PRELAUNCH_EXECUTION_BLOCK_PREPARER_ACTING_FOR_ACCOUNTABLE_VALIDATION_OWNER
+    prerequisite: E3_004_INDEPENDENTLY_VERIFIED_EXACT_HARNESS_AND_TARGET_MECHANISM_ENVIRONMENT_KNOWN
+    why_values_cannot_be_responsibly_fixed_in_phase_A: >-
+      Exact retry, repetition, failure, time, output, process, disk, network, cost, control,
+      verifier-context and evidence-sufficiency values depend on the selected candidate's observed
+      enforcement/readback granularity and the exact verified harness/host/reference environment.
+      Guessing them before those identities and capabilities exist would create pseudo-thresholds
+      with no evidence basis and could silently admit unsafe or infeasible blocks.
+    missing_evidence_before_proposal:
+      - independently_verified_E3_004_limiter_clock_meter_capture_and_readback_resolution
+      - exact_candidate_configuration_host_client_runtime_reference_environment_and_support_scope
+      - bounded_E3_004_meta_test_evidence_for_limit_enforcement_denial_overhead_and_safety_reserve_behavior
+      - applicable_declared_resource_cost_network_and_context_capacity_constraints_with_provenance
+    exact_downstream_proposal_step: >-
+      After E3-004 is independently VERIFIED and before any scored result exists, the registered
+      E3-005 prelaunch execution-block preparer acting for the accountable validation owner records
+      one exact value/rule and complete rationale package for every applicable dimension; Founder
+      approval where required, fresh challenge, independent Phase B verification, and admission follow.
+    dimensions:
+      common: [execution_retry_ceiling, run_repetition_count, maximum_repeated_failure_ceiling, elapsed_time_ceiling_seconds, output_ceiling_bytes, process_ceiling_count, disk_ceiling_bytes, network_call_ceiling, cost_ceiling_usd]
+      E3V-002: [control_acknowledgement_ceiling, cooperative_termination_ceiling, force_or_fence_effectiveness_ceiling]
+      E3V-005: [verifier_context_ceiling]
+      E3V-007: [evidence_sufficiency_rule_ref]
+    required_record_per_dimension: [exact_finite_value_and_unit, scope, mechanism_environment_basis, evidence_sufficiency_effect, cost_runtime_effect, contamination_and_retry_implications, too_low_failure_mode, too_high_failure_mode, alternatives, approval_and_review_refs]
+    completion_gate: ALL_APPLICABLE_VALUES_EXACT_PROSPECTIVE_AND_INDEPENDENTLY_VERIFIED_BEFORE_PHASE_B_EXECUTION_READY
 
 common_run_admission:
   current_status: DO_NOT_RUN
@@ -298,16 +579,63 @@ contamination_policy:
   contaminated_evidence_credit: NONE
 
 architecture_failure_classification:
-  ordinary_failure_default: IMPLEMENTATION_CONFIGURATION_FAILURE
+  classification_status: FINITE_PROSPECTIVE_CLASSIFICATION_RULE_SPECIFIED_ZERO_EMPIRICAL_RESULTS
+  ordinary_failure_is_not_automatically_configuration_failure: true
+  implementation_configuration_failure_requires:
+    - evidence_localizes_the_defect_to_the_exact_selected_realization_or_configuration
+    - at_least_one_concrete_materially_distinct_candidate_was_identified_before_result_inspection
+    - accepted_architecture_admits_that_candidate_for_the_same_property_and_declared_support_scope
+    - candidate_record_satisfies_mechanism_candidate_governance_required_fields
+  concrete_architecture_support_evidence_required: >-
+    The candidate record must cite the accepted AR/ADR property, exact typed port or enforcement/
+    observation seam that can realize it, declared semantics and limitations, and the decisive
+    oracle observation available for the same support scope. A mechanism name or architecture
+    compatibility assertion without those concrete links is not sufficient.
+  mere_plausibility_is_sufficient: false
   unsupported_declared_boundary: PRODUCT_CLASS_UNSUPPORTED
   missing_or_invalid_evidence: EVIDENCE_MISSING_FAIL_CLOSED
+  classification_when_no_concrete_alternate_and_no_handback_evidence: EVIDENCE_MISSING_FAIL_CLOSED_PENDING_INDEPENDENT_ARCHITECTURE_REVIEW
   architecture_handback_requires:
     - indispensable_accepted_property_is_in_the_exact_tested_scope
     - exact_configuration_and_support_class_were_prospectively_frozen_and_admitted
     - complete_raw_fault_chain_and_decisive_oracle_evidence_are_preserved
-    - every_compliant_allowed_realization_route_for_that_property_and_scope_is_exhausted
-    - structural_impossibility_is_independently_investigated_and_separately_verified
+    - evidence_disproves_a_named_accepted_architecture_assumption_or_shows_a_required_accepted_property_cannot_be_satisfied_in_the_claimed_design_envelope
+    - the_handback_predicate_is_independently_investigated_and_separately_verified
     - canonical_ADR_handback_set_is_set_equal
+  handback_does_not_require:
+    - enumeration_or_exhaustion_of_every_imaginable_implementation
+    - mathematical_proof_over_unknown_future_technologies
+    - repeated_trials_until_no_route_remains_plausible
+  e3_001_route_exhaustion_binding_interpretation: >-
+    E3-001's all_compliant_route_exhaustion_and_structural_impossibility_predicate is bound here to
+    the exact prospectively frozen, materially distinct finite candidate envelope for the same
+    accepted property and declared support scope—not an open-ended search over imaginable future
+    implementations. A separately verified disproof of the named accepted assumption, or proof that
+    the required property cannot be satisfied anywhere inside the architecture's claimed design
+    envelope, may establish the structural predicate without executing nominal variants; otherwise
+    finite envelope exhaustion triggers classification but does not by itself prove handback.
+  finite_candidate_envelope_rule: >-
+    Candidate identities and their property-relevant primitives must be frozen prospectively for
+    the exact property and support scope. Only materially distinct candidates under
+    mechanism_candidate_governance may enter the envelope. Renamed, repackaged, prompt-only,
+    nominal, or trivially reconfigured variants remain one correction lineage. Every replacement
+    consumes the Founder-approved cumulative correction ceiling; versions, removals, re-additions,
+    and new manifests never reset it.
+  exhaustion_and_escalation_rule: >-
+    When the prospectively frozen candidate envelope or approved correction ceiling is exhausted,
+    or no concrete accepted-architecture candidate exists, the lane stops and receives mandatory
+    independent architecture classification. Exhaustion alone does not prove architecture failure:
+    reviewed evidence that meets the architecture handback predicate produces ARCHITECTURE_HANDBACK;
+    reviewed evidence that localizes a defect and names a still-admitted material alternative
+    produces IMPLEMENTATION_CONFIGURATION_FAILURE; insufficient evidence produces
+    EVIDENCE_MISSING_FAIL_CLOSED. No path authorizes indefinite implementation retry.
+  independent_review_must_record:
+    - named_accepted_assumption_and_exact_property_scope
+    - exact_realization_defect_if_localized
+    - prospectively_frozen_candidate_envelope_and_material_distinctness
+    - consumed_and_remaining_correction_allowance
+    - evidence_for_configuration_handback_unsupported_or_inconclusive_outcome
+    - canonical_ADR_set_if_handback
   protocol_author_may_create_handback: false
   e3_may_edit_accepted_adr: false
   handback_action: >-
@@ -317,10 +645,34 @@ architecture_failure_classification:
 
 cross_protocol_order_and_reuse:
   e3_004_harness_verification_precedes_any_empirical_attempt: true
+  precondition_source: E3_004_VERIFIED_HARNESS_CAPABILITIES_NOT_EMPIRICAL_E3V_VERDICTS
   preconditions:
-    - E3V-003 isolation controls must be verified for any fixture that mutates a workspace.
-    - E3V-002 containment controls must be verified for any fixture that spawns descendants.
-    - E3V-006 capture and protected-entry controls must be verified before any protected-marker fixture.
+    - >-
+      Before any mutating fixture, E3-004 must have independently verified the harness isolation
+      setup/teardown, path confinement, unrelated-state canaries, and mutation observation controls
+      required by E3V-003. No E3V-003 empirical verdict is a prerequisite to run E3V-003 or another protocol.
+    - >-
+      Before any descendant-spawning fixture, E3-004 must have independently verified the harness
+      descendant discovery, control, fencing, survivor detection, and cleanup controls required by
+      E3V-002. No E3V-002 empirical verdict is a prerequisite to run E3V-002 or another protocol.
+    - >-
+      Before any protected-marker fixture, E3-004 must have independently verified the harness
+      synthetic-marker generation, capture-surface inventory, marker scan, evidence redaction, and
+      exact-recipient controls required by E3V-006. No E3V-006 empirical verdict is a prerequisite.
+  prospective_dependency_dag:
+    PHASE_A_E3_002_AND_E3_003_VERIFIED: E3_004_BUILD_AND_INDEPENDENT_VERIFICATION
+    E3_004_BUILD_AND_INDEPENDENT_VERIFICATION: E3_004_VERIFIED
+    E3_004_VERIFIED: PHASE_B_EXECUTION_BLOCK_BINDING_AND_INDEPENDENT_VERIFICATION
+    PHASE_B_EXECUTION_BLOCK_BINDING_AND_INDEPENDENT_VERIFICATION: PHASE_B_VERIFIED_AND_QPA_APPROVED
+    PHASE_B_VERIFIED_AND_QPA_APPROVED: E3_005_PER_LAUNCH_ADMISSION
+    E3_005_PER_LAUNCH_ADMISSION: E3_005_RUN_ADMISSION_PASS
+    E3_005_RUN_ADMISSION_PASS: ADMITTED_E3V_001_THROUGH_E3V_007_ATTEMPT
+    ADMITTED_E3V_001_THROUGH_E3V_007_ATTEMPT: ADMITTED_RAW_RECORDS
+    ADMITTED_RAW_RECORDS: E3V_005_CROSS_PROTOCOL_EVIDENCE_CREDIT_CHECK
+    E3V_005_CROSS_PROTOCOL_EVIDENCE_CREDIT_CHECK: VERIFIED_DECISIVE_RESULTS
+    VERIFIED_DECISIVE_RESULTS: LATER_E3_007_DERIVATION_OR_E3_GATE_SYNTHESIS
+  dag_self_dependency_present: false
+  empirical_protocol_verdict_required_to_admit_itself: false
   evidence_credit_gate: >-
     Raw records may be collected only after admission, but no cross-protocol synthesis credit is
     granted unless E3V-005 independently validates the applicable evidence and verifier path.
@@ -341,7 +693,7 @@ cross_protocol_order_and_reuse:
 protocols:
   - e3v_id: E3V-001
     protocol_id: E3V-001-PERSISTENCE-RECOVERY-VALIDATION
-    protocol_version: 0.1.0-author-draft
+    protocol_version: 0.2.0-fixer-draft
     status: READY_FOR_REVIEW_EXECUTION_BLOCKED
     owner_classification: E3_TECHNICAL_VALIDATION_OWNER
     exact_question: >-
@@ -528,13 +880,17 @@ protocols:
       derived views are rebuildable and never authority; no hard failure occurs. The only positive
       root-cause outcome is VALIDATED_FOR_TESTED_SCOPE_ONLY for the exact frozen scope.
     implementation_configuration_failure_rule: >-
-      A reproducible defect in a selected store, adapter, codec, migration, ownership, fencing,
-      fixture, or recovery configuration is IMPLEMENTATION_CONFIGURATION_FAILURE when an allowed
-      conforming EP-ARCH-C01 realization remains plausible. It creates no architecture handback.
+      IMPLEMENTATION_CONFIGURATION_FAILURE requires reproducible evidence localizing the defect to
+      the selected store, adapter, codec, migration, ownership, fencing, fixture, or recovery
+      realization and a concrete, prospectively identified, materially distinct EP-ARCH-C01
+      candidate admitted for the same persistence/ownership/effect property and support scope.
+      Mere plausibility or an unnamed future implementation is insufficient.
     architecture_failure_rule: >-
-      ARCHITECTURE_HANDBACK is available only after independent proof that the indispensable accepted
-      persistence/ownership/effect property is structurally unrealizable for the exact required
-      support class across every compliant route, with the canonical ADR set and raw fault chain.
+      ARCHITECTURE_HANDBACK is reachable when independent investigation and separate verification
+      use the preserved fault chain to disprove a named accepted persistence/ownership/effect
+      assumption, or show that the indispensable accepted recovery property cannot be satisfied in
+      EP-ARCH-C01's claimed design envelope for the exact tested support class. Exhausting every
+      imaginable implementation is not required; the canonical ADR set remains mandatory.
     missing_or_inconclusive_rule: >-
       Missing acknowledgement, ownership, effect, readback, fault-order, environment, or integrity
       evidence yields EVIDENCE_MISSING_FAIL_CLOSED. An unbound or deliberately excluded class yields
@@ -547,7 +903,31 @@ protocols:
         - immutable_fault_chain
         - exact_configuration_and_support_scope
         - authoritative_state_and_effect_readbacks
-        - alternate_compliant_route_exhaustion_record
+        - prospective_materially_distinct_candidate_envelope_and_correction_ledger
+        - named_accepted_assumption_and_handback_predicate_review
+    outcome_reachability_sanity_test:
+      hypothetical_only_no_empirical_claim: true
+      tested_scope_pass: >-
+        All frozen acknowledgement, recovery, ownership, effect, and readback cells satisfy the
+        success rule with complete evidence, yielding VALIDATED_FOR_TESTED_SCOPE_ONLY.
+      configuration_failure_evidence: >-
+        A selected flush/codec configuration reproducibly loses an acknowledged record, the defect
+        is localized to that realization, and a prospectively recorded materially distinct durable
+        acknowledgement candidate is admitted by EP-ARCH-C01 for the same scope.
+      architecture_classification_required_evidence: >-
+        Reproducible acknowledgement loss, duplicate consequential effect, stale authority, or
+        fabricated continuity contradicts an indispensable accepted property and requires an
+        independent root-cause review rather than automatic configuration labeling.
+      canonical_architecture_handback_evidence: >-
+        Independent reviewed evidence disproves the accepted sole-writer acknowledgement/effect
+        assumption or shows required recovery cannot be satisfied in the claimed EP-ARCH-C01
+        design envelope for the frozen class, with the set-equal canonical ADR handback.
+      inconclusive_evidence: >-
+        A missing acknowledgement/effect/readback segment or integrity failure prevents either
+        localization or the handback predicate, yielding EVIDENCE_MISSING_FAIL_CLOSED.
+      unsupported_scope_evidence: >-
+        The tested host, storage, or recovery class was prospectively excluded from the declared
+        support boundary, yielding PRODUCT_CLASS_UNSUPPORTED without favorable credit.
     qpa_bindings:
       verification_rerun_ceiling_per_case_or_task: null
       deterministic_required_check_repetition_rule_per_check_or_class: null
@@ -682,7 +1062,7 @@ protocols:
 
   - e3v_id: E3V-002
     protocol_id: E3V-002-PROCESS-CONTAINMENT-FENCING-VALIDATION
-    protocol_version: 0.1.0-author-draft
+    protocol_version: 0.2.0-fixer-draft
     status: READY_FOR_REVIEW_EXECUTION_BLOCKED
     owner_classification: E3_TECHNICAL_VALIDATION_OWNER
     exact_question: >-
@@ -855,12 +1235,17 @@ protocols:
       completely discovered and fenced; effects and output are accounted; owner loss recovers
       truthfully; actual state agrees with evidence; unsupported host classes are denied.
     implementation_configuration_failure_rule: >-
-      A defect or omission in the exact selected process-launch, discovery, supervisor, signaling,
-      force, fence, or observation configuration is IMPLEMENTATION_CONFIGURATION_FAILURE when a
-      conforming allowed realization remains available.
+      IMPLEMENTATION_CONFIGURATION_FAILURE requires reproducible localization to the selected
+      launch, discovery, supervisor, signaling, force, fence, or observation realization plus a
+      concrete, prospectively identified, materially distinct containment/authority candidate that
+      EP-ARCH-C01 admits for the same topology and support scope. An unnamed available realization
+      or theoretical plausibility is insufficient.
     architecture_failure_rule: >-
-      Only independent proof that no compliant EP-ARCH-C01 execution boundary can contain or fence
-      the required declared support class may produce ARCHITECTURE_HANDBACK to ADR-E2-003/004/007.
+      ARCHITECTURE_HANDBACK is reachable when independent investigation and separate verification
+      disprove the accepted separation of execution containment and authority fencing, or show that
+      the required descendant-control property cannot be satisfied inside EP-ARCH-C01's claimed
+      design envelope for the exact tested class. It does not require testing all imaginable process
+      supervisors; the handback set must be exactly ADR-E2-003/004/007.
     missing_or_inconclusive_rule: >-
       Missing descendant, control-timeline, actual-process, survivor, owner-loss, output, or effect
       evidence is EVIDENCE_MISSING_FAIL_CLOSED. A host/topology deliberately outside the exact bound
@@ -871,6 +1256,28 @@ protocols:
       separate_verifier_required_for_handback: true
       containment_observed_is_stale_authority_fenced: false
       both_containment_and_authority_fencing_must_be_proved: true
+    outcome_reachability_sanity_test:
+      hypothetical_only_no_empirical_claim: true
+      tested_scope_pass: >-
+        Every supported topology and control cell is completely observed, descendants are stopped
+        or fenced inside the frozen bounds, stale authority is rejected, and no hard failure occurs.
+      configuration_failure_evidence: >-
+        The selected descendant-discovery/signaling realization reproducibly misses a grandchild,
+        the omission is localized, and a prospectively recorded materially distinct observer or
+        supervisor candidate is admitted for the same topology and control property.
+      architecture_classification_required_evidence: >-
+        Reproducible stale authority, survivor escape, or inability to satisfy required descendant
+        control and fencing invokes independent root-cause classification.
+      canonical_architecture_handback_evidence: >-
+        Independent reviewed evidence disproves the accepted containment/fencing separation or
+        shows that the required declared descendant class cannot be controlled and fenced in the
+        architecture's claimed envelope, with exactly ADR-E2-003/004/007 reopened.
+      inconclusive_evidence: >-
+        Missing process-tree, control-timeline, survivor, effect, or owner-loss evidence prevents a
+        decisive classification and yields EVIDENCE_MISSING_FAIL_CLOSED.
+      unsupported_scope_evidence: >-
+        A prospectively excluded host, topology, or force-control class yields
+        PRODUCT_CLASS_UNSUPPORTED and cannot be described as a successful stop.
     qpa_bindings:
       verification_rerun_ceiling_per_case_or_task: null
       deterministic_required_check_repetition_rule_per_check_or_class: null
@@ -1003,7 +1410,7 @@ protocols:
 
   - e3v_id: E3V-003
     protocol_id: E3V-003-WORKSPACE-GIT-ISOLATION-PACKAGING-VALIDATION
-    protocol_version: 0.1.0-author-draft
+    protocol_version: 0.2.0-fixer-draft
     status: READY_FOR_REVIEW_EXECUTION_BLOCKED
     owner_classification: E3_TECHNICAL_VALIDATION_OWNER
     exact_question: >-
@@ -1196,12 +1603,17 @@ protocols:
       unchanged; the task diff is separable; setup/recovery/package is reproducible; all network and
       real remote effects remain zero; unsupported classes are truthful.
     implementation_configuration_failure_rule: >-
-      A selected workspace, path resolver, Git wrapper, helper policy, packaging, cleanup, fixture,
-      or host configuration defect is IMPLEMENTATION_CONFIGURATION_FAILURE when an allowed conforming
-      EP-ARCH-C01 realization remains available.
+      IMPLEMENTATION_CONFIGURATION_FAILURE requires reproducible localization to the selected
+      workspace, path resolver, Git wrapper, helper policy, packaging, cleanup, fixture, or host
+      realization and a concrete, prospectively identified, materially distinct workspace-isolation
+      or local-package candidate admitted by EP-ARCH-C01 for the same repository and support class. An unnamed
+      conforming route is insufficient.
     architecture_failure_rule: >-
-      Only independently verified structural impossibility of the indispensable isolation/local
-      packaging property for the required declared class may hand back ADR-E2-001/002/004/009.
+      ARCHITECTURE_HANDBACK is reachable when independent investigation and separate verification
+      disprove a named accepted workspace, port, or local-package assumption, or show that the
+      indispensable isolation/local-package property cannot be satisfied in EP-ARCH-C01's claimed
+      design envelope for the exact tested repository class. Universal implementation exhaustion is
+      not required; the handback set is exactly ADR-E2-001/002/004/009.
     missing_or_inconclusive_rule: >-
       Any unreadable canary, unproven event order, unknown helper/effect, missing repository fact,
       stale base, or incomplete package evidence is EVIDENCE_MISSING_FAIL_CLOSED. Declared rejected,
@@ -1211,6 +1623,28 @@ protocols:
       independent_investigator_required: true
       separate_verifier_required_for_handback: true
       all_enumerated_canaries_required_for_scope_credit: true
+    outcome_reachability_sanity_test:
+      hypothetical_only_no_empirical_claim: true
+      tested_scope_pass: >-
+        Every frozen repository/Git disposition is correct, mutation follows durable binding, all
+        unrelated-state canaries remain unchanged, and the local package is reproducible.
+      configuration_failure_evidence: >-
+        A selected path-resolver or helper policy reproducibly escapes its intended boundary, the
+        defect is localized, and a prospectively recorded materially distinct confinement or
+        helper-suppression candidate is admitted for the same repository class.
+      architecture_classification_required_evidence: >-
+        Reproducible root/user-state escape, hidden mandatory service dependence, shared-ref damage,
+        or inability to construct the required local package invokes independent classification.
+      canonical_architecture_handback_evidence: >-
+        Independent reviewed evidence disproves the accepted workspace/port/local-package assumption
+        or shows required isolation cannot be satisfied in the claimed design envelope, reopening
+        exactly ADR-E2-001/002/004/009.
+      inconclusive_evidence: >-
+        An unreadable canary, unknown helper/effect, stale base, or incomplete package provenance
+        prevents localization and handback determination, yielding EVIDENCE_MISSING_FAIL_CLOSED.
+      unsupported_scope_evidence: >-
+        A prospectively rejected, unknown, or unbound repository/Git class yields
+        PRODUCT_CLASS_UNSUPPORTED with no successful-isolation credit.
     qpa_bindings:
       verification_rerun_ceiling_per_case_or_task: null
       deterministic_required_check_repetition_rule_per_check_or_class: null
@@ -1339,7 +1773,7 @@ protocols:
 
   - e3v_id: E3V-004
     protocol_id: E3V-004-PROVIDER-GATEWAY-SEMANTIC-CONFORMANCE
-    protocol_version: 0.1.0-author-draft
+    protocol_version: 0.2.0-fixer-draft
     status: READY_FOR_REVIEW_EXECUTION_BLOCKED
     owner_classification: E3_TECHNICAL_VALIDATION_OWNER
     exact_question: >-
@@ -1493,13 +1927,16 @@ protocols:
       the oracle; requested, allowed, dispatched, fallback, denied, and terminal facts remain distinct;
       denied or unauthorized routes have zero bytes, calls, effects, credentials, and cost.
     implementation_configuration_failure_rule: >-
-      A defect in the selected adapter, parser, normalizer, gateway, route, fallback, fixture, or
-      configuration is IMPLEMENTATION_CONFIGURATION_FAILURE when another conforming realization of
-      the accepted gateway boundary remains plausible.
+      IMPLEMENTATION_CONFIGURATION_FAILURE requires reproducible localization to the selected
+      adapter, parser, normalizer, gateway, route, fallback, fixture, or configuration and a
+      concrete, prospectively identified, materially distinct adapter/gateway candidate admitted by
+      the accepted boundary for the same provider-shape and semantic scope. Plausibility alone is insufficient.
     architecture_failure_rule: >-
-      Only independent proof that the accepted gateway interface structurally cannot represent one
-      indispensable orchestration semantic for the required support class across every compliant
-      route may hand back ADR-E2-001/004/005/006/007/008/009.
+      ARCHITECTURE_HANDBACK is reachable when independent investigation and separate verification
+      disprove the accepted typed-core/provider-extension gateway assumption, or show an indispensable
+      orchestration semantic cannot be represented in the accepted interface's claimed design
+      envelope for the exact tested class. Universal adapter exhaustion is not required; the handback
+      set is exactly ADR-E2-001/004/005/006/007/008/009.
     missing_or_inconclusive_rule: >-
       Missing raw shape, expected mapping, provider extension, route, zero-call, cancellation,
       usage/cost-knownness, or integrity evidence is EVIDENCE_MISSING_FAIL_CLOSED. An undeclared
@@ -1508,7 +1945,30 @@ protocols:
       operator_may_decide: false
       independent_investigator_required: true
       separate_verifier_required_for_handback: true
-      adapter_route_exhaustion_required_before_handback: true
+      universal_adapter_route_exhaustion_required_before_handback: false
+      prospective_candidate_envelope_and_named_assumption_review_required: true
+    outcome_reachability_sanity_test:
+      hypothetical_only_no_empirical_claim: true
+      tested_scope_pass: >-
+        Every frozen offline provider shape maps deterministically with raw extensions retained,
+        semantics preserved, explicit unsupported fields, and zero dispatch for denied routes.
+      configuration_failure_evidence: >-
+        The selected adapter reproducibly maps refusal or cancellation incorrectly, the defect is
+        localized, the accepted gateway schema can represent the correct distinction, and a
+        prospectively recorded materially distinct adapter candidate is admitted for the same scope.
+      architecture_classification_required_evidence: >-
+        A required refusal, cancellation, tool-causality, fallback, or knownness semantic cannot be
+        represented without loss in the accepted gateway contract, invoking independent review.
+      canonical_architecture_handback_evidence: >-
+        Independent reviewed evidence disproves the typed-core/provider-extension interface
+        assumption or shows an indispensable semantic is outside its claimed design envelope,
+        reopening exactly ADR-E2-001/004/005/006/007/008/009.
+      inconclusive_evidence: >-
+        Missing raw shape, expected mapping, route, zero-call, cancellation, usage/cost-knownness, or
+        integrity evidence yields EVIDENCE_MISSING_FAIL_CLOSED.
+      unsupported_scope_evidence: >-
+        A prospectively undeclared provider shape, live-provider class, or intentionally unsupported
+        semantic yields PRODUCT_CLASS_UNSUPPORTED without conformance credit.
     qpa_bindings:
       verification_rerun_ceiling_per_case_or_task: null
       deterministic_required_check_repetition_rule_per_check_or_class: null
@@ -1645,7 +2105,7 @@ protocols:
 
   - e3v_id: E3V-005
     protocol_id: E3V-005-EVIDENCE-AND-INDEPENDENT-VERIFIER-VALIDATION
-    protocol_version: 0.1.0-author-draft
+    protocol_version: 0.2.0-fixer-draft
     status: READY_FOR_REVIEW_EXECUTION_BLOCKED
     owner_classification: E3_TECHNICAL_VALIDATION_OWNER
     exact_question: >-
@@ -1851,12 +2311,17 @@ protocols:
       predicates are bound; evidence gaps/tamper/staleness/secret exposure fail closed; raw evidence
       remains immutable; telemetry and self-report create no credit; no hard failure occurs.
     implementation_configuration_failure_rule: >-
-      A defect in the selected state projection, evidence writer, integrity, bundle validator,
-      artifact, check runner, verifier, grader, context, fixture, or retention configuration is
-      IMPLEMENTATION_CONFIGURATION_FAILURE while a conforming allowed realization remains plausible.
+      IMPLEMENTATION_CONFIGURATION_FAILURE requires reproducible localization to the selected state
+      projection, evidence writer, integrity path, bundle validator, artifact, check runner,
+      verifier, grader, context, fixture, or retention realization and a concrete, prospectively
+      identified, materially distinct state/evidence/verifier candidate admitted for the same
+      property and support scope. Mere plausibility is insufficient.
     architecture_failure_rule: >-
-      Only independently verified structural impossibility of exposing adequate exact-state evidence
-      to a separate verifier for the required class may hand back ADR-E2-002/003/004/005/006/007/008.
+      ARCHITECTURE_HANDBACK is reachable when independent investigation and separate verification
+      disprove the accepted state/evidence/independent-verifier seam assumption, or show that adequate
+      exact-state evidence cannot be exposed to a separate verifier in the accepted architecture's
+      claimed design envelope for the exact tested class. Universal tool exhaustion is not required;
+      the handback set is exactly ADR-E2-002/003/004/005/006/007/008.
     missing_or_inconclusive_rule: >-
       Any missing, stale, conflicting, unverifiable, secret-bearing, inadequately scoped, or wrong-
       revision evidence produces EVIDENCE_MISSING_FAIL_CLOSED. A deliberately unbound semantic or
@@ -1867,6 +2332,28 @@ protocols:
       verifier_must_be_distinct_from_author_operator_and_fixer: true
       separate_verifier_required_for_handback: true
       executor_narrative_is_proof: false
+    outcome_reachability_sanity_test:
+      hypothetical_only_no_empirical_claim: true
+      tested_scope_pass: >-
+        The independent verifier returns every frozen expected class from exact immutable evidence,
+        rejects all stale/tampered/weak variants, and assigns no credit to self-report or telemetry.
+      configuration_failure_evidence: >-
+        A selected manifest serializer reproducibly omits a required binding, the defect is localized,
+        accepted state/evidence ports expose the correct fact, and a prospectively recorded materially
+        distinct serializer or validator candidate is admitted for the same evidence scope.
+      architecture_classification_required_evidence: >-
+        A required exact-state fact cannot reach an independent verifier, or stale pass, self-report
+        authority, or unavoidable required-evidence loss recurs, invoking independent review.
+      canonical_architecture_handback_evidence: >-
+        Independent reviewed evidence disproves the accepted state/evidence/verifier seam or shows
+        adequate independent evidence cannot be exposed in its claimed envelope, reopening exactly
+        ADR-E2-002/003/004/005/006/007/008.
+      inconclusive_evidence: >-
+        Missing, stale, conflicting, wrong-revision, secret-bearing, inadequately scoped, or
+        unverifiable evidence yields EVIDENCE_MISSING_FAIL_CLOSED; verifier error is not a verdict.
+      unsupported_scope_evidence: >-
+        A prospectively unbound semantic, evidence profile, verifier, grader, retention, or audit
+        class yields PRODUCT_CLASS_UNSUPPORTED with no evidence-integrity credit.
     qpa_bindings:
       verification_rerun_ceiling_per_case_or_task: null
       deterministic_required_check_repetition_rule_per_check_or_class: null
@@ -2002,7 +2489,7 @@ protocols:
 
   - e3v_id: E3V-006
     protocol_id: E3V-006-PROTECTED-ENTRY-SECURITY-BOUNDARY-VALIDATION
-    protocol_version: 0.1.0-author-draft
+    protocol_version: 0.2.0-fixer-draft
     status: READY_FOR_REVIEW_EXECUTION_BLOCKED
     owner_classification: E3_SECURITY_VALIDATION_OWNER
     exact_question: >-
@@ -2152,7 +2639,7 @@ protocols:
         - ordinary_chat_repository_command_environment_clipboard_and_UI_decoys
         - protected_location_alias_symlink_and_link_swap_variants
         - approval_revocation_replay_stale_owner_and_crash_replacement_variants
-        - complete_capture_inventory_with_non_secret_receipt_sink
+        - complete_frozen_subject_writable_filesystem_and_nonfilesystem_capture_inventory_with_non_secret_receipt_sink
       real_secret_or_credential_used: false
     oracle_contract:
       oracle_ids:
@@ -2166,7 +2653,14 @@ protocols:
         - OR-EVIDENCE-BUNDLE
       mandatory_capture_surfaces:
         - ordinary_chat_input_and_transcript
-        - repository_worktree_diff_temp_cache_and_artifact_surfaces
+        - repository_worktree_diff_artifact_evidence_and_repository_local_temp_or_cache_surfaces
+        - operating_system_and_user_temp_roots_writable_by_the_subject_process_or_descendants
+        - runtime_framework_dependency_tool_and_package_manager_temp_cache_log_and_state_roots_writable_by_the_subject
+        - application_support_cache_preferences_session_autosave_local_database_and_local_persistence_roots_writable_by_the_subject
+        - user_home_dotfile_tool_configuration_and_state_paths_writable_or_updated_by_the_subject
+        - crash_report_core_dump_minidump_diagnostic_profile_and_generated_debug_bundle_surfaces_writable_or_emitted_by_the_subject
+        - filesystem_backed_spool_queue_socket_metadata_lock_and_interprocess_transfer_surfaces_writable_by_the_subject
+        - shell_terminal_editor_tool_history_transcript_recovery_and_session_state_surfaces_writable_or_updated_by_the_subject
         - generated_prompt_and_context_packet_before_model_dispatch
         - serialized_model_and_provider_request_at_adapter_boundary
         - controlled_provider_response_boundary
@@ -2178,8 +2672,40 @@ protocols:
         - screenshots_and_clipboard
         - controlled_network_request_payload_at_local_interceptor
         - protected_recipient_boundary_with_exact_expected_marker_presence
+      filesystem_capture_scope:
+        inventory_unit: EXACT_FROZEN_SUBJECT_PROCESS_TREE_WRITABLE_FILESYSTEM_VIEW
+        inventory_must_be_created_before_marker_generation: true
+        inventory_sources_required:
+          - exact_host_client_runtime_and_process_tree_identity
+          - effective_user_group_sandbox_container_mount_namespace_and_access_policy
+          - current_working_directory_repository_worktree_and_declared_artifact_or_evidence_roots
+          - operating_system_runtime_framework_application_tool_and_dependency_path_configuration
+          - crash_core_dump_diagnostic_history_autosave_cache_temp_spool_and_local_persistence_configuration
+          - observed_open_create_write_rename_link_and_delete_targets_from_harness_instrumentation
+        completeness_rule: >-
+          The frozen inventory must enumerate or prove inaccessible every filesystem location the
+          subject process tree can write or cause to be written during the case, including locations
+          outside the repository. A sandbox or mount policy may make the inventory finite only when
+          E3-004 independently verifies that writes outside the enumerated scanned roots are denied
+          and the denial controls themselves are observed.
+        included_surface_result_rule: >-
+          Every included path class must be captured and independently scanned for the synthetic raw
+          marker after all normal, failure, crash, descendant, cleanup, and diagnostic-finalization
+          paths complete. Deleted or rotated files require write-event/content interception sufficient
+          to preserve the marker-absence oracle.
+        excluded_surface_rule: >-
+          Each excluded path class requires prospective evidence that it is not writable or causally
+          emitted by the exact subject process tree. Convenience, privacy, expense, or missing access
+          is not evidence of exclusion.
+        unobservable_or_unbounded_surface_result: PRODUCT_CLASS_UNSUPPORTED_OR_EVIDENCE_MISSING_FAIL_CLOSED_NO_LEAKAGE_ABSENCE_CLAIM
+        claim_boundary: >-
+          A favorable result applies only to the exact frozen host/client/runtime/process-tree and
+          its complete verified writable filesystem and non-filesystem capture inventory. It does
+          not claim absence from swap, hibernation, hypervisor, firmware, proprietary vendor-internal,
+          or other surfaces outside the declared observable boundary.
       decisive_rule: >-
-        Every mandatory surface must be captured. The raw marker must be absent from every
+        Every mandatory surface and every included member of the frozen subject-writable filesystem
+        inventory must be captured. The raw marker must be absent from every
         unauthorized surface and present only at the exact authorized protected recipient boundary
         under the prospectively frozen expected-presence rule. Missing capture is fail-closed and
         final-log cleanliness cannot substitute for full-surface observation.
@@ -2243,16 +2769,22 @@ protocols:
       Synthetic acquisition bypasses ordinary entry paths; exact recipient/use/attempt/owner/fence
       binding is enforced; approval and revocation are current; replay, stale, and wrong-recipient
       paths deny with zero protected delivery; crash/replacement rejects stale authority and requires
-      fresh reacquisition; every mandatory capture exists; no unauthorized surface contains the raw
-      marker; ordinary evidence stores only a non-secret receipt; missing delivery yields WAITING_FOR_USER.
+      fresh reacquisition; every mandatory capture and every member of the complete frozen
+      subject-process-tree writable filesystem inventory exists or is observably intercepted; no
+      unauthorized surface contains the raw marker; ordinary evidence stores only a non-secret receipt; missing delivery
+      yields WAITING_FOR_USER.
     implementation_configuration_failure_rule: >-
-      A marker leak, replay path, capture omission, or recipient/fence defect is a hard failure for the
-      exact selected client/carrier/runtime configuration and is IMPLEMENTATION_CONFIGURATION_FAILURE
-      when an allowed conforming protected-entry realization remains plausible.
+      A marker leak, replay path, capture omission, or recipient/fence defect remains an immediate
+      hard failure. IMPLEMENTATION_CONFIGURATION_FAILURE additionally requires reproducible
+      localization to the selected client/carrier/runtime/capture realization and a concrete,
+      prospectively identified, materially distinct protected-entry or capture candidate admitted
+      for the same property and support scope. Mere plausibility is insufficient.
     architecture_failure_rule: >-
-      Only independent proof that no compliant accepted client/core/execution/capability/evidence
-      boundary can realize protected acquisition and exact-recipient delivery for the required support
-      class may hand back ADR-E2-001/004/005/007/008/009.
+      ARCHITECTURE_HANDBACK is reachable when independent security investigation and separate
+      verification disprove the accepted protected client/core/execution/capability/evidence boundary
+      assumption, or show protected acquisition, exact-recipient delivery, and required ordinary
+      capture exclusion cannot coexist in its claimed design envelope for the exact tested class.
+      Universal carrier exhaustion is not required; the handback set is exactly ADR-E2-001/004/005/007/008/009.
     missing_or_inconclusive_rule: >-
       A missing surface, unresolved delivery/consumption, missing recipient/fence/approval proof, or
       incomplete marker scan is EVIDENCE_MISSING_FAIL_CLOSED and the product state is WAITING_FOR_USER
@@ -2263,6 +2795,29 @@ protocols:
       separate_security_capable_challenger_required: true
       separate_verifier_required_for_handback: true
       marker_leak_is_immediate_hard_failure: true
+    outcome_reachability_sanity_test:
+      hypothetical_only_no_empirical_claim: true
+      tested_scope_pass: >-
+        The synthetic marker reaches only the exact bound recipient, is absent from every surface in
+        the complete frozen capture inventory, and all stale/replay/wrong-recipient paths deny safely.
+      configuration_failure_evidence: >-
+        The selected carrier reproducibly leaks the marker into a crash or temporary-file surface,
+        the defect is localized, and a prospectively recorded materially distinct carrier or
+        capture-exclusion candidate is admitted for the same client/host support scope.
+      architecture_classification_required_evidence: >-
+        The marker appears on any required unauthorized surface, delivery cannot be bound/revoked,
+        or the protected path is incompatible with required capture exclusion, invoking independent
+        security root-cause review after the immediate hard-failure stop.
+      canonical_architecture_handback_evidence: >-
+        Independent reviewed evidence disproves the accepted protected boundary assumption or shows
+        protected delivery cannot avoid ordinary capture in its claimed design envelope, reopening
+        exactly ADR-E2-001/004/005/007/008/009.
+      inconclusive_evidence: >-
+        Any unobserved inventory surface, unresolved delivery/consumption, missing approval/fence
+        proof, or incomplete marker scan yields EVIDENCE_MISSING_FAIL_CLOSED and no security credit.
+      unsupported_scope_evidence: >-
+        A prospectively unbound client, host, carrier, recipient, or capture-surface class yields
+        PRODUCT_CLASS_UNSUPPORTED and cannot support a leakage-absence claim.
     qpa_bindings:
       verification_rerun_ceiling_per_case_or_task: null
       deterministic_required_check_repetition_rule_per_check_or_class: null
@@ -2290,7 +2845,7 @@ protocols:
         - exact_client_host_carrier_recipient_use_attempt_owner_epoch_and_fence
         - protected_acquisition_delivery_consumption_revocation_and_reacquisition_events
         - approval_and_authority_currentness_without_secret_value
-        - complete_capture_inventory_and_per_surface_marker_scan_result
+        - complete_subject_writable_filesystem_and_nonfilesystem_capture_inventory_and_per_surface_marker_scan_result
         - wrong_recipient_stale_replay_forgery_alias_link_and_crash_negative_results
         - non_secret_delivery_receipt_and_WAITING_FOR_USER_or_BLOCKED_state
         - quarantine_rotation_or_fixture_retirement_action_after_any_marker_exposure
@@ -2354,7 +2909,7 @@ protocols:
         - exact_current_E3_001_E3_002_and_E3_004_independent_verification_refs
         - Founder_approved_challenged_verified_QPA_values_and_all_security_resource_limits
         - exact_client_host_carrier_protected_store_or_broker_recipient_use_attempt_owner_epoch_and_fence
-        - complete_mandatory_capture_inventory_and_independent_security_review_identity
+        - complete_frozen_subject_writable_filesystem_and_nonfilesystem_capture_inventory_and_independent_security_review_identity
         - immutable_marker_case_fixture_oracle_attack_order_and_protected_evidence_bindings
         - fresh_single_use_run_admission_PASS_before_synthetic_marker_creation_or_acquisition
       controlled_inputs:
@@ -2368,6 +2923,8 @@ protocols:
       required_observations:
         - protected_acquisition_delivery_consumption_revocation_fence_and_reacquisition_state
         - independently_captured_and_scanned_result_for_every_mandatory_surface
+        - write_or_causal_emit_observation_and_marker_scan_for_every_included_subject_writable_filesystem_surface
+        - verified_denial_or_nonwritability_evidence_for_every_filesystem_surface_excluded_from_the_inventory
         - exact_expected_marker_presence_only_at_the_protected_recipient_boundary
         - zero_unauthorized_flow_effect_dispatch_and_non_secret_receipt_or_WAITING_FOR_USER_state
       fail_closed_disposition: >-
@@ -2388,7 +2945,7 @@ protocols:
       harness_requirements:
         - protected_boundary_ordinary_capture_subject_and_marker_oracle_are_structurally_separate
         - exact_client_carrier_recipient_use_attempt_owner_epoch_fence_and_approval_controller
-        - complete_thirteen_surface_capture_and_independent_marker_scanner
+        - complete_frozen_subject_writable_filesystem_and_nonfilesystem_capture_and_independent_marker_scanner
         - zero_flow_effect_sink_non_secret_receipt_crash_replacement_and_reacquisition_observer
       environment_and_currentness_binding: >-
         Bind exact client/runtime/host/carrier/protected-store-or-broker, recipient/use/attempt,
@@ -2402,7 +2959,7 @@ protocols:
 
   - e3v_id: E3V-007
     protocol_id: E3V-007-INSTRUMENTATION-FINITE-LIMITS-MEASUREMENT-VALIDATION
-    protocol_version: 0.1.0-author-draft
+    protocol_version: 0.2.0-fixer-draft
     status: READY_FOR_REVIEW_EXECUTION_BLOCKED
     owner_classification: E3_MEASUREMENT_VALIDATION_OWNER
     exact_question: >-
@@ -2576,13 +3133,17 @@ protocols:
       dispatch and stops productive work; raw and independent derived results match; protocol
       populations and thresholds remain unchanged; telemetry remains non-authoritative; no hard failure occurs.
     implementation_configuration_failure_rule: >-
-      A defect in the selected clock, observer, correlation, resource meter, limiter, derivation,
-      fixture, or reference-environment configuration is IMPLEMENTATION_CONFIGURATION_FAILURE when a
-      conforming allowed EP-ARCH-C01 realization remains available.
+      IMPLEMENTATION_CONFIGURATION_FAILURE requires reproducible localization to the selected clock,
+      observer, correlation, resource meter, limiter, derivation, fixture, or reference-environment
+      realization and a concrete, prospectively identified, materially distinct measurement or
+      enforcement candidate admitted by EP-ARCH-C01 for the same input/limit and support scope.
+      An unnamed available realization is insufficient.
     architecture_failure_rule: >-
-      ARCHITECTURE_HANDBACK is available only if an indispensable frozen protocol input is structurally
-      unrepresentable or a mandatory finite ceiling is structurally unenforceable across every
-      compliant realization for the required class, independently proven against ADR-E2-001/002/007/008/009.
+      ARCHITECTURE_HANDBACK is reachable when independent measurement investigation and separate
+      verification disprove the accepted raw-measurement/finite-gate assumption, or show an
+      indispensable frozen protocol input is unrepresentable or a mandatory finite ceiling is
+      unenforceable in EP-ARCH-C01's claimed design envelope for the exact tested class. Universal
+      instrumentation exhaustion is not required; the handback set is exactly ADR-E2-001/002/007/008/009.
     missing_or_inconclusive_rule: >-
       Missing raw inputs, environment identity, clock basis, limit decision, resource use, derivation,
       or contamination evidence yields EVIDENCE_MISSING_FAIL_CLOSED. An unbound observable boundary
@@ -2592,6 +3153,28 @@ protocols:
       independent_measurement_investigator_required: true
       separate_verifier_required_for_handback: true
       telemetry_or_metric_self_consistency_is_architecture_proof: false
+    outcome_reachability_sanity_test:
+      hypothetical_only_no_empirical_claim: true
+      tested_scope_pass: >-
+        Every required input for all eight frozen E1 protocols is represented from immutable raw
+        facts, every approved finite bound gates dispatch, and independent derivation matches.
+      configuration_failure_evidence: >-
+        A selected clock or limiter adapter reproducibly misattributes a raw timestamp or bypasses a
+        bound, the defect is localized, and a prospectively recorded materially distinct raw-port or
+        enforcement candidate is admitted for the same input/limit scope.
+      architecture_classification_required_evidence: >-
+        A required protocol input is unrepresentable, a mandatory approved finite limit cannot gate
+        dispatch, or raw and derived authority cannot remain separate, invoking independent review.
+      canonical_architecture_handback_evidence: >-
+        Independent reviewed evidence disproves the accepted measurement/gate assumption or shows a
+        required input/limit cannot be represented/enforced in its claimed envelope, reopening
+        exactly ADR-E2-001/002/007/008/009.
+      inconclusive_evidence: >-
+        Missing raw input, environment identity, clock basis, gate decision, resource use,
+        derivation, or contamination evidence yields EVIDENCE_MISSING_FAIL_CLOSED.
+      unsupported_scope_evidence: >-
+        A prospectively unbound observable boundary, clock, resource, pricing, or reference-environment
+        class yields PRODUCT_CLASS_UNSUPPORTED; unknown values remain unknown.
     qpa_bindings:
       verification_rerun_ceiling_per_case_or_task: null
       deterministic_required_check_repetition_rule_per_check_or_class: null
@@ -2744,3 +3327,20 @@ author_completion_boundary:
   author_verification_credit: NONE
   next_required_lifecycle_step: FRESH_INDEPENDENT_CHALLENGE
   next_command: "MODE: REVIEW_TASK_E3-002"
+
+fixer_completion_boundary:
+  finding_dispositions: "F-E3-002-C01..C03 and F-E3-002-L01..L03 FIXED; DISPUTED 0; DEFERRED 0"
+  qpa_author_proposal_records_created: 3
+  qpa_author_proposal_values: [1, 3, 2]
+  qpa_values_approved_or_authoritatively_selected: 0
+  authoritative_qpa_values_remain_null: true
+  mechanism_candidate_classes_proposed: 21
+  mechanism_configuration_host_or_client_selected: false
+  phase_A_status: FIXER_DRAFT_READY_FOR_SEPARATE_POST_FIX_VERIFICATION
+  phase_B_status: NOT_FROZEN_NOT_EXECUTION_READY
+  protocol_results_created: 0
+  execution_ready_protocols: 0
+  run_admission_passes: 0
+  fixer_verification_credit: NONE
+  next_required_lifecycle_step: SEPARATE_POST_FIX_VERIFICATION
+  next_command: "MODE: VERIFY_TASK_E3-002"

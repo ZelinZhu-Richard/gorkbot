@@ -131,7 +131,7 @@ support_scope_model:
 qpa_and_limits:
   qpa_id: E3-QPA-001
   accountable_owner: Founder
-  status: FOUNDER_DECISION_REQUIRED_NO_NUMERIC_VALUES
+  status: FOUNDER_REVIEW_REQUIRED_AUTHOR_PROPOSAL_EXISTS_AUTHORITATIVE_VALUES_NULL
   founder_acknowledgement_recorded: false
   founder_value_approval_recorded: false
   values:
@@ -140,7 +140,9 @@ qpa_and_limits:
     finite_correction_attempt_ceiling_per_case_or_task: null
   every_protocol_numeric_retry_repetition_correction_and_time_resource_cost_limit: null
   pseudo_numeric_value_inferred: false
-  required_before_execution_ready_verification: true
+  author_proposal_ref: E3-002-QPA-PROP-001@0.1.0
+  required_before_phase_B_execution_ready_verification: true
+  required_before_phase_A_protocol_criteria_verification: false
   current_run_admission: DO_NOT_RUN
 
 traceability:
@@ -216,10 +218,12 @@ architecture_failure_and_handback:
     - PRODUCT_CLASS_UNSUPPORTED
     - EVIDENCE_MISSING_FAIL_CLOSED
   architecture_handback_requirement: >-
-    A separate independent investigation and verifier must prove that an indispensable accepted
-    property in the exact required support class is structurally impossible across every compliant
-    realization route. Ordinary mechanism, fixture, adapter, host, oracle, or evidence failure is
-    not architecture handback.
+    A separate independent investigation and verifier must use the preserved exact fault chain to
+    disprove a named indispensable accepted assumption, or show that a required accepted property
+    cannot be satisfied in the architecture's claimed design envelope for the exact tested support
+    class. Universal implementation-route exhaustion is not required. Configuration failure requires
+    a localized defect and a concrete prospectively identified materially distinct admitted candidate;
+    insufficient evidence fails closed rather than authorizing indefinite retry.
   adr_edited_in_this_pass: false
   architecture_changed_in_this_pass: false
   handback_opened_in_this_pass: false
@@ -227,11 +231,11 @@ architecture_failure_and_handback:
 future_task_contracts:
   E3_004:
     status: BACKLOG
-    input: "Both E3-002 and E3-003 independently VERIFIED and execution-ready with exact configurations, values, limits, selectors, evidence destinations, and no unresolved material finding."
+    input: "E3-001 VERIFIED plus E3-002 and E3-003 independently VERIFIED as Phase A protocol-criteria/harness-implementable contracts with frozen fixture, observation, oracle, evidence, outcome, QPA-binding and mechanism-metadata interfaces. Exact harness digest, selected mechanism/configuration, approved QPA values, final limits, final manifest and admission are not E3-004 start inputs."
     implementation_authorized_by_this_handoff: false
   E3_005:
     status: BACKLOG_DO_NOT_RUN
-    input: "Current independently verified E3-001/E3-002/E3-004 refs, Founder-approved challenged/verified QPA and limits, exact configuration/support/data/budget/account/credential/network/effect/isolation/evidence facts, and a fresh single-use RUN_ADMISSION=PASS per block."
+    input: "Current independently verified E3-001/E3-002 Phase A/E3-004 refs plus a separately verified Phase B exact harness/mechanism/configuration/environment/support/selectors/evidence block, Founder-approved challenged/verified QPA and limits, all data/budget/account/credential/network/effect/isolation facts, and a fresh single-use RUN_ADMISSION=PASS per block."
     execution_authorized_by_this_handoff: false
 
 current_task_and_gate_state:
@@ -357,3 +361,107 @@ blockers:
 
 recommended_next_task: "MODE: REVIEW_TASK_E3-002"
 repository_commit_or_patch: "Uncommitted patch against 47ebf70c47eac021b1b2caf2dcedaf0c30937e85; leave uncommitted for Founder review."
+
+fixer_correction_addendum:
+  addendum_id: H-E3-002-20260902-FIXER-ADDENDUM
+  mode: FIX_TASK_E3-002
+  role: FIXER
+  fixer_model: "Codex (runtime model identifier not exposed) — original E3-002 AUTHOR returning as FIXER"
+  added_at: "2026-09-02T20:29:25Z"
+  fixer_base_commit: 4152f0d42922e5fdcd168e755aae94891e3dc8d9
+  challenger_review:
+    artifact: 99_handoffs/completed/E3-002_challenger_review.yaml
+    reviewed_commit: bebf9fdb11c4b496e167c04f47a815b25319c03f
+    verdict: E3_002_CHANGES_REQUESTED
+    finding_counts: {BLOCKER: 0, HIGH: 0, MEDIUM: 3, LOW: 3, NOTE: 3}
+  historical_record_rule: >-
+    Fields above this addendum describe the original author pass except the qpa_and_limits,
+    architecture_handback_requirement, and future_task_contracts fields corrected in place to remove
+    active deadlocking or unfalsifiable semantics. The author patch was subsequently committed at bebf9fdb11c4b496e167c04f47a815b25319c03f
+    and challenged at 4152f0d42922e5fdcd168e755aae94891e3dc8d9. This addendum and the separate
+    fixer handoff describe the current uncommitted corrected state and supersede current-status,
+    next-command, QPA-proposal, freeze-timing, architecture-failure, capture, and deferred-owner wording.
+  finding_dispositions:
+    F-E3-002-C01: FIXED
+    F-E3-002-C02: FIXED
+    F-E3-002-C03: FIXED
+    F-E3-002-L01: FIXED
+    F-E3-002-L02: FIXED
+    F-E3-002-L03: FIXED
+    disputed: 0
+    deferred: 0
+  architecture_failure_semantics: >-
+    Configuration failure now requires localization to the exact selected realization and a concrete,
+    prospectively identified, materially distinct candidate admitted by the accepted architecture for
+    the same property/scope. Candidate identities form a finite prospective envelope with cumulative
+    correction accounting. Envelope/ceiling exhaustion or absence of a concrete candidate stops for
+    mandatory independent architecture review. Independently reviewed disproof of a named accepted
+    assumption, or evidence that a required accepted property cannot be satisfied in the claimed
+    design envelope, reaches the exact canonical ADR handback without universal implementation
+    exhaustion. Insufficient classification evidence fails closed; indefinite retry is forbidden.
+  per_protocol_outcome_reachability: >-
+    E3V-001..007 each contain hypothetical-only sanity evidence for supported-scope pass, localized
+    configuration failure, mandatory architecture classification, canonical architecture handback,
+    inconclusive/missing evidence, and unsupported scope. No hypothetical is an empirical claim.
+  current_protocol_versions:
+    E3V-001: 0.2.0-fixer-draft
+    E3V-002: 0.2.0-fixer-draft
+    E3V-003: 0.2.0-fixer-draft
+    E3V-004: 0.2.0-fixer-draft
+    E3V-005: 0.2.0-fixer-draft
+    E3V-006: 0.2.0-fixer-draft
+    E3V-007: 0.2.0-fixer-draft
+  qpa_author_proposal:
+    proposal_ref: E3-002-QPA-PROP-001@0.1.0
+    proposal_status: AUTHOR_PROPOSAL_FOR_FOUNDER_REVIEW_NOT_APPROVED
+    proposed_values:
+      finite_verification_rerun_ceiling_per_case_or_task: "1 same-revision rerun only after VERIFICATION_ERROR per exact scope"
+      finite_deterministic_required_check_repetition_rule_per_check_or_class: "exactly 3 ordered invocations per applicable required deterministic check per scheduled attempt; retain all; mixed outcome FLAKY"
+      finite_correction_attempt_ceiling_per_case_or_task: "2 material corrections after the initial block per stable scope; cumulative and non-resettable"
+    authoritative_values:
+      finite_verification_rerun_ceiling_per_case_or_task: null
+      finite_deterministic_required_check_repetition_rule_per_check_or_class: null
+      finite_correction_attempt_ceiling_per_case_or_task: null
+    founder_acknowledgement_recorded: false
+    founder_value_approval_recorded: false
+    proposal_authorizes_execution: false
+  mechanism_proposal:
+    candidate_class_count_per_protocol: 3
+    protocol_count: 7
+    material_distinctness: PROPERTY_RELEVANT_ENFORCEMENT_AUTHORITY_CAPTURE_OBSERVATION_OR_RECOVERY_PRIMITIVE_MUST_DIFFER
+    exact_candidate_selection: NOT_SELECTED
+    protocol_limit_values: null
+    phase_B_limit_proposal_owner: E3_005_PRELAUNCH_EXECUTION_BLOCK_PREPARER_ACTING_FOR_ACCOUNTABLE_VALIDATION_OWNER
+  two_phase_freeze:
+    phase_A: FIXER_DRAFT_PENDING_SEPARATE_POST_FIX_VERIFICATION_HARNESS_IMPLEMENTABLE_ONLY_IF_VERIFIED
+    phase_A_excludes: [exact_harness_digest, selected_mechanism, approved_QPA_values, final_protocol_limits, run_manifest, run_admission, empirical_result]
+    phase_B: NOT_FROZEN_REQUIRES_E3_004_VERIFICATION_THEN_EXACT_BINDING_AND_SEPARATE_VERIFICATION
+    phase_B_technical_owner: E3_005_PRELAUNCH_EXECUTION_BLOCK_PREPARER_DISTINCT_FROM_OPERATOR_AND_ADMISSION_CHECKER
+    phase_B_benchmark_owner: E3_006_PRELAUNCH_BENCHMARK_BLOCK_PREPARER_DISTINCT_FROM_OPERATOR_AND_ADMISSION_CHECKER
+    e3_004_status: BACKLOG
+    e3_005_status: BACKLOG_DO_NOT_RUN
+  e3v_006_filesystem_capture: >-
+    The mandatory capture scope is the exact frozen subject-process-tree writable filesystem view,
+    including repository paths plus OS/user temp roots, runtime/framework/tool caches and state,
+    application support/local persistence, histories/autosave, crash/core/minidump/diagnostic outputs,
+    spools/queues/locks and every non-filesystem surface. Each location is captured/scanned or proved
+    inaccessible before marker generation. A relevant unobservable/unbounded surface yields unsupported
+    or missing-evidence fail-closure and no leakage-absence claim.
+  cross_protocol_dag: >-
+    E3-004 independently verified harness isolation/containment/capture capabilities precede applicable
+    fixtures; no empirical E3V verdict is a prerequisite to itself. Phase A -> E3-004 verification ->
+    Phase B -> E3-005 admission -> admitted attempts -> integrity-gated synthesis.
+  deferred_e1_traceability: >-
+    The exact 21-case complement is split into eight owner/scope/prerequisite groups and the exact
+    13 Git-effect complement into four groups. Every row names the future mandatory E5 release owner
+    as unregistered/no-current-task-authority, prerequisites, mandatory release-gate status, E3-002
+    evidence role, and zero present-E3 effect.
+  current_task_status: READY_FOR_REVIEW_NOT_VERIFIED_NOT_EXECUTION_READY
+  run_admission: DO_NOT_RUN
+  e3_gate_status: NOT_EVALUATED
+  counters_unchanged_zero: true
+  fixer_handoff: 99_handoffs/completed/E3-002_fixer_handoff.yaml
+  fixer_validation_status: "PASS_41980_OF_41980_FIXER_SIDE_STATIC_ASSERTIONS_PLUS_CLEAN_DIFF_SECRET_AND_CONFLICT_CHECKS_NOT_INDEPENDENT_VERIFICATION"
+  independent_post_fix_verification: NOT_RUN_REQUIRED_NEXT
+  repository_patch_status: UNCOMMITTED_FIXER_PATCH_AGAINST_4152F0D_FOR_FOUNDER_REVIEW
+  recommended_next_task: "MODE: VERIFY_TASK_E3-002"
