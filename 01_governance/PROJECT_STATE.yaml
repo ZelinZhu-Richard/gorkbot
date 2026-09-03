@@ -5,7 +5,7 @@ source_of_truth: repository
 active_program: ENGINEERING_PREVIEW
 current_stage: E3
 current_stage_name: technical_validation_and_model_system_qualification
-current_stage_status: E3_ACTIVE_E3_001_VERIFIED_E3_002_FIXER_COMPLETE_READY_FOR_POST_FIX_VERIFICATION_E3_003_READY
+current_stage_status: E3_ACTIVE_E3_001_VERIFIED_E3_002_PHASE_A_VERIFIED_E3_003_READY_E3_004_BLOCKED_ON_E3_003
 current_gate: engineering_preview_e3_validation_and_autonomy_eligibility_gate
 stage_gate_status: NOT_EVALUATED
 stage_gate_verdict: null
@@ -34,7 +34,7 @@ verified_checkpoint: 10_checkpoints/stage_checkpoints/STAGE_0_VERIFICATION.yaml
 verified_checkpoint_commit: 7c337530ffd01154bb2778ef8d5f30f306adcf36
 author_model: "Codex (runtime model identifier not exposed)"
 challenger_model: "Claude Fable 5 (claude-fable-5) via Claude Code — Stage 0 task reviews plus S1-001, S1-002, E1-001, E1-002, E2-001, E2-002, E2-003, E2-004, E2-005, E3-001, and E3-002 independent challenger reviews (separate sessions; independent of the Codex author/fixers)"
-verifier_model: "Claude Fable 5 (claude-fable-5) via Claude Code — S0-001, S0-002, S0-003, S1-001, S1-002, E0-001, E1-001, E1-002, E2-001, E2-002, E2-003, E2-004, E2-005, E2-006, and E3-001 independent verifier and S0-003 re-verifier (separate sessions from the challenger and from each other; independent of the Codex author/fixers; for S0-003 the verifier is also a registry candidate and for S1-001 its vendor publishes two cited H2 substitute sources; every such check is pinned to quoted live page text; S1-002, E0-001, E1-001, E1-002, E2-001, E2-003, E2-004, E2-006, and E3-001 required no live source retrieval; for E0-001, E1-001, E1-002, E2-001, E2-002, E2-003, E2-004, E2-005, E2-006, and E3-001 the verifier's product, Claude Code, is one of the named E3 candidate systems and those verifications select no role occupant, provider, model, or technology; E2-006 verifies the E2-005-proposed EP-ARCH-C01 architecture as SELECTED_VERIFIED_PENDING_E2_GATE without evaluating the E2 gate; E3-001 verifies the common qualification/run-admission governance framework only, with every E3-QPA-001 numeric value still FOUNDER_DECISION_REQUIRED)"
+verifier_model: "Claude Fable 5 (claude-fable-5) via Claude Code — S0-001, S0-002, S0-003, S1-001, S1-002, E0-001, E1-001, E1-002, E2-001, E2-002, E2-003, E2-004, E2-005, E2-006, E3-001, and E3-002 independent verifier and S0-003 re-verifier (separate sessions from the challenger and from each other; independent of the Codex author/fixers; for S0-003 the verifier is also a registry candidate and for S1-001 its vendor publishes two cited H2 substitute sources; every such check is pinned to quoted live page text; S1-002, E0-001, E1-001, E1-002, E2-001, E2-003, E2-004, E2-006, E3-001, and E3-002 required no live source retrieval; for E0-001, E1-001, E1-002, E2-001, E2-002, E2-003, E2-004, E2-005, E2-006, E3-001, and E3-002 the verifier's product, Claude Code, is one of the named E3 candidate systems and those verifications select no role occupant, provider, model, or technology; E2-006 verifies the E2-005-proposed EP-ARCH-C01 architecture as SELECTED_VERIFIED_PENDING_E2_GATE without evaluating the E2 gate; E3-001 verifies the common qualification/run-admission governance framework only, with every E3-QPA-001 numeric value still FOUNDER_DECISION_REQUIRED; E3-002 verifies the seven E3V-001..007 technical-validation protocol criteria as Phase A harness-implementable contracts only, records no Phase B freeze, execution readiness, QPA approval, run admission, or empirical result, and leaves the 1/3/2 QPA package an unapproved author proposal)"
 stage_gate_verifier_model: "Stage 0 gate: Codex (runtime model identifier not exposed) — independent repository-first Stage 0 gate session; same Codex product label as the original author is disclosed, exact runtime equality is UNKNOWN_NOT_EXPOSED under D-010. E1 specification gate: Claude Fable 5 (claude-fable-5) via Claude Code — independent E1 stage-gate verifier in a separate session (not the E1-001/E1-002 author/fixer, challenger, or task-verifier sessions; same model/product as those challenger/verifier sessions disclosed; Claude Code is a named E3 candidate system and the gate evaluation selects no role occupant). E2 architecture gate: Claude Fable 5 (claude-fable-5) via Claude Code — independent E2 stage-gate verifier in a separate fresh session (not the E2-006 architecture-verifier session and not any E2-001..E2-005 author/fixer/challenger/task-verifier session; same model/product as those Claude Fable 5 sessions disclosed; Claude Code is a named E3 candidate system and the gate evaluation selects no role occupant, provider, model or technology)"
 active_task_ids: []
 ready_task_ids: []
@@ -69,9 +69,9 @@ current_architecture_version: "Engineering Preview v0.1 EP-ARCH-C01 Integrated T
 proposed_architecture_version: "SUPERSEDED — the EP-ARCH-C01 proposal (E2-005) became SELECTED_VERIFIED_PENDING_E2_GATE at E2-006 (85902bf) and was accepted by the E2 stage gate on 2026-08-30T07:10:34Z against f413dd8decc2964c042d911e96e5982681b13017; see current_architecture_version"
 current_prd_version: "Engineering Preview v0.1 product and correctness specification (03_product/ENGINEERING_PREVIEW_PRD.md, ENGINEERING_PREVIEW_USER_FLOWS.md, ENGINEERING_PREVIEW_CORRECTNESS_CONTRACT.md) — E1-001 independently VERIFIED against cced38474c4fd71ee1d5bcc29fe0ed53929d53ac on 2026-08-27; the E1-002 contribution workflow, evaluation suite EP-EVAL-0.2, and v0.1 release-acceptance checkpoint were independently VERIFIED against 557e3354479b635b0872b4c60e914b8f29e50185 on 2026-08-28; the E1 specification gate was independently evaluated and VERIFIED (E1_GATE_PASSED) on 2026-08-28 against 7bbfebd2163b1a8aa0ec770de378c7087c6fee75 (10_checkpoints/stage_checkpoints/ENGINEERING_PREVIEW_E1_SPECIFICATION_GATE_VERIFICATION.yaml); this is the frozen product/correctness/evaluation baseline for accepted E2 architecture and planned E3 validation"
 current_code_commit: null
-working_tree_base_commit: 4152f0d42922e5fdcd168e755aae94891e3dc8d9
+working_tree_base_commit: 2cab09c77082bd5771a8ccf8bfb17e0db8ef9734
 stage_0_author_commit: f151f28
-last_verified_checkpoint: "The latest independently verified Engineering Preview record remains E3-001: E3_001_VERIFIED on 2026-09-02 against 641a52241bfddefb6560ec5ab25d3419d558baad. The latest verified stage gate remains E2_GATE_PASSED. E3-002 was independently challenged against bebf9fdb11c4b496e167c04f47a815b25319c03f and has completed a bounded FIX_TASK response against base 4152f0d42922e5fdcd168e755aae94891e3dc8d9; it remains READY_FOR_REVIEW, NOT VERIFIED, NOT EXECUTION_READY, and DO_NOT_RUN pending a separate post-fix verifier. Its exact 1/3/2 QPA package is an AUTHOR_PROPOSAL_NOT_APPROVED; all authoritative values and protocol limits remain null. E3-003 remains READY; E3-004 BACKLOG; E3-005/E3-006 BACKLOG_DO_NOT_RUN; the E3 gate is NOT_EVALUATED; application and empirical counters remain zero; AUTONOMY_ELIGIBLE remains NOT_ELIGIBLE; and AUTONOMOUS_BUILD_AUTHORIZED remains NO."
+last_verified_checkpoint: "The latest independently verified Engineering Preview record is E3-002: E3_002_VERIFIED as PHASE_A_PROTOCOL_CRITERIA_FROZEN_HARNESS_IMPLEMENTABLE on 2026-09-02 against 2cab09c77082bd5771a8ccf8bfb17e0db8ef9734 (99_handoffs/completed/E3-002_verifier_review.yaml; all six challenger findings independently RESOLVED; new findings 0 BLOCKER / 0 HIGH / 0 MEDIUM / 0 LOW / 3 NOTE). The latest verified stage gate remains E2_GATE_PASSED. E3-002 is NOT execution-ready: Phase B is NOT frozen, its exact 1/3/2 QPA package remains AUTHOR_PROPOSAL_NOT_APPROVED (E3-002-QPA-PROP-001@0.1.0), all authoritative E3-QPA-001 values and every protocol limit remain null, and run admission remains DO_NOT_RUN. E3-003 remains READY; E3-004 remains BACKLOG pending E3-003 Phase A verification; E3-005/E3-006 BACKLOG_DO_NOT_RUN; E3-007/E3-008 BACKLOG; the E3 gate is NOT_EVALUATED; application and empirical counters remain zero; AUTONOMY_ELIGIBLE remains NOT_ELIGIBLE; and AUTONOMOUS_BUILD_AUTHORIZED remains NO."
 unresolved_p0_questions:
   - e3_qpa_001_founder_acknowledgement_and_exact_values
   - prototype_budget
@@ -295,7 +295,7 @@ engineering_preview_track:
       gate_question: "Do we have an independently verified architecture baseline that satisfies the frozen E1 specification, results from genuine alternative comparison, has no failed hard constraint or unresolved architecture-blocking uncertainty, records coherent ADRs, provides credible security/recovery/evidence and independent-verification architectures, preserves provider neutrality and bounded future compatibility, and supplies a stable E3 validation plan without beginning application implementation?"
     E3:
       name: technical_spikes_and_model_role_benchmarks
-      status: ACTIVE_E3_001_VERIFIED_E3_002_FIXER_COMPLETE_READY_FOR_POST_FIX_VERIFICATION_E3_003_READY
+      status: ACTIVE_E3_001_VERIFIED_E3_002_PHASE_A_VERIFIED_E3_003_READY_E3_004_BLOCKED_ON_E3_003
       plan_artifact: 06_evaluation/ENGINEERING_PREVIEW_E3_PLAN.md
       task_ids:
         - E3-001
@@ -308,17 +308,17 @@ engineering_preview_track:
         - E3-008
       task_statuses:
         E3-001: VERIFIED
-        E3-002: READY_FOR_REVIEW
+        E3-002: VERIFIED_PHASE_A_PROTOCOL_CRITERIA_NOT_EXECUTION_READY
         E3-003: READY
         E3-004: BACKLOG
         E3-005: BACKLOG_DO_NOT_RUN
         E3-006: BACKLOG_DO_NOT_RUN
         E3-007: BACKLOG
         E3-008: BACKLOG
-      first_ready_task: "E3-003 remains independently READY for its separate author-drafting pass; E3-002 is READY_FOR_REVIEW after its fixer pass and receives no execution authority"
-      next_command: "MODE: VERIFY_TASK_E3-002"
+      first_ready_task: "E3-003 is the only READY task (its separate author-drafting pass); E3-002 is independently VERIFIED as a Phase A protocol-criteria contract and receives no execution authority"
+      next_command: "MODE: EXECUTE_TASK_E3-003"
       activation_condition: "E2 architecture and ADR gate is independently VERIFIED; the independently verified Engineering Preview task/evaluation suite supplies the active workflow input and paused S1-003/customer selection is not a prerequisite while D-016 is active; paid or real-provider work also requires the S0-005 inputs, budget, credentials, data-policy approval, and execution approval."
-      activation_condition_status: "E3-001 is independently VERIFIED. E3-002 completed AUTHOR, independent CHANGES_REQUESTED challenge, and bounded FIX_TASK passes and awaits separate post-fix verification; it ran nothing and remains NOT EXECUTION READY. E3-003 remains independently READY. E3-004 remains BACKLOG until both protocol tasks are independently verified as Phase A harness-implementable contracts. Founder-approved QPA values and exact mechanism/configuration/environment/support/limit/evidence inputs are not required to build E3-004; they remain mandatory post-E3-004 Phase B blockers before E3-005/E3-006 admission. E3-005/E3-006 remain DO_NOT_RUN."
+      activation_condition_status: "E3-001 is independently VERIFIED. E3-002 completed its full AUTHOR -> independent CHANGES_REQUESTED challenge -> bounded FIX_TASK -> separate post-fix verifier lifecycle and is independently VERIFIED as PHASE_A_PROTOCOL_CRITERIA_FROZEN_HARNESS_IMPLEMENTABLE against 2cab09c77082bd5771a8ccf8bfb17e0db8ef9734 (2026-09-02 UTC); it ran nothing, selected nothing, and remains NOT EXECUTION READY with Phase B NOT frozen. E3-003 remains independently READY. E3-004 remains BACKLOG until E3-003 is also independently verified as a Phase A harness-implementable contract. Founder-approved QPA values and exact mechanism/configuration/environment/support/limit/evidence inputs are not required to build E3-004; they remain mandatory post-E3-004 Phase B blockers before E3-005/E3-006 admission. E3-005/E3-006 remain DO_NOT_RUN."
       dependency_graph: "E3-001 -> {E3-002 Phase A AND E3-003 Phase A in parallel} -> E3-004 build and independent verification -> {technical/model Phase B exact execution-block freezes} -> {E3-005 AND E3-006 per-block admissions/execution in parallel} -> E3-007 -> E3-008 -> VERIFY_STAGE_E3. Phase A contains criteria and parameterized binding interfaces; Phase B binds exact verified harness/mechanism/configuration/environment/support/QPA/limits/selectors/evidence inputs. No empirical E3V verdict is a prerequisite to itself; every empirical block additionally requires RUN_ADMISSION=PASS."
       e3v_task_ownership:
         E3V-001: "E3-002 protocol; E3-004 harness; E3-005 execution; E3-007 synthesis; E3-008 verification; handback ADR-E2-002/003/004/005/007/008/009"
@@ -330,14 +330,18 @@ engineering_preview_track:
         E3V-007: "E3-002 measurement-owned protocol; E3-004 harness; E3-005 execution; E3-007 synthesis; E3-008 verification; handback ADR-E2-001/002/007/008/009"
         E3V-008: "E3-003 protocol; E3-004 harness; E3-006 benchmark execution; E3-007 synthesis; E3-008 verification; ADR-E2-006 handback only on structural gateway impossibility"
       e3_002_protocol_state:
-        status: FIXER_COMPLETE_READY_FOR_SEPARATE_POST_FIX_VERIFICATION_NOT_VERIFIED_NOT_EXECUTION_READY
+        status: VERIFIED_PHASE_A_PROTOCOL_CRITERIA_FROZEN_HARNESS_IMPLEMENTABLE_NOT_EXECUTION_READY
         challenger_review: 99_handoffs/completed/E3-002_challenger_review.yaml
         challenger_reviewed_commit: bebf9fdb11c4b496e167c04f47a815b25319c03f
         challenger_verdict: E3_002_CHANGES_REQUESTED
         fixer_base_commit: 4152f0d42922e5fdcd168e755aae94891e3dc8d9
         fixer_handoff: 99_handoffs/completed/E3-002_fixer_handoff.yaml
         fixer_finding_dispositions: "F-E3-002-C01..C03 and F-E3-002-L01..L03 FIXED; DISPUTED 0; DEFERRED 0"
-        protocol_freeze_phase_A: FIXER_DRAFT_PENDING_INDEPENDENT_VERIFICATION
+        verifier_review: 99_handoffs/completed/E3-002_verifier_review.yaml
+        verifier_reviewed_commit: 2cab09c77082bd5771a8ccf8bfb17e0db8ef9734
+        verifier_verdict: E3_002_VERIFIED
+        verifier_finding_dispositions: "F-E3-002-C01..C03 and F-E3-002-L01..L03 independently re-derived RESOLVED; new findings 0 BLOCKER / 0 HIGH / 0 MEDIUM / 0 LOW / 3 NOTE"
+        protocol_freeze_phase_A: PHASE_A_PROTOCOL_CRITERIA_FROZEN_HARNESS_IMPLEMENTABLE_INDEPENDENTLY_VERIFIED_2026-09-02
         protocol_freeze_phase_B: NOT_FROZEN_BLOCKED_PENDING_E3_004_VERIFICATION_AND_EXACT_APPROVED_INPUTS
         protocol_count: 7
         protocol_artifact: 06_evaluation/technical_validation/E3_TECHNICAL_VALIDATION_PROTOCOLS.yaml
@@ -360,7 +364,8 @@ engineering_preview_track:
         deferred_git_effect_groups: 4
         author_validation_historical: "1074/1074 static assertions PASS at author handoff; AUTHOR evidence only"
         fixer_validation: "PASS_41980_OF_41980_FIXER_SIDE_STATIC_ASSERTIONS_NOT_INDEPENDENT_VERIFICATION"
-        next_lifecycle_step: "MODE: VERIFY_TASK_E3-002"
+        independent_verification: "E3_002_VERIFIED as PHASE_A_PROTOCOL_CRITERIA_FROZEN_HARNESS_IMPLEMENTABLE against 2cab09c77082bd5771a8ccf8bfb17e0db8ef9734 (2026-09-02 UTC); all counts/set-equalities/partitions/digests/DAGs independently recomputed; no Phase B freeze, execution readiness, QPA approval, run admission, or empirical result recorded"
+        next_lifecycle_step: "MODE: EXECUTE_TASK_E3-003"
       e3_qpa_001:
         status: FOUNDER_REVIEW_REQUIRED_AUTHOR_PROPOSAL_EXISTS_AUTHORITATIVE_VALUES_NULL
         common_governance_task: E3-001

@@ -2526,10 +2526,10 @@ tasks:
       - E3_MEASUREMENT_VALIDATION_OWNER
     assigned_model: "Codex (runtime model identifier not exposed)"
     reviewer_model: "Claude Fable 5 (claude-fable-5) via Claude Code — independent E3-002 challenger against bebf9fdb11c4b496e167c04f47a815b25319c03f; verdict E3_002_CHANGES_REQUESTED"
-    verifier_model: null
+    verifier_model: "Claude Fable 5 (claude-fable-5) via Claude Code — separate fresh post-fix E3-002 verifier session (not the author/fixer or challenger session; same model/product as the challenger disclosed per repository precedent); verdict E3_002_VERIFIED as PHASE_A_PROTOCOL_CRITERIA_FROZEN_HARNESS_IMPLEMENTABLE against 2cab09c77082bd5771a8ccf8bfb17e0db8ef9734"
     assignment_policy: "The protocol author cannot approve QPA values, operate the later scored blocks, perform the sole security review, or verify the protocols. No authoring system receives role eligibility."
-    status: READY_FOR_REVIEW
-    planning_status: FIXER_COMPLETE_READY_FOR_SEPARATE_POST_FIX_VERIFICATION_NOT_VERIFIED_NOT_EXECUTION_READY
+    status: VERIFIED
+    planning_status: VERIFIED_BY_INDEPENDENT_VERIFIER_PHASE_A_PROTOCOL_CRITERIA_ONLY_NOT_EXECUTION_READY_PHASE_B_NOT_FROZEN
     priority: P0
     dependencies:
       - E3-001
@@ -2568,7 +2568,7 @@ tasks:
         AR-SEC-006: E3V-006
       frozen_asset_counts: "170 cases; 18 oracles; 11 fixtures; 23 NEG families; 16 repository conditions; 30 Git/effect rows; 9 adequacy variants; 16 compositions; 8 protocols; EP-CTL-016"
       protocol_results_at_activation: NONE
-      protocol_freeze_phase_current: PHASE_A_FIXER_DRAFT_PENDING_INDEPENDENT_VERIFICATION
+      protocol_freeze_phase_current: PHASE_A_PROTOCOL_CRITERIA_FROZEN_HARNESS_IMPLEMENTABLE_INDEPENDENTLY_VERIFIED_2CAB09C_PHASE_B_NOT_FROZEN
       qpa_author_proposal:
         proposal_ref: E3-002-QPA-PROP-001@0.1.0
         status: AUTHOR_PROPOSAL_NOT_APPROVED
@@ -2681,6 +2681,23 @@ tasks:
       validation_status: "PASS_41980_OF_41980_FIXER_SIDE_STATIC_ASSERTIONS_AND_FINAL_RECONCILIATION_NOT_INDEPENDENT_VERIFICATION"
       handoff: 99_handoffs/completed/E3-002_fixer_handoff.yaml
       next_lifecycle_step: "MODE: VERIFY_TASK_E3-002"
+    verifier_completion:
+      verifier_artifact: 99_handoffs/completed/E3-002_verifier_review.yaml
+      verifier_started_at: "2026-09-02T21:05:00Z (approximate; session start not captured)"
+      verifier_completed_at: "2026-09-02T22:40:00Z"
+      verifier_reviewed_commit: 2cab09c77082bd5771a8ccf8bfb17e0db8ef9734
+      verifier_verdict: E3_002_VERIFIED
+      verified_as: PHASE_A_PROTOCOL_CRITERIA_FROZEN_HARNESS_IMPLEMENTABLE
+      verifier_finding_dispositions:
+        F-E3-002-C01: RESOLVED
+        F-E3-002-C02: RESOLVED
+        F-E3-002-C03: RESOLVED
+        F-E3-002-L01: RESOLVED
+        F-E3-002-L02: RESOLVED
+        F-E3-002-L03: RESOLVED
+      verifier_new_finding_counts: {BLOCKER: 0, HIGH: 0, MEDIUM: 0, LOW: 0, NOTE: 3}
+      verifier_result: "E3_002_VERIFIED as PHASE_A_PROTOCOL_CRITERIA_FROZEN_HARNESS_IMPLEMENTABLE: all six challenger findings independently re-derived RESOLVED from committed bytes at 2cab09c (falsifiable finite-envelope architecture-failure semantics with the canonical disjunctive handback predicate and mandatory escalation on envelope/ceiling exhaustion; exact unapproved 1/3/2 QPA author proposal E3-002-QPA-PROP-001@0.1.0 with all authoritative values null and no fabricated Founder decision; acyclic two-phase freeze with Phase A sufficient for E3-004 and registered Phase B preparers; complete subject-writable filesystem capture inventory for E3V-006; harness-capability cross-protocol preconditions with no self-edge; eight/four-group deferred traceability with exact owners). Mechanically recomputed: 7 protocols with 33/33 fields, 21/21 canonical ADR set representations, 70/62 AR references, 149+21=170 disjoint case partition, 17+13=30 Git/effect partition, 18/11/23/16/9/16/8 coverage unions, TB-01..20, EP-CTL-016, 9/9 frozen digests, 0 hidden thresholds, 0 mechanism selections, counters 0 everywhere. Acceptance criteria 8/8 and required tests 4/4 PASS for Phase A scope. This verification records no Phase B freeze, no execution readiness, no QPA approval, no run admission, no empirical or architecture-validation result, and no eligibility credit; E3-004 remains BACKLOG pending E3-003 Phase A verification; E3-005/E3-006 remain DO_NOT_RUN."
+    verification_status: VERIFIED_BY_INDEPENDENT_VERIFIER_AGAINST_2CAB09C_2026-09-02_PHASE_A_ONLY
     completion_transition: "After separate post-fix verification, E3-002 may become VERIFIED only as PHASE_A_PROTOCOL_CRITERIA_FROZEN_HARNESS_IMPLEMENTABLE. E3-004 remains blocked until E3-003 Phase A is also VERIFIED. Phase B remains unfrozen and E3-005 remains BACKLOG/DO_NOT_RUN until E3-004 is VERIFIED, exact inputs and Founder-approved QPA/limits are bound and independently verified, and the per-block admission passes."
     downstream_consumer:
       - E3-004
@@ -2693,7 +2710,7 @@ tasks:
     escalation_conditions:
       - Any architecture semantic amendment, unavailable oracle, unbounded portfolio, real-provider requirement, or material mismatch with frozen E1.
       - Any proposed tested class cannot fail closed or cannot expose independent evidence.
-    next_command: "MODE: VERIFY_TASK_E3-002"
+    next_command: "MODE: EXECUTE_TASK_E3-003"
 
   - task_id: E3-003
     title: Freeze exact-configuration model/system role benchmark protocols
@@ -2856,7 +2873,7 @@ tasks:
       - E3-003
     blocked_by: []
     activation_condition: "E3-002 and E3-003 are independently VERIFIED as PHASE_A_PROTOCOL_CRITERIA_FROZEN_HARNESS_IMPLEMENTABLE contracts with exact questions, fixtures/oracles, outcome/evidence/support semantics, QPA/limit binding points and parameterized harness interfaces. Founder-approved QPA values, exact mechanisms/configurations/environments/support classes, final limits, evidence destinations and execution manifests are not E3-004 activation prerequisites; they belong to post-E3-004 Phase B."
-    activation_condition_status: BLOCKED_PENDING_E3_002_AND_E3_003_PHASE_A_INDEPENDENT_VERIFICATION
+    activation_condition_status: "BLOCKED_PENDING_E3_003_PHASE_A_INDEPENDENT_VERIFICATION — E3-002 was independently VERIFIED as PHASE_A_PROTOCOL_CRITERIA_FROZEN_HARNESS_IMPLEMENTABLE against 2cab09c77082bd5771a8ccf8bfb17e0db8ef9734 on 2026-09-02 (UTC); E3-003 Phase A verification remains the outstanding protocol dependency. Founder-approved QPA values, exact mechanisms/configurations/environments/support classes, final limits, evidence destinations and execution manifests remain post-E3-004 Phase B inputs, not activation prerequisites."
     gate_invariant: "E3-004 may create VALIDATION_HARNESS_CODE only. It performs deterministic harness meta-tests but no candidate mechanism experiment, model/provider call, scored attempt, eligibility decision, architecture redesign or application implementation."
     files_to_read:
       - MASTER_OPERATING_PROMPT.md
