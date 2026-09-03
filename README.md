@@ -9,17 +9,35 @@ The long-term capability benchmark is clean-room functional parity with Grok Bot
 ## Current status
 
 - Active program: Engineering Preview
-- Current phase: E3 technical validation and model/system qualification planning; the E1 specification gate and E2 architecture gate are independently `VERIFIED / PASSED`
-- Engineering Preview task status: `E0-001`, `E1-001`, `E1-002`, and `E2-001` through `E2-006`: `VERIFIED`; `E3-001`: `READY`; `E3-002` through `E3-008`: `BACKLOG` (empirical E3-005/E3-006 are `DO_NOT_RUN`); `E4-E5`: `NOT_STARTED`
+- Current phase: E3 technical validation and model/system qualification; the E1 specification gate and E2 architecture gate are independently `VERIFIED / PASSED`
+- Earlier Engineering Preview tasks: `E0-001`, `E1-001`, `E1-002`, and `E2-001` through `E2-006` are `VERIFIED`; `E4-E5` are `NOT_STARTED`
 - Startup/customer track: preserved and deferred by D-016; S1-003 was not executed
 - Architecture: `EP-ARCH-C01` Integrated Transactional Local Core accepted at the E2 gate; `ADR-E2-001..009` accepted; no implementation authorized
 - Engineering Preview target: one local user and one persistent software-engineering agent working on real repositories with durable state, independent verification, and evidence bundles
 - Customer wedge: not selected or validated; S1-001 and S1-002 remain verified research inputs
 - Model roles: not locked; benchmarks have not run
-- `AUTONOMY_ELIGIBLE`: `NOT_ELIGIBLE`
-- `AUTONOMOUS_BUILD_AUTHORIZED`: `NO`; E3 verification would establish eligibility only, and a separate explicit founder decision is required to authorize autonomous build execution
 - Code: no application implementation yet
 - Public repository: yes, so never commit secrets, private customer data, access tokens, credentials, or confidential documents
+
+```yaml
+E3-001: VERIFIED
+E3-002: VERIFIED — PHASE_A_PROTOCOL_CRITERIA_FROZEN_HARNESS_IMPLEMENTABLE
+E3-003: READY
+E3-004: BACKLOG — blocked pending E3-003 Phase A verification
+E3-005: BACKLOG / DO_NOT_RUN
+E3-006: BACKLOG / DO_NOT_RUN
+E3-007: BACKLOG
+E3-008: BACKLOG
+E3 gate: NOT_EVALUATED
+
+E3-QPA-001 authoritative values: null / null / null
+E3-002 QPA proposal: 1 / 3 / 2 — AUTHOR_PROPOSAL_NOT_APPROVED
+
+AUTONOMY_ELIGIBLE: NOT_ELIGIBLE
+AUTONOMOUS_BUILD_AUTHORIZED: NO
+```
+
+E3 verification can establish autonomy eligibility only. A separate explicit Founder decision is required to authorize autonomous build execution.
 
 ## Start here
 
@@ -35,12 +53,12 @@ Every planning or coding model must read these files in order:
 The next command for the planning model is:
 
 ```text
-MODE: EXECUTE_TASK_E3-002
+MODE: EXECUTE_TASK_E3-003
 
-Read MASTER_OPERATING_PROMPT.md, AGENTS.md, PROJECT_STATE.yaml, TASK_REGISTRY.yaml, and every E3-001 files_to_read entry.
+Read MASTER_OPERATING_PROMPT.md, AGENTS.md, PROJECT_STATE.yaml, TASK_REGISTRY.yaml, and every current E3-003 files_to_read entry.
 Treat the repository as the sole authoritative project state.
-Author only the common E3-QPA-001 authority, qualification, evidence, budget/credential/data, contamination, and RUN_ADMISSION governance within E3-001's allowed paths; record Founder acknowledgement and exact numeric values as `FOUNDER_DECISION_REQUIRED`, mark E3-001 `READY_FOR_REVIEW`, not `VERIFIED`, and create a factual handoff.
-Do not run a harness or technical validation, call a model/provider, benchmark a configuration, make a paid call, access a credential, assign a model role, create an eligibility result, alter accepted E2/ADR semantics, write application code, resume S1-003, mark `AUTONOMY_ELIGIBLE`, or authorize autonomous build.
+Execute only the current E3-003 registry entry, within its stated scope and allowed paths. Do not execute, re-author, or modify the already verified E3-001 or E3-002 tasks.
+Follow E3-003's objective, acceptance criteria, required tests, lifecycle, and prohibitions exactly. In particular, do not run a model/system or benchmark, make a provider or paid call, access credentials, assign a model role, create an eligibility result, begin E3-004, alter accepted E2/ADR semantics, write application code, resume S1-003, mark `AUTONOMY_ELIGIBLE`, or authorize autonomous build.
 ```
 
 ## Repository principles
