@@ -42,54 +42,54 @@ Do not begin by describing the full product. Ask about past behavior before hypo
 
 ### Direct observations
 
-- 
+-
 
 ### Exact quotations approved for use
 
-- 
+-
 
 ### Existing workflow and tools
 
-- 
+-
 
 ### Pain and frequency
 
-- 
+-
 
 ### Completion predicate
 
-- 
+-
 
 ### Security and approval requirements
 
-- 
+-
 
 ### Willingness to test
 
-- 
+-
 
 ### Willingness to pay
 
-- 
+-
 
 ### Disconfirming evidence
 
-- 
+-
 
 ## Interpretation
 
 ### Hypothesis supported
 
-- 
+-
 
 ### Hypothesis weakened
 
-- 
+-
 
 ### New question
 
-- 
+-
 
 ### Next action
 
-- 
+-

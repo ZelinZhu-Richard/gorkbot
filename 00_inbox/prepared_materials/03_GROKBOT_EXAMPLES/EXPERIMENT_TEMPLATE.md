@@ -91,16 +91,16 @@ How was the claimed result checked outside the Bot's own statement?
 
 ### Verified facts
 
-- 
+-
 
 ### Strong inferences
 
-- 
+-
 
 ### Unknowns
 
-- 
+-
 
 ### Implications for our design
 
-- 
+-
