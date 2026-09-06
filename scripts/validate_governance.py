@@ -61,6 +61,11 @@ SECRET_PATTERNS: tuple[tuple[str, re.Pattern[str]], ...] = (
     ),
 )
 
+# All secret patterns are confined to one line, but some token lengths are
+# unbounded. Read bounded lines so neither a huge file nor one huge line can
+# exhaust memory; reject overlong lines rather than scan incomplete tokens.
+SECRET_SCAN_LINE_LIMIT = 1_000_000
+
 FORBIDDEN_TRACKED_NAMES = {
     ".env",
     "credentials.json",
@@ -203,25 +208,28 @@ def require_string_list(value: Any, label: str) -> list[str]:
     return value
 
 
-def status_class(status: Any) -> str | None:
+def status_class(status: Any) -> str:
     text = str(status or "").upper()
     if text == "READY":
         return "ready"
-    if text == "VERIFIED" or text.startswith("VERIFIED_"):
+    # PROJECT_STATE's E3-002 qualification denotes completed Phase A protocol
+    # work, not Phase B execution authority. Preserve that documented form,
+    # but arbitrary VERIFIED_* strings cannot establish task completion.
+    if text in {"VERIFIED", "VERIFIED_PHASE_A_PROTOCOL_CRITERIA_NOT_EXECUTION_READY"}:
         return "completed"
-    if text.startswith("BACKLOG"):
+    if text == "BACKLOG" or text.startswith("BACKLOG_"):
         return "backlog"
-    if text.startswith("BLOCKED"):
+    if text == "BLOCKED" or text.startswith("BLOCKED_"):
         return "blocked"
     if (
         text in {"ACTIVE", "CLAIMED", "IN_PROGRESS", "READY_FOR_REVIEW"}
         or text.startswith("ACTIVE_")
         or text.startswith("CLAIMED_")
         or text.startswith("IN_PROGRESS_")
-        or text.startswith("READY_FOR_REVIEW")
+        or text.startswith("READY_FOR_REVIEW_")
     ):
         return "active"
-    return None
+    raise ValidationError(f"Unrecognized task status: {status!r}")
 
 
 def check_task_graph_and_state() -> tuple[int, int]:
@@ -235,6 +243,7 @@ def check_task_graph_and_state() -> tuple[int, int]:
         raise ValidationError("TASK_REGISTRY.yaml must contain a top-level tasks list")
 
     task_by_id: dict[str, dict[str, Any]] = {}
+    task_classes: dict[str, str] = {}
     for index, task_value in enumerate(tasks):
         task = require_mapping(task_value, f"tasks[{index}]")
         task_id = task.get("task_id")
@@ -242,6 +251,10 @@ def check_task_graph_and_state() -> tuple[int, int]:
             raise ValidationError(f"tasks[{index}] has no non-empty task_id")
         if task_id in task_by_id:
             raise ValidationError(f"Duplicate task_id: {task_id}")
+        try:
+            task_classes[task_id] = status_class(task.get("status"))
+        except ValidationError as exc:
+            raise ValidationError(f"Task {task_id}: {exc}") from exc
         task_by_id[task_id] = task
 
     dependencies: dict[str, list[str]] = {}
@@ -277,6 +290,28 @@ def check_task_graph_and_state() -> tuple[int, int]:
     for task_id in sorted(task_by_id):
         visit(task_id, [])
 
+    # A verified label is usable only while its entire declared task dependency
+    # closure remains completed. Traverse from each executable root so reopening
+    # an upstream task invalidates every affected root, without requiring
+    # unrelated tasks or treating decision_dependencies as task dependencies.
+    # Missing references, self-dependencies and cycles are checked above.
+    for task_id, deps in dependencies.items():
+        if task_classes[task_id] in {"ready", "active"}:
+            pending = list(deps)
+            checked: set[str] = set()
+            while pending:
+                dependency = pending.pop()
+                if dependency in checked:
+                    continue
+                if task_classes[dependency] != "completed":
+                    raise ValidationError(
+                        f"Task {task_id} has unsatisfied dependencies "
+                        "(must be VERIFIED throughout dependency closure): "
+                        f"{dependency} ({task_by_id[dependency]['status']})"
+                    )
+                checked.add(dependency)
+                pending.extend(dependencies[dependency])
+
     listed: dict[str, str] = {}
     state_lists: dict[str, list[str]] = {}
     for field, expected_class in LIST_STATUS_CLASSES.items():
@@ -290,12 +325,18 @@ def check_task_graph_and_state() -> tuple[int, int]:
                     f"Task {task_id} appears in both {listed[task_id]} and {field}"
                 )
             listed[task_id] = field
-            actual_class = status_class(task_by_id[task_id].get("status"))
-            if actual_class is not None and actual_class != expected_class:
+            actual_class = task_classes[task_id]
+            if actual_class != expected_class:
                 raise ValidationError(
                     f"Task {task_id} is listed in {field}, but registry status "
                     f"{task_by_id[task_id].get('status')!r} classifies as {actual_class}"
                 )
+
+    missing = sorted(set(task_by_id) - set(listed))
+    if missing:
+        raise ValidationError(
+            f"PROJECT_STATE task lists are missing registry tasks: {', '.join(missing)}"
+        )
 
     check_readme_routing(state, state_lists["ready_task_ids"])
     return len(task_by_id), sum(len(items) for items in state_lists.values())
@@ -336,27 +377,34 @@ def check_secrets() -> tuple[int, int]:
     scanned = 0
     matches = 0
     for path in repo_files():
-        relative = path.relative_to(ROOT)
         lower_name = path.name.lower()
         if lower_name in FORBIDDEN_TRACKED_NAMES and lower_name != ".env.example":
             raise ValidationError(f"Forbidden credential-bearing filename is tracked: {rel(path)}")
         if path.suffix.lower() in FORBIDDEN_TRACKED_SUFFIXES:
             raise ValidationError(f"Forbidden secret-key file is tracked: {rel(path)}")
         try:
-            if path.stat().st_size > 5_000_000:
-                continue
-            text = path.read_text(encoding="utf-8")
-        except (UnicodeDecodeError, OSError):
+            with path.open("r", encoding="utf-8") as handle:
+                line_number = 0
+                while text := handle.readline(SECRET_SCAN_LINE_LIMIT + 1):
+                    line_number += 1
+                    if len(text) > SECRET_SCAN_LINE_LIMIT:
+                        raise ValidationError(
+                            f"Secret scan line length limit ({SECRET_SCAN_LINE_LIMIT} "
+                            f"characters) exceeded in {rel(path)} line {line_number}; "
+                            "cannot safely scan this file"
+                        )
+                    for label, pattern in SECRET_PATTERNS:
+                        if pattern.search(text):
+                            raise ValidationError(
+                                f"Possible {label} in {rel(path)} line {line_number}; "
+                                "replace it with a non-secret reference or synthetic marker"
+                            )
+        except UnicodeDecodeError:
+            # Preserve non-UTF-8 binary detection without loading the full file.
             continue
+        except OSError as exc:
+            raise ValidationError(f"Secret scan could not read {rel(path)}: {exc}") from exc
         scanned += 1
-        for label, pattern in SECRET_PATTERNS:
-            for match in pattern.finditer(text):
-                matches += 1
-                line = text.count("\n", 0, match.start()) + 1
-                raise ValidationError(
-                    f"Possible {label} in {rel(path)} line {line}; "
-                    "replace it with a non-secret reference or synthetic marker"
-                )
     return scanned, matches
 
 
