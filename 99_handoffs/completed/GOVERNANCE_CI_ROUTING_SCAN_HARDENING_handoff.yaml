@@ -1,0 +1,127 @@
+handoff_id: GOVERNANCE_CI_ROUTING_SCAN_HARDENING_2026-09-07
+task_id: null
+stage: repository_maintenance
+author_model: "Codex (GPT-6 session; author/fixer)"
+reviewer_requested: "Independent review of the uncommitted maintenance patch; independent verification remains pending."
+started_at: null
+completed_at: "2026-09-07T20:42:39Z"
+reviewed_baseline: 3e695d2d946c4341d51a61ed541962f2be27a8b4
+working_branch: chore/governance-ci-routing-and-scan
+requested_pr: 1
+files_read:
+  - MASTER_OPERATING_PROMPT.md
+  - AGENTS.md
+  - SECURITY.md
+  - 01_governance/PROJECT_STATE.yaml
+  - 01_governance/TASK_REGISTRY.yaml
+  - 01_governance/DECISION_LOG.md
+  - 01_governance/ASSUMPTION_REGISTER.md
+  - 01_governance/RISK_REGISTER.md
+  - 01_governance/MODEL_REGISTRY.yaml
+  - 01_governance/SOURCE_LEDGER.csv
+  - README.md
+  - .gitignore
+  - scripts/validate_governance.py
+  - tests/test_validate_governance.py
+  - .github/workflows/governance-ci.yml
+  - 99_handoffs/HANDOFF_TEMPLATE.yaml
+  - 99_handoffs/completed/GOVERNANCE_CI_FOUR_FINDINGS_fixer_handoff.yaml
+files_created:
+  - 99_handoffs/completed/GOVERNANCE_CI_ROUTING_SCAN_HARDENING_handoff.yaml
+files_modified:
+  - scripts/validate_governance.py
+  - tests/test_validate_governance.py
+  - .github/workflows/governance-ci.yml
+files_deleted: []
+decisions_made:
+  - "Scope authority: direct user instruction to fix the three supplied PR #1 review findings and run validator regressions in the existing workflow. This is repository maintenance, not an E3 task execution."
+  - "The user explicitly prohibits TASK_REGISTRY/PROJECT_STATE changes and permits only this new maintenance handoff. No fictional task ID, lifecycle/status update, historical handoff rewrite, architecture/protocol change, model assignment, eligibility result, QPA change, autonomy transition, or E3 execution is recorded."
+  - "Replace READY-cardinality routing with validation of the actual EXECUTE_TASK target against TASK_REGISTRY. Only exact READY or CLAIMED status permits this route; the broader active summary class does not. Dependency completion, summary classification, route eligibility, and empirical admission remain separate."
+  - "README must have one designated current-command marker and an immediately following fenced text block. Parse exactly one leading MODE command from that block and PROJECT_STATE.next_recommended_action; reject absent, malformed, ambiguous, mismatched, or unknown execution targets. Historical/incidental modes outside the block and commented-out instructions cannot select a route. Preserve review, verification, fix, planning, status/resume and stage commands without execution-status coercion."
+  - "Use dedicated Git-aware security enumeration; retain the general YAML/CSV/JSON walker. The mandatory set is git ls-files --full-name -z --cached --stage, with argument arrays and cwd=ROOT. Never apply EXCLUDED_DIRS or ignore rules to that set."
+  - "Local supplemental coverage uses a separate git ls-files --full-name -z --others --exclude-standard listing. Standard Git ignores may omit untracked generated/local content only. Deduplicate the union. Fail closed on Git errors, malformed enumeration and repository/index environment overrides."
+  - "Inspect working-tree bytes at indexed paths, not staged blob contents or history. Reject symlink/gitlink/unmerged indexed entries, missing/unreadable files and nonregular worktree entries. No-follow directory descriptors prevent the security scanner from following leaf or ancestor symlinks outside ROOT; FIFO opens are nonblocking before type rejection."
+  - "Deliberate binary policy change: the previous test accepting skipped binary content now asserts rejection. Incrementally scan strict UTF-8 text; undecodable or NUL-bearing content fails explicitly even without a credential. No binary-extension/directory exemption, decode replacement, NUL stripping, file-size cutoff or undecodable-content discard was introduced."
+  - "Keep the existing one-million-character line limit, bounded readline calls, universal newlines and secret patterns. Unsupported real binary assets require a separately reviewed scanning strategy."
+  - "Run the security scan before format parsing in main(), so malformed tracked YAML cannot echo a detected credential and tracked YAML symlinks are rejected before a parser reads them. Real temporary-Git main() regressions exercise both paths."
+  - "Add exactly the unconditional Run governance regression tests step after dependency installation: python -m unittest discover -s tests -v. Preserve all other workflow bytes, including validator, committed-diff whitespace step, permissions, triggers, versions, concurrency and timeout."
+assumptions_added: []
+tests_run:
+  - "python -m unittest discover -s tests -v"
+  - "python scripts/validate_governance.py"
+  - "git diff --check"
+  - "git status --short; git status --short --untracked-files=all"
+  - "git rev-parse HEAD; git log -6 --oneline; git diff --stat; git diff --numstat; git diff -- scripts/validate_governance.py .github/workflows/governance-ci.yml"
+  - "python -u /private/tmp/gorkbot_routing_scan_mutation_checks.py (scratch copies only; each runs python -m unittest discover -s tests -v)"
+  - "python - (read-only baseline/scope/workflow assertions using git diff --name-only -z, git diff --cached --exit-code, git ls-files --cached -z, and git show BASELINE:path; every tracked file outside the allowed set compared byte-for-byte)"
+  - "python - (AST comparison against HEAD of status_class, task-graph logic excluding only its routing call, repo_files, frozen-digest checks, secret patterns, forbidden filename/suffix sets, and line-limit constant)"
+  - "python runtime/version probe: Python 3.13.9, PyYAML 6.0.3; python3.12 import probe failed because that local interpreter has no yaml module. No dependencies were installed or versions changed."
+test_results:
+  - "VERIFIED FACT (author-side baseline): HEAD and branch matched the supplied reviewed baseline and working branch; initial worktree was clean. The existing 20-test suite passed; validator exit 0 reported 88 YAML, 7 CSV, 1 JSON, 25 tasks, 25 state entries, 159 scanned text files, 0 secret matches, and 30 frozen digests."
+  - "VERIFIED FACT (author-side fixtures): an initial 55-test run had one failure because Git enumerated an untracked symlink before the indexed descendant under test. The fixture now ignores only that untracked symlink and exercises the mandatory indexed descendant; all 55 then passed."
+  - "VERIFIED FACT (author-side review follow-up): adding main() and Git-environment regressions reproduced 6 failures including subtests before the corresponding fixes. The expanded final suite now passes all 59 tests with zero failures/errors."
+  - "VERIFIED FACT (routing): negative fixtures fail for route-specific diagnostics with otherwise completed prerequisites; zero/multiple READY backlog routes, non-executable statuses, missing targets and malformed/missing/ambiguous/mismatched commands are rejected. CLAIMED and either READY target, nonexecution lifecycle/stage commands, and current repository routing pass."
+  - "VERIFIED FACT (file coverage): real temporary Git repositories force-add runtime synthetic fixtures in build, dist, coverage and node_modules, both at root and below a parent directory. All eight secret fixtures fail on their own path. Clean tracked excluded-directory content passes and is included; ignored untracked generated content is excluded; nonignored untracked content is scanned. Spaces, tabs and newline filenames preserve identity."
+  - "VERIFIED FACT (encoding/resources): invalid bytes before/after a credential, mixed encoding after 5 MB, UTF-16 LE/BE with and without BOM, unsupported binary without credentials and truncated UTF-8 fail. Clean UTF-8 above 5 MB passes; existing pattern detection, buffer/newline/EOF/line-length boundaries and bounded reading pass. Unreadable-file fault injection yields a path-only safe diagnostic."
+  - "VERIFIED FACT (preservation): AST comparisons show the prior status classifier, exact task reconciliation, direct/transitive dependency enforcement, narrow qualified VERIFIED handling, general format walker, frozen-digest logic, secret patterns and scan line limit are unchanged apart from the routing call."
+  - "VERIFIED FACT (scope/workflow): all 156 tracked files outside the authorized paths are byte-identical to the reviewed baseline. The index is unchanged. Removing only the new three-line workflow insertion reproduces the baseline workflow exactly; the step has the exact requested run command and no condition or continue-on-error."
+  - "VERIFIED FACT (final local checks with this handoff included): python -m unittest discover -s tests -v exited 0, 59 tests passed, 0 failures/errors. python scripts/validate_governance.py exited 0: 89 YAML, 7 CSV, 1 JSON, 25 registry tasks, 25 state entries, 160 scanned text files, 0 secret matches and 30 frozen digests. git diff --check exited 0 with no output. git status --short showed only the three authorized modified files and this one untracked handoff."
+mutation_checks:
+  method: "Copy only the validator, tests, README and authoritative state fixtures into a separate TemporaryDirectory for each control/mutant. Mutate the scratch validator only, then run the full discovery suite in a subprocess. No repository source or index is mutated for these checks."
+  control:
+    tests_run: 59
+    exit_code: 0
+    failures: 0
+    errors: 0
+  remove_execution_target_validation:
+    mutation: "Remove the check_execution_target(readme_mode, task_by_id) invocation."
+    tests_run: 59
+    exit_code: 1
+    failures_including_subtests: 13
+    errors: 0
+    failed_tests:
+      - test_backlog_execution_fails_with_zero_one_or_multiple_ready_tasks
+      - test_malformed_and_ambiguous_commands_fail_in_each_source
+      - test_nonexecutable_statuses_cannot_receive_execution_routes
+      - test_unknown_execution_target_fails
+  restore_excluded_directory_filter:
+    mutation: "Filter the tracked/untracked security path union using EXCLUDED_DIRS before returning it."
+    tests_run: 59
+    exit_code: 1
+    failures_including_subtests: 9
+    errors: 0
+    failed_tests:
+      - test_clean_forced_tracked_file_is_included_and_passes
+      - test_forced_tracked_secrets_in_excluded_directories_fail
+  restore_unicode_decode_error_continue:
+    mutation: "Replace the strict-decode ValidationError handler with except UnicodeDecodeError: continue."
+    tests_run: 59
+    exit_code: 1
+    failures_including_subtests: 7
+    errors: 0
+    failed_tests:
+      - test_credential_before_later_decoding_error_fails
+      - test_invalid_utf8_before_later_credential_fails
+      - test_large_binary_is_explicitly_rejected
+      - test_mixed_encoding_with_credential_beyond_five_mb_fails
+      - test_truncated_utf8_sequence_at_eof_fails
+      - test_utf16_credentials_fail_with_or_without_bom
+security_checks:
+  - "All matching credential fixtures are deliberately synthetic and constructed at runtime in isolated temporary files; no real credential or complete matching token literal is stored in test source or this handoff."
+  - "Scanner failures report relative paths, failure categories, and where applicable line numbers, without matched tokens, file contents, Git stderr or OS-error payloads."
+  - "Two fresh read-only helpers performed the fix-finding skill's pre-patch investigation and single candidate review. Their assistance and all checks here are author-side work; they do not establish independent project verification."
+  - "No remote GitHub action, conversation resolution, merge, staging, commit or push was performed in this repository. Git writes occurred only inside the explicitly required temporary test repositories."
+known_limitations:
+  - "Unsupported binary/undecodable/NUL-bearing files and lines above 1000000 decoded characters intentionally fail validation, including clean files. Future binary support requires explicit reviewed policy."
+  - "Scanning is pattern-based over current working-tree bytes at indexed paths plus nonignored untracked files. It is not a staged-blob, full-history, arbitrary-format, or exhaustive credential audit; ignored untracked content is outside the security scan."
+  - "The general YAML/CSV/JSON walker is preserved. Descriptor-based containment applies to the security scanner; this change does not turn every subsequent parser read into an immutable filesystem snapshot."
+  - "No-follow directory descriptors use POSIX APIs available on the local macOS environment and the configured Ubuntu CI runner. Other operating systems and concurrent adversarial mutation of the whole checkout were not validated."
+  - "Local validation used Python 3.13.9 and PyYAML 6.0.3. The unchanged CI pins are Python 3.12 and PyYAML 6.0.2; that exact dependency/runtime combination and remote CI were not run here."
+  - "The exact session start time was not captured. Scratch mutation copies were temporary; the local runner and result summary under /private/tmp are not committed artifacts."
+  - "These are repository-validator regression results, not E3 empirical evidence, a product benchmark, production readiness, or an independent verification result."
+unverified_claims: []
+blockers: []
+remaining_failures: []
+independent_review_status: PENDING
+recommended_next_task: "Independent review of this uncommitted bounded maintenance patch."
+repository_commit_or_patch: "Uncommitted working-tree patch on chore/governance-ci-routing-and-scan, based on 3e695d2d946c4341d51a61ed541962f2be27a8b4."
