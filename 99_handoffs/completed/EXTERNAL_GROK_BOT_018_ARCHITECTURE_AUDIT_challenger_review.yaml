@@ -1,0 +1,764 @@
+review_id: EXTERNAL_GROK_BOT_018_ARCHITECTURE_AUDIT_CHALLENGER_REVIEW
+task_id: EXTERNAL_GROK_BOT_018_ARCHITECTURE_AUDIT
+review_role: CHALLENGER
+review_mode: CHALLENGE_EXTERNAL_REFERENCE_ARCHITECTURE_AUDIT
+reviewer_model: "Claude Fable 5 (claude-fable-5) via Claude Code — independent challenger; separate session; independent of the Codex author"
+review_started_at: "2026-08-25"
+review_completed_at: "2026-08-25"
+task_authority: "Direct bounded founder authorization (MODE: CHALLENGE_EXTERNAL_REFERENCE_ARCHITECTURE_AUDIT). Like the author task, this review is deliberately out-of-band: it is not registered in TASK_REGISTRY.yaml, and the instruction directs that PROJECT_STATE/TASK_REGISTRY not be modified so S1-003 is not disrupted. This artifact is therefore a challenger review record only; it changes no governance state."
+
+verdict: AUDIT_CHANGES_REQUESTED
+verdict_rationale: >-
+  The author audit is unusually well evidenced: every one of the ~30 external and
+  primary citations independently re-checked resolved to real code or text matching the
+  described behavior at the pinned commit, evidence-class labels (DIRECT / CLAIMED /
+  STRONG INFERENCE / UNKNOWN) are applied honestly, all eight REJECTs and both DEFERs
+  survive challenge, and the audit correctly selects no architecture. It is not yet
+  acceptable as a Stage 3/4 evidence input because (1) its number-one headline ADOPT
+  materially mislabels what the external transcript journal is — a WAL-consistent
+  derived projection of a canonical content-addressed conversation-state store that the
+  audit never classifies — which could tilt the central ADR-C01 canonical-truth decision;
+  (2) three materially relevant external patterns are missing (cloud-agent lifecycle
+  tool with declared destructive/review-gated action sets, the typed error registry,
+  and the context summarization/compaction pipeline), one of which the challenger
+  instruction explicitly lists as an attention area; and (3) the classification rubric
+  and Stage 4 spike specifications need bounded corrections before later stages consume
+  them. These are correction-level problems, not trust-level problems.
+
+# ────────────────────────────────────────────────────────────────────
+# 1. Reviewed state and independent verification record
+# ────────────────────────────────────────────────────────────────────
+reviewed_state:
+  primary_repository: /Users/richardzhu/dev/gork_bot
+  primary_head_commit: 60e06b0 (working tree clean at review start; author audit committed by founder)
+  author_handoff_base_commit: ce960c9d2c3f6314d0c7e39a9db4082191c7f387
+  author_artifacts_reviewed:
+    - 02_research/GROK_BOT_018_RECONSTRUCTED_ARCHITECTURE_AUDIT.md (1026 lines, read in full)
+    - 02_research/GROK_BOT_018_ARCHITECTURE_ADOPTION_MATRIX.csv (16 scored patterns, read in full)
+    - 99_handoffs/completed/EXTERNAL_GROK_BOT_018_ARCHITECTURE_AUDIT_handoff.yaml (read in full)
+  primary_files_read:
+    - MASTER_OPERATING_PROMPT.md
+    - AGENTS.md
+    - README.md
+    - SECURITY.md
+    - CLAUDE.md
+    - FILE_MANIFEST.json (head; confirmed Stage 0 static snapshot, 33 files, generated 2026-08-21)
+    - 01_governance/PROJECT_STATE.yaml
+    - 01_governance/TASK_REGISTRY.yaml
+    - 01_governance/DECISION_LOG.md (including D-013, D-014)
+    - 01_governance/ASSUMPTION_REGISTER.md
+    - 01_governance/RISK_REGISTER.md
+    - 01_governance/MODEL_REGISTRY.yaml (lines 692-753 re-read against author citations)
+    - 06_evaluation/MODEL_ROLE_BENCHMARK_PLAN.md (lines 119-145, 188-233, 247-258, 336-340 re-read)
+    - 02_research/GROK_BOT_BASELINE_2026-08-21.md (through the GBF table incl. GBF-016/017)
+
+external_reference_verification:
+  url: https://github.com/b-nnett/grok-bot-0.18-reconstructed.git
+  local_path: /Users/richardzhu/dev/_external_refs/grok-bot-0.18-reconstructed
+  head_commit_verified: a9f633e09d49a85829b8236331b9e21f7e612634
+  head_matches_author_pinned_commit: true
+  commit_date_verified: "2026-08-23T21:52:48+01:00"
+  commit_subject_verified: "Document project and preserve original installers"
+  remote_verified: "git remote get-url origin matches the declared URL"
+  working_tree_verified: "clean under LFS-disabled status (git -c filter.lfs.* status --porcelain empty); plain git status fails on the absent git-lfs filter exactly as the author described; no LFS payload present or fetched"
+  tracked_paths_verified: 2111 (git ls-tree -r --name-only HEAD | wc -l)
+  inspection_discipline: >-
+    Static inspection only: git metadata reads, ls/find/wc/grep/sed/head/nl over checked-in
+    text. No npm install/ci, no bootstrap/build/package/test/smoke/verify script, no
+    installer/DMG/ASAR/binary/daemon/Docker execution, no provider or MCP authentication,
+    no LFS payload download, no modification of the external repository, and no external
+    code, asset, or copy imported into the primary project.
+
+author_evidence_spot_checks:
+  method: >-
+    Every substantial evidence citation behind the six ADOPTs, the headline REJECTs, the
+    router/provider/Docker/security analyses, and the harness claims was independently
+    re-opened at the pinned commit and compared with the author's characterization,
+    including exact line ranges. Primary-project citations (MODEL_REGISTRY ambiguities,
+    benchmark-plan run schema / failure taxonomy / hard-gate and fallback rules, D-014,
+    FILE_MANIFEST nature, baseline GBF rows) were re-read in the primary tree.
+  results:
+    - "A01 typed ports: COORDINATOR_METHOD_TABLE with coarse args:'object' typing and deep parsing only for transcript replies (source/shared/rpc/coordinator.ts:28-45,92-110); main-edge req() coercion (source/electron-main/main-edge.ts:63-83). CONFIRMED as described."
+    - "A02 journal: hash-linked PendingTranscriptCheckpoint with previous/checkpoint hashes, device/inode file identity, writeAll (transcript-journal-codec.ts:5-20); installAtomic/appendPending/recover/prepareCheckpoint/commitCheckpoint/abortCheckpoint with WAL-tail conflict detection (transcript-mirror.ts:28-41); route pinning with cached route promises (transcript-mirror-router.ts:44-80). CONFIRMED mechanically accurate; see F-EXT-018-C-01 for what the journal actually protects."
+    - "A03 box store: zod-validated v1/v2 manifests with file/symlink entries and writerWindowId (box-store-manifest-format.ts:1-19); canonical-write conflict errors with baseEtag, retry, conflict readback naming the winning writer (box-store-manifest.ts:132-159); BoxObjectStore contentAddressed put option (box-object-store.ts:30-50). CONFIRMED."
+    - "A04 recovery: quarantineCorruptSqliteDb, openSqliteForSalvage, copySalvageableSqliteRows (sqlite-recovery.ts) used by conversation-blob-db.ts with salvagedBlobs and recovered/reset outcomes. CONFIRMED — salvage is real, not just deletion."
+    - "A05/A06 harness: PROVENANCE.md:31-48 evidence-only rule; the ten frontend/manifests and three manifests/reconstruction files exist; verify-publication-tree.mjs:14-42 does exactly the HEAD-archive tree-identity check the author describes. CONFIRMED."
+    - "Router: per-agent promise lanes (inference-router.ts:61), whole-file load-modify-write JSON with temp+rename, mode 0600, 200-entry cap (63-78, 41, 75), 250ms activity pulse with in-code justification comment (91-95), literal 1_200ms delay with shipped-renderer justification comment (144-151), queue catch appending 'Router error: ...' as a normal assistant entry (216-223). ALL CONFIRMED. The cross-agent lost-update risk is a correct STRONG INFERENCE: concurrent lanes each load and rewrite the same file."
+    - "Codex path: ~/.codex/auth.json with permission/symlink checks (provider-session.ts:67-80), auth.openai.com token refresh, ChatGPT-Account-Id header (117-131), endpoint https://chatgpt.com/backend-api/codex/responses (180). Direct-responses loop: maxSteps 8 (codex-direct-responses.ts:112), parallel_tool_calls:true declared while executing calls sequentially in a for loop (128 vs 165-179), call_id preserved, malformed-JSON and unknown-tool errors returned to the model. ALL CONFIRMED including the semantic-mismatch claim."
+    - "Docker: LOCAL_DOCKER_BOX_IMAGE ends in ':sand-box-latest' (floating tag), fixed container name grok-bot-local-vm (local-docker-host-connector.ts:13-14); ~/.codex and ~/.claude bind-mounted read-only (157-163); full docker run argument list (185-202) contains no memory/cpu limits, no cap-drop, no seccomp/AppArmor, no read-only root, no egress policy; persistent named volumes; loopback publishes. CONFIRMED — R01/PAT-05 SEC1/MT1 are supported."
+    - "MCP bridge: isReadOnly name/description regex (routed-mcp-bridge.ts:16-20) feeding annotations (67-69), randomUUID secret path (43,46), 1 MiB body cap (50). CONFIRMED — R05 supported."
+    - "Approval controller: scope keys, direction epochs, ask TTL, remembered refusals keyed by hashed target, retirement on completeScope/beginTurn, in-memory maps (local-tool-permission-controller.ts:20-60). CONFIRMED."
+    - "Electron: sandbox:false and webviewTag:true (main.ts:194-195,308-309), global no-sandbox switch (245), sand:secrets-reveal in the production IPC contract (production-ipc-contract.ts:17), plaintext reveal (user-secrets-store.ts:84-90). CONFIRMED."
+    - "Groups/A2A/automations: GROUP_MAX_MEMBERS=6 (group-store.ts:1), round/turn/history bounds and nesting rejection (group-chat.ts:1-6), in-memory pendingAgentInbound Map with priority merge (agent-to-agent-messaging.ts:38-48), per-agent automation dirs with config/runs files (automation-store.ts:12-30). CONFIRMED."
+    - "Harness facts: exactly 8 test files totalling 576 lines; check.yml:10-27 runs npm ci + check + frontend:build + publication:check only (no package/smoke/verify/audit), matching the author's CI claim. CONFIRMED."
+    - "Primary-side citations: MODEL_REGISTRY documented_ambiguities incl. MRA-004 at the cited lines; benchmark plan run-record fields, nine-category failure taxonomy with UNKNOWN_LAYER, fallback-as-distinct-configuration rules at the cited lines; FILE_MANIFEST.json is the static Stage 0 snapshot as stated. CONFIRMED."
+  module_name_as_proof_check: >-
+    No case found where the author treated a module name as proof of behavior; every
+    checked behavioral claim cites implementation code, and backend/runtime facts are
+    consistently labeled UNKNOWN. The audit's own §3 rule against name-as-proof is
+    followed in the checked sample.
+  author_evidence_quality: STRONG_AND_HONESTLY_LABELED
+
+# ────────────────────────────────────────────────────────────────────
+# 2. Classification challenge results
+# ────────────────────────────────────────────────────────────────────
+adopt_review:
+  summary: >-
+    Four of six ADOPTs are upheld as written (A03, A04, A05, A06). A02 is upheld as
+    "adopt the invariants" but its referent is mischaracterized in a way that matters
+    (F-EXT-018-C-01). A01 sits on an undefined ADOPT/ADAPT boundary and should either be
+    reclassified ADAPT or the rubric defined (F-EXT-018-C-05). Each ADOPT was tested
+    against multi-tenancy, distributed execution, crash/failover, horizontal scaling,
+    tenant isolation, scoped credentials, auditability, both editions, disconnected
+    clients, and Stage 3 constraint risk; because every ADOPT is explicitly
+    invariant-level rather than implementation-level, none prematurely constrains Stage 3
+    beyond the correction items recorded below.
+  items:
+    - id: A01
+      author_class: ADOPT
+      challenger_disposition: RECLASSIFY_TO_ADAPT_OR_DEFINE_RUBRIC
+      note: "See F-EXT-018-C-05. The evidence is genuine, but by the audit's own scoring the pattern-as-implemented lacks tenant identity, authorization, and exact validation to the same degree as D01/D05, which are ADAPT."
+    - id: A02
+      author_class: ADOPT
+      challenger_disposition: UPHOLD_INVARIANTS_BUT_CORRECT_REFERENT
+      note: "See F-EXT-018-C-01 (HIGH). The prepare/commit/abort/recover/CAS/route-pinning invariants are real and valuable; what they protect is a derived projection, and the canonical-state pattern behind it is unclassified."
+    - id: A03
+      author_class: ADOPT
+      challenger_disposition: UPHOLD_WITH_ADDED_CONSTRAINTS
+      note: "See F-EXT-018-C-08 (LOW): make dedup boundary, content-hash oracle risk, and GC/cost explicit."
+    - id: A04
+      author_class: ADOPT
+      challenger_disposition: UPHOLD
+      note: "Quarantine + real row-level salvage verified. Cross-reference to the canonical conversation-state finding so the same modules are not read as recovery-only."
+    - id: A05
+      author_class: ADOPT
+      challenger_disposition: UPHOLD
+      note: "Claim-to-evidence closure is the right lesson; the audit already concedes self-authored evidence is not independent verification. Manifest regeneration ownership left unassigned (NOTE-3)."
+    - id: A06
+      author_class: ADOPT
+      challenger_disposition: UPHOLD
+      note: "Correctly gated on selected ADRs and a registered task before any adoption."
+
+adapt_review:
+  summary: >-
+    Twelve of fourteen ADAPTs are upheld: for each, the valuable principle and the
+    required implementation change are explicitly separated in §15.2, and none was found
+    to be an empty relabel. D13 (channels) overstates external contribution and should be
+    DEFER or annotated as requirements-driven (F-EXT-018-C-07); D14 (finance pack) is
+    materially the same evidence as D09 applied to a vertical and should be merged or
+    annotated (in F-EXT-018-C-10). D06 (approvals) is actually stronger than the audit
+    states: the missed cloud-agent tool shows the same tree using declared
+    DESTRUCTIVE_ACTIONS/REVIEW_GATED_ACTIONS sets — code-level, not heuristic — which is
+    the exact capability-declaration principle D05/D06/R05 argue for (F-EXT-018-C-02).
+    None of the fourteen was found so hollow after adaptation that it should demote to
+    EXPERIMENT: in each upheld case the external tree contributes concrete semantics
+    (scope epochs and refusal memory in D06; operation IDs, phases, resume offsets and
+    watchdogs in D10; bounded rounds and no-nesting in D07; priority classes in D08;
+    origin-unified workflow sources in D09), not just a module name.
+  items:
+    - { id: D01, challenger_disposition: UPHOLD, note: "Connector seam plus §7.3 contract is a legitimate ADR input; implementations correctly not treated as interchangeable." }
+    - { id: D02, challenger_disposition: UPHOLD, note: "Audit correctly ranks the primary registry/benchmark discipline above the external router." }
+    - { id: D03, challenger_disposition: UPHOLD, note: "Invariant/implementation split with SP-C02 is coherent." }
+    - { id: D04, challenger_disposition: UPHOLD, note: "Strengthen with the missed typed error registry (F-EXT-018-C-03): typed failure events have direct in-tree evidence." }
+    - { id: D05, challenger_disposition: UPHOLD, note: "Bridge value is thin but real (single tool surface, schema conversion, body cap); capability-gateway translation is properly specified." }
+    - { id: D06, challenger_disposition: UPHOLD_AND_STRENGTHEN, note: "Add cloud-agent declared action sets as supporting evidence; correct 'expiry incomplete' — an ask TTL exists (askTtlMs), approval-lifetime expiry is what is missing." }
+    - { id: D07, challenger_disposition: UPHOLD }
+    - { id: D08, challenger_disposition: UPHOLD, note: "Consistent with §8.2's REJECT of in-memory delivery as durability." }
+    - { id: D09, challenger_disposition: UPHOLD }
+    - { id: D10, challenger_disposition: UPHOLD }
+    - { id: D11, challenger_disposition: UPHOLD }
+    - { id: D12, challenger_disposition: UPHOLD, note: "Would be strengthened by citing the packages/redaction DataClassification enum (NOTE-4)." }
+    - { id: D13, challenger_disposition: RECLASSIFY_TO_DEFER_OR_ANNOTATE, note: "F-EXT-018-C-07: external evidence is thin envelopes plus coming-soon manifests; §8.3 itself says UNKNOWN." }
+    - { id: D14, challenger_disposition: MERGE_WITH_D09_OR_ANNOTATE, note: "Same evidence paths as D09; separate row inflates the apparent external contribution (part of F-EXT-018-C-10)." }
+
+experiment_review:
+  summary: >-
+    All three EXPERIMENT classifications are upheld: each targets uncertainty that design
+    analysis cannot cheaply resolve (real fault injection for distributed
+    lease/dedupe/time anomalies in E02; cross-provider snapshot/restore semantics in E03;
+    whether a hardened local adapter can pass a provider-conformance suite in E01), each
+    is decision-relevant to a named ADR, and each is correctly gated on Stage 3/4
+    authorization rather than started. None is premature in the damaging sense because
+    none is scheduled before Stage 1/2 complete. However, the spike specifications
+    (E01-E03 and SP-C01..SP-C10) do not yet carry the fields MASTER_OPERATING_PROMPT
+    Stage 4 requires of recorded spikes — explicit alternatives, failure metrics beyond
+    inverted pass criteria, per-spike security checks (present in only some), cost caps,
+    and decision rules — and must be augmented before Stage 4 intake (F-EXT-018-C-06).
+  items:
+    - { id: E01, challenger_disposition: UPHOLD_WITH_SPEC_AUGMENTATION }
+    - { id: E02, challenger_disposition: UPHOLD_WITH_SPEC_AUGMENTATION }
+    - { id: E03, challenger_disposition: UPHOLD_WITH_SPEC_AUGMENTATION }
+
+reject_review:
+  summary: >-
+    All eight REJECTs are upheld and none discards a useful principle: in every case the
+    audit explicitly retains the principle elsewhere (R01→E01/D01, R02→E01/D02 local
+    adapters only, R03→A02/D04 typed events, R04→D04 projections, R05→D05 signed
+    capability metadata, R06→A05/A06 provenance lessons, R07→§9.1 narrow-bridge lessons,
+    R08→worker threads kept as fault/performance boundaries). The
+    reject-implementation-versus-reject-principle distinction the challenger instruction
+    demands is already the audit's own structure. One correction: R05's narrative implies
+    the tree only has heuristic side-effect classification; the missed cloud-agent tool's
+    declared DESTRUCTIVE_ACTIONS/REVIEW_GATED_ACTIONS sets are an in-tree declared-metadata
+    counter-example that strengthens, not weakens, the rejection of the regex heuristic
+    (F-EXT-018-C-02).
+  items:
+    - { id: R01, challenger_disposition: UPHOLD }
+    - { id: R02, challenger_disposition: UPHOLD, note: "Also matches the primary registry's consumer/API access separation and R-008." }
+    - { id: R03, challenger_disposition: UPHOLD }
+    - { id: R04, challenger_disposition: UPHOLD }
+    - { id: R05, challenger_disposition: UPHOLD_WITH_NARRATIVE_CORRECTION }
+    - { id: R06, challenger_disposition: UPHOLD }
+    - { id: R07, challenger_disposition: UPHOLD }
+    - { id: R08, challenger_disposition: UPHOLD }
+
+defer_review:
+  summary: >-
+    Both DEFERs are upheld. F01 (desktop updater) is genuinely later-stage: no desktop
+    client is selected (D-008 keeps a web control plane provisional), and the release
+    lessons that must be anticipated now are already carried by D11 release
+    certification, so deferral creates no expensive redesign. F02 (installer
+    bootstrap/ASAR reconstruction) is reconstruction methodology whose only durable
+    lesson — immutable provenance — is already ADOPTed via A05/A06. Neither is
+    finance-relevant earlier than General: Finance Edition's delivery needs are the same
+    D11 certification path, and no finance workflow requires a desktop updater.
+  items:
+    - { id: F01, challenger_disposition: UPHOLD }
+    - { id: F02, challenger_disposition: UPHOLD }
+
+# ────────────────────────────────────────────────────────────────────
+# 3. Thematic challenge results
+# ────────────────────────────────────────────────────────────────────
+transcript_durability_challenge:
+  question: "Should conversation transcripts be authoritative task state?"
+  external_fact_established_by_challenger: >-
+    In the external tree the transcript is NOT authoritative. Canonical conversation
+    state is a protobuf ConversationStateStructure stored as content-addressed blobs in
+    SQLite (source/host/agent-isolation/conversation-blob-store.ts, root blob pointer,
+    reachability GC, adoption/retirement migration). The transcript mirror derives JSONL
+    from a state blob: TranscriptMirrorJob carries conversationId + stateBlobId +
+    blobDbPaths (transcript-mirror-offload.ts), the worker decodes the blob
+    (transcript-mirror-worker.ts), and conversation-state-binary.ts states the mirror
+    consumes only the fields "transcript JSONL production" reads. The A02 journal's
+    prepare/commit/abort/recover machinery protects that derived projection's consistency
+    with canonical state — it is a projection WAL, not the system of record.
+  challenger_position: >-
+    The external evidence therefore supports the architecture the challenger instruction
+    hypothesizes — durable canonical event/state store + materialized conversation
+    projection + explicit task-state machine — rather than transcript-as-state. The
+    audit's D04/ADR-C01 leave the decision correctly open, but its headline A02 framing
+    obscures the strongest external datapoint for that decision (F-EXT-018-C-01). The
+    remaining §10 sub-questions are adequately handled by the audit (ordering/idempotency
+    via A02+SP-C01, replay via D04, retention/privacy via D12, cross-agent messages via
+    D08) with two gaps: compaction (never addressed despite in-tree evidence,
+    F-EXT-018-C-04) and multi-device/multi-writer conversation synchronization (NOTE-1).
+    No forced answer is recorded: ADR-C01 remains the deciding artifact.
+
+content_addressed_state_challenge: >-
+  The external tree content-addresses four distinct things: box-store file blobs
+  (sha+size with a contentAddressed put option), conversation-state blobs (hash-ID DAG
+  under a root pointer), the staged host bundle (sha256 Docker labels), and
+  reconstruction fingerprints. The audit fully covers the first and last, covers the
+  host-bundle hash inside the Docker analysis, and mis-files the conversation-state DAG
+  under recovery only (folded into F-EXT-018-C-01). The A03 translation properly demands
+  per-tenant keying/authorization/retention, which implicitly forecloses cross-tenant
+  deduplication, but the audit never states the dedup boundary or the
+  content-hash-as-oracle risk explicitly — for confidential finance datasets and evidence
+  bundles a bare content hash in a shared namespace can leak existence of known content
+  across tenants, and salted/per-tenant-keyed addressing versus dedup efficiency is a
+  real tradeoff Stage 3 must decide (F-EXT-018-C-08). Storage cost and GC are covered
+  (MIG5 in PAT-03, GC in A04/conversation-blob-gc); encryption is named; malware/DLP
+  hooks are named.
+
+typed_boundaries_challenge: >-
+  The audit's typed-boundary positions survive challenge: it consistently requires
+  runtime schema validation rather than TypeScript types alone (the external evidence
+  itself demonstrates why — coarse args:'object' method tables and req() coercion at
+  trust boundaries), requires schema versioning and producer/consumer compatibility
+  fixtures, and correctly refuses to select a serialization technology. The boundary
+  list where validation materially matters (client/API, orchestration, provider, tools,
+  execution provider, A2A, approvals, events, artifacts, vertical packs) is covered by
+  A01 + §16.3. No finding.
+
+scoped_approvals_challenge: >-
+  The audit distinguishes tool permission, capability grant, action approval, credential
+  lease, data-scope entitlement, network/egress permission, spending/budget limits, and
+  irreversible-action gating across D05/D06/§7.3/§9.3/§14.1, and its position that the
+  approval engine must operate on normalized structured capabilities with durable
+  receipts — never tool names or natural-language metadata (R05) — is correct and
+  well-evidenced. Finance approval classes (data write, order simulation, paper
+  portfolio changes, strategy activation, model changes, risk-limit changes) are all
+  present in §14.1, with live-money execution correctly excluded per D-014. The one
+  correction is evidentiary, not conceptual: declared action-classification exists in the
+  external tree itself (cloud-agent DESTRUCTIVE_ACTIONS/REVIEW_GATED_ACTIONS) and should
+  be cited as supporting evidence (F-EXT-018-C-02).
+
+operation_recovery_challenge: >-
+  The recovery principles the challenger instruction lists — resumable execution,
+  operation leases, task checkpoints, idempotency keys, resource generation IDs,
+  connection recovery, execution reconciliation — are each explicitly present in the
+  audit's D03/D10/§7.2/§7.3/SP-C01/SP-C02 with verified external evidence (operation IDs,
+  migration phases, resume offsets, watchdogs, stream-attempt checkpoint/retry state).
+  The audit correctly requires Stage 3 to make leases/fencing/idempotency contract
+  fields rather than implementation notes. No finding beyond the spike-specification
+  augmentation (F-EXT-018-C-06).
+
+saas_translation_review: >-
+  The §12 translation table was audited row by row against the challenger criteria
+  (property preservation, new failure modes, coordination primitive, consistency model,
+  tenant boundary, authorization boundary, observability, recovery). No simplistic
+  one-line translation was found: every consequential row names the required change, and
+  §15.2 acceptance tests add crash/replay/stale-lease/cross-tenant negatives. The
+  translations correctly refuse to pick consistency models or technologies (Stage 3
+  scope). Residual gaps: multi-device/multi-writer conversation submission is not
+  addressed anywhere (the external writerWindowId canonical-write conflict evidence is a
+  useful input; NOTE-1), and the local-JSON→event-store row inherits the A02 referent
+  problem (F-EXT-018-C-01).
+
+harness_review: >-
+  The harness recommendations pass the should-it-exist / which-stage / what-does-it-
+  validate / staleness / regeneration / theater tests with two qualifications. The
+  twelve-outcome table and §19.1 priority sequence are appropriately minimal (evidence
+  schema and ledger hashes first; contract manifests only after ADRs; release
+  certification last), so the maintenance-cost-exceeds-value risk is low. Anti-theater
+  guards exist (mutation/missing-anchor invalidation; blocked closure cannot pass;
+  "a hash does not make a stale claim current"). Qualifications: regeneration ownership
+  and automation are unassigned for every manifest class (NOTE-3), and the smallest
+  high-leverage set should be stated explicitly — the challenger assesses it as §19.1
+  items 1-2 (evidence packet schema + source-ledger content hashes) now, item 5
+  (security negatives) at first code, everything else post-ADR. The eight-file/576-line
+  external test count and CI gaps the author reports were independently reproduced.
+
+general_edition_review: >-
+  The audit's General Edition guidance is consistent with D-014 and the MOP: shared-core
+  contracts for agents/turns/tools/execution/workspaces/approvals/audit, vertical packs
+  above them, no fixed-renderer or local-session inheritance, and no finance semantics in
+  core. Overfitting was checked per the challenger instruction: the recommendations
+  systematically strip Electron/macOS/Node/single-user/fixed-renderer assumptions
+  (§20 list, R06), and the ADR-C01..C13 decomposition, while shaped by the external
+  module map, maps onto the MOP Stage 3 comparison list rather than importing
+  reconstruction boundaries (NOTE-6 records the residual anchoring risk). The missed
+  cloud-agent lifecycle evidence (F-EXT-018-C-02) is the one General Edition gap:
+  product objective 4 and Stage 5 background continuation make remote-agent lifecycle a
+  core concern, and the tree's only direct evidence of it went unanalyzed.
+
+finance_edition_review: >-
+  The §14 finance treatment survives the stress test: point-in-time datasets,
+  survivorship/universe rules, lookahead-leakage tests, corporate actions, data lineage,
+  versioned datasets, reproducible feature computation, deterministic calculations,
+  backtest configuration identity (code/image/data/model/policy digests + seed),
+  transaction-cost assumptions, paper-trade order state with simulated-broker receipts,
+  double-entry portfolio ledger with reconciliation, and risk-limit provenance with
+  immutable decision receipts are all explicitly present and correctly split between
+  shared-core interfaces and finance-owned extensions; the audit honestly records that
+  the external tree evidences none of the finance-grade semantics; no-live-trading
+  matches D-014. Two minor gaps: research-thesis history/versioning is not named as an
+  artifact class (NOTE-5), and the content-hash oracle risk matters most for
+  confidential finance datasets (F-EXT-018-C-08). Nothing in the audit designs the
+  Finance Edition prematurely.
+
+score_review: >-
+  The adoption-matrix scoring was independently reviewed. Structure verified: 16
+  patterns x 17 integer dimensions, every value 1-5, every row's rationale explains all
+  17 codes. No aggregate score is computed anywhere, which structurally prevents the
+  correlated-dimension double-counting failure (R-023) from driving a ranking; scores
+  and classifications move together (SaaS1/SEC1 rows are the REJECT/DEFER rows), so SaaS
+  suitability and security are not underweighted; reconstruction fidelity is repeatedly
+  separated from architecture quality (§10.2, §21.7). Two bounded deviations from the
+  matrix's own "as implemented" rule were found — PAT-11 multi_tenancy 3 and PAT-09
+  security 4 score the translated potential of patterns whose implementations have no
+  tenancy and are process-local — and PAT-09's rationale understates the present ask-TTL
+  (F-EXT-018-C-09). Scores were not rewritten by the challenger; corrections flow
+  through findings per the review instruction.
+
+# ────────────────────────────────────────────────────────────────────
+# 4. Missed high-value patterns (challenger-established, all re-checked at the pinned commit)
+# ────────────────────────────────────────────────────────────────────
+missed_patterns:
+  items:
+    - name: cloud_agent_lifecycle_tool
+      paths: "source/host/cloud-agents/cloud-agent-tool.ts; cloud-agent-images.ts; cloud-agent-transcript-dump.ts"
+      materiality: "Only in-tree evidence of a remote/cloud agent delegation contract; explicitly on the challenger attention list; carries declared destructive/review-gated action sets. See F-EXT-018-C-02."
+    - name: typed_error_registry
+      paths: "source/shared/errors/registry.ts (841 lines); source/shared/errors/bounded.ts"
+      materiality: "Machine-readable failure taxonomy with stable codes, domains, retryability, bounded payloads, and emit-boundary reclassification. See F-EXT-018-C-03."
+    - name: context_summarization_compaction_pipeline
+      paths: "source/packages/agent-summarization/ (summarization-handler, deterministic-summary-builder, durable-blocks, prompt-truncation, background-summarization, skill-persistence); summaryArchives in conversation-state-binary.ts"
+      materiality: "Compaction/retention of durable conversations is a core Stage 3 concern the audit never addresses. See F-EXT-018-C-04."
+    - name: canonical_conversation_state_dag
+      paths: "source/host/agent-isolation/conversation-blob-store.ts; conversation-blob-db.ts; conversation-blob-gc.ts; transcript-mirror-offload.ts; transcript-mirror-worker.ts"
+      materiality: "Present in the audit only as salvage/GC context; actually the canonical persistence pattern the transcript mirror derives from. Folded into F-EXT-018-C-01 rather than double-counted."
+  patterns_deliberately_not_added: >-
+    Per the no-inflation rule, the following were examined and recorded as NOTEs, not
+    findings: packages/redaction DataClassification enum (partially covered by PAT-15),
+    sand-multitask subagent executor (Stage 7 relevance only), host-lock takeover and
+    process-crash-guard (host-singleton lifecycle mechanics), notify-drain-gate
+    (small backpressure gate), mcp-auth wait registry (TTL'd auth completion),
+    host-event-bus, file-operation-lock-manager, and the hooks packages.
+
+# ────────────────────────────────────────────────────────────────────
+# 5. Findings
+# ────────────────────────────────────────────────────────────────────
+findings:
+  - finding_id: F-EXT-018-C-01
+    severity: HIGH
+    author_claim: >-
+      Executive verdict item 1 and A02/PAT-02: "ADOPT the invariants behind its durable
+      transcript journal" presented as the reconstruction's primary durability/
+      persistence pattern, with §12 translating "Transcript WAL, checkpoint, route
+      pinning" to a "provider-neutral durable event journal and projection checkpoint";
+      the conversation blob store appears only under A04 recovery and a §7.2 GC remark.
+    external_evidence: >-
+      At a9f633e0 the transcript journal protects a DERIVED projection, not canonical
+      state: TranscriptMirrorJob{conversationId, stateBlobId, blobDbPaths}
+      (source/host/agent-isolation/transcript-mirror-offload.ts) has the mirror worker
+      read the canonical protobuf ConversationStateStructure from SQLite blob DBs
+      (transcript-mirror-worker.ts) and derive transcript JSONL; conversation-state-
+      binary.ts says the mirror consumes only the fields "transcript JSONL production"
+      reads; the canonical store is the content-addressed conversation blob DAG with a
+      root pointer, reachability GC, and adoption/retirement migration
+      (conversation-blob-store.ts, conversation-blob-db.ts, conversation-blob-gc.ts).
+      The journal's prepare/commit/abort/recover mechanics (verified real) keep the
+      derived file consistent with a checkpoint of that canonical state.
+    primary_project_constraint: >-
+      MASTER_OPERATING_PROMPT requires a durable task/agent state machine and evidence-
+      before-architecture; ADR-C01 (canonical turn/event truth) is the central Stage 3
+      persistence decision; the challenger instruction independently requires testing
+      transcript-as-state against event-log + projection + task-state-machine.
+    why_it_matters: >-
+      The audit's number-one ADOPT, read at headline level, invites Stage 3 to treat a
+      durable transcript journal as the persistence centerpiece. The external tree's own
+      architecture is the opposite and stronger lesson: canonical content-addressed
+      state/event storage with WAL-consistent materialized projections. Omitting the
+      derivation relationship and leaving the canonical-state pattern unclassified could
+      materially distort ADR-C01 by presenting the projection mechanism as the
+      system-of-record pattern.
+    required_fix: >-
+      Re-describe A02/PAT-02 to state the journal is a projection-consistency WAL over a
+      canonical content-addressed conversation-state store; add the conversation-state
+      DAG (root pointer, GC, migration/retirement) as its own classified pattern
+      (ADOPT-the-invariants is defensible); update executive item 1 and the §12 row so
+      ADR-C01's evidence mapping shows the external reference itself separates canonical
+      state from transcript projection.
+    verification_method: >-
+      Re-read the corrected sections; confirm cloud citations of transcript-mirror-
+      offload.ts/transcript-mirror-worker.ts/conversation-state-binary.ts are present;
+      confirm ADR-C01's alternatives reference the corrected evidence; grep the audit for
+      an explicit statement that the JSONL transcript is derived, not canonical.
+
+  - finding_id: F-EXT-018-C-02
+    severity: MEDIUM
+    author_claim: >-
+      The audit's coverage (§4 architecture map, 25-topic coverage table, 33-pattern
+      matrix) is presented as spanning the tree's substantial patterns; the handoff lists
+      "cloud agents" among inspected host scopes; R05/§5.2 state side-effect
+      classification in the tree is a name/description regex heuristic.
+    external_evidence: >-
+      source/host/cloud-agents/cloud-agent-tool.ts (19KB) defines a complete remote
+      cloud-agent lifecycle tool: actions launch/list/models/get/dump/watch/reply/rename/
+      cancel/archive/unarchive/delete/list_artifacts; environment targeting
+      {cloud|pool|machine|environment}; a cloud model catalog with per-model params and
+      incompatibleWith matrices; a confirm flag; and — decisively — declared sets
+      DESTRUCTIVE_ACTIONS = {cancel, archive, unarchive, delete} and REVIEW_GATED_ACTIONS
+      = {launch, reply, rename, cancel, archive, unarchive, delete};
+      cloud-agent-transcript-dump.ts dumps the remote transcript JSONL to a durable box
+      file with byte/line accounting. None of this is analyzed, mapped, scored, or
+      classified anywhere in the audit or CSV (grep: zero analytic mentions).
+    primary_project_constraint: >-
+      Product objective 4 (continue work in the cloud after client disconnect), Stage 5
+      background continuation, Stage 8 delegation primitives, and the challenger
+      instruction's explicit "cloud agents" attention item.
+    why_it_matters: >-
+      This is the tree's only direct evidence of a remote-agent delegation/lifecycle
+      contract — a core product concern — and its declared action-classification sets are
+      the in-tree counter-example that strengthens R05's rejection of heuristics and
+      D05/D06's declared-capability requirement. Its omission leaves a decision-relevant
+      evidence hole and an incomplete R05 narrative.
+    required_fix: >-
+      Add a classified pattern row (likely ADAPT: lifecycle/action contract shape,
+      environment targeting, model-catalog constraints, durable transcript export;
+      tenant/authorization/durability still absent), cite the declared action sets as
+      supporting evidence in D05/D06 and in R05's rationale, and cover cloud agents in
+      the §4 architecture map.
+    verification_method: >-
+      Confirm the new row's paths/symbols exist at a9f633e0 (DESTRUCTIVE_ACTIONS,
+      REVIEW_GATED_ACTIONS, CloudAgentApi); confirm R05/D05/D06 cross-references; confirm
+      the coverage map includes the cloud-agent boundary.
+
+  - finding_id: F-EXT-018-C-03
+    severity: MEDIUM
+    author_claim: >-
+      The audit repeatedly criticizes the external error handling (failures flattened to
+      assistant text, R03/D04) and recommends building typed failure events and a
+      failure taxonomy aligned with the primary benchmark plan (§6.2, ADR-C11), without
+      identifying any in-tree error-taxonomy asset.
+    external_evidence: >-
+      source/shared/errors/registry.ts (841 lines) defines SAND_ERROR_DEFINITIONS: stable
+      codes (SAND-E####), name, domain (registry/transport/...), retryable flag,
+      bounded declared payload fields, and seededFrom provenance, with an emit-boundary
+      rule that unregistered errors are reclassified so "the original code and payload
+      never ship"; bounded.ts provides branded bounded payloads (e.g. brandedErrno).
+      The journal and other modules mint typed errors through this registry
+      (SandError.journalReplayFailed etc., seen in transcript-mirror.ts).
+    primary_project_constraint: >-
+      MODEL_ROLE_BENCHMARK_PLAN's nine-category failure taxonomy with accountable layers
+      and UNKNOWN_LAYER; MOP requirements for typed turn failure states and observability.
+    why_it_matters: >-
+      The audit recommends inventing exactly the artifact the tree already demonstrates —
+      a machine-readable, retryability-classified, leakage-bounded error registry. Missing
+      it weakens D04/R03/ADR-C03/ADR-C11 evidence and loses a concrete design input for
+      the provider failure envelope and telemetry-boundary payload bounding.
+    required_fix: >-
+      Add the error registry as a classified pattern (ADOPT-the-principle or ADAPT) and
+      cite it from D04, R03, D12, ADR-C03 and ADR-C11; note the registry/benchmark
+      taxonomy alignment opportunity (stable codes + accountable domain + retryability).
+    verification_method: >-
+      Confirm registry.ts/bounded.ts citations resolve at a9f633e0; confirm the new
+      cross-references; confirm no code import occurred (pattern description only).
+
+  - finding_id: F-EXT-018-C-04
+    severity: MEDIUM
+    author_claim: >-
+      The audit's transcript/durability/memory analysis (§5, §6.1 transcript row, A02,
+      D04, ADR-C01) covers durable conversation history, truncation, retention and
+      replay; compaction/summarization is never mentioned anywhere in the report or CSV.
+    external_evidence: >-
+      source/packages/agent-summarization/ implements a full context-compaction pipeline:
+      summarization-handler.ts, pipeline.ts, deterministic-summary-builder.ts,
+      durable-blocks.ts, prompt-truncation.ts, background-summarization.ts,
+      skill-persistence.ts, error-handling.ts (~120KB); the canonical conversation state
+      itself carries summaryArchives (conversation-state-binary.ts), i.e. compaction
+      artifacts are first-class persisted state in the external design.
+    primary_project_constraint: >-
+      MOP memory requirements (durable roles/memory, memory extractor role, R-015 stale/
+      poisoned memory), Stage 3 memory architecture comparison, and the challenger
+      instruction's explicit compaction item.
+    why_it_matters: >-
+      Unbounded event/transcript growth versus context limits is one of the forcing
+      functions on ADR-C01/C06 (what is durable, what is derived, what is summarized, and
+      how summaries are audited); an audit that maps the persistence architecture but
+      omits the tree's compaction layer leaves Stage 3 without the evidence that
+      summaries were designed as durable, deterministic, first-class artifacts.
+    required_fix: >-
+      Add a classified pattern for the summarization/compaction pipeline (deterministic
+      builders, durable summary blocks, background execution, summaryArchives in
+      canonical state) and reference it in ADR-C01's alternatives (compaction/retention
+      semantics) and the memory-related translation rows.
+    verification_method: >-
+      Confirm the agent-summarization paths and the summaryArchives field resolve at
+      a9f633e0; confirm ADR-C01 mentions compaction; confirm classification present in
+      the matrix totals.
+
+  - finding_id: F-EXT-018-C-05
+    severity: MEDIUM
+    author_claim: >-
+      §15 presents ADOPT/ADAPT/EXPERIMENT/REJECT/DEFER as "the canonical classification"
+      with exactly one class per pattern (totals 6/14/3/8/2), and classifies A01 typed
+      ports as ADOPT while D01 connector seam and D05 MCP bridge are ADAPT.
+    external_evidence: >-
+      No class definitions exist anywhere in the report or CSV. By the audit's own
+      evidence and scores the boundary is not reproducible: A01 (ADOPT) is a seam whose
+      implementation lacks tenant identity, authorization, versioning and exact runtime
+      validation (MT2/SEC3; "most method payloads remain coarse objects"), while D01
+      (ADAPT, MT1/SEC2) and D05 (ADAPT) are seams with the same class of deficiency and
+      the same required redesign; the recommended "independent versions" of A01 and D01
+      are comparable full contract redesigns.
+    primary_project_constraint: >-
+      MOP review rules require reproducible criteria for consequential classifications;
+      the matrix is intended as a Stage 3 decision aid, so its classes will be read as
+      relative maturity/confidence.
+    why_it_matters: >-
+      Without a stated rubric, later stages may treat ADOPT rows as more settled than
+      ADAPT rows on labeling alone; the A01-versus-D01/D05 inconsistency shows the labels
+      partly encode the author's enthusiasm rather than a reproducible rule.
+    required_fix: >-
+      Add explicit one-line definitions (for example: ADOPT = the invariant/property can
+      be carried into requirements as-is; ADAPT = the principle survives but the contract
+      must be redesigned; EXPERIMENT = value contingent on a spike; REJECT = neither
+      implementation nor blueprint should carry; DEFER = decision premature) and either
+      re-justify A01 under the rubric or reclassify it ADAPT. Verify every row against
+      the rubric once stated.
+    verification_method: >-
+      Confirm definitions present; confirm A01/D01/D05 dispositions are consistent under
+      them; re-run the totals check (each pattern exactly one class).
+
+  - finding_id: F-EXT-018-C-06
+    severity: MEDIUM
+    author_claim: >-
+      §18 proposes ten Stage 4 spikes (SP-C01..SP-C10) with hypothesis, bounded
+      implementation, and pass/fail evidence, presented as the spike candidates for the
+      three EXPERIMENT patterns and the ADOPT/ADAPT proof obligations.
+    external_evidence: >-
+      The spike table itself: no per-spike alternatives (which competing architecture is
+      being compared), no distinct failure metrics beyond inverted pass criteria, security
+      checks present in only some rows, and no cost caps or decision rules in any row.
+    primary_project_constraint: >-
+      MASTER_OPERATING_PROMPT Stage 4 requires every spike to record hypothesis,
+      environment, model, implementation, test cases, result, failures, cost, latency,
+      security impact, and architecture consequence; the challenger instruction requires
+      hypothesis/alternatives/minimum prototype/workload/success/failure/security/cost
+      cap/decision rule per spike.
+    why_it_matters: >-
+      Stage 4 planning is likely to inherit these specifications wholesale; without
+      alternatives and decision rules a spike can only confirm the proposed design
+      (anchor bias), and without cost caps the spike program has no budget boundary in a
+      project whose benchmark budget is currently USD 0.
+    required_fix: >-
+      Augment each retained spike (at minimum those backing E01-E03: SP-C05, SP-C06,
+      SP-C07, plus SP-C01/SP-C02 which gate A02/D03) with alternatives under test,
+      explicit failure metrics, a security check, a cost cap, and a decision rule; or
+      state that these fields are deferred to the Stage 4 authorization template and mark
+      the table as incomplete input.
+    verification_method: >-
+      Field-presence check per spike row against the nine-field template; confirm cost
+      caps are consistent with the recorded USD 0 unauthorized-budget state.
+
+  - finding_id: F-EXT-018-C-07
+    severity: LOW
+    author_claim: >-
+      D13 classifies "channel transport abstraction" as ADAPT with external strengths
+      "small transport-neutral address concept and separated message surface".
+    external_evidence: >-
+      source/shared/channels.ts and channel-messaging.ts are thin address/envelope type
+      declarations; the frontend conversation-evidence manifest marks Slack/Discord
+      surfaces coming-soon; the audit's own §8.3 marks every production-relevant channel
+      property UNKNOWN.
+    primary_project_constraint: >-
+      The matrix is an evidence-weighted decision aid; an ADAPT implies the external
+      design contributes reusable substance.
+    why_it_matters: >-
+      Classifying a near-empty surface ADAPT overstates external contribution; the
+      channel contract will be designed from the audit's own §8.3 requirements list, not
+      from the external types.
+    required_fix: >-
+      Reclassify D13 to DEFER (design from requirements at Stage 3) or annotate that the
+      external contribution is naming only and the §8.3 field list is requirements-derived.
+    verification_method: "Read the revised D13 row; confirm consistency with §8.3's UNKNOWN marking."
+
+  - finding_id: F-EXT-018-C-08
+    severity: LOW
+    author_claim: >-
+      A03/PAT-03 recommend tenant-scoped encrypted content-addressed workspaces with
+      per-tenant authorization/keying, retention, and erasure; acceptance includes
+      cross-tenant read failure.
+    external_evidence: >-
+      Box-store objects are addressed by sha+size in a store namespace
+      (box-store-manifest-format.ts identity; box-object-store contentAddressed put);
+      nothing in the external design or the audit discusses deduplication scope or hash
+      disclosure.
+    primary_project_constraint: >-
+      Security requirements (tenant leakage, provenance) and Finance Edition
+      confidential datasets; the challenger instruction: "A content hash must not
+      accidentally become a cross-tenant information oracle."
+    why_it_matters: >-
+      Cross-tenant deduplication over bare content hashes lets a tenant probe for the
+      existence of known content, and content hashes embedded in shared evidence bundles
+      can leak the same way; per-tenant keying implies the safe answer but the audit
+      never states the dedup boundary, the salted/keyed-addressing tradeoff, or GC
+      ownership across snapshot lineages.
+    required_fix: >-
+      Add explicit constraints to A03/ADR-C06: deduplication boundary is at most
+      per-tenant (or per-key-domain), content hashes in cross-tenant or exported evidence
+      must be salted/HMAC'd or disclosed by policy, and GC/retention ownership across
+      snapshot lineage must be part of the contract.
+    verification_method: "Confirm the constraints appear in A03's independent version and ADR-C06's criteria."
+
+  - finding_id: F-EXT-018-C-09
+    severity: LOW
+    author_claim: >-
+      §11.1: "Scores evaluate the external pattern as implemented, not the independently
+      recommended translation"; PAT-11 multi_tenancy=3; PAT-09 security=4 with rationale
+      "MT1 ... DUR2 ... approval files exist, but core controller maps are memory-only"
+      and weakness note listing expiry among incomplete properties.
+    external_evidence: >-
+      PAT-11's manifests as implemented have no tenancy at all (reconstruction
+      artifacts); the 3 is justified in the rationale by what manifests "can carry" —
+      translated potential. PAT-09 as implemented is a process-local, single-user
+      controller (durability 2 by the same row); its 4 reflects principle strength. The
+      controller does implement an ask-expiry TTL (askTtlMs / SAND_LOCAL_TOOL_ASK_TTL_MS,
+      local-tool-permission-controller.ts:30,42), so "expiry" is only missing at the
+      approval-lifetime level.
+    primary_project_constraint: >-
+      R-023 (false numerical precision) and the matrix's own stated scoring rule.
+    why_it_matters: >-
+      Bounded: no aggregation exists, so no ranking is distorted; but rule-inconsistent
+      cells weaken the matrix as a reproducible decision aid and the expiry misstatement
+      slightly undersells the external controller.
+    required_fix: >-
+      Rescore PAT-11 MT and PAT-09 Sec under the as-implemented rule (or annotate those
+      cells as translated-potential exceptions), and correct D06/PAT-09 wording to
+      distinguish present ask-TTL expiry from absent approval-lifetime expiry.
+    verification_method: "Re-read the two rationale cells and the D06 weakness text against the cited code."
+
+  - finding_id: F-EXT-018-C-10
+    severity: LOW
+    author_claim: >-
+      (a) §4.3 row 22: "Two-to-six member cap" evidenced at group-chat.ts:1-17;
+      (b) §16.1: Stage 3 "requires alternatives, threat modeling, cost analysis, ADRs"
+      cited to MASTER_OPERATING_PROMPT.md:267-304; (c) §15 presents "33 patterns" with
+      D14 as a distinct pattern and R01/E01/D01 as distinct rows.
+    external_evidence: >-
+      (a) group-chat.ts:1-17 contains turn/round/history/message bounds and nesting
+      rejection but no member cap; GROUP_MAX_MEMBERS = 6 is in group-store.ts:1, and the
+      minimum of two is documented product behavior (baseline GBF-016), not code
+      evidence. (b) MOP:267-304 spans orchestration options, the ADR requirement, the
+      Stage 3 gate and Stage 4 intro; the threat-model requirement lives in the security
+      requirements section. (c) D14 cites the same evidence paths as D09
+      (workflows store/library/shared), and R01/E01/D01 are three classifications of the
+      same connector code region.
+    primary_project_constraint: >-
+      Evidence-anchor discipline the audit itself adopts (A05): claims bind to exact
+      artifacts.
+    why_it_matters: >-
+      Bounded inaccuracies: none changes a conclusion, but (a)/(b) are citation
+      imprecision in an artifact whose value is citation precision, and (c) means the
+      "33 patterns" total counts one code region under multiple classes without saying
+      so, mildly inflating apparent external contribution.
+    required_fix: >-
+      Correct the two citations (add group-store.ts:1 and the baseline source for the
+      lower bound; point the threat-model clause at the security-requirements lines) and
+      add a one-line note that matrix rows classify pattern-aspects, so several rows can
+      reference one code region (D14/D09, R01/E01/D01).
+    verification_method: "Re-resolve the corrected citations at the pinned commits; recount the matrix totals."
+
+notes_non_findings:
+  - "NOTE-1: Multi-device/multi-writer conversation submission is unaddressed in §12; the external writerWindowId canonical-write conflict handling (box-store-manifest.ts:148-152) is directly relevant evidence for that future contract."
+  - "NOTE-2: The same-code-multiple-classes structure (R01 production REJECT / E01 dev EXPERIMENT / D01 seam ADAPT) is deliberate and sound; it only needs the labeling note in F-EXT-018-C-10(c)."
+  - "NOTE-3: Manifest/handoff-schema regeneration ownership and automation (challenger questions E/F for each harness item) are unassigned; assign producers when the evidence-packet schema task is registered."
+  - "NOTE-4: source/packages/redaction defines a typed DataClassification enum (SAFE/CODE/CREDENTIALS/PATH/PROVIDER_INFO) plus PrivacyMode — uncited support for D12's privacy-class requirement."
+  - "NOTE-5: Research-thesis history/versioning is absent from the §14.1 finance artifact classes; add when the finance ADR-C13 work is scoped."
+  - "NOTE-6: The ADR-C01..C13 decomposition tracks the external module map; anchoring risk is low because it also maps onto the MOP Stage 3 comparison list, but Stage 3 should generate its own decomposition before consuming the candidate list."
+  - "NOTE-7: sand-multitask.ts (executor subagent with SubagentType protobuf and todo tooling), host-lock.ts (PID-file singleton with takeover), process-crash-guard.ts, notify-drain-gate.ts, mcp-auth wait registry (TTL'd auth completions), and host-event-bus.ts were examined and judged below the materiality bar for pattern rows; they are recorded here so the fixer need not re-discover them."
+  - "NOTE-8: The author handoff left the three deliverables uncommitted; the founder committed them at 60e06b0. Provenance is clean; recorded for the audit trail only."
+  - "NOTE-9: The audit's §3/§16.3/§21.12 self-disclosure of the unregistered-task exception is accurate and appropriately repeated in the handoff; this review operates under the same disclosed exception."
+
+# ────────────────────────────────────────────────────────────────────
+# 6. Scope and conduct confirmation
+# ────────────────────────────────────────────────────────────────────
+challenger_scope_confirmation:
+  files_created:
+    - 99_handoffs/completed/EXTERNAL_GROK_BOT_018_ARCHITECTURE_AUDIT_challenger_review.yaml
+  files_modified: []
+  author_artifacts_modified: false
+  adoption_matrix_modified: false
+  governance_files_modified: false
+  stage_1_state_modified: false
+  s1_003_authorization_touched: false
+  external_repository_modified: false
+  external_execution_performed: false
+  external_code_imported: false
+  lfs_payload_downloaded: false
+  provider_authentication_performed: false
+  commits_created: false
+  changes_left_uncommitted_for_founder: true
+  architectural_pattern_marked_as_project_decision: false
+
+recommended_next_action: >-
+  Founder: route F-EXT-018-C-01..C-10 to a FIXER pass on the author audit and CSV
+  (bounded edits: re-describe A02 and add the canonical-state, cloud-agent, error-
+  registry, and summarization patterns; define the classification rubric; augment spike
+  specs; apply the LOW corrections), then have an independent VERIFIER check the fixes
+  against external commit a9f633e09d49a85829b8236331b9e21f7e612634 before any ADR-C or
+  SP-C item is admitted as Stage 3/4 input. Even after acceptance the audit remains
+  research evidence, not an architecture decision. S1-003 execution remains the
+  project's critical path and is unaffected by this review.

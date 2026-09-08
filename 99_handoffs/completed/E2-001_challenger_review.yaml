@@ -1,0 +1,649 @@
+review_id: R-E2-001-20260828-CHALLENGER
+task_id: E2-001
+stage: E2
+mode: REVIEW_TASK_E2-001
+role: CHALLENGER
+reviewer_model: "Claude Fable 5 (claude-fable-5) via Claude Code"
+reviewer_independence: >-
+  Independent of the recorded E2-001 author ("Codex (runtime model identifier not exposed) —
+  E2-001 AUTHOR"); this review shares no conversation state with the author pass, the
+  PLAN_STAGE_E2 pass, or any earlier session. Same model/product as the prior S0/S1/E0/E1
+  challengers and verifiers, in a separate fresh session. Every count, set, mapping, and
+  domain result below was recomputed from the committed bytes at 349a9f0 with scratch
+  scripts (python3 csv/re, ruby psych, yq, git, grep); nothing was taken from the author
+  handoff, the registry author_requirement_summary, PROJECT_STATE notes, or R-030 text.
+  Disclosure: the charter names "Claude Code" among the E3 candidate systems; this review
+  selects no role occupant, architecture, technology, provider, or model. No subagents,
+  network retrieval, login, API key, paid call, spend, spike, benchmark, evaluation-case
+  execution, application code, ADR, or E2-002 activation was used or produced.
+started_at: "2026-08-28T18:30:00Z (approximate)"
+completed_at: "2026-08-28T19:05:00Z (approximate)"
+reviewed_commit: 349a9f0fbd8f98c967f78c0bb5850aeae8e61dc4
+reviewed_state: >-
+  Branch chore/initialize-project-materials at committed HEAD 349a9f0 ("Author Engineering
+  Preview architecture requirements"), working tree clean at review start. The author diff
+  0338c61..349a9f0 touches exactly six of the eight E2-001 allowed_files_to_change
+  (+1808/-15): the two new 05_architecture deliverables, the new E2-001 handoff, and bounded
+  edits to PROJECT_STATE.yaml, TASK_REGISTRY.yaml (E2-001 entry only), and RISK_REGISTER.md
+  (R-030 mitigation only). All nine frozen E1 artifacts match the blob IDs recorded in the
+  handoff and have no diff since the E1 gate commit c2f7093. git diff --check is clean.
+  No application-source, ADR, candidate, spike, or benchmark file exists.
+
+verdict: E2_001_CHANGES_REQUESTED
+verdict_rationale: >-
+  No BLOCKER and no HIGH finding. The E2-001 baseline is substantively strong: the 127
+  canonical E1 IDs (56 FR / 15 RR / 9 FC / 4 SLO / 4 MET / 16 UF / 23 NEG) re-extract
+  exactly from the frozen PRD, correctness contract, and user-flow headings and are
+  set-equal to the CSV; 64 unique architecture requirements (58 HARD_CONSTRAINT /
+  6 WEIGHTED_PREFERENCE) carry every required field, resolve to canonical sources, all
+  25 plan domains, and E3V-001..008, and none is orphaned; primary dispositions are
+  119 hard / 0 weighted / 8 justified-empirical with hard measurement seams and no
+  waiver; all 709 checkpoint case/protocol edges are preserved row-for-row; no named
+  technology, Level C reconstruction identifier, invented numeric threshold, candidate,
+  ADR, code, spike, benchmark, or paid call exists; the correctness, durability, state,
+  workspace, approval/effect, provider, context, evidence/verification, observability,
+  testability, performance, future-compatibility, Level A/B/C, E3-obligation, unresolved-
+  question, decision-criteria, clean-room, and governance sections all pass as written.
+  Two MEDIUM findings nevertheless require a bounded fixer pass before independent
+  verification: (1) UF-11 / contract §9.6 human protected-entry and takeover semantics
+  (protected acquisition path distinct from chat, structural suspension of agent
+  observation channels during entry, fail-to-wait when absent) are not translated into any
+  architecture requirement — UF-11 is the only canonical ID that appears in no AR source
+  list and its CSV trace is a single reference to AR-SEC-003, which covers only the
+  recipient/use boundary; (2) the two normative trace artifacts disagree on 30 AR<->E1
+  edges (17 AR source references absent from the CSV rows, 13 CSV references absent from
+  the AR source lists), so a verifier re-deriving the 127-requirement projection obtains
+  different supporting sets depending on which artifact is used. Seven LOW findings cover
+  mis-targeted primaries for FR-025/FR-026, wrong PRD section anchors on 71 rows, gaps in
+  the E2-002 input contract, an under-inclusive Level B table, E3-obligation scope and
+  handback wording, under-specified control/resume semantics, and the missing consolidated
+  threat-boundary checklist named by plan §10.
+
+method:
+  - "Read MASTER_OPERATING_PROMPT.md, AGENTS.md, README.md, SECURITY.md, all seven governance records, the nine frozen E1 artifacts, the E2 plan, both E2-001 deliverables, the E2-001 and PLAN_STAGE_E2 handoffs, the E1 gate record, the exact E2-001..E2-006 registry contracts, charter §§5-6, 9, 12, 15-16, 19-20, the adoption matrix, and the audit outline."
+  - "Re-extracted the canonical E1 ID set from PRD §6/§12 definition rows, contract §14.1/§14.2/§15 definition rows, and UF-01..16 headings; compared as sets to the CSV and to the release checkpoint requirement_dispositions."
+  - "Parsed the 127x19 CSV and the 64 AR blocks; recomputed classes, hard fields, source/domain/E3 references, orphans, per-row domain unions, §7 table-vs-body consistency, and bidirectional AR<->E1 edge equality."
+  - "Compared every AR description/observable/prohibited outcome against the E1 text it cites, with targeted deep reads of contract §§3.2-3.3, 6.1, 7, 9.3-9.7, 11, 13 and UF-01..16 bodies; stress-tested completion, durability, approval/effect, secret, verification, and control semantics for candidate designs that pass the ARs but break E1."
+  - "Scanned both deliverables and the handoff for technology names, mechanism-forcing wording, Level C reconstruction identifiers, numeric thresholds, secret patterns; scanned the tree for application source, ADR, candidate, and spike artifacts."
+  - "Recomputed evaluation-suite asset counts (cases, oracles, fixtures, compositions, adequacy variants, protocols, RC/GE rows) and resolved every non-standard evaluation-linkage identifier used by the AR register."
+  - "Parsed all 49 tracked YAML files with yq; verified frozen E1 blob identity with git hash-object; ran git diff --check and allowed-path comparison on 0338c61..349a9f0; reconciled PROJECT_STATE, TASK_REGISTRY, MODEL_REGISTRY, and handoff counters."
+
+files_read:
+  - MASTER_OPERATING_PROMPT.md
+  - AGENTS.md
+  - README.md
+  - SECURITY.md
+  - CLAUDE.md
+  - 01_governance/PROJECT_STATE.yaml
+  - 01_governance/TASK_REGISTRY.yaml
+  - 01_governance/DECISION_LOG.md
+  - 01_governance/ASSUMPTION_REGISTER.md
+  - 01_governance/RISK_REGISTER.md
+  - 01_governance/MODEL_REGISTRY.yaml
+  - 02_research/GROK_BOT_018_ARCHITECTURE_ADOPTION_MATRIX.csv
+  - 02_research/GROK_BOT_018_RECONSTRUCTED_ARCHITECTURE_AUDIT.md (outline and SP-C01..SP-C10 headings)
+  - 03_product/ENGINEERING_PREVIEW_CHARTER.md
+  - 03_product/ENGINEERING_PREVIEW_PRD.md
+  - 03_product/ENGINEERING_PREVIEW_USER_FLOWS.md
+  - 03_product/ENGINEERING_PREVIEW_CORRECTNESS_CONTRACT.md
+  - 03_product/ENGINEERING_PREVIEW_CONTRIBUTION_WORKFLOW.md
+  - 05_architecture/ENGINEERING_PREVIEW_E2_ARCHITECTURE_PLAN.md
+  - 05_architecture/ENGINEERING_PREVIEW_ARCHITECTURE_REQUIREMENTS.md
+  - 05_architecture/ENGINEERING_PREVIEW_E1_ARCHITECTURE_TRACEABILITY.csv
+  - 06_evaluation/ENGINEERING_PREVIEW_EVALUATION_SUITE.md
+  - 06_evaluation/MODEL_ROLE_BENCHMARK_PLAN.md
+  - 10_checkpoints/stage_checkpoints/ENGINEERING_PREVIEW_V0_1_RELEASE_ACCEPTANCE.yaml
+  - 10_checkpoints/stage_checkpoints/ENGINEERING_PREVIEW_E1_SPECIFICATION_GATE_VERIFICATION.yaml
+  - 99_handoffs/completed/PLAN_STAGE_E2_handoff.yaml
+  - 99_handoffs/completed/E2-001_handoff.yaml
+  - 99_handoffs/completed/E1-002_challenger_review.yaml (format precedent)
+  - 99_handoffs/HANDOFF_TEMPLATE.yaml
+
+recomputed_counts:
+  canonical_e1_ids: 127
+  canonical_families: "FR 56 (FR-001..015, 020..027, 030..037, 040..048, 050..055, 060..069) / RR 15 / FC 9 / SLO 4 / MET 4 / UF 16 / NEG 23"
+  canonical_extraction_sources: "PRD §6.1-6.7 backticked ID rows (not §7 as the author anchors state); PRD §12 FC rows; contract §14.1 RR rows, §14.2 SLO/MET rows, §15 NEG rows; user-flow §§3-18 headings"
+  noncanonical_ids_excluded: "NEG-SUPPLY-02 appears in the suite/checkpoint only as the case suffix of EP-NEG-SUPPLY-02 (dual-mapped under NEG-SUPPLY-01/NEG-NET-01); it is not a contract §15 family — 23 is correct"
+  csv_rows: 127
+  csv_columns: 19
+  csv_unique_ids: 127
+  csv_set_equal_to_frozen_extraction: true
+  csv_set_equal_to_checkpoint_dispositions: true
+  csv_evaluation_edges: "709 (701 case + 8 protocol); per-row set-equal to checkpoint requirement_dispositions on all 127 keys; 0 mismatches"
+  primary_dispositions: "HARD_CONSTRAINT 119 / WEIGHTED_PREFERENCE 0 / JUSTIFIED_NON_ARCHITECTURE_DRIVING 8 (SLO-001..004, MET-001..004)"
+  hard_constraint_column: "YES_NONCOMPENSATING 119 / NO_FOR_OBSERVED_VALUE; YES_FOR_SUPPORTING_MEASUREMENT_SEAMS 8; consistent with primary disposition on every row"
+  architecture_requirements: 64
+  architecture_requirement_classes: "HARD_CONSTRAINT 58 / WEIGHTED_PREFERENCE 6 (AR-PRF-001..006); Class and Hard-constraint fields consistent on all 64"
+  ar_required_fields_present: "13/13 on all 64"
+  ar_source_references: "278 total; 126 distinct canonical IDs referenced; UF-11 is the only canonical ID referenced by no AR source list"
+  ar_domain_references: "25 distinct domains in AR bodies; §7 table inverse equals AR bodies exactly; per-row CSV domain lists equal the union of referenced AR domains on all 127 rows"
+  ar_e3_references: "E3V-001 12, E3V-002 5, E3V-003 11, E3V-004 8, E3V-005 18, E3V-006 13, E3V-007 8, E3V-008 3, NONE 3 (AR-COR-002, AR-PRF-002, AR-PRF-004)"
+  orphan_architecture_requirements: 0
+  csv_ar_references_resolving: "64/64 distinct ARs referenced; 0 unknown"
+  bidirectional_edge_mismatch: "30 (17 AR->E1 sources absent from CSV rows; 13 CSV->AR references absent from AR source lists)"
+  decision_domains: 25
+  e3_validation_obligations: 8
+  unresolved_architecture_questions: 9
+  e2_002_contract_fields: 28
+  level_b_pattern_families_in_section_13: 10
+  evaluation_assets_recomputed: "170 cases (WF 19 / CTL 24 / FALSE 21 / APR 9 / ROUTE 7 / EVID 12 / NEG 24 / REPO 16 / GIT 30 / CONTRIB 8); 18 oracles; 11 fixtures; 16 compositions; 9 adequacy variants; 8 protocols and RC-01..16 / GE-01..30 as stated by the verified E1 gate record"
+  yaml_files_parsed: "49/49 tracked YAML files parse with yq"
+  frozen_e1_blob_identity: "9/9 match the handoff-recorded blob IDs; zero diff versus c2f7093 for 03_product, 06_evaluation, 10_checkpoints"
+  named_technology_matches: 0
+  level_c_identifier_matches: 0
+  numeric_threshold_matches: 0
+  secret_pattern_matches: "0 (one regex hit at requirements line 357 inspected manually; ordinary prose, no secret)"
+  application_source_files: 0
+  adr_candidate_spike_artifacts: 0
+  git_diff_check: CLEAN
+  author_changed_paths: "6/6 within allowed_files_to_change"
+
+section_results:
+  E1_TRACE_SOURCE: E1_TRACE_SOURCE_PASS
+  TRACEABILITY_QUALITY: "TRACEABILITY_QUALITY_FAIL (bounded: 124/127 IDs meaningfully dispositioned; UF-11 reference-only coverage, FR-025/FR-026 mis-targeted primaries, 30 inconsistent edges — F-E2-001-01/02/03)"
+  ARCHITECTURE_REQUIREMENTS: "64 recomputed (58 hard / 6 preference); unique; no orphan; no duplicate; no implementation prescription"
+  HARD_CONSTRAINT_MODEL: HARD_CONSTRAINT_MODEL_PASS
+  ARCHITECTURE_NEUTRALITY: ARCHITECTURE_NEUTRALITY_PASS
+  CORRECTNESS_ARCHITECTURE: CORRECTNESS_ARCHITECTURE_PASS
+  DURABILITY_RECOVERY: DURABILITY_RECOVERY_PASS
+  STATE_DATA_MODEL: STATE_DATA_MODEL_PASS
+  WORKSPACE_EXECUTION: WORKSPACE_EXECUTION_PASS
+  SECURITY_ARCHITECTURE: "SECURITY_ARCHITECTURE_FAIL (bounded: 14/15 boundary items are structurally forced; the secret acquisition / human-takeover boundary is not — F-E2-001-01)"
+  APPROVAL_EFFECT_ARCHITECTURE: APPROVAL_EFFECT_ARCHITECTURE_PASS
+  MODEL_PROVIDER_ARCHITECTURE: MODEL_PROVIDER_ARCHITECTURE_PASS
+  CONTEXT_MEMORY: CONTEXT_MEMORY_PASS
+  EVIDENCE_VERIFICATION: EVIDENCE_VERIFICATION_PASS
+  OBSERVABILITY_FAILURE: OBSERVABILITY_FAILURE_PASS
+  TESTABILITY_ARCHITECTURE: TESTABILITY_ARCHITECTURE_PASS
+  PERFORMANCE_COST: PERFORMANCE_COST_PASS
+  FUTURE_COMPATIBILITY: FUTURE_COMPATIBILITY_PASS
+  LEVEL_ABC: LEVEL_ABC_PASS
+  E3_OBLIGATION_BOUNDARY: E3_OBLIGATION_BOUNDARY_PASS
+  UNRESOLVED_QUESTIONS: UNRESOLVED_QUESTIONS_PASS
+  DECISION_DOMAIN_COVERAGE: DECISION_DOMAIN_COVERAGE_PASS
+  E2_002_INPUT_CONTRACT: E2_002_INPUT_CONTRACT_PASS
+  DECISION_CRITERIA: DECISION_CRITERIA_PASS
+  CLEAN_ROOM: CLEAN_ROOM_PASS
+  GOVERNANCE_BOUNDARY: GOVERNANCE_BOUNDARY_PASS
+
+section_evidence:
+  e1_trace_source: >-
+    Independent extraction of backticked definition rows/headings yields exactly the 127 IDs
+    listed in the CSV (set difference empty both ways); each appears exactly once with one
+    primary disposition; the checkpoint requirement_dispositions carry the same 127 keys. The
+    source documents are correct on every row; the section numbers cited for FR (PRD §7) and
+    the RR mirror (PRD §10) are wrong (actual §6 and §7) — recorded as F-E2-001-04.
+  traceability_quality: >-
+    Per-ID comparison of E1 text against the primary AR: 124 of 127 primaries are the
+    semantically governing requirement (e.g. FR-065/066/RR-008 -> AR-COR-004 reproduces the
+    §11.1 conjunction; FR-044/NEG-APR-01 -> AR-APR-001 reproduces §9.4 binding, one-shot,
+    successor revalidation; FR-032/RR-003/NEG-EXT-01 -> AR-DUR-003/APR-002 reproduce §6.1/§9.5
+    OUTCOME_UNCERTAIN and no-blind-replay; FR-023/024 -> AR-GIT-001 preserves the 30-row
+    matrix with approval unable to enable PROHIBITED_V0_1; FR-053 -> AR-MOD-002 preserves all
+    four eligibility classes and zero dispatch). No architecture-relevant ID is treated as
+    non-architecture-driving; the eight SLO/MET IDs are correctly empirical with AR-TST-003/
+    AR-PERF-002 seams hard. No empirical question became an architecture decision. Defects:
+    UF-11 (reference-only, F-01); FR-025/FR-026 primary AR-TST-001 with TESTABILITY taxonomy
+    although their semantics are product check-set integrity and check-result evidence
+    (F-03); 30 edges disagree between the AR register and the CSV (F-02). The CSV columns
+    implied_architecture_property (51 distinct values) and justification_or_uncertainty
+    (3 distinct values) are AR-level boilerplate, so per-ID semantics live in the AR
+    grouping rather than the row (NOTE).
+  hard_constraint_model: >-
+    For every one of the 58 hard ARs, violating the description would violate a cited frozen
+    E1 MUST/zero-tolerance clause (checked against PRD §6/§8/§12, contract §§3-15, UF
+    invariants); none is a preference dressed as a constraint. The six preferences
+    (latency, complexity, migration/reversibility, remote/concurrency adaptation, evidence
+    overhead, contributor burden) can each be violated by an E1-compliant design and are
+    correctly secondary with unassigned weights. No security/correctness property is
+    downgraded: every PRF source ID also has a hard primary elsewhere. No performance
+    preference masquerades as correctness: AR-PERF-001/002 and AR-TST-003 require bounds and
+    instrumentation only, not values. The 119 primary hard dispositions are justified because
+    FC-001..009 and UF-16 are compatibility/ownership floors whose violation contradicts PRD
+    §12 evidence requirements (criterion_role makes this explicit). The hard set is
+    property-level and does not predetermine a shape: single-process-with-detached-owner,
+    local-service-plus-thin-client, and desktop-embedded runtimes can each satisfy it.
+  architecture_neutrality: >-
+    Zero matches for client, runtime, language, database, event store, workflow engine,
+    queue, sandbox, container, VM, cloud, Git library, model SDK, agent framework, MCP-as-
+    mandatory, vector/embedding/RAG, observability stack, or packaging system in either
+    deliverable or the handoff. Mechanism-leak check: AR-DUR-005 states content addressing is
+    not required; AR-DAT-002/COR-007/DUR-003 keep append structure, hashing, CAS, and
+    journals Level B; AR-WSP-002 mirrors FR-012 "or another E2-selected mechanism";
+    AR-EXE-003 mirrors RR-006 "force termination or authority fencing"; AR-VER-001 "separate
+    accountable execution context with no shared mutable author state" is verbatim contract
+    §11.3, not an added process requirement; AR-PKG-001 "remote services cannot be required
+    for local truth" is the D-016/charter local-first constraint with declared-unsupported
+    escape. §16 nonselection statement is consistent with the bodies.
+  correctness_architecture: >-
+    AR-COR-001..007, AR-VER-001..003, AR-EVD-001 preserve truthful completion (COR-004 =
+    §11.1 conjunction incl. redirect-on-current-revision, pause released, stop->CANCELLED,
+    no OUTCOME_UNCERTAIN, eligible independent PASSED), task/operation/verification/effect/
+    artifact identity (COR-001), exact revision binding and stale invalidation (COR-006,
+    VER-003), partial completion and UNVERIFIED distinctness (COR-005, VER-003), predicate
+    adequacy before credit (COR-005, VER-002), independence floor and least privilege
+    (VER-001), post-verification mutation (COR-006), evidence validity (EVD-001). Stress
+    scenarios (killed process, executor prose, flaky pass, verifier crash, stale approval,
+    unknown effect, draft package as PR, same-session verification, transcript-only
+    verification, weighted completion) are each rejected by a prohibited outcome.
+  durability_recovery: >-
+    Process/orchestrator/worker/executor/verifier/machine interruption (DUR-002), model/tool
+    timeout and lost response (EXE-002, DUR-003, FAIL-001), partial write and corruption
+    (DUR-005), duplicate/stale writer (COR-007), duplicate external effect (DUR-003,
+    APR-002), stale workspace (WSP-005), approval recovery (APR-001), acknowledgement loss
+    (DUR-001, DUR-003), pause/resume/redirect/cooperative stop/force termination (DUR-004,
+    EXE-003), reconciliation (DUR-002/003/004), verification invalidation (COR-006, VER-003)
+    are all present; known success / known failure / unknown are distinguished (DUR-003,
+    APR-002, EXE-002) and a crash after dispatch cannot infer success or failure
+    (DUR-003 prohibited outcome). Residual under-specification of duplicate-delivery
+    idempotent acknowledgement, UF-07 resume revalidation, external-event correlation, and
+    agent-level pause/retire is LOW (F-E2-001-08).
+  state_data_model: >-
+    §3 and AR-DAT-001 separate authoritative state, derived projection, ephemeral working
+    context, and lossy summary; only authoritative state grants authority or completion;
+    rendered transcript is a projection while conversation/message authority is
+    authoritative (charter §6 item 2 preserved); evidence is distinct from telemetry
+    (EVD-003); summaries are provenanced/invalidatable and never authority (CTX-002); task
+    state persists outside model context (CTX-001). Content addressing, journals, hash chains,
+    projection codecs, and summary blocks are explicitly Level B; no Level B pattern is made
+    mandatory anywhere in the bodies (checked every Provenance/Uncertainty line).
+  workspace_execution: >-
+    Admission and 16-condition disposition (WSP-001), base identity (WSP-001, GIT-002),
+    bind-before-mutating-reproduction (WSP-002 = FR-012/EP-WF-019), original user state and
+    dirty material (WSP-004), path/alias/symlink/special/archive/topology (WSP-003),
+    protected secret locations overriding roots (SEC-003), stale workspace (WSP-005),
+    cleanup/holds/deletion readback (DUR-006), process tree/bounds/force/fence (EXE-003),
+    timeout/cancellation class (EXE-002), package scripts/hooks/helpers/network-sensitive
+    commands (EXE-004), 30-row Git classification (GIT-001). No worktree, container, VM,
+    copy, or supervisor technology is required (WSP-002, PKG-001 uncertainties).
+  security_architecture: >-
+    Structurally forced: user/founder authority and precedence (SEC-001), untrusted
+    repository/tool/model content and closed instruction influence (SEC-001), capability
+    contracts and boundary validation (EXE-001), deny-by-default scopes (SEC-002),
+    filesystem/path/symlink (WSP-003), secret use/recipient boundary (SEC-003), process
+    descendants (EXE-003), network/destination/credential (SEC-004), package scripts and Git
+    hooks/helpers (EXE-004), external effects (APR-002), approvals (APR-001), destructive/
+    prohibited actions (APR-003), provider boundary (SEC-004, MOD-002), evidence integrity
+    (EVD-003, DAT-002). SEC-001 explicitly prohibits LLM judgment as the sole authority
+    boundary. Not forced: the human secret-acquisition / interactive-authentication takeover
+    boundary with observation-capture suspension and fail-to-wait (contract §9.6, UF-11,
+    charter §5.4 "acquisition") — F-E2-001-01.
+  approval_effect: >-
+    AR-APR-001 binds requester/approver/principal/task/attempt/operation/action/capability/
+    schema/target/base/policy/time/use with denial, expiry, revocation, replay, mutation,
+    display, ownership-transfer and recovery semantics and prohibits Boolean/conversational
+    approval; AR-APR-002 separates intent, authorization, attempt, observed response,
+    authoritative readback, confirmed effect, known non-success, cancellation, unknown
+    effect with stable request and execution identities; approval durability (APR-001) and
+    effect durability (APR-002/DUR-003) are separate requirements. A transient UI
+    confirmation fails APR-001's "authenticated durable record distinct from authorization
+    and conversation".
+  model_provider: >-
+    Provider/role neutrality (MOD-001), route purpose and all four eligibility classes with
+    zero dispatch for DISALLOWED and no self-promotion for EVALUATION_ONLY /
+    USER_CONFIGURED_UNVERIFIED (MOD-002), explicit fallback as a new attributed route and
+    typed provider-specific semantics (MOD-003), provider-versus-transport/policy failure
+    distinction (MOD-003, FAIL-001), cost/latency accounting and pre-dispatch ceilings
+    (PERF-001/002, SEC-004), E3-only eligibility (E3V-008, AQ-009). No provider, model, SDK,
+    or permanent role assignment appears; no dependence on a current provider API shape.
+  context_memory: >-
+    Bounded context manifest and resumability (CTX-001), authoritative state and evidence
+    outside model context (CTX-001, DAT-001), lossy summaries with source/version/trust
+    provenance and invalidation (CTX-002), compaction never dropping approval/revocation/
+    policy/security/evidence/completion facts (CTX-002 = contract §13.4). No vector store,
+    embedding, RAG, long-context-only, or transcript-as-state selection.
+  evidence_verification: >-
+    Exact revision binding (COR-006, EVD-001), command/tool/check/approval/effect/route/
+    actor/verifier provenance (EVD-001/002, EXE-002, VER-001), predicate adequacy (COR-005,
+    VER-002), integrity/gap/tamper (EVD-002/003, DAT-002), limitations and final disposition
+    (EVD-001), verifier access to the exact produced state and deterministic replay
+    (VER-001/002), stale invalidation (COR-006, VER-003). An executor-summary-only verifier
+    fails VER-001 ("transcript-only verification" prohibited; "obtain durable evidence
+    independently of executor claims" required).
+  observability_failure: >-
+    OBS-001 structured inspectable answers by axis; OBS-002 evidence-linked explanations
+    without chain-of-thought; EVD-003/DAT-001 keep telemetry non-authoritative; FAIL-001
+    enumerates all fourteen failure layers requested by the review brief with source layer,
+    retryability, consequence, and resolution path; FAIL-002 ceiling exhaustion and bounded
+    safety reserve. No logging or error framework is named; a typed registry is Level B.
+  testability: >-
+    AR-TST-001 seams cover authoritative state, time/order, process interruption,
+    filesystem/Git state, capability policy, provider routes, approvals, effects/readbacks,
+    evidence, verification, resource ceilings — sufficient for fault injection, crash and
+    lost-acknowledgement recovery, approval simulation, effect reconciliation, verifier
+    independence, revision mutation, fake provider failure, timeout, and process termination;
+    secret-boundary observation is forced through AR-SEC-003's twelve marker surfaces and
+    AR-TST-002's 23-family materialization. The asset counts in AR-TST-002/§10 (170/18/11/
+    23/16/30/9/16/8) reproduce from the suite and the verified E1 gate record. Hidden
+    production-only state and model-claim-dependent tests are prohibited outcomes.
+  performance_cost: >-
+    No numeric threshold anywhere in the deliverables (regex scan for ms/seconds/%/USD/p50/
+    p95 finds none); SLO/MET values and reference environment remain UNKNOWN (AR-TST-003,
+    §11); measurement seams are hard where E1 requires them (PERF-002, TST-003, OBS-001);
+    §11 assigns empirical items to E3_EMPIRICAL_VALIDATION, defaults/adapter limits to
+    E4_IMPLEMENTATION_CONFIGURATION, and cloud/tenant thresholds to FUTURE_PRODUCT.
+  future_compatibility: >-
+    AR-FUT-001..003 and §12 operationalize compatibility as explicit identity/ownership
+    fields, versioned serializable contracts, replaceable boundaries, visible migration/
+    unsupported assumptions, and no global mutable authority, while §12 and every FUT
+    uncertainty line state that remote execution, consensus, multiple agents/users,
+    tenancy, connector loaders, schedules, finance schemas, and SaaS operations are NOT
+    required in v0.1. AR-PRF-004 is the comparative criterion beyond the floor and names
+    concrete observables (boundaries that would change, bounded migration profile), so the
+    preference can distinguish candidates.
+  level_abc: >-
+    All 64 ARs carry Level A provenance re-derived from E1 (checked source IDs); §13 lists
+    ten Level B families (content addressing, derived transcript projection, typed error
+    registry, operation journal, provider router, explicit task/execution state, structured
+    approvals, local/remote abstraction, context summary blocks, cloud-agent lifecycle) and
+    excludes Level C per row; the audit is declared non-authoritative; no reconstruction
+    identifier, module name, schema, or path appears (scan of 20 matrix pattern names and
+    charter §16.2 Level C terms: zero hits). No Level B pattern has become hard through
+    wording elsewhere (every Uncertainty/Provenance line checked). The table is
+    under-inclusive relative to charter §16.2/§19 (F-E2-001-06, LOW).
+  e3_obligations: >-
+    E3V-001..008 are each empirical/technical or model validation of a selected mechanism,
+    depend on a selected architecture, carry evidence and failure/reversal conditions, and
+    do not conceal an E2 blocker: AQ-003/AQ-004 (isolation feasibility, force termination/
+    fencing) are explicitly flagged as possible E2-004 questions rather than deferred; the
+    ceiling-value owner (G-E1-N3) is routed to AQ-008/E2-005 per plan §14; E3V-008 keeps
+    model eligibility in E3. Scope wording ("Run all twenty-three families", "execute the
+    eight protocols") and the absent per-obligation handback path are LOW (F-E2-001-07).
+  unresolved_questions: >-
+    AQ-001 E2-002 candidate / E2-003 comparison; AQ-002 candidate declaration + E3V-001;
+    AQ-003 candidate + E2-003 (possible E2-004) + E3V-003/006; AQ-004 candidate + possible
+    E2-004 + E3V-002; AQ-005 E2-002 capability/effect contract + E3V-001; AQ-006 E2-002 +
+    E3V-005; AQ-007 E2-002 + weighted preference + E3V-003; AQ-008 ownership interface in E2,
+    values registered by E2-005/E3 freeze; AQ-009 E3 only. No frozen product semantic is
+    presented as an unknown (AQ-005 asks only which capabilities remain unsupported, which
+    FR-068 already permits).
+  decision_domains: >-
+    All 25 plan domains receive at least three ARs (D15 and D22/D23 have 3-4 each, all
+    material: CTX-001/002/DAT-001; FUT-001/PKG-001/PRF-003/004; COR-007/FUT-002/PRF-004/
+    WSP-005); every domain has an ownership/authority question; no domain is covered only by
+    a catch-all; the §7 table equals the inverse of the AR bodies; cross-cutting ARs appear
+    in several domains by design. No significant E1 domain is missing from the plan's 25.
+  e2_002_input_contract: >-
+    28 fields recomputed; they cover every item in the review brief (system shape 2,
+    process 4, trust 5, authority/state 6, operation 7, persistence 8, recovery 9, workspace/
+    execution/isolation 10 and D09 answer via 22, Git 11, approvals/effects 12, provider 13,
+    context 14, evidence 15, verification 16, observability/failures 17, security ownership
+    18, packaging/local-first 19, future 20, E1 mapping 21, domains 22, testability 23,
+    weaknesses 24, unknowns/spikes 25, migration/reversibility 26, Level A/B/C 27, E3 28).
+    The contract does not force one shape (field 4 asks for owners of logical boundaries; §7
+    permits colocation) and forbids hand-waving through fields 21-23 and the structural-
+    invalidity clause. Gaps: the plan §7 / E2-002 AC-3 three-way split (required now /
+    interface reserved now / deferred later) and an explicit contributor-burden field are
+    absent (F-E2-001-05, LOW).
+  decision_criteria: >-
+    §2 defines HARD_CONSTRAINT, WEIGHTED_PREFERENCE, UNKNOWN_REQUIRING_SPIKE,
+    E3_VALIDATION_OBLIGATION, and JUSTIFIED_NON_ARCHITECTURE_DRIVING with selection
+    consequence and evidence rule; hard failures are disqualifying and non-compensable by
+    score or approval; unknowns receive no favorable/zero/midpoint surrogate; preferences
+    apply only after hard pass; E3 obligations cannot defer an architecture blocker (§2, §5,
+    §8, §9). No AR sits ambiguously between classes: hard instrumentation (PERF-002/TST-003)
+    versus preference on measured values (PRF-001/005) and hard compatibility floor
+    (FUT-001/002, §12) versus PRF-004 are explicitly delimited.
+  clean_room: >-
+    No reconstructed code, module name, schema, path, or Level C identifier imported (zero
+    hits); external audit and adoption matrix treated as non-authoritative questions/pattern
+    hypotheses (§13); Level C excluded per row; frozen E1 artifacts byte-identical (blob IDs);
+    no private customer data or proprietary material; AR-SEC-005 keeps provenance a hard
+    constraint; R-029 licensing remains a separate release blocker.
+  governance_boundary: >-
+    TASK_REGISTRY E2-001 status READY_FOR_REVIEW / verification_status
+    NOT_VERIFIED_AUTHOR_PASS; E2-002..E2-006 BACKLOG with dependencies unchanged;
+    PROJECT_STATE current_stage_status E2_ACTIVE_E2_001_READY_FOR_REVIEW_NOT_VERIFIED,
+    active_task_ids [E2-001], ready_task_ids [], E2 gate NOT_EVALUATED, architecture_selected
+    false, current_architecture_version null, model_roles_locked false,
+    application_code_created false, evaluation/spike/benchmark/paid/external counters 0,
+    E3-E5 NOT_STARTED, autonomy NOT_ELIGIBLE / NOT_AUTHORIZED, S1-003 BLOCKED / DEFERRED
+    with zero execution; MODEL_REGISTRY 13 candidates HYPOTHESIS_ONLY / NOT_RUN and
+    no_paid_calls_run true; no ADR directory or accepted ADR exists; no candidate directory
+    exists. PROJECT_STATE and TASK_REGISTRY reconcile. README.md still shows E2-001 READY and
+    next command EXECUTE_TASK_E2-001 (stale; README is outside E2-001 allowed paths — NOTE).
+
+new_findings:
+  - finding_id: F-E2-001-01
+    severity: MEDIUM
+    requirement_or_mapping: "UF-11; correctness contract §9.6 (human secret acquisition and protected entry); charter §5.4 ('Explicit secret boundaries for acquisition, injection, use ...'); CSV row UF-11 -> AR-SEC-003"
+    file_or_component: "05_architecture/ENGINEERING_PREVIEW_ARCHITECTURE_REQUIREMENTS.md AR-SEC-003 (lines 545-559) and §14 fields 5/12/18; 05_architecture/ENGINEERING_PREVIEW_E1_ARCHITECTURE_TRACEABILITY.csv row UF-11"
+    evidence: >-
+      CSV row UF-11: primary AR-SEC-003, empty supporting/secondary, cases EP-CONTRIB-007
+      only. AR-SEC-003's source list is FR-046, FR-047, RR-015, NEG-SECRET-01, NEG-CRED-01;
+      recomputation shows UF-11 is the single canonical ID that appears in no AR source list
+      (126/127 referenced). AR-SEC-003 describes a protected recipient boundary for secret
+      use. The strings takeover, protected entry, interactive auth, keystroke, clipboard,
+      screen, and terminal stream occur nowhere in the requirements document, the CSV, or
+      the E2 plan. Frozen E1 requires: "Human secret acquisition MUST use a protected path
+      distinct from conversation and repository files. During protected entry, agent/model/
+      tool observation and capture of keystrokes, clipboard, screen/screenshot,
+      accessibility state, terminal stream, and the secret value stop; only a non-secret
+      outcome/receipt returns, followed by full resume revalidation. Unavoidable absence of
+      such a protected boundary adds WAITING_FOR_USER ... or creates a task blocker"
+      (contract §9.6; UF-11 steps 2, 3, 6).
+    why_it_matters: >-
+      E2-002 candidates are not forced to describe a human-takeover / protected-entry
+      boundary, the structural suspension of agent observation channels during that entry,
+      the receipt-only return with resume revalidation, or the fail-to-wait path when no
+      boundary exists; the 28-field contract asks for a secret boundary only in its
+      use/recipient sense. A candidate can satisfy all 64 ARs with the acquisition path
+      undesigned, and E2-003 has no criterion to reject it. The master prompt lists
+      "secure authentication takeover" (Stage 4) and "human login takeover" (Stage 5) as
+      core capabilities. MEDIUM rather than HIGH because AR-SEC-003 already rejects the leak
+      outcome (raw value in model context/chat/commands/logs/tool output) and E1 permits
+      absence of the boundary when the product waits or blocks.
+    required_fix: >-
+      Add the acquisition/takeover semantics as a hard property — either extend AR-SEC-003
+      (description, required observable property, prohibited outcome) or add
+      AR-SEC-006 "Protected human secret-entry and takeover boundary" sourced from UF-11,
+      FR-046, FR-047, NEG-SECRET-01, NEG-CRED-01 with domains D01/D08/D09/D11/D20 and
+      E3V-006; list UF-11 as a source of that AR; update the CSV UF-11 row (supporting ARs,
+      domains, justification) to match; and add "protected human secret entry / takeover
+      boundary, observation-capture suspension, fail-to-wait when absent" to §14 field 5 or
+      18 so every candidate must answer it. Do not change frozen E1.
+    verification_method: "grep the requirements document for 'takeover' and 'protected entry'; confirm UF-11 appears in at least one AR source list and that the CSV row's AR set equals the inverse of the AR source lists; confirm §14 contains the explicit field; re-run the 127/64 set and no-orphan checks."
+  - finding_id: F-E2-001-02
+    severity: MEDIUM
+    requirement_or_mapping: "Requirement->E1 reference integrity between the two normative trace artifacts (AR 'Source E1 requirement IDs' lists versus CSV primary/supporting/secondary AR columns)"
+    file_or_component: "05_architecture/ENGINEERING_PREVIEW_ARCHITECTURE_REQUIREMENTS.md §4 source lists; 05_architecture/ENGINEERING_PREVIEW_E1_ARCHITECTURE_TRACEABILITY.csv columns primary_architecture_requirement_id / supporting_architecture_requirement_ids / secondary_weighted_preference_ids"
+    evidence: >-
+      Recomputed inverse mapping: 17 (AR, E1) source pairs are absent from the corresponding
+      CSV row — AR-COR-002/FR-037, AR-COR-003/UF-15, AR-COR-006/UF-14, AR-DAT-002/FR-062,
+      AR-CTX-001/FR-060, AR-WSP-005/FR-048, AR-EXE-002/RR-014, AR-EXE-003/FR-040,
+      AR-SEC-002/NEG-FUTURE-01, AR-APR-003/FR-037, AR-APR-003/RR-015, AR-FAIL-001/FR-021,
+      AR-FAIL-002/RR-013, AR-TST-001/NEG-VER-02, AR-TST-002/RR-008, AR-PERF-001/FR-040,
+      AR-PERF-002/FR-021; and 13 (E1, AR) CSV references are absent from the AR's source
+      list — FR-001/AR-FUT-001, FR-009/AR-SEC-002, FR-022/AR-SEC-002, FR-027/AR-SEC-004,
+      FR-037/AR-FAIL-002, FR-047/AR-SEC-002, RR-011/AR-MOD-003, RR-015/AR-WSP-004,
+      UF-02/AR-EXE-002, UF-05/AR-EXE-003, UF-11/AR-SEC-003, UF-15/AR-OBS-001,
+      NEG-RACE-01/AR-DUR-004. §1 declares the CSV "normative for the one-primary-disposition
+      mapping" and §4 declares the source lists "normative sources"; the handoff's
+      "278 source-ID references resolving" and "no orphan" checks are true but do not test
+      this equality.
+    why_it_matters: >-
+      E2-002 must trace every candidate to all 127 IDs and all 64 ARs, and E2-006 must
+      independently reconstruct the 127-requirement compliance projection; with two
+      normative artifacts disagreeing on 30 edges, the supporting-AR set for 27 E1 IDs
+      depends on which artifact the reader uses, which is material ambiguity in E2-001's
+      core deliverable.
+    required_fix: >-
+      Reconcile so that, for every AR, its source E1 set equals exactly the set of CSV rows
+      whose primary/supporting/secondary columns include that AR (add the missing 17 CSV
+      references or 13 AR source IDs, or remove whichever direction is wrong); recompute
+      decision_domain_ids and e3_validation_obligation_ids on touched rows; add the
+      bidirectional equality assertion to the author/fixer validation list and the handoff.
+    verification_method: "Script: for each AR parse its source IDs; for each CSV row parse its AR references; assert both inverse mappings are identical (0 mismatches); re-run per-row domain-union and E3 checks."
+  - finding_id: F-E2-001-03
+    severity: LOW
+    requirement_or_mapping: "FR-025 and FR-026 primary disposition (AR-TST-001, taxonomy TESTABILITY_REQUIREMENT, six E3 obligations)"
+    file_or_component: "05_architecture/ENGINEERING_PREVIEW_E1_ARCHITECTURE_TRACEABILITY.csv rows FR-025, FR-026; 05_architecture/ENGINEERING_PREVIEW_ARCHITECTURE_REQUIREMENTS.md AR-TST-001 source list"
+    evidence: >-
+      FR-025 (required checks derived from admitted request/class/instructions; a declared
+      command is not an execution/network/credential grant; checks recorded before execution
+      and never silently weakened, removed, skipped, or rescued after flakiness) and FR-026
+      (check-result identity, configuration, ordered repetitions, FLAKY never PASS) are
+      product check-set and check-evidence semantics. The CSV makes AR-TST-001 (architecture
+      test seams for the frozen suite) their primary AR with taxonomy
+      TESTABILITY_REQUIREMENT and inherits all six of AR-TST-001's E3 obligations, so FR-025
+      becomes the most E3-obligated requirement in the trace. The governing semantics are
+      carried only by the supporting ARs (AR-COR-005, AR-VER-002; AR-EVD-001) and by
+      AR-SEC-001/AR-EXE-004 for the no-implicit-grant rule.
+    why_it_matters: "A compliance projection keyed on primary AR would judge FR-025/FR-026 by test seams rather than by check-set integrity and check evidence; semantics survive in supporting ARs, so the consequence is bounded."
+    required_fix: "Re-point FR-025 primary to AR-COR-005 (or AR-COR-002 for the versioned check set) and FR-026 primary to AR-EVD-001 or AR-VER-002; keep AR-TST-001 as supporting; relabel taxonomy (correctness/evidence); recompute the rows' E3 and domain columns."
+    verification_method: "Inspect the two CSV rows; confirm primary AR descriptions state the FR semantics; re-run bidirectional and per-row union checks."
+  - finding_id: F-E2-001-04
+    severity: LOW
+    requirement_or_mapping: "Acceptance criterion 1 'with source anchors' — CSV source_anchor for all 56 FR rows and 15 RR rows; requirements document §1 family table"
+    file_or_component: "05_architecture/ENGINEERING_PREVIEW_E1_ARCHITECTURE_TRACEABILITY.csv column source_anchor; 05_architecture/ENGINEERING_PREVIEW_ARCHITECTURE_REQUIREMENTS.md §1"
+    evidence: "All 56 FR anchors read '03_product/ENGINEERING_PREVIEW_PRD.md §7 row FR-nnn' and all 15 RR anchors read '... §14.1 row RR-nnn; mirrored in PRD §10'; §1 repeats 'PRD §7' and 'mirrored in PRD §10'. The PRD defines FR rows under '## 6. Functional requirements' (§6.1-6.7) and mirrors RR under '## 7. Reliability requirements'; PRD §10 is 'E1-002 evaluation-suite handoff constraints'. FC (§12), SLO/MET (§14.2), NEG (§15), and UF (headings) anchors are correct."
+    why_it_matters: "71 of 127 anchors cite the wrong section of the right file; row IDs still resolve, but the anchor text a verifier or E2-002 author follows is inaccurate."
+    required_fix: "Replace 'PRD §7' with 'PRD §6' on the 56 FR rows and 'mirrored in PRD §10' with 'mirrored in PRD §7' on the 15 RR rows; correct §1 of the requirements document."
+    verification_method: "grep -c '§7 row FR-' returns 0; grep -c 'mirrored in PRD §10' returns 0; spot-check three rows against PRD headings."
+  - finding_id: F-E2-001-05
+    severity: LOW
+    requirement_or_mapping: "E2-002 candidate-description input contract versus plan §7 and E2-002 acceptance criteria 3 and 4"
+    file_or_component: "05_architecture/ENGINEERING_PREVIEW_ARCHITECTURE_REQUIREMENTS.md §14 fields 19, 20, 24"
+    evidence: "Plan §7 and E2-002 AC-3 require each candidate to 'distinguish required now, interface reserved now, and deferred later' / 'separate v0.1 required behavior, interfaces reserved for compatibility, and deferred future features'; field 20 asks only for seams 'plus what is deliberately not implemented' (two-way). E2-002 AC-4 requires contributor burden to be explicit per candidate; no field names contributor burden (field 19 covers contribution workflow, field 24 weaknesses)."
+    why_it_matters: "E2-002 authors following the 28-field contract literally could produce candidates that fail their own registry acceptance criteria, forcing a challenger loop that E2-001 was meant to prevent."
+    required_fix: "Amend field 20 to require the three-way classification for every seam and add an explicit contributor-burden item (in field 19 or 24) with the AR-PRF-006 observables."
+    verification_method: "Read §14 fields 19/20/24; confirm the three labels and 'contributor burden' appear."
+  - finding_id: F-E2-001-06
+    severity: LOW
+    requirement_or_mapping: "Level B discipline — §13 table versus charter §16.2 Level B list and charter §19 mandatory comparison subjects"
+    file_or_component: "05_architecture/ENGINEERING_PREVIEW_ARCHITECTURE_REQUIREMENTS.md §13; 99_handoffs/completed/E2-001_handoff.yaml level_a_b_c.level_b"
+    evidence: "§13 lists ten families; the handoff states 'Ten pattern families are explicitly retained as candidate patterns only'. Charter §16.2 Level B also names authority-model alternatives (transactional state plus outbox / append-only event history / durable workflow history / hybrid), direct tool adapters versus MCP-or-equivalent gateway, optimistic concurrency / CAS / durable queues / leases-fencing / actors / workflow-engine ownership, separate versus correlated telemetry/audit/evidence/presentation stores, corrupt-state quarantine and bounded salvage, and typed process ports; charter §19 makes workflow-engine-versus-task-loop, adapter-versus-gateway, and concurrency/lease alternatives mandatory E2 comparison subjects. These appear in §13 only implicitly (e.g. AR-COR-007 provenance mentions CAS/journal)."
+    why_it_matters: "E2-002 could read the ten-row table as the complete Level B inventory and omit charter-mandated alternatives; the plan's Level B rule is that these patterns are admitted inputs to alternative generation."
+    required_fix: "Either extend the §13 table to the charter §16.2 families or state explicitly that the table is illustrative and that charter §16.2/§19 and the 20-row adoption matrix remain the Level B input set; align the handoff wording."
+    verification_method: "Compare §13 rows to charter §16.2 bullets; confirm the illustrative/complete statement is present."
+  - finding_id: F-E2-001-07
+    severity: LOW
+    requirement_or_mapping: "E3 validation-obligation register (E3V-006, E3V-007 scope; all rows' handback path) versus plan §13 uncertainty classes and plan §14"
+    file_or_component: "05_architecture/ENGINEERING_PREVIEW_ARCHITECTURE_REQUIREMENTS.md §9"
+    evidence: "E3V-006 requires 'Run all twenty-three security-negative families and sixteen dangerous compositions'; E3V-007 requires 'execute the eight protocols'. Plan §13 defines E3_POSTSELECTION_TECHNICAL_VALIDATION as testing 'the selected interface/mechanism after the baseline exists'; the release checkpoint owns full scored-suite execution against an exact candidate. The 'Failure / reversal condition' column names the consequence ('candidate rejection/reversal') but not the governance path (which E2 task reopens, who reviews); §9 defers binding to E2-005."
+    why_it_matters: "Full-suite obligations phrased for E3 are either unsatisfiable before E4 implementation or will be silently narrowed at E3 time; an explicit mechanism-level E3 scope versus full-suite E5 scope, plus a handback rule, keeps E3 results from redesigning architecture informally."
+    required_fix: "Add to each obligation the E3 scope (mechanism/spike-level subset that can run pre-implementation) versus the full frozen-suite scope reserved for the release gate, and a handback column (failure returns to E2-005 ADR revision with independent review) or an explicit statement that E2-005 must supply both."
+    verification_method: "Read §9; confirm scope and handback fields or statements exist for E3V-001..008."
+  - finding_id: F-E2-001-08
+    severity: LOW
+    requirement_or_mapping: "Control/resume semantics: user-flow global invariant 2 and contract §3.3 (duplicate delivery returns the original outcome); UF-07 resume revalidation and WAITING_FOR_EXTERNAL_EVENT correlation/readback/stale-duplicate rejection; UF-04 agent-level pause/disable/retirement (contract §5)"
+    file_or_component: "05_architecture/ENGINEERING_PREVIEW_ARCHITECTURE_REQUIREMENTS.md AR-DUR-004, AR-DUR-002, AR-COR-007"
+    evidence: "AR-COR-007 says duplicate writers 'must be rejected'; E1 additionally requires duplicate delivery of an accepted command/mutation to return the original outcome (idempotent acknowledgement), which no AR states. AR-DUR-004 covers durable ordered control but not UF-07's nine-point revalidation before resume or the external-event correlation rule; AR-DUR-002 covers recovery after interruption, not resume from pause/wait. Agent-level pause/disable/retirement releasing ownership while preserving history is not explicit (AR-COR-003 only names the agent.availability axis)."
+    why_it_matters: "A candidate could implement retried control commands as errors rather than idempotent acknowledgements and resume from pause without precondition rechecks while passing the ARs as written; the E1 contract remains normative, so the risk is bounded."
+    required_fix: "Extend AR-DUR-004 (or AR-DUR-001/002) with: duplicate-delivery returns the original recorded outcome; resume requires revalidation of identity/ownership, repository/workspace, versions, pending operations, approvals, capability contracts, route eligibility, budgets, and predicate staleness; external events correlate to the current wait identity/version with readback and stale/duplicate rejection; agent-level pause/disable/retire release ownership and preserve history."
+    verification_method: "Read the amended AR text against UF invariant 2, contract §3.3, UF-07, UF-04 last paragraph."
+  - finding_id: F-E2-001-09
+    severity: LOW
+    requirement_or_mapping: "Plan §10 E2-001 deliverable 'threat-boundary checklist and negative architecture criteria'; acceptance criterion 5 cross-cutting threat-boundary criteria"
+    file_or_component: "05_architecture/ENGINEERING_PREVIEW_ARCHITECTURE_REQUIREMENTS.md §5 item 3, §14 field 5"
+    evidence: "Negative criteria exist as prohibited outcomes on every AR, and every plan §10 boundary maps to an AR (authority SEC-001; untrusted content SEC-001; secrets SEC-003; filesystem/symlink WSP-003; processes EXE-003; Git hooks/helpers EXE-004/GIT-001; package scripts EXE-004; network SEC-004; approvals APR-001; destructive APR-003; effects APR-002; evidence integrity EVD-003/DAT-002; providers SEC-004/MOD-002). No consolidated checklist enumerates them, and §14 field 5 omits approvals, destructive actions, effects, and evidence integrity (present in fields 12/15/18)."
+    why_it_matters: "E2-006 must 'independently trace the content-to-capability-to-effect path'; a single enumerated boundary -> structural AR -> fail-closed expectation -> E3V table makes that trace uniform across candidates instead of reconstructed from twelve ARs."
+    required_fix: "Add a threat-boundary checklist table (boundary, untrusted inputs, structural control AR, fail-closed expectation, E3V) and cross-reference it from §14 field 5 (adding the four omitted items or pointing to their fields)."
+    verification_method: "Confirm the table exists with one row per plan §10 boundary and that field 5 references it."
+
+notes:
+  - "N-E2-001-01: README.md still states E2-001 READY and next command MODE: EXECUTE_TASK_E2-001; README is outside the E2-001 allowed paths, so this is a founder/governance refresh item, not an author defect (same pattern as G-E1-N1)."
+  - "N-E2-001-02: Handoff counts all reproduce (127 = 56/15/9/4/4/16/23; 64 = 58/6; 119/0/8; 25; 8; 9; 28; 709 edges; 10 Level B families; 170/18/11/23/16/30/9/16/8 suite assets); the author's mechanical claims are accurate as stated, and the two MEDIUM defects are in properties the author's checks did not test (bidirectional edge equality; semantic coverage of UF-11)."
+  - "N-E2-001-03: The CSV columns implied_architecture_property (51 distinct values over 127 rows) and justification_or_uncertainty (3 distinct values) are AR-level boilerplate; per-ID semantics are carried by the AR register. The verifier should treat the AR register plus frozen E1 text, not the CSV alone, as the semantic evidence."
+  - "N-E2-001-04: UF-16 and FC-005..007 primary HARD_CONSTRAINT dispositions are defensible only as compatibility/ownership floors; the CSV criterion_role values (COMPATIBILITY_ONLY_HARD_SEAM; FUTURE_FEATURE_NOT_AUTHORIZED) make that explicit — no change required."
+  - "N-E2-001-05: AR §3 uses four semantic classes (authoritative / derived projection / ephemeral / lossy summary) while contract §13.2 tags records AUTHORITY / AUDIT / EVIDENCE / TELEMETRY / PROJECTION and plan D18 names telemetry, audit, evidence, presentation, and cost accounting; the models are compatible (audit and evidence are both non-projection authoritative records), but the fixer may add one sentence mapping the vocabularies so candidates do not invent a third taxonomy."
+  - "N-E2-001-06: AR-VER-001's 'separate accountable execution context with no shared mutable author state' is verbatim contract §11.3 and is not mechanism leakage; process topology remains unselected."
+  - "N-E2-001-07: NEG-SUPPLY-02 (24 NEG-like identifiers in the suite/checkpoint) is the case suffix of EP-NEG-SUPPLY-02, dual-mapped to NEG-SUPPLY-01/NEG-NET-01; the 23-family canonical count is correct."
+  - "N-E2-001-08: PROJECT_STATE carries no explicit accepted-ADR counter; the handoff records accepted_architecture_adrs 0 and no ADR directory exists. A future governance pass may add an explicit counter; not an E2-001 defect."
+  - "N-E2-001-09: Every non-standard evaluation-linkage identifier used by the AR register (ORDER-PREMATURE-MUTATING-REPRODUCTION, BOUND-CORRECTION-EXHAUSTION, EVR-01..16, VER-ADQ-01..09, COMP-01..16, PROT-SLO/MET, RC/GE) resolves in the suite or checkpoint."
+  - "N-E2-001-10: AQ-003 and AQ-004 are correctly left open as possible E2-004 feasibility questions; E2-003 must classify them before E2-005 may proceed."
+
+acceptance_criteria_evaluation:
+  - criterion: "Every one of the 127 canonical E1 requirement IDs has exactly one primary architecture disposition of HARD_CONSTRAINT, WEIGHTED_PREFERENCE, or JUSTIFIED_NON_ARCHITECTURE_DRIVING, with source anchors and no waiver semantics."
+    result: PARTIAL
+    basis: "127/127 exactly one primary disposition, no waiver; source anchors present on every row but 71 (56 FR + 15 RR) cite the wrong PRD section (F-E2-001-04)."
+  - criterion: "All 25 required architecture decision domains are present with required evidence and explicit ownership/authority questions."
+    result: PASS
+    basis: "25/25 domains in §7 with ARs and ownership questions; §7 equals the AR bodies; per-row CSV domains equal AR unions."
+  - criterion: "Correctness, durability, security, execution, model abstraction, observability, extensibility, performance/cost, operability, and E1-suite testability are derived without invented quantitative requirements."
+    result: PASS
+    basis: "All ten categories map to ARs in §6; zero numeric thresholds in the deliverables."
+  - criterion: "Hard constraints, weighted preferences, UNKNOWN_REQUIRING_SPIKE, and E3_VALIDATION_OBLIGATION are defined so hard failures cannot be averaged away and unknowns cannot be scored favorably."
+    result: PASS
+    basis: "§2, §5, §8, §9 semantics; no ambiguous class boundary found."
+  - criterion: "Cross-cutting threat-boundary, recovery, evidence-integrity, independent-verification, provider-neutrality, clean-room Level A/B/C, local-first, and future-compatibility criteria are complete."
+    result: PARTIAL
+    basis: "All families present and structurally forced except the human secret-acquisition / takeover boundary (F-E2-001-01); consolidated threat-boundary checklist absent (F-E2-001-09)."
+  - criterion: "Weighting governance, if proposed, is prospective, discloses correlated criteria and sensitivity requirements, and assigns no candidate-specific score or winner."
+    result: PASS
+    basis: "§8: weights UNASSIGNED, five correlated groups disclosed, sensitivity required, no candidate, score, or winner."
+
+required_tests_evaluation:
+  - test: "Strict YAML/CSV/Markdown structural checks and exact 127-ID trace set equality against the frozen E1 sources."
+    result: PASS
+    basis: "49/49 YAML parse (yq); CSV 127x19; independent extraction set-equal to CSV and checkpoint."
+  - test: "Exact 25-domain coverage and required quality-attribute/category checks."
+    result: PASS
+    basis: "25/25 domains; 10/10 quality categories in §6."
+  - test: "Frozen E1 byte-identity, no-candidate/no-technology/no-ADR/no-code/no-spike/no-benchmark/no-paid-call/no-autonomy assertions."
+    result: PASS
+    basis: "9/9 blob IDs match; zero diff since c2f7093; zero technology matches; no ADR/candidate/spike/source files; counters 0; autonomy unchanged."
+  - test: "Level C identifier/forbidden-artifact, allowed-path, secret-pattern, dependency/status, and git diff --check."
+    result: PASS
+    basis: "Zero Level C hits; 6/6 changed paths allowed; zero secrets; dependencies and statuses reconcile; git diff --check clean."
+
+mechanical_checks:
+  - "yq -o=json parse of all 49 tracked YAML files: 0 failures."
+  - "CSV: 128 lines (1 header + 127 rows), 19 columns on every row, 127 unique canonical IDs, family counts 56/15/4/4/9/16/23."
+  - "Frozen extraction: PRD §6 rows 56 FR; PRD §12 rows 9 FC; contract §14.1 rows 15 RR; §14.2 rows 4 SLO + 4 MET; §15 rows 23 NEG; UF headings 16; total 127; set-equal to CSV."
+  - "Checkpoint coverage.requirement_dispositions: 127 keys; per-key case/protocol sets equal the CSV evaluation_case_or_protocol_ids on all 127 rows; 709 edges both sides."
+  - "AR register: 64 blocks, 64 unique IDs, 13/13 fields each, Class/Hard consistent, 278 source refs all canonical, 25 domains, E3V-001..008 + NONE, 0 orphans, §7 table equals bodies."
+  - "Bidirectional AR<->CSV equality: 30 mismatches (17 + 13) — F-E2-001-02."
+  - "Canonical IDs never referenced by an AR source list: 1 (UF-11) — F-E2-001-01."
+  - "Per-row decision_domain_ids equal union of referenced AR domains: 127/127."
+  - "§14 numbered fields 28; §13 Level B rows 10; §9 E3V rows 8; §15 AQ rows 9."
+  - "Suite recount: 170 EP cases by group, 18 OR oracles, 11 FIX fixtures, 16 COMP compositions, 9 VER-ADQ variants; 8 protocols / RC 16 / GE 30 per the verified E1 gate record."
+  - "Technology/mechanism scan, Level C identifier scan (20 matrix pattern names + charter §16.2 terms), numeric-threshold scan, secret-pattern scan: 0 material hits."
+  - "git hash-object on 9 frozen E1 artifacts equals handoff blob IDs; git diff c2f7093..HEAD on 03_product/06_evaluation/10_checkpoints/02_research/DECISION_LOG/MODEL_REGISTRY/SOURCE_LEDGER: empty."
+  - "git diff --check 0338c61..HEAD: clean; changed paths 6/6 within allowed_files_to_change; no fixer handoff (not required)."
+  - "MODEL_REGISTRY: 13 candidates HYPOTHESIS_ONLY / NOT_RUN; benchmark_policy.no_paid_calls_run true."
+  - "find for *.py/*.ts/*.js/*.rs/*.go/*.java/*.rb/*.sh/package.json/Cargo.toml/pyproject.toml/Dockerfile/*.sql: none; no 05_architecture/candidates, adr, or spikes directory."
+
+security_checks:
+  - "No secret, credential, private customer data, account, provider/model call, paid call, network retrieval, or external effect was used or produced by this review."
+  - "Untrusted repository content (including the reconstructed-audit material) was treated as evidence only; nothing was imported into the review."
+  - "The review confirms that E2-001 keeps trust, capability, secret-use, filesystem, process, network, Git, approval, external-effect, evidence, provider, and verifier boundaries outside sole LLM judgment; the one gap (human protected-entry / takeover boundary) is recorded as F-E2-001-01."
+
+files_created:
+  - 99_handoffs/completed/E2-001_challenger_review.yaml
+files_modified: []
+governance_note: >-
+  Following the E1-001/E1-002 challenger precedent, this pass modifies no governance file:
+  TASK_REGISTRY.yaml and PROJECT_STATE.yaml remain at the author's READY_FOR_REVIEW /
+  NOT_VERIFIED_AUTHOR_PASS state. The founder (or the fixer pass under E2-001's allowed
+  paths) should record reviewer_model, challenger_evidence, challenger_completed_at,
+  challenger_verdict (E2_001_CHANGES_REQUESTED), and challenger_finding_counts
+  ("BLOCKER 0, HIGH 0, MEDIUM 2, LOW 7, NOTE 10") on the E2-001 entry. E2-002 is not
+  activated. This review does not mark E2-001 VERIFIED.
+
+scope_control:
+  e2_001_status: READY_FOR_REVIEW
+  e2_001_verified: false
+  e2_002_status: BACKLOG
+  e2_003_through_e2_006_status: BACKLOG
+  e2_gate_status: NOT_EVALUATED
+  architecture_selected: false
+  architecture_candidates_created: 0
+  accepted_architecture_adrs: 0
+  application_code_created: false
+  architecture_spikes_run: 0
+  evaluation_cases_implemented: 0
+  evaluation_cases_run: 0
+  model_benchmarks_run: 0
+  paid_api_calls: 0
+  external_actions_performed: false
+  model_roles_locked: false
+  e3_started: false
+  autonomy_eligible: NOT_ELIGIBLE
+  autonomous_build_authorized: false
+  s1_003_status: DEFERRED_NOT_EXECUTED
+  frozen_e1_modified: false
+
+blockers: []
+recommended_next_task: FIX_TASK_E2-001
+next_command: "MODE: FIX_TASK_E2-001 — address F-E2-001-01..09 within E2-001 allowed paths only (architecture requirements, traceability CSV, governance/handoff), without editing frozen E1 artifacts or the E2 plan; then request independent post-fix verification (MODE: VERIFY_TASK_E2-001). Do not activate E2-002, generate or compare candidates, select architecture or technology, create an ADR, run spikes/evaluation cases/benchmarks/paid calls, write application code, authorize autonomous build, or resume S1-003."

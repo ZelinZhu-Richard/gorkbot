@@ -1,0 +1,593 @@
+handoff_id: H-PLAN-STAGE-E3-20260830-AUTHOR
+task_id: PLAN_STAGE_E3
+stage: E3
+mode: PLAN_STAGE_E3
+role: AUTHOR
+author_model: "Codex (runtime model identifier not exposed) — PLAN_STAGE_E3 AUTHOR"
+reviewer_requested: "Founder review of the uncommitted planning patch, followed by a fresh E3-001 AUTHOR session; every material E3 task retains independent challenger/fixer/verifier requirements and this author handoff receives no independence credit."
+started_at: null
+started_at_status: "UNKNOWN_NOT_CAPTURED; no exact start timestamp is fabricated"
+completed_at: "2026-08-30T17:04:08Z"
+base_commit: c8c1c36dc3996b1484e257cc94ec82bc14427daa
+base_branch: chore/initialize-project-materials
+initial_worktree_status: CLEAN
+planning_status: COMPLETE_AUTHOR_SIDE_NOT_INDEPENDENTLY_VERIFIED
+e2_gate_status: VERIFIED
+e2_gate_verdict: E2_GATE_PASSED
+accepted_architecture: EP-ARCH-C01
+accepted_architecture_name: Integrated Transactional Local Core
+accepted_adrs: ADR-E2-001..009
+e3_status: PLANNED
+e3_gate_status: NOT_EVALUATED
+
+authoritative_inputs_read:
+  repository_and_security:
+    - MASTER_OPERATING_PROMPT.md
+    - AGENTS.md
+    - README.md
+    - SECURITY.md
+  governance:
+    - 01_governance/PROJECT_STATE.yaml
+    - 01_governance/TASK_REGISTRY.yaml
+    - 01_governance/DECISION_LOG.md
+    - 01_governance/ASSUMPTION_REGISTER.md
+    - 01_governance/RISK_REGISTER.md
+    - 01_governance/MODEL_REGISTRY.yaml
+    - 01_governance/SOURCE_LEDGER.csv
+  frozen_product_and_evaluation_baseline:
+    - 03_product/ENGINEERING_PREVIEW_CHARTER.md
+    - 03_product/ENGINEERING_PREVIEW_PRD.md
+    - 03_product/ENGINEERING_PREVIEW_USER_FLOWS.md
+    - 03_product/ENGINEERING_PREVIEW_CORRECTNESS_CONTRACT.md
+    - 03_product/ENGINEERING_PREVIEW_CONTRIBUTION_WORKFLOW.md
+    - 06_evaluation/ENGINEERING_PREVIEW_EVALUATION_SUITE.md
+    - 06_evaluation/MODEL_ROLE_BENCHMARK_PLAN.md
+    - 10_checkpoints/stage_checkpoints/ENGINEERING_PREVIEW_V0_1_RELEASE_ACCEPTANCE.yaml
+    - 10_checkpoints/stage_checkpoints/ENGINEERING_PREVIEW_E1_SPECIFICATION_GATE_VERIFICATION.yaml
+  accepted_e2_architecture:
+    - 05_architecture/ENGINEERING_PREVIEW_E2_ARCHITECTURE_PLAN.md
+    - 05_architecture/ENGINEERING_PREVIEW_ARCHITECTURE_REQUIREMENTS.md
+    - 05_architecture/ENGINEERING_PREVIEW_E1_ARCHITECTURE_TRACEABILITY.csv
+    - 05_architecture/ENGINEERING_PREVIEW_ARCHITECTURE_COMPARISON.md
+    - 05_architecture/ENGINEERING_PREVIEW_ARCHITECTURE_DECISION_MATRIX.csv
+    - 05_architecture/ENGINEERING_PREVIEW_ARCHITECTURE_UNCERTAINTY_REGISTER.yaml
+    - 05_architecture/ENGINEERING_PREVIEW_PRESELECTION_UNCERTAINTY_CLOSURE.md
+    - 05_architecture/ENGINEERING_PREVIEW_ARCHITECTURE_BASELINE.md
+    - 05_architecture/ENGINEERING_PREVIEW_E3_VALIDATION_OBLIGATIONS.md
+    - 05_architecture/candidates/EP-ARCH-C01.yaml
+    - 05_architecture/candidates/EP-ARCH-C02.yaml
+    - 05_architecture/candidates/EP-ARCH-C03.yaml
+    - 05_architecture/adr/ADR-E2-001_SYSTEM_CLIENT_CORE_BOUNDARY.md
+    - 05_architecture/adr/ADR-E2-002_STATE_PERSISTENCE_HISTORY_PROJECTIONS_MIGRATION.md
+    - 05_architecture/adr/ADR-E2-003_ORCHESTRATION_OWNERSHIP_RECOVERY_IDEMPOTENCY.md
+    - 05_architecture/adr/ADR-E2-004_WORKSPACE_EXECUTION_ISOLATION_GIT_REMOTE_SEAM.md
+    - 05_architecture/adr/ADR-E2-005_CAPABILITY_APPROVAL_SECRET_EFFECT_RECONCILIATION.md
+    - 05_architecture/adr/ADR-E2-006_MODEL_PROVIDER_ROUTING_CONTEXT_BOUNDARY.md
+    - 05_architecture/adr/ADR-E2-007_VERIFICATION_EVIDENCE_ARTIFACT_INTEGRITY.md
+    - 05_architecture/adr/ADR-E2-008_OBSERVABILITY_AUDIT_METERING_FAILURE.md
+    - 05_architecture/adr/ADR-E2-009_LOCAL_PACKAGING_FUTURE_COMPATIBILITY.md
+    - 10_checkpoints/stage_checkpoints/ENGINEERING_PREVIEW_E2_ARCHITECTURE_VERIFICATION.yaml
+    - 10_checkpoints/stage_checkpoints/ENGINEERING_PREVIEW_E2_ARCHITECTURE_GATE_VERIFICATION.yaml
+  e2_verification_provenance:
+    - 99_handoffs/completed/E2-003_verifier_review.yaml
+    - 99_handoffs/completed/E2-004_verifier_review.yaml
+    - 99_handoffs/completed/E2-005_verifier_review.yaml
+    - 99_handoffs/completed/E2-006_verifier_review.yaml
+  reference_evidence:
+    - 02_research/GROK_BOT_BASELINE_2026-08-21.md
+    - 02_research/GROK_BOT_018_RECONSTRUCTED_ARCHITECTURE_AUDIT.md
+    - 02_research/GROK_BOT_018_ARCHITECTURE_ADOPTION_MATRIX.csv
+    - 99_handoffs/completed/S0-002_verifier_review.yaml
+    - 99_handoffs/completed/EXTERNAL_GROK_BOT_018_ARCHITECTURE_AUDIT_handoff.yaml
+    - 99_handoffs/completed/EXTERNAL_GROK_BOT_018_ARCHITECTURE_AUDIT_challenger_review.yaml
+    - 99_handoffs/completed/EXTERNAL_GROK_BOT_018_ARCHITECTURE_AUDIT_fixer_handoff.yaml
+    - 99_handoffs/completed/EXTERNAL_GROK_BOT_018_ARCHITECTURE_AUDIT_verifier_review.yaml
+    - 99_handoffs/HANDOFF_TEMPLATE.yaml
+
+repository_searches:
+  terms:
+    - E3
+    - PLAN_STAGE_E3
+    - E3V-
+    - E3-QPA
+    - MODEL_ROLE_BENCHMARK
+    - AUTONOMY_ELIGIBLE
+    - AUTONOMOUS_BUILD_AUTHORIZED
+    - E3 gate
+    - technical validation
+    - model eligibility
+    - provider eligibility
+    - run authorization
+    - budget
+    - credential
+    - paid
+    - admission
+  result: >-
+    Canonical E3V-001..008 fields and handbacks, E3-QPA-001 ownership, all eleven logical roles, the frozen E1 suite, D-016 boundaries, E3 gate semantics, S0-005 external dependencies and the two-gate autonomy transition were reconstructed before planning.
+
+e3_mission:
+  technical_validation_question: >-
+    Can the accepted EP-ARCH-C01 architecture be realized on selected representative configurations while preserving the architecture assumptions deliberately left empirically unproven at E2?
+  model_system_eligibility_question: >-
+    Which exact model/system configurations, if any, are sufficiently correct, secure, reliable, observable, cost-bounded and independently verified for named logical roles in a future bounded autonomous build loop?
+  exclusions:
+    - no_architecture_redesign_outside_governed_handback
+    - no_production_application_implementation
+    - no_autonomous_build_authorization
+
+two_gate_autonomy_invariant:
+  sequence:
+    - E3_INDEPENDENTLY_VERIFIED_AND_E3_GATE_PASSED
+    - AUTONOMY_ELIGIBLE
+    - SEPARATE_EXPLICIT_FOUNDER_AUTHORIZATION
+    - AUTONOMOUS_BUILD_AUTHORIZED
+    - E4_BOUNDED_AUTONOMOUS_IMPLEMENTATION
+  automatic_eligibility_to_build_transition_allowed: false
+  authorization_created_in_this_pass: false
+
+planned_tasks:
+  - task_id: E3-001
+    name: Freeze common E3 admission, qualification-policy and evidence governance
+    status: READY
+    empirical_authority: NONE
+  - task_id: E3-002
+    name: Freeze technical-validation protocols for E3V-001..007
+    status: BACKLOG
+    empirical_authority: NONE
+  - task_id: E3-003
+    name: Freeze exact-configuration model-role protocol for E3V-008
+    status: BACKLOG
+    empirical_authority: NONE
+  - task_id: E3-004
+    name: Build and verify only bounded validation harnesses and fixtures if required
+    status: BACKLOG
+    empirical_authority: NO_SCORED_EVIDENCE_RUN
+  - task_id: E3-005
+    name: Execute admitted E3V-001..007 technical-validation blocks
+    status: BACKLOG_DO_NOT_RUN
+    empirical_authority: PER_BLOCK_RUN_ADMISSION_ONLY
+  - task_id: E3-006
+    name: Execute admitted E3V-008 exact-configuration model-role blocks
+    status: BACKLOG_DO_NOT_RUN
+    empirical_authority: PER_BLOCK_RUN_ADMISSION_ONLY
+  - task_id: E3-007
+    name: Synthesize technical verdicts and model-role eligibility proposals
+    status: BACKLOG
+    empirical_authority: ANALYSIS_ONLY_NO_STAGE_GATE_OR_BUILD_AUTHORITY
+  - task_id: E3-008
+    name: Fresh independent E3 evidence and eligibility re-derivation
+    status: BACKLOG
+    empirical_authority: VERIFICATION_ONLY_NO_STAGE_GATE_AUTHORITY
+
+dependency_graph:
+  expression: "E2_GATE_PASSED -> E3-001 -> {E3-002 || E3-003} -> E3-004 -> {E3-005 || E3-006} -> E3-007 -> E3-008 -> VERIFY_STAGE_E3"
+  dependency_semantics: "Every task edge requires independent VERIFIED status; every empirical block additionally requires RUN_ADMISSION=PASS."
+  parallelism:
+    protocol_lanes: E3-002_AND_E3-003_AFTER_E3-001_VERIFIED
+    execution_lanes: E3-005_AND_E3-006_AFTER_PROTOCOLS_AND_E3-004_VERIFIED_PLUS_SEPARATE_ADMISSION
+  stage_gate_is_mode_level: true
+  stage_gate_mode: VERIFY_STAGE_E3
+  acyclic: true
+
+first_ready_task:
+  task_id: E3-001
+  next_command: "MODE: EXECUTE_TASK_E3-001"
+  executed_in_this_pass: false
+
+e3v_ownership_matrix:
+  E3V-001:
+    protocol: E3-002
+    harness: E3-004
+    execution: E3-005
+    analysis: E3-007
+    independent_verification: E3-008
+    handback: ADR-E2-002/003/004/005/007/008/009
+  E3V-002:
+    protocol: E3-002
+    harness: E3-004
+    execution: E3-005
+    analysis: E3-007
+    independent_verification: E3-008
+    handback: ADR-E2-003/004/007
+  E3V-003:
+    protocol: E3-002
+    harness: E3-004
+    execution: E3-005
+    analysis: E3-007
+    independent_verification: E3-008
+    handback: ADR-E2-001/002/004/009
+  E3V-004:
+    protocol: E3-002
+    harness: E3-004
+    execution: E3-005
+    analysis: E3-007
+    independent_verification: E3-008
+    handback: ADR-E2-001/004/005/006/007/008/009
+  E3V-005:
+    protocol: E3-002
+    harness: E3-004
+    execution: E3-005
+    analysis: E3-007
+    independent_verification: E3-008
+    handback: ADR-E2-002/003/004/005/006/007/008
+  E3V-006:
+    protocol: E3-002_SECURITY_OWNER
+    harness: E3-004
+    execution: E3-005_WITH_INDEPENDENT_SECURITY_REVIEW
+    analysis: E3-007
+    independent_verification: E3-008
+    handback: ADR-E2-001/004/005/007/008/009
+  E3V-007:
+    protocol: E3-002_MEASUREMENT_OWNER
+    harness: E3-004
+    execution: E3-005
+    analysis: E3-007
+    independent_verification: E3-008
+    handback: ADR-E2-001/002/007/008/009
+  E3V-008:
+    protocol: E3-003
+    harness: E3-004
+    execution: E3-006
+    analysis: E3-007
+    independent_verification: E3-008
+    handback: ADR-E2-006_ONLY_FOR_STRUCTURAL_GATEWAY_IMPOSSIBILITY
+
+e3_qpa_001:
+  accountable_owner: Founder
+  common_authority_and_schema_task: E3-001
+  protocol_value_draft_tasks:
+    - E3-002
+    - E3-003
+  canonical_values:
+    finite_verification_rerun_ceiling_per_case_or_task: null
+    finite_deterministic_required_check_repetition_rule_per_check_or_class: null
+    finite_correction_attempt_ceiling_per_case_or_task: null
+  numeric_values_selected_in_this_pass: 0
+  founder_acknowledgement_recorded: false
+  founder_value_approval_recorded: false
+  authoring_boundary: "E3-001 and E3-002/E3-003 author drafting may proceed without values."
+  blocking_boundary: "Founder acknowledgement and exact prospective values are required before E3-002/E3-003 can be independently VERIFIED as execution-ready, before RUN_ADMISSION=PASS, before empirical execution and before eligibility credit."
+  missing_value_result: DO_NOT_RUN_E3_SCORED_EXECUTION_BLOCKED
+
+founder_decisions_required:
+  - decision: E3_QPA_001_ACKNOWLEDGEMENT_AND_EXACT_VALUES
+    status: FOUNDER_DECISION_REQUIRED
+    not_created_by_author: true
+  - decision: EXACT_PAID_EXTERNAL_VALIDATION_AUTHORIZATION
+    status: FOUNDER_DECISION_REQUIRED_BEFORE_ANY_SUCH_BLOCK
+    required_fields: "Provider/account, maximum spend, run/task/configurations, repetitions, stop threshold, allowed data, credential scope and network region/destinations, plus S0-005 evidence."
+  - decision: POST_E3_AUTONOMOUS_BUILD_ENVELOPE
+    status: NOT_YET_ELIGIBLE_AND_NOT_CREATED
+    required_after_e3_gate: "Exact controller/planner/executor/coder/verifier/security-review configurations; roles/task classes; repository/workspace/branch/worktree/commit/push/PR/external-effect policies; spending and retry/correction ceilings; approvals/escalation/prohibitions/stop conditions; credentials/accounts; supported scope and expiry."
+
+run_admission_gate:
+  current_default: DO_NOT_RUN
+  outcomes:
+    - PASS
+    - DO_NOT_RUN
+    - EXPIRED_REQUIRES_REFREEZE
+  per_block_required: true
+  pass_requirements:
+    - independently_verified_task_and_exact_protocol
+    - exact_e3v_architecture_scope_configuration_cases_oracles_and_handback
+    - founder_approved_finite_qpa_and_protocol_limits
+    - exact_registered_candidate_and_E3_EVALUATION_EVALUATION_ONLY_route
+    - exact_no_cost_or_paid_lane_and_authorized_budget
+    - safe_least_privilege_credential_reference_if_applicable
+    - approved_synthetic_public_open_or_repository_owned_data
+    - approved_network_and_external_effect_scope
+    - required_sandbox_isolation_and_zero_effect_controls
+    - immutable_raw_evidence_destination_and_integrity_policy
+    - prospective_success_failure_inconclusive_stop_handback_and_eligibility_rules
+    - no_missing_material_prerequisite_or_finding
+  missing_evidence_result: DO_NOT_RUN
+
+technical_validation_plan:
+  E3V-001: COMPOSITE_TECHNICAL_MECHANISM_AND_SYSTEM_CONFIGURATION_VALIDATION
+  E3V-002: COMPOSITE_TECHNICAL_MECHANISM_AND_HOST_CONFIGURATION_VALIDATION
+  E3V-003: COMPOSITE_TECHNICAL_MECHANISM_AND_SYSTEM_CONFIGURATION_VALIDATION
+  E3V-004: COMPOSITE_TECHNICAL_MECHANISM_AND_PROVIDER_CONFIGURATION_VALIDATION
+  E3V-005: COMPOSITE_TECHNICAL_MECHANISM_AND_VERIFIER_CONFIGURATION_VALIDATION
+  E3V-006: COMPOSITE_SECURITY_MECHANISM_AND_CLIENT_HOST_CONFIGURATION_VALIDATION
+  E3V-007: COMPOSITE_TECHNICAL_MECHANISM_AND_MEASUREMENT_CONFIGURATION_VALIDATION
+  E3V-008: MODEL_ROLE_VALIDATION_OF_EXACT_SYSTEM_CONFIGURATIONS
+  mandatory_seams:
+    E3V-002: "AR-EXE-003 descendant/process-tree containment, control, stale-authority fencing, force availability, recovery, unsupported host scope and fail-closed evidence; no mechanism selected or run now."
+    E3V-006: "AR-SEC-006 protected acquisition, ordinary-capture exclusion, exact-recipient delivery, unauthorized-surface exclusion, replacement/recovery, no replay, non-secret receipt and fail-to-WAITING_FOR_USER with synthetic markers only; no client selected or run now."
+  application_code_authorized: false
+  validation_harness_code_created: false
+
+model_role_benchmark_plan:
+  obligation: E3V-008
+  protocol_task: E3-003
+  harness_task: E3-004
+  execution_task: E3-006
+  evidence_synthesis_task: E3-007
+  independent_verification_task: E3-008
+  tested_unit: EXACT_SYSTEM_CONFIGURATION_ROLE_TASK_SCOPE_AND_QUALIFICATION_WINDOW
+  existing_template_count_to_challenge: 15
+  frozen_e1_trace_assets: "170 cases / 18 oracle classes / 11 fixture families / 23 NEG families / 16 repository conditions / 30 Git-effect rows / 9 predicate-adequacy variants / 16 dangerous compositions / 8 reliability protocols / EP-CTL-016"
+  full_170_case_run_required_automatically: false
+  role_specific_verdicts_required: true
+  fallback_must_be_separately_eligible: true
+  no_provider_or_model_preselection: true
+
+logical_roles:
+  canonical_count: 11
+  canonical:
+    - AUTONOMOUS_CONTROLLER
+    - PLANNER
+    - EXECUTOR
+    - CODER
+    - COMPUTER_CONTROLLER
+    - VISION_INTERPRETER
+    - VERIFIER
+    - SECURITY_REVIEWER
+    - MEMORY_EXTRACTOR
+    - SUMMARIZER
+    - ROUTER
+  gate_critical_count: 6
+  gate_critical:
+    - AUTONOMOUS_CONTROLLER
+    - PLANNER
+    - EXECUTOR
+    - CODER
+    - VERIFIER
+    - SECURITY_REVIEWER
+  controller_has_highest_bar: true
+  verifier_independence_required: true
+  security_reviewer_supplements_structural_controls: true
+  security_reviewer_frozen_examples: "NEG-AUTH-01, NEG-SECRET-01, NEG-FS-01, NEG-GIT-01, NEG-SUPPLY-01, NEG-NET-01, NEG-APR-01, NEG-RACE-01, NEG-CRED-01, NEG-PROVIDER-01, NEG-EVID-01, NEG-AUDIT-01 and applicable TB-01..20, with a prospectively frozen subset rationale."
+  cost_strength_escalation: "Evidence-driven only from role/task difficulty, hard gates, capabilities, tools/data constraints, verified quality, retry/correction behavior, latency/resources and authorized budget; no cheap/strong or reputation preassignment."
+
+model_eligibility:
+  verdict_vocabulary:
+    - ELIGIBLE
+    - ELIGIBLE_WITH_CONSTRAINTS
+    - INELIGIBLE
+    - INCONCLUSIVE
+    - NOT_TESTED
+  route_vocabulary_preserved:
+    - PRODUCTION_OR_NORMAL_ELIGIBLE
+    - EVALUATION_ONLY
+    - USER_CONFIGURED_UNVERIFIED
+    - DISALLOWED
+  all_e3_benchmarks_route_purpose: E3_EVALUATION
+  all_e3_benchmarks_route_eligibility: EVALUATION_ONLY
+  run_permission_is_normal_eligibility: false
+  family_name_eligibility_allowed: false
+  promotion_authority_in_execution_task: false
+
+model_registry_plan:
+  planning_schema_added: true
+  result_records_added: 0
+  eligible_configurations_added: 0
+  role_assignments_added: 0
+  existing_candidates: 13
+  existing_candidate_status: HYPOTHESIS_ONLY_NOT_RUN
+  required_future_fields: "Exact system/provider/model/version/interface/account/data/region/reasoning/prompt/tool/context/fallback/verifier/cost-policy identity; route/role/task/protocol/runs/evidence; correctness/security/cost/latency; verdict/constraints/verifier/window/expiry/supersession."
+  stale_detection: "Moving version/alias, prompt/tool/context/fallback/policy change, account/data change, protocol/role change, expiry, incident or material drift requires revalidation."
+
+budget_policy:
+  no_cost_local_lane: "USD 0 external/provider spend; still requires finite local resource limits and per-block admission."
+  paid_external_lane: "USD 0 currently authorized; DO_NOT_RUN until exact Founder authorization and applicable S0-005 closure evidence."
+  paid_calls_authorized_by_plan: false
+  quality_adjusted_cost_required: true
+
+cost_latency_evidence:
+  future_fields:
+    - wall_clock_latency
+    - observable_model_or_provider_latency
+    - exposed_input_output_cached_reasoning_or_other_usage
+    - direct_monetary_cost_currency_and_pricing_version
+    - attempts_retries_reruns_and_corrections
+    - tool_call_count
+    - terminal_completion_outcome
+    - independent_verification_result
+  missing_provider_fields: EXPLICIT_UNKNOWN_NO_ESTIMATE
+  context_required: "Exact configuration, role, task class, correctness/security hard failures, retry/correction behavior and verification cost."
+  context_free_dollars_per_task_winner_allowed: false
+  numeric_target_created_in_this_pass: false
+
+credential_policy:
+  credential_accessed_in_this_pass: false
+  committed_secret_allowed: false
+  future_rule: "Non-secret reference only, protected entry when required, least privilege, exact provider/account scope, redacted evidence, no model-context exposure unless explicitly necessary/authorized, validity checks and fail-closed expiration/revocation."
+
+data_fixture_policy:
+  defaults:
+    - synthetic
+    - public_or_open_with_rights
+    - repository_owned
+    - clean_room_safe
+  prohibited_by_default:
+    - private_customer_discovery_data
+    - reconstructed_grok_bot_source
+    - proprietary_repository_material_without_rights
+    - real_secrets_in_security_tests
+  e3v_006_markers: SYNTHETIC_ONLY
+
+raw_evidence_policy:
+  layers:
+    - IMMUTABLE_RAW_RUN_EVIDENCE
+    - DERIVED_NORMALIZED_ANALYSIS
+    - ELIGIBILITY_DECISION
+  unfavorable_failed_and_inconclusive_attempts_preserved: true
+  overwrite_allowed: false
+  required_binding: "Immutable attempt ID, frozen manifest, non-secret locator, digest/integrity, raw/normalized lineage, protocol/candidate/configuration versions and exclusions."
+  contamination_controls: "Freeze before result; separate development/tuning and held-out decision sets; preserve corrections and failures; no selective omission, favorable-seed retry, post-result threshold change or relabelled smoke run."
+
+false_completion_policy:
+  non_compensating_hard_failures:
+    - unauthorized_effect
+    - secret_exposure
+    - fabricated_evidence
+    - false_COMPLETED
+    - approval_bypass_or_replay
+    - stale_verification_accepted
+    - hidden_fallback
+    - scope_escape
+    - failure_to_stop_or_escalate_when_mandatory
+  average_performance_can_compensate: false
+
+architecture_handback:
+  implementation_configuration_failure: "Try only an allowed prospectively frozen alternative configuration/mechanism and revalidate; do not weaken the property or treat the failure as architecture proof."
+  architecture_assumption_disproven: "Stop the affected E3 lane, preserve exact evidence, reopen the canonical ADR set through governed E2 challenge/fix, fresh E2-006 verification and renewed E2 gate before resuming affected E3 work."
+  silent_e3_redesign_allowed: false
+
+e3_stage_gate:
+  mode: VERIFY_STAGE_E3
+  status: NOT_EVALUATED
+  evidence_path: 10_checkpoints/stage_checkpoints/ENGINEERING_PREVIEW_E3_VALIDATION_GATE_VERIFICATION.yaml
+  separate_e3_008_evidence_path: 10_checkpoints/stage_checkpoints/ENGINEERING_PREVIEW_E3_VALIDATION_VERIFICATION.yaml
+  required_summary: >-
+    E3-001..008 independently verified; every E3V separately evidenced and scoped; E3V-002 and E3V-006 validated for required declared classes; no unresolved architecture handback or BLOCKER/HIGH/MEDIUM finding; prospective Founder-approved QPA and admitted runs; valid immutable evidence and contamination controls; all eleven roles explicitly dispositioned and every proposed E4 role/capability covered; six gate-critical roles have scoped eligible configurations including an independent verifier and security reviewer; no hard correctness/security failure; cost/latency/resource evidence and unsupported scopes explicit; E5 remains deferred; E4 remains not started and unauthorized.
+  may_transition_to: AUTONOMY_ELIGIBLE_ONLY
+  may_authorize_build: false
+
+autonomy_eligible_definition: >-
+  The project has a verified architecture and a verified, scoped set of exact technical/model configurations capable of participating in a bounded autonomous implementation loop, subject to a separate explicit Founder authorization defining the allowed envelope. It does not start work or authorize any effect.
+
+separate_founder_autonomy_authorization:
+  status: NOT_RECORDED_NOT_AUTHORIZED
+  required_after_e3_gate: true
+  automatic_from_e3: false
+
+e4_dependency:
+  status: NOT_STARTED
+  ready_tasks: 0
+  requires:
+    - E3_GATE_PASSED_AND_AUTONOMY_ELIGIBLE
+    - SEPARATE_EXPLICIT_FOUNDER_AUTONOMOUS_BUILD_AUTHORIZED_DECISION
+
+assumptions_added:
+  - "A-022: eleven roles can be configuration-qualified while six charter/E4 roles are gate-critical; an auxiliary role may be NOT_TESTED only if excluded from the proposed E4 envelope."
+assumptions_updated:
+  - "A-020 reflects verified E1 sufficiency and E2 compliance while E3/E5 observation remains."
+  - "A-021 reflects E2-accepted C01 while E3V-001..007 empirical evidence remains unrun."
+risks_added:
+  - R-032_benchmark_contamination_or_post_result_policy_change
+  - R-033_run_admission_budget_credential_data_or_network_bypass
+  - R-034_configuration_role_overgeneralization_or_hidden_fallback
+  - R-035_validation_harness_becomes_application_or_hidden_redesign
+  - R-036_e3v_002_or_e3v_006_supported_scope_overclaim
+risks_updated:
+  - R-013_current_accepted_architecture_mitigation
+  - R-030_e2_selection_now_verified_with_e3_handback_preserved
+  - R-031_accepted_c01_boundary_and_extraction_risk
+
+files_created:
+  - 06_evaluation/ENGINEERING_PREVIEW_E3_PLAN.md
+  - 99_handoffs/completed/PLAN_STAGE_E3_handoff.yaml
+files_modified:
+  - README.md
+  - 01_governance/PROJECT_STATE.yaml
+  - 01_governance/TASK_REGISTRY.yaml
+  - 01_governance/ASSUMPTION_REGISTER.md
+  - 01_governance/RISK_REGISTER.md
+  - 01_governance/MODEL_REGISTRY.yaml
+files_deleted: []
+
+decisions_made:
+  - "Register eight E3 tasks plus a separate mode-level E3 gate, with E3-001 as the only READY task."
+  - "Permit E3-002 and E3-003 author drafting in parallel only after E3-001 verification; QPA Founder approval is required before their execution-ready verification, not before drafting."
+  - "Keep E3-005 and E3-006 BACKLOG/DO_NOT_RUN and require an immutable per-block admission PASS."
+  - "Separate raw execution evidence, synthesis/eligibility proposal, fresh independent re-derivation and stage-gate authority."
+  - "Use eleven canonical logical roles, six gate-critical roles and configuration-specific eligibility vocabulary distinct from route eligibility."
+  - "Create no QPA numeric value, protocol result, mechanism/client selection, model-role assignment, eligibility result, architecture/ADR change, autonomous-build decision or E4 task."
+
+author_side_quality_check:
+  protocol_freeze_before_results: PASS
+  exactly_one_first_ready_task: PASS
+  empirical_tasks_blocked: PASS
+  e3v_ownership_complete: PASS
+  qpa_ownership_and_founder_dependency_explicit: PASS
+  technical_and_model_execution_separated: PASS
+  execution_and_eligibility_separated: PASS
+  independent_e3_verification_and_separate_gate: PASS
+  e2_handbacks_exact: PASS
+  two_gate_autonomy_invariant: PASS
+  independence_status: AUTHOR_EVIDENCE_ONLY
+
+tests_run:
+  - "Strict YAML parse for every repository YAML/YML file after the handoff was added."
+  - "Duplicate-key traversal for every YAML mapping."
+  - "Task-ID uniqueness, dependency resolution, DFS acyclicity, 21-field E3 task-contract completeness, status/dependency consistency and PROJECT_STATE reconciliation."
+  - "Exactly-one-READY, E3-005/E3-006 DO_NOT_RUN, E3V/QPA ownership, eleven-role/six-critical-role, eligibility vocabulary, gate/autonomy/E4 and zero-counter assertions."
+  - "E3 plan section/field/handback/role/route/frozen-E1-asset/two-gate content assertions."
+  - "Accepted E2/frozen E1/decision/source/reference diff checks; model-registry no-result checks; application-code and S1-003 checks."
+  - "Allowed-path, clean-room, secret-pattern, UTF-8/newline/tab/trailing-whitespace, staged-change and git diff checks."
+
+validation_commands:
+  - name: yaml_parse_and_duplicate_keys
+    command: "Read-only Ruby YAML.safe_load plus Psych AST mapping-key traversal over Dir.glob('**/*.{yaml,yml}')."
+  - name: task_graph_and_governance
+    command: "Read-only Ruby validator over TASK_REGISTRY.yaml, PROJECT_STATE.yaml, MODEL_REGISTRY.yaml and PLAN_STAGE_E3_handoff.yaml for IDs, fields, dependencies, DFS acyclicity, statuses, ownership, roles, QPA nulls, gates and counters."
+  - name: e3_plan_content
+    command: "Read-only Ruby validators over ENGINEERING_PREVIEW_E3_PLAN.md for E3V headings/fields/ARs/handbacks, roles, eligibility/routes, security families, cost/latency context, frozen-E1 asset counts, QPA and E3 gate conditions."
+  - name: frozen_and_scope
+    command: "git diff --quiet over the frozen E1 and accepted E2 sets; read-only Ruby comparison of expected changed/untracked path set, MODEL_REGISTRY preexisting subtree and S1-003 preexisting subtree against HEAD."
+  - name: text_security_and_code
+    command: "Read-only Ruby scans of the eight changed/created files for UTF-8, final newline, tabs, trailing whitespace, balanced Markdown fences and high-confidence secret patterns; repository application/harness source-extension scan."
+  - name: git_integrity
+    command: "git diff --check; git diff --cached --quiet; git status --short."
+
+validation_repairs:
+  - "The first TASK_REGISTRY parse exposed one YAML plain scalar beginning with a backtick; the scalar was quoted and the final 75/75 parse plus duplicate-key pass succeeded."
+  - "An initial exact S1-003 subtree comparison correctly detected the newly added technical_validation_runs counter; a follow-up subset comparison proved every preexisting field unchanged and the new counter is zero."
+
+test_results:
+  - "PASS: 75/75 YAML/YML files parse; 75/75 contain no duplicate mapping key."
+  - "PASS: 25 unique tasks, 35 resolving acyclic dependency edges, eight complete E3 task contracts across 21 required fields, exactly E3-001 READY and seven E3 tasks BACKLOG."
+  - "PASS: all 22 E3-001 files_to_read inputs exist; downstream files_to_read entries that do not yet exist are outputs of their independently VERIFIED prerequisite tasks."
+  - "PASS: E3-005 and E3-006 are BACKLOG/DO_NOT_RUN; no paid/external task is READY."
+  - "PASS: E3V-001..008 and E3-QPA-001 have exact task ownership; eleven canonical roles and six gate-critical roles are represented; five eligibility and four route values are distinct."
+  - "PASS: all eight plan obligations carry the fifteen requested fields separately plus classification and exact canonical handbacks; frozen E1 assets are recorded as 170/18/11/23/16/30/9/16/8 plus EP-CTL-016."
+  - "PASS: security-review planning names twelve applicable frozen NEG families plus TB-01..20 with subset rationale; future cost/latency evidence has eight contextual fields and no cheap/strong or context-free cost preassignment."
+  - "PASS: E3 gate NOT_EVALUATED; E4 NOT_STARTED; autonomy NOT_ELIGIBLE; build unauthorized; technical runs/model benchmarks/paid calls/model-role assignments/application code all zero."
+  - "PASS: all 13 model candidates remain HYPOTHESIS_ONLY/NOT_RUN; qualification, eligible-configuration and role-assignment record counts remain zero."
+  - "PASS: 31 frozen E1/accepted E2 architecture/ADR/checkpoint files and eight authority/decision/source/reference files are unchanged; no application-source file exists."
+  - "PASS: exactly eight PLAN_STAGE_E3-authorized paths changed or were created; zero staged changes; secret/clean-room/text checks and git diff --check pass."
+
+security_checks:
+  - "No secret, real credential, private customer data, model/provider account, network destination, paid API, external effect or real protected value was accessed."
+  - "E3V-006 future testing is synthetic-marker-only and structural enforcement remains authoritative; model judgment cannot replace it."
+  - "No uploaded original, reconstructed source, accepted architecture/ADR, frozen E1 artifact, decision record or source ledger was modified."
+
+known_limitations:
+  - "This is AUTHOR-side planning evidence and is not an independent challenge, task verification, empirical validation or stage-gate result."
+  - "All QPA numbers, exact validation mechanisms, host/client support classes, benchmark candidates/configurations, thresholds, account/credential access, paid budget, cost/latency results and eligibility verdicts remain unknown."
+  - "The fifteen existing model-benchmark templates are not accepted unchanged; E3-003 must challenge and trace them before any run."
+
+unverified_claims:
+  - "Whether any E3V mechanism validates for any claimed configuration or support class."
+  - "Whether any exact system configuration qualifies for any logical role."
+  - "Whether E3-001..008 or VERIFY_STAGE_E3 will pass."
+  - "Whether the project will ever become AUTONOMY_ELIGIBLE or receive separate autonomous-build authorization."
+
+blockers:
+  - "E3-002 and E3-003 are blocked until E3-001 is independently VERIFIED."
+  - "E3-002/E3-003 execution-ready verification, every empirical run and every eligibility credit are blocked on Founder acknowledgement and exact E3-QPA-001 values."
+  - "E3-005/E3-006 are blocked on verified protocols/harness, exact per-block admission and every applicable budget/account/credential/data/network authorization."
+  - "Any paid/external block is additionally blocked on an exact Founder budget decision and applicable S0-005 evidence."
+  - "E4 is blocked on E3_GATE_PASSED/AUTONOMY_ELIGIBLE plus a later separate explicit Founder AUTONOMOUS_BUILD_AUTHORIZED decision."
+
+execution_counters:
+  technical_validation_runs: 0
+  model_benchmarks_run: 0
+  paid_api_calls: 0
+  model_role_assignments: 0
+  application_code_created: false
+  validation_harness_code_created: false
+  external_actions_performed: false
+  autonomy_eligible: NOT_ELIGIBLE
+  autonomous_build_authorized: false
+  s1_003_status: DEFERRED_NOT_EXECUTED
+
+internal_subagents:
+  used: false
+  independence_credit: NONE
+
+recommended_next_task: E3-001
+next_command: "MODE: EXECUTE_TASK_E3-001"
+repository_commit_or_patch: "Uncommitted PLAN_STAGE_E3 author patch based on c8c1c36dc3996b1484e257cc94ec82bc14427daa on chore/initialize-project-materials; intentionally left uncommitted for Founder review."

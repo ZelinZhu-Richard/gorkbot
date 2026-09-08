@@ -1,0 +1,303 @@
+handoff_id: H-E2-001-20260828-FIXER
+task_id: E2-001
+stage: E2
+mode: FIX_TASK_E2-001
+role: FIXER
+author_model: "Codex (runtime model identifier not exposed) — original E2-001 AUTHOR returning as FIXER"
+reviewer_requested: "A separate independent post-fix VERIFIER must re-run the challenger checks and the complete E2-001 acceptance contract; this fixer record is not verification"
+started_at: null
+started_at_status: "UNKNOWN_NOT_CAPTURED; the exact fixer-pass start timestamp was not recorded and is not fabricated"
+completed_at: "2026-08-28T22:13:44Z"
+base_commit: 7c6bf6c5f2d3428b08322b87f99c9a29f4b3a413
+base_branch: chore/initialize-project-materials
+initial_worktree_status: CLEAN
+challenger_reviewed_commit: 349a9f0fbd8f98c967f78c0bb5850aeae8e61dc4
+challenger_artifact: 99_handoffs/completed/E2-001_challenger_review.yaml
+challenger_verdict: E2_001_CHANGES_REQUESTED
+challenger_finding_counts:
+  BLOCKER: 0
+  HIGH: 0
+  MEDIUM: 2
+  LOW: 7
+task_status: READY_FOR_REVIEW
+verification_status: NOT_VERIFIED_FIXER_PASS
+e1_gate_status: VERIFIED
+e1_gate_verdict: E1_GATE_PASSED
+e2_gate_status: NOT_EVALUATED
+architecture_status: NOT_SELECTED
+
+files_read:
+  repository_and_security:
+    - MASTER_OPERATING_PROMPT.md
+    - AGENTS.md
+    - README.md
+    - SECURITY.md
+  governance:
+    - 01_governance/PROJECT_STATE.yaml
+    - 01_governance/TASK_REGISTRY.yaml
+    - 01_governance/DECISION_LOG.md
+    - 01_governance/ASSUMPTION_REGISTER.md
+    - 01_governance/RISK_REGISTER.md
+  frozen_e1_baseline:
+    - 03_product/ENGINEERING_PREVIEW_CHARTER.md
+    - 03_product/ENGINEERING_PREVIEW_PRD.md
+    - 03_product/ENGINEERING_PREVIEW_USER_FLOWS.md
+    - 03_product/ENGINEERING_PREVIEW_CORRECTNESS_CONTRACT.md
+    - 03_product/ENGINEERING_PREVIEW_CONTRIBUTION_WORKFLOW.md
+    - 06_evaluation/ENGINEERING_PREVIEW_EVALUATION_SUITE.md
+    - 10_checkpoints/stage_checkpoints/ENGINEERING_PREVIEW_V0_1_RELEASE_ACCEPTANCE.yaml
+  e2_and_review_provenance:
+    - 05_architecture/ENGINEERING_PREVIEW_E2_ARCHITECTURE_PLAN.md
+    - 05_architecture/ENGINEERING_PREVIEW_ARCHITECTURE_REQUIREMENTS.md
+    - 05_architecture/ENGINEERING_PREVIEW_E1_ARCHITECTURE_TRACEABILITY.csv
+    - 99_handoffs/completed/E2-001_handoff.yaml
+    - 99_handoffs/completed/E2-001_challenger_review.yaml
+    - 99_handoffs/HANDOFF_TEMPLATE.yaml
+  verified_external_architecture_evidence:
+    - 02_research/GROK_BOT_018_RECONSTRUCTED_ARCHITECTURE_AUDIT.md
+    - 02_research/GROK_BOT_018_ARCHITECTURE_ADOPTION_MATRIX.csv
+    - 99_handoffs/completed/EXTERNAL_GROK_BOT_018_ARCHITECTURE_AUDIT_verifier_review.yaml
+
+files_created:
+  - 99_handoffs/completed/E2-001_fixer_handoff.yaml
+
+files_modified:
+  - 05_architecture/ENGINEERING_PREVIEW_ARCHITECTURE_REQUIREMENTS.md
+  - 05_architecture/ENGINEERING_PREVIEW_E1_ARCHITECTURE_TRACEABILITY.csv
+  - 01_governance/RISK_REGISTER.md
+  - 01_governance/PROJECT_STATE.yaml
+  - 01_governance/TASK_REGISTRY.yaml
+
+files_deleted: []
+frozen_e1_files_modified: []
+assumptions_added: []
+assumptions_updated: []
+risks_added: []
+risks_updated:
+  - "R-030 now describes the unverified 65-requirement, 296-edge post-challenge baseline and requires independent verification before E2-002."
+decisions_made: []
+architecture_decisions_made: []
+accepted_adrs: []
+
+finding_dispositions:
+  - finding_id: F-E2-001-01
+    resolution: FIXED
+    files_changed:
+      - 05_architecture/ENGINEERING_PREVIEW_ARCHITECTURE_REQUIREMENTS.md
+      - 05_architecture/ENGINEERING_PREVIEW_E1_ARCHITECTURE_TRACEABILITY.csv
+    evidence: "AR-SEC-006 is a new hard, implementation-neutral protected human acquisition/takeover boundary sourced by FR-046, FR-047, NEG-SECRET-01, NEG-CRED-01, and UF-11. It requires a path distinct from ordinary chat/context/tool/terminal input; suspension or exclusion of ordinary observation/capture; an exact recipient/use boundary; fail-to-WAIT/block; a non-secret durable receipt; and no raw recovery replay. UF-11 is primary AR-SEC-006 with supporting AR-SEC-003 in the CSV and appears substantively in both AR source lists."
+    verification_method: "Parse AR source lists and CSV mappings; assert UF-11 primary AR-SEC-006, supporting AR-SEC-003, exact inverse equality, and required protected-entry/takeover/fail-closed/non-secret/no-replay clauses."
+
+  - finding_id: F-E2-001-02
+    resolution: FIXED
+    files_changed:
+      - 05_architecture/ENGINEERING_PREVIEW_ARCHITECTURE_REQUIREMENTS.md
+      - 05_architecture/ENGINEERING_PREVIEW_E1_ARCHITECTURE_TRACEABILITY.csv
+    evidence: "§1 now declares exact bidirectional equality: an AR source list equals exactly the CSV rows naming that AR in primary, supporting, or secondary-weighted columns. The 17 missing CSV edges and 13 missing AR-source edges were reconciled as substantive secondary mappings; five new AR-SEC-006 edges were added. Final equality is 296 edges with zero directional mismatch, comprising 127 primary and 169 secondary mappings."
+    verification_method: "Independently parse every AR source list and every CSV AR column, invert both maps, assert set equality and zero mismatch, then recompute domain and E3 unions for all rows."
+
+  - finding_id: F-E2-001-03
+    resolution: FIXED
+    files_changed:
+      - 05_architecture/ENGINEERING_PREVIEW_E1_ARCHITECTURE_TRACEABILITY.csv
+    evidence: "FR-025 primary is AR-COR-005 with taxonomy CORRECTNESS_REQUIREMENT; FR-026 primary is AR-EVD-001 with taxonomy EVIDENCE_REQUIREMENT. AR-TST-001 remains a substantive supporting mapping for both, and per-row domain/E3/evidence unions were recomputed."
+    verification_method: "Inspect and parse FR-025 and FR-026; assert their primary IDs and taxonomies, assert AR-TST-001 is supporting, and compare row domain/E3 fields to the union of all mapped AR metadata."
+
+  - finding_id: F-E2-001-04
+    resolution: FIXED
+    files_changed:
+      - 05_architecture/ENGINEERING_PREVIEW_ARCHITECTURE_REQUIREMENTS.md
+      - 05_architecture/ENGINEERING_PREVIEW_E1_ARCHITECTURE_TRACEABILITY.csv
+    evidence: "All 56 FR anchors now resolve precisely to PRD §§6.1–6.7 by row range; all 15 RR anchors resolve to correctness-contract §14.1 and the correct PRD §7 mirror. Canonical source IDs and order are unchanged. Exactly 71 source_anchor cells changed relative to the fixer base."
+    verification_method: "Compare current and base CSV IDs/anchors; assert identical ordered IDs, 71 changed anchors (56 FR and 15 RR), exact expected subsection per FR range, and no '§7 row FR-' or 'mirrored in PRD §10' residue."
+
+  - finding_id: F-E2-001-05
+    resolution: FIXED
+    files_changed:
+      - 05_architecture/ENGINEERING_PREVIEW_ARCHITECTURE_REQUIREMENTS.md
+    evidence: "The E2-002 input contract now has 30 numbered fields. Field 21 requires exactly one REQUIRED_NOW, RESERVED_COMPATIBILITY, or DEFERRED_TO_LATER_STAGE classification per capability/feature with source and rationale. Field 22 requires comparative contributor-burden/accessibility analysis covering setup, long-running services, platform assumptions, debugging, reproducibility, dependency/toolchain burden, and bounded-component contribution."
+    verification_method: "Parse §14 numbering as exactly 1..30 and assert the three stage labels plus every required contributor-burden dimension and comparative/non-compensating semantics."
+
+  - finding_id: F-E2-001-06
+    resolution: FIXED
+    files_changed:
+      - 05_architecture/ENGINEERING_PREVIEW_ARCHITECTURE_REQUIREMENTS.md
+    evidence: "§13 now reconciles 19 relevant verified Level B candidate-pattern families, including canonical authority/content addressing, projections, authority/history alternatives, operation recovery, typed failures/process ports, provider routing, explicit state, approvals, local/remote and cloud lifecycle, context compaction, adapter/gateway, concurrency, telemetry/evidence topology, corruption/salvage, evidence packets, and extension boundaries. Subsumed, irrelevant, deferred, and Level C material is explicitly dispositioned."
+    verification_method: "Parse exactly 19 numbered Level B rows; compare named families to verified charter §§16.2/19 and audit inputs; assert inclusion/subsumption/exclusion text and that no row selects or hard-requires a mechanism."
+
+  - finding_id: F-E2-001-07
+    resolution: FIXED
+    files_changed:
+      - 05_architecture/ENGINEERING_PREVIEW_ARCHITECTURE_REQUIREMENTS.md
+    evidence: "All eight E3V rows now state the exact property, focused subset/protocol owner, E3 evidence, E4/E5 remainder, validating result, and architecture-handback condition. E3V-006 and E3V-007 explicitly reserve full frozen-suite/security/protocol release execution for E5. Handback rules distinguish architecture contradiction from implementation, fixture, model, configuration, evidence, and product/SLO failures and require E2-005 revision plus independent E2-006/gate review before resumption."
+    verification_method: "Parse E3V-001..008 as eight complete six-field rows; assert focused scope, E4/E5 remainder, ARCHITECTURE_HANDBACK, E2-005/E2-006 routing, and the architecture-versus-implementation/configuration distinction."
+
+  - finding_id: F-E2-001-08
+    resolution: FIXED
+    files_changed:
+      - 05_architecture/ENGINEERING_PREVIEW_ARCHITECTURE_REQUIREMENTS.md
+    evidence: "AR-COR-001 now requires duplicate delivery to return the first recorded result with provenance and no duplicate task/mutation/dispatch/effect. AR-DUR-002 requires full resume revalidation, current wait identity/version, authoritative event readback, stale/duplicate rejection, and no blind old-context continuation. AR-DUR-004 requires pause/disable/retirement semantics, no new work after retirement, truthful in-flight disposition, durable inspectable history, reconciled ownership release, and unresolved-effect responsibility."
+    verification_method: "Read the amended AR descriptions/observables/prohibited outcomes against user-flow global invariant 2, contract §3.3, UF-07, and UF-04; assert duplicate, resume, event, and retirement clauses are present without requiring multi-agent implementation."
+
+  - finding_id: F-E2-001-09
+    resolution: FIXED
+    files_changed:
+      - 05_architecture/ENGINEERING_PREVIEW_ARCHITECTURE_REQUIREMENTS.md
+    evidence: "§5.1 adds a 20-row TB-01..20 checklist covering every requested authority, content, filesystem, secret, path, process, terminal, package, Git, network, remote, API, model, tool, approval, effect, evidence, recovery, and protected-entry boundary. Each row supplies trust/assets, authority, allowed and forbidden flows, enforcement/ARs, fail-closed behavior, evidence, and recovery/replay implications. §14 field 5 requires every E2-002 candidate to reproduce it."
+    verification_method: "Parse exactly TB-01..20; assert every required boundary and all nine semantic fields are represented, governing ARs resolve, and candidate-contract field 5 imports the complete checklist."
+
+finding_summary:
+  FIXED: 9
+  DISPUTED: 0
+  DEFERRED: 0
+
+counts:
+  canonical_e1_requirements: 127
+  canonical_families:
+    functional_requirements: 56
+    reliability_hard_invariants: 15
+    future_compatibility_constraints: 9
+    preview_slos: 4
+    measure_only_metrics: 4
+    user_flows: 16
+    security_negative_families: 23
+  canonical_primary_architecture_dispositions:
+    HARD_CONSTRAINT: 119
+    WEIGHTED_PREFERENCE: 0
+    JUSTIFIED_NON_ARCHITECTURE_DRIVING: 8
+  architecture_requirements: 65
+  architecture_requirement_classes:
+    HARD_CONSTRAINT: 59
+    WEIGHTED_PREFERENCE: 6
+  ar_e1_trace_edges: 296
+  primary_trace_edges: 127
+  secondary_trace_edges: 169
+  e3_validation_obligations: 8
+  decision_domains: 25
+  quality_attribute_categories: 10
+  unresolved_architecture_questions: 10
+  level_b_candidate_pattern_families: 19
+  e2_002_candidate_contract_fields: 30
+  threat_boundary_rows: 20
+
+traceability_model:
+  canonical_rule: "EXACT_BIDIRECTIONAL_EQUALITY"
+  rule: "For every AR, its Source E1 requirement IDs set equals exactly the CSV rows naming that AR in primary_architecture_requirement_id, supporting_architecture_requirement_ids, or secondary_weighted_preference_ids."
+  primary_semantics: "The architecture property fundamentally owning the E1 behavior; exactly one per canonical ID."
+  supporting_semantics: "A substantive additional hard property that does not replace or waive the primary."
+  secondary_weighted_semantics: "A comparison-only criterion after all hard constraints pass; never a waiver or compensating score."
+  bidirectional_mismatches: 0
+  paper_only_edges: 0
+  orphaned_architecture_requirements: 0
+
+hard_preference_regression:
+  e1_hard_semantics_remain_hard: true
+  level_b_pattern_became_hard_mechanism: false
+  contributor_burden_class: WEIGHTED_PREFERENCE_AFTER_HARD_PASS
+  compatibility_reserve_became_implementation_now: false
+  e3_obligation_became_architecture_decision: false
+  weighted_preference_can_compensate_for_hard_failure: false
+
+architecture_neutrality:
+  client_shape_selected: false
+  language_or_runtime_selected: false
+  database_or_event_store_selected: false
+  workflow_engine_selected: false
+  sandbox_or_isolation_mechanism_selected: false
+  workspace_mechanism_selected: false
+  cloud_provider_selected: false
+  agent_or_model_framework_selected: false
+  provider_or_sdk_selected: false
+  vector_or_rag_stack_selected: false
+  observability_implementation_selected: false
+  packaging_technology_selected: false
+  concurrency_architecture_selected: false
+  protected_entry_mechanism_selected: false
+
+execution_counters:
+  architecture_candidates_created: 0
+  accepted_adrs_created: 0
+  architecture_spikes_run: 0
+  application_code_created: false
+  evaluation_cases_implemented: 0
+  evaluation_cases_run: 0
+  model_benchmarks_run: 0
+  paid_api_calls: 0
+  external_actions_performed: false
+  autonomy_eligible: NOT_ELIGIBLE
+  autonomous_build_authorized: false
+  s1_003_status: DEFERRED
+
+frozen_e1_blob_identity:
+  03_product/ENGINEERING_PREVIEW_CHARTER.md: 50f21ea04b7381f5709dfe3a865f854148d29b4c
+  03_product/ENGINEERING_PREVIEW_PRD.md: 4a817887755a40038e507bfc7830333587df158a
+  03_product/ENGINEERING_PREVIEW_USER_FLOWS.md: e09e92f7b59ee8ae13afbaf39729774e57a6d8f4
+  03_product/ENGINEERING_PREVIEW_CORRECTNESS_CONTRACT.md: 8e11bdf0b7624ed935563261db09844978e48656
+  03_product/ENGINEERING_PREVIEW_CONTRIBUTION_WORKFLOW.md: 4c834fc0641c4882cc5da8c8984263c813932b58
+  06_evaluation/ENGINEERING_PREVIEW_EVALUATION_SUITE.md: 3d474bbd0f13ec7f100e34c4d9dd0e66a9a567a6
+  06_evaluation/MODEL_ROLE_BENCHMARK_PLAN.md: cc902fb9125c1f1221a1af83e4ec6225cd57538f
+  10_checkpoints/stage_checkpoints/ENGINEERING_PREVIEW_V0_1_RELEASE_ACCEPTANCE.yaml: f1c3fc21ace4a9e28cc2dddb28e87683d5144ddf
+  10_checkpoints/stage_checkpoints/ENGINEERING_PREVIEW_E1_SPECIFICATION_GATE_VERIFICATION.yaml: 3554fc1eb9f606225be33e306680b6c1e7518724
+
+commands_run:
+  - "Read-only sed/rg/csv/re/git inspections of every mandated source, challenger evidence, D-016/current E2 governance, verified audit/adoption artifacts, task contract, and handoff template."
+  - "apply_patch edits to the requirements, trace CSV, R-030, E2-001 task/project state, and this fixer handoff."
+  - "Python csv/re canonical extraction, AR block parsing, inverse-edge equality, domain/E3 union, anchor, contract, Level B, AQ, and threat-boundary assertions."
+  - "Ruby Psych safe parsing and duplicate-key AST traversal for every repository YAML/YML file."
+  - "Git hash-object/diff/status/diff-check plus allowed-path, frozen-byte, no-artifact, source-code, and staging assertions."
+  - "High-confidence secret/private-key pattern scan over all changed/created files."
+
+tests_run:
+  - "Strict YAML parsing and duplicate-key traversal."
+  - "Strict CSV shape/row/column and source-ID-order validation."
+  - "Independent canonical E1 extraction and exact 127-ID set equality."
+  - "AR ID uniqueness, thirteen-field completeness, class/hard consistency, source resolution, and no-orphan validation."
+  - "AR↔CSV bidirectional equality plus per-row domain and E3 union validation."
+  - "Primary-disposition uniqueness and semantic spot checks for UF-11, FR-025, and FR-026."
+  - "Exact source-section anchor validation and base-diff affected-row recount."
+  - "E2-002 classification/contributor contract, Level B reconciliation, E3 scope/handback, lifecycle, and threat-boundary structural validation."
+  - "All-25-domain inverse-table and quality/category coverage validation."
+  - "Hard/preference, future-scope, architecture-neutrality, no-candidate/no-ADR/no-spike/no-code/no-run/no-benchmark/no-paid-call regressions."
+  - "Frozen E1 Git-blob identity and zero-diff validation."
+  - "Governance status/list/counter/autonomy/startup-track and dependency validation."
+  - "Allowed-path, clean-room/Level C, secret-pattern, Markdown/whitespace, staging, and git diff --check validation."
+
+test_results:
+  - "PASS: 127 canonical E1 IDs re-extract as FR 56 / RR 15 / FC 9 / SLO 4 / MET 4 / UF 16 / NEG 23 and are set-equal to the 127 CSV rows."
+  - "PASS: 65 unique ARs contain all thirteen fields; class split is 59 HARD_CONSTRAINT / 6 WEIGHTED_PREFERENCE; all source IDs resolve; zero AR is orphaned."
+  - "PASS: exact bidirectional AR↔E1 equality has 296 edges, zero mismatch, 127 primary dispositions, and 169 secondary dispositions."
+  - "PASS: primary dispositions remain 119 hard / 0 weighted / 8 justified empirical; FR-025=AR-COR-005, FR-026=AR-EVD-001, UF-11=AR-SEC-006."
+  - "PASS: all source IDs/order remain unchanged; exactly 71 anchors changed (56 FR, 15 RR), and every current anchor matches the exact frozen E1 section."
+  - "PASS: 25 decision domains, 8 E3 obligations, 10 AQs, 19 Level B families, 30 E2-002 contract fields, and 20 threat-boundary rows parse and reconcile."
+  - "PASS: UF-11 protected acquisition/takeover, duplicate delivery, resume revalidation, external-event correlation/readback, retirement, E3 focus/handback, and threat-boundary clauses are substantively present."
+  - "PASS: nine frozen E1 artifacts retain the recorded Git blob identity and have zero worktree diff."
+  - "PASS: E2-001 READY_FOR_REVIEW / NOT_VERIFIED_FIXER_PASS; E2-002..006 BACKLOG; E2 gate NOT_EVALUATED; architecture NOT_SELECTED; candidate/ADR/spike/code/evaluation/benchmark/paid counters zero; autonomy and S1-003 unchanged."
+  - "PASS: final changed-path set is exactly the six current E2-001 allowed paths used by this fixer; zero staged files; clean-room, secret-pattern, whitespace, and git diff --check checks pass."
+
+discarded_validation_attempts:
+  - "A first zsh loop intended to compare frozen path/digest pairs did not split scalar pairs because zsh SH_WORD_SPLIT is off; its apparent success was rejected. The replacement Python check used explicit path→digest bindings and passed 9/9 with zero frozen-file diff."
+  - "The first Ruby strict-YAML wrapper called Psych.safe_load_file, which is unavailable in installed Psych 3.1.0; repository syntax/duplicate traversal had run, but that wrapper result was rejected. The supported Psych.safe_load interface then parsed 51/51 files with zero duplicate keys."
+  - "A first combined semantic-check wrapper used a regex for backticked quality-category IDs even though the table has prose category labels; that test result was rejected. The corrected table-row check and complete semantic suite passed with ten categories."
+  - "A first clean-room wrapper treated the generic external-audit entry README.md as a reconstructed source path; that overbroad subtest was rejected. The corrected scan covers every actual source/... path in the verified adoption matrix and returns zero hits."
+
+security_checks:
+  - "No raw secret or credential material was used; protected-entry examples contain semantics only."
+  - "High-confidence private-key, token, password-assignment, and credential-pattern scan over changed files passes."
+  - "No external network, provider, account, credential, paid API, or product-runtime action occurred."
+  - "No reconstructed Grok Bot source, exact Level C schema/module/layout, or external implementation artifact was imported."
+
+known_limitations:
+  - "This fixer pass is author-side evidence and cannot independently verify E2-001."
+  - "Mechanisms for every AR, including protected acquisition, remain intentionally unselected."
+  - "E2-002 is blocked until a separate verifier marks E2-001 VERIFIED."
+  - "No E3 validation, release evaluation, architecture spike, provider/model benchmark, or implementation evidence exists."
+
+unverified_claims:
+  - "All nine FIXED dispositions remain subject to independent post-fix verification."
+  - "The 65-requirement baseline is ready for review, not established as architecture-complete by an independent verifier."
+
+blockers:
+  - "INDEPENDENT_E2_001_POST_FIX_VERIFICATION_REQUIRED"
+
+recommended_next_task: "MODE: VERIFY_TASK_E2-001"
+repository_commit_or_patch: "Uncommitted working-tree patch against 7c6bf6c5f2d3428b08322b87f99c9a29f4b3a413; user requested all changes remain uncommitted."

@@ -1,0 +1,347 @@
+handoff_id: H-E2-001-20260828-AUTHOR
+task_id: E2-001
+stage: E2
+mode: EXECUTE_TASK_E2-001
+role: AUTHOR
+author_model: "Codex (runtime model identifier not exposed) — E2-001 AUTHOR"
+reviewer_requested: "Fresh independent CHALLENGER, followed after any bounded fixer response by a separate independent post-fix VERIFIER; neither role may select an architecture"
+started_at: null
+started_at_status: "UNKNOWN_NOT_CAPTURED; the exact author-pass start timestamp was not recorded and is not fabricated"
+author_claim_recorded_at: "2026-08-28T18:00:06Z"
+completed_at: "2026-08-28T18:21:41Z"
+base_commit: 0338c615c7098a7c7e7afd1f09ff44be9db94109
+base_branch: chore/initialize-project-materials
+initial_worktree_status: CLEAN
+task_status: READY_FOR_REVIEW
+verification_status: NOT_VERIFIED_AUTHOR_PASS
+e1_gate_status: VERIFIED
+e1_gate_verdict: E1_GATE_PASSED
+e2_gate_status: NOT_EVALUATED
+architecture_status: NOT_SELECTED
+
+files_read:
+  repository_and_security:
+    - MASTER_OPERATING_PROMPT.md
+    - AGENTS.md
+    - README.md
+    - SECURITY.md
+  governance:
+    - 01_governance/PROJECT_STATE.yaml
+    - 01_governance/TASK_REGISTRY.yaml
+    - 01_governance/DECISION_LOG.md
+    - 01_governance/ASSUMPTION_REGISTER.md
+    - 01_governance/RISK_REGISTER.md
+    - 01_governance/MODEL_REGISTRY.yaml
+    - 01_governance/SOURCE_LEDGER.csv
+  verified_reference_evidence:
+    - 02_research/GROK_BOT_BASELINE_2026-08-21.md
+    - 02_research/GROK_BOT_018_RECONSTRUCTED_ARCHITECTURE_AUDIT.md
+    - 02_research/GROK_BOT_018_ARCHITECTURE_ADOPTION_MATRIX.csv
+    - 99_handoffs/completed/S0-002_verifier_review.yaml
+    - 99_handoffs/completed/EXTERNAL_GROK_BOT_018_ARCHITECTURE_AUDIT_verifier_review.yaml
+  frozen_e1_baseline:
+    - 03_product/ENGINEERING_PREVIEW_CHARTER.md
+    - 03_product/ENGINEERING_PREVIEW_PRD.md
+    - 03_product/ENGINEERING_PREVIEW_USER_FLOWS.md
+    - 03_product/ENGINEERING_PREVIEW_CORRECTNESS_CONTRACT.md
+    - 03_product/ENGINEERING_PREVIEW_CONTRIBUTION_WORKFLOW.md
+    - 06_evaluation/ENGINEERING_PREVIEW_EVALUATION_SUITE.md
+    - 06_evaluation/MODEL_ROLE_BENCHMARK_PLAN.md
+    - 10_checkpoints/stage_checkpoints/ENGINEERING_PREVIEW_V0_1_RELEASE_ACCEPTANCE.yaml
+    - 10_checkpoints/stage_checkpoints/ENGINEERING_PREVIEW_E1_SPECIFICATION_GATE_VERIFICATION.yaml
+  e2_planning_and_verification_provenance:
+    - 05_architecture/ENGINEERING_PREVIEW_E2_ARCHITECTURE_PLAN.md
+    - 99_handoffs/completed/PLAN_STAGE_E2_handoff.yaml
+    - 99_handoffs/completed/E0-001_verifier_review.yaml
+    - 99_handoffs/completed/E1-001_verifier_review.yaml
+    - 99_handoffs/completed/E1-002_verifier_review.yaml
+    - 99_handoffs/HANDOFF_TEMPLATE.yaml
+
+files_created:
+  - 05_architecture/ENGINEERING_PREVIEW_ARCHITECTURE_REQUIREMENTS.md
+  - 05_architecture/ENGINEERING_PREVIEW_E1_ARCHITECTURE_TRACEABILITY.csv
+  - 99_handoffs/completed/E2-001_handoff.yaml
+
+files_modified:
+  - 01_governance/RISK_REGISTER.md
+  - 01_governance/PROJECT_STATE.yaml
+  - 01_governance/TASK_REGISTRY.yaml
+
+files_deleted: []
+
+deliverables:
+  architecture_requirements:
+    path: 05_architecture/ENGINEERING_PREVIEW_ARCHITECTURE_REQUIREMENTS.md
+    version: EP-ARCH-REQ-0.1
+    status: AUTHOR_COMPLETE_NOT_VERIFIED
+  e1_traceability:
+    path: 05_architecture/ENGINEERING_PREVIEW_E1_ARCHITECTURE_TRACEABILITY.csv
+    status: AUTHOR_COMPLETE_NOT_VERIFIED
+    rows: 127
+    columns: 19
+  handoff:
+    path: 99_handoffs/completed/E2-001_handoff.yaml
+    status: AUTHOR_COMPLETE_NOT_VERIFIED
+
+counts:
+  canonical_e1_requirements: 127
+  canonical_families:
+    functional_requirements: 56
+    reliability_hard_invariants: 15
+    future_compatibility_constraints: 9
+    preview_slos: 4
+    measure_only_metrics: 4
+    user_flows: 16
+    security_negative_families: 23
+  canonical_primary_architecture_dispositions:
+    HARD_CONSTRAINT: 119
+    WEIGHTED_PREFERENCE: 0
+    JUSTIFIED_NON_ARCHITECTURE_DRIVING: 8
+  architecture_requirements: 64
+  architecture_requirement_classes:
+    HARD_CONSTRAINT: 58
+    WEIGHTED_PREFERENCE: 6
+  e3_validation_obligations: 8
+  decision_domains: 25
+  quality_attribute_categories: 10
+  unresolved_architecture_questions: 9
+  e2_002_candidate_contract_fields: 28
+  evaluation_assets_referenced:
+    cases: 170
+    canonical_case_edges: 701
+    canonical_protocol_edges: 8
+    total_typed_trace_edges: 709
+    oracle_classes: 18
+    fixture_families: 11
+    security_negative_families: 23
+    repository_conditions: 16
+    git_effect_classifications: 30
+    predicate_adequacy_variants: 9
+    dangerous_compositions: 16
+    reliability_protocols: 8
+
+canonical_set_method:
+  FR: "Exact PRD §7 definition rows matching FR-NNN; range references excluded."
+  RR: "Exact correctness-contract §14.1 definition rows matching RR-NNN; mirrored PRD rows are not double-counted."
+  FC: "Exact PRD §12 definition rows matching FC-NNN."
+  SLO_MET: "Exact correctness-contract §14.2 definition rows."
+  UF: "Exact UF-01..UF-16 normative headings."
+  NEG: "Exact correctness-contract §15 definition rows."
+  result: "127 unique IDs; set-equal to the trace CSV and release checkpoint requirement_dispositions."
+
+architecture_requirement_summary:
+  correctness: "AR-COR-001..007: stable identities, versioned authority, orthogonal state, non-compensating completion, predicate adequacy, exact revision, and stale-writer rejection."
+  durability_recovery: "AR-DUR-001..006: acknowledged durability, interruption recovery, idempotent/uncertain effects, ordered bounded control, corruption/partial-write/evolution safety, and retention/cleanup accountability."
+  state_data_context: "AR-DAT-001/002 and AR-CTX-001/002: authoritative/derived/ephemeral/lossy separation, causal integrity, durable conversation, and compaction provenance/invalidation."
+  workspace_execution_git: "AR-WSP-001..005, AR-EXE-001..004, and AR-GIT-001/002: repository admission, isolation, path/user-state protection, process control, untrusted execution classification, and the thirty Git/effect rows."
+  security_approval_effect: "AR-SEC-001..005 and AR-APR-001..003: closed trust, deny-by-default scope, secret/network/clean-room boundaries, durable exact approval, explicit effect lifecycle, and prohibited/destructive enforcement."
+  model_provider: "AR-MOD-001..003: provider-neutral product truth, route purpose/eligibility and zero dispatch, explicit fallback, and provider-specific semantics."
+  evidence_verification: "AR-EVD-001..003 and AR-VER-001..003: outcome-profile evidence, artifact identity/redaction/integrity, independent verifier path, deterministic replay, and verification lifecycle/invalidation."
+  observability_failure: "AR-OBS-001/002 and AR-FAIL-001/002: structured inspectability, evidence-linked explanations, typed failure layers, and bounded safety reserve."
+  testability_performance: "AR-TST-001..003 and AR-PERF-001/002: deterministic seams, complete frozen-suite materialization, measurement protocols, finite bounds, and latency/cost/resource instrumentation."
+  local_future_preferences: "AR-PKG-001 and AR-FUT-001..003 impose the local-first/versioned/ownership/extension hard floor; AR-PRF-001..006 compare latency, complexity, reversibility, future adaptation, evidence overhead, and contributor burden only after hard pass."
+
+hard_constraint_policy:
+  count: 58
+  canonical_source_dispositions: 119
+  compensable_by_weighted_score: false
+  compensable_by_human_approval: false
+  unknown_counts_as_pass: false
+  unsupported_counts_as_pass: false
+  false_completion_tolerance: ZERO
+
+weighted_preference_policy:
+  count: 6
+  weights_assigned: false
+  candidate_scores_created: false
+  candidate_rankings_created: false
+  winner_named: false
+  prospective_freeze_required: true
+  correlation_disclosure_required: true
+  sensitivity_analysis_required: true
+  applied_only_after_hard_pass: true
+
+e3_obligation_ids:
+  - E3V-001
+  - E3V-002
+  - E3V-003
+  - E3V-004
+  - E3V-005
+  - E3V-006
+  - E3V-007
+  - E3V-008
+e3_boundary: "Obligations define future evidence and reversal conditions only. No E3 task, case, spike, benchmark, provider call, paid call, or role eligibility decision is authorized or executed."
+
+decision_domain_coverage:
+  count: 25
+  result: COMPLETE_AUTHOR_SIDE_NOT_INDEPENDENTLY_VERIFIED
+  all_architecture_requirements_map_to_at_least_one_domain: true
+  every_domain_has_architecture_driving_requirements: true
+  ownership_questions_present_for_every_domain: true
+  cross_cutting_requirements_explicit: true
+
+level_a_b_c:
+  level_a: "All 64 project architecture requirements are derived from frozen E1 IDs and project governance. External audit material supplies corroborating questions only."
+  level_b: "Ten pattern families are explicitly retained as candidate patterns only: content addressing, derived transcript projection, typed errors, operation journal, provider routing, explicit state representation, structured approval representation, local/remote execution boundary, context-summary blocks, and remote-worker lifecycle."
+  level_c: "Specific reconstructed schemas, module names, paths, algorithms, services, technology choices, identifiers, and code are excluded. Zero reconstructed code or Level C identifier was imported."
+  content_addressing_status: LEVEL_B_NOT_REQUIRED
+  external_audit_authority: NON_AUTHORITATIVE
+
+e2_002_input_contract:
+  present: true
+  required_fields: 28
+  requires:
+    - system_shape
+    - client_interaction_boundary
+    - process_boundaries
+    - trust_boundaries_and_threat_model
+    - authoritative_state_ownership
+    - operation_model
+    - persistence_semantics
+    - recovery_model
+    - workspace_execution_model
+    - git_model
+    - approval_effect_model
+    - model_provider_boundary
+    - context_memory_model
+    - evidence_artifact_model
+    - independent_verification_path
+    - observability_failure_model
+    - structural_security_control_ownership
+    - packaging_and_local_first_behavior
+    - future_compatibility
+    - all_127_e1_trace
+    - all_64_architecture_requirement_trace
+    - all_25_decision_domain_answers
+    - frozen_suite_testability_trace
+    - weaknesses_assumptions_unknowns
+    - selection_uncertainties
+    - migration_reversibility
+    - level_a_b_c_record
+    - e3_handoff
+  candidate_generated_by_e2_001: false
+  score_or_rank_generated: false
+
+unresolved_architecture_questions:
+  - "AQ-001: canonical write, durable acknowledgement, and ownership-transfer boundary."
+  - "AQ-002: exact supported local persistence failure boundary."
+  - "AQ-003: isolation strength and supported host/repository matrix."
+  - "AQ-004: descendant force termination and authority fencing."
+  - "AQ-005: authoritative readback source per optional external effect."
+  - "AQ-006: evidence integrity/gap/large-output/retention/migration mechanism."
+  - "AQ-007: contributor-operable local packaging/update/migration shape."
+  - "AQ-008: owner/review path and prospective finite values for ceilings."
+  - "AQ-009: provider/model/configuration role eligibility, E3-owned."
+preselection_spike_declared: false
+preselection_spike_run: false
+unknown_classification_owner: "E2-003 after E2-002 supplies candidate-specific mechanisms; E2-004 alone may execute a bounded verified preselection spike."
+
+assumptions_added: []
+assumptions_updated: []
+risks_added: []
+risks_updated:
+  - "R-030 mitigation now requires independent review of the E2-001 author baseline and records its author-side counts before any candidate work."
+
+decisions_made:
+  - "Classify all 119 canonical non-SLO/MET E1 IDs as primary HARD_CONSTRAINT because each preserves mandatory product, correctness, security, testability, or compatibility-floor semantics that cannot be averaged away."
+  - "Classify the eight SLO/MET result IDs as primary JUSTIFIED_NON_ARCHITECTURE_DRIVING empirical outcomes while making their measurement seams hard through AR-TST-003 and AR-PERF-002; no threshold or value is invented."
+  - "Use 64 normalized architecture requirements: 58 hard and 6 secondary weighted preferences. No frozen E1 requirement receives a primary weighted disposition."
+  - "Make every architecture requirement map to one or more of the exact 25 plan domains and make every domain answer an authority/ownership question."
+  - "Register eight E3 validation obligations with evidence and failure/reversal semantics while declaring no spike or run."
+  - "Treat external-audit patterns as Level B possibilities only and exclude Level C details."
+  - "Define the 28-field E2-002 candidate-description contract without generating a candidate."
+  - "Select no architecture, mechanism, technology, ADR, provider, model, role occupant, or implementation."
+
+frozen_e1_blob_identity:
+  03_product/ENGINEERING_PREVIEW_CHARTER.md: 50f21ea04b7381f5709dfe3a865f854148d29b4c
+  03_product/ENGINEERING_PREVIEW_PRD.md: 4a817887755a40038e507bfc7830333587df158a
+  03_product/ENGINEERING_PREVIEW_USER_FLOWS.md: e09e92f7b59ee8ae13afbaf39729774e57a6d8f4
+  03_product/ENGINEERING_PREVIEW_CORRECTNESS_CONTRACT.md: 8e11bdf0b7624ed935563261db09844978e48656
+  03_product/ENGINEERING_PREVIEW_CONTRIBUTION_WORKFLOW.md: 4c834fc0641c4882cc5da8c8984263c813932b58
+  06_evaluation/ENGINEERING_PREVIEW_EVALUATION_SUITE.md: 3d474bbd0f13ec7f100e34c4d9dd0e66a9a567a6
+  06_evaluation/MODEL_ROLE_BENCHMARK_PLAN.md: cc902fb9125c1f1221a1af83e4ec6225cd57538f
+  10_checkpoints/stage_checkpoints/ENGINEERING_PREVIEW_V0_1_RELEASE_ACCEPTANCE.yaml: f1c3fc21ace4a9e28cc2dddb28e87683d5144ddf
+  10_checkpoints/stage_checkpoints/ENGINEERING_PREVIEW_E1_SPECIFICATION_GATE_VERIFICATION.yaml: 3554fc1eb9f606225be33e306680b6c1e7518724
+
+tests_run:
+  - "Strict parse of every repository YAML/YML file and duplicate-key traversal of every mapping."
+  - "Strict CSV parse, fixed 19-column shape, 127-row count, unique canonical ID check, and primary-disposition count."
+  - "Markdown UTF-8, final newline, tab/trailing-whitespace, fence, and table-width checks."
+  - "Independent canonical-ID extraction from frozen PRD, user flows, and correctness contract; exact set equality with the CSV and release checkpoint."
+  - "Architecture-requirement ID/source/domain/E3 resolution, uniqueness, no-orphan, all-domain, and required-quality-category checks."
+  - "Frozen E1 Git blob identity and zero-worktree-diff checks for all nine frozen inputs."
+  - "Named-technology, Level C identifier, candidate/ADR/spike/forbidden-artifact, application-source, and architecture-directory scope scans."
+  - "High-confidence credential/private-key pattern scan over every changed/created file."
+  - "Task dependency, status/list reconciliation, E2 downstream blockage, E1/gate preservation, counter/autonomy/startup-track, model-registry, and no-selection assertions."
+  - "Exact allowed-path and staged-index checks, git diff --check, and final git status review."
+
+test_results:
+  - "PASS: 49/49 YAML/YML files parse strictly after this handoff is added; zero duplicate mapping keys."
+  - "PASS: trace CSV has 127 data rows x 19 fields, 127 unique canonical IDs, and primary dispositions 119 HARD_CONSTRAINT / 0 WEIGHTED_PREFERENCE / 8 JUSTIFIED_NON_ARCHITECTURE_DRIVING."
+  - "PASS: Markdown is valid UTF-8 with final newline, no tabs/trailing whitespace, balanced fences, and ten uniform-width tables."
+  - "PASS: frozen E1 extraction yields 56 FR + 15 RR + 9 FC + 4 SLO + 4 MET + 16 UF + 23 NEG = 127; exact set equality against CSV/checkpoint; all 701 case and 8 protocol edges are preserved through checkpoint IDs."
+  - "PASS: 64 unique architecture requirements, 278 source-ID references resolving, zero orphan/unknown requirement, 25 unique domains with all 64 requirements represented and an ownership question each, and 8 unique E3 obligations."
+  - "PASS: all nine frozen E1 files match the recorded blob IDs and have zero worktree diff."
+  - "PASS: zero named-technology selection and zero known Level C internal-identifier matches in new/changed E2-001 content; no architecture candidate, comparison, ADR, spike artifact, or application source exists."
+  - "PASS: high-confidence secret/private-key scan returns zero matches."
+  - "PASS: E2-001 READY_FOR_REVIEW / NOT_VERIFIED_AUTHOR_PASS; E2-002..006 BACKLOG; dependencies verified; E2 gate NOT_EVALUATED; E3-E5 NOT_STARTED; architecture false/null; ADR count 0; all implementation/evaluation/spike/benchmark/paid/external counters 0; autonomy NOT_ELIGIBLE / NOT_AUTHORIZED; S1-003 BLOCKED/DEFERRED/not executed."
+  - "PASS: exactly six authorized paths changed/created, zero staged changes, protected inputs untouched, and git diff --check clean."
+
+security_checks:
+  - "No secret, credential, private customer data, product account, provider/model account, external system, paid API, network retrieval, or consequential external effect was accessed."
+  - "Untrusted repository/reference content was treated as evidence only and granted no authority."
+  - "No reconstructed source, schema, exact internal identifier, module, path, or Level C implementation detail was imported."
+  - "Architecture requirements place trust, capability, secret, filesystem, process, network, Git, approval, external-effect, evidence, provider, and verifier boundaries outside sole LLM judgment."
+
+known_limitations:
+  - "This is AUTHOR-side evidence. No independent E2-001 challenger, fixer review, post-fix verifier, or E2 stage-gate verifier has reviewed these bytes."
+  - "No candidate mechanism exists, so candidate-specific paper resolution, UNKNOWN_REQUIRING_SPIKE classification, feasibility, comparison, or selection is possible yet."
+  - "None of the 64 requirements or 8 obligations has been exercised against application code; application code does not exist."
+  - "SLO/MET values, supported host/repository/capability matrix, concrete finite ceilings, local overhead, provider/configuration eligibility, architecture feasibility, and production suitability remain unknown."
+  - "The six weighted preferences have no weights; future E2-003 governance must freeze weights/correlations/sensitivity before scoring."
+  - "Outbound license and inbound contribution terms remain a future release blocker under R-029."
+
+unverified_claims:
+  - "Whether the E2-001 normalization is complete and correctly classifies every frozen E1 architecture implication; independent review is required."
+  - "Whether any future candidate can satisfy all 58 hard architecture requirements and all 119 canonical hard dispositions."
+  - "Whether any future mechanism passes the eight E3 obligations or frozen suite."
+  - "Whether any provider/model/configuration is eligible for any logical role."
+  - "Whether the eventual Engineering Preview is secure, reliable, performant, contributor-operable, or production-ready."
+
+blockers:
+  - independent_e2_001_challenger_review_not_run
+  - bounded_fixer_response_if_requested_not_run
+  - independent_post_fix_e2_001_verification_not_run
+  - e2_002_blocked_until_e2_001_independently_verified
+  - all_later_e2_tasks_blocked_by_serial_verified_dependencies
+
+internal_subagents:
+  used: false
+  independence_credit: NONE
+
+scope_control:
+  e2_001_status: READY_FOR_REVIEW
+  e2_001_verified: false
+  e2_002_status: BACKLOG
+  e2_003_through_e2_006_status: BACKLOG
+  e2_gate_status: NOT_EVALUATED
+  architecture_selected: false
+  accepted_architecture_adrs: 0
+  application_code_created: false
+  architecture_spikes_run: 0
+  evaluation_cases_implemented: 0
+  evaluation_cases_run: 0
+  model_benchmarks_run: 0
+  paid_api_calls: 0
+  external_actions_performed: false
+  model_roles_locked: false
+  e3_started: false
+  e4_started: false
+  e5_started: false
+  autonomy_eligible: NOT_ELIGIBLE
+  autonomous_build_authorized: false
+  s1_003_status: DEFERRED_NOT_EXECUTED
+
+recommended_next_task: REVIEW_TASK_E2-001
+next_command: "MODE: REVIEW_TASK_E2-001"
+repository_commit_or_patch: "Uncommitted E2-001 author patch based on 0338c615c7098a7c7e7afd1f09ff44be9db94109 on chore/initialize-project-materials; intentionally left uncommitted for founder review."

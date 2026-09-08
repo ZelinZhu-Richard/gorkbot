@@ -1,0 +1,125 @@
+handoff_id: H-S0-003-20260821
+task_id: S0-003
+stage: 0
+author_model: "Codex (runtime model identifier not exposed)"
+reviewer_requested: true
+started_at: null
+completed_at: "2026-08-21T12:58:08-04:00"
+files_read:
+  - 00_inbox/prepared_materials/05_MODEL_ACCESS.md
+  - 01_governance/MODEL_REGISTRY.yaml
+  - 01_governance/SOURCE_LEDGER.csv
+  - 01_governance/ASSUMPTION_REGISTER.md
+  - 01_governance/RISK_REGISTER.md
+  - MASTER_OPERATING_PROMPT.md
+  - SECURITY.md
+files_created:
+  - 06_evaluation/MODEL_ROLE_BENCHMARK_PLAN.md
+  - 99_handoffs/completed/S0-003_handoff.yaml
+files_modified:
+  - 01_governance/ASSUMPTION_REGISTER.md
+  - 01_governance/MODEL_REGISTRY.yaml
+  - 01_governance/PROJECT_STATE.yaml
+  - 01_governance/RISK_REGISTER.md
+  - 01_governance/SOURCE_LEDGER.csv
+  - 01_governance/TASK_REGISTRY.yaml
+files_deleted: []
+decisions_made:
+  - "No permanent model-role assignment was made."
+  - "Each reasoning effort, service tier, API versus open-weight deployment, and moving alias/served version is a distinct benchmark configuration."
+  - "A public model catalog or consumer subscription does not count as funded API access."
+assumptions_added:
+  - "A-009 was narrowed to require funded-account and benchmark evidence."
+  - A-013
+tests_run:
+  - "Reopened current official model catalog, model, pricing, availability, and migration pages on 2026-08-21."
+  - "Parsed MODEL_REGISTRY.yaml with Ruby YAML after writing it."
+  - "Parsed SOURCE_LEDGER.csv with Ruby CSV and checked header width and unique source IDs."
+  - "Audited benchmark coverage for verified success, false completion, cost per verified success, latency, structured output, tools, safety boundaries, and version drift."
+  - "Ran git diff --check."
+test_results:
+  - "OpenAI official pages documented gpt-5.6-sol, gpt-5.6-terra, and gpt-5.6-luna; public prices and limits were recorded, while a dated snapshot and founder account entitlement remain unknown."
+  - "Anthropic official pages documented claude-fable-5, public list pricing, classifier-refusal behavior, and a 30-day retention/no-ZDR constraint; founder API credits and entitlement remain unknown."
+  - "DeepSeek's current official pricing page documented aliases deepseek-v4-pro and deepseek-v4-flash, served version labels DeepSeek-V4-Pro-0813 and DeepSeek-V4-Flash-0731, current peak/off-peak prices, and public concurrency limits; founder account access remains unknown."
+  - "MODEL_REGISTRY.yaml parsed successfully."
+  - "SOURCE_LEDGER.csv parsed with 24 rows and 11 columns and contained no duplicate source ID."
+  - "All 11 unique source IDs referenced by model entries were present in SOURCE_LEDGER.csv."
+  - "The benchmark plan defines 14 project-specific cases, replication, hard gates, role thresholds, cost and latency metrics, structured/tool metrics, selection rules, and reporting metadata."
+  - "No benchmark was run and no performance result is claimed."
+  - "git diff --check returned no whitespace errors at the time of the check."
+security_checks:
+  - "No API key, account identifier, billing record, secret, or minimal API call was requested, inspected, or stored."
+  - "Benchmark fixtures are required to be synthetic, public, or scrubbed and to remain within repository policy."
+  - "The benchmark treats secret exposure, cross-tenant access, unauthorized action, and destructive scope violations as non-averageable hard failures."
+known_limitations:
+  - "All provider account funding, entitlements, actual quotas, negotiated prices, regions, retention settings, and minimal-call behavior remain unverified."
+  - "OpenAI public pages reviewed here did not expose a dated GPT-5.6 snapshot identifier."
+  - "DeepSeek moving aliases can change served versions and prices; the registry is a dated public baseline only."
+  - "DeepSeek V4 open-weight license and commercial deployment terms were not reviewed."
+  - "The independent challenger and verifier reviews have not run."
+  - "Historical dependency deviation recorded by the S0-003 fixer: the initial author pass ran while dependency S0-001 was READY but not independently VERIFIED. S0-001 was VERIFIED before either S0-003 fixer pass; the original ordering remains visible rather than being rewritten."
+  - "Historical provenance limitation recorded by the S0-003 fixer: started_at is null, completed_at is the shared Stage 0 batch stamp, and the initial pass did not capture a per-source UTC access time. GPT-5.6 Sol pricing drifted later on 2026-08-21 to promotional pricing through at least 2026-11-21, so the original author record cannot order its access against that change."
+  - "Historical scope deviation recorded under D-009: the initial S0-003 author pass changed SOURCE_LEDGER.csv, ASSUMPTION_REGISTER.md, and RISK_REGISTER.md outside its then-current allowed_files_to_change. The prospective S0-003-A1 authorization for the first fixer does not retroactively cure that deviation."
+  - "Second-fixer access state: founder API accounts, model entitlements, funded balances, quotas, regions, and provider data configurations remain unverified; public or consumer-product access is not founder-account evidence."
+  - "Second-fixer execution state: no benchmark budget has been authorized, so the executable benchmark budget remains USD 0; the Stage 1 customer workflow remains unselected and BLOCKED_WORKFLOW_NOT_SELECTED."
+  - "Second-fixer evidence state: no paid benchmark execution occurred, and every proposed model-role assignment remains HYPOTHESIS_ONLY rather than benchmark-validated."
+unverified_claims:
+  - "Founder-reported ChatGPT Pro, Codex, Claude Max, Claude Code, and DeepSeek access were not independently verified."
+  - "No candidate's project-role performance, structured-output rate, latency, or cost per successful task is known."
+blockers:
+  - funded_provider_api_accounts_and_model_entitlements_unknown
+  - prototype_benchmark_budget_unknown
+  - account_retention_region_and_rate_limits_unknown
+  - minimal_authorized_api_calls_not_run
+  - independent_challenger_and_verifier_pending
+recommended_next_task: REVIEW_TASK_S0-003
+repository_commit_or_patch: "Uncommitted Stage 0 working tree based on 4d99fff945a796d22fbe2ab7ec43e1310425ab71"
+
+external_primary_sources_reopened:
+  - source_id: SRC-009
+    url: https://developers.openai.com/api/docs/models
+  - source_id: SRC-017
+    url: https://developers.openai.com/api/docs/models/gpt-5.6-sol
+  - source_id: SRC-018
+    url: https://developers.openai.com/api/docs/models/gpt-5.6-terra
+  - source_id: SRC-019
+    url: https://developers.openai.com/api/docs/models/gpt-5.6-luna
+  - source_id: SRC-020
+    url: https://developers.openai.com/api/docs/pricing
+  - source_id: SRC-010
+    url: https://www.anthropic.com/news/redeploying-fable-5
+  - source_id: SRC-021
+    url: https://platform.claude.com/docs/en/about-claude/models/overview
+  - source_id: SRC-022
+    url: https://platform.claude.com/docs/en/about-claude/pricing
+  - source_id: SRC-023
+    url: https://platform.claude.com/docs/en/about-claude/models/migration-guide
+  - source_id: SRC-011
+    url: https://api-docs.deepseek.com/quick_start/pricing/
+  - source_id: SRC-024
+    url: https://api-docs.deepseek.com/news/news260424/
+
+acceptance_evidence:
+  personal_and_api_access_separated: AUTHOR_CHECK_PASSED
+  exact_public_ids_and_verification_date_recorded: AUTHOR_CHECK_PASSED
+  account_access_gaps_explicit: AUTHOR_CHECK_PASSED
+  role_assignments_not_locked_by_reputation: AUTHOR_CHECK_PASSED
+  success_cost_latency_and_structured_reliability_in_benchmark: AUTHOR_CHECK_PASSED
+  primary_source_verification: AUTHOR_CHECK_PASSED
+  account_level_api_verification: NOT_RUN_BLOCKED
+  independent_review: NOT_RUN
+
+second_fixer_addendum:
+  added_for_findings:
+    - V-S0-003-01
+    - V-S0-003-02
+    - V-S0-003-03
+    - V-S0-003-04
+  current_source_reverification_started_at: "2026-08-22T15:24:10Z"
+  current_source_reverification_completed_at: "2026-08-22T15:24:11Z"
+  current_source_ids:
+    - SRC-021
+    - SRC-023
+  current_result: "Both current Anthropic primary pages returned HTTP 200. The model registry now uses source-native month precision, treats the unstated Opus 5 availability date as UNKNOWN, and keeps the 512-token value only as a caching threshold."
+  historical_record_treatment: "All original author tests, results, timestamps, acceptance_evidence, and repository_commit_or_patch fields above remain unchanged. The six known_limitations entries added in this pass and this addendum preserve the post-review audit facts without rewriting the initial record."
+  evidence_handoff: 99_handoffs/completed/S0-003_second_fixer_handoff.yaml

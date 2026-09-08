@@ -1,0 +1,710 @@
+review_id: R-E2-004-20260829-CHALLENGER
+task_id: E2-004
+stage: E2
+mode: REVIEW_TASK_E2-004
+role: CHALLENGER
+reviewer_model: "Claude Fable 5 (claude-fable-5) via Claude Code"
+reviewer_independence: >-
+  Independent challenger in a fresh session with no shared conversation state with the E2-004
+  author session ("Codex (runtime model identifier not exposed)"), the E2-003 challenger/fixer/
+  verifier sessions, the E2-002 or E2-001 sessions, or any prior S0/S1/E0/E1 session; same
+  model/product as the earlier Claude Fable 5 challenger/verifier sessions, disclosed per
+  repository precedent. Disclosure: the charter names "Claude Code" among the E3 candidate
+  systems; this review selects no role occupant, architecture, candidate, technology, provider,
+  or model. Every count, set, status map, hash, path set, and staging judgement below was
+  recomputed from the committed bytes at 3fc9a46 with scratch commands (ruby 2.6 Psych strict
+  parse plus duplicate-key AST walk, ruby csv, git, grep, shasum). The author closure, author
+  handoff, the registry author_* fields, the PROJECT_STATE author note, and the E2-003
+  verifier's conclusion were read but not relied on as evidence for any PASS. No subagents,
+  network retrieval, login, account, API key, paid call, spend, spike, experiment, prototype,
+  benchmark, evaluation-case implementation or execution, application code, ADR, ranking,
+  E2-005 execution, or E3 execution was used or produced. No finding was fixed.
+started_at: "2026-08-29T18:32:00Z (approximate; session start not captured; review began after committed HEAD 3fc9a46 was observed with a clean working tree)"
+completed_at: "2026-08-29T18:54:39Z"
+reviewed_commit: 3fc9a462b49f5b754bdd1b9fcf07e68bf9dd7888
+reviewed_state: >-
+  Branch chore/initialize-project-materials at committed HEAD 3fc9a46 ("Close Engineering
+  Preview preselection uncertainty"), clean working tree. The E2-004 author pass changed exactly
+  four paths against author base 7b4b0d5 (PROJECT_STATE.yaml +15/-8, TASK_REGISTRY.yaml +59/-3,
+  05_architecture/ENGINEERING_PREVIEW_PRESELECTION_UNCERTAINTY_CLOSURE.md +455 new,
+  99_handoffs/completed/E2-004_handoff.yaml +438 new). E2-004 is READY_FOR_REVIEW / NOT
+  VERIFIED; E2-005 and E2-006 BACKLOG; E2 gate NOT_EVALUATED; architecture NOT_SELECTED;
+  preferred candidate NONE; accepted ADRs 0; spikes/code/evaluation/benchmark/paid calls 0.
+verdict: E2_004_ACCEPTED
+verdict_rationale: >-
+  The author's NO_PRESELECTION_SPIKE_REQUIRED closure survives an adversarial re-derivation.
+  All nine closure conditions re-derive as PASS from committed bytes, not from the author's
+  tables: 10/10 analysis-owned records are RESOLVED (5 tradeoff / 2 supports-property / 3
+  seam-present-E3-required); the 195-cell matrix carries no ARCHITECTURE_BLOCKING_SPIKE or
+  VIOLATED result; the only unproven hard properties per candidate are AR-EXE-003 (E3V-002) and
+  AR-SEC-006 (E3V-006), and both have the required structural seam in every candidate's f04/f10/
+  f18 with fail-closed frozen-E1 semantics (NEG-TERM-01 / EP-CTL-005 force-or-fence; UF-11 step 2
+  / correctness contract line 641 fail-to-WAITING_FOR_USER). The challenger searched for a
+  candidate-discriminating experiment across all 65 ARs, all 28 register records, all five
+  historical SPQs, every candidate f26 weakness/assumption, the candidate-specific topology
+  mechanisms (C02 authenticated local IPC and service-issued one-use authorization; C03
+  deterministic reducer/replay and payload-before-event ordering; C01 co-resident supervisor
+  death and in-process semantic separation), and the reference audit/adoption matrix, and found
+  none whose outcome could differ by candidate and change the selection or that is a
+  system-wide prerequisite unresolved by fail-closed unsupported-class declaration. The final
+  preselection spike set is therefore zero on evidence, not convenience. All 11 E3 deferrals
+  are CORRECTLY_E3; the three E4 bundles are implementation/configuration choices behind
+  defined seams; every E3V-001..008 has property, seam precondition, selected-configuration
+  dependence, bounded scope, evidence, success/failure/missing behaviour, and an explicit E2/
+  ADR handback under the canonical E2-001 section 9 meanings; no missing evidence receives
+  favourable credit; no candidate is ranked or preferred; no experiment, prototype, code,
+  dependency output, evaluation run, benchmark, or paid call exists; frozen E1, verified E2-001,
+  verified E2-002 candidates (SHA-256 equal to the comparison pins), and verified E2-003
+  artifacts are byte-identical to their verified commits. Seven LOW findings (closure-artifact
+  precision, an inaccurate README-refresh disposition, unnamed non-canonical register E3V
+  entries, inconsistent E3V-006 ADR handback linkage, undocumented candidate-specific hidden
+  search rows, a summary-only test record, and bundle-deferral reference chain) and ten NOTEs
+  are recorded; none is BLOCKER, HIGH, or MEDIUM, none hides an E2-blocking uncertainty,
+  weakens fail-closed/handback safety, or lets E2-005 propose an ADR without necessary
+  evidence. E2_004_ACCEPTED does not mark E2-004 VERIFIED and does not activate E2-005: a
+  separate independent verifier is still required.
+method:
+  - "Read MASTER_OPERATING_PROMPT.md, AGENTS.md, README.md, SECURITY.md, CLAUDE.md, .gitignore, the six governance records, the eight frozen E1 artifacts, the verified E2-001/E2-002/E2-003 artifacts and every E2-001/E2-002/E2-003 lifecycle record, the E2-004 closure and handoff, D-016, charter section 19, the Grok Bot baseline/reconstructed audit/adoption matrix (containment, secret, sandbox rows), and the exact current E2-004/E2-005/E2-006 registry entries."
+  - "Recomputed from committed bytes: 65/65 YAML strict parse with a duplicate-key AST walk (0 duplicates), 6/6 CSV parse, 195-cell matrix (65 criteria; 59 HARD / 6 WEIGHTED_PREFERENCE; per-candidate 57 CONFIRMED_SATISFIED_FOR_COMPARISON + 2 ARCHITECTURE_SEAM_CONFIRMED_E3_VALIDATION_OUTSTANDING + 0 blocking + 0 violated; input map 52/5/2/0 preserved; result vocabulary contains no blocking or violated value), 28-record register partition 10/0/8/3/7 with 5/2/3 analytic resolutions and 28-row source reconciliation, five SPQ IDs with nine candidate references and NOT_RUN status, the 59-row closure section 4 table (set-equal to the matrix hard set; 57 triple-CONFIRMED + 2 SEAM rows), 18 section-5 rows, 8 section-9 E3V rows, 5 section-8 SPQ rows, 9 section-13 ADR rows, 9 section-3 PASS rows."
+  - "Re-derived the nine closure conditions, S01/S02 stage ownership, SPQ-03/04/05, all 11 E3 deferrals, the three E4 deferrals, E3V-001..008 (canonical E2-001 section 9 meanings, candidate f30 focus rows, register e3_obligation_contracts), the fail-closed and handback model, the 59 hard ARs per candidate, candidate viability, decision neutrality, and ADR-E2-001..009 readiness against frozen E1 (PRD FR-033/040/046/047; correctness contract lines 263/371/641/955; UF-11; EP-CTL-005/016; EP-NEG-TERM-01; EP-NEG-SECRET-01/CRED-01; OR-SECRET-MARKER), E2-001 section 9 handback rules 1-5 and AQ-003/004/010, plan section 13/14, and each candidate's f02/f04/f05/f08/f10/f18/f23/f26/f27/f30 blocks."
+  - "Searched for hidden E2-blocking uncertainty beyond the historical SPQ IDs: durable persistence, crash recovery, duplicate/unknown effects, process containment (including supervisor death per topology), protected entry, filesystem isolation, partial-write reconciliation, stale workspace, independent verification, evidence integrity, stale projections, worker fencing, local-first packaging, service lifecycle, coordinator lifetime, resource feasibility, testability instrumentation, C02 local IPC authentication, C03 reducer determinism/ordering, C01 in-process separation; classified each."
+  - "Ran scans over the closure, handoff, and the governance diff hunks for favourable-unknown wording, selection/ranking/weight language, technology/vendor/model identifiers, and secret patterns; checked for spike/prototype/code/dependency artifacts; ran git diff --check; diffed frozen E1 (557e335, cced384, 7bbfebd), E2-001 (0d702b8), E2-002 (1a1c542), E2-003 (e5d541c) paths against HEAD; compared candidate SHA-256 values to the comparison pins; checked PROJECT_STATE/TASK_REGISTRY reconciliation and the READY_FOR_REVIEW precedent at c870c83/e5d541c."
+  - "Did not fix findings, run an experiment/spike/evaluation/benchmark/paid call, run E2-005 or E3, select an architecture, candidate, technology, or preferred candidate, create or accept an ADR, write application code, or modify the closure, E2-003, candidate, E2-001, E1, ADR, E3, or governance files."
+files_read:
+  - MASTER_OPERATING_PROMPT.md
+  - AGENTS.md
+  - README.md
+  - SECURITY.md
+  - CLAUDE.md
+  - .gitignore
+  - 01_governance/PROJECT_STATE.yaml
+  - 01_governance/TASK_REGISTRY.yaml
+  - 01_governance/DECISION_LOG.md
+  - 01_governance/ASSUMPTION_REGISTER.md
+  - 01_governance/RISK_REGISTER.md
+  - 01_governance/MODEL_REGISTRY.yaml
+  - 03_product/ENGINEERING_PREVIEW_CHARTER.md
+  - 03_product/ENGINEERING_PREVIEW_PRD.md
+  - 03_product/ENGINEERING_PREVIEW_USER_FLOWS.md
+  - 03_product/ENGINEERING_PREVIEW_CORRECTNESS_CONTRACT.md
+  - 03_product/ENGINEERING_PREVIEW_CONTRIBUTION_WORKFLOW.md
+  - 06_evaluation/ENGINEERING_PREVIEW_EVALUATION_SUITE.md
+  - 06_evaluation/MODEL_ROLE_BENCHMARK_PLAN.md
+  - 10_checkpoints/stage_checkpoints/ENGINEERING_PREVIEW_V0_1_RELEASE_ACCEPTANCE.yaml
+  - 05_architecture/ENGINEERING_PREVIEW_E2_ARCHITECTURE_PLAN.md
+  - 05_architecture/ENGINEERING_PREVIEW_ARCHITECTURE_REQUIREMENTS.md
+  - 05_architecture/ENGINEERING_PREVIEW_E1_ARCHITECTURE_TRACEABILITY.csv
+  - 05_architecture/ENGINEERING_PREVIEW_ARCHITECTURE_ALTERNATIVES.md
+  - 05_architecture/candidates/EP-ARCH-C01.yaml
+  - 05_architecture/candidates/EP-ARCH-C02.yaml
+  - 05_architecture/candidates/EP-ARCH-C03.yaml
+  - 05_architecture/ENGINEERING_PREVIEW_ARCHITECTURE_COMPARISON.md
+  - 05_architecture/ENGINEERING_PREVIEW_ARCHITECTURE_DECISION_MATRIX.csv
+  - 05_architecture/ENGINEERING_PREVIEW_ARCHITECTURE_UNCERTAINTY_REGISTER.yaml
+  - 05_architecture/ENGINEERING_PREVIEW_PRESELECTION_UNCERTAINTY_CLOSURE.md
+  - 99_handoffs/HANDOFF_TEMPLATE.yaml
+  - 99_handoffs/completed/E2-001_verifier_review.yaml
+  - 99_handoffs/completed/E2-002_verifier_review.yaml
+  - 99_handoffs/completed/E2-003_handoff.yaml
+  - 99_handoffs/completed/E2-003_challenger_review.yaml
+  - 99_handoffs/completed/E2-003_fixer_handoff.yaml
+  - 99_handoffs/completed/E2-003_verifier_review.yaml
+  - 99_handoffs/completed/E2-004_handoff.yaml
+  - 02_research/GROK_BOT_BASELINE_2026-08-21.md
+  - 02_research/GROK_BOT_018_RECONSTRUCTED_ARCHITECTURE_AUDIT.md
+  - 02_research/GROK_BOT_018_ARCHITECTURE_ADOPTION_MATRIX.csv
+  - FILE_MANIFEST.json
+recomputed_counts:
+  e2_004_changed_paths_against_7b4b0d5: 4
+  e2_004_changed_paths_within_allowed_set: "4/4"
+  yaml_strict_parse: "65/65 PASS; duplicate keys 0 (AST walk over every mapping)"
+  csv_parse: "6/6 PASS"
+  git_diff_check_HEAD_minus_1_HEAD: CLEAN
+  secret_pattern_hits_in_changed_files: 0
+  technology_vendor_model_identifier_hits_in_closure_and_handoff: 0
+  spike_prototype_code_dependency_artifacts: 0
+  spike_directory_present: false
+  application_source_files: 0
+  matrix_rows: 195
+  matrix_unique_candidate_criterion_pairs: 195
+  matrix_criteria: 65
+  matrix_hard: 59
+  matrix_preferences: 6
+  matrix_comparison_result_vocabulary: [CONFIRMED_SATISFIED_FOR_COMPARISON, ARCHITECTURE_SEAM_CONFIRMED_E3_VALIDATION_OUTSTANDING, QUALITATIVE_TRADEOFF_NO_SCORE]
+  matrix_blocking_spike_cells: 0
+  matrix_violated_cells: 0
+  per_candidate_hard_results: "C01 57/2/0/0; C02 57/2/0/0; C03 57/2/0/0 (confirmed / seam-E3-outstanding / blocking / violated)"
+  per_candidate_input_map_preserved: "52 SATISFIED_BY_DESIGN / 5 PLAUSIBLE / 2 UNKNOWN_REQUIRING_SPIKE / 0 VIOLATED in all three"
+  seam_outstanding_hard_ars: {AR-EXE-003: E3V-002, AR-SEC-006: E3V-006}
+  seam_outstanding_identical_across_candidates: true
+  hard_ars_with_e3_obligation_NONE: [AR-COR-002]
+  register_records: 28
+  register_partition: {PAPER_RESOLVABLE: 10, E2_PRESELECTION_SPIKE_REQUIRED: 0, E3_POSTSELECTION_TECHNICAL_VALIDATION: 8, E3_MODEL_OR_CONFIGURATION_BENCHMARK: 3, DEFERRED_OUT_OF_SCOPE: 7}
+  register_paper_resolutions: {RESOLVED_TRADEOFF: 5, RESOLVED_SUPPORTS_PROPERTY: 2, RESOLVED_ARCHITECTURE_SEAM_PRESENT_E3_VALIDATION_REQUIRED: 3, remaining: 0}
+  register_source_reconciliation_rows: 28
+  register_unique_source_ids: 28
+  register_normalized_ids_referenced_by_source_rows: 27
+  register_normalized_ids_not_source_derived: [E2U-PREFERENCE-WEIGHTS]
+  e2_002_source_records_by_candidate: {EP-ARCH-C01: 9, EP-ARCH-C02: 9, EP-ARCH-C03: 10}
+  e2_002_source_classes: {ANALYSIS_RESOLVABLE_E2_003: 10, ARCHITECTURE_BLOCKING_SPIKE_E2_004_references: 9, E3_VALIDATION_OBLIGATION: 3, E4_IMPLEMENTATION_DETAIL: 3, FUTURE_PRODUCT: 3}
+  historical_spq_unique: 5
+  historical_spq_candidate_references: 9
+  historical_spq_run_status: "5/5 NOT_RUN; S01/S02 historical_e2_004_contract SUPERSEDED_NOT_AUTHORIZED_NOT_RUN with provenance_preserved true"
+  e3_deferrals_normalized: 11
+  e3_deferrals_technical: 8
+  e3_deferrals_model_configuration: 3
+  e4_deferrals: 3
+  future_product_deferrals: 3
+  preference_authority_records: 1
+  canonical_e3v_obligations_e2_001_section_9: 8
+  closure_section_4_hard_rows: 59
+  closure_section_4_set_equal_to_matrix_hard: true
+  closure_section_4_triple_confirmed_rows: 57
+  closure_section_4_seam_rows: [AR-EXE-003, AR-SEC-006]
+  closure_section_5_hidden_search_rows: 18
+  closure_section_5_hidden_preselection_findings: 0
+  closure_section_8_spq_rows: 5
+  closure_section_9_e3v_rows: 8
+  closure_section_13_adr_rows: 9
+  closure_section_3_pass_rows: 9
+  candidate_sha256_equal_to_comparison_pins: true
+  frozen_e1_product_and_evaluation_files_changed_since_557e335: 0
+  e2_001_artifacts_changed_since_0d702b8: 0
+  e2_002_candidates_and_alternatives_changed_since_1a1c542: 0
+  e2_003_artifacts_changed_since_e5d541c: 0
+  model_registry_role_assignment_status_values: "HYPOTHESIS_ONLY only (13 candidates); no role occupant"
+  architecture_selected: false
+  preferred_candidate: null
+  accepted_adrs: 0
+  architecture_spikes_run: 0
+  technical_spikes_run: 0
+  evaluation_cases_run: 0
+  model_benchmarks_run: 0
+  paid_api_calls: 0
+  application_code: NONE
+  autonomy_eligible: NOT_ELIGIBLE
+  autonomous_build_authorized: false
+  s1_003: DEFERRED_NOT_EXECUTED
+section_results:
+  closure_conditions: CLOSURE_CONDITIONS_PASS
+  hidden_uncertainty: HIDDEN_UNCERTAINTY_PASS
+  s01_stage_ownership: S01_STAGE_OWNERSHIP_PASS
+  s02_stage_ownership: S02_STAGE_OWNERSHIP_PASS
+  spq_03_05: SPQ_03_05_PASS
+  e3_deferral_ledger: E3_DEFERRAL_LEDGER_PASS
+  e3_deferral_staging: "11/11 CORRECTLY_E3; 0 SHOULD_BE_E2; 0 SHOULD_BE_E4; 0 INSUFFICIENTLY_SPECIFIED"
+  e4_deferrals: E4_DEFERRAL_PASS
+  e3v_001_008_review: E3V_REVIEW_PASS
+  fail_closed_model: FAIL_CLOSED_PASS
+  handback_model: HANDBACK_MODEL_PASS
+  hard_requirement_closure: HARD_REQUIREMENT_CLOSURE_PASS
+  candidate_viability: CANDIDATE_VIABILITY_PASS
+  c01_viability: READY_FOR_E2_005_AFTER_E2_004_VERIFICATION
+  c02_viability: READY_FOR_E2_005_AFTER_E2_004_VERIFICATION
+  c03_viability: READY_FOR_E2_005_AFTER_E2_004_VERIFICATION
+  decision_neutrality: DECISION_NEUTRALITY_PASS
+  adr_readiness: ADR_READINESS_PASS
+  no_spike_closure_substance: NO_SPIKE_CLOSURE_SUBSTANCE_PASS
+  closure_artifact: CLOSURE_ARTIFACT_PASS
+  no_experiment: NO_EXPERIMENT_PASS
+  favorable_unknown: NO_FAVORABLE_UNKNOWN_PASS
+  premature_selection: NO_SELECTION_PASS
+  frozen_artifacts: FROZEN_ARTIFACTS_PASS
+  governance: GOVERNANCE_RECONCILED_PASS
+  acceptance_criteria: "AC1 PASS; AC2 PASS; AC3 NOT_APPLICABLE (no spike executed); AC4 PASS (vacuous: no hard-gate failure or inconclusive blocker exists, none erased); AC5 PASS (no comparison/register update was needed; none names a winner)"
+  required_tests: "RT1 PASS; RT2 NOT_APPLICABLE (no spike); RT3 PASS"
+closure_conditions:
+  C1_all_analysis_owned_unknowns_resolved:
+    result: PASS
+    evidence: "Register: 10 PAPER_RESOLVABLE records, all state RESOLVED with resolution 5 RESOLVED_TRADEOFF / 2 RESOLVED_SUPPORTS_PROPERTY / 3 RESOLVED_ARCHITECTURE_SEAM_PRESENT_E3_VALIDATION_REQUIRED; 0 remaining; each cites committed candidate fields (f02/f04/f06/f08/f09/f10/f15/f16/f18/f19/f20/f22/f23/f25/f26/f28) and none invents an empirical observation. Comparison section 4.2 covers the five PLAUSIBLE hard ARs (AR-DUR-005, AR-WSP-003, AR-SEC-003, AR-SEC-004, AR-PKG-001) per candidate."
+  C2_no_architecture_blocking_empirical_uncertainty_remains:
+    result: PASS
+    evidence: "Matrix comparison_result vocabulary is exactly {CONFIRMED_SATISFIED_FOR_COMPARISON, ARCHITECTURE_SEAM_CONFIRMED_E3_VALIDATION_OUTSTANDING, QUALITATIVE_TRADEOFF_NO_SCORE}; 0 blocking, 0 violated. Register E2_PRESELECTION_SPIKE_REQUIRED = 0; e2_004_minimum_set.retained_preselection_spike_ids = []. The two seam-outstanding hard ARs depend on an unselected host/process class (AR-EXE-003) or client/execution configuration (AR-SEC-006) that every candidate leaves open (f27 E4 items; D-016 client technology unselected). The challenger's own search (hidden_uncertainty_search below) found no candidate-discriminating experiment."
+  C3_empirical_residuals_legitimately_owned_by_e3_e4:
+    result: PASS
+    evidence: "11 E3 records map to canonical E3V-002 (S01), E3V-006 (S02 + three protected-delivery records), E3V-001..007 (three technical bundles via f30), E3V-008 (three model/configuration bundles). Three E4 bundles list only technologies behind defined ports (client/runtime, store/schema, IPC/auth, process API/supervisor, isolation mechanism, provider adapters, packaging). Three FUTU bundles are policy scope. E2U-PREFERENCE-WEIGHTS is E2-005 authority. None asks E3/E4 to invent a seam or change E1 semantics."
+  C4_every_deferred_hard_property_has_architecture_seam:
+    result: PASS
+    evidence: "AR-EXE-003 seam: C01 f04 execution_owner/control_and_fencing_owner + f10 process_boundary/cancellation/enforcement_layers.process_termination + f02 EXECUTION_OWNER_LIFETIME; C02 f04 execution_owner/control_and_fencing_owner + f05 TB-07 + f10 process/process_termination; C03 f04 execution_owner/control_and_fencing_owner + f10 process/process_termination/process_tree_expectation. AR-SEC-006 seam: C01 f04 protected_delivery_path + f18 protected_human_entry; C02 f04 protected_delivery_path (ten sub-fields) + f05 TB-05/TB-08/TB-20 + f18 protected_entry; C03 f08 protected_and_external_payload_ordering + f18 protected_entry. Each seam names authority, boundary, fail-closed action (unsupported/fenced; WAITING_FOR_USER/blocked), receipt/readback, recovery, and a replaceable implementation port. Recomputed 59 hard ARs per candidate: 57 CONFIRMED + 2 SEAM; closure section 4 table is set-equal to the matrix hard set."
+  C5_every_e3_deferral_has_explicit_evidence_and_scope:
+    result: PASS
+    evidence: "Canonical E2-001 section 9 gives each E3V-001..008 property/source ARs, focused owner/protocol, evidence, E4/E5 remainder, validating result/handback, owner class. Closure section 9 restates selected-baseline dependency, evidence, bounded scope, failure/missing/handback, and selection timing for all eight; sections 6.2 and 7.2 add full E3V-002/E3V-006 contracts; register E2U-S01/S02 and E3U-*-PROTECTED-DELIVERY carry required_e3_evidence; the six bundle records resolve through E2-001 section 9 plus candidate f30 rows (see F-E2-004-07, LOW, reference chain should be explicit)."
+  C6_every_e3_deferral_fails_closed:
+    result: PASS
+    evidence: "Register: E3_HARD_PROPERTY.missing = EVIDENCE_MISSING_FAIL_CLOSED; E3_MODEL_ELIGIBILITY.missing = role unassigned/no paid call; S01 missing_evidence 'never infer whole-tree feasibility', execution blocked/fenced; S02 and delivery records missing_evidence WAITING_FOR_USER and never ordinary input; E3V-002/006 contracts 'execution remains blocked/fenced', 'never falls back to ordinary capture'. Frozen E1 anchors: correctness contract line 641 and UF-11 step 2 (WAITING_FOR_USER/blocker, do not improvise); NEG-TERM-01/EP-CTL-005 (force or fence when available; killed work never complete). Closure section 11 and handoff consequence_model give no path from missing/failed/inconclusive evidence to success."
+  C7_every_e3_deferral_has_e2_adr_handback:
+    result: PASS
+    evidence: "E2-001 section 9 handback rules 1-5; register E3_HAND_BACK_TO_E2 term and e2_adr_handback fields on S01/S02/delivery records; E3V-002 handback ADR-E2-003/004, E3V-006 handback ADR-E2-005 (register) / ADR-E2-001/005 (closure 7.2) / ADR-E2-001/004/005/008 (closure 9, handoff); closure section 9 names linked ADRs for every E3V; section 11 E3_HAND_BACK_TO_E2 requires return to E2-005/E2-006 and E2 gate re-evaluation with no silent redesign. Linkage strings for E3V-006 are inconsistent across sections (F-E2-004-05, LOW); every variant includes ADR-E2-005, so safety is not weakened."
+  C8_missing_evidence_receives_no_favorable_interpretation:
+    result: PASS
+    evidence: "Matrix seam cells: 'not empirically proven ... remain E3V-002/E3V-006' with blocking_consequence 'no E2 selection credit or candidate invalidation is inferred'; register classification_policy.unknown_receives_favorable_credit false and hard_failure_compensation_permitted false; comparison result vocabulary grants no empirical credit; preferences unweighted/unscored; challenger favourable-unknown scan over closure/handoff/governance hunks found only the closure's own audit sentence. The closure's literal statement 'all consequence profiles specify EVIDENCE_MISSING_FAIL_CLOSED' overstates (only E3_HARD_PROPERTY uses the literal term; the other five profiles use equivalent fail-closed wording) - F-E2-004-02, LOW, semantics unaffected."
+  C9_zero_spikes_is_evidence_based_not_convenience:
+    result: PASS
+    evidence: "Plan section 13 test: an experiment is preselection only if its outcome can distinguish candidates or is a system-wide prerequisite without which no candidate can be proposed. S01: the host process-tree primitive is identical across the three f10 isolation blocks (same TIER_2 assumption, same 'required host process-tree primitive must account for descendants', same unsupported fail-closed); topology differs only in who holds the handle and how often a supervisor dies alone, which is recorded qualitative evidence (comparison sections 8/17.2, V-E2-003-N8), not a hard discriminator; E1 admits fencing when termination is unavailable. S02: acquisition is a product-internal path that any client class can route outside its own capture channels; the uncertainty is complete exclusion on the selected surface, which cannot be observed before ADR-E2-001 selects a client. SPQ-03/04/05: delivery mechanisms presuppose selected client/IPC/journal technology; a run would test that arbitrary choice. The challenger's independent search of candidate-specific mechanisms (below) found no discriminator. Cost/effort is not cited anywhere as the rationale. The closure's section 5 documents only shared-property rows (F-E2-004-04, LOW)."
+hidden_uncertainty_search:
+  method: "Every suspect below was checked against the frozen requirement text, each candidate's f02/f04/f05/f08/f09/f10/f18/f23/f26/f27/f30 blocks, the matrix cells, the register, and the plan section 13 test; classification is the challenger's own."
+  suspects:
+    - {suspect: "Durable persistence feasibility (old-or-new current state, acknowledged append, healthy volume)", classification: ANALYSIS_ALREADY_CLOSED, e3: "E3V-001", basis: "C01/C02/C03 f08 acknowledgement_boundary and durability_scope; AR-DUR-001 CONFIRMED x3; host atomic-write primitive is candidate-invariant"}
+    - {suspect: "Crash recovery / restart reconciliation ownership", classification: ANALYSIS_ALREADY_CLOSED, e3: "E3V-001", basis: "f09 in all three; AR-DUR-002 CONFIRMED x3; comparison section 8 eleven scenarios"}
+    - {suspect: "Duplicate consequential external effects", classification: ANALYSIS_ALREADY_CLOSED, e3: "E3V-001", basis: "f08/f12 intent/attempt/receipt/readback/unknown bridges; AR-DUR-003/AR-APR-002 CONFIRMED x3; no candidate claims atomic external commit; ambiguity is shared"}
+    - {suspect: "Lost/unknown acknowledgements", classification: ANALYSIS_ALREADY_CLOSED, e3: "E3V-001", basis: "C02 f26 names lost service-worker acks; C03 f08 crash_recovery classifies KNOWN_NOT_DELIVERED/KNOWN_DELIVERED/OUTCOME_UNCERTAIN; C01 f04 no_live_owner_semantics"}
+    - {suspect: "Descendant process containment / force termination on the supported host class", classification: E3_VALIDATION, e3: "E3V-002", basis: "AR-EXE-003 seam x3; host primitive candidate-invariant; E1 admits fence when force unavailable (contract line 371/955, EP-CTL-005)"}
+    - {suspect: "Supervisor death per topology (C01 core exit; C02 worker/service loss; C03 executor/coordinator absence) leaving orphans", classification: ANALYSIS_ALREADY_CLOSED, e3: "E3V-001/002", basis: "C01 f02 EXECUTION_OWNER_LIFETIME + f04 no_live_owner_semantics; C02 f04 no_live_service_semantics; C03 f04 no_live_coordinator_semantics; shared E1-admitted interval (V-E2-002-N6, V-E2-003-N8); restart discovery + fence in all three; frequency/blast radius is recorded preference evidence"}
+    - {suspect: "Protected human entry / capture exclusion on the eventual client surface", classification: E3_VALIDATION, e3: "E3V-006", basis: "AR-SEC-006 seam x3; client surface unselected (D-016; ADR-E2-001); UF-11 step 2 fail-to-WAIT"}
+    - {suspect: "Filesystem isolation / adversarial paths (links, mounts, devices, archives)", classification: ANALYSIS_ALREADY_CLOSED, e3: "E3V-003/006", basis: "f10 path_scope/defenses x3; AR-WSP-003 CONFIRMED (INFERENCE) via E2U-PAPER-*-U03/U04; host object-identity primitive candidate-invariant"}
+    - {suspect: "Partial filesystem write reconciliation", classification: ANALYSIS_ALREADY_CLOSED, e3: "E3V-001/003/005", basis: "AR-DUR-005 CONFIRMED x3 (comparison 4.2); seven E2-002 workspace partial-write cases; COMP-14"}
+    - {suspect: "Stale workspace detection / scoped cleanup", classification: ANALYSIS_ALREADY_CLOSED, e3: "E3V-003", basis: "f10 reconciliation_cleanup x3; AR-WSP-005 CONFIRMED x3"}
+    - {suspect: "Structurally independent verification in an integrated core (C01)", classification: ANALYSIS_ALREADY_CLOSED, e3: "E3V-005", basis: "C01 f04 verification_owner fresh process/context without author write authority; AR-VER-001 CONFIRMED x3; E2-001 verifier confirmed AR-VER-001 equals contract 11.3"}
+    - {suspect: "Evidence integrity separate from telemetry", classification: ANALYSIS_ALREADY_CLOSED, e3: "E3V-005", basis: "f15/f17 x3; AR-EVD-003 CONFIRMED x3; C02 TB-18 forbids telemetry/worker summary as proof"}
+    - {suspect: "Stale projections / stale client views authorising action", classification: ANALYSIS_ALREADY_CLOSED, e3: "E3V-005", basis: "C03 f04 reducer_and_projection_authority; C02 f26 stale client views require version/conflict handling; C01 f06 derived projection"}
+    - {suspect: "Worker fencing vs containment conflation (C02)", classification: ANALYSIS_ALREADY_CLOSED, e3: "E3V-002", basis: "C02 f07 CONTROL_PLANE_LEASE_FENCING 'logical authority control only' and LOCAL_PROCESS_TREE_CONTAINMENT explicitly separate; register process_tree_vs_fence"}
+    - {suspect: "Local-first packaging with a persistent service (C02) or journal tooling (C03)", classification: ANALYSIS_ALREADY_CLOSED, e3: "E3V-003", basis: "AR-PKG-001 prohibits hidden service/cloud, not a visible local service; C02-U02 RESOLVED_SUPPORTS_PROPERTY; C03-U03 RESOLVED_SUPPORTS_PROPERTY; burden is AR-PRF-006"}
+    - {suspect: "Service lifecycle / update / IPC versioning burden (C02)", classification: ANALYSIS_ALREADY_CLOSED, e3: "E3V-003", basis: "C02-U01 RESOLVED_TRADEOFF; preference evidence only"}
+    - {suspect: "Coordinator lifetime and no real-time deadline enforcement (C03)", classification: ANALYSIS_ALREADY_CLOSED, e3: "E3V-002", basis: "C03 f04 no_live_coordinator_semantics; AR-DUR-004 CONFIRMED with no-live-owner interval stated symmetrically (comparison 4.4)"}
+    - {suspect: "Resource feasibility of running core/service, supervisor, verifier, gateway and isolation on one developer machine", classification: E3_VALIDATION, e3: "E3V-007", basis: "AR-PERF-001/002 CONFIRMED structurally; measurement is implementation-confounded before selection; no hard threshold exists in frozen E1"}
+    - {suspect: "Testability instrumentation seams for the frozen suite", classification: ANALYSIS_ALREADY_CLOSED, e3: "E3V-001/007", basis: "f25 nine family rows, sixteen compositions, EP-CTL-016 per candidate; AR-TST-001..003 CONFIRMED x3"}
+    - {suspect: "C02 authenticated user-local IPC and service-issued one-use authorization without raw access", classification: ANALYSIS_ALREADY_CLOSED, e3: "E3V-003/006", basis: "C02 f05 unsupported_host_compromise_assumption ('absence of required local IPC ... enforcement fails closed and narrows the supported host class'), TB-01/TB-05/TB-20, f26 candidate_assumptions; authenticated local IPC is an ordinary host capability, not a genuine feasibility unknown; a host-class failure narrows support, it does not select another candidate"}
+    - {suspect: "C03 deterministic reducer/replay, payload-before-event ordering, orphan payload quarantine", classification: ANALYSIS_ALREADY_CLOSED, e3: "E3V-001/005", basis: "C03 f08 acknowledgement_boundary, partial_write_corruption, evolution, protected_and_external_payload_ordering; f26 candidate_assumptions; design property, E3 validates faults"}
+    - {suspect: "C01 in-process semantic separation of core/supervisor/verifier/protected path", classification: ANALYSIS_ALREADY_CLOSED, e3: "E3V-005/006", basis: "C01 f04 ports and protected_delivery_path 'outside ordinary input, transcript, model, tool-output, telemetry, screenshot, and evidence pipelines'; C01-U01 RESOLVED_TRADEOFF (coupling is preference)"}
+    - {suspect: "Network zero-send for arbitrary descendants (AR-SEC-004)", classification: ANALYSIS_ALREADY_CLOSED, e3: "E3V-004/006", basis: "f10 network_boundary_expectation x3; enforcement_layers.descendant_filesystem_and_network 'otherwise untrusted execution is unsupported'; same host-primitive class as S01, candidate-invariant"}
+    - {suspect: "Model/provider role eligibility", classification: E3_VALIDATION, e3: "E3V-008", basis: "MODEL_REGISTRY role_assignment_status HYPOTHESIS_ONLY for every candidate; gateway shape neutral in all three f13"}
+    - {suspect: "Concrete store/IPC/runtime/process API/isolation/schema/package/provider SDK", classification: E4_IMPLEMENTATION_DETAIL, e3: "n/a", basis: "E4U-C0x-IMPLEMENTATION; behind defined ports; cannot relax E3 evidence"}
+    - {suspect: "Remote/cloud/multi-agent/multi-client/extension/General/Finance/SaaS behaviour", classification: FUTURE_PRODUCT, e3: "n/a", basis: "FUTU-C0x-PRODUCT; compatibility seams only (AR-FUT-001..003 CONFIRMED x3)"}
+  e2_preselection_spike_required_found: 0
+  result: HIDDEN_UNCERTAINTY_PASS
+s01_rederivation:
+  historical: "SPQ-E2-002-01 (shared; C01/C02/C03 f27; NOT_RUN) -> E2U-S01-DESCENDANT-CONTAINMENT -> E3V-002"
+  checks:
+    all_candidates_expose_containment_and_fencing_boundary: "YES - C01 f04 execution_owner (bounded process groups, cancels descendants) + f10 process_boundary/cancellation; C02 f04 execution_owner (leased worker plus process-tree supervisor) + TB-07; C03 f04 execution_owner (fenced executor adapter owns one process tree) + f10 process_tree_expectation"
+    process_ownership_explicit: "YES - integrated supervisor / worker supervisor / executor adapter"
+    process_tree_semantics_explicit: "YES - f10 enforcement_layers.process_termination x3 states the host process-tree primitive must account for descendants; 'logical epoch/lease/workflow fencing alone is not evidence of descendant containment' in all three"
+    stale_executor_authority_fenced: "YES - C01 owner epoch; C02 service lease/fence + epoch; C03 stream owner/fence; comparison 4.4 AR-DUR-004/AR-FUT-002"
+    lack_of_safe_force_termination_fails_closed: "YES - frozen E1 contract line 371 'force-terminate when safe/available and otherwise fence/revoke'; line 955 NEG-TERM-01; EP-CTL-005; f26 unsupported_environments 'process classes that cannot be bounded or authority-fenced' x3; register S01 failure_implication"
+    not_dependent_on_model_cooperation: "YES - f18 structural_fail_closed_rule (C01), fail_closed (C02/C03): 'the architecture does not ask the model to behave safely in lieu of a control'"
+    concrete_host_mechanism_unselected: "YES - f27 E4 items 'process API'/'worker supervisor'/'executor/sandbox'; no technology token in any E2 artifact (scan 0 hits)"
+    result_cannot_discriminate_c01_c02_c03: "YES - identical TIER_2 assumption, identical 'required host process-tree primitive' clause, identical fail-closed consequence in all three f10 blocks; the candidate-owned layer (epoch/lease/workflow fence) is analysis-confirmed"
+    e3v_002_validates_selected_host_platform_configuration: "YES - E2-001 section 9 E3V-002; register E3V-002 required_evidence (exact host/platform/process/configuration support declaration and versions); closure 6.2"
+    tested_scope_bounded: "YES - 'Validates only tested host/platform/process/configuration classes; never generalize beyond them'"
+    unsupported_scope_remains_unsupported: "YES - PRODUCT_CLASS_UNSUPPORTED narrows and stays blocked/fenced; EVIDENCE_MISSING_FAIL_CLOSED cannot broaden"
+    architecture_handback_if_structural_assumption_fails: "YES - E3_HAND_BACK_TO_E2 for ADR-E2-003/004 when no conforming realization can satisfy AR-EXE-003 for a required class"
+  aggressive_question: "Could one candidate be fundamentally easier or harder to contain because of topology such that empirical proof should influence selection now?"
+  aggressive_answer: >-
+    No. Topology changes which process holds the tree handle (integrated core, leased worker,
+    executor adapter) and how often that holder can die alone (C01 core exit takes the
+    supervisor with it; C02 service may survive a worker crash; C03 coordinator may be absent by
+    design). Whether a surviving orphan can then be killed, accounted for, and deprived of
+    productive/effect authority is decided by the same host primitive and the same
+    restart-reconciliation/fence contract in all three; E1 admits fencing plus explicit
+    uncertainty when force termination is unavailable and admits the no-live-owner interval
+    symmetrically (EP-CTL-016 is client-only disconnect). The residual difference - blast
+    radius and frequency of supervisor loss - is already recorded as qualitative preference
+    evidence (comparison 8/17.2 profiles A/F/G; V-E2-003-N8) and no host experiment can turn it
+    into a hard pass/fail for one candidate. S01 therefore does not belong in E2.
+  result: S01_STAGE_OWNERSHIP_PASS
+s02_rederivation:
+  historical: "SPQ-E2-002-02 (shared; C01/C02/C03 f27; NOT_RUN) -> E2U-S02-PROTECTED-ACQUISITION -> E3V-006"
+  checks:
+    all_candidates_define_protected_entry_seam: "YES - C01 f04 protected_delivery_path + f18 protected_human_entry; C02 f04 protected_delivery_path (protected_entry_begins, ordinary_capture_stops, scope_validator, delivery, forbidden_raw_observers, persisted_receipt, worker_replacement, crash_semantics, replay_rule, revocation_and_fencing) + TB-05/TB-08/TB-20 + f18; C03 f08 protected_and_external_payload_ordering + f18 protected_entry"
+    protected_entry_outside_normal_model_chat_context: "YES - each f18 states the path leaves ordinary chat/model/telemetry/command/event pipelines"
+    observation_capture_exclusion_required: "YES - keystroke/clipboard/screen/accessibility/terminal/model/transcript/log/evidence named per AR-SEC-006 and UF-11 step 3"
+    unauthorized_raw_value_paths_prohibited: "YES - C02 forbidden_raw_observers list; C03 raw_protected_payload_in_durable_history false; C01 transient protected memory only"
+    fail_to_wait_exists: "YES - each f18: WAITING_FOR_USER or hard blocker when exclusion cannot be guaranteed; contract line 641; UF-11 step 2"
+    no_selected_client_technology_at_e2: "YES - D-016 'final client technology ... is not yet selected'; E2-001 section 16; f27 E4 client/runtime items; 0 technology tokens"
+    e2_cannot_meaningfully_test_real_client_surface: "YES - the E2-002 SPQ-02 contract required observers on keystroke/clipboard/screen/accessibility/terminal surfaces with no declared client/host; either the harness defines its own surfaces (prototype theater) or mandatory observers are missing (INCONCLUSIVE_BLOCKING), as the E2-003 challenger showed and the E2-003 verifier independently confirmed"
+    candidate_topology_does_not_change_basic_acquisition_feasibility: "YES - the acquisition surface is the client in all three; topology changes only the delivery half (SPQ-03/04/05)"
+    e3v_006_validates_selected_client_execution_configuration: "YES - register E3V-006 required_evidence (synthetic sentinel; complete named observer inventory for the selected client/execution configuration; exact binding; crash/replacement/revocation/expiry/recovery; raw-value absence scans; exact supported/unsupported scope); closure 7.2"
+    implementation_failure_vs_architecture_failure_distinguishable: "YES - IMPLEMENTATION_CONFIGURATION_FAILURE / PRODUCT_CLASS_UNSUPPORTED / ARCHITECTURE_ASSUMPTION_DISPROVEN split in register, closure 7.2/11, handoff e3v_006_status"
+    architecture_handback_trigger_exists: "YES - E3_HAND_BACK_TO_E2 when no conforming realization can satisfy a required protected-entry property under the linked ADR (ADR-E2-005 in register; ADR-E2-001/005 in closure 7.2; superset in closure 9/handoff - see F-E2-004-05)"
+  aggressive_question: "If protected acquisition turns out infeasible on the intended product platform, does that invalidate all candidate architectures equally?"
+  aggressive_answer: >-
+    It affects all three equally and invalidates none. All candidates leave the client surface
+    unselected and share the same acquisition seam; the product-internal protected path (route
+    entry outside the product's own agent/model/tool capture channels) is realisable by any
+    client class, so the genuine uncertainty is complete exclusion on the selected surface. If
+    a selected client/platform class had no safe mechanism, frozen E1 (UF-11 step 2; AR-SEC-006)
+    requires WAITING_FOR_USER/blocker with zero improvised acquisition: the supported client
+    class narrows and the tasks that need secrets wait. That is product/platform support-scope
+    validation and, at most, a post-selection handback to ADR-E2-001 (client surface) and
+    ADR-E2-005 (protected-entry boundary); it cannot prefer or eliminate C01, C02, or C03, so it
+    is not candidate-selection evidence and cannot be obtained before a client exists without
+    pre-selecting a technology, which E2-004's forbidden_actions prohibit.
+  result: S02_STAGE_OWNERSHIP_PASS
+spq_03_05:
+  SPQ-E2-002-03: {provenance_preserved: true, final_owner: E3V-006, candidate: EP-ARCH-C01, seam: "f04 protected_delivery_path one-use recipient/use/fence scope in transient protected memory outside ordinary core/model/log/evidence pipelines", preselection_discriminator_remains: false, evidence_explicit: "register E3U-C01-PROTECTED-DELIVERY required_e3_evidence; closure 8", fail_closed_explicit: "EVIDENCE_MISSING_FAIL_CLOSED and WAITING_FOR_USER", handback_explicit: "Reopen ADR-E2-005 only if no conforming C01 delivery realization can satisfy the required hard property", config_vs_adr_failure_distinct: true}
+  SPQ-E2-002-04: {provenance_preserved: true, final_owner: E3V-006, candidate: EP-ARCH-C02, seam: "f04 protected_delivery_path: non-secret service authorization, direct client-to-current-worker handoff bypassing service data handling, lease/fence recipient, revocation, no replay; TB-05/TB-20", preselection_discriminator_remains: false, evidence_explicit: "register E3U-C02-PROTECTED-DELIVERY; closure 8", fail_closed_explicit: "EVIDENCE_MISSING_FAIL_CLOSED and WAITING_FOR_USER", handback_explicit: "Reopen ADR-E2-005 only if no conforming C02 delivery realization remains", config_vs_adr_failure_distinct: true}
+  SPQ-E2-002-05: {provenance_preserved: true, final_owner: E3V-006, candidate: EP-ARCH-C03, seam: "f08 protected_and_external_payload_ordering: raw value never in journal/payload/projection; metadata-before-delivery; intent/receipt/OUTCOME_UNCERTAIN classification; no replay", preselection_discriminator_remains: false, evidence_explicit: "register E3U-C03-PROTECTED-DELIVERY; closure 8", fail_closed_explicit: "EVIDENCE_MISSING_FAIL_CLOSED and WAITING_FOR_USER", handback_explicit: "Reopen ADR-E2-005 only if no conforming C03 delivery realization remains", config_vs_adr_failure_distinct: true}
+  why_not_preselection: "The three seams differ structurally, but exercising any of them requires a selected client, IPC/auth, worker, journal/broker technology; a run would test that arbitrary choice, and E1 fail-to-WAIT already bounds the consequence of a negative result to WAITING_FOR_USER for that configuration."
+  result: SPQ_03_05_PASS
+e3_deferral_ledger:
+  records_recomputed: 11
+  per_record:
+    E2U-S01-DESCENDANT-CONTAINMENT: {linked_e3v: E3V-002, linked_ars: [AR-EXE-003], candidates: [C01, C02, C03], exact_property: explicit, why_selection_first: explicit, selected_configuration_dependency: explicit, evidence_required: explicit, scope: explicit, success: explicit, failure: explicit, missing: explicit, handback: "ADR-E2-003/004", unsupported_scope: explicit, downstream_owner: "E3V-002 owner after verified E2 and separate E3 authorization", verdict: CORRECTLY_E3}
+    E2U-S02-PROTECTED-ACQUISITION: {linked_e3v: E3V-006, linked_ars: [AR-SEC-006], candidates: [C01, C02, C03], exact_property: explicit, why_selection_first: explicit, selected_configuration_dependency: explicit, evidence_required: explicit, scope: explicit, success: explicit, failure: explicit, missing: "WAITING_FOR_USER/blocked", handback: "ADR-E2-005 (register) / ADR-E2-001,005 (closure 7.2)", unsupported_scope: explicit, downstream_owner: "E3V-006 owner", verdict: CORRECTLY_E3}
+    E3U-C01-PROTECTED-DELIVERY: {linked_e3v: E3V-006, linked_ars: [AR-SEC-003, AR-SEC-006], candidates: [C01], exact_property: explicit, why_selection_first: explicit, selected_configuration_dependency: explicit, evidence_required: explicit, scope: "selected C01 client/execution configuration", success: explicit, failure: explicit, missing: "WAITING_FOR_USER", handback: ADR-E2-005, unsupported_scope: "via PRODUCT_CLASS_UNSUPPORTED", downstream_owner: E3V-006_OWNER, verdict: CORRECTLY_E3}
+    E3U-C02-PROTECTED-DELIVERY: {linked_e3v: E3V-006, linked_ars: [AR-SEC-003, AR-SEC-006], candidates: [C02], exact_property: explicit, why_selection_first: explicit, selected_configuration_dependency: explicit, evidence_required: explicit, scope: "selected C02 client/execution configuration", success: explicit, failure: explicit, missing: "WAITING_FOR_USER", handback: ADR-E2-005, unsupported_scope: "via PRODUCT_CLASS_UNSUPPORTED", downstream_owner: E3V-006_OWNER, verdict: CORRECTLY_E3}
+    E3U-C03-PROTECTED-DELIVERY: {linked_e3v: E3V-006, linked_ars: [AR-SEC-003, AR-SEC-006], candidates: [C03], exact_property: explicit, why_selection_first: explicit, selected_configuration_dependency: explicit, evidence_required: explicit, scope: "selected C03 client/execution configuration", success: explicit, failure: explicit, missing: "WAITING_FOR_USER", handback: ADR-E2-005, unsupported_scope: "via PRODUCT_CLASS_UNSUPPORTED", downstream_owner: E3V-006_OWNER, verdict: CORRECTLY_E3}
+    E3U-C01-TECHNICAL: {linked_e3v: "E3V-001..007", linked_ars: "per canonical E2-001 section 9 source lists", candidates: [C01], fields_resolved_via: "E2-001 section 9 rows + EP-ARCH-C01 f30 obligations (focus/evidence/owner/e4_e5_remainder/architecture_handback/implementation_adjustment) + register E3_HARD_PROPERTY profile", direct_record_fields: "question, decision_linkage, source_refs, owner, consequence_profile only", verdict: CORRECTLY_E3, note: "reference chain should be explicit - F-E2-004-07"}
+    E3U-C02-TECHNICAL: {linked_e3v: "E3V-001..007", candidates: [C02], fields_resolved_via: "E2-001 section 9 + EP-ARCH-C02 f30 + E3_HARD_PROPERTY", verdict: CORRECTLY_E3, note: "F-E2-004-07"}
+    E3U-C03-TECHNICAL: {linked_e3v: "E3V-001..007", candidates: [C03], fields_resolved_via: "E2-001 section 9 + EP-ARCH-C03 f30 + E3_HARD_PROPERTY", verdict: CORRECTLY_E3, note: "F-E2-004-07"}
+    E3U-C01-MODEL-CONFIGURATION: {linked_e3v: E3V-008, candidates: [C01], fields_resolved_via: "E2-001 section 9 E3V-008 + f30 E3V-008 + E3_MODEL_ELIGIBILITY profile (missing = role unassigned, no paid call)", verdict: CORRECTLY_E3}
+    E3U-C02-MODEL-CONFIGURATION: {linked_e3v: E3V-008, candidates: [C02], fields_resolved_via: "same", verdict: CORRECTLY_E3}
+    E3U-C03-MODEL-CONFIGURATION: {linked_e3v: E3V-008, candidates: [C03], fields_resolved_via: "same", verdict: CORRECTLY_E3}
+  result: E3_DEFERRAL_LEDGER_PASS
+e3_deferral_staging:
+  test_applied: "(1) Would an unfavorable result change which architecture should be selected? (2) Would it only show a concrete implementation/configuration does not satisfy the selected contract? (3) Could it require reopening an ADR because a required assumption is impossible - if so, is the seam present and the handback explicit?"
+  verdicts:
+    E2U-S01-DESCENDANT-CONTAINMENT: "(1) No - host primitive candidate-invariant; (2) Yes; (3) Yes, seam present x3, handback ADR-E2-003/004 explicit -> CORRECTLY_E3"
+    E2U-S02-PROTECTED-ACQUISITION: "(1) No - client surface shared and unselected; (2) Yes; (3) Yes, seam x3, handback ADR-E2-001/005 -> CORRECTLY_E3"
+    E3U-C01-PROTECTED-DELIVERY: "(1) No before a selected client/runtime; (2) Yes; (3) Yes, seam f04, handback ADR-E2-005 -> CORRECTLY_E3"
+    E3U-C02-PROTECTED-DELIVERY: "(1) No before selected client/IPC/worker; (2) Yes; (3) Yes, seam f04/TB-20, handback ADR-E2-005 -> CORRECTLY_E3"
+    E3U-C03-PROTECTED-DELIVERY: "(1) No before selected journal/broker/client; (2) Yes; (3) Yes, seam f08, handback ADR-E2-005 -> CORRECTLY_E3"
+    E3U-C01-TECHNICAL: "(1) No - each E3V-001..007 validates a selected mechanism behind an analysis-confirmed seam; (2) Yes; (3) handback per f30 rows -> CORRECTLY_E3"
+    E3U-C02-TECHNICAL: "same -> CORRECTLY_E3"
+    E3U-C03-TECHNICAL: "same -> CORRECTLY_E3"
+    E3U-C01-MODEL-CONFIGURATION: "(1) No - gateway neutral, no occupant assumed; (2) Yes (ineligibility); (3) only if an ADR made a capability indispensable -> CORRECTLY_E3"
+    E3U-C02-MODEL-CONFIGURATION: "same -> CORRECTLY_E3"
+    E3U-C03-MODEL-CONFIGURATION: "same -> CORRECTLY_E3"
+  should_be_e2: 0
+  should_be_e4: 0
+  insufficiently_specified: 0
+e4_deferrals:
+  E4U-C01-IMPLEMENTATION: {affects_candidate_viability: false, affects_hard_ar_satisfaction: "no - implements already-confirmed ports/seams", empirical_validation_required_before_adr_proposal: false, e4_can_determine_without_changing_architecture: true, failure_bounded_to_implementation_configuration: true, verdict: PASS}
+  E4U-C02-IMPLEMENTATION: {affects_candidate_viability: false, affects_hard_ar_satisfaction: "no", empirical_validation_required_before_adr_proposal: false, e4_can_determine_without_changing_architecture: true, failure_bounded_to_implementation_configuration: true, verdict: PASS}
+  E4U-C03-IMPLEMENTATION: {affects_candidate_viability: false, affects_hard_ar_satisfaction: "no", empirical_validation_required_before_adr_proposal: false, e4_can_determine_without_changing_architecture: true, failure_bounded_to_implementation_configuration: true, verdict: PASS}
+  guardrail_check: "Closure 10.1 and handoff e4_deferral_ledger.guardrail: E4 cannot weaken E1/E2, claim a support class without E3, or turn an adapter failure into architecture success; consequence model SUCCESS validates only the exact tested mechanism (see NOTE N2 on E3-validated vs E4-chosen mechanism identity)"
+  result: E4_DEFERRAL_PASS
+e3v_review:
+  canonical_source: "05_architecture/ENGINEERING_PREVIEW_ARCHITECTURE_REQUIREMENTS.md section 9 (independently verified E2-001); closure section 9 uses these meanings; candidate f30 rows and register e3_obligation_contracts are downstream"
+  per_obligation:
+    E3V-001: {property: "acknowledged mutations/ownership/partial writes/duplicate intake/restart/ambiguous effects recover", precondition: "AR-COR-001/007, AR-DUR-001/002/003/005, AR-APR-002 CONFIRMED x3", selected_configuration_dependence: "state/history/operation/effect mechanism", scope: bounded representative subset, evidence: explicit, success: mechanism only, failure: "adapter correction vs ARCHITECTURE_HANDBACK", missing: "recovery/effect claims blocked/unknown", handback: "ADR-E2-002/003/004/005", selection_first_legitimate: true, required_to_choose_among_candidates: false}
+    E3V-002: {property: "bounded pause/stop/force-or-fence, descendants, output bounds, recovery", precondition: "AR-EXE-003 seam x3; AR-DUR-004/AR-EXE-002 CONFIRMED", selected_configuration_dependence: "host/process class", scope: "tested host/platform/process/configuration classes only", evidence: explicit, success: mechanism only, failure: "IMPLEMENTATION_CONFIGURATION_FAILURE / PRODUCT_CLASS_UNSUPPORTED / handback", missing: "execution blocked/fenced", handback: "ADR-E2-003/004", selection_first_legitimate: true, required_to_choose_among_candidates: false}
+    E3V-003: {property: "workspace/isolation/Git/local packaging protects user state and is contributor-operable", precondition: "AR-WSP-001..005, AR-GIT-001, AR-PKG-001, AR-DUR-006 CONFIRMED x3", selected_configuration_dependence: "runtime/platform/package/workspace mechanism", scope: risk-based subset, evidence: explicit, success: mechanism only, failure: "local defect correction / narrow support / structural escape handback", missing: "platform unsupported", handback: "ADR-E2-001/004/009", selection_first_legitimate: true, required_to_choose_among_candidates: false}
+    E3V-004: {property: "provider boundary preserves truth, purpose/eligibility, fallback, provider-specific semantics, data policy, usage/cost", precondition: "AR-MOD-001..003, AR-SEC-004, AR-FAIL-001 CONFIRMED x3", selected_configuration_dependence: "gateway/adapter contract; live calls separately gated", scope: "offline provider-shape replays first", evidence: explicit, success: gateway mechanism only, failure: "provider/config/adapter correction vs interface-level handback", missing: "no dispatch/eligibility claim", handback: "ADR-E2-001/005/006/008", selection_first_legitimate: true, required_to_choose_among_candidates: false}
+    E3V-005: {property: "state/evidence/verifier mechanism keeps authority/derived separation, revision binding, gap/tamper/stale, replay, adequacy, verifier error/correction inspectable", precondition: "AR-COR-003..006, AR-DAT-001/002, AR-CTX-001/002, AR-EVD-001..003, AR-VER-001..003 CONFIRMED x3", selected_configuration_dependence: "state/evidence/artifact/verifier structures", scope: representative fault cases, evidence: explicit, success: mechanism only, failure: "validator defect vs structural handback", missing: "verification/completion unsatisfied", handback: "ADR-E2-002/003/005/007/008", selection_first_legitimate: true, required_to_choose_among_candidates: false}
+    E3V-006: {property: "trust/capability/approval/secret/protected-entry boundary denies unauthorized flow/effect and provides safe protected acquisition/delivery", precondition: "AR-SEC-001..005, AR-EXE-001/004, AR-APR-001/003 CONFIRMED x3; AR-SEC-006 seam x3", selected_configuration_dependence: "every selected enforcement point and client/execution configuration", scope: "focused risk-based subset; not all 23 families", evidence: explicit, success: tested configuration only, failure: "policy/adapter/fixture correction / unsupported class / handback", missing: "WAITING_FOR_USER/blocked, never ordinary input", handback: "ADR-E2-005 (register); ADR-E2-001/004/005/008 (closure 9)", selection_first_legitimate: true, required_to_choose_among_candidates: false}
+    E3V-007: {property: "instrumentation/limit mechanism produces protocol inputs and enforces finite ceilings without redefining results", precondition: "AR-OBS-001, AR-FAIL-002, AR-TST-003, AR-PERF-001/002 CONFIRMED x3", selected_configuration_dependence: "instrumentation, limits, reference environment, workload", scope: "focused slices of eight protocols", evidence: explicit, success: mechanism only, failure: "instrumentation/config correction; truthful performance miss does not reopen ADR", missing: "no SLO/limit claim", handback: "ADR-E2-002/007/008/009", selection_first_legitimate: true, required_to_choose_among_candidates: false}
+    E3V-008: {property: "systems/configurations may occupy logical roles only through separately authorized benchmark evidence", precondition: "AR-MOD-001..003 CONFIRMED x3; provider-neutral gateway", selected_configuration_dependence: "frozen model/role/configuration protocol; separate budget/data/credential authorization", scope: bounded task classes, evidence: explicit, success: tested role/configuration only, failure: "role unassigned", missing: "no assignment, no benchmark inference, no paid call", handback: "ADR-E2-006 only for indispensable impossible capability", selection_first_legitimate: true, required_to_choose_among_candidates: false}
+  e3v_required_to_choose_among_candidates: []
+  result: E3V_REVIEW_PASS
+fail_closed_model:
+  checked_across: [E3V-002, E3V-006, "all 11 E3 deferrals", "3 E4 deferrals", "closure sections 3/6/7/9/11", "handoff consequence_model and e3_deferral_ledger", "register consequence_model/profiles", "PROJECT_STATE and TASK_REGISTRY E2-004 fields"]
+  terminal_states_on_missing_failed_inconclusive: [blocked, waiting, unsupported, unknown, unverified, unassigned, "no construction", "no scope", "no weights/score"]
+  provisional_proceed_paths_found: 0
+  frozen_e1_anchors: ["correctness contract line 263/371 (stop then force-or-fence)", "line 641 (protected boundary absent -> WAITING_FOR_USER/blocker)", "line 955 NEG-TERM-01", "UF-11 steps 2-3", "EP-CTL-005", "EP-NEG-TERM-01", "EP-NEG-SECRET-01/CRED-01 (missing mandatory capture blocks)", "OR-SECRET-MARKER (missing required capture fails and blocks release)"]
+  result: FAIL_CLOSED_PASS
+handback_model:
+  distinction_present: "IMPLEMENTATION_CONFIGURATION_FAILURE (correct/replace and revalidate; no automatic ADR reopening) vs PRODUCT_CLASS_UNSUPPORTED (narrow, fail closed; handback only if a linked ADR requires the class and no conforming alternative remains) vs ARCHITECTURE_ASSUMPTION_DISPROVEN / E3_HAND_BACK_TO_E2 (stop affected E3 work; return exact evidence to E2-005/E2-006; revise/rechallenge/reverify ADRs; re-evaluate E2 gate; no silent redesign)"
+  per_e3v_linked_adrs_identified: "E3V-001 002/003/004/005; E3V-002 003/004; E3V-003 001/004/009; E3V-004 001/005/006/008; E3V-005 002/003/005/007/008; E3V-006 001/004/005/008 (superset; register says 005 only; closure 7.2 says 001/005) ; E3V-007 002/007/008/009; E3V-008 006"
+  configuration_failure_triggers_alternate_and_revalidation: true
+  architecture_failure_stops_progression: true
+  e2_reopening_required: true
+  silent_mutation_in_e3_prohibited: "E2-001 section 9 rule 2; register e2_e3_boundary.handback_rule; closure 9/11; comparison 18.1"
+  inconsistency: "E3V-006 ADR linkage strings differ across register/comparison/closure 7.2/closure 9/closure 13/handoff (F-E2-004-05, LOW); every variant includes ADR-E2-005 and a superset only widens reopening, so safety is not weakened"
+  result: HANDBACK_MODEL_PASS
+hard_requirement_recheck:
+  hard_ars_per_candidate: 59
+  confirmed_satisfied_for_comparison_per_candidate: 57
+  architecture_seam_confirmed_e3_outstanding_per_candidate: 2
+  e2_blocking_per_candidate: 0
+  violated_per_candidate: 0
+  two_outstanding: {AR-EXE-003: "E3V-002; process-tree control and authority fencing explicit; selected host/process mechanism unvalidated", AR-SEC-006: "E3V-006; protected acquisition/capture-exclusion seam explicit; selected client/configuration unvalidated"}
+  additional_hard_ars_depending_on_unresolved_empirical_feasibility: "0 - the five formerly PLAUSIBLE ARs (AR-DUR-005, AR-WSP-003, AR-SEC-003, AR-SEC-004, AR-PKG-001) are design-level CONFIRMED (INFERENCE) with host/mechanism explicitly 'unselected' and E3V-001/003/004/006 owners; AR-WSP-003/AR-SEC-004 share the same candidate-invariant host-primitive class as S01 and carry the same fail-closed unsupported declaration; the CONFIRMED label is explicitly design-level only"
+  closure_table_vs_matrix: "closure section 4 rows set-equal to matrix hard set; 57 triple-CONFIRMED rows and exactly AR-EXE-003/AR-SEC-006 SEAM rows; residual-owner column shows the primary E3V per AR (NOTE N1)"
+  result: HARD_REQUIREMENT_CLOSURE_PASS
+candidate_viability:
+  EP-ARCH-C01: {known_hard_violation: 0, analysis_owned_unknown: 0, e2_preselection_question: 0, e3_residuals: "E3V-001..008 incl. C01 protected delivery", e4: E4U-C01-IMPLEMENTATION, verdict: READY_FOR_E2_005_AFTER_E2_004_VERIFICATION}
+  EP-ARCH-C02: {known_hard_violation: 0, analysis_owned_unknown: 0, e2_preselection_question: 0, e3_residuals: "E3V-001..008 incl. C02 protected delivery", e4: E4U-C02-IMPLEMENTATION, verdict: READY_FOR_E2_005_AFTER_E2_004_VERIFICATION}
+  EP-ARCH-C03: {known_hard_violation: 0, analysis_owned_unknown: 0, e2_preselection_question: 0, e3_residuals: "E3V-001..008 incl. C03 protected delivery", e4: E4U-C03-IMPLEMENTATION, verdict: READY_FOR_E2_005_AFTER_E2_004_VERIFICATION}
+  ranked: false
+  result: CANDIDATE_VIABILITY_PASS
+decision_neutrality:
+  per_residual:
+    descendant_containment: "Could outcomes prefer a candidate? No - same host primitive, same fail-closed declaration; topology difference already recorded as qualitative evidence; shared -> post-selection E3V-002 appropriate"
+    protected_acquisition: "No - shared client surface, unselected; UF-11 fail-to-WAIT bounds any negative result to support scope -> E3V-006"
+    candidate_protected_delivery: "Seams differ, so a hypothetical result could in principle differ by candidate, but no architecture-valid preselection result exists: the run requires arbitrary client/IPC/journal/broker technology and E2 forbids selecting one; a negative result on one technology is IMPLEMENTATION_CONFIGURATION_FAILURE, and structural impossibility is preserved as an explicit ADR-E2-005 handback rather than assumed away -> defensible E3 staging"
+    durability_recovery_effects: "No architecture blocker; abstract semantics complete; a prototype would instantiate arbitrary stores/adapters; qualitative topology/reversibility differences already recorded -> E3V-001"
+    workspace_package_provider_evidence: "Exact platform/toolchain/adapter evidence depends on selection -> E3V-003/004/005/006"
+    instrumentation_latency_resource: "A concrete implementation could measure differently, but measurement before mechanism selection is implementation-confounded and no frozen threshold exists -> E3V-007; preferences remain unweighted"
+    model_role_eligibility: "Gateway neutral; no occupant assumed -> E3V-008"
+  result: DECISION_NEUTRALITY_PASS
+adr_readiness:
+  ADR-E2-001: {classification: READY_FOR_PROPOSAL, basis: "three client/core alternatives compared; must record client-surface class as missing evidence with E3V-003/004/006 obligations and handback if the selected class cannot realize authority/protected-entry boundary"}
+  ADR-E2-002: {classification: READY_FOR_PROPOSAL, basis: "transactional/service/journal alternatives; E3V-001/005/007 obligations; handback on structural truth/recovery failure"}
+  ADR-E2-003: {classification: READY_FOR_PROPOSAL, basis: "epoch/lease/workflow-fence alternatives; E3V-001/002/005; handback on unrealizable ownership/fencing/recovery"}
+  ADR-E2-004: {classification: READY_FOR_PROPOSAL, basis: "supervisor port/worker interface/command-event adapter; must declare the intended host/process support class as E3V-002/003-pending, never as proven; handback if a required class cannot be contained"}
+  ADR-E2-005: {classification: READY_FOR_PROPOSAL, basis: "integrated authority / service authority + direct raw path / command admission + out-of-event broker; E3V-001/004/005/006; handback when no conforming protected/effect realization remains"}
+  ADR-E2-006: {classification: READY_FOR_PROPOSAL, basis: "provider-neutral gateway shape; no occupant assumed; E3V-004/008; role remains unassigned on failure"}
+  ADR-E2-007: {classification: READY_FOR_PROPOSAL, basis: "manifest/evidence alternatives; E3V-005/007; handback on structural evidence/verifier impossibility"}
+  ADR-E2-008: {classification: READY_FOR_PROPOSAL, basis: "telemetry-not-authority alternatives; E3V-004/005/007 (and E3V-006 for log/telemetry raw-value exclusion per closure 9); handback only on hard structural contradiction"}
+  ADR-E2-009: {classification: READY_FOR_PROPOSAL, basis: "packaging/future-seam alternatives; E3V-003; Finance/SaaS deferred; handback on required local/support-boundary impossibility"}
+  blocked_on_e2_evidence: 0
+  blocked_on_e3_evidence: 0
+  insufficient_input: 0
+  result: ADR_READINESS_PASS
+no_spike_closure_substance:
+  independent_reviewable_content: "59-row per-candidate hard AR table with residual owners; 28-row source reconciliation; 18-row hidden search; E3V-002 and E3V-006 full contracts (6.2/7.2); five-row SPQ disposition table; eight-row canonical E3V ledger; E4/future ledgers; unified consequence model; decision-neutrality table; candidate viability; nine-row ADR readiness; execution counters; E2-003 note carry-forward"
+  not_merely_e2_003_said_zero: true
+  gaps: "hidden search records only shared-property rows (F-E2-004-04); bundle-deferral reference chain implicit (F-E2-004-07); test commands summarized (F-E2-004-06)"
+  result: NO_SPIKE_CLOSURE_SUBSTANCE_PASS
+closure_artifact_review:
+  structure_present: {base_reference_state: true, closure_question: true, nine_conditions: true, evidence: true, historical_spq_disposition: true, hard_requirement_state: true, e3_ledger: true, e4_ledger: true, fail_closed_rules: true, handback: true, candidate_viability: true, adr_readiness: true, final_spike_set: true, execution_counters: true}
+  unsupported_prose_conclusions_flagged: ["section 15 V-E2-003-N1 'Already handled by the founder commit' (F-E2-004-01)", "section 3 condition 8 'all consequence profiles specify EVIDENCE_MISSING_FAIL_CLOSED' (F-E2-004-02)"]
+  result: CLOSURE_ARTIFACT_PASS
+no_experiment:
+  experiment_artifacts: 0
+  spike_output: 0
+  prototype: 0
+  application_source: 0
+  dependency_install_or_build_output: 0
+  spikes_directory: absent
+  code_like_files_in_repo: "0 (find over py/ts/js/go/rs/sh/rb/package.json/pyproject/Cargo/go.mod/requirements/Makefile/Dockerfile/lock)"
+  counters: {architecture_spikes_run: 0, technical_spikes_run: 0, evaluation_cases_run: 0, model_benchmarks_run: 0, paid_api_calls: 0, external_effects: 0}
+  result: NO_EXPERIMENT_PASS
+favorable_unknown_scan:
+  patterns: "likely / expected to work|pass|support / probably / assumed available|supported / safe enough / should support|handle / provisionally supported|pass / presumably / can be assumed"
+  hits_in_closure: "1 - the closure's own section 14 audit sentence quoting the patterns; no substantive hit"
+  hits_in_handoff: 0
+  hits_in_governance_added_lines: 0
+  e3_outstanding_properties_remain_explicitly_unvalidated: true
+  result: NO_FAVORABLE_UNKNOWN_PASS
+premature_selection:
+  preferred_candidate: NONE
+  architecture: NOT_SELECTED
+  accepted_adrs: 0
+  selection_language_hits_in_closure: "0 substantive (all matches are negations or the preference-authority vocabulary)"
+  hidden_recommendation_in_handoff_project_state_task_registry: none
+  result: NO_SELECTION_PASS
+frozen_artifacts:
+  e2_004_diff_paths: [01_governance/PROJECT_STATE.yaml, 01_governance/TASK_REGISTRY.yaml, 05_architecture/ENGINEERING_PREVIEW_PRESELECTION_UNCERTAINTY_CLOSURE.md, 99_handoffs/completed/E2-004_handoff.yaml]
+  frozen_e1_product_evaluation_contribution_files_vs_557e335: unchanged
+  e1_checkpoint_diffs_vs_7bbfebd: "only c2f7093 (E1 gate verification commit, pre-E2); not E2-004"
+  e2_001_vs_0d702b8: unchanged
+  e2_002_candidates_and_alternatives_vs_1a1c542: "unchanged; SHA-256 ea9ff609.../899f7fa0.../72cacf1c... equal to comparison pins"
+  e2_003_comparison_matrix_register_and_lifecycle_records_vs_e5d541c: "unchanged (E2-003 verifier review added at 7b4b0d5 by the founder, pre-E2-004)"
+  result: FROZEN_ARTIFACTS_PASS
+governance_reconciliation:
+  task_registry_e2_004: "status READY_FOR_REVIEW; planning_status READY_FOR_REVIEW_NOT_VERIFIED_AUTHOR_PASS; assigned_model Codex; reviewer/verifier null; blocked_by []; author_result NO_PRESELECTION_SPIKE_REQUIRED; author counters all 0; next_command MODE: REVIEW_TASK_E2-004"
+  task_registry_e2_005: "BACKLOG; blocked_by E2_004_NOT_INDEPENDENTLY_VERIFIED; activation requires E2-001..E2-004 VERIFIED"
+  task_registry_e2_006: "BACKLOG; blocked_by E2_005_NOT_INDEPENDENTLY_VERIFIED"
+  project_state: "current_stage_status E2_ACTIVE_E2_004_AUTHOR_PASS_READY_FOR_REVIEW_NOT_VERIFIED; active_task_ids [E2-004] (same precedent as E2-003 at c870c83/e5d541c); ready []; backlog [E2-005, E2-006]; task_statuses E2-001..003 VERIFIED, E2-004 READY_FOR_REVIEW, E2-005/006 BACKLOG; e2_004_status AUTHOR_PASS_READY_FOR_REVIEW_NOT_VERIFIED_NO_SPIKE_CLOSURE; e2_004_independent_verification_status NOT_STARTED; e2_004_final_preselection_spike_count 0; comparison_preselection_spike_count 0; gate NOT_EVALUATED; architecture_selected false; preferred_candidate null; accepted_architecture_adrs 0; architecture_spikes_run 0; technical_spikes_run 0; evaluation_cases_run 0; model_benchmarks_run 0; paid_api_calls 0; application_code_created false; autonomy NOT_ELIGIBLE; autonomous_build_authorized false / NOT_AUTHORIZED; S1-003 BLOCKED/DEFERRED; working_tree_base_commit 7b4b0d5; updated_at 2026-08-29T18:22:08Z equals handoff completed_at and registry author_completed_at"
+  reconcile: "TASK_REGISTRY and PROJECT_STATE agree on every field above; README status line and instruction body are stale (founder commit-time item, NOTE N9 / F-E2-004-01)"
+  result: GOVERNANCE_RECONCILED_PASS
+acceptance_criteria_evaluation:
+  - {criterion: "The independently verified E2 blocker set is closed exactly: each item has PASS, FAIL, INCONCLUSIVE_BLOCKING, or DEFERRED_TO_E3_NON_SELECTION_BLOCKING with evidence and no missing item.", result: PASS, evidence: "Verified blocker set at e5d541c is empty (retained_preselection_spike_ids []); the five historical SPQs each carry DEFERRED_TO_E3_NON_SELECTION_BLOCKING with owner, seam, evidence, fail-closed and handback (closure 8; handoff historical_spike_dispositions); 28/28 source records reconciled; no missing item"}
+  - {criterion: "If the blocker set is empty, a NO_PRESELECTION_SPIKE_REQUIRED record explains why and technical_spikes_run remains unchanged.", result: PASS, evidence: "Closure sections 1-13 explain why under plan section 13; PROJECT_STATE technical_spikes_run 0 and architecture_spikes_run 0 unchanged; handoff execution_counters all 0"}
+  - {criterion: "Every executed spike remains minimal, synthetic/local, finite, prospectively frozen, linked, and records exact environment ... decision consequence.", result: NOT_APPLICABLE, evidence: "No spike executed; no spike artifact exists"}
+  - {criterion: "Any hard-gate failure or inconclusive selection blocker remains blocking; later success does not erase earlier evidence.", result: PASS, evidence: "No hard-gate failure or inconclusive blocker exists; historical S01/S02 contracts remain SUPERSEDED_NOT_AUTHORIZED_NOT_RUN with provenance; nothing erased"}
+  - {criterion: "Updated comparison/uncertainty records incorporate evidence without naming a winner or running E3 evaluation.", result: PASS, evidence: "No comparison/register update was required (empty set); verified E2-003 artifacts unchanged; no winner named; no E3 evaluation run"}
+required_tests_evaluation:
+  - {test: "Blocker-set equality and disposition closure; no-spike counter assertion when applicable.", result: PASS, evidence: "Register retained set [] equals closure/handoff/registry set []; partition 10/0/8/3/7 recomputed; counters 0"}
+  - {test: "Per-spike contract, budget, stop, raw-evidence, decision-link, hard-gate, deterministic replay/fault, security-negative, and scope checks as declared prospectively.", result: NOT_APPLICABLE, evidence: "No spike"}
+  - {test: "No application source outside 05_architecture/spikes, no provider/model calls, no paid/external effects, no selection/ADR acceptance, clean-room, secret, YAML/CSV, allowed-path, and git diff --check.", result: PASS, evidence: "0 code-like files; counters 0; architecture NOT_SELECTED; ADRs 0; 0 technology tokens; 0 secret hits; 65/65 YAML + 0 duplicate keys; 6/6 CSV; 4/4 allowed paths; git diff --check clean"}
+mechanical_checks:
+  - "ruby Psych strict parse of all 65 YAML files: 65/65 OK; duplicate-key AST walk: 0 duplicates"
+  - "ruby csv parse of all 6 CSV files: 6/6 OK (matrix 195x18; traceability 127x19)"
+  - "git diff --check HEAD~1 HEAD: clean"
+  - "git diff --numstat HEAD~1 HEAD: exactly the four authorized E2-004 paths"
+  - "shasum -a 256 candidates: equal to comparison section 2 pins"
+  - "git diff --stat against 557e335 (E1 product/evaluation), 0d702b8 (E2-001), 1a1c542 (E2-002), e5d541c (E2-003 artifacts): empty"
+  - "find for code-like files / spike directories / build outputs: none"
+  - "grep secret patterns over the four changed files: 0"
+  - "grep technology/vendor/model identifiers over closure and handoff: 0"
+  - "grep favourable-unknown patterns over closure, handoff, governance added lines: 0 substantive"
+  - "ruby csv recompute of per-candidate hard result distributions, result vocabulary, uncertainty classes, e3_obligation distribution, seam cells"
+  - "ruby yaml recompute of register partition, resolutions, source reconciliation, E3 record field inventories, e3_obligation_contracts keys"
+  - "ruby recount of closure section 3/4/5/8/9/13 table cardinalities and section 4 set equality with the matrix hard set"
+  - "git show/diff of README at e5d541c, 7b4b0d5, HEAD and of PROJECT_STATE active/ready lists at c870c83/e5d541c/7b4b0d5 for precedent"
+new_findings:
+  actionable:
+    - finding_id: F-E2-004-01
+      severity: LOW
+      requirement_or_deferral: "Closure section 15 (E2-003 verifier NOTE carry-forward); prompt requirement that the closure contain no unsupported prose conclusions"
+      file_or_component: "05_architecture/ENGINEERING_PREVIEW_PRESELECTION_UNCERTAINTY_CLOSURE.md section 15 row V-E2-003-N1; handoff prior_e2_003_note_dispositions.V-E2-003-N1"
+      evidence: >-
+        The closure states the README refresh was "Already handled by the founder commit at the
+        current base; no E2-004 work" and the handoff records ALREADY_HANDLED_BY_FOUNDER_BASE_COMMIT.
+        git diff e5d541c 7b4b0d5 -- README.md shows the founder changed only the MODE line
+        (EXECUTE_TASK_E2-003 -> EXECUTE_TASK_E2-004). README at HEAD still reads "E2-001: READY;
+        E2-002 through E2-006: BACKLOG", "Architecture: not selected" (correct), and the next-command
+        block still carries the E2-001 authoring instructions ("Author only the architecture
+        requirements ... mark E2-001 READY_FOR_REVIEW").
+      why_it_matters: "The closure asserts a repository fact that is false; a reader relying on it would believe README reflects state. README is outside E2-004 allowed paths, so the defect is the disposition text, not the omission."
+      required_fix: "Change the N1 disposition (closure section 15 and handoff) to: partially refreshed at 7b4b0d5 (MODE line only); README status line and instruction body remain stale; founder commit-time item outside E2-004 allowed paths, same pattern as V-E2-002-N2/V-E2-003-N1."
+      verification_method: "git diff e5d541c 7b4b0d5 -- README.md; read README lines 10-45; confirm the corrected disposition wording."
+    - finding_id: F-E2-004-02
+      severity: LOW
+      requirement_or_deferral: "Closure condition C8 (no favourable interpretation of missing evidence) evidence text"
+      file_or_component: "05_architecture/ENGINEERING_PREVIEW_PRESELECTION_UNCERTAINTY_CLOSURE.md section 3 row 8"
+      evidence: >-
+        The row states "all consequence profiles specify EVIDENCE_MISSING_FAIL_CLOSED". In the
+        verified register only E3_HARD_PROPERTY.missing uses that literal term; ANALYSIS_CLOSED.missing
+        is "remain unresolved and E2_005_BLOCKED; no favorable inference", E3_MODEL_ELIGIBILITY.missing is
+        "Role remains unassigned and no paid call or benchmark is inferred", E4_IMPLEMENTATION_CHOICE.missing
+        is "No application construction or autonomous build is authorized", FUTURE_SCOPE_POLICY.missing is
+        "No future product is inferred or implemented", PREFERENCE_AUTHORITY.missing is "No weights, scores,
+        preferred candidate, or favorable inference". All six are fail-closed; the literal claim is overstated.
+      why_it_matters: "Condition evidence must be exactly reproducible by the verifier; an overstated literal claim invites a false FAIL on re-derivation or, worse, habituates readers to approximate evidence statements in a closure whose purpose is precision."
+      required_fix: "Reword to: every consequence profile's missing-evidence branch is fail-closed (E3_HARD_PROPERTY: EVIDENCE_MISSING_FAIL_CLOSED; the other five profiles: no favourable inference / role unassigned / no construction / no scope / no weights)."
+      verification_method: "ruby -ryaml: read register consequence_model.profiles.*.missing; compare with the corrected sentence."
+    - finding_id: F-E2-004-03
+      severity: LOW
+      requirement_or_deferral: "Closure conditions C5/C7 and E3V-001..008 canonical meaning (E2-001 section 9); V-E2-003-N4 carry-forward"
+      file_or_component: "05_architecture/ENGINEERING_PREVIEW_PRESELECTION_UNCERTAINTY_CLOSURE.md sections 1/9/15; verified register e3_obligation_contracts (E3V-004, E3V-005, E3V-007)"
+      evidence: >-
+        The verified E2-003 register's e3_obligation_contracts block carries property text for three IDs
+        that does not match the canonical E2-001 section 9 definitions: register E3V-004 = "capability,
+        approval, gateway, audit, redaction, and unauthorized-adapter controls" (canonical E3V-004 = provider
+        boundary; that content is canonical E3V-006), register E3V-005 = "orchestration/effect mechanism
+        preserves idempotency, truthful ambiguity, reconciliation, noncompensating completion" (canonical
+        E3V-005 = state/evidence/verifier; that content is canonical E3V-001), register E3V-007 =
+        "evidence/artifact/provenance/integrity mechanism" (canonical E3V-007 = instrumentation/limits; that
+        content is canonical E3V-005). The closure correctly uses canonical meanings and states "Compact
+        downstream summaries do not redefine a canonical E3V ID", but never names which register entries
+        are non-canonical. The register is a required E2-005 input.
+      why_it_matters: "E2-005 must freeze E3 obligations and ADR linkage from these inputs; an unnamed semantic conflict between two verified artifacts risks attaching the wrong evidence/handback set to an ADR (for example treating register E3V-004's capability/approval content as the provider-gateway obligation)."
+      required_fix: "In closure section 9 (or the section 15 N4 row) enumerate the three non-canonical register entries, state the canonical ID their content belongs to (E3V-006, E3V-001, E3V-005 respectively), and require E2-005 to carry the canonical E2-001 section 9 definitions; mirror in the handoff known_limitations. No edit to the verified register is required by this finding; a metadata-only annotation may be proposed separately to the verifier."
+      verification_method: "Diff register e3_obligation_contracts.E3V-00{4,5,7}.property against E2-001 section 9 rows; confirm the closure names the three IDs and the canonical mapping."
+    - finding_id: F-E2-004-04
+      severity: LOW
+      requirement_or_deferral: "Closure condition C9 (zero spikes is evidence-based) and the hidden-preselection search; plan section 13 candidate-discrimination test"
+      file_or_component: "05_architecture/ENGINEERING_PREVIEW_PRESELECTION_UNCERTAINTY_CLOSURE.md section 5"
+      evidence: >-
+        All 18 rows in section 5 are shared, cross-candidate property questions ("Can the architecture
+        represent ...", "Can descendants be controlled ...", "Which concrete store ..."). By construction a
+        shared property cannot discriminate candidates, which is precisely what the plan section 13 test asks
+        about. The candidate-specific topology mechanisms most likely to hide a discriminator - C02
+        authenticated user-local IPC and service-issued one-use authorization without raw access, C03
+        deterministic reducer/replay and payload-before-event ordering, C01 co-resident supervisor death and
+        in-process semantic separation - are not recorded as tested rows, although the E2-003 verifier
+        searched them (E2-003_verifier_review.yaml section_evidence.minimal_e2_004_set) and this challenger
+        re-derived each as ANALYSIS_ALREADY_CLOSED (C02 f05 unsupported_host_compromise_assumption/TB-01/
+        TB-05/TB-20 and f26; C03 f08 acknowledgement_boundary/partial_write_corruption/
+        protected_and_external_payload_ordering; C01 f02 EXECUTION_OWNER_LIFETIME and f04 no_live_owner_semantics).
+      why_it_matters: "The closure is the artifact that must show the empty spike set is evidence-based; documenting only shared rows leaves the candidate-specific half of the search implicit and would let a verifier reasonably doubt that discriminators were sought where they could exist."
+      required_fix: "Add section 5 rows for each candidate-specific topology feasibility question (at least the three above) with classification, candidate field citations, and why a host-class failure narrows support rather than selecting another candidate."
+      verification_method: "Read closure section 5; confirm candidate-specific rows exist, cite f02/f04/f05/f08/f26 fields, and carry a classification; confirm no row is E2_PRESELECTION_SPIKE_REQUIRED."
+    - finding_id: F-E2-004-05
+      severity: LOW
+      requirement_or_deferral: "Closure condition C7 / handback model: linked ADRs identified consistently for E3V-006"
+      file_or_component: "Closure sections 7.2, 9 (E3V-006 row), 13 (ADR-E2-004 and ADR-E2-008 rows); handoff e3v_006_status.handback and e3_deferral_ledger.E3V-006.architecture_handback"
+      evidence: >-
+        E3V-006 handback linkage is stated differently in each place: register E3V-006.handback "Reopen
+        ADR-E2-005 only"; comparison section 10 "ADR-E2-001 and/or ADR-E2-005"; closure 7.2 "linked
+        ADR-E2-001/005"; closure 9 E3V-006 row "ADR-E2-001/004/005/008"; closure 13 ADR-E2-004 row attaches
+        "E3V-001/002/003/006" while the ADR-E2-008 row attaches "E3V-004/005/007" (no E3V-006); handoff
+        e3v_006_status.handback ADR-E2-001_OR_ADR-E2-004_OR_ADR-E2-005_OR_ADR-E2-008 and e3_deferral_ledger
+        "ADR-E2-001/004/005/008". Every variant includes ADR-E2-005 and the widest set only widens reopening.
+      why_it_matters: "E2-005 must freeze one ADR linkage per E3 obligation; internally inconsistent inputs invite either an under-linked ADR-E2-008 (log/telemetry raw-value exclusion is an E3V-006 property) or a mismatch between the closure ledger and the handoff."
+      required_fix: "Harmonize to one explicit set across closure 7.2/9/13 and the handoff (recommended: ADR-E2-001 client-surface acquisition; ADR-E2-004 process/terminal-surface exclusion; ADR-E2-005 protected-entry/recipient boundary; ADR-E2-008 log/telemetry exclusion), and note that the verified register's narrower 'ADR-E2-005 only' wording is a subset that the closure widens deliberately."
+      verification_method: "grep -n 'E3V-006' and 'ADR-E2-00[1458]' across the closure and handoff; confirm identical handback sets in every location and that section 13 ADR-E2-008 lists E3V-006 if the widened set is kept."
+    - finding_id: F-E2-004-06
+      severity: LOW
+      requirement_or_deferral: "AGENTS.md completion rule (record commands run, tests run, exact results); MASTER_OPERATING_PROMPT task execution rule 7"
+      file_or_component: "99_handoffs/completed/E2-004_handoff.yaml tests_run / test_results; TASK_REGISTRY E2-004 author_validation_results"
+      evidence: >-
+        tests_run entries record only command_summary strings ("Read-only Python assertions over strict
+        YAML/duplicate keys, all CSVs, matrix, hard ARs ..."; "Credential/private-key token-pattern scan")
+        with aggregate results ("122/122 assertions"). Neither the commands, the assertion script, nor the
+        per-assertion list is recorded; prior lifecycle records (E2-003 fixer handoff validations.commands_run
+        and exact_results; E2-003 verifier mechanical checks) recorded per-check commands and exact results.
+        The repository's documented verification tooling in prior verifier records is Ruby/Psych; a Python
+        harness may not be reproducible in the verifier's environment.
+      why_it_matters: "Author checks are not evidence for verification, but an unreproducible '122/122' cannot be cross-checked, and the completion rule requires commands and exact results so a later reader can distinguish what was actually asserted from what was summarized."
+      required_fix: "Add the exact commands (or the assertion script text/path) and a per-check result list to the handoff tests_run/test_results, or replace the summary with an enumerated list of the 122 assertions grouped by artifact; note the tooling used."
+      verification_method: "Read handoff tests_run; confirm literal commands or an enumerated assertion inventory exist; optionally re-run a Ruby equivalent of the enumerated assertions."
+    - finding_id: F-E2-004-07
+      severity: LOW
+      requirement_or_deferral: "Closure condition C5 for the six bundle deferrals (E3U-C0x-TECHNICAL, E3U-C0x-MODEL-CONFIGURATION); V-E2-003-N4 material carry-forward"
+      file_or_component: "05_architecture/ENGINEERING_PREVIEW_PRESELECTION_UNCERTAINTY_CLOSURE.md section 9.1; handoff e3_deferral_ledger.normalized_mapping"
+      evidence: >-
+        The six bundle records carry only question/decision_linkage/source_refs/owner/consequence_profile in the
+        verified register (recomputed field inventory: 10 and 9 keys respectively, no required_e3_evidence,
+        success/failure/missing, or e2_adr_handback fields). Their per-record property, evidence, scope,
+        success/failure/missing behaviour, handback, unsupported scope, and owner are resolvable only by
+        composing canonical E2-001 section 9 rows with each candidate's f30_e3_handoff obligations (focus,
+        evidence, owner, e4_e5_remainder, architecture_handback, implementation_adjustment). Closure 9.1 maps
+        the bundles to "Candidate-specific E3V-001..007 focused validation plan" / "Candidate-specific E3V-008"
+        without citing the f30 rows, so the reference chain is implicit; the closure's own section 15 accepts
+        N4 as material and promises explicitness.
+      why_it_matters: "A 'validate later' bundle is acceptable only when its fields are reachable by an explicit, complete reference chain; leaving the chain implicit is exactly the pattern the N4 carry-forward and the challenger brief ('no vague validate later') warn against, and E2-005 will otherwise have to reconstruct it."
+      required_fix: "In closure 9.1 (and handoff normalized_mapping) cite EP-ARCH-C0x.yaml f30_e3_handoff.obligations.E3V-00n for each bundle and state that per-record property/evidence/scope/success/failure/missing/handback = canonical E2-001 section 9 row + the cited f30 candidate focus + the E3_HARD_PROPERTY or E3_MODEL_ELIGIBILITY consequence profile."
+      verification_method: "Read closure 9.1; confirm f30 citations per bundle; spot-check that each cited f30 row exists with focus/evidence/architecture_handback/implementation_adjustment."
+  notes:
+    - "N1: Closure section 4 'Residual owner' column lists one primary E3V per hard AR (matching the matrix e3_obligation column) although E2-001 section 4 declares multiple obligations for AR-TST-001/002, AR-FAIL-001, AR-MOD-001..003, AR-FUT-003; the matrix value is within the declared set (E2-003 verifier 177/177) and the closure does not claim exclusivity. Label the column 'primary E3V' when convenient."
+    - "N2: The E4 ledger lists 'isolation mechanism / process API / embedded store / IPC/auth' as E4 choices while E3V-001/002/003 validate 'the selected mechanism'. Coherent as written because SUCCESS validates only the exact tested mechanism and E4 cannot claim a support class without E3 evidence; E2-005's E3 validation plan should name the mechanisms E3 will exercise and state that an E4 divergence from a validated mechanism requires revalidation."
+    - "N3: author_started_at UNKNOWN_NOT_CAPTURED and repository_commit_or_patch UNCOMMITTED_WORKTREE_PATCH_AGAINST_AUTHOR_BASE while the founder committed the pass as 3fc9a46 (2026-08-29T18:27:46Z); same pattern as V-E2-002-N3/N8 and V-E2-003-N7. This review is against the committed bytes."
+    - "N4: TASK_REGISTRY E2-004 deliverables still list 05_architecture/spikes/; the author created none by design (handoff spike_directory_created false with reason); acceptance criterion 2 permits this. No action."
+    - "N5: PROJECT_STATE E2 phase activation_condition_status and last_verified_checkpoint narratives still say 'E2-004 is READY (not claimed, not executed)'; these are dated historical narratives per precedent and the current-state fields (task_statuses, e2_004_status, current_stage_status, active_task_ids) are correct."
+    - "N6: PROJECT_STATE active_task_ids [E2-004] with registry status READY_FOR_REVIEW follows the E2-003 precedent at c870c83/e5d541c."
+    - "N7: FILE_MANIFEST.json (2026-08-21) lists no E2 artifacts; pre-existing staleness outside E2-004 allowed paths; not attributable to E2-004."
+    - "N8: git diff 7bbfebd..HEAD -- 10_checkpoints/ shows only c2f7093 (E1 gate verification commit), i.e. pre-E2; frozen E1 product/contribution/evaluation files are byte-identical since 557e335."
+    - "N9: README status line ('E2-001: READY; E2-002 through E2-006: BACKLOG') and the next-command instruction body remain stale after the founder's MODE-line-only refresh at 7b4b0d5; founder commit-time item (see F-E2-004-01 for the closure's inaccurate disposition). After this review README should read E2-001..E2-003 VERIFIED, E2-004 READY_FOR_REVIEW (challenged), E2-005/E2-006 BACKLOG."
+    - "N10: The E2-004 author reports Python-based assertions; every prior independent verifier in this repository used Ruby 2.6 Psych/CSV. Not a defect, but reproducibility of the author's harness in the verifier environment is not guaranteed (see F-E2-004-06)."
+security_checks:
+  - "No secret, credential, private data, account, provider/model call, paid call, network retrieval, or external effect was used or produced by this review."
+  - "High-confidence secret-pattern scan over the four E2-004-changed files: 0 hits."
+  - "Technology/vendor/model identifier scan over the closure and handoff: 0 hits; no client, sandbox, store, workflow engine, provider, or model is named or selected."
+  - "Every E3 deferral keeps containment, protected-entry, capability, approval, effect, evidence, and verifier boundaries structurally outside sole LLM judgement; missing evidence fails closed to blocked/fenced/WAITING_FOR_USER/unsupported/unassigned in every record checked."
+  - "No real or synthetic secret value appears in the closure, handoff, or this review."
+files_created:
+  - 99_handoffs/completed/E2-004_challenger_review.yaml
+files_modified: []
+files_deleted: []
+closure_artifact_modified_by_challenger: false
+e2_003_artifacts_modified_by_challenger: false
+candidate_files_modified_by_challenger: false
+governance_files_modified_by_challenger: false
+findings_fixed_by_challenger: false
+governance_note: >-
+  Per REVIEW_TASK protocol and the E2-003 challenger precedent (dcb3543 touched only its review
+  file), no governance file was modified. The founder (or a bounded fixer) may set TASK_REGISTRY
+  E2-004 reviewer_model and record the challenger outcome at commit time; E2-004 remains
+  READY_FOR_REVIEW / NOT VERIFIED until an independent verifier completes MODE: VERIFY_TASK_E2-004.
+scope_control:
+  e2_004_status: READY_FOR_REVIEW_NOT_VERIFIED_CHALLENGED
+  e2_004_verified: false
+  e2_004_executed_by_challenger: false
+  e2_005_status: BACKLOG
+  e2_005_activated: false
+  e2_006_status: BACKLOG
+  e2_gate_status: NOT_EVALUATED
+  architecture_selected: false
+  architecture_candidates: 3
+  preferred_candidate: null
+  candidates_ranked_or_compared_toward_winner: false
+  accepted_architecture_adrs: 0
+  adr_decisions_written: 0
+  architecture_spikes_run: 0
+  experiments_run: 0
+  application_code_created: false
+  evaluation_cases_run: 0
+  model_benchmarks_run: 0
+  paid_api_calls: 0
+  external_actions_performed: false
+  model_roles_locked: false
+  e3_started: false
+  autonomy_eligible: NOT_ELIGIBLE
+  autonomous_build_authorized: false
+  s1_003_status: DEFERRED_NOT_EXECUTED
+  frozen_e1_modified: false
+  e2_001_artifacts_modified: false
+  e2_002_candidates_modified: false
+  e2_003_artifacts_modified: false
+  e2_plan_modified: false
+blockers: []
+finding_counts: {BLOCKER: 0, HIGH: 0, MEDIUM: 0, LOW: 7, NOTE: 10}
+recommended_next_task: >-
+  VERIFY_TASK_E2-004 by a separate independent verifier session. The seven LOW findings do not
+  require a fixer before verification under the acceptance rule (no BLOCKER/HIGH/MEDIUM); the
+  founder may optionally route a bounded FIX_TASK_E2-004 limited to F-E2-004-01..07 first, or the
+  verifier may disposition them as carried items. E2-005 stays BACKLOG until E2-004 is VERIFIED.
+next_command: >-
+  MODE: VERIFY_TASK_E2-004 - independently re-derive the nine-condition NO_PRESELECTION_SPIKE_REQUIRED
+  closure from committed bytes, disposition F-E2-004-01..07 and N1..N10, confirm no experiment,
+  selection, ADR, code, evaluation, benchmark, paid call, autonomy change, or S1-003 resumption
+  occurred, and only then move E2-004 to VERIFIED and E2-005 to READY. (Optional prior step at
+  founder discretion: MODE: FIX_TASK_E2-004 bounded to the seven LOW findings.)
+repository_commit_or_patch: >-
+  Uncommitted challenger review based on 3fc9a462b49f5b754bdd1b9fcf07e68bf9dd7888 on
+  chore/initialize-project-materials; only 99_handoffs/completed/E2-004_challenger_review.yaml is
+  added; intentionally left uncommitted for the founder.

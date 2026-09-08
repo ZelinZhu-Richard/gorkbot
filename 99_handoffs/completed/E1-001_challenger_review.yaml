@@ -1,0 +1,595 @@
+review_id: R-E1-001-20260827-CHALLENGER
+task_id: E1-001
+stage: E1
+mode: REVIEW_TASK_E1-001
+role: CHALLENGER
+reviewer_model: "Claude Fable 5 (claude-fable-5) via Claude Code"
+reviewer_independence: >-
+  Independent of the recorded E1-001 author ("Codex (runtime model identifier not exposed)").
+  No Claude model authored any E1-001 artifact; the author's handoff records five read-only
+  Codex-internal QA agents, and this review is not one of them and shares no conversation state
+  with them. Same model/product as prior S0/S1/E0 challengers and verifiers, in a separate
+  session with no shared state. Every fact below was re-derived from the committed repository
+  at cf27ef4, not from the author summary, requirement counts, handoff, or registry
+  author_requirement_summary. Disclosure: the charter names "Claude Code" among the E3
+  candidate systems; this review selects no role occupant and only checks that none was
+  selected. No subagents, network retrieval, login, account, API key, paid model call, spend,
+  spike, benchmark, architecture selection, or application code was used or produced.
+started_at: "2026-08-27T21:00:00Z (approximate)"
+completed_at: "2026-08-27T22:10:00Z (approximate)"
+reviewed_commit: cf27ef4f6fed1b04f21c572054dc0fabb24c3cdb
+reviewed_state: >-
+  Branch chore/initialize-project-materials at committed HEAD cf27ef4 ("Author Engineering
+  Preview v0.1 specification"), working tree clean at review start. The E1-001 diff
+  (b48288e..cf27ef4) touches exactly the eight E1-001 allowed_files_to_change: three new
+  03_product specifications, the new E1-001 handoff, and bounded edits to
+  ASSUMPTION_REGISTER.md (+A-020), RISK_REGISTER.md (+R-027/R-028), PROJECT_STATE.yaml, and
+  TASK_REGISTRY.yaml (E1-001 entry only; E1-002 untouched). +1744/-12 lines.
+
+verdict: E1_001_CHANGES_REQUESTED
+verdict_rationale: >-
+  No BLOCKER. The specification is a genuinely strong input: scope is clean (no client,
+  language, database, engine, sandbox, cloud, framework, provider, model, or role selected;
+  the only technology words in the three documents are explicit non-goal/unknown boundaries);
+  the 56 FR / 15 RR / 9 FC / 4 SLO / 4 MET / 21 NEG / 16 UF counts reproduce exactly, all
+  IDs are unique, and every cross-referenced ID resolves; the primary end-to-end workflow is
+  supported with admission-before-content, base-state pinning, task identity across restart,
+  verification bound to the exact revision, and approval-gated external effects; the
+  COMPLETED conjunction (§11.1) stays honest under every stress case tested; aggregate
+  reliability is correctly UNKNOWN with false completion as a zero-tolerance hard invariant;
+  and the clean-room boundary is respected. Two HIGH findings nevertheless require a fixer
+  pass before independent verification. (1) The correctness contract contradicts itself on
+  the wait/control axis: §6.3, §7 and UF-04 require STOPPING or PAUSING to coexist with
+  RECOVERING, but the normative bundle dictionary (§12.1) types control_condition as a single
+  0..1 value, so an E2 implementation following the schema would be forced to collapse exactly
+  the axes R-028 exists to keep separate; by the contract's own §1 rule such a conflict blocks
+  verification and requires an E1-001 amendment. (2) FR-053/NEG-PROVIDER-01 forbid routing any
+  task to a configuration not "made eligible by later E3 evidence", with no evaluation-mode or
+  user-configured-route carve-out, so E3 cannot lawfully run the very benchmarks that create
+  eligibility, and an open-source user cannot bring an unbenchmarked model even with explicit
+  provenance. Nine MEDIUM findings cover missing repository-condition support statements,
+  unclassified fetch/pull/stash/clone Git actions, the undefined "legitimate scope" of
+  repository instructions, secret-location families and their precedence over the allowed
+  root, the workspace-establishment point relative to defect reproduction, verification
+  re-run semantics, minimum verifier-independence criteria, predicate-adequacy checking, and a
+  bounded force-stop path. LOW findings and NOTEs are bounded corrections. All findings are
+  specification amendments within E1-001's existing allowed paths; none requires E2 work.
+
+method:
+  - "Read in full: MASTER_OPERATING_PROMPT.md, AGENTS.md, README.md, SECURITY.md, PROJECT_STATE.yaml, TASK_REGISTRY.yaml (E1-001 and E1-002 entries plus structure), DECISION_LOG.md D-016 and D-001..D-005 headers, ASSUMPTION_REGISTER.md, RISK_REGISTER.md, MODEL_REGISTRY.yaml policy/status header, ENGINEERING_PREVIEW_CHARTER.md, ENGINEERING_PREVIEW_PRD.md, ENGINEERING_PREVIEW_USER_FLOWS.md, ENGINEERING_PREVIEW_CORRECTNESS_CONTRACT.md, MODEL_ROLE_BENCHMARK_PLAN.md structure, E1-001_handoff.yaml, E0-001_verifier_review.yaml header/verdict, EXTERNAL_GROK_BOT_018_ARCHITECTURE_AUDIT_verifier_review.yaml verdict, HANDOFF_TEMPLATE.yaml, and the E0 challenger review for format precedent."
+  - "Re-ran mechanical checks with git/grep/comm rather than trusting recorded results (see mechanical_checks)."
+  - "Walked every FR, RR, SLO, MET, FC, NEG, UF, lifecycle table, transition row, completion predicate, and bundle field against the 28-section review protocol; stress-tested completion, control, recovery, and state-combination scenarios by tracing the exact clauses that would govern them."
+  - "Did not edit the PRD, user flows, correctness contract, charter, benchmark plan, D-016, registry, project state, or any application path; did not begin E1-002."
+
+mechanical_checks:
+  - check: "FR/RR/FC/SLO/MET/NEG/UF definition counts and uniqueness"
+    command: "grep -oE '^\\| `FR-[0-9]{3}`' PRD | wc -l (63 raw; 7 are `FR-xxx`–`FR-yyy` range rows in §13 traceability tables) ; same for RR (16 raw = 15 + 1 range row), FC (10 raw = 9 + 1), SLO 4, MET 4, NEG 21, UF headings 16"
+    result: "PASS — 56 FR (001-009, 010-015, 020-027, 030-037, 040-048, 050-055, 060-069), 15 RR identical in PRD and contract, 9 FC, 4 SLO, 4 MET, 21 unique NEG, UF-01..UF-16 ordered. Author counts reproduce."
+  - check: "Every referenced FR/RR/FC/SLO/MET/NEG/UF ID across the three specifications resolves to a definition"
+    command: "cat PRD UF CC | grep -oE ID patterns | sort -u ; comm -23 refs defs"
+    result: "PASS — zero unresolved references."
+  - check: "Enumerated term usage across documents"
+    command: "grep -c for UNSUPPORTED_CAPABILITY, UNSUPPORTED_COMPLETION_ASSERTION, FALSE_TERMINAL_COMPLETION, EVIDENCE_FAILURE, OUTCOME_UNCERTAIN, KNOWN_*, SUPERSEDED, PARTIALLY_COMPLETED, READY_FOR_VERIFICATION, PAUSE_REQUESTED, STOP_REQUESTED, DEGRADED, RECOVERING, RETRYING, WAITING_FOR_EXTERNAL_EVENT, DELEGATING, WAITING_FOR_AGENT, IN_PROGRESS, INCONCLUSIVE, CHANGES_REQUIRED"
+    result: "PASS — every term used in the PRD or user flows is defined in the correctness contract; no undefined status term found. (See F-E1-001-01 for a cardinality contradiction, not an undefined term.)"
+  - check: "Exact allowed-path patch"
+    command: "git show --stat HEAD"
+    result: "PASS — exactly the eight E1-001 allowed_files_to_change; E1-002 entry unchanged; no application-source extension present."
+  - check: "Prohibited technology/vendor selection scan (author list plus GitHub, GitLab, Python, TypeScript, Rust)"
+    command: "rg -n -i '(Electron|Tauri|Temporal|Redis|Postgres|SQLite|Docker|Firecracker|E2B|LangChain|LangGraph|CrewAI|AutoGen|AWS|Azure|GitHub|GitLab|Python|TypeScript|Rust)' 03_product/ENGINEERING_PREVIEW_{PRD,USER_FLOWS,CORRECTNESS_CONTRACT}.md"
+    result: "PASS — zero matches; no GitHub-only assumption in the specifications (remote issue/PR are generic)."
+  - check: "Whitespace"
+    command: "git diff --check HEAD~1 HEAD"
+    result: "PASS — clean."
+  - check: "Governance state reconciliation"
+    command: "manual read"
+    result: "PASS — registry E1-001 READY_FOR_REVIEW; PROJECT_STATE active_task_ids [E1-001], ready_task_ids [], E1 task_statuses match; E1-002 BACKLOG; architecture_selected false; application_code_created false; E4 NOT_AUTHORIZED."
+  - check: "Clean-room import scan"
+    command: "manual read of PRD §13/§14, contract §18, plus technology scan above"
+    result: "PASS — no external code, exact internal names, schema names, or Level B/C material imported; audit used only as Level A corroboration with caveats."
+
+scope_verification:
+  product_correctness_specification_only: PASS
+  no_architecture_client_language_db_engine_sandbox_cloud_framework_selected: PASS
+  no_final_model_roles_no_benchmarks_no_code: PASS
+  no_e2_e3_execution_no_autonomous_build_no_s1_003_resume_no_finance: PASS
+  requirements_that_prescribe_implementation: >-
+    None found that select technology. Borderline-but-acceptable: FR-012 and §8.1 name an
+    "isolated, task-identified workspace" but explicitly allow "another E2-selected mechanism
+    with equivalent non-interference evidence"; §9.2 action classes are labeled
+    DESIGN_PROPOSAL; §12.1 persistence_boundary requires an RPO/recovery-oracle declaration
+    per bundle, which is an evaluation attribute rather than a design choice. §3.1 explicitly
+    disclaims six stores. No finding.
+
+findings:
+  - finding_id: F-E1-001-01
+    severity: HIGH
+    requirement: "Contract §2 axes; §4.2; §6.3; §7; §12.1 control_condition; UF-04 acceptance; R-028"
+    file_or_component: "03_product/ENGINEERING_PREVIEW_CORRECTNESS_CONTRACT.md lines 145, 208, 211, 305-311, 347, 609; 03_product/ENGINEERING_PREVIEW_USER_FLOWS.md lines 133, 139"
+    evidence: >-
+      §4.2 places PAUSING, PAUSED, STOPPING, RETRYING, and RECOVERING in one "wait and control
+      conditions" list. §6.3 and the §4.4 STOPPING→CANCELLED row state "STOPPING coexists with
+      BLOCKED or RECOVERING"; §7 states "A recovered STOPPING task continues stop
+      reconciliation"; UF-04 acceptance states "Restart during PAUSING resumes reconciliation".
+      Each of these requires two control conditions (STOPPING+RECOVERING, PAUSING+RECOVERING)
+      to be simultaneously true. The normative field dictionary in §12.1 types
+      `control_condition` as "enumerated value, 0..1" (single-valued), while `wait_reasons`
+      and `blocker_refs` are lists. §1 states that a conflict on lifecycle/authority/
+      completion/evidence "blocks verification and requires an E1-001 amendment".
+    why_it_matters: >-
+      This is the exact collapse R-028 warns about, encoded in the contract itself. E2 must
+      choose between the prose and the schema; whichever it drops, either a restart during a
+      stop loses the fact that a stop is pending (risking auto-resume after recovery, violating
+      §7 "do not auto-resume") or the recovery loses the fact that it is a recovery (risking
+      ordinary execution during PAUSING, violating RR-006). E1-002 cannot write an expected
+      status tuple for the restart-during-stop and restart-during-pause cases without knowing
+      the cardinality.
+    required_fix: >-
+      Make the axis structurally explicit: either (a) split "control condition" into a
+      user/policy control axis (PAUSING, PAUSED, STOPPING; at most one) and a runtime
+      reconciliation axis (RETRYING, RECOVERING; at most one) and give each its own bundle
+      field, or (b) type `control_condition` as a bounded list with a declared legal
+      combination table. In either case add an explicit legal-combination matrix for the
+      control/reconciliation/wait/blocker values (e.g., STOPPING+RECOVERING legal,
+      PAUSED+STOPPING illegal, PAUSED+RETRYING illegal) and reconcile PRD §2.3, UF invariant
+      9, and contract §2 on the axis count (the PRD and UF say six; the contract lists seven).
+    verification_method: >-
+      Verifier confirms one canonical axis list with counts identical across the three
+      documents, a bundle field per axis with cardinality that admits every coexistence the
+      prose requires, and a legal-combination table covering restart-during-STOPPING and
+      restart-during-PAUSING.
+
+  - finding_id: F-E1-001-02
+    severity: HIGH
+    requirement: "FR-053; FR-054; NEG-PROVIDER-01; §14.2; §11.3 'E3 later determines eligible role occupants'; charter §20; A-004; A-009"
+    file_or_component: "03_product/ENGINEERING_PREVIEW_PRD.md FR-053 (line 218); 03_product/ENGINEERING_PREVIEW_CORRECTNESS_CONTRACT.md NEG-PROVIDER-01 (line 758)"
+    evidence: >-
+      FR-053: "Routing ... uses only configurations made eligible by later E3 evidence and
+      authorization" with acceptance evidence "An unbenchmarked or disallowed configuration
+      cannot receive an eligible task." NEG-PROVIDER-01 requires zero bytes transmitted and
+      zero call/cost when a "disallowed provider" is offered a request. §14.2 says E3/E5
+      "supply observations" against the product. No clause defines an evaluation/benchmark
+      mode, a spike mode, or a user-configured route with explicit UNBENCHMARKED provenance.
+    why_it_matters: >-
+      E3 must run candidate configurations that are by definition not yet eligible in order to
+      produce the eligibility evidence; as written the product's own routing invariant forbids
+      that, so either E3 violates FR-053 or E2 designs a hidden bypass — both corrupt the
+      evaluation record. Separately, the product is an open-source preview: refusing every
+      provider/model not on a project-benchmarked list, even when the user explicitly
+      configures it with their own credentials, is a product decision the PRD makes
+      implicitly and without a recorded reason, and it would require an E3 rerun for every
+      model release before users can adopt it.
+    required_fix: >-
+      Amend FR-053 to distinguish (1) default/release-recommended routes, which require E3
+      eligibility, from (2) an explicitly declared evaluation/benchmark execution mode whose
+      every route is recorded with provenance ELIGIBILITY_UNDER_EVALUATION and whose results
+      are never credited as release evidence, and (3) an explicit user-configured route with
+      provenance USER_CONFIGURED_UNBENCHMARKED that is visible in status and in every evidence
+      bundle, is never silently promoted to a default, and still obeys every policy/cost/data
+      bound. Keep NEG-PROVIDER-01 for policy-disallowed providers (data/region/retention/cost)
+      as distinct from merely unbenchmarked ones. Add the eligibility provenance value to the
+      Provider/model section of §12.2.
+    verification_method: >-
+      Verifier confirms FR-053 names the three route provenance classes, that
+      NEG-PROVIDER-01 stimulus is policy-disallowed rather than unbenchmarked, and that the
+      bundle Provider/model section requires the eligibility provenance field.
+
+  - finding_id: F-E1-001-03
+    severity: MEDIUM
+    requirement: "FR-010; FR-011; §8.1; PRD §14 unknowns; review protocol §9"
+    file_or_component: "03_product/ENGINEERING_PREVIEW_PRD.md §6.2 and §14; 03_product/ENGINEERING_PREVIEW_CORRECTNESS_CONTRACT.md §8.1"
+    evidence: >-
+      The specifications record "submodule or nested-repository facts where relevant" and
+      list "repository sizes" as UNKNOWN, but state no SUPPORTED / REJECTED (typed denial) /
+      UNKNOWN-E2 disposition for: repositories with submodules (may the task edit inside one?),
+      nested repositories, Git LFS content, detached HEAD, a checkout that is itself a linked
+      worktree, repositories with no remote, bare or shallow clones, monorepo sub-path scoping,
+      a checkout in an in-progress merge/rebase/cherry-pick/bisect state, generated or
+      build-output files, and which untracked/ignored state (e.g., installed dependencies,
+      local config) is available inside the isolated workspace. Grep for fetch/pull/stash/
+      clone/shallow/detached/lfs/monorepo/ignored across the three documents returns only the
+      §8.4 untrusted-surface list and preflight fact recording.
+    why_it_matters: >-
+      Without a product-level disposition E2 will fill these by architecture accident (e.g.,
+      a worktree-based workspace silently lacks ignored dependency directories, so builds fail
+      or the agent reinstalls dependencies — an UNTRUSTED_CODE_EXECUTION/network event — to
+      compensate). An in-progress merge state is a classic case where "dirty tree" handling
+      alone is insufficient and user work is lost.
+    required_fix: >-
+      Add a repository-condition table to PRD §6.2 or contract §8.1 assigning each condition
+      above one of SUPPORTED_V0_1 (with the FR that governs it), REJECTED_AT_ADMISSION (typed
+      admission failure, no effect), or UNKNOWN_E2_RESEARCH (E2 must decide and E1-002 must
+      cover the denial path). Require in-progress merge/rebase/etc. state to be REJECTED or
+      WAITING_FOR_USER at admission, and require the workspace profile to declare which
+      untracked/ignored state it does and does not carry.
+    verification_method: "Verifier confirms every listed condition has exactly one disposition and that RR-007 canary tests are required for the supported dirty/merge-state cases."
+
+  - finding_id: F-E1-001-04
+    severity: MEDIUM
+    requirement: "FR-023; FR-024; FR-045; §8.4; §9.2; §9.5; UF-10; RR-007"
+    file_or_component: "03_product/ENGINEERING_PREVIEW_CORRECTNESS_CONTRACT.md §8.4 (lines 386-397), §9.5 (line 461)"
+    evidence: >-
+      §8.4 classes are local inspection, isolated preparation, destructive/history-changing,
+      and remote/consequential. `git fetch`, `git pull`, `git clone`, `git submodule update`,
+      LFS fetch, and `git remote` inspection are not placed in any class: they are network
+      egress and may use credentials (EXTERNAL_READ per §9.2) and mutate local remote-tracking
+      refs, yet they are neither listed as approval-gated in §9.5 nor as task-admitted local
+      preparation. `git stash`, `git checkout --`/`git restore` of user material, and `git
+      worktree remove/prune` are not listed under "reset/clean of user material" even though
+      each can destroy dirty user work; deletion of the task's own isolated branch/worktree at
+      cleanup is not distinguished from "existing-branch deletion".
+    why_it_matters: >-
+      The product must not treat all Git operations as equivalent; the current gap is exactly
+      the read-but-networked class. A fetch through a credential helper is the first place a
+      secret leaves the machine, and a stash on the user's checkout is the most common way
+      an agent silently loses user work.
+    required_fix: >-
+      Extend §8.4 with: (a) "remote read" (fetch/pull/clone/submodule/LFS fetch) as
+      EXTERNAL_READ requiring an explicit network+credential grant, never implied by local Git
+      permission, with local ref movement recorded; (b) stash, checkout/restore/switch that
+      discards user changes, worktree removal of user worktrees, and reflog expiry added to
+      the user-material-destructive family; (c) an explicit rule that cleanup of the task's
+      own isolated branch/worktree is task-admitted cleanup under §9.7, not existing-branch
+      deletion, provided it contains no user material.
+    verification_method: "Verifier confirms each named Git action appears in exactly one class with its grant/approval requirement, and NEG-GIT-01 or a new family covers fetch-via-helper egress and stash-of-user-work."
+
+  - finding_id: F-E1-001-05
+    severity: MEDIUM
+    requirement: "FR-004; FR-025; contract §1 'legitimately applies'; §3.2; review protocol §12 and §21"
+    file_or_component: "03_product/ENGINEERING_PREVIEW_PRD.md FR-004 (line 153); 03_product/ENGINEERING_PREVIEW_CORRECTNESS_CONTRACT.md line 29"
+    evidence: >-
+      FR-004 grants repository instructions authority "only within their legitimate scope";
+      §1 says untrusted content "may narrow work only when a governing instruction
+      legitimately applies". "Legitimate scope" is not defined anywhere. FR-025 lets required
+      checks be "discovered from governing inputs", so a repository file can cause the agent
+      to execute arbitrary check commands (bounded by §8.5), but nothing states which other
+      effects repository instructions may have (path restrictions, style, commit conventions,
+      required reviewers, contribution constraints) versus may never have (capability grants,
+      network, secret locations, approvals, trust-class changes, predicate weakening).
+    why_it_matters: >-
+      This is the USER-AUTHORITY vs REPOSITORY-CONTENT boundary the protocol asks to be
+      explicit, and it is the boundary E1-002 must fixture for NEG-AUTH-01. Without an
+      allow-list of what instruction files may do, "legitimate" becomes an LLM judgment,
+      contrary to §8 item 3. It also leaves ambiguous whether a repository-declared check
+      that needs network (e.g., an integration test) is silently granted network.
+    required_fix: >-
+      Define in contract §3.2 (or a new §3.4) the closed set of things governing repository
+      instructions MAY do (declare required checks/commands to run under existing bounds,
+      restrict paths, state style/commit/contribution conventions, request that certain files
+      not be touched) and MUST NOT do (grant or expand any capability, network, credential,
+      secret location, budget, approval, effect class, trust label, or predicate; override user
+      or project policy). State that a repository-declared check needing an ungranted
+      capability yields WAITING_FOR_USER, not an implied grant, and that instruction files are
+      recorded in the bundle with trust label UNTRUSTED_GOVERNING_INPUT.
+    verification_method: "Verifier confirms the allow/deny list exists, FR-025 cross-references it, and NEG-AUTH-01 stimulus includes an instruction file that declares a network-requiring check."
+
+  - finding_id: F-E1-001-06
+    severity: MEDIUM
+    requirement: "FR-009; FR-046; FR-047; §3.2 preflight grant; §9.6; NEG-SECRET-01; review protocol §13"
+    file_or_component: "03_product/ENGINEERING_PREVIEW_CORRECTNESS_CONTRACT.md §9.6 (line 471 'Secret files and account/operating-system credential locations are denied by default')"
+    evidence: >-
+      The protected-location families are never enumerated even as a minimum: repository-local
+      dotenv/secret files, SSH keys, Git credential stores/helpers, package-registry rc files,
+      cloud/provider CLI configs, OS keychains/credential managers, browser profiles, and shell
+      history appear nowhere except "credential helpers" in §8.4 and the generic phrase above.
+      NEG-SECRET-01 enumerates surfaces where a marker may leak but not locations that must be
+      unreadable. A repository-local `.env` sits inside the allowed root; no clause states that
+      secret-location denial takes precedence over allowed-root inclusion or how a file is
+      classified as a secret location (pattern? policy? UNKNOWN?).
+    why_it_matters: >-
+      Allowed-root enforcement alone reads `.env` and `id_rsa` inside a monorepo happily; E1-002
+      cannot write discovery-negative cases without the family list; and E2 could implement
+      "deny secret locations" as a regex on filenames, which §8 item 3 forbids as primary
+      enforcement, without any requirement stating otherwise.
+    required_fix: >-
+      Add to §9.6 a minimum protected-location family list (repo-local secret/env files,
+      user SSH, Git credential stores/helpers, package-registry credentials, provider/cloud
+      CLI credentials, OS keychain/credential managers, browser profiles, shell history,
+      crash dumps), state that secret-location denial overrides allowed-root inclusion and
+      applies to reads by terminal descendants, state that the classification mechanism is an
+      E2 decision but its false-negative consequence is a hard secret-boundary failure, and
+      add the corresponding stimulus ("read a secret-classified path inside the allowed root")
+      to NEG-SECRET-01 or a new NEG-SECRET-02.
+    verification_method: "Verifier confirms the family list, the precedence sentence, and a NEG family whose stimulus is an in-root secret file read."
+
+  - finding_id: F-E1-001-07
+    severity: MEDIUM
+    requirement: "UF-02 ANALYZING defect observation; §8.1 'Task work MUST occur in an identified isolated workspace'; §8.5; RR-007; FR-011"
+    file_or_component: "03_product/ENGINEERING_PREVIEW_USER_FLOWS.md line 82; 03_product/ENGINEERING_PREVIEW_CORRECTNESS_CONTRACT.md §4.1/§4.4, §8.1"
+    evidence: >-
+      UF-02 runs "the least invasive authorized failing oracle" during ANALYZING, before
+      PLANNING and READY_TO_EXECUTE where "workspace isolation" is revalidated. No phase or
+      transition row states when the isolated workspace is created (FR-023 makes creation a
+      task-authorized Git action), so the first untrusted code execution (a test run for
+      reproduction) has no defined location. §8.1 requires all task work to occur in the
+      isolated workspace; running a reproduction in the user's live checkout would modify
+      build outputs, caches, and possibly tracked files in the user's dirty tree.
+    why_it_matters: >-
+      This is the one place the primary flow can violate RR-007 by design rather than by bug.
+      E2 needs to know whether workspace creation is a precondition of ANALYZING-with-
+      execution or of EXECUTING.
+    required_fix: >-
+      State in §4.4/§8.1 that any UNTRUSTED_CODE_EXECUTION operation, including reproduction
+      during ANALYZING, requires the isolated workspace to exist and be bound to the
+      operation; add workspace establishment as an explicit transition precondition (or a
+      named step in UF-02 before defect observation); and record in §12.2 Repository/
+      workspace that reproduction ran in the workspace identity, not the user checkout.
+    verification_method: "Verifier confirms the precondition text and that UF-02 shows workspace creation before the first oracle run."
+
+  - finding_id: F-E1-001-08
+    severity: MEDIUM
+    requirement: "§4.3 verification status/verdict; §4.4 VERIFYING exits; §11.3; §12.1 verification_status 'exactly 1', verification_verdict 'exactly 1 when FINISHED'; UF-14 7C; review protocol §7 'retry rules; verifier failure vs task failure'"
+    file_or_component: "03_product/ENGINEERING_PREVIEW_CORRECTNESS_CONTRACT.md lines 157, 202-205, 612-613; 03_product/ENGINEERING_PREVIEW_USER_FLOWS.md line 310"
+    evidence: >-
+      A FINISHED verification has "exactly one verdict"; BLOCKED/INCONCLUSIVE "leaves the
+      attempt noncomplete" and creates a task blocker. Nothing says whether verification may
+      be re-run on the same unchanged review revision after a verifier-side failure (verifier
+      provider outage, verifier tool crash, INCONCLUSIVE for missing environment), whether
+      that is a new verification record on the same attempt or a new attempt, how many
+      verification records an attempt may hold, which one is authoritative, and whether
+      verifier-side INCONCLUSIVE counts against the task (MET-003) or the verifier layer
+      (SLO-001 "layers reported separately").
+    why_it_matters: >-
+      E3 must benchmark verifier configurations; without re-run semantics a flaky verifier
+      either permanently blocks a correct change or forces an unnecessary correction attempt
+      that resets approvals. E2 needs the cardinality to model the record.
+    required_fix: >-
+      Define a verification-run entity: 0..n runs per attempt, each with its own identity,
+      verifier identity/configuration, reviewed-revision binding, status, and verdict; the
+      attempt's authoritative verification is the latest FINISHED run on the current unchanged
+      revision; a re-run on an unchanged revision is permitted only after a verifier-layer
+      failure classified under §10.2 (Verification/evidence or Provider/model family) and
+      within a declared ceiling; a CHANGES_REQUIRED verdict still forces a correction attempt;
+      the bundle Verification section lists every run. State that verifier-layer failures are
+      attributed to the verifier layer in SLO-001/MET-003.
+    verification_method: "Verifier confirms the run entity, ceiling, attribution rule, and that §12.1/§12.2 cardinalities were updated to match."
+
+  - finding_id: F-E1-001-09
+    severity: MEDIUM
+    requirement: "§11.3 independence; NEG-VER-01; UF-14; FR-065; review protocol §7"
+    file_or_component: "03_product/ENGINEERING_PREVIEW_CORRECTNESS_CONTRACT.md lines 571-580"
+    evidence: >-
+      Independence requires "a separate accountable verifier identity/path", inputs limited to
+      durable artifacts, isolated outputs, and least privilege; "Provider/model diversity alone
+      neither proves nor is required for independence"; role occupants deferred to E3. Not
+      stated: whether the verifier may share the author's working context/conversation or
+      mutable in-memory state, whether the author's transcript/narration is excluded from
+      verifier inputs or merely labeled untrusted, whether the same running model session can
+      be both author and verifier of one attempt, and whether a deterministic oracle result
+      outranks a model judgment when both exist.
+    why_it_matters: >-
+      NEG-VER-01 currently tests only "sole author self-verifies"; an implementation that
+      re-prompts the same session "now verify" with the full author transcript would pass
+      the letter of §11.3. E3 cannot compare verifier configurations without a floor that
+      every configuration must meet.
+    required_fix: >-
+      Add minimum independence criteria: separate execution context with no shared mutable
+      working state; verifier inputs are the durable set in §11.3 and the author transcript is
+      either excluded or supplied only as UNTRUSTED with the verifier required to cite durable
+      evidence for every predicate result; the same model session may not be author and
+      verifier of one attempt; where a deterministic oracle exists its result is authoritative
+      over any model judgment of the same predicate. Mark stronger separations (process,
+      provider, human) as E3 comparison variables.
+    verification_method: "Verifier confirms the criteria text and that NEG-VER-01 stimulus includes same-session and transcript-shared verification."
+
+  - finding_id: F-E1-001-10
+    severity: MEDIUM
+    requirement: "FR-005; FR-007; §5.3 'weaken predicates'; §11.1; §11.2; UF-14 step 4; R-002"
+    file_or_component: "03_product/ENGINEERING_PREVIEW_CORRECTNESS_CONTRACT.md §11.2-11.3; 03_product/ENGINEERING_PREVIEW_USER_FLOWS.md UF-14"
+    evidence: >-
+      Task-specific predicates are authored in PLANNING by the author execution path. The
+      contract forbids weakening predicates after the fact but nowhere requires anyone to
+      check that the initial predicate set adequately covers the admitted request and the
+      task-class minimums. UF-14 step 4 evaluates "scope" and §11.2 requires "requested
+      observable behavior exists", which is request-anchored, but the verifier's
+      predicate-by-predicate results are over the author's predicates.
+    why_it_matters: >-
+      The classic false completion is a model writing weak predicates and then passing them.
+      Independent verification of weak predicates is ceremonial.
+    required_fix: >-
+      Add a mandatory verifier predicate PREDICATE_SET_ADEQUATE: the verifier evaluates the
+      predicate set against the original request, task class minimums in §11.2, governing
+      instructions, and admitted scope, returning FAIL/CHANGES_REQUIRED when a material
+      requested behavior or class minimum has no predicate; and require the user-visible task
+      contract (UF-01 6A) to present the predicates so the user can object before execution.
+    verification_method: "Verifier confirms the predicate exists in §11.2/§11.3 and UF-14, and that FR-065's fixture list includes a weak-predicate case."
+
+  - finding_id: F-E1-001-11
+    severity: MEDIUM
+    requirement: "§6.3; §4.4 STOPPING→CANCELLED; UF-05 steps 6-7; SLO-002; RR-005; review protocol §14"
+    file_or_component: "03_product/ENGINEERING_PREVIEW_CORRECTNESS_CONTRACT.md lines 210-211, 311; 03_product/ENGINEERING_PREVIEW_USER_FLOWS.md lines 156-157"
+    evidence: >-
+      CANCELLED is reached only "once every material operation has a terminal or explicit
+      uncertain classification"; if reconciliation cannot finish, STOPPING coexists with
+      BLOCKED/RECOVERING "until the narrowest truthful classification is possible". No
+      maximum reconciliation bound and no user force-stop path are required, so a readback
+      that never resolves keeps the attempt in STOPPING indefinitely. Separately, UF-04 step 3
+      lets "an operation declared indivisible or non-interruptible by its trusted capability
+      contract" settle; nothing forbids classifying an UNTRUSTED_CODE_EXECUTION operation
+      (test suite, build) as non-interruptible, which would conflict with NEG-TERM-01.
+    why_it_matters: >-
+      A user must always be able to make the agent stop within a bounded time; E2 needs the
+      bound and the forced-classification rule to design stop safely, and SLO-002 cannot be
+      measured without a definition of "effective".
+    required_fix: >-
+      Require a declared maximum stop-reconciliation bound after which every unresolved
+      operation is classified OUTCOME_UNCERTAIN and the attempt closes CANCELLED with the
+      uncertainty retained as a blocker on any successor; require a user FORCE_STOP control
+      that hard-terminates all descendants within a declared bound; state that
+      UNTRUSTED_CODE_EXECUTION operations can never be declared non-interruptible and that
+      only trusted product-internal effect-crossing operations may be indivisible, each with
+      a declared maximum settle time.
+    verification_method: "Verifier confirms the bounds, the FORCE_STOP control, and the non-interruptibility restriction; SLO-002 definition references the bound."
+
+  - finding_id: F-E1-001-12
+    severity: LOW
+    requirement: "Charter §10 'author, challenger, and verifier identities or explicitly recorded unknowns'; §12.1 field dictionary; §12.2 Verification"
+    file_or_component: "03_product/ENGINEERING_PREVIEW_CORRECTNESS_CONTRACT.md §12.1-12.2"
+    evidence: "The dictionary has verifier identity (in the Verification section) and per-operation provider identities, but no author-identity/configuration field and no challenger field or NOT_APPLICABLE marker, which the verified charter requires."
+    why_it_matters: "E3 must attribute outcomes by author configuration; without an author-identity field attribution is reconstructed from operation records."
+    required_fix: "Add `author_identity_ref` (required after acceptance) and `challenger_identity_ref` (0..1 with explicit NOT_APPLICABLE) to §12.1 and the Authority/Verification sections."
+    verification_method: "Verifier confirms the two fields and their profile requiredness."
+
+  - finding_id: F-E1-001-13
+    severity: LOW
+    requirement: "§9.4 'stale worker ... invalidates approval'; UF-09 step 5 'wrong actor/owner'; §7 recovery; UF-07 step 5"
+    file_or_component: "03_product/ENGINEERING_PREVIEW_CORRECTNESS_CONTRACT.md lines 455-457; 03_product/ENGINEERING_PREVIEW_USER_FLOWS.md line 242"
+    evidence: "A valid unconsumed approval issued before an orchestrator/worker crash is bound to the task/operation; recovery installs a new owner. It is unstated whether the successor owner (a 'new owner' under §7) invalidates the pending approval as a 'wrong owner/stale worker' or may consume it after §6.5 revalidation."
+    why_it_matters: "Either answer is safe; ambiguity is not. Re-approval after every restart is a usability decision E2 should not make silently."
+    required_fix: "State explicitly that an approval binds to task/operation/attempt and policy version, not to the worker instance, and survives a recovery-installed successor owner only if the normalized action, target, base-state preconditions, and policy version revalidate; otherwise it is invalidated with a recorded reason."
+    verification_method: "Verifier confirms the sentence and that NEG-RACE-01 or NEG-APR-01 stimulus includes approval-then-restart-then-consume."
+
+  - finding_id: F-E1-001-14
+    severity: LOW
+    requirement: "§15 NEG families; RR-007; §8.4 destructive class; review protocol §20 'destructive shell'"
+    file_or_component: "03_product/ENGINEERING_PREVIEW_CORRECTNESS_CONTRACT.md §15"
+    evidence: "No NEG family's stimulus is a task-issued destructive action against user material inside the allowed root (git reset --hard, git clean, git stash, git branch -D on a shared .git, rm of user untracked files); NEG-FS-01 is out-of-root, NEG-GIT-01 is helper execution, NEG-CLEAN-01 is cleanup. Post-verification mutation of the review revision (§12.3.10, FR-065 'stale diff') likewise has no NEG family."
+    why_it_matters: "E1-002 derives cases from NEG families; the two most likely real-world losses (user work destroyed in-root; verified revision mutated before completion) lack a named family."
+    required_fix: "Add NEG-DESTRUCT-01 (in-root destructive local action against user material or shared refs: denied or confined; user canaries and refs byte-identical) and NEG-VER-02 (material mutation of the review revision after PASSED or during VERIFYING: new state UNVERIFIED, COMPLETED denied, prior verdict preserved)."
+    verification_method: "Verifier confirms 23 NEG families and updated counts in PRD §13.1 and the handoff summary."
+
+  - finding_id: F-E1-001-15
+    severity: LOW
+    requirement: "PRD §3 'recorded as a future task'; §5.3; UF invariant 10; FR-037"
+    file_or_component: "03_product/ENGINEERING_PREVIEW_PRD.md line 81"
+    evidence: "PRD §3 allows an out-of-class request to be 'recorded as a future task', while §5.3 and UF invariant 10 forbid the product from creating or selecting new tasks."
+    why_it_matters: "E2 could implement a product-created backlog that later becomes self-selected work; the bounded-autonomy boundary should not have a wording exception."
+    required_fix: "Replace with 'recorded as a user-owned note/suggestion that is not an admitted product task and cannot be claimed without a new user request'."
+    verification_method: "Verifier confirms the wording."
+
+  - finding_id: F-E1-001-16
+    severity: LOW
+    requirement: "AGENTS.md source-of-truth rule; E1-001 handoff files_read; PRD §13 traceability"
+    file_or_component: "99_handoffs/completed/E1-001_handoff.yaml line 34"
+    evidence: "files_read lists `/Users/richardzhu/.codex/attachments/8971d941-.../pasted-text.txt`, an unversioned local file outside the repository whose content no reviewer can inspect; the handoff does not summarize what it contained or whether it introduced requirements."
+    why_it_matters: "Requirement provenance cannot be fully audited; if the attachment was the founder's mode instruction it should say so, and if it carried requirements those are untraceable."
+    required_fix: "In the fixer handoff, state the attachment's role (e.g., founder EXECUTE_TASK prompt), confirm it introduced no requirement not traceable to D-016/charter/master prompt, or place a sanitized copy under 00_inbox/prepared_materials and cite it."
+    verification_method: "Verifier confirms the statement or the committed copy."
+
+  - finding_id: F-E1-001-17
+    severity: LOW
+    requirement: "FR-044; FR-062; §3.3 tamper detection; PRD §8 item 9"
+    file_or_component: "03_product/ENGINEERING_PREVIEW_PRD.md FR-044, FR-062"
+    evidence: "Approval and material audit history must be 'historically tamper-detectable' and gaps 'detectable', but the threat model is unstated for a local single-user tool where the only principal owns the disk and can rewrite any store."
+    why_it_matters: "Without stating that the goal is detection of product-side or accidental mutation (not protection against the local user/root), E2 may over-engineer cryptographic audit chains for v0.1 or, conversely, treat the requirement as unsatisfiable."
+    required_fix: "Add one sentence to §3.3: tamper/gap detection in v0.1 targets product-side, concurrent-writer, and accidental mutation; resistance to the local principal or root is a FUTURE_COMPATIBILITY (FC-004) concern, not a v0.1 claim."
+    verification_method: "Verifier confirms the sentence."
+
+  - finding_id: F-E1-001-18
+    severity: LOW
+    requirement: "FR-069; UF-10 step 1; §2 review package; review protocol §21"
+    file_or_component: "03_product/ENGINEERING_PREVIEW_PRD.md FR-069"
+    evidence: "A 'draft-PR package' is named as a review form but its minimum content (base ref, head/commits or patch, title, body, linked request/issue reference, checklist derived from repository contribution instructions, evidence-bundle reference, explicit NOT_SUBMITTED marker) is undefined, so 'inspectable' has no oracle."
+    why_it_matters: "E1-002 must test package inspectability; the open-source contribution use case depends on this form."
+    required_fix: "Define the minimum draft-PR package content and the NOT_SUBMITTED marker in the PRD or contract §8.4."
+    verification_method: "Verifier confirms the list."
+
+  - finding_id: F-E1-001-19
+    severity: LOW
+    requirement: "§12.3 rule 4 'retain skips, truncation, retries'; §11.2; MET-004; review protocol §6 'flaky test passes once'"
+    file_or_component: "03_product/ENGINEERING_PREVIEW_CORRECTNESS_CONTRACT.md line 656"
+    evidence: "A check that fails and then passes on retry against the same revision under the same configuration is retained but its status consequence is undefined: it is unclear whether it counts as PASS."
+    why_it_matters: "A flaky oracle passing once is the second most common false-completion vector after weak predicates."
+    required_fix: "State that a required check with mixed results on the same revision/configuration is FLAKY, not PASS; it satisfies its predicate only if the plan predeclared a repetition rule that was met, otherwise it blocks completion and is reported under MET-004."
+    verification_method: "Verifier confirms the rule."
+
+  - finding_id: F-E1-001-20
+    severity: LOW
+    requirement: "§4.2 vs §5.2 enum names; R-028"
+    file_or_component: "03_product/ENGINEERING_PREVIEW_CORRECTNESS_CONTRACT.md §4.2, §5.2"
+    evidence: "PAUSED and RECOVERING appear as both task control conditions and agent availability states; BLOCKED as task blocker and verification verdict; WAITING_FOR_APPROVAL as task wait and operation state. The contract sometimes qualifies (`verification.BLOCKED`, `operation.WAITING_FOR_APPROVAL`) and sometimes does not."
+    why_it_matters: "Same token across axes is exactly how R-028 collapse begins in an implementation and in E1-002 expected tuples."
+    required_fix: "Adopt consistent axis-qualified notation throughout (task.control, agent.availability, verification.verdict, operation.status) or rename the agent-axis values."
+    verification_method: "Verifier greps for unqualified ambiguous tokens."
+
+notes:
+  - id: N-E1-001-01
+    text: "Axis count: PRD §2.3, UF invariant 9, and the handoff describe six axes; contract §2 lists seven (verification status and verdict separately). Not contradictory, but F-E1-001-01's fix should settle one canonical list."
+  - id: N-E1-001-02
+    text: "README.md 'Current status' and next command are stale (say E1-001 READY/not started and EXECUTE_TASK_E1-001); README is outside E1-001 allowed paths and the E0 verifier already noted it needs a founder refresh. Registry and PROJECT_STATE are authoritative and correct."
+  - id: N-E1-001-03
+    text: "Charter §17/§18/§24 status prose is historical E0 author-state (E1-001 BACKLOG); the author correctly did not edit it. Current authority is TASK_REGISTRY/PROJECT_STATE."
+  - id: N-E1-001-04
+    text: "§8.4 treats amend/rebase of the task's own unpublished bounded commit as history rewrite requiring stricter authority. Conservative and acceptable for v0.1; E2 may satisfy correction attempts with additional commits."
+  - id: N-E1-001-05
+    text: "FR-048/§9.7 legal holds and the per-bundle persistence_boundary/RPO object are heavier than a local preview strictly needs; both are bounded by explicit 'if unsupported, say so' clauses, so no over-engineering finding is raised."
+  - id: N-E1-001-06
+    text: "NEG-SUPPLY-01 covers lifecycle scripts and provenance; dependency confusion (private package name resolving to a public registry) is only implicitly covered by 'declared provenance, version/source'. E1-002 may add it as a case without an E1-001 amendment."
+  - id: N-E1-001-07
+    text: "Worktree-based workspaces share .git refs with the user's checkout, so a terminal-issued `git branch -D`/`git update-ref` inside the workspace can move user refs. §8.4 and NEG-GIT-01 already require 'no unapproved ref movement' as a test outcome, so the requirement exists; F-E1-001-14 adds the stimulus family."
+  - id: N-E1-001-08
+    text: "Reliability: all 15 RR are genuinely per-occurrence invariants; the '100%' wording in RR-001/RR-004 reads as aggregate but is defined per occurrence within a declared boundary. SLO-001..004 are measurable once E1-002 predeclares populations. False completion is first-class (FR-066, RR-008, MET-003). No reliability claim is pretended."
+  - id: N-E1-001-09
+    text: "Context compaction (§13.4, FR-036, UF-13, NEG-CTX-01) cleanly separates authoritative state, canonical conversation, evidence, execution trace, working context, and summaries, and is testable as written."
+  - id: N-E1-001-10
+    text: "Completion stress cases traced: tests skipped → RR-009 noncomplete; tests fail with patch → PARTIALLY_COMPLETED/FAILED; verifier crash → BLOCKED/INCONCLUSIVE (re-run semantics: F-E1-001-08); post-verification change → new unverified revision; redirect after tests → §6.4 invalidation; remote PR failure after local COMPLETED → linked successor attempt with OUTCOME_UNCERTAIN preserved; partial success → §4.3; flaky pass → F-E1-001-19; reproduction impossible → UF-03 reclassification; no test exists → predeclared NOT_APPLICABLE with reason. Predicates remain honest in every case."
+
+acceptance_criteria_evaluation:
+  - criterion: "The primary user, repository-engineering workflow, functional requirements, MVP scope, and explicit non-goals are unambiguous and testable."
+    result: PARTIAL
+    basis: "User, workflow, scope, and non-goals are unambiguous; 56 FRs each carry a product-level oracle. Testability gaps: F-E1-001-02 (FR-053 routing eligibility), F-E1-001-03 (repository-condition dispositions), F-E1-001-04 (unclassified Git actions), F-E1-001-05 (repository-instruction scope), F-E1-001-18 (draft-PR package)."
+  - criterion: "Task and agent lifecycle states, durable authority boundaries, restart/resume, pause/stop/redirect semantics, failure recovery, and bounded-autonomy limits are defined without selecting technology."
+    result: PARTIAL
+    basis: "No technology selected; transition tables are complete for phases, controls, dispositions, operations, and agent states. Gaps: F-E1-001-01 (control-axis cardinality contradiction), F-E1-001-07 (workspace precondition), F-E1-001-11 (stop bound/force-stop), F-E1-001-13 (approval across recovery), F-E1-001-15 (future-task wording)."
+  - criterion: "Reliability, security, approval, secret, tool-schema/runtime-validation, independent-verification, completion-predicate, context-compaction, and evidence-bundle requirements have objective acceptance evidence."
+    result: PARTIAL
+    basis: "Reliability (15 RR/4 SLO/4 MET), approval (§9.4-9.5, NEG-APR/RACE/EXT), tool-schema (FR-040-041, NEG-SCHEMA-01), compaction (§13.4), and evidence (§12) have objective evidence. Gaps: F-E1-001-06 (secret locations), F-E1-001-08 (verification re-run), F-E1-001-09 (independence floor), F-E1-001-10 (predicate adequacy), F-E1-001-12 (author/challenger identity), F-E1-001-14 (missing NEG families), F-E1-001-19 (flaky checks)."
+  - criterion: "The verified baseline and reconstructed-architecture audit are used only as bounded evidence inputs with clean-room and uncertainty caveats; no external code, exact internal names, or architecture claims are imported."
+    result: PASS
+    basis: "PRD §13/§14 and contract §18/§19 confine the baseline to documented-behavior context with zero runs and the audit to Level A corroboration; Level B reserved for E2; Level C excluded. Technology/name scan of the three specifications returns zero matches."
+  - criterion: "The specification preserves future extension paths without adding future multi-agent, SaaS, Finance, enterprise, mobile, marketplace, or real-money features to v0.1."
+    result: PASS
+    basis: "FC-001..009 and contract §17 are compatibility-only; PRD §5.2 non-goals and UF §20 exclude every listed feature; DELEGATING/WAITING_FOR_AGENT are declared unreachable; NEG-FUTURE-01 proves compatibility only. No over-engineering beyond the bounded items in N-E1-001-05."
+
+required_tests_status:
+  independent_challenger_review: RUN_THIS_RECORD
+  cross_file_terminology_authority_dependency_cleanroom_no_technology_no_code_secret_markdown_checks: "RE-RUN by challenger — PASS except the F-E1-001-01 cardinality contradiction and the N-E1-001-01 axis-count drift"
+  independent_post_fix_verification: NOT_RUN_REQUIRED_AFTER_FIXER
+
+summary_by_review_section:
+  scope: "PASS — product/correctness specification only."
+  functional_requirements: "56 confirmed; testable with the gaps in F-02/03/04/05/15/18; no hidden multi-agent, SaaS, finance, or GitHub-only scope."
+  end_to_end_flow: "Supported; admission-before-content, base pinning, identity persistence, revision-bound verification, approval-gated effects all present; workspace precondition gap (F-07)."
+  state_model: "Seven axes are necessary and mostly non-overlapping; one internal contradiction (F-01) and token overlap (F-20)."
+  completion_semantics: "Honest under all stress cases; add predicate adequacy (F-10) and flaky rule (F-19)."
+  independent_verification: "Operational in intent; needs independence floor (F-09) and re-run semantics (F-08)."
+  evidence_bundle: "Reconstructs request, base, change, operations, checks, failures, approvals, effects, artifacts, verifier, result, limitations; versioned, redacted, bounded, revision-bound; add author/challenger identity (F-12)."
+  repository_workspace: "Dirty/untracked handled; support matrix missing (F-03)."
+  git_effect_boundaries: "Local edit/commit/branch vs remote push/PR/merge/delete distinguished; fetch/pull/stash unclassified (F-04)."
+  tool_capability_model: "Deny-by-default, descendant inheritance, path/network scoping, timeouts, output bounds, package install all coherent."
+  prompt_injection: "Repository content untrusted; user vs repository authority separated; hard controls not LLM-only; 'legitimate scope' undefined (F-05)."
+  secrets: "Model never receives raw values; protected recipient boundary; exposure handling; location families missing (F-06)."
+  control_semantics: "Pause/stop/redirect/resume/races defined; stop bound and force-stop missing (F-11)."
+  recovery_idempotency: "Crash/restart/timeout/lost-result/duplicate/partial-write/stale/ack-lost all covered."
+  context_compaction: "PASS."
+  model_abstraction: "Replaceability, neutrality, provenance, fallback, cost recording present; eligibility bootstrapping (F-02)."
+  observability: "PASS; no chain-of-thought required."
+  reliability: "PASS; thresholds correctly UNKNOWN; false completion first-class."
+  security_negatives: "21 families cover the protocol's list except in-root destructive action and post-verification mutation (F-14)."
+  open_source_workflow: "Instructions/checks/lint/patch/draft-PR/approval covered; instruction-scope (F-05) and package minimum (F-18)."
+  non_goals_future_compatibility: "PASS."
+  traceability: "PASS mechanically; one internal contradiction (F-01) and provenance gap (F-16)."
+
+files_created:
+  - 99_handoffs/completed/E1-001_challenger_review.yaml
+files_modified: []
+governance_note: >-
+  Following the E0 challenger precedent (one review file only), TASK_REGISTRY.yaml and
+  PROJECT_STATE.yaml were not edited. The fixer pass should set E1-001 reviewer_model to
+  this record, keep status READY_FOR_REVIEW (or the repository's fix-cycle equivalent),
+  and append a PROJECT_STATE note. E1-001 is NOT VERIFIED; E1-002 remains BACKLOG.
+
+scope_control:
+  e1_002_activated: false
+  e2_started: false
+  e3_started: false
+  architecture_selected: false
+  application_code_written: false
+  model_benchmarks_run: 0
+  paid_api_calls_run: 0
+  external_actions_performed: false
+  s1_003_resumed: false
+  autonomous_build_authorized: false
+  product_artifacts_edited_by_challenger: false
+
+recommended_next_task: FIX_TASK_E1-001
+next_command: "MODE: FIX_TASK_E1-001 — address F-E1-001-01..20 within E1-001 allowed paths only, then request independent post-fix verification (MODE: VERIFY_TASK_E1-001). Do not activate E1-002."

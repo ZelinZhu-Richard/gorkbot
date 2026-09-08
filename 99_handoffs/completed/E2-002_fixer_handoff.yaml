@@ -1,0 +1,343 @@
+handoff_id: H-E2-002-20260829-FIXER
+task_id: E2-002
+stage: E2
+mode: FIX_TASK_E2-002
+role: FIXER
+author_model: "Codex (runtime model identifier not exposed) — original E2-002 AUTHOR returning as FIXER"
+reviewer_requested: "A fresh independent post-fix VERIFIER must reproduce the challenger checks for F-E2-002-01..09 and the complete E2-002 acceptance contract. This fixer record is not verification."
+started_at: null
+started_at_status: "UNKNOWN_NOT_CAPTURED; the exact fixer-pass start timestamp was not recorded and is not fabricated"
+completed_at: "2026-08-29T02:21:36Z"
+validation_completed_at: "2026-08-29T02:21:36Z"
+base_commit: 7819afcc16c0b877118d63d38bdbc3dc926d0c34
+base_branch: chore/initialize-project-materials
+initial_worktree_status: CLEAN
+challenger_artifact: 99_handoffs/completed/E2-002_challenger_review.yaml
+challenger_verdict: CHANGES_REQUESTED
+challenger_finding_counts: {BLOCKER: 0, HIGH: 2, MEDIUM: 3, LOW: 4}
+task_status: READY_FOR_REVIEW
+verification_status: NOT_VERIFIED_FIXER_PASS
+e1_status: VERIFIED
+e2_001_status: VERIFIED
+e2_gate_status: NOT_EVALUATED
+architecture_status: NOT_SELECTED
+
+files_read:
+  repository_and_security:
+    - MASTER_OPERATING_PROMPT.md
+    - AGENTS.md
+    - README.md
+    - SECURITY.md
+  governance:
+    - 01_governance/PROJECT_STATE.yaml
+    - 01_governance/TASK_REGISTRY.yaml
+    - 01_governance/DECISION_LOG.md
+    - 01_governance/ASSUMPTION_REGISTER.md
+    - 01_governance/RISK_REGISTER.md
+  frozen_e1_baseline:
+    - 03_product/ENGINEERING_PREVIEW_CHARTER.md
+    - 03_product/ENGINEERING_PREVIEW_PRD.md
+    - 03_product/ENGINEERING_PREVIEW_USER_FLOWS.md
+    - 03_product/ENGINEERING_PREVIEW_CORRECTNESS_CONTRACT.md
+    - 03_product/ENGINEERING_PREVIEW_CONTRIBUTION_WORKFLOW.md
+    - 06_evaluation/ENGINEERING_PREVIEW_EVALUATION_SUITE.md
+    - 10_checkpoints/stage_checkpoints/ENGINEERING_PREVIEW_V0_1_RELEASE_ACCEPTANCE.yaml
+  e2_baseline_and_candidate_set:
+    - 05_architecture/ENGINEERING_PREVIEW_E2_ARCHITECTURE_PLAN.md
+    - 05_architecture/ENGINEERING_PREVIEW_ARCHITECTURE_REQUIREMENTS.md
+    - 05_architecture/ENGINEERING_PREVIEW_E1_ARCHITECTURE_TRACEABILITY.csv
+    - 05_architecture/ENGINEERING_PREVIEW_ARCHITECTURE_ALTERNATIVES.md
+    - 05_architecture/candidates/EP-ARCH-C01.yaml
+    - 05_architecture/candidates/EP-ARCH-C02.yaml
+    - 05_architecture/candidates/EP-ARCH-C03.yaml
+  handoffs_and_reviews:
+    - 99_handoffs/completed/E2-002_handoff.yaml
+    - 99_handoffs/completed/E2-002_challenger_review.yaml
+    - 99_handoffs/completed/E2-001_handoff.yaml
+    - 99_handoffs/completed/E2-001_challenger_review.yaml
+    - 99_handoffs/completed/E2-001_fixer_handoff.yaml
+    - 99_handoffs/completed/E2-001_verifier_review.yaml
+    - 99_handoffs/HANDOFF_TEMPLATE.yaml
+  verified_external_architecture_evidence:
+    - 02_research/GROK_BOT_018_RECONSTRUCTED_ARCHITECTURE_AUDIT.md
+    - 02_research/GROK_BOT_018_ARCHITECTURE_ADOPTION_MATRIX.csv
+    - 99_handoffs/completed/EXTERNAL_GROK_BOT_018_ARCHITECTURE_AUDIT_verifier_review.yaml
+
+files_created:
+  - 99_handoffs/completed/E2-002_fixer_handoff.yaml
+files_modified:
+  - 05_architecture/ENGINEERING_PREVIEW_ARCHITECTURE_ALTERNATIVES.md
+  - 05_architecture/candidates/EP-ARCH-C01.yaml
+  - 05_architecture/candidates/EP-ARCH-C02.yaml
+  - 05_architecture/candidates/EP-ARCH-C03.yaml
+  - 01_governance/PROJECT_STATE.yaml
+  - 01_governance/TASK_REGISTRY.yaml
+  - 99_handoffs/completed/E2-002_handoff.yaml
+files_deleted: []
+frozen_e1_files_modified: []
+verified_e2_001_files_modified: []
+assumptions_added: []
+risks_added: []
+decisions_made: []
+architecture_decisions_made: []
+accepted_adrs: []
+
+finding_dispositions:
+  - finding_id: F-E2-002-01
+    resolution: FIXED
+    files_changed:
+      - 05_architecture/ENGINEERING_PREVIEW_ARCHITECTURE_ALTERNATIVES.md
+      - 05_architecture/candidates/EP-ARCH-C01.yaml
+      - 05_architecture/candidates/EP-ARCH-C02.yaml
+      - 05_architecture/candidates/EP-ARCH-C03.yaml
+      - 01_governance/PROJECT_STATE.yaml
+      - 01_governance/TASK_REGISTRY.yaml
+      - 99_handoffs/completed/E2-002_handoff.yaml
+    evidence: "One written status-assignment rule now governs every hard AR in all candidates. All 59 generation-status maps are exactly equal after re-evaluation: 52 SATISFIED_BY_DESIGN, 5 PLAUSIBLY_SATISFIABLE_BUT_REQUIRES_E2_003_ANALYSIS, 2 UNKNOWN_REQUIRING_SPIKE, 0 VIOLATED. AR-EXE-003 is UNKNOWN for all because logical fencing does not prove descendants; AR-DUR-003 is SATISFIED for all because each specifies durable intent/attempt/correlation/readback and known/failed/unknown recovery without external atomicity; AR-FUT-001/002 are SATISFIED at the hard seam floor and extraction cost remains preference evidence; AR-TST-002 points to complete family/composition seams. The candidate files, overview, handoff, registry, and project state carry the recomputed counts."
+    verification_method: "Parse f23 in C01/C02/C03; compare all 59 hard generation-status maps for equality; inspect AR-EXE-003, AR-DUR-003, AR-FUT-001, AR-FUT-002, and AR-TST-002 evidence; recompute counts from entries; confirm f27 and all summary/governance records match."
+
+  - finding_id: F-E2-002-02
+    resolution: FIXED
+    files_changed:
+      - 05_architecture/ENGINEERING_PREVIEW_ARCHITECTURE_ALTERNATIVES.md
+      - 05_architecture/candidates/EP-ARCH-C01.yaml
+      - 05_architecture/candidates/EP-ARCH-C02.yaml
+      - 05_architecture/candidates/EP-ARCH-C03.yaml
+    evidence: "Every f02 defines CLIENT_LIFETIME, CONTROL_AUTHORITY_LIFETIME, EXECUTION_OWNER_LIFETIME, TASK_LIFETIME, WORKSPACE_LIFETIME and their relationships. Every f03/f04/f09/f19 distinguishes client detach from full shutdown, stale reconnect from authority, and no-live-owner behavior; every f25 maps EP_CTL_016. C01 may keep its task-bound integrated core/supervisor headless or safely suspend but does not acquire C02's permanent service/replaceable-worker authority. C03's journal/reducer authority survives clients/coordinators, while live deadline/termination enforcement truthfully requires a coordinator."
+    verification_method: "Read f02/f03/f04/f09/f19/f22/f25 for all candidates; assert all five lifetime names, client-only interruption, no-live deadline semantics, full-system shutdown, stale-client rule and EP_CTL_016; confirm AR-DUR-002/004 remain consistent and C01/C02 differ on integrated authority, persistent service topology, and worker replaceability."
+
+  - finding_id: F-E2-002-03
+    resolution: FIXED
+    files_changed:
+      - 05_architecture/ENGINEERING_PREVIEW_ARCHITECTURE_ALTERNATIVES.md
+      - 05_architecture/candidates/EP-ARCH-C01.yaml
+      - 05_architecture/candidates/EP-ARCH-C02.yaml
+      - 05_architecture/candidates/EP-ARCH-C03.yaml
+      - 99_handoffs/completed/E2-002_handoff.yaml
+    evidence: "The six uneven author items are replaced by five normalized question IDs. SPQ-E2-002-01 descendant containment and SPQ-E2-002-02 protected acquisition are SHARED_ARCHITECTURE_SPIKE questions referenced by all three candidates. SPQ-03/04/05 are the C01/C02/C03-specific protected delivery/routing questions. Each reference contains property, ARs, candidates, shared/specific class, why analysis is insufficient, minimal mechanism, success/failure, blocker, reuse scope, decision linkage, SP-C01/04/05 reuse/distinction, and NOT_RUN status."
+    verification_method: "Read overview section 10 and all f27 spike lists; assert five unique IDs, two shared, three candidate-specific, nine references, complete required fields plus SP-C reuse, identical shared core questions, candidate-specific delivery reasons, and NOT_RUN for every item."
+
+  - finding_id: F-E2-002-04
+    resolution: FIXED
+    files_changed:
+      - 05_architecture/ENGINEERING_PREVIEW_ARCHITECTURE_ALTERNATIVES.md
+      - 05_architecture/candidates/EP-ARCH-C01.yaml
+      - 05_architecture/candidates/EP-ARCH-C02.yaml
+      - 05_architecture/candidates/EP-ARCH-C03.yaml
+    evidence: "Every f25 now has exactly nine family-level rows covering 170 cases, 18 oracles, 11 fixture families, 23 NEG families, 16 repository conditions, 30 Git/effect classifications, 9 adequacy variants, 16 dangerous compositions, and 8 reliability protocols. Every row has architecture seam, injectable condition, observable evidence, oracle access, candidate limitation, unsupported condition, and instrumentation stage. Each candidate also maps EP_CTL_016 and all COMP-01..16 individually. AR-TST-002 evidence points to these structures."
+    verification_method: "Count nine family rows and seven non-empty fields per row; count one EP_CTL_016 row and 16 composition rows per candidate with the same fields; inspect candidate-specific ordering/fault seams and confirm AR-TST-002 points to the table."
+
+  - finding_id: F-E2-002-05
+    resolution: FIXED
+    files_changed:
+      - 05_architecture/ENGINEERING_PREVIEW_ARCHITECTURE_ALTERNATIVES.md
+      - 05_architecture/candidates/EP-ARCH-C01.yaml
+      - 05_architecture/candidates/EP-ARCH-C02.yaml
+      - 05_architecture/candidates/EP-ARCH-C03.yaml
+    evidence: "Each f10 declares the same four technology-neutral semantic tiers, Tier 1 minimum for brokered non-executing operations, Tier 2 semantic assumption for untrusted descendant-spawning code, dependent hard ARs, filesystem/network/process-tree/secret expectations, non-guarantees, four per-control enforcement layers, and resolution status. AQ-003 is consistently linked to shared SPQ-E2-002-01; f26 derives unsupported host classes. No isolation product or implementation technology is selected."
+    verification_method: "Parse each f10/f26; assert four tier names, assumed tier, minimum/dependent ARs, four enforcement layers, boundary expectations, non-guarantees, AQ-003/SPQ linkage and explicit unsupported classes; scan for any positive product/technology selection."
+
+  - finding_id: F-E2-002-06
+    resolution: FIXED
+    files_changed:
+      - 05_architecture/ENGINEERING_PREVIEW_ARCHITECTURE_ALTERNATIVES.md
+      - 05_architecture/candidates/EP-ARCH-C01.yaml
+      - 05_architecture/candidates/EP-ARCH-C02.yaml
+      - 05_architecture/candidates/EP-ARCH-C03.yaml
+      - 99_handoffs/completed/E2-002_handoff.yaml
+    evidence: "All 19 Level B rows were retained and re-evaluated. Overview section 9 identifies shared non-decisions/hard floors rather than forcing cosmetic variation. LB-02 explains why stable identity/integrity suffices differently for transactional core, service records, and event/payload authority. LB-14 identifies integrated-core, service-owned plus protected bypass, and current-head event-admission gateway placement. Charter section 19 variation is explicit across authority, topology, persistence, recovery, effects, workers, projections, remote seam, migration, and contributor burden; Level B counts are not scores."
+    verification_method: "Count 19 rows per candidate; read all six LB-02/LB-14 rows for candidate-specific rationale; read overview section 9 for subjects varied and intentionally shared; confirm no score, rank, recommendation, or forced fourth candidate."
+
+  - finding_id: F-E2-002-07
+    resolution: FIXED
+    files_changed:
+      - 05_architecture/ENGINEERING_PREVIEW_ARCHITECTURE_ALTERNATIVES.md
+      - 05_architecture/candidates/EP-ARCH-C02.yaml
+    evidence: "C02 f04 now defines protected-entry start, ordinary-capture stop, service scope validator and non-secret authorization issuer, direct client-broker to current lease/fence-bound recipient delivery, forbidden intermediate raw observers, persisted receipt, replacement lifetime, crash ambiguity, no-replay, and revocation/fencing. TB-05, TB-20, f18, and SPQ-E2-002-04 reference the same service-bypass channel."
+    verification_method: "Read C02 f04 protected_delivery_path, TB-05, TB-20, f18 and SPQ-04; assert the channel, authority binding, handle issuer, raw-value exclusions, worker replacement/crash/replay and revocation semantics are consistent."
+
+  - finding_id: F-E2-002-08
+    resolution: FIXED
+    files_changed:
+      - 05_architecture/ENGINEERING_PREVIEW_ARCHITECTURE_ALTERNATIVES.md
+      - 05_architecture/candidates/EP-ARCH-C03.yaml
+    evidence: "C03 f06/f08/f09 now require a non-secret durable payload to be integrity-rereadable before its referencing event is admitted; no event referencing an undurable payload is appended or acknowledged. Written-but-unreferenced payloads are quarantined as non-authoritative orphans and linked or garbage-collected only after reconciliation/retention rules. Raw protected values are never durable events/payloads. Delivery/receipt-persistence crash order uses stable correlation and known-not-delivered/known-delivered/OUTCOME_UNCERTAIN without cross-boundary atomicity or replay."
+    verification_method: "Read C03 f06/f08/f09; assert payload-before-event ordering, no acknowledgement with missing payload, orphan reconciliation/retention, raw-protected exclusion, both delivery/persistence failure orders, stable correlation, no replay, and explicit no-atomicity claim."
+
+  - finding_id: F-E2-002-09
+    resolution: FIXED
+    files_changed:
+      - 05_architecture/ENGINEERING_PREVIEW_ARCHITECTURE_ALTERNATIVES.md
+      - 05_architecture/candidates/EP-ARCH-C01.yaml
+      - 05_architecture/candidates/EP-ARCH-C02.yaml
+      - 05_architecture/candidates/EP-ARCH-C03.yaml
+    evidence: "Every f09 contains an eight-key workspace_partial_write_recovery map: seven required cases plus global_atomicity_claim false. Candidate-specific core/service-worker/event-adapter owners reread actual files/Git/canaries against pinned base and operation history, preserve partial/uncertain evidence, invalidate verification, and return PARTIAL/BLOCKED/UNVERIFIED or known/unknown truth. Every f25 COMP-14 maps the force-stop partial-filesystem seam."
+    verification_method: "Parse each f09 recovery map; assert the seven named cases and false global-atomicity claim, actual-state readback, pinned-base/operation reconciliation, uncertainty evidence, stale-verification invalidation and non-completion outcomes; inspect COMP-14 in every f25."
+
+finding_summary: {FIXED: 9, DISPUTED: 0, DEFERRED: 0}
+
+candidate_set:
+  count: 3
+  ids: [EP-ARCH-C01, EP-ARCH-C02, EP-ARCH-C03]
+  preferred: null
+  selected: null
+  structural_distinctness: PRESERVED_PENDING_INDEPENDENT_VERIFICATION
+  pairwise:
+    C01_vs_C02: "Task-bound integrated core/supervisor and transactional authority vs persistent service authority with replaceable leased workers; presentation detach does not turn C01 into a service."
+    C01_vs_C03: "Transactional current-state/history/ledgers under one integrated writer vs durable material journal/payload authority reconstructed by deterministic normative reducers with derived projections."
+    C02_vs_C03: "Service-owned canonical state/scheduler with workers vs journal/reducer authority that survives the absence of a live coordinator and rebuilds projections."
+
+hard_status_assignment_rule:
+  SATISFIED_BY_DESIGN: "A sufficiently specified structural authority, mechanism, or enforceable seam already establishes the hard property at design level."
+  PLAUSIBLY_SATISFIABLE_BUT_REQUIRES_E2_003_ANALYSIS: "A credible design path exists but paper/design analysis remains unresolved."
+  UNKNOWN_REQUIRING_SPIKE: "Empirical mechanism feasibility is architecture-blocking and cannot responsibly be decided by analysis alone."
+  VIOLATED: "The candidate as defined contradicts the hard requirement."
+  preference_rule: "Elegance, cost, contributor burden, and future extraction/adaptation burden never set a hard status."
+  cross_candidate_result: "All 59 hard generation-status maps are identical; any future difference requires a structural reason."
+
+counts:
+  contract_fields_per_candidate: 30
+  architecture_requirements_per_candidate: 65
+  hard_constraints_per_candidate: 59
+  hard_status_per_candidate: {SATISFIED_BY_DESIGN: 52, PLAUSIBLY_SATISFIABLE_BUT_REQUIRES_E2_003_ANALYSIS: 5, UNKNOWN_REQUIRING_SPIKE: 2, VIOLATED: 0}
+  common_plausible: [AR-DUR-005, AR-WSP-003, AR-SEC-003, AR-SEC-004, AR-PKG-001]
+  common_spike_unknown: [AR-EXE-003, AR-SEC-006]
+  weighted_preferences_per_candidate: 6
+  preference_weights_assigned: 0
+  candidate_scores_assigned: 0
+  canonical_e1_ids_per_candidate: 127
+  decision_domains_per_candidate: 25
+  threat_boundaries_per_candidate: 20
+  level_b_rows_per_candidate: 19
+  e3_mappings_per_candidate: 8
+  testability_family_rows_per_candidate: 9
+  dangerous_composition_rows_per_candidate: 16
+  EP_CTL_016_rows_per_candidate: 1
+  isolation_declarations_per_candidate: 1
+  capability_inventory: {EP-ARCH-C01: 19, EP-ARCH-C02: 18, EP-ARCH-C03: 19}
+  uncertainty_records: {EP-ARCH-C01: 9, EP-ARCH-C02: 9, EP-ARCH-C03: 10, total: 28}
+  uncertainty_class_totals: {ANALYSIS_RESOLVABLE_E2_003: 10, ARCHITECTURE_BLOCKING_SPIKE_E2_004_REFERENCES: 9, E3_VALIDATION_OBLIGATION: 3, E4_IMPLEMENTATION_DETAIL: 3, FUTURE_PRODUCT: 3}
+  normalized_spike_questions: {unique: 5, shared: 2, candidate_specific: 3, candidate_references: 9, run: 0}
+
+execution_owner_lifetimes:
+  vocabulary: [CLIENT_LIFETIME, CONTROL_AUTHORITY_LIFETIME, EXECUTION_OWNER_LIFETIME, TASK_LIFETIME, WORKSPACE_LIFETIME]
+  EP-ARCH-C01: "Task-bound integrated core/supervisor may remain headless or safely suspend; full core loss fences children and restart reconciles."
+  EP-ARCH-C02: "Persistent service outlives clients; replaceable worker owns one lease-bound process tree."
+  EP-ARCH-C03: "Journal/reducer authority outlives clients/coordinators; task-bound coordinator/executor may run detached or be absent and replaced by replay."
+
+isolation_model:
+  taxonomy: [TIER_0_LOGICAL_SCOPE_ONLY, TIER_1_BROKERED_PROCESS_PATH_AND_EFFECT_CONTAINMENT, TIER_2_OS_ENFORCED_EXECUTION_ISOLATION, TIER_3_STRONGER_WORKLOAD_BOUNDARY]
+  assumed_tier: TIER_2_OS_ENFORCED_EXECUTION_ISOLATION
+  AQ_003: "Consistent and linked to shared SPQ-E2-002-01; no product/mechanism selected."
+
+spike_question_ids:
+  shared: [SPQ-E2-002-01, SPQ-E2-002-02]
+  candidate_specific: [SPQ-E2-002-03, SPQ-E2-002-04, SPQ-E2-002-05]
+  all_run_status: NOT_RUN
+  classification_authority: "E2-003 after independent E2-002 verification; E2-004 alone may run a later frozen contract."
+
+contributor_burden:
+  EP-ARCH-C01: "Broad integrated core/port/recovery discipline; fewer top-level processes but coupled failure/debugging surface."
+  EP-ARCH-C02: "Service lifecycle, IPC authentication/versioning, leases/fences, worker replacement and multi-process debugging."
+  EP-ARCH-C03: "Event schema/evolution, deterministic reducer/replay, projection/checkpoint and payload-retention concepts."
+  preference_only: true
+
+migration_reversibility:
+  EP-ARCH-C01: "Adapters/projections replaceable; splitting integrated authority and migrating transactional records/history is costly."
+  EP-ARCH-C02: "Clients/workers/adapters replaceable; service/store and lease/effect protocol changes are costly."
+  EP-ARCH-C03: "Projections/adapters replaceable; canonical event identity/meaning/order/evolution and journal/payload authority migration are costly."
+  provider_model_lock_in: false
+
+execution_counters:
+  architecture_candidates: 3
+  preferred_candidate: null
+  architecture_selected: false
+  accepted_architecture_adrs: 0
+  architecture_spikes_run: 0
+  application_code_created: false
+  evaluation_cases_implemented: 0
+  evaluation_cases_run: 0
+  model_benchmarks_run: 0
+  paid_api_calls: 0
+  external_actions_performed: false
+  e3_started: false
+  autonomy_eligible: NOT_ELIGIBLE
+  autonomous_build_authorized: false
+  s1_003_status: DEFERRED
+
+commands_run:
+  - "Read-only sed/rg/yq/Git inspection of every mandated source, challenger evidence and verification method, D-016/current E2 governance, and verified audit/adoption artifacts."
+  - "apply_patch edits limited to the seven existing E2-002-authorized files plus this fixer handoff."
+  - "Ruby/YAML candidate structural validation for fields, ARs, hard statuses, lifetimes, testability, isolation, recovery, spikes, domains, threat boundaries, Level B, E3, E1 trace IDs, capabilities and uncertainty counts."
+  - "Ruby Psych repository-wide syntax and duplicate-key traversal; CSV/requirements source-set equality; governance/counter checks; semantic-boundary/Level-B/unknown/capability checks."
+  - "Git status/diff/hash preservation/allowed-path/staging/diff-check checks plus high-confidence secret, exact reconstructed-path clean-room, technology-selection and application-path scans."
+
+tests_run:
+  - "Candidate count/ID, 30-field contract, 65-AR/59-hard/6-preference and identical cross-candidate hard-status validation."
+  - "Lifetime, EP-CTL-016, nine-family, 16-composition, isolation/AQ-003, workspace-recovery and normalized-spike completeness validation."
+  - "25-domain, 20-threat-boundary, 19-Level-B, 8-E3, 127-E1 and capability/uncertainty recount."
+  - "Strict repository YAML/duplicate-key, source-set, governance, frozen-file, scope/staging, structural-distinctness, protected-boundary, Level-B/charter, unknown/capability, no-ranking/no-selection/no-ADR/no-spike/no-code/no-run/no-benchmark/no-paid-call, clean-room, secret and git diff checks."
+
+test_results:
+  - "PASS: 3/3 candidate IDs unique; each has 30 fields, 65 ARs, 59 hard, 6 preferences, 127 E1 IDs, 25 domains, 20 threat boundaries, 19 Level B rows and 8 E3 mappings."
+  - "PASS: all 59 hard status maps are identical; each recomputes 52/5/2/0 and matches its declared summary."
+  - "PASS: every candidate has five lifetimes, one EP-CTL-016 map, 9 family rows, 16 dangerous-composition rows, one four-tier isolation declaration with four enforcement layers, and 7 partial-write cases plus false global atomicity."
+  - "PASS: 5 unique spike IDs / 2 shared / 3 candidate-specific / 9 references; every reference contains all required fields plus SP-C reuse and NOT_RUN."
+  - "PASS: strict YAML syntax and duplicate-key traversal for 58 repository YAML/YML files; zero syntax errors and zero duplicate keys."
+  - "PASS: candidate AR sets are exactly equal to all 65 verified E2-001 AR headings; candidate E1 sets are exactly equal to all 127 traceability rows."
+  - "PASS: capability inventories are C01 19 (10 required/4 reserved/5 deferred), C02 18 (9/4/5), C03 19 (10/4/5); all entries have one valid stage classification and complete metadata."
+  - "PASS: governance records E2-002 READY_FOR_REVIEW / NOT_VERIFIED_FIXER_PASS, E2-003 BACKLOG blocked, E2 gate NOT_EVALUATED, candidate count 3, selected false, preferred null, ADRs 0, operational counters 0, autonomy unchanged, S1-003 DEFERRED, next command VERIFY_TASK_E2-002."
+  - "PASS: eleven structural dimensions and all three pairwise distinctions are explicit; C01 transaction scope, C02 three fencing classes/protected delivery, and C03 projection/payload ordering assertions parse."
+  - "PASS: 19 Level B rows per candidate, three distinct LB-02 rationales, three distinct LB-14 rationales, shared constraints and charter §19 variation explicit; no merit count."
+  - "PASS: common plausible set is exactly five, common spike-unknown set exactly two, AQ-003 appears in all analysis records and links to shared SPQ-E2-002-01; no favorable unknown."
+  - "PASS: changed/new path set is exactly eight authorized paths; zero staged files; seven frozen E1 files, the E2 plan and two verified E2-001 artifacts have zero diff."
+  - "PASS: six preferences per candidate remain PREFERENCE_CHARACTERIZED_UNSCORED with zero weights/scores; no ranking/preference/selection/accepted ADR/spike/E3/code/evaluation/benchmark/paid-call/autonomy transition."
+  - "PASS: high-confidence secret scan over eight changed/created files has zero hits; 82 exact reconstructed external paths have zero candidate/overview hits; no positive isolation-product selection; no application-code path; git diff --check passes."
+
+discarded_validation_attempts:
+  - "The first Ruby candidate validator used Array#tally, unavailable in the repository's Ruby 2.6 runtime. Its result was rejected; the compatible explicit-count implementation was rerun."
+  - "The second validator required AQ-003 text itself to name SPQ-E2-002-01; that check exposed an otherwise consistent but less explicit reference. The three AQ-003 strings were tightened and the complete validator then passed."
+  - "A first combined shell secret-scan command had an unmatched quote and produced no usable result. Its result was rejected; the Ruby scanner was run successfully."
+  - "A first clean-room regex treated semantic phrases such as 'source/destination' and 'source/redaction' as paths. Its result was rejected; the replacement extracted all 82 exact external paths from the verified adoption matrix and found zero copied paths."
+
+validation_status: PASS_FIXER_MECHANICAL_AND_SEMANTIC_ONLY_NOT_INDEPENDENT_VERIFICATION
+
+security_checks:
+  - "No raw secret, credential, private data, provider/account access or paid service was used."
+  - "No reconstructed Grok Bot source or Level C implementation material was imported."
+  - "No external network, application runtime, evaluation, benchmark, architecture spike or external effect occurred."
+
+known_limitations:
+  - "This fixer pass is author-side evidence and cannot independently verify E2-002 or any finding."
+  - "All candidate mechanisms remain specified, unimplemented and unrun."
+  - "Five normalized selection-blocking spike questions remain NOT_RUN and may be classified only after independent verification and E2-003."
+  - "Concrete host support, persistence/runtime, protected channel and packaging mechanisms remain unselected."
+
+unverified_claims:
+  - "All nine FIXED dispositions remain subject to exact independent post-fix reproduction."
+  - "Structural distinctness and the absence of a hidden hard violation are fixer conclusions pending verification."
+
+blockers:
+  - INDEPENDENT_E2_002_POST_FIX_VERIFICATION_REQUIRED
+
+governance_state:
+  E2-001: VERIFIED
+  E2-002: READY_FOR_REVIEW_NOT_VERIFIED_FIXER_PASS
+  E2-003: BACKLOG_BLOCKED_BY_E2_002_NOT_INDEPENDENTLY_VERIFIED
+  E2-004_through_E2-006: BACKLOG_DEPENDENCY_BLOCKED
+  E2_gate: NOT_EVALUATED
+  architecture_selected: false
+  preferred_candidate: null
+  accepted_architecture_adrs: 0
+  architecture_spikes_run: 0
+  application_code_created: false
+  evaluation_cases_run: 0
+  model_benchmarks_run: 0
+  paid_api_calls: 0
+  autonomy_eligible: NOT_ELIGIBLE
+  autonomous_build_authorized: false
+  S1-003: DEFERRED_NOT_EXECUTED
+
+recommended_next_task: "Fresh independent E2-002 verifier review of the exact uncommitted fixer patch and the challenger verification methods for F-E2-002-01..09."
+next_command: "MODE: VERIFY_TASK_E2-002"
+repository_commit_or_patch: "Uncommitted E2-002 fixer patch based on 7819afcc16c0b877118d63d38bdbc3dc926d0c34 on chore/initialize-project-materials; intentionally left uncommitted."

@@ -1,0 +1,438 @@
+handoff_id: E2-004-AUTHOR-2026-08-29
+task_id: E2-004
+stage: E2
+role: AUTHOR
+author_model: "Codex (runtime model identifier not exposed)"
+reviewer_requested: true
+independent_verifier_required: true
+started_at: UNKNOWN_NOT_CAPTURED
+completed_at: "2026-08-29T18:22:08Z"
+author_base_commit: 7b4b0d51db54a52b6ce8fe49c65bfd7406b11b47
+task_status: READY_FOR_REVIEW_NOT_VERIFIED_AUTHOR_PASS
+closure_verdict: NO_PRESELECTION_SPIKE_REQUIRED
+repository_commit_or_patch: UNCOMMITTED_WORKTREE_PATCH_AGAINST_AUTHOR_BASE
+
+authoritative_inputs:
+  repository_policy:
+    - MASTER_OPERATING_PROMPT.md
+    - AGENTS.md
+    - README.md
+    - SECURITY.md
+  governance:
+    - 01_governance/PROJECT_STATE.yaml
+    - 01_governance/TASK_REGISTRY.yaml
+    - 01_governance/DECISION_LOG.md
+    - 01_governance/ASSUMPTION_REGISTER.md
+    - 01_governance/RISK_REGISTER.md
+    - 01_governance/MODEL_REGISTRY.yaml
+  frozen_e1:
+    - 03_product/ENGINEERING_PREVIEW_CHARTER.md
+    - 03_product/ENGINEERING_PREVIEW_PRD.md
+    - 03_product/ENGINEERING_PREVIEW_USER_FLOWS.md
+    - 03_product/ENGINEERING_PREVIEW_CORRECTNESS_CONTRACT.md
+    - 03_product/ENGINEERING_PREVIEW_CONTRIBUTION_WORKFLOW.md
+    - 06_evaluation/ENGINEERING_PREVIEW_EVALUATION_SUITE.md
+    - 06_evaluation/MODEL_ROLE_BENCHMARK_PLAN.md
+    - 10_checkpoints/stage_checkpoints/ENGINEERING_PREVIEW_V0_1_RELEASE_ACCEPTANCE.yaml
+  verified_e2_001:
+    - 05_architecture/ENGINEERING_PREVIEW_E2_ARCHITECTURE_PLAN.md
+    - 05_architecture/ENGINEERING_PREVIEW_ARCHITECTURE_REQUIREMENTS.md
+    - 05_architecture/ENGINEERING_PREVIEW_E1_ARCHITECTURE_TRACEABILITY.csv
+    - 99_handoffs/completed/E2-001_verifier_review.yaml
+  verified_e2_002:
+    - 05_architecture/ENGINEERING_PREVIEW_ARCHITECTURE_ALTERNATIVES.md
+    - 05_architecture/candidates/EP-ARCH-C01.yaml
+    - 05_architecture/candidates/EP-ARCH-C02.yaml
+    - 05_architecture/candidates/EP-ARCH-C03.yaml
+    - 99_handoffs/completed/E2-002_verifier_review.yaml
+  verified_e2_003:
+    - 05_architecture/ENGINEERING_PREVIEW_ARCHITECTURE_COMPARISON.md
+    - 05_architecture/ENGINEERING_PREVIEW_ARCHITECTURE_DECISION_MATRIX.csv
+    - 05_architecture/ENGINEERING_PREVIEW_ARCHITECTURE_UNCERTAINTY_REGISTER.yaml
+    - 99_handoffs/completed/E2-003_handoff.yaml
+    - 99_handoffs/completed/E2-003_challenger_review.yaml
+    - 99_handoffs/completed/E2-003_fixer_handoff.yaml
+    - 99_handoffs/completed/E2-003_verifier_review.yaml
+  reference_evidence:
+    - 02_research/GROK_BOT_BASELINE_2026-08-21.md
+    - 02_research/GROK_BOT_018_RECONSTRUCTED_ARCHITECTURE_AUDIT.md
+    - 02_research/GROK_BOT_018_ARCHITECTURE_ADOPTION_MATRIX.csv
+    - 99_handoffs/completed/EXTERNAL_GROK_BOT_018_ARCHITECTURE_AUDIT_verifier_review.yaml
+    - 01_governance/DECISION_LOG.md#D-016
+    - 03_product/ENGINEERING_PREVIEW_CHARTER.md#19
+    - 99_handoffs/HANDOFF_TEMPLATE.yaml
+
+files_read:
+  - MASTER_OPERATING_PROMPT.md
+  - AGENTS.md
+  - README.md
+  - SECURITY.md
+  - 01_governance/PROJECT_STATE.yaml
+  - 01_governance/TASK_REGISTRY.yaml
+  - 01_governance/DECISION_LOG.md
+  - 01_governance/ASSUMPTION_REGISTER.md
+  - 01_governance/RISK_REGISTER.md
+  - 01_governance/MODEL_REGISTRY.yaml
+  - 02_research/GROK_BOT_BASELINE_2026-08-21.md
+  - 02_research/GROK_BOT_018_RECONSTRUCTED_ARCHITECTURE_AUDIT.md
+  - 02_research/GROK_BOT_018_ARCHITECTURE_ADOPTION_MATRIX.csv
+  - 03_product/ENGINEERING_PREVIEW_CHARTER.md
+  - 03_product/ENGINEERING_PREVIEW_PRD.md
+  - 03_product/ENGINEERING_PREVIEW_USER_FLOWS.md
+  - 03_product/ENGINEERING_PREVIEW_CORRECTNESS_CONTRACT.md
+  - 03_product/ENGINEERING_PREVIEW_CONTRIBUTION_WORKFLOW.md
+  - 05_architecture/ENGINEERING_PREVIEW_E2_ARCHITECTURE_PLAN.md
+  - 05_architecture/ENGINEERING_PREVIEW_ARCHITECTURE_REQUIREMENTS.md
+  - 05_architecture/ENGINEERING_PREVIEW_E1_ARCHITECTURE_TRACEABILITY.csv
+  - 05_architecture/ENGINEERING_PREVIEW_ARCHITECTURE_ALTERNATIVES.md
+  - 05_architecture/candidates/EP-ARCH-C01.yaml
+  - 05_architecture/candidates/EP-ARCH-C02.yaml
+  - 05_architecture/candidates/EP-ARCH-C03.yaml
+  - 05_architecture/ENGINEERING_PREVIEW_ARCHITECTURE_COMPARISON.md
+  - 05_architecture/ENGINEERING_PREVIEW_ARCHITECTURE_DECISION_MATRIX.csv
+  - 05_architecture/ENGINEERING_PREVIEW_ARCHITECTURE_UNCERTAINTY_REGISTER.yaml
+  - 06_evaluation/ENGINEERING_PREVIEW_EVALUATION_SUITE.md
+  - 06_evaluation/MODEL_ROLE_BENCHMARK_PLAN.md
+  - 10_checkpoints/stage_checkpoints/ENGINEERING_PREVIEW_V0_1_RELEASE_ACCEPTANCE.yaml
+  - 99_handoffs/HANDOFF_TEMPLATE.yaml
+  - 99_handoffs/completed/E2-001_verifier_review.yaml
+  - 99_handoffs/completed/E2-002_verifier_review.yaml
+  - 99_handoffs/completed/E2-003_handoff.yaml
+  - 99_handoffs/completed/E2-003_challenger_review.yaml
+  - 99_handoffs/completed/E2-003_fixer_handoff.yaml
+  - 99_handoffs/completed/E2-003_verifier_review.yaml
+  - 99_handoffs/completed/EXTERNAL_GROK_BOT_018_ARCHITECTURE_AUDIT_verifier_review.yaml
+
+files_created:
+  - 05_architecture/ENGINEERING_PREVIEW_PRESELECTION_UNCERTAINTY_CLOSURE.md
+  - 99_handoffs/completed/E2-004_handoff.yaml
+files_modified:
+  - 01_governance/PROJECT_STATE.yaml
+  - 01_governance/TASK_REGISTRY.yaml
+files_deleted: []
+spike_directory_created: false
+spike_directory_reason: >-
+  The final preselection spike set is empty. No spike source, raw-result artifact, or placeholder was created,
+  because a no-spike closure is not an experiment and an empty directory is not a trackable deliverable.
+
+uncertainty_reconciliation:
+  e2_002_source_total: 28
+  e2_002_source_by_candidate:
+    EP-ARCH-C01: 9
+    EP-ARCH-C02: 9
+    EP-ARCH-C03: 10
+  e2_002_source_classes:
+    analysis_resolvable_e2_003: 10
+    architecture_blocking_spike_references_e2_004: 9
+    e3_validation_obligation_bundles: 3
+    e4_implementation_detail_bundles: 3
+    future_product_bundles: 3
+  normalized_total: 28
+  normalized_partition:
+    PAPER_RESOLVABLE: 10
+    E2_PRESELECTION_SPIKE_REQUIRED: 0
+    E3_POSTSELECTION_TECHNICAL_VALIDATION: 8
+    E3_MODEL_OR_CONFIGURATION_BENCHMARK: 3
+    DEFERRED_OUT_OF_SCOPE: 7
+  deferred_out_of_scope_breakdown:
+    e4_implementation_bundles: 3
+    future_product_bundles: 3
+    e2_005_preference_authority: 1
+  paper_resolution_counts:
+    RESOLVED_TRADEOFF: 5
+    RESOLVED_SUPPORTS_PROPERTY: 2
+    RESOLVED_ARCHITECTURE_SEAM_PRESENT_E3_VALIDATION_REQUIRED: 3
+  analysis_owned_remaining: 0
+  source_records_missing: 0
+
+nine_closure_conditions:
+  condition_1_all_analysis_owned_unknowns_resolved:
+    result: PASS
+    evidence: "10/10 PAPER_RESOLVABLE records are RESOLVED; 0 remain analysis-owned."
+  condition_2_no_architecture_blocking_empirical_uncertainty_remains:
+    result: PASS
+    evidence: "0 E2_PRESELECTION_SPIKE_REQUIRED records; the two empirical hard residuals have seams and selected-configuration E3 owners."
+  condition_3_residuals_legitimately_owned_by_e3_or_e4:
+    result: PASS
+    evidence: "11 normalized E3 records map to canonical E3V-001..008; three E4 bundles are concrete technology/configuration choices behind defined seams."
+  condition_4_every_deferred_hard_property_has_architecture_seam:
+    result: PASS
+    evidence: "All candidates have 57 design-confirmed hard ARs and two explicit seam/E3-outstanding ARs, with no violation."
+  condition_5_every_e3_deferral_has_evidence_and_scope:
+    result: PASS
+    evidence: "The closure restates exact property, selected dependency, evidence, tested-scope limitation, outcome, and handback for E3V-001..008."
+  condition_6_every_e3_deferral_fails_closed:
+    result: PASS
+    evidence: "Missing, failed, or inconclusive validation remains blocked, waiting, unsupported, unknown, unverified, or unassigned as applicable."
+  condition_7_every_e3_deferral_has_e2_or_adr_handback:
+    result: PASS
+    evidence: "Structural contradiction with no conforming realization stops E3 and returns exact evidence to the linked E2/ADR decision."
+  condition_8_no_missing_evidence_receives_favorable_interpretation:
+    result: PASS
+    evidence: "Unvalidated seams remain explicitly outstanding; no score, support scope, role occupant, or empirical success is inferred."
+  condition_9_no_spike_skipped_for_convenience:
+    result: PASS
+    evidence: "Every historical SPQ and hidden-risk theme was rechecked against the plan stage test; preselection runs would test arbitrary unselected mechanisms rather than distinguish architecture viability."
+
+hard_requirement_recheck:
+  hard_requirements_per_candidate: 59
+  candidate_results:
+    EP-ARCH-C01:
+      confirmed_satisfied_for_comparison: 57
+      architecture_seam_confirmed_e3_validation_outstanding: 2
+      architecture_blocking_spike: 0
+      confirmed_violated: 0
+    EP-ARCH-C02:
+      confirmed_satisfied_for_comparison: 57
+      architecture_seam_confirmed_e3_validation_outstanding: 2
+      architecture_blocking_spike: 0
+      confirmed_violated: 0
+    EP-ARCH-C03:
+      confirmed_satisfied_for_comparison: 57
+      architecture_seam_confirmed_e3_validation_outstanding: 2
+      architecture_blocking_spike: 0
+      confirmed_violated: 0
+  empirical_hard_residuals:
+    AR-EXE-003: E3V-002
+    AR-SEC-006: E3V-006
+  hidden_preselection_uncertainties: []
+
+historical_spike_dispositions:
+  SPQ-E2-002-01:
+    final_owner: E3V-002
+    result: DEFERRED_TO_E3_NON_SELECTION_BLOCKING
+    reason: "All candidates expose process-tree containment and distinct authority fencing; selected host/process mechanism validation is postselection."
+  SPQ-E2-002-02:
+    final_owner: E3V-006
+    result: DEFERRED_TO_E3_NON_SELECTION_BLOCKING
+    reason: "All candidates expose protected acquisition/capture exclusion/fail-to-WAIT; selected client and execution surfaces are postselection."
+  SPQ-E2-002-03:
+    final_owner: E3V-006
+    candidate_scope: EP-ARCH-C01
+    result: DEFERRED_TO_E3_NON_SELECTION_BLOCKING
+  SPQ-E2-002-04:
+    final_owner: E3V-006
+    candidate_scope: EP-ARCH-C02
+    result: DEFERRED_TO_E3_NON_SELECTION_BLOCKING
+  SPQ-E2-002-05:
+    final_owner: E3V-006
+    candidate_scope: EP-ARCH-C03
+    result: DEFERRED_TO_E3_NON_SELECTION_BLOCKING
+
+final_preselection_spike_set:
+  ids: []
+  count: 0
+  experiments_run: 0
+  result_artifacts_created: 0
+  interpretation: NO_PRESELECTION_SPIKE_REQUIRED
+
+e3_deferral_ledger:
+  E3V-001:
+    property: selected_persistence_recovery_and_external_effect_truth
+    selection_may_precede_validation: true
+    missing_evidence: BLOCK_RECOVERY_SUPPORT_AND_EFFECT_COMPLETION_CLAIMS
+    architecture_handback: "Required state/effect truth structurally unrealizable under linked ADR-E2-002/003/005."
+  E3V-002:
+    property: selected_process_tree_control_authority_fencing_force_termination_and_recovery
+    selection_may_precede_validation: true
+    missing_evidence: EXECUTION_REMAINS_BLOCKED_OR_FENCED_FOR_UNPROVEN_SCOPE
+    architecture_handback: "Required containment/fencing semantics structurally unrealizable under linked ADR-E2-003/004."
+  E3V-003:
+    property: selected_workspace_isolation_git_and_local_packaging_behavior
+    selection_may_precede_validation: true
+    missing_evidence: HOST_OR_PACKAGE_CLASS_REMAINS_UNSUPPORTED
+    architecture_handback: "Required local/workspace boundary structurally unrealizable under linked ADR-E2-001/002/004/009."
+  E3V-004:
+    property: selected_provider_gateway_routing_eligibility_fallback_and_usage_truth
+    selection_may_precede_validation: true
+    missing_evidence: NO_PROVIDER_DISPATCH_OR_ELIGIBILITY_CLAIM
+    architecture_handback: "Required provider-neutral semantics structurally unrealizable under linked ADR-E2-001/005/006/008."
+  E3V-005:
+    property: selected_state_evidence_artifact_and_independent_verifier_integrity
+    selection_may_precede_validation: true
+    missing_evidence: VERIFICATION_AND_COMPLETION_REMAIN_UNSATISFIED
+    architecture_handback: "Required authority/evidence/verifier separation structurally unrealizable under linked ADR-E2-002/003/005/007/008."
+  E3V-006:
+    property: selected_trust_capability_approval_secret_and_protected_entry_enforcement
+    selection_may_precede_validation: true
+    missing_evidence: WAITING_FOR_USER_OR_BLOCKED_WITH_NO_ORDINARY_INPUT_FALLBACK
+    architecture_handback: "Required trust/protected-entry semantics structurally unrealizable under linked ADR-E2-001/004/005/008."
+  E3V-007:
+    property: selected_instrumentation_measurement_inputs_and_finite_limit_enforcement
+    selection_may_precede_validation: true
+    missing_evidence: NO_SLO_LIMIT_OR_PERFORMANCE_CLAIM
+    architecture_handback: "Required measurement inputs or ceilings structurally unrealizable under linked ADR-E2-002/007/008/009."
+  E3V-008:
+    property: separately_authorized_model_role_configuration_eligibility
+    selection_may_precede_validation: true
+    missing_evidence: MODEL_ROLE_REMAINS_UNASSIGNED
+    architecture_handback: "Indispensable ADR capability structurally impossible with no compliant route under ADR-E2-006."
+  normalized_mapping:
+    E2U-S01-DESCENDANT-CONTAINMENT: E3V-002
+    E2U-S02-PROTECTED-ACQUISITION: E3V-006
+    E3U-C01-PROTECTED-DELIVERY: E3V-006
+    E3U-C02-PROTECTED-DELIVERY: E3V-006
+    E3U-C03-PROTECTED-DELIVERY: E3V-006
+    E3U-C01-TECHNICAL: E3V-001..007
+    E3U-C02-TECHNICAL: E3V-001..007
+    E3U-C03-TECHNICAL: E3V-001..007
+    E3U-C01-MODEL-CONFIGURATION: E3V-008
+    E3U-C02-MODEL-CONFIGURATION: E3V-008
+    E3U-C03-MODEL-CONFIGURATION: E3V-008
+
+e4_deferral_ledger:
+  E4U-C01-IMPLEMENTATION:
+    owner: E4
+    scope: "Concrete client/runtime, embedded store, schema/codec, process API, isolation, provider adapters, package/update tooling."
+  E4U-C02-IMPLEMENTATION:
+    owner: E4
+    scope: "Concrete service/client/runtime, IPC/auth, store/schema, worker supervisor, isolation, provider adapters, installer/updater."
+  E4U-C03-IMPLEMENTATION:
+    owner: E4
+    scope: "Concrete runtime/journal/payload, event/schema/reducer, projections/checkpoints, executor/isolation, provider adapters, client/package."
+  guardrail: "E4 cannot inherit or waive E3 architecture-validation evidence and cannot redefine frozen E1/E2 semantics."
+
+e3v_002_status:
+  architecture_seam: CONFIRMED_ALL_CANDIDATES
+  concrete_mechanism_validation: E3_OUTSTANDING
+  decision_neutral_preselection: true
+  implementation_failure_not_automatically_architecture_failure: true
+  fail_closed: BLOCK_OR_FENCE_UNPROVEN_SCOPE
+  handback: ADR-E2-003_OR_ADR-E2-004_IF_NO_CONFORMING_REQUIRED_REALIZATION
+
+e3v_006_status:
+  architecture_seam: CONFIRMED_ALL_CANDIDATES
+  concrete_mechanism_validation: E3_OUTSTANDING
+  selected_client_available_for_preselection_test: false
+  real_secret_used: false
+  implementation_failure_not_automatically_architecture_failure: true
+  fail_closed: WAITING_FOR_USER_OR_BLOCKED_NO_ORDINARY_INPUT_FALLBACK
+  handback: ADR-E2-001_OR_ADR-E2-004_OR_ADR-E2-005_OR_ADR-E2-008_IF_NO_CONFORMING_REQUIRED_REALIZATION
+
+consequence_model:
+  success: VALIDATE_ONLY_EXACT_TESTED_SCOPE
+  implementation_configuration_failure: CORRECT_OR_REPLACE_AND_REVALIDATE
+  product_class_unsupported: NARROW_SCOPE_AND_FAIL_CLOSED
+  architecture_assumption_disproven: STOP_AFFECTED_E3_WORK
+  evidence_missing_fail_closed: NO_SUCCESS_CREDIT_OR_SCOPE_BROADENING
+  e3_hand_back_to_e2: REOPEN_LINKED_PROPOSED_OR_ACCEPTED_ADR_AND_E2_GATE_AS_APPLICABLE
+
+candidate_viability:
+  EP-ARCH-C01: ANALYTICALLY_VIABLE_READY_FOR_E2_005_AFTER_E2_004_INDEPENDENT_VERIFICATION
+  EP-ARCH-C02: ANALYTICALLY_VIABLE_READY_FOR_E2_005_AFTER_E2_004_INDEPENDENT_VERIFICATION
+  EP-ARCH-C03: ANALYTICALLY_VIABLE_READY_FOR_E2_005_AFTER_E2_004_INDEPENDENT_VERIFICATION
+  ranked: false
+  preferred_candidate: null
+  architecture_selected: false
+
+adr_input_readiness:
+  ADR-E2-001: READY_AFTER_E2_004_INDEPENDENT_VERIFICATION_WITH_E3_OBLIGATIONS_AND_HANDBACK
+  ADR-E2-002: READY_AFTER_E2_004_INDEPENDENT_VERIFICATION_WITH_E3_OBLIGATIONS_AND_HANDBACK
+  ADR-E2-003: READY_AFTER_E2_004_INDEPENDENT_VERIFICATION_WITH_E3_OBLIGATIONS_AND_HANDBACK
+  ADR-E2-004: READY_AFTER_E2_004_INDEPENDENT_VERIFICATION_WITH_E3_OBLIGATIONS_AND_HANDBACK
+  ADR-E2-005: READY_AFTER_E2_004_INDEPENDENT_VERIFICATION_WITH_E3_OBLIGATIONS_AND_HANDBACK
+  ADR-E2-006: READY_AFTER_E2_004_INDEPENDENT_VERIFICATION_WITH_E3_OBLIGATIONS_AND_HANDBACK
+  ADR-E2-007: READY_AFTER_E2_004_INDEPENDENT_VERIFICATION_WITH_E3_OBLIGATIONS_AND_HANDBACK
+  ADR-E2-008: READY_AFTER_E2_004_INDEPENDENT_VERIFICATION_WITH_E3_OBLIGATIONS_AND_HANDBACK
+  ADR-E2-009: READY_AFTER_E2_004_INDEPENDENT_VERIFICATION_WITH_E3_OBLIGATIONS_AND_HANDBACK
+  adrs_created: 0
+  adrs_accepted: 0
+
+e2_005_readiness:
+  task_status: BACKLOG
+  blocked_by:
+    - E2_004_NOT_INDEPENDENTLY_VERIFIED
+  author_input_package_complete: true
+  may_begin_now: false
+
+prior_e2_003_note_dispositions:
+  V-E2-003-N1: ALREADY_HANDLED_BY_FOUNDER_BASE_COMMIT
+  V-E2-003-N2: NO_ACTION_CATEGORY_LABELS_NOT_USED_AS_PREFERENCE_WEIGHTS
+  V-E2-003-N3: "NO_E2_SPIKE_TO_REUSE; E2-005 must reuse or explicitly distinguish applicable SP-C contracts for E3."
+  V-E2-003-N4: "MATERIAL_CARRY_FORWARD; canonical E2-001 section 9 defines E3V ID meanings and E2-005 must store explicit evidence/scope/failure/handback fields."
+  V-E2-003-N5: PRESERVED_AR_SEC_003_PAPER_CLOSURE_WITH_E3_DELIVERY
+  V-E2-003-N6: PRESERVED_STRICT_SEAM_E3_OUTSTANDING_STATUS
+  V-E2-003-N7: HISTORICAL_TIMESTAMP_NOTE_NO_E2_004_ACTION
+  V-E2-003-N8: RECHECKED_SHARED_NO_LIVE_OWNER_INTERVAL_NOT_HIDDEN_HARD_VIOLATION
+
+decisions_made:
+  - "AUTHOR conclusion only: NO_PRESELECTION_SPIKE_REQUIRED."
+  - "The final preselection spike ID set is empty; no experiment or spike artifact was created."
+  - "Canonical E2-001 section 9 meanings control E3V-001..008; compact later summaries do not redefine those IDs."
+  - "All three candidates remain analytically viable, unranked, unpreferred, and unselected."
+assumptions_added: []
+
+tests_run:
+  - name: structured_repository_validation
+    command_summary: "Read-only Python assertions over strict YAML/duplicate keys, all CSVs, matrix, hard ARs, uncertainty/SPQ/E3V/ADR closure, governance, and handoff."
+    result: "PASS; 122/122 assertions"
+  - name: allowed_path_and_preservation_check
+    command_summary: "git status --short; git diff --name-only; base-scoped git diff over frozen E1, verified E2-001, verified E2-002 candidates, and verified E2-003 artifacts."
+    result: "PASS; exactly four authorized paths changed and all protected inputs unchanged"
+  - name: whitespace_check
+    command_summary: "git diff --check"
+    result: PASS
+  - name: changed_file_secret_scan
+    command_summary: "Credential/private-key token-pattern scan over all four changed files."
+    result: "PASS; 0 matches"
+test_results:
+  - "Strict YAML and duplicate-key parse: 65/65 PASS; 0 duplicate keys."
+  - "CSV parse: 6/6 PASS; decision matrix 195/195 unique candidate/criterion cells."
+  - "Architecture inventory: 65 criteria = 59 hard + 6 preferences; every candidate has 57 confirmed + 2 seam/E3 outstanding + 0 blocking + 0 violated."
+  - "Hard residuals: AR-EXE-003 -> E3V-002 and AR-SEC-006 -> E3V-006 only."
+  - "Uncertainty closure: 28/28 candidate source records equal 28/28 source-reconciliation rows; all 28 normalized records classified; all 10 analysis-owned records resolved; final E2 spike set empty."
+  - "Historical provenance: 5/5 SPQ IDs, 8/8 E3V IDs, 9/9 ADR input IDs, and 59/59 hard AR closure rows resolve."
+  - "Nine-condition closure: 9/9 AUTHOR PASS."
+  - "Governance: E2-004 READY_FOR_REVIEW/NOT_VERIFIED; E2-005 BACKLOG/blocked; architecture NOT_SELECTED; preferred NONE; ADRs 0; all execution counters 0."
+  - "Allowed-path and preservation: PASS; only closure, E2-004 handoff, PROJECT_STATE, and TASK_REGISTRY changed; frozen/verified inputs unchanged."
+  - "Clean-room/no-code/no-run: PASS; no spike directory or artifact, source code, experiment, evaluation, benchmark, provider call, paid call, or external effect."
+  - "Secret scan: PASS; 0 credential/private-key pattern matches."
+  - "git diff --check: PASS."
+security_checks:
+  - "No real secret or synthetic secret value was used."
+  - "Changed-file credential/private-key pattern scan returned 0 matches."
+  - "No external runtime, provider/model API, customer/private data, network action, or paid call was used."
+  - "Protected-entry discussion remains architecture/E3 contract evidence only; no client technology or mechanism was selected."
+
+execution_counters:
+  experiments_run: 0
+  architecture_spikes_run: 0
+  technical_spikes_run_delta: 0
+  evaluation_cases_run: 0
+  model_benchmarks_run: 0
+  paid_api_calls: 0
+  external_effects: 0
+
+status_assertions:
+  E2-001: VERIFIED
+  E2-002: VERIFIED
+  E2-003: VERIFIED
+  E2-004: READY_FOR_REVIEW_NOT_VERIFIED
+  E2-005: BACKLOG_BLOCKED_PENDING_E2_004_INDEPENDENT_VERIFICATION
+  E2-006: BACKLOG
+  E2_gate: NOT_EVALUATED
+  architecture: NOT_SELECTED
+  preferred_candidate: NONE
+  accepted_architecture_adrs: 0
+  application_code: NONE
+  evaluation_cases_run: 0
+  model_benchmarks_run: 0
+  paid_api_calls: 0
+  autonomy_eligible: NOT_ELIGIBLE
+  autonomous_build_authorized: "NO"
+  S1-003: DEFERRED_NOT_EXECUTED
+
+known_limitations:
+  - "This is author evidence only; no independent E2-004 challenger or verifier has reviewed it."
+  - "The exact author runtime model identifier and task start timestamp are not exposed/captured."
+  - "No E3 mechanism, host/client support class, provider/model role, performance property, or release property is validated by this closure."
+  - "E2-003 compact E3 obligation summaries must not override canonical E2-001 section 9 ID meanings; this closure makes the canonical ledger explicit for E2-005 carry-forward."
+unverified_claims:
+  - "That any selected E3 mechanism or configuration will pass."
+  - "That an architecture or preferred candidate has been selected."
+  - "That any ADR has been created, accepted, or independently verified."
+blockers:
+  - INDEPENDENT_CHALLENGER_AND_SEPARATE_VERIFIER_REQUIRED_BEFORE_E2_004_VERIFIED
+  - E2_005_BLOCKED_PENDING_E2_004_INDEPENDENT_VERIFICATION
+recommended_next_task: REVIEW_TASK_E2-004
+next_command: "MODE: REVIEW_TASK_E2-004"

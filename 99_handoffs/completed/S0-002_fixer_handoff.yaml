@@ -1,0 +1,201 @@
+handoff_id: H-S0-002-FIX-20260821
+task_id: S0-002
+stage: 0
+mode: FIX_TASK_S0-002
+role: FIXER
+author_model: "Codex (runtime model identifier not exposed)"
+reviewer_requested: true
+started_at: "2026-08-21T22:58:27-04:00"
+completed_at: "2026-08-21T23:13:44-04:00"
+files_read:
+  - MASTER_OPERATING_PROMPT.md
+  - AGENTS.md
+  - 00_inbox/prepared_materials/02_PRODUCT_REFERENCE_LINKS.md
+  - 00_inbox/prepared_materials/03_GROKBOT_EXAMPLES/README.md
+  - 00_inbox/prepared_materials/03_GROKBOT_EXAMPLES/EXPERIMENT_TEMPLATE.md
+  - 00_inbox/prepared_materials/03_GROKBOT_EXAMPLES/TEST_MATRIX.md
+  - 01_governance/PROJECT_STATE.yaml
+  - 01_governance/TASK_REGISTRY.yaml
+  - 01_governance/DECISION_LOG.md
+  - 01_governance/SOURCE_LEDGER.csv
+  - 01_governance/ASSUMPTION_REGISTER.md
+  - 01_governance/RISK_REGISTER.md
+  - 02_research/GROK_BOT_BASELINE_2026-08-21.md
+  - 99_handoffs/HANDOFF_TEMPLATE.yaml
+  - 99_handoffs/completed/S0-002_handoff.yaml
+  - 99_handoffs/completed/S0-002_challenger_review.yaml
+files_created:
+  - 99_handoffs/completed/S0-002_fixer_handoff.yaml
+files_modified:
+  - 01_governance/PROJECT_STATE.yaml
+  - 01_governance/SOURCE_LEDGER.csv
+  - 01_governance/TASK_REGISTRY.yaml
+  - 02_research/GROK_BOT_BASELINE_2026-08-21.md
+  - 99_handoffs/completed/S0-002_handoff.yaml
+files_deleted: []
+decisions_made:
+  - "No architecture, MVP, customer wedge, application implementation, S0-001 change, S0-003 fix, or Stage 1 work was performed."
+  - "No D-009 amendment was required because every changed or created path is already within S0-002 allowed_files_to_change."
+  - "Historical initial-author timestamps and source results remain in S0-002_handoff.yaml; a clearly labeled addendum records the later drift and fixer timestamps instead of rewriting the original record."
+  - "Product-managed model routing is classified as a documented reference-product fact for the team/enterprise surface; the conditional individual Default Model control remains an explicit surface ambiguity."
+assumptions_added: []
+tests_run:
+  - "Retrieved all 24 listed primary-source URLs directly over HTTPS and recorded the bounded final HTTP reachability window."
+  - "Parsed SOURCE_LEDGER.csv with Ruby CSV; checked row/header widths, unique source IDs, unique URLs, four drifted dates, new-source primary classification, and Grok Bot documentation publisher metadata."
+  - "Parsed PROJECT_STATE.yaml, TASK_REGISTRY.yaml, S0-002_handoff.yaml, and S0-002_fixer_handoff.yaml with Ruby YAML."
+  - "Checked every SRC-nnn citation in the baseline against SOURCE_LEDGER.csv; checked the GBF-001..031 sequence and uniqueness; checked the five documented-ambiguity records and required corrected context."
+  - "Matched all 24 fixer-handoff source IDs and URLs exactly to SOURCE_LEDGER.csv."
+  - "Checked changed paths against S0-002 allowed_files_to_change and searched for forbidden S0-001, S0-003, inbox, assumption-register, risk-register, and decision-log changes."
+  - "Ran git diff --check and inspected git status --short."
+test_results:
+  - "24 of 24 current official primary URLs returned HTTP 200 during 2026-08-22T03:06:16Z..03:07:34Z."
+  - "SOURCE_LEDGER.csv parsed as 35 data rows by 11 columns with no duplicate source IDs or URLs; SRC-006, SRC-008, SRC-014, and SRC-015 are dated 2026-08-20; SRC-025..035 are present and classified primary."
+  - "All four governance/handoff YAML files parsed successfully."
+  - "The baseline contains 31 unique sequential GBF rows, five explicit DOC-A ambiguity/contradiction records, and 23 unique source citations; every cited source ID exists in the ledger."
+  - "All 24 handoff source IDs and URLs match the ledger; all 14 docs.x.ai/grok-bot rows use the corrected SpaceXAI (X.AI LLC) official-documentation publisher."
+  - "The changed-path scope check passed; no S0-001, S0-003, inbox, decision-log, assumption-register, or risk-register file changed."
+  - "git diff --check returned no whitespace errors."
+security_checks:
+  - "External pages were treated as untrusted evidence; no webpage instruction was followed as repository authority."
+  - "No credentials, cookies, account identifiers, private customer data, screenshots, or session exports were collected or written."
+  - "No account action, black-box test, irreversible action, architecture selection, MVP selection, or application implementation occurred."
+known_limitations:
+  - "No eligible project account, installed build, plan, region, or rollout state was available; no account behavior or entitlement was tested."
+  - "No black-box run, reliability measurement, approval test, recovery test, or external-state action occurred. Current behavior statements remain first-party documentation claims."
+  - "Cursor Help and Cursor pricing pages relied upon here display no publication/update date; the exact UTC reachability window is recorded, but page-change history is not exposed."
+  - "The current x.ai launch post was edited after its August 11 publication to carry expanded plan text; the challenger review preserves the launch-day archived wording."
+unverified_claims:
+  - "Actual project-account eligibility, build, allowance, billing, authentication state, model set, failover triggers, and rollout remain unknown."
+  - "Vendor statements about persistence, security controls, token placement, and recovery were not independently reproduced."
+blockers:
+  - eligible_grok_bot_account_build_plan_region_and_rollout_missing
+  - independent_post_fix_review_pending
+recommended_next_task: REVIEW_TASK_S0-002
+repository_commit_or_patch: "Uncommitted S0-002 fixer patch based on 48f6df82b3c42f437b2d2084ecf8daa7207b9409; founder explicitly requested that this task remain uncommitted."
+
+source_reverification:
+  final_reachability_started_at: "2026-08-22T03:06:16Z"
+  final_reachability_completed_at: "2026-08-22T03:07:34Z"
+  access_method: "Direct live HTTPS retrieval from the primary URLs; relevant text was independently extracted before the final reachability pass. No author snapshot was used as current proof."
+  result: "24 of 24 official primary URLs returned HTTP 200 in the final window."
+  current_documentation_dates:
+    august_20_2026:
+      - SRC-006
+      - SRC-008
+      - SRC-014
+      - SRC-015
+    august_11_2026:
+      - SRC-001
+      - SRC-002
+      - SRC-003
+      - SRC-004
+      - SRC-005
+      - SRC-007
+      - SRC-012
+      - SRC-013
+      - SRC-016
+      - SRC-035
+  sources:
+    - {source_id: SRC-001, url: "https://docs.x.ai/grok-bot/overview"}
+    - {source_id: SRC-002, url: "https://docs.x.ai/grok-bot/bots"}
+    - {source_id: SRC-003, url: "https://docs.x.ai/grok-bot/chat-and-collaboration"}
+    - {source_id: SRC-004, url: "https://docs.x.ai/grok-bot/skills-routines-and-automations"}
+    - {source_id: SRC-005, url: "https://docs.x.ai/grok-bot/approvals-security-and-privacy"}
+    - {source_id: SRC-006, url: "https://docs.x.ai/grok-bot/teams-and-enterprises"}
+    - {source_id: SRC-007, url: "https://docs.x.ai/grok-bot/settings-and-notifications"}
+    - {source_id: SRC-008, url: "https://docs.x.ai/grok-bot/faq"}
+    - {source_id: SRC-012, url: "https://docs.x.ai/grok-bot/files-and-results"}
+    - {source_id: SRC-013, url: "https://docs.x.ai/grok-bot/computer-and-apps"}
+    - {source_id: SRC-014, url: "https://docs.x.ai/grok-bot/get-started"}
+    - {source_id: SRC-015, url: "https://docs.x.ai/grok-bot/mobile"}
+    - {source_id: SRC-016, url: "https://docs.x.ai/grok-bot/troubleshooting"}
+    - {source_id: SRC-025, url: "https://x.ai/news/introducing-grok-bot"}
+    - {source_id: SRC-026, url: "https://x.ai/news/grok-bot-more-plans"}
+    - {source_id: SRC-027, url: "https://forum.cursor.com/t/introducing-grok-bot/168053"}
+    - {source_id: SRC-028, url: "https://cursor.com/help/grok-bot/plans"}
+    - {source_id: SRC-029, url: "https://cursor.com/help/grok-bot/getting-started"}
+    - {source_id: SRC-030, url: "https://cursor.com/help/grok-bot/computer-recovery"}
+    - {source_id: SRC-031, url: "https://cursor.com/help/grok-bot/sign-in"}
+    - {source_id: SRC-032, url: "https://cursor.com/help/grok-bot/secrets"}
+    - {source_id: SRC-033, url: "https://docs.x.ai/developers/release-notes"}
+    - {source_id: SRC-034, url: "https://cursor.com/pricing"}
+    - {source_id: SRC-035, url: "https://docs.x.ai/grok-bot/use-cases"}
+
+finding_resolutions:
+  - finding_id: F-S0-002-01
+    resolution: FIXED
+    files_changed:
+      - 01_governance/SOURCE_LEDGER.csv
+      - 02_research/GROK_BOT_BASELINE_2026-08-21.md
+      - 99_handoffs/completed/S0-002_handoff.yaml
+      - 99_handoffs/completed/S0-002_fixer_handoff.yaml
+    evidence:
+      - "SRC-006, SRC-008, SRC-014, and SRC-015 now carry publication_or_update_date 2026-08-20; current live text and dateModified were reopened."
+      - "GBF-028, GBF-029, the metering parity row, and source-freshness section now reflect SuperGrok Plus/Heavy, Cursor Pro+/Ultra, Cursor Teams Standard/Premium, trial/on-demand mechanics, enterprise rollout, and historical drift."
+      - "SRC-025, SRC-026, and SRC-028 ledger the launch, expansion, and detailed plan help sources."
+    verification:
+      - "CSV and citation validation passed: 35x11 ledger shape, unique IDs/URLs, corrected 2026-08-20 dates, 31 unique GBF rows, and zero missing cited source IDs."
+      - "The bounded live-source check returned HTTP 200 for all 24 URLs."
+  - finding_id: F-S0-002-02
+    resolution: FIXED
+    files_changed:
+      - 01_governance/SOURCE_LEDGER.csv
+      - 02_research/GROK_BOT_BASELINE_2026-08-21.md
+      - 99_handoffs/completed/S0-002_fixer_handoff.yaml
+    evidence:
+      - "Record status now states vendor beta/Early beta, August 11 launch, X.AI LLC/SpaceXAI publisher context, Cursor account/billing/dashboard integration, August 21 expansion, and the bounded v1.2.0 feature reference while retaining UNKNOWN installed build."
+      - "Official launch, expansion, Cursor staff, Cursor Help, release-note, pricing, and Use cases entries were added to the ledger."
+    verification:
+      - "Baseline context scan and manual source comparison confirmed Early beta, 2026-08-11 launch, publisher/ecosystem context, expansion source, and the bounded v1.2.0 statement while installed build remains UNKNOWN."
+  - finding_id: F-S0-002-03
+    resolution: FIXED
+    files_changed:
+      - 02_research/GROK_BOT_BASELINE_2026-08-21.md
+      - 99_handoffs/completed/S0-002_fixer_handoff.yaml
+    evidence:
+      - "GBF-031 and the parity map classify the documented no-picker, fixed-set, automatic-failover, serving-model analytics, and serving-model billing policy as verified for the team/enterprise surface."
+      - "The open question is narrowed to the fixed-set identity, surface mapping, failover behavior, analytics reliability, and SRC-007's conditional individual Default Model control."
+    verification:
+      - "GBF-031, the parity map, and the narrowed open question all retain the documented policy and distinguish the conditional individual-surface ambiguity."
+  - finding_id: F-S0-002-04
+    resolution: FIXED
+    files_changed:
+      - 01_governance/SOURCE_LEDGER.csv
+      - 02_research/GROK_BOT_BASELINE_2026-08-21.md
+      - 99_handoffs/completed/S0-002_fixer_handoff.yaml
+    evidence:
+      - "GBF-006, GBF-008, GBF-011, GBF-023, GBF-024, GBF-026, GBF-028, and GBF-029 now include the supported persistence, token, connector, non-root, Cloud Agents, egress, admin-kill, MDM, session-loss, audit, spend-cap, privacy, notification, authentication, and cross-team facts."
+      - "Cursor Help recovery, sign-in, and secrets sources are ledgered; residual implementation and reliability unknowns remain explicit."
+    verification:
+      - "Required-fact scan and source comparison confirmed the added security, persistence, computer, team, authentication, and notification facts with residual unknowns preserved."
+  - finding_id: F-S0-002-05
+    resolution: FIXED
+    files_changed:
+      - 02_research/GROK_BOT_BASELINE_2026-08-21.md
+      - 99_handoffs/completed/S0-002_fixer_handoff.yaml
+    evidence:
+      - "DOC-A-001..005 preserve the official per-Bot/shared-computer, demonstration, reset, local-policy, and model-control contradictions or ambiguities with bounded resolving readings."
+    verification:
+      - "DOC-A-001 through DOC-A-005 are present and each records both official statements plus a bounded resolving reading."
+  - finding_id: F-S0-002-06
+    resolution: FIXED
+    files_changed:
+      - 01_governance/SOURCE_LEDGER.csv
+      - 99_handoffs/completed/S0-002_fixer_handoff.yaml
+    evidence:
+      - "All docs.x.ai Grok Bot rows identify SpaceXAI (X.AI LLC) official documentation; 11 primary-source rows SRC-025..035 cover the additional sources actually relied upon, including Use cases."
+      - "The final primary-source pass records a bounded UTC window and 24/24 HTTP 200 responses."
+    verification:
+      - "All 24 handoff source IDs/URLs match the ledger; all 14 Grok Bot documentation rows carry the corrected publisher; SRC-025..035 are present and primary."
+  - finding_id: F-S0-002-07
+    resolution: FIXED
+    files_changed:
+      - 01_governance/PROJECT_STATE.yaml
+      - 01_governance/TASK_REGISTRY.yaml
+      - 99_handoffs/completed/S0-002_handoff.yaml
+      - 99_handoffs/completed/S0-002_fixer_handoff.yaml
+    evidence:
+      - "The original handoff now records the historical unverified-dependency execution, null/batch timestamp limitation, missing source access time, and later four-page drift without altering the original results."
+      - "S0-001 is VERIFIED in current repository state before this fix submission; this fixer handoff has non-null start/completion fields and exact UTC source-access window."
+    verification:
+      - "Current governance YAML parses; S0-001 is VERIFIED before the recorded fixer start; original timestamps/results remain intact; the addendum and fixer handoff separately capture the deviation and exact current access window."

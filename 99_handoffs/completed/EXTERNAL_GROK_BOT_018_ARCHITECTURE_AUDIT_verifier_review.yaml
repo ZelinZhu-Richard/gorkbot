@@ -1,0 +1,385 @@
+review_id: EXTERNAL_GROK_BOT_018_ARCHITECTURE_AUDIT_VERIFIER_REVIEW
+task_id: EXTERNAL_GROK_BOT_018_ARCHITECTURE_AUDIT
+review_role: VERIFIER
+review_mode: VERIFY_EXTERNAL_REFERENCE_ARCHITECTURE_AUDIT
+reviewer_model: "Claude Fable 5 (claude-fable-5) via Claude Code — independent re-verifier; separate session; independent of the Codex author/fixer; same model/product as the challenger in a separate session (disclosed, consistent with prior S0/S1 verification practice)"
+review_started_at: "2026-08-25"
+review_completed_at: "2026-08-25"
+task_authority: >-
+  Direct bounded founder authorization (MODE: VERIFY_EXTERNAL_REFERENCE_ARCHITECTURE_AUDIT).
+  Like the author, challenger, and fixer passes, this task is deliberately out-of-band: it is
+  not registered in TASK_REGISTRY.yaml and the instruction prohibits modifying project state.
+  This artifact is a verification record only; it changes no governance state and was left
+  uncommitted for the founder.
+
+verdict: AUDIT_VERIFIED
+verdict_meaning: >-
+  The corrected external-reference audit and adoption matrix are trustworthy enough to serve
+  as evidence inputs to future Stage 3 architecture and Stage 4 technical-spike work. This
+  verdict selects no architecture, adopts no pattern as a project decision, authorizes no
+  spike or spend, and permits no external code import. The audit remains research evidence,
+  subordinate to the repository's governance process.
+
+verdict_rationale: >-
+  All ten challenger findings F-EXT-018-C-01..C-10 are RESOLVED as independently re-checked
+  against the artifacts and the pinned external commit, not against the fixer's FIXED labels.
+  The canonical-state correction is accurate to the external source: the JSONL transcript is
+  demonstrably a derived, WAL-guarded projection of a separately persisted canonical
+  conversation checkpoint with content-addressed referents, a selected live root, conservative
+  reachability GC, and adoption/retirement migration. The four added patterns (canonical
+  conversation state, cloud-agent lifecycle with declared action classes, typed error
+  registry, context compaction) each resolve to real code at a9f633e0 matching the audit's
+  characterization, including the stated limitations. The classification rubric is defined
+  and was actually re-applied (headline reclassifications, rescores, merges, and count changes
+  are all visible and consistent); the recomputed counts match exactly. All ten spike
+  contracts carry all thirteen required fields with USD 0 cost caps and real alternatives.
+  Matrix scoring is evidence-disciplined with rationale/score cell agreement verified by
+  script. No material new finding remains; three NOTEs are recorded.
+
+# ────────────────────────────────────────────────────────────────────
+# 1. Reviewed state
+# ────────────────────────────────────────────────────────────────────
+reviewed_state:
+  primary_repository: /Users/richardzhu/dev/gork_bot
+  primary_head_commit: a338609 ("Fix reconstructed Grok Bot architecture audit findings"; working tree clean at review start — the founder committed the fixer output)
+  fixer_handoff_declared_base: 3cb3e198b000bc7b301d7f040da37d1518fd047b (uncommitted patch at fixer time; now committed as a338609)
+  artifacts_reviewed_in_full:
+    - 02_research/GROK_BOT_018_RECONSTRUCTED_ARCHITECTURE_AUDIT.md (1431 lines, corrected FIXER output, read in full)
+    - 02_research/GROK_BOT_018_ARCHITECTURE_ADOPTION_MATRIX.csv (20 scored rows, parsed and validated in full)
+    - 99_handoffs/completed/EXTERNAL_GROK_BOT_018_ARCHITECTURE_AUDIT_handoff.yaml
+    - 99_handoffs/completed/EXTERNAL_GROK_BOT_018_ARCHITECTURE_AUDIT_challenger_review.yaml
+    - 99_handoffs/completed/EXTERNAL_GROK_BOT_018_ARCHITECTURE_AUDIT_fixer_handoff.yaml
+  primary_files_read:
+    - MASTER_OPERATING_PROMPT.md (incl. exact line anchors 213/275/277/296-298/469/487 re-verified)
+    - AGENTS.md
+    - 01_governance/PROJECT_STATE.yaml
+    - 01_governance/TASK_REGISTRY.yaml
+    - 01_governance/DECISION_LOG.md (incl. D-013, D-014)
+    - 02_research/GROK_BOT_BASELINE_2026-08-21.md (GBF-016 row re-verified)
+
+external_reference_verification:
+  url: https://github.com/b-nnett/grok-bot-0.18-reconstructed
+  local_path: /Users/richardzhu/dev/_external_refs/grok-bot-0.18-reconstructed
+  head_commit_verified: a9f633e09d49a85829b8236331b9e21f7e612634
+  head_matches_pinned_commit: true
+  working_tree_verified: "clean under LFS-disabled status (git -c filter.lfs.* status --porcelain empty)"
+  external_repository_separate_from_primary: true
+  lfs_payload_check: >-
+    research-archives/original/0.18.0/macos-arm64/Grok_Bot_0.18.0.dmg remains a Git LFS
+    pointer (version/oid/size text; oid sha256:a253ccd8..., declared size 155,793,020 bytes)
+    exactly as the audit records; no payload was downloaded by any pass or by this verifier.
+  inspection_discipline: >-
+    Static inspection only: git metadata reads plus sed/grep/wc/find/python-csv over
+    checked-in text. No installer, script, build, test, package, daemon, Docker container,
+    or reconstructed code executed; no npm/package installation; no provider, MCP, OAuth, or
+    other authentication supplied; no external repository modification; no external source,
+    asset, or copy imported into the primary project.
+
+# ────────────────────────────────────────────────────────────────────
+# 2. Finding dispositions (independently re-checked, not trusted from fixer labels)
+# ────────────────────────────────────────────────────────────────────
+finding_dispositions:
+  - finding_id: F-EXT-018-C-01
+    severity: HIGH
+    disposition: RESOLVED
+    evidence: >-
+      Independently re-verified at a9f633e0: AgentStore2.handleCheckpoint serializes the
+      ConversationStateStructure checkpoint, writes it via the blob store (SHA-256 getBlobId
+      in agent-kv/blob-store.ts:21-26, or the fixed root slot), and updates latestRootBlobId
+      (agent-store.ts:346-379); production supplies SAND_CONVERSATION_ROOT_SLOT_ID as
+      fixedRootBlobId (session/production.ts:166-183); transcript_entries is a separate
+      projection table beside kv/blobs (agent-db-schema.ts:4-25); turn-settle.ts:231-289
+      prepares the projection checkpoint, persists canonical state, aborts the projection on
+      canonical failure, and only then commits the JSONL projection; the mirror worker opens
+      blob DBs read-only and derives JSONL from a named stateBlobId with setBlob asserting
+      "never writes blobs" (transcript-mirror-worker.ts). The corrected §0.1/§0.2, executive
+      item 1, PAT-02→ADAPT/PAT-17→ADOPT split, D13/A07 rows, and the §12 translation rows all
+      state the derivation relationship correctly and no longer present the projection WAL as
+      the system-of-record pattern.
+
+  - finding_id: F-EXT-018-C-02
+    severity: MEDIUM
+    disposition: RESOLVED
+    evidence: >-
+      cloud-agent-tool.ts:4-41 verified: actions launch/list/models/get/dump/watch/reply/
+      rename/cancel/archive/unarchive/delete/list_artifacts; environment targeting
+      {cloud|pool|machine|environment}; DESTRUCTIVE_ACTIONS={cancel,archive,unarchive,delete};
+      REVIEW_GATED_ACTIONS={launch,reply,rename}+destructive — exact match to the audit.
+      Tool-facing statuses creating/running/finished/error/expired/unknown verified in
+      cloud-agent-poll-loop.ts; confirm is caller-supplied (verified at the destructive-action
+      guard); review modes off|shadow|enforce verified in sand-auto-review.ts:7;
+      sand-cloud-agent-auto-review.ts is 311 lines (cited 19-310 in bounds); pending-wake
+      persistence/re-arm verified. PAT-18/D14 is classified ADAPT with the limits (optional
+      review, caller-supplied confirm, incomplete terminal readback) honestly recorded, and
+      the declared action classes are cited as the in-tree counter-example strengthening R05's
+      rejection of regex/text classification (§9.2 mixed-action row; R05 retention note).
+
+  - finding_id: F-EXT-018-C-03
+    severity: MEDIUM
+    disposition: RESOLVED
+    evidence: >-
+      registry.ts verified: exactly 87 distinct SAND-E codes (scripted count of definition
+      keys), domains registry/transport/auth/rebuild/agent/update/desktop/storage (scripted
+      domain census: 1/13/19/5/14/12/10/13), SandErrorDefinition carries name/domain/
+      retryable/summary/payload/seededFrom, SAND-E0001 unregistered fallback and 1-64-char
+      bounded tag regex at the emit boundary; bounded.ts branded enums/IDs/errno tags
+      verified. The audit does not overstate: it records that constructors accept arbitrary
+      payload objects, retryability is metadata not retry policy, and no universal end-to-end
+      process/protocol serializer is evidenced. The SaaS translation separates provider,
+      tool, task, authorization, sandbox, connector, refusal, retryable/terminal, user-action,
+      and unknown-layer failures and keeps the registry distinct from the benchmark attempt
+      taxonomy (MODEL_ROLE_BENCHMARK_PLAN.md:215-233). No schema technology is selected.
+
+  - finding_id: F-EXT-018-C-04
+    severity: MEDIUM
+    disposition: RESOLVED
+    evidence: >-
+      agent-summarization verified: pipeline partitions older messages and preserves a tail
+      (pipeline.ts:86-125); the orchestrator persists summarized messages and the summary
+      carrier, pushes a ConversationSummaryArchive (pushSummaryArchive at
+      summarization-orchestrator.ts:741; summaryArchives field 13 in
+      conversation-state-binary.ts), and discards stale background results; reachability GC
+      intentionally does not walk summary_archive edges
+      (EDGES_NOT_WALKED_SO_REFERENTS_COLLECT, conversation-blob-gc.ts:10-14); the JSONL
+      transcript prompt itself states tool calls and results are excluded
+      (transcript-location.ts). PAT-20/D15 ADAPT correctly separates LLM working context,
+      durable conversation history, memory, execution history, and audit; §0.3 and §14.1
+      require Finance research sources, thesis history, calculations, datasets, backtests,
+      approvals, and portfolio/position state never to exist only as lossy summaries.
+
+  - finding_id: F-EXT-018-C-05
+    severity: MEDIUM
+    disposition: RESOLVED
+    evidence: >-
+      §0.4 defines a reproducible five-class rubric with an explicit tie-breaker (does the
+      invariant constrain requirements without redefining authority/consistency/identity/
+      interface meaning). Application is demonstrably real, not post-hoc labeling: the
+      headline A02 moved ADOPT→ADAPT (D13), channels moved ADAPT→DEFER (F03), Finance-pack
+      and Docker/execution duplicates were merged, PAT-11 MT 3→1 and PAT-09 Sec 4→3 were
+      rescored, and counts changed 6/14/3/8/2 (33) → 7/15/2/7/3 (34). Independent recount of
+      §15.1: ADOPT {A01,A03,A04,A05,A06,A07,A08}=7; ADAPT {D01..D15}=15; EXPERIMENT
+      {E02,E03}=2; REJECT {R02..R08}=7; DEFER {F01,F02,F03}=3; total 34 — exact match; IDs
+      unique; exactly one class per pattern; vocabulary limited to the five classes. A01's
+      retained ADOPT is re-justified under the stated rubric, which was the challenger's
+      explicitly permitted alternative resolution. CSV classes for the 20 scored parents are
+      consistent with their canonical classes.
+
+  - finding_id: F-EXT-018-C-06
+    severity: MEDIUM
+    disposition: RESOLVED
+    evidence: >-
+      Scripted field-presence check: SP-C01..SP-C10 each contain all 13 required fields
+      (spike_id, question, hypothesis, alternatives, minimum_prototype, test_workload,
+      success_metrics, failure_metrics, security_checks, cost_cap, decision_rule,
+      dependencies, required_evidence). Every cost cap is USD 0; SP-C03's live phase and
+      SP-C05's any-runtime execution explicitly require separate authorization consistent
+      with the S0-005 required-before boundary. No spike was executed. Stage 1/2/3
+      dependencies plus a registered Stage 4 task are explicit per spike. Alternatives are
+      genuine competing designs (e.g. SP-C01: transactional+outbox vs event log+projectors vs
+      workflow history vs content-addressed graph vs hybrids), failure metrics are distinct
+      from inverted success criteria, and decision rules determine eligibility/rejection with
+      non-compensating security gates. MOP:277-298 spike-record citation anchors verified.
+      No premature technology selection.
+
+  - finding_id: F-EXT-018-C-07
+    severity: LOW
+    disposition: RESOLVED
+    evidence: >-
+      channels.ts (65 lines) and channel-messaging.ts (240 lines) verified thin; both
+      Slack and Discord connector manifests are availability "coming-soon" in source.
+      F03/PAT-21 is DEFER with low as-implemented scores; §8.3 separates observed thin
+      address/envelope structures, group/A2A/automation evidence, and future external
+      channels, and states the future contract derives from requirements, not these files.
+
+  - finding_id: F-EXT-018-C-08
+    severity: LOW
+    disposition: RESOLVED
+    evidence: >-
+      §0.6 verified against source: sha+size manifest identity and writerWindowId
+      (box-store-manifest-format.ts:2-15), canonical-write conflict handling naming the
+      winning writer (box-store-manifest.ts), append-only remote object adapter (delete
+      invariant at box-object-store.ts:186-193). The corrected audit explicitly covers
+      cross-tenant dedup boundaries, hash-presence oracle, low-entropy fingerprints,
+      keyed/salted/opaque identifiers, encryption interaction (equality-oracle survives
+      encryption if a deterministic plaintext fingerprint is visible), tenant/key-domain
+      namespaces, GC/reachability, retention/legal hold, and logical-unlink-vs-physical-purge,
+      and states content-addressed does NOT mean globally deduplicated. Finance strategy/
+      position/research/dataset/model-artifact digest sensitivity is explicit in §0.6 and
+      §14.2; A03's acceptance boundary and ADR-C06/SP-C06 make oracle/deletion tests hard
+      gates. No cryptographic construction is selected.
+
+  - finding_id: F-EXT-018-C-09
+    severity: LOW
+    disposition: RESOLVED
+    evidence: >-
+      §11.1 now states every cell evaluates EXTERNAL_IMPLEMENTATION_AS_EVIDENCED with no
+      credit for recommendation-only properties. PAT-11 multi_tenancy rescored 3→1 and
+      PAT-09 security rescored 4→3 (verified in CSV and in the corrected Markdown table,
+      which are cell-for-cell identical by script across all 20 rows x 17 dimensions +
+      class). askTtlMs/SAND_LOCAL_TOOL_ASK_TTL_MS verified in
+      local-tool-permission-controller.ts; D06 now correctly distinguishes evidenced ask-TTL
+      expiry from absent approval-lifetime expiry. Scripted check: all 20 rationales cover
+      all 17 dimension codes and every inline rationale value equals its score cell (zero
+      mismatches). No aggregate score or ranking exists anywhere; translated potential
+      appears only in narrative/recommendation columns.
+
+  - finding_id: F-EXT-018-C-10
+    severity: LOW
+    disposition: RESOLVED
+    evidence: >-
+      (a) Group cap: GROUP_MAX_MEMBERS=6 verified in group-store.ts:1; group-chat.ts:1-17
+      verified to contain turn/round/history/message bounds and nesting rejection but no
+      member cap; §4.3 row 22 and §8.2 now cite group-store.ts:1-5, state no minimum-two
+      source invariant was found, and attribute the two-to-six observation to baseline
+      GBF-016 as product documentation, not code proof (GBF-016 re-verified in the primary
+      baseline). (b) Threat-model citation corrected: MOP:213-275 spans Stage 3 and the
+      threat-model requirement is cited at the security section MOP:469-487 — both anchors
+      re-verified against the live file. (c) Duplicates: old D14 Finance-pack row merged into
+      D09; old E01/R01 merged into D01 as sub-property dispositions; §15's intro documents
+      the one-class-per-pattern/aspect-disposition rule; superseded tables are retained only
+      inside explicitly labeled historical <details> blocks.
+
+# ────────────────────────────────────────────────────────────────────
+# 3. Section verification results
+# ────────────────────────────────────────────────────────────────────
+canonical_state_correction: CANONICAL_STATE_CORRECTION_PASS
+canonical_state_notes: >-
+  The corrected audit accurately distinguishes canonical conversation state, content-
+  addressed blob/DAG storage, root/reachability state, migration/adoption/retirement,
+  derived JSONL transcript, projection-consistency journal/WAL, user-visible transcript
+  projection, and execution/task state (§0.2 eight-bullet model, verified against source).
+  It does not imply the JSONL transcript is the system of record, and it also correctly
+  refuses to claim the source proves an append-only event log is canonical. The SaaS
+  translation (§12, ADR-C01) keeps domain/task state, canonical conversation state,
+  event/history log, user-visible projection, and execution trace as five distinct concepts
+  without selecting a store or history model.
+
+multi_writer_multi_device_analysis: PASS
+multi_writer_notes: >-
+  §0.5 explicitly recognizes multiple clients/agents, simultaneous writes, ordering scopes,
+  optimistic concurrency/stale-write rules, idempotency, reconciliation, event versioning,
+  and cross-device synchronization, grounded in the verified writerWindowId conflict
+  evidence versus the racy shared routed-transcript file. No consistency model is selected;
+  Stage 3 cannot inherit single-process assumptions unnoticed.
+
+harness_priorities: PASS
+harness_notes: >-
+  §19.1 orders evidence packets → source-content digests → interface/schema checks (only
+  after boundaries exist) → security negatives at first implementation, with replay/fault,
+  conformance, closure, drift, release certification, and Finance lineage explicitly later
+  or conditional. §19.2 gives every recommended record all seven required attributes (what
+  it proves and does not prove, authoritative input, generation owner, regeneration trigger,
+  stale detection, automation policy, failure consequence) plus explicit anti-theater rules
+  ("a manifest is not proof merely because it exists"). Proportionate; no manifest theater.
+
+finance_edition_implications: PASS
+finance_notes: >-
+  §14.1 covers point-in-time data, lineage, lookahead-leakage controls, backtest
+  configuration identity, transaction-cost assumptions, paper-trade order state with
+  simulated-broker receipts, reconciliation, risk-limit provenance with immutable receipts,
+  research-thesis history (added as a first-class artifact row, addressing challenger
+  NOTE-5), and content-hash disclosure constraints. The shared-core/vertical-pack boundary
+  is preserved (SP-C08 rejects core→pack imports); no real-money execution is introduced
+  (consistent with D-014); no finance architecture is prematurely selected.
+
+general_edition_implications: PASS
+general_notes: >-
+  §13 keeps durable state, persistent/background agent lifecycle, typed errors, concurrency,
+  model/tool boundaries, execution recovery, and evidence/provenance as shared-core
+  recommendations. §20 items 1-3 and 11 explicitly forbid locking to Electron, macOS,
+  Node.js, local filesystem, local CLI sessions, or the reconstruction's module layout;
+  §21.10 confirms comparisons run against requirements/governance, not a selected
+  architecture. Residual ADR-decomposition anchoring risk remains disclosed (challenger
+  NOTE-6) and is acceptable.
+
+# ────────────────────────────────────────────────────────────────────
+# 4. Independent validation record
+# ────────────────────────────────────────────────────────────────────
+validations_run:
+  - "Pinned external commit: git rev-parse HEAD == a9f633e09d49a85829b8236331b9e21f7e612634; LFS-disabled status clean; PASS"
+  - "No-execution/no-import: verifier used read-only git/sed/grep/wc/find/python only; no script, build, install, container, or authentication; nothing copied into the primary project; PASS"
+  - "External path validation: 166 distinct full external paths cited in the corrected audit all resolve at the pinned commit (0 missing); 164 line-ranged citations all within file line counts (0 out of bounds). (The fixer's '182 validated' figure counts per-citation rather than distinct paths; both methods find zero failures.)"
+  - "CSV parse: 20 data rows, 28 columns, header intact; PASS"
+  - "Unique pattern IDs: 20/20 unique (PAT-01..PAT-21 minus PAT-05); PASS"
+  - "All 340 score cells are integers 1-5; PASS"
+  - "Markdown corrected score table vs CSV: exact cell-for-cell equality across 20 rows x 17 scores + classification; PASS"
+  - "Rationale coverage: all 20 rationales explain all 17 dimensions; every inline rationale value equals its score cell (0 mismatches); PASS"
+  - "Classification-count recomputation from §15.1: ADOPT 7, ADAPT 15, EXPERIMENT 2, REJECT 7, DEFER 3, total 34 — exact match to reported counts; PASS"
+  - "Classification vocabulary: only ADOPT/ADAPT/EXPERIMENT/REJECT/DEFER appear; exactly one class per canonical pattern; PASS"
+  - "No duplicate-pattern check: old D14 merged into D09, old E01/R01 merged into D01, retired A02/PAT-05 absent from corrected tables; aspect-disposition rule documented; PASS"
+  - "Spike-contract completeness: SP-C01..SP-C10 each carry all 13 required fields and a USD 0 cost cap; scripted; PASS"
+  - "C-01..C-10 disposition check: each finding re-verified against source/artifacts (Section 2 above); all RESOLVED; PASS"
+  - "Security-sensitive recommendation spot check: R05 regex rejection with declared-action retention, D06 ask-TTL vs approval-lifetime, §0.6 hash-oracle/dedup/purge boundary, §9.3 SaaS strengthening, §20 item 17 confirm-flag caveat — all consistent with verified source; PASS"
+  - "MOP citation anchors: lines 213/275 (Stage 3), 277/296-298 (Stage 4 spike record), 469/487 (security requirements) re-verified; PASS"
+  - "git diff --check: clean; PASS"
+  - "Changed-path scope: fixer commit a338609 touched exactly the three allowed deliverables; this verifier created only the single allowed review file; PASS"
+  - "YAML validation: author handoff, challenger review, fixer handoff, and this verifier artifact all parse; PASS"
+
+# ────────────────────────────────────────────────────────────────────
+# 5. New findings
+# ────────────────────────────────────────────────────────────────────
+new_findings:
+  blocker: 0
+  high: 0
+  medium: 0
+  low: 0
+  note: 3
+  items:
+    - id: V-EXT-018-N1
+      severity: NOTE
+      note: >-
+        The fixer handoff reports "182 full external paths validated"; this verifier counts
+        166 distinct backticked full paths in the corrected audit. The difference is counting
+        methodology (per-citation vs distinct), not missing paths: independent validation
+        found 0 unresolvable paths and 0 out-of-bounds line ranges. No correction required.
+    - id: V-EXT-018-N2
+      severity: NOTE
+      note: >-
+        The external cloud-agent evidence is visibly a provider-specific (Cursor cloud
+        agents) integration, including provider-branded result text and dashboard
+        references. The audit already handles this correctly — PAT-18/D14 is ADAPT with
+        "use independent names" and provider coupling recorded — so this is context for
+        Stage 3 readers, not a defect.
+    - id: V-EXT-018-N3
+      severity: NOTE
+      note: >-
+        The destructive-action gate in the cloud-agent tool is enforced in tool code but
+        keyed to a caller-supplied confirm boolean (verified at the tool's destructive-action
+        guard). The audit records this limitation in §0.3 and forbids relying on such a
+        boolean as primary safety (§20 item 17). Recorded because it is the sharpest example
+        of why the audit's declared-action-class ADAPT still requires server-side policy and
+        durable receipts.
+
+# ────────────────────────────────────────────────────────────────────
+# 6. Scope and conduct confirmation
+# ────────────────────────────────────────────────────────────────────
+verifier_scope_confirmation:
+  files_created:
+    - 99_handoffs/completed/EXTERNAL_GROK_BOT_018_ARCHITECTURE_AUDIT_verifier_review.yaml
+  files_modified: []
+  architecture_audit_modified: false
+  adoption_matrix_modified: false
+  project_state_modified: false
+  task_registry_modified: false
+  decision_log_modified: false
+  stage_1_state_modified: false
+  s1_003_authorization_touched: false
+  product_architecture_source_evaluation_files_modified: false
+  external_repository_modified: false
+  external_execution_performed: false
+  external_code_imported: false
+  lfs_payload_downloaded: false
+  provider_authentication_performed: false
+  commits_created: false
+  changes_left_uncommitted_for_founder: true
+  architecture_decisions_made: false
+  spikes_authorized: false
+  spend_authorized_usd: 0
+
+recommended_next_action: >-
+  Founder: review and commit this verifier artifact. The corrected audit and adoption matrix
+  may now be cited as verified research evidence inputs when Stage 3 architecture work and
+  Stage 4 spike planning are eventually authorized through registered tasks; nothing in this
+  verification advances a stage, selects an architecture or technology, authorizes a spike
+  or spend, or changes S1-003, which remains the project's critical path (BLOCKED on the six
+  founder execution inputs recorded in TASK_REGISTRY.yaml).

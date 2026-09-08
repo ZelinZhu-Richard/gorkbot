@@ -1,0 +1,293 @@
+handoff_id: H-S1-001-20260823-FIXER
+task_id: S1-001
+stage: 1
+mode: FIX_TASK_S1-001
+role: FIXER
+author_model: "Codex (runtime model identifier not exposed) — original S1-001 AUTHOR returning as FIXER"
+reviewer_requested: "Independent repository-first CHALLENGER/VERIFIER; the fixer may not self-verify"
+started_at: "2026-08-23 (exact UTC fixer start not separately recorded)"
+completed_at: "2026-08-23T16:22:27Z"
+base_commit: 1ca97bd555999f85fd9659994944fa1196d1ed50
+task_status: READY_FOR_REVIEW
+verification_status: NOT_VERIFIED
+customer_evidence_status: ZERO
+
+files_read:
+  - MASTER_OPERATING_PROMPT.md
+  - AGENTS.md
+  - 01_governance/PROJECT_STATE.yaml
+  - 01_governance/TASK_REGISTRY.yaml
+  - 01_governance/DECISION_LOG.md
+  - 01_governance/ASSUMPTION_REGISTER.md
+  - 01_governance/RISK_REGISTER.md
+  - 01_governance/SOURCE_LEDGER.csv
+  - 03_product/S1-001_CUSTOMER_WORKFLOW_SCORECARD.md
+  - 03_product/S1-001_SCORED_HYPOTHESES.csv
+  - 02_research/S1-001_CURRENT_WORKAROUND_EVIDENCE_2026-08-23.md
+  - 99_handoffs/completed/S1-001_handoff.yaml
+  - 99_handoffs/completed/S1-001_challenger_review.yaml
+  - 99_handoffs/HANDOFF_TEMPLATE.yaml
+  - FILE_MANIFEST.json
+  - 00_inbox/prepared_materials/01_FOUNDER_BRIEF.md
+  - 00_inbox/prepared_materials/04_TARGET_WORKFLOWS.md
+  - 00_inbox/prepared_materials/08_COMPETITOR_EXAMPLES.md
+  - 00_inbox/prepared_materials/10_CUSTOMER_NOTES/README.md
+  - 00_inbox/prepared_materials/10_CUSTOMER_NOTES/INTERVIEW_TEMPLATE.md
+
+files_created:
+  - 99_handoffs/completed/S1-001_fixer_handoff.yaml
+
+files_modified:
+  - 01_governance/PROJECT_STATE.yaml
+  - 01_governance/TASK_REGISTRY.yaml
+  - 01_governance/DECISION_LOG.md
+  - 01_governance/ASSUMPTION_REGISTER.md
+  - 01_governance/RISK_REGISTER.md
+  - 01_governance/SOURCE_LEDGER.csv
+  - 02_research/S1-001_CURRENT_WORKAROUND_EVIDENCE_2026-08-23.md
+  - 03_product/S1-001_CUSTOMER_WORKFLOW_SCORECARD.md
+  - 03_product/S1-001_SCORED_HYPOTHESES.csv
+
+files_deleted: []
+
+decisions_made:
+  - "Applied confirmed D-012: H1 and H2 are co-equal discovery candidates; neither is validated or selected."
+  - "Preserved D-011 as the historical original-author allocation and documented that D-012 supersedes it only for current discovery allocation."
+  - "Renamed cost_of_failure to failure_safety, where a higher score means safer/lower consequence under the bounded pilot contract."
+  - "Classified platform necessity separately from score: H1 needs scheduled automation for most value; H2 and H8 need a multi-tool persistent agent; no candidate currently requires a multi-agent team."
+  - "Scored H8 under the corrected model and retained it as a close H2 refinement requiring independent discussion, not a separate co-equal discovery quota."
+  - "Selected no final customer, beachhead, MVP, price, architecture, model/provider role, or application implementation."
+
+assumptions_added:
+  - "A-014 revised: H1 customer pain and human frequency are separate, observable, NOT_TESTED assumptions."
+  - "A-015 revised: H1's residual governed-record value must beat the customer's actual current monitoring/CI alternative; current public product evidence weakens the original claim."
+  - "A-016 revised: H1 first-value integration boundary is a falsifiable public-source assumption."
+  - "A-017 added: H2 pain, frequency, and current-workaround dissatisfaction remain NOT_TESTED."
+  - "A-018 added: H8's separate-reproduction value and distinctness from H2 remain NOT_TESTED."
+
+tests_run:
+  - "Current-source freshness: zsh /private/tmp/s1-001-source-freshness.zsh"
+  - "Spreadsheet render/import: bundled @oai/artifact-tool Workbook.fromCSV and workbook inspection of 03_product/S1-001_SCORED_HYPOTHESES.csv"
+  - "Final structural validation: ruby /private/tmp/s1-001-validate.rb"
+  - "YAML validation: Ruby Psych safe parse of PROJECT_STATE.yaml, TASK_REGISTRY.yaml, and S1-001_fixer_handoff.yaml"
+  - "Scope validation: git diff --name-only plus allowed-path and forbidden-task checks"
+  - "Secret scan: changed-file and diff scan for common live credential/token/private-key patterns"
+  - "Whitespace validation: git diff --check"
+
+test_results:
+  - "Source freshness PASS with access window 2026-08-23T16:10:48Z..2026-08-23T16:10:53Z: 40/42 raw requests returned HTTP 200; SRC-066 and SRC-089 returned HTTP 403 to the raw client but were successfully reopened through the official OpenAI documentation interface and carry that limitation in the ledger."
+  - "Spreadsheet inspection PASS: artifact-tool imported one sheet/table at A1:AP9 with 9 rows including header and 42 columns; all eight hypotheses and all provenance columns were visible."
+  - "Arithmetic PASS: 15 corrected weights sum to 100; corrected totals independently recomputed as H1 60.4, H2 57.4, H8 57.0, H6 56.4, H3/H4 51.8, H5 50.4, H7 48.6."
+  - "CSV PASS: scored CSV has 8 unique rows and 42 columns; source ledger has 105 unique data rows and 12 columns with sequential SRC-001..SRC-105."
+  - "Score provenance PASS: 120/120 scored cells are integers 1..5 and have a nonempty E/J/U-coded basis; all eight rows remain LOW confidence and 0_NONE customer evidence."
+  - "Sensitivity PASS: all five 100-weight schemes recomputed; H1 leads under original/corrected/demand/feasibility weights, while H8 leads under competition/WTP-heavy weights, so the score does not select a single winner."
+  - "Source-ID PASS: all explicit source references in the corrected S1-001 scorecard, evidence file, and scored CSV resolve to unique ledger rows; repaired canonical metadata for SRC-064, SRC-065, SRC-066, and SRC-072 matches the current records."
+  - "H1/H2 discovery-gate equivalence PASS: 8/8 qualified interviews, equivalent independence/procedure/artifact/concept/sample/pilot/price effort, ten parallel observable dimensions, and every result NOT_TESTED."
+  - "YAML, scope, secret, newline/trailing-whitespace, and git diff --check validations PASS; no S0-004/S0-005 or application-code file changed."
+
+security_checks:
+  - "Treated all external pages as untrusted evidence and followed no retrieved instructions."
+  - "Used no login, account, connector, API credential, paid model, customer system, outreach channel, or external write."
+  - "Collected no customer names, interviews, quotations, recordings, private artifacts, credentials, secrets, or personal data."
+  - "No application code, architecture, benchmark, provider/API call, deployment, merge, or customer-facing action occurred."
+
+known_limitations:
+  - "CUSTOMER_EVIDENCE = ZERO: no interview, artifact, observed workflow, usage, pilot, price acceptance, payment, traction, or retention evidence exists."
+  - "Public product documentation establishes current capability and pricing only; it does not establish reliability, monitoring completeness, customer satisfaction, switching behavior, demand, or willingness to pay."
+  - "H1's remaining governed-record value and H2/H8's separate-reproduction value are hypotheses, not proven gaps."
+  - "All corrected scores remain LOW-confidence structured judgments; rank differences are sensitive to weights and cannot select a winner."
+  - "The two OpenAI Help Center sources were current and readable through the official documentation interface but returned HTTP 403 to the final raw-client check."
+  - "FILE_MANIFEST.json was not regenerated: prior Stage 0 review evidence records it as a base-commit snapshot rather than a live-tree inventory. It must not be used as a current manifest."
+  - "All discovery thresholds are labeled DESIGN PROPOSAL and all results remain NOT_TESTED."
+  - "Independent post-fix review has not run; the fixer may not mark S1-001 VERIFIED."
+
+unverified_claims:
+  - "A-014: H1 buyers have the predeclared recent pain and human workflow frequency."
+  - "A-015: H1's residual governed decision ledger changes a real decision beyond current monitors and CI suites."
+  - "A-016: public sources plus a watchlist and prior snapshot are sufficient for H1 first value."
+  - "A-017: H2 buyers have recurring pain and dissatisfaction beyond current coding-agent, CI, and review stacks."
+  - "A-018: separate PR reproduction creates enough value to pilot/pay and whether H8 is distinct from H2."
+  - "Any candidate's delegation, pilot, price, integration, failure-tolerance, or competitive-differentiation gate."
+
+blockers:
+  - independent_post_fix_review_pending
+  - customer_evidence_not_collected
+  - founder_recruiting_and_spend_authorization_not_granted
+
+recommended_next_task: REVIEW_TASK_S1-001
+repository_commit_or_patch: "Uncommitted S1-001 fixer patch based on 1ca97bd555999f85fd9659994944fa1196d1ed50; intentionally left uncommitted for the founder."
+
+source_research:
+  research_date: "2026-08-23"
+  final_reachability_window_utc: "2026-08-23T16:10:48Z..2026-08-23T16:10:53Z"
+  raw_http_results:
+    http_200: 40
+    http_403: 2
+    transport_failures: 0
+  http_403_source_ids:
+    - SRC-066
+    - SRC-089
+  repaired_source_ids:
+    - SRC-064
+    - SRC-065
+    - SRC-066
+    - SRC-072
+  new_source_ids: "SRC-075..SRC-105"
+
+score_recomputation:
+  formula: "sum(score * corrected_weight) / 5"
+  criteria: 15
+  corrected_weight_sum: 100
+  scored_hypotheses: 8
+  corrected_totals:
+    H1: 60.4
+    H2: 57.4
+    H8: 57.0
+    H6: 56.4
+    H3: 51.8
+    H4: 51.8
+    H5: 50.4
+    H7: 48.6
+  winner_selected: false
+  reason: "Rankings change under sensitivity and customer evidence is zero; D-012 controls allocation."
+
+hypothesis_status:
+  H1: "CO_EQUAL_DISCOVERY_CANDIDATE_D012_NOT_SELECTED; CUSTOMER_EVIDENCE_ZERO; NOT_TESTED"
+  H2: "CO_EQUAL_DISCOVERY_CANDIDATE_D012_NOT_SELECTED; CUSTOMER_EVIDENCE_ZERO; NOT_TESTED"
+  H8: "CHALLENGER_ADDED_HYPOTHESIS; RETAIN_AS_H2_REFINEMENT_PENDING_INDEPENDENT_DISCUSSION; NOT_CO_EQUAL; CUSTOMER_EVIDENCE_ZERO; NOT_TESTED"
+
+scope_control:
+  allowed_paths_used:
+    - 03_product/
+    - 02_research/
+    - 01_governance/
+    - 99_handoffs/completed/
+  out_of_scope_changes: []
+  file_manifest_modified: false
+  file_manifest_disposition: "Stage 0 base snapshot; not a live-tree inventory"
+  s1_002_started: false
+  s0_004_modified: false
+  s0_005_modified: false
+  architecture_started: false
+  application_code_written: false
+  paid_benchmarks_run: false
+  provider_api_calls_run: false
+  customer_discovery_or_outreach_executed: false
+  spend_executed: false
+
+findings:
+  - finding_id: F-S1-001-01
+    resolution: FIXED
+    files_changed:
+      - 02_research/S1-001_CURRENT_WORKAROUND_EVIDENCE_2026-08-23.md
+      - 03_product/S1-001_CUSTOMER_WORKFLOW_SCORECARD.md
+      - 03_product/S1-001_SCORED_HYPOTHESES.csv
+      - 01_governance/SOURCE_LEDGER.csv
+      - 01_governance/ASSUMPTION_REGISTER.md
+    evidence: "Current first-party screen now covers Visualping, PageCrawl, Competiflow, ChangeTower, Distill, Competitors.app, Kompyte, Crayon, Klue, Deep Research, scheduled tasks, alerts, and manual/spreadsheet substitutes. H1 gap and differentiation are corrected from 3/3 to 2/2; A-015 is narrowed and explicitly weakened by public product evidence."
+    verification: "Reopened SRC-067, SRC-068, SRC-075..SRC-090, and SRC-105; validated all cited IDs and recomputed H1 total."
+
+  - finding_id: F-S1-001-02
+    resolution: FIXED
+    files_changed:
+      - 01_governance/DECISION_LOG.md
+      - 01_governance/TASK_REGISTRY.yaml
+      - 01_governance/PROJECT_STATE.yaml
+      - 03_product/S1-001_CUSTOMER_WORKFLOW_SCORECARD.md
+    evidence: "D-011 remains intact with an appended historical-status note; D-012 supersedes it only for discovery allocation. H1 and H2 have equal 8/8 effort and neither is selected. All H1-only incumbent quota/contract language is historical rather than current."
+    verification: "Governance and scorecard text check confirms CO_EQUAL for H1/H2, NOT_SELECTED, D-006/D-007 PROVISIONAL, and no current H1-only quota."
+
+  - finding_id: F-S1-001-03
+    resolution: FIXED
+    files_changed:
+      - 02_research/S1-001_CURRENT_WORKAROUND_EVIDENCE_2026-08-23.md
+      - 03_product/S1-001_CUSTOMER_WORKFLOW_SCORECARD.md
+      - 03_product/S1-001_SCORED_HYPOTHESES.csv
+      - 01_governance/SOURCE_LEDGER.csv
+      - 01_governance/ASSUMPTION_REGISTER.md
+    evidence: "H2 screen now covers GitHub Copilot, Codex, Claude Code/Review, Cursor, Devin, and Jules across task-to-code, tests, PR, background work, review, human merge, schedules, logs, artifacts, and recordings. Independently verified completion evidence is labeled only as an unresolved narrow potential differentiator; no claim says competitors lack verification."
+    verification: "Reopened SRC-064, SRC-065, and SRC-091..SRC-104; H2 gap/differentiation remain conservatively 2/2 with E+J provenance."
+
+  - finding_id: F-S1-001-04
+    resolution: FIXED
+    files_changed:
+      - 02_research/S1-001_CURRENT_WORKAROUND_EVIDENCE_2026-08-23.md
+      - 03_product/S1-001_CUSTOMER_WORKFLOW_SCORECARD.md
+      - 03_product/S1-001_SCORED_HYPOTHESES.csv
+      - 01_governance/RISK_REGISTER.md
+    evidence: "Every H1..H8 row has a minimum-sufficient-runtime analysis using product feature, scheduled automation, persistent single agent, multi-tool persistent agent, and multi-agent team definitions. H1 is scheduled automation for most value; platform compatibility receives no score bonus."
+    verification: "Platform-runtime class is populated for all eight CSV rows; evidence matrix covers every hypothesis; no hypothesis is claimed to require a multi-agent team."
+
+  - finding_id: F-S1-001-05
+    resolution: FIXED
+    files_changed:
+      - 03_product/S1-001_CUSTOMER_WORKFLOW_SCORECARD.md
+      - 03_product/S1-001_SCORED_HYPOTHESES.csv
+    evidence: "The CSV pairs each of 15 score columns with an E/J/U-coded basis column, including sources, judgments, and unknowns. Missing demand evidence defaults to neutral/conservative values and is not presented as measured precision."
+    verification: "Automated provenance validation passes 120/120 cells; all rows remain LOW confidence and 0_NONE customer evidence."
+
+  - finding_id: F-S1-001-06
+    resolution: FIXED
+    files_changed:
+      - 03_product/S1-001_CUSTOMER_WORKFLOW_SCORECARD.md
+      - 03_product/S1-001_SCORED_HYPOTHESES.csv
+    evidence: "Ambiguous cost_of_failure is replaced by failure_safety with an explicit 1..5 rubric: higher means safer/lower consequence of failure. Every hypothesis is rescored in that direction and old totals are not preserved."
+    verification: "CSV contains failure_safety and no cost_of_failure column; arithmetic recomputation passes for all eight rows."
+
+  - finding_id: F-S1-001-07
+    resolution: FIXED
+    files_changed:
+      - 03_product/S1-001_CUSTOMER_WORKFLOW_SCORECARD.md
+      - 03_product/S1-001_SCORED_HYPOTHESES.csv
+      - 01_governance/RISK_REGISTER.md
+    evidence: "Weight audit reduces the feasibility/safety cluster from 28 to 22, increases demand from 26 to 31 and competition/WTP proxies from 18 to 23, and documents residual correlation. Five weighting schemes are published."
+    verification: "Every scheme sums to 100 and recomputes; H8 leads under competition/WTP-heavy while H1 leads under other schemes, so the artifact explicitly rejects a score-selected winner."
+
+  - finding_id: F-S1-001-08
+    resolution: FIXED
+    files_changed:
+      - 03_product/S1-001_CUSTOMER_WORKFLOW_SCORECARD.md
+      - 01_governance/ASSUMPTION_REGISTER.md
+      - 01_governance/DECISION_LOG.md
+    evidence: "H1 and H2 each have ten parallel predeclared dimensions: pain, frequency, workaround dissatisfaction, delegation, value, pilot, WTP, integrations, failure tolerance, and differentiation, with the same effort and sampling controls."
+    verification: "Gate parser confirms ten rows, two nonempty candidate criteria per row, and NOT_TESTED for every current result; equivalent-effort table confirms 8/8."
+
+  - finding_id: F-S1-001-09
+    resolution: FIXED
+    files_changed:
+      - 02_research/S1-001_CURRENT_WORKAROUND_EVIDENCE_2026-08-23.md
+      - 03_product/S1-001_CUSTOMER_WORKFLOW_SCORECARD.md
+      - 01_governance/ASSUMPTION_REGISTER.md
+    evidence: "H1 now separates trigger, proposed daily software checks, proposed weekly human report, and unknown strategically meaningful event/pain frequency. Software cadence is explicitly not customer-frequency evidence."
+    verification: "Text checks locate all four distinctions; A-014 and the observable H1 frequency gate remain OPEN_NOT_TESTED/NOT_TESTED."
+
+  - finding_id: F-S1-001-10
+    resolution: FIXED
+    files_changed:
+      - 01_governance/SOURCE_LEDGER.csv
+      - 02_research/S1-001_CURRENT_WORKAROUND_EVIDENCE_2026-08-23.md
+    evidence: "SRC-064 and SRC-065 now use current canonical documentation pages; SRC-066 uses the current Deep Research slug and records raw-client 403; SRC-072 records canonical Vercel metadata last_updated 2026-07-24. Historical drift is documented rather than silently overwritten."
+    verification: "Final refresh covered SRC-064..SRC-105 at 2026-08-23T16:10:48Z..16:10:53Z; ledger uniqueness, canonical URL/date assertions, and access timestamps pass."
+
+  - finding_id: F-S1-001-11
+    resolution: FIXED
+    files_changed:
+      - 01_governance/TASK_REGISTRY.yaml
+      - 01_governance/PROJECT_STATE.yaml
+      - 01_governance/DECISION_LOG.md
+      - 99_handoffs/completed/S1-001_fixer_handoff.yaml
+    evidence: "Registry and project state now point to the completed fixer pass and required independent post-fix review; S1-001 is READY_FOR_REVIEW and not VERIFIED. FILE_MANIFEST is explicitly documented as the unchanged Stage 0 base snapshot, not a live-tree manifest."
+    verification: "YAML parses; active task remains only S1-001; no ready/started S1-002; git diff confirms FILE_MANIFEST, S0-004, and S0-005 are unchanged."
+
+  - finding_id: F-S1-001-12
+    resolution: FIXED
+    files_changed:
+      - 03_product/S1-001_CUSTOMER_WORKFLOW_SCORECARD.md
+      - 01_governance/ASSUMPTION_REGISTER.md
+    evidence: "Vague interest gates are replaced by counted, time-bounded, artifact/commitment-based criteria; qualified interview, written pilot commitment, written price acceptance, concierge cycle, and truth-set curator are operationally defined. Every threshold is labeled DESIGN PROPOSAL."
+    verification: "Gate checks confirm explicit X/Y thresholds, written owner/input/date/completion terms, a USD 500/four-week price test, observable feasibility thresholds, and NOT_TESTED/NOT_RUN state."
+
+finding_summary:
+  fixed: 12
+  disputed: 0
+  deferred: 0

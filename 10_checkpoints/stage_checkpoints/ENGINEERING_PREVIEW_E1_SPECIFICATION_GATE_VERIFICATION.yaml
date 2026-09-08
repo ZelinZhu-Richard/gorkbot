@@ -1,0 +1,501 @@
+checkpoint_id: ENGINEERING_PREVIEW_E1_SPECIFICATION_GATE_VERIFICATION
+mode: VERIFY_STAGE_E1
+program: ENGINEERING_PREVIEW
+stage: E1
+stage_name: engineering_preview_product_specification
+gate_id: engineering_preview_e1_specification_gate
+verdict: E1_GATE_PASSED
+gate_status: VERIFIED
+verified_at_utc: "2026-08-28T14:14:29Z"
+reviewed_commit: 7bbfebd2163b1a8aa0ec770de378c7087c6fee75
+pre_verification_worktree_status: CLEAN
+verification_patch_status: UNCOMMITTED_FOR_FOUNDER
+precedent: 10_checkpoints/stage_checkpoints/STAGE_0_VERIFICATION.yaml
+
+verifier:
+  role: INDEPENDENT_STAGE_GATE_VERIFIER
+  model: "Claude Fable 5 (claude-fable-5) via Claude Code"
+  independence: >-
+    Fresh session with no shared conversation state with the E1-001/E1-002 author/fixer (Codex),
+    the E1-001/E1-002 challenger sessions, or the E0-001/E1-001/E1-002 task-verifier sessions.
+    Same model/product as those challenger and task-verifier sessions, disclosed per repository
+    precedent (S0/S1/E0/E1 records). Every count, projection, matrix, hash, and status below was
+    re-derived from the committed repository at 7bbfebd and from git object history with a
+    scratchpad Ruby/Psych validator (100 assertions); the author, challenger, fixer, and task
+    verifier summaries were read but not relied on. Disclosure: the charter names "Claude Code"
+    among E3 candidate systems; this gate evaluation selects no role occupant. No subagents,
+    network retrieval, login, account, API key, paid model call, spend, spike, benchmark,
+    evaluation-case implementation or execution, architecture selection, application code, or
+    E2/E3 work was used or produced.
+  method: >-
+    Read MASTER_OPERATING_PROMPT.md, AGENTS.md, README.md, SECURITY.md, CLAUDE.md, the seven
+    governance records, D-016, the charter (all sections, with Sections 18 and 22 read verbatim),
+    the PRD, user flows, correctness contract (all 1026 lines), contribution workflow, evaluation
+    suite (all 503 lines), release-acceptance checkpoint (all blocks), benchmark plan, the
+    E0-001/E1-001/E1-002 verifier reviews in full, the E1-001/E1-002 handoffs, challenger reviews,
+    and fixer handoffs (finding structure, dispositions, commits, hashes), the Stage 0 gate
+    checkpoint and ADVANCE_STAGE handoff (convention precedent), and the handoff template.
+    Searched the repository for VERIFY_STAGE_E1, E1 specification gate, e1_specification_gate,
+    E1 gate, NOT_EVALUATED, architecture gate, and E2 activation to derive the authoritative gate
+    requirements before evaluating them. Re-ran every mechanical check independently.
+
+gate_question: >-
+  Do we now have a verified, stable, concrete product, correctness, workflow, and evaluation
+  specification sufficient to begin E2 architecture work without redefining success?
+gate_answer: YES
+
+authoritative_gate_requirements:
+  sources:
+    - "10_checkpoints/stage_checkpoints/ENGINEERING_PREVIEW_V0_1_RELEASE_ACCEPTANCE.yaml e1_specification_gate (question, three prerequisites, prerequisite_rule, thirteen required_results, evaluated_only_by INDEPENDENT_E1_STAGE_GATE_VERIFIER, transition_rule)"
+    - "03_product/ENGINEERING_PREVIEW_CHARTER.md Section 18 (fifteen independently verified artifacts; E1-001 items 1-12, E1-002 items 13-15; 'The E1 gate must answer what correctness means before architecture or code begins')"
+    - "03_product/ENGINEERING_PREVIEW_CHARTER.md Section 17 (E2 gate to proceed: 'E1 gate independently verified') and Section 22 (E1-002 must make release criteria testable)"
+    - "01_governance/PROJECT_STATE.yaml engineering_preview_track.phases.E1.gate_invariant and phases.E2.activation_condition; MASTER_OPERATING_PROMPT.md D-016 override ('E2 architecture decisions require the verified E1 gate') and VERIFY_STAGE_<N> mode"
+    - "TASK_REGISTRY.yaml E1-002 acceptance criterion 4 and gate_invariant ('E1 is not gate-VERIFIED and E2 is not activated until E0-001, E1-001, and E1-002 are all independently VERIFIED')"
+  note: "No separate E1 gate task exists in TASK_REGISTRY.yaml (V-E1-002-N6); the gate is a mode-level evaluation, consistent with the Stage 0 precedent."
+
+preconditions:
+  result: PASS
+  E0-001: "VERIFIED — distinct independent record 99_handoffs/completed/E0-001_verifier_review.yaml (review_id R-E0-001-20260826-VERIFIER, verdict E0_VERIFIED, reviewed 0b930e21910ffbc60b0c44eadcd017548e9f080d, blob 28d1708c unchanged at HEAD)"
+  E1-001: "VERIFIED — distinct independent record 99_handoffs/completed/E1-001_verifier_review.yaml (review_id R-E1-001-20260827-VERIFIER, verdict E1_001_VERIFIED, reviewed cced38474c4fd71ee1d5bcc29fe0ed53929d53ac, F-E1-001-01..20 RESOLVED each re-checked against bytes, blob 575f2864 unchanged at HEAD)"
+  E1-002: "VERIFIED — distinct independent record 99_handoffs/completed/E1-002_verifier_review.yaml (review_id R-E1-002-20260828-VERIFIER, verdict E1_002_VERIFIED, reviewed 557e3354479b635b0872b4c60e914b8f29e50185, F-E1-002-01..11 RESOLVED each re-checked against bytes, 125 assertions, blob c6adc1cd unchanged at HEAD)"
+  independence_chain: "Author/fixer Codex for all three tasks; independent Claude Fable 5 challenger sessions (E0: ENGINEERING_PREVIEW_INITIALIZATION_challenger_review.yaml at 2568883; E1-001 at cf27ef4; E1-002 at 0044276); separate independent Claude Fable 5 verifier sessions per task; challenger artifacts byte-unchanged since their founder commits; no author marked its own work verified."
+  no_task_ready_for_review_in_E1: true
+  unresolved_E1_001_findings_BLOCKER_HIGH_MEDIUM: 0
+  unresolved_E1_002_findings_BLOCKER_HIGH_MEDIUM: 0
+  fixer_claims_independently_rechecked: "E1-001: 20/20 by its verifier with line anchors; E1-002: 11/11 by its verifier with line anchors and a 125-assertion validator; this gate pass re-derived the E1-002 mechanical claims (170/127/119/8/701/8/709/23/16/30/18/11/9/16/13) from the committed bytes independently."
+  E1_gate_NOT_EVALUATED_before_this_pass: "PROJECT_STATE stage_gate_status and phases.E1.gate_status NOT_EVALUATED; checkpoint e1_specification_gate.gate_status/current_result NOT_EVALUATED with 13/13 required_results NOT_EVALUATED; future_stage_prerequisites.E1_gate NOT_EVALUATED (validator-confirmed before edits)."
+  E2_not_started: "PROJECT_STATE phases.E2 NOT_STARTED; no E2-* task in TASK_REGISTRY; no ADR or architecture artifact exists."
+  architecture_not_selected: "PROJECT_STATE architecture_selected false, current_architecture_version null; checkpoint architecture_selected false."
+  application_code_absent: "git ls-files: 42 md, 46 yaml, 4 csv, 1 json, 1 gitignore; no source, manifest, lockfile, build script, or toolchain file; no untracked files."
+  E3_not_run: "technical_spikes_run 0; no 06_evaluation/model_role_benchmark directory."
+  model_benchmarks_run: 0
+  paid_api_calls: 0
+  AUTONOMY_ELIGIBLE: NOT_ELIGIBLE
+  AUTONOMOUS_BUILD_AUTHORIZED: "NO (PROJECT_STATE E4 autonomous_build_authorized false, founder_authorization_status NOT_RECORDED)"
+  S1-003: "BLOCKED / DEFERRED (PAUSED_BY_D016_ENGINEERING_FIRST_PIVOT), execution_started false, all counters 0"
+
+e1_baseline:
+  result: E1_BASELINE_COHERENT
+  artifact_set:
+    - 03_product/ENGINEERING_PREVIEW_CHARTER.md (E0-verified program contract)
+    - 03_product/ENGINEERING_PREVIEW_PRD.md (blob 4a817887, byte-identical to cced384)
+    - 03_product/ENGINEERING_PREVIEW_USER_FLOWS.md (blob e09e92f7, byte-identical to cced384)
+    - 03_product/ENGINEERING_PREVIEW_CORRECTNESS_CONTRACT.md (blob 8e11bdf0, byte-identical to cced384)
+    - 03_product/ENGINEERING_PREVIEW_CONTRIBUTION_WORKFLOW.md (blob 4c834fc0, byte-identical to 557e335)
+    - 06_evaluation/ENGINEERING_PREVIEW_EVALUATION_SUITE.md (blob 3d474bbd, byte-identical to 557e335)
+    - 10_checkpoints/stage_checkpoints/ENGINEERING_PREVIEW_V0_1_RELEASE_ACCEPTANCE.yaml (blob 36cda336 at 557e335 before this gate pass edited only its e1_specification_gate block and future_stage_prerequisites.E1_gate)
+  coverage_of_required_baseline_elements:
+    product_scope: "PRD Sections 2-5 (one local user, one persistent agent, five eligible task classes, MVP scope table, explicit non-goals)"
+    target_user_use_case: "Charter Section 4.1; PRD Section 2.1-2.2 (labelled PRODUCT TARGET, NOT VALIDATED CUSTOMER FACT)"
+    end_to_end_workflow: "Charter Section 4.3; PRD Section 2.4; UF-01..UF-15 with global invariants"
+    functional_requirements: "56 FR each with objective acceptance evidence (PRD Section 6)"
+    correctness_semantics: "Contract Sections 1-2 (normative classes; nine semantic responsibilities; axis-qualified notation)"
+    task_agent_control_recovery_state_semantics: "Contract Sections 4-7 (phase table, wait/control/reconciliation/blocker components, legal/invalid combination table, 32 transition rows, agent identity/availability tables, operation lifecycle, pause/stop/redirect/resume, restart/recovery)"
+    completion_predicates: "Contract Section 11.1 common conjunction; Section 11.2 task-type predicates; PREDICATE_SET_ADEQUATE"
+    false_completion_prevention: "FR-065/FR-066, RR-008, contract Section 11.1 (UNSUPPORTED_COMPLETION_ASSERTION vs FALSE_TERMINAL_COMPLETION), suite EP-FALSE-001..021 and VER-ADQ-01..09"
+    independent_verification: "Contract Section 11.3 independence floor; Section 4.3 verification runs/verdicts/errors; UF-14; NEG-VER-01/02"
+    evidence_bundle_contract: "Contract Section 12 (six profiles, 42 keys, 15 sections, 16 validation rules); FR-064; RR-010"
+    permission_approval_semantics: "Contract Sections 3.2, 9.2, 9.4-9.5; FR-042..FR-044; UF-09; NEG-APR-01"
+    secret_security_boundaries: "Contract Sections 9.3, 9.6; FR-045..FR-047; UF-11; NEG-SECRET-01/CRED-01/NET-01; 12 mandatory observable marker surfaces"
+    repository_workspace_behavior: "Contract Section 8.1 (16-row condition matrix, four-value disposition vocabulary, bind-before-mutating-reproduction lifecycle); FR-010..FR-015; EP-REPO-001..016; EP-WF-019"
+    git_effect_classifications: "Contract Section 8.4 (30 rows x independent effect class / v0.1 disposition / approval rule); FR-023/FR-024; EP-GIT-001..030"
+    model_routing_requirements: "Contract Section 9.3 (route_purpose x route_eligibility); FR-050..FR-055; RR-011; UF-12; EP-ROUTE-001..007 (offline replays only)"
+    observability: "Contract Section 13; FR-060..FR-062"
+    reliability_requirements: "15 HARD_INVARIANT RR; 4 PREVIEW_SLO; 4 MEASURE_ONLY (contract Section 14); checkpoint PROT-SLO/MET protocols"
+    contribution_workflow: "16 gates CW-G01..G16, preflight, bounded change procedure, deterministic checks/evidence, security/clean-room rules, 15-step walkthrough; EP-CONTRIB-001..008"
+    evaluation_cases: "170 specified cases in 10 groups, 7 profiles, resolvable 7-cell schema"
+    evaluation_oracles: "18 oracle classes with deterministic priority and explicit non-claims"
+    fixture_specifications: "11 version-2 synthetic clean-room recipe families with mechanically derived primary variants and named subvariants"
+    traceability_model: "Suite Section 7 typed model: 701 case edges (119 IDs) + 8 protocol edges (8 IDs) = 709; checkpoint projection non-normative and set-equal"
+    release_specification_checkpoint: "ENGINEERING_PREVIEW_V0_1_RELEASE_ACCEPTANCE.yaml (release_case_policy, not_applicable_policy, required_information_policy, non_compensating_blockers, hard_invariant_gate, 8 protocols, 15 deterministic release checks, independent release verification, human release approval, known limitations, ordered gate logic)"
+    future_compatibility_boundaries: "FC-001..FC-009; contract Section 17; charter Section 15"
+    explicit_non_goals: "PRD Section 5.2; UF Section 20; charter Section 14; D-016 non-goals"
+  contradiction_check: >-
+    No lifecycle, authority, approval, completion, or evidence contradiction found across the
+    charter, PRD, user flows, contract, workflow, suite, and checkpoint. Conflict precedence is
+    explicit (contract Section 1: contract controls companions; suite Section 1 and checkpoint
+    authority.conflict_rule: E1-001 controls and requires prospective amendment plus
+    reverification). The one known phase-label nuance (V-E1-N2) is pinned by suite Section 7.1 to
+    the contract's Section 4.1/4.4 wording. E2 is never forced to invent product behavior: every
+    "E2 decides" deferral in the artifacts concerns mechanism (storage, isolation, authentication
+    mechanism, capability topology, error-code representation, concurrency mechanism, client
+    surface), not the externally observable semantics, which are fixed and traced to cases.
+
+requirement_freeze:
+  result: REQUIREMENT_FREEZE_PASS
+  explicit_and_testable: "56 FR each carry a product-level oracle column; 15 RR are per-occurrence zero-tolerance invariants; 23 NEG families carry stimulus and required outcome; every FR/RR/FC/UF/NEG ID has at least one catalog case with expected observable, decisive oracle, and forbidden outcome (119/119); SLO/MET bind to keyed protocols with populations, numerators, denominators, and threshold states."
+  behavior_oriented_not_implementation_prescriptive: "Contract Section 3.1 'does not require six stores or services'; 'E2 selects the mechanism' / 'E2 decides' appears throughout for authentication, persistence, isolation, capability topology, hash/log/storage, error registry, compaction, concurrency; suite fixtures 'never rely on a particular isolation, storage, Git client, test framework, language, process, or provider implementation'."
+  internally_consistent: "Nine responsibilities identical in PRD Section 2.3, UF invariant 9, contract Section 2; RC/GE rows identical in contract, suite, checkpoint; transition/combination/evidence cardinalities reconcile (validator)."
+  traceable: "127 canonical IDs -> 709 typed edges with zero symmetric difference between suite rows/protocols and checkpoint projection; PRD Section 13 and contract Section 19 trace families to authority and later owners."
+  security_conscious: "Deny-by-default, closed instruction precedence, protected-secret override of allowed roots, approval binding, remote/destructive Git prohibitions, non-compensating blockers."
+  honest_about_unknowns: "PRD Section 14, contract Section 20, checkpoint known_limitations, and suite Section 1 keep client, storage, isolation tier, host matrix, provider access, roles, budgets, thresholds, packaging, demand, and reference-product runtime behavior UNKNOWN."
+  bounded_for_v0_1: "Five task classes; local core success path ends with a local review package; optional remote effects are OPTIONAL_WITH_CONSTRAINTS with typed UNSUPPORTED_CAPABILITY when absent."
+  compatible_with_general_finance_editions: "FC-006/FC-007 and contract Section 17 require compatibility only; no General/Finance feature enters v0.1 (PRD Section 5.2)."
+  incompatible_architecture_ambiguity_check: >-
+    Searched for requirements loose enough that two architectures could claim compliance while
+    implementing different product semantics. Candidates examined and rejected: (a) 'isolated
+    workspace or E2-selected equivalent' is bound to the objective non-interference test
+    (OR-REPO-CANARY/OR-GIT-STATE, RR-007) and the bind-before-mutating-reproduction ordering
+    (EP-WF-019); (b) 'declared supported local persistence boundary' is declared by the candidate
+    manifest but tested by RR-001/SLO-003 fault injection at every acknowledgement/effect boundary;
+    (c) 'authentication mechanism is an E2 decision' leaves the semantic (stable authenticated
+    principal; wrong/stale identity denies admission/approval) fixed; (d) same-model low-risk
+    verification policy is undefined in E1-001 but the suite classifies every scored task HIGH
+    with no same-model credit until a versioned policy is independently verified; (e) stop
+    deadline value is candidate-declared but SLO-002 bounds effectiveness (10/30 s, 30/60 s) and
+    RR-006 forbids indefinite STOPPING. Each remaining freedom is mechanism-level, not semantic.
+
+product_evaluation_alignment:
+  result: PRODUCT_EVALUATION_ALIGNMENT_PASS
+  recomputed_structure:
+    canonical_E1_001_ids: 127 (56 FR / 15 RR / 4 SLO / 4 MET / 9 FC / 16 UF / 23 NEG, re-extracted from PRD/contract/UF headings)
+    case_backed_ids: 119
+    protocol_backed_ids: 8
+    catalog_rows: 170 (7 cells each; WF 19 / CTL 24 / FALSE 21 / APR 9 / ROUTE 7 / EVID 12 / NEG 24 / REPO 16 / GIT 30 / CONTRIB 8)
+    profile_counts: "P-MATRIX 49, P-NEGATIVE 39, P-FAULT 38, P-EVIDENCE 27, P-POSITIVE 8, P-CONTRIB 8, P-JUDGMENT 1"
+    range_expansions: 34
+    canonical_case_edges: 701
+    protocol_edges: 8
+    total_typed_edges: 709
+    checkpoint_projection: "127 keys set-equal; 0 checkpoint-only edges; 0 catalog-only edges; SLO/MET protocol_ids exactly [PROT-<id>] with empty case_ids; every disposition typed SPECIFIED_NOT_IMPLEMENTED / NOT_RUN; checkpoint case list set- and order-equal to the catalog"
+    stored_counts_block: "equals recomputation (701/8/709/119/8/127/0/0)"
+  semantic_sampling:
+    false_completion: "FR-065/FR-066/RR-008 -> EP-FALSE-001..021 expect noncomplete/UNSUPPORTED_COMPLETION_ASSERTION/FALSE_TERMINAL_COMPLETION with OR-INDEPENDENT-VERIFY/OR-CHECK-REPLAY/OR-STATE-READBACK; matches contract Section 11.1 conjunction exactly."
+    approval_effects: "FR-042..FR-044 -> EP-APR-001..009: one-shot binding, pre-approval zero effect, staleness, mismatch, replay, successor revalidation, revocation, non-broadening, forged text; matches contract Section 9.4; GE-21/23 alone carry APPROVAL_REQUIRED, matching Section 8.4."
+    secret_protection: "FR-046/FR-047/NEG-SECRET-01/NEG-CRED-01 -> EP-NEG-SECRET-01, EP-NEG-CRED-01, EP-EVID-005, COMP-06/07/08 with OR-SECRET-MARKER over 12 mandatory surfaces; missing capture BLOCKED; matches contract Section 9.6 precedence and non-exhaustive-detection statement."
+    recovery: "FR-030..FR-035/RR-001..RR-004 -> EP-CTL-014..024 with OR-RECOVERY-REPLAY; SLO-003 endpoint is truthful inspectability, matching contract Section 7."
+    independent_verification: "Contract Section 11.3 floor -> EP-NEG-VER-01 stimuli (same session, transcript-only, ignored deterministic evidence, author credential) and EP-EVID-012 sequential runs; matches."
+    predicate_adequacy: "Contract Section 11.2 -> VER-ADQ-01..09 hidden-obligation ground truth; rubric subordinate; VER-ADQ-09 never completion; matches 'passing the author's listed predicates is insufficient'."
+    evidence_integrity: "Contract Section 3.3/12.3 rules 11/16 -> EP-EVID-003/004/010, EP-NEG-AUDIT-01, EP-NEG-EVID-01, COMP-08; threat boundary honestly limited to product-caused/concurrent/accidental mutation."
+    workspace_isolation: "Contract Section 8.1 -> EP-WF-004/009/019, EP-REPO-*, EP-NEG-DESTRUCT-01, EP-NEG-CLEAN-01, COMP-05/07; bind-before-dispatch pinned in suite Section 7.1 and EVR-03."
+    stop_cancel: "Contract Section 6.3 seven-step sequence -> EP-CTL-004/005/006, EP-FALSE-011/019, COMP-03/14; SLO-002 stop family; CANCELLED only."
+    model_routing: "Contract Section 9.3 -> EP-ROUTE-002..005 and EP-NEG-PROVIDER-01: NORMAL_PRODUCT_TASK admits only PRODUCTION_OR_NORMAL_ELIGIBLE; DISALLOWED zero bytes; evaluation-only never promotes; offline replays only."
+    repository_conditions: "RC-01..16 expected dispositions equal contract Section 8.1 rows in order (validator); EP-REPO cells carry the same values; composition rule most-restrictive plus union."
+    git_effects: "GE-01..30 (effect class, disposition, approval) equal contract Section 8.4 rows in order (validator); PROHIBITED_V0_1 <=> NOT_APPLICABLE_PROHIBITED on every row; every REMOTE_EFFECT row gated or prohibited; EP-GIT cells match."
+  conclusion: "E1-002 tests the verified E1-001 contract; it does not define a different product. Deviations found: none."
+
+false_completion_barrier:
+  result: FALSE_COMPLETION_BARRIER_PASS
+  scenarios:
+    - "patch exists, tests fail -> RR-009/FR-065; EP-FALSE-001 (OR-CHECK-REPLAY, OR-INDEPENDENT-VERIFY): noncomplete"
+    - "checks skipped -> FR-025 (cannot be silently skipped), RR-009; EP-FALSE-002: NOT_RUN/skip reason with blocking consequence"
+    - "tests pass but requested behavior absent -> PREDICATE_SET_ADEQUATE (Section 11.1 first conjunct, Section 11.2); EP-FALSE-003 with harness ground truth VER-ADQ-01/02/03/05/08; deterministic behavior oracle dominates rubric"
+    - "verifier crashes -> Section 4.3 VERIFICATION_ERROR, aggregate UNVERIFIED, neither FAILED nor pass; EP-FALSE-004; rerun only if retryable within finite ceiling"
+    - "stale revision verified -> Section 4.3 authoritative-run rule, Section 12.3 rule 11; EP-FALSE-014, EP-EVID-003, COMP-04"
+    - "post-verification mutation -> Section 11.3 last paragraph, NEG-VER-02; EP-FALSE-007, EP-NEG-VER-02, COMP-11; old verdict bound only to old revision"
+    - "predicate set inadequate -> CHANGES_REQUIRED (Section 11.2); EP-FALSE-006 with VER-ADQ-01..09"
+    - "known flaky test passes once -> Section 11.2 FLAKY never PASS, one later pass insufficient; FR-026; EP-FALSE-010; checkpoint flaky_rule; MET-004"
+    - "task partially succeeds -> attempt.disposition=PARTIALLY_COMPLETED zero credit (Section 4.3, FR-067); EP-FALSE-012, EP-WF-015"
+    - "process force-killed -> Section 6.3 'Killing/fencing a process is not ... COMPLETED'; EP-FALSE-011, EP-CTL-005, COMP-14; CANCELLED only"
+    - "evidence incomplete -> Section 12.3 EVIDENCE_FAILURE prevents COMPLETED; RR-010; EP-FALSE-013, EP-EVID-002"
+    - "approval outstanding -> Section 11.1 'no ... pending approval'; EP-FALSE-009, EP-APR-002: WAITING_FOR_APPROVAL, zero effect"
+    - "remote effect unresolved -> zero OUTCOME_UNCERTAIN conjunct; EP-FALSE-008, EP-CTL-006, COMP-03"
+    - "external effect acknowledgement lost -> Section 9.5 readback before retry; RR-003; EP-FALSE-015, EP-CTL-019, COMP-02/10; effect count at most one"
+    - "remote action fails after local success -> UF-10 step 7, Section 9.5, KNOWN_FAILED/OUTCOME_UNCERTAIN blocks the external predicate; EP-NEG-EXT-01, EP-GIT-021/023 fresh readback"
+  barrier_properties: "Every route names a deterministic oracle whose failure state is FAIL/BLOCKED/UNVERIFIED; OR-BOUNDED-RUBRIC cannot override a deterministic failure (suite Section 4, checkpoint judgment_oracle_rule); an admitted COMPLETED with a false conjunct is FALSE_TERMINAL_COMPLETION, a zero-tolerance non-compensating blocker (RR-008, EP-FALSE-021, hard_invariant_gate false_terminal_completion_threshold 0). E2 cannot design around a vague 'done'."
+
+security_authority_freeze:
+  result: SECURITY_AUTHORITY_FREEZE_PASS
+  user_founder_authority: "Contract Section 3.2 five-layer precedence; repository governance superior; authenticated principal required; conversational self-assertion is not authorization"
+  untrusted_repository_content_prompt_injection: "Section 3.2 closed instruction influence (UNTRUSTED_GOVERNING_INPUT may only narrow; UNTRUSTED_CONTEXT has no governing power); FR-004/FR-009; NEG-AUTH-01; EP-WF-003/019; COMP-06/16"
+  secret_locations_content: "Section 9.6 nine protected families with precedence over allowed roots, ambiguity denial, non-exhaustive detection; FR-046/FR-047; 12 marker surfaces"
+  path_symlink_escape_filesystem_boundaries: "Section 8.2; FR-013; NEG-FS-01; EP-NEG-FS-01; COMP-07"
+  terminal_execution_destructive_commands: "Section 8.3 (descendants inherit bounds, no non-interruptible untrusted code); NEG-TERM-01/NEG-CMD-01/NEG-DESTRUCT-01; Section 8.4 destructive rows PROHIBITED_V0_1 even with approval"
+  network_access: "Section 9.3 deny-by-default, re-resolve every hop; FR-045; NEG-NET-01; EP-NEG-NET-01"
+  package_scripts_git_hooks: "Section 8.5 (retrieval never authorizes execution) and Section 8.4 last paragraph (hooks/helpers/filters untrusted executable surfaces); FR-027; NEG-SUPPLY-01/NEG-GIT-01; EP-NEG-SUPPLY-01/02; COMP-12/13"
+  remote_git_actions: "Section 8.4: non-force push and PR create/update OPTIONAL_WITH_CONSTRAINTS + APPROVAL_REQUIRED + readback; force push, pull, remote merge/deletion, tag mutation PROHIBITED_V0_1"
+  approval_requirements_replay_staleness_scope: "Section 9.4 binding tuple, one-shot default, mutation/substitution/expiry/revocation/replay/stale-owner invalidation, successor revalidation; FR-042..FR-044; NEG-APR-01/NEG-RACE-01; EP-APR-003..009"
+  evidence_integrity: "Section 3.3 append-only semantics with declared threat boundary; Section 12.3 rules 1/9/11/16; NEG-AUDIT-01/NEG-EVID-01"
+  capability_escalation: "Section 5.3 bounded autonomy; FR-037; Section 9.1 discovered tools non-executable; COMP-16; NEG-DOS-01"
+  external_effects: "Section 9.5 stable identity, receipt, readback, no blind retry; FR-068; NEG-EXT-01"
+  repository_content_never_grants_authority: "Contract Section 3.2 ('cannot grant capability, satisfy approval, change policy, widen scope, or prove completion'); UF invariant 4; workflow Section 7"
+  e2_freedom_preserved: "Enforcement mechanism, sandbox tier, capability topology, credential store, and hash/log design are explicitly E2; semantics fixed."
+
+recovery_durability_freeze:
+  result: RECOVERY_DURABILITY_FREEZE_PASS
+  durable_task_identity: "FR-001/FR-002; contract Section 2 agent/task/attempt terms; Section 5.1"
+  process_restart_host_restart: "Section 7 (orchestrator/worker loss -> RECOVERING; client-only reconnect does not interrupt); FR-031; RR-001/RR-002; UF-08; device/media loss beyond declared boundary explicitly UNKNOWN until E2/E5"
+  model_timeout_tool_timeout_lost_response: "Section 6.1 DISPATCHED/RECONCILING rules ('response loss never implies non-effect'); UF-12; FR-021; EP-CTL-021/022/018"
+  partial_write: "FR-014; EP-WF-010; COMP-14"
+  stale_workspace: "Section 6.5 resume revalidation; UF-07; EP-CTL-013; COMP-05"
+  duplicate_operation_side_effect: "FR-032; RR-003; Section 9.5; EP-CTL-023; COMP-10"
+  unknown_external_effect_acknowledgement: "OUTCOME_UNCERTAIN semantics (Section 6.1/7/9.5); EP-CTL-019; EP-FALSE-015"
+  pause_resume_stop_force_stop_redirect: "Sections 6.2-6.5; UF-04..UF-07; FR-033; RR-006; SLO-002 families"
+  approval_wait_across_restart: "Section 4.2 WAITING_FOR_APPROVAL+RECOVERING row; Section 6.5/9.4 successor consumption; EP-CTL-015; EP-APR-006; COMP-01/09"
+  persistence_architecture_unselected: "Section 3.3 'Exact concurrency, audit, integrity, and persistence mechanisms are E2 decisions'; Section 7 'without assuming a specific mechanism'"
+
+state_model_sufficiency:
+  result: STATE_MODEL_SUFFICIENCY_PASS
+  dimensions: "Nine responsibilities; mutual exclusion only within task.work_phase, task.control, task.reconciliation, attempt.disposition; wait_reasons and blocker_refs independent sets; verification aggregate + immutable sequential runs + verdict; per-operation status/outcome; agent identity/availability separate (contract Section 2; Section 12.1 cardinalities)."
+  legal_illegal_combinations: "Contract Section 4.2 twelve-row table with rejection duty; checkpoint SC-01..SC-12 map each row to cases."
+  transient_control_vs_terminal_disposition: "task.control values are transient; attempt.disposition is the only terminal scalar, immutable, absent while open (Section 2, Section 4.4)."
+  stress_combinations:
+    PAUSING_plus_RECOVERING: "VALID; recovery may perform only pause/control/safety reconciliation (Section 4.2; UF-04 acceptance; EP-CTL-014)"
+    STOPPING_plus_RECOVERING: "VALID; stop intent dominates; exits only to continued stopping or CANCELLED (Section 4.2, Section 7; EP-CTL-006)"
+    WAITING_FOR_APPROVAL_plus_RECOVERING: "VALID; decision recordable but not consumable until revalidation (Section 4.2; EP-CTL-015)"
+    BLOCKED_plus_PAUSED: "VALID; both gates resolve independently (Section 4.2; EP-CTL-013)"
+    CANCELLED_plus_prior_verification: "VALID with zero credit; IN_PROGRESS invalid at close; CHANGES_REQUIRED forces SUPERSEDED not CANCELLED (Section 4.2; EP-FALSE-011/019)"
+    implementation_success_plus_verification_failure: "CHANGES_REQUIRED -> old attempt SUPERSEDED + linked unverified correction attempt (Section 4.3/4.4)"
+    completed_local_work_plus_pending_remote_effect: "INVALID for COMPLETED (Section 4.2 row; Section 11.1 zero OUTCOME_UNCERTAIN and every success-required effect KNOWN_SUCCEEDED with readback; EP-FALSE-008/016)"
+  agent_availability_not_task_completion: "Section 5 'agent state alone does not change task truth'; worker loss never implies completion; EP-WF-006"
+  derived_display_not_authoritative: "Section 2 primary label is a derived projection that may emphasize but never erase; FR-007/FR-060; EP-WF-014"
+
+evidence_contract:
+  result: EVIDENCE_CONTRACT_PASS
+  reconstructable: "task (task_id/attempt_id/task_class), request (request_id, Authority and request section), inputs/provenance (input_provenance_refs, Inputs/provenance section), base repository identity (repository_ref, repository_condition_refs), plan (plan_ref, predicate_coverage_map_ref), workspace (workspace_ref), changed files/diff/revision (Change/review package, review_revision_ref), tools/commands (Operations), checks (Tests/checks), failures/retries (Failures/recovery), approvals/effects (Approvals/effects/readbacks), routing provenance (route_provenance_refs, Provider/model/tool/environment), actor/model/tool provenance (author/executor/challenger identity refs, per-run verifier identity), verification (Verification section, verification_run_refs, authoritative_verification_run_ref), predicate adequacy (PREDICATE_SET_ADEQUATE in Plan and predicates), artifacts (Artifacts), limitations (Final disposition), final disposition (attempt_disposition, last_work_phase), integrity/tamper state (Integrity and threat evidence, Final validation)."
+  format_storage_unselected: "Contract Section 12.1 'Storage and serialization technology are deliberately unselected'; workflow Section 6 'Serialization and persistence are E2 decisions'."
+  validation: "Six profiles with conditional requiredness; 42 keys, 15 sections, 16 rules reconciled with checkpoint evidence_contract_coverage (validator); EP-EVID-001..012."
+
+evaluation_suite_stability:
+  result: EVALUATION_SUITE_STABILITY_PASS
+  recomputed_counts: "170 specified / 0 implemented / 0 run; 23 NEG families (24 NEG cases; EP-NEG-SUPPLY-02 dual-mapped); 16 repository conditions; 30 Git/effect variants; 18 oracles; 11 fixture families; 9 predicate-adequacy variants; 16 mandatory compositions (39 parent references, 32 distinct, all resolving); 8 reliability protocols; 12 secret surfaces; 7 charter Section 22 documentation items; 13 gate-logic vectors all non-PASS"
+  case_definition_sufficiency: "Section 3 resolvable schema fixes preconditions, scenario, permitted/prohibited capabilities, approval assumptions, expected observable, completion predicate, oracle, required evidence, forbidden outcome, pass/fail/unverified-block conditions, determinism expectation, fixture requirements, provenance, risk class and correction-ceiling fields; Section 5 fixes fixture semantics, seeds, variants, mutation regions, and end-state oracles; Section 2 fixes run/result vocabulary including BLOCKED, INVALID_HARNESS, INCONCLUSIVE, and governed NOT_APPLICABLE."
+  stability_for_E2_E3_E4: "Suite Section 10: E2 may choose mechanisms that materialize fixture/oracle interfaces but may not redefine expected outcomes; amendment paths are prospective with independent review; suite/fixture/oracle versions are frozen inputs to future_release_candidate_binding."
+
+oracle_quality:
+  result: ORACLE_QUALITY_PASS
+  priority_order: "deterministic state/readback > deterministic tests/checks > invariants/schema > structured comparison > bounded judgment (suite Section 4; workflow Section 6)"
+  judgment_cannot_override: "OR-BOUNDED-RUBRIC 'cannot override a deterministic failure'; checkpoint judgment_oracle_rule; judgment used only for FR-061 clarity (EP-WF-014) and residual adequacy mapping (EP-FALSE-003/006)"
+  non_claims_explicit: "18/18 oracle rows carry a nonempty 'Does not establish' clause (validator)"
+  predicate_adequacy_separate_from_test_pass: "OR-CHECK-REPLAY does not establish adequacy; VER-ADQ-01..09; PREDICATE_SET_ADEQUATE first conjunct"
+  uncertainty_can_remain_UNVERIFIED: "Section 2/3 vocabulary; unverified_block_condition; VERIFICATION_ERROR keeps UNVERIFIED; INCONCLUSIVE gives no credit"
+  evidence_revision_bound: "OR-INDEPENDENT-VERIFY exact candidate/revision; OR-EVIDENCE-BUNDLE profile/revision binding; EP-EVID-003; EP-FALSE-014"
+  all_oracle_classes_used: "17 by catalog rows plus OR-METRIC-PROTOCOL by all 8 protocols = 18/18; zero orphans"
+  metric_protocols_not_orphaned: "Each SLO/MET ID -> exactly one keyed PROT block with OR-METRIC-PROTOCOL; suite Section 8 explains intent"
+
+specification_gate_design:
+  result: SPECIFICATION_GATE_DESIGN_PASS
+  distinction: "Checkpoint e1_specification_gate (this gate; thirteen results evaluable now from specification artifacts) is separate from the v0.1 release gate (future_release_candidate_binding null; final_decision NOT_EVALUATED; gate_decision_logic; 15 deterministic release checks NOT_EVALUATED/BLOCKED; independent_release_verification UNVERIFIED; human_release_approval NOT_EVALUATED). No release requirement is claimed satisfied now; observed_results []."
+  exact_required_results_and_outcomes:
+    contribution_workflow_walkthrough: "PASS — CW-G01..G16, 15-step walkthrough, EP-CONTRIB-001..008, NA-SPECIFICATION-LANE rule confirmed by the E1-002 verifier"
+    evaluation_catalog_schema_and_case_count: "PASS — 170 rows x 7 cells, unique IDs, exact group counts, resolvable schema"
+    requirement_coverage_and_reference_resolution: "PASS — 127/127 dispositioned; 701+8 edges; zero unresolved tokens; zero symmetric difference"
+    security_repository_and_git_matrix_reconciliation: "PASS — NEG 23/23, RC 16/16, GE 30/30 equal to the verified contract in order; suite cells match"
+    oracle_and_fixture_completeness: "PASS — 18/18 oracles used with non-claims; 11/11 fixtures defined and referenced; 9/9 adequacy variants; 16/16 compositions"
+    release_checkpoint_mechanical_review: "PASS — YAML parses without duplicate keys; mandatory set 170/8; NOT_APPLICABLE policy closed; 15 release checks mandatory with no NA and no premature PASS; license review BLOCKED under R-029; gate precedence REJECTED/REJECTED/REJECTED/BLOCKED/VERIFIED; 13 vectors non-PASS; zero runs/results"
+    cross_file_gate_consistency: "PASS — PROJECT_STATE, TASK_REGISTRY, and checkpoint agreed on E1 NOT_EVALUATED / E2 NOT_STARTED before this pass; the checkpoint's stale prerequisites.E1-002 self-status (NOT_VERIFIED_FIXER_PASS, historical after 557e335 verification) is corrected in the gate block by this pass; all three now record the gate VERIFIED"
+    independent_challenger_and_post_fix_verifier_records: "PASS — three distinct verifier records and three distinct challenger records, byte-unchanged since their founder commits, with reviewed commits and finding dispositions"
+    no_architecture_selection: "PASS — flags false; word-bounded technology/vendor scan over the seven E1 artifacts matches only the charter's Level C not-to-copy list (Electron, SQLite, protobuf, JSONL), Section 20 candidate-system list (Codex, Claude, GPT, DeepSeek), and 'Cargo' inside the contract's package-registry credential example; no selection"
+    no_application_code: "PASS — tracked files md/yaml/csv/json/gitignore only; no untracked files"
+    no_e2_or_e3_execution: "PASS — no E2 task, ADR, spike, or benchmark directory; technical_spikes_run 0"
+    no_model_benchmark_or_paid_call: "PASS — MODEL_REGISTRY 13/13 NOT_RUN, no_paid_calls_run true, PLAN_ONLY_NOT_AUTHORIZED_TO_RUN; checkpoint benchmark_runs 0 / paid_api_calls 0"
+    no_autonomous_build_authorization: "PASS — NOT_ELIGIBLE / NOT_AUTHORIZED / founder_authorization_status NOT_RECORDED; D-016 unchanged (DECISION_LOG blob 41e349cc identical to 334f919)"
+  later_runtime_release_requirements_represented_not_satisfied: "SLO-001..004 thresholds prospective with observed_value null; MET-001..004 report-only; release checks NOT_EVALUATED/BLOCKED; future_stage_prerequisites E2/E3/E4/E5 NOT_EVALUATED."
+
+charter_section_18:
+  result: PASS
+  items:
+    - {item: 1, requirement: "Engineering Preview PRD", result: PASS, evidence: "03_product/ENGINEERING_PREVIEW_PRD.md verified at cced384 (E1-001_verifier_review.yaml AC1-AC5 PASS); blob 4a817887 unchanged"}
+    - {item: 2, requirement: "User flows", result: PASS, evidence: "03_product/ENGINEERING_PREVIEW_USER_FLOWS.md UF-01..UF-16 with global invariants; verified at cced384"}
+    - {item: 3, requirement: "MVP scope", result: PASS, evidence: "PRD Section 5.1 scope table; Section 3 five eligible task classes"}
+    - {item: 4, requirement: "Explicit non-goals", result: PASS, evidence: "PRD Section 5.2; UF Section 20; charter Section 14"}
+    - {item: 5, requirement: "Functional requirements", result: PASS, evidence: "56 FR with objective acceptance evidence (PRD Section 6); 119/119 case-backed IDs traced"}
+    - {item: 6, requirement: "Reliability requirements", result: PASS, evidence: "RR-001..015 HARD_INVARIANT; SLO-001..004; MET-001..004 (contract Section 14; PRD Section 7); protocols keyed in checkpoint"}
+    - {item: 7, requirement: "Security requirements", result: PASS, evidence: "PRD Section 8; contract Sections 3.2, 8.2-8.5, 9, 15 (23 NEG families); suite 24 NEG cases and 16 compositions"}
+    - {item: 8, requirement: "Task lifecycle", result: PASS, evidence: "Contract Sections 4.1-4.4 (11 phases, components, 12 combination rules, 32 transitions); checkpoint LT-01..32 coverage"}
+    - {item: 9, requirement: "Agent lifecycle", result: PASS, evidence: "Contract Section 5 (identity_state and availability axes, 12 transitions); EP-WF-006; checkpoint AT coverage"}
+    - {item: 10, requirement: "Completion predicates", result: PASS, evidence: "Contract Section 11.1 common gate and Section 11.2 task-type predicates; checkpoint CP-01..07"}
+    - {item: 11, requirement: "Approval boundaries", result: PASS, evidence: "Contract Sections 9.2, 9.4, 9.5 and 8.4 approval column; UF-09; EP-APR-001..009"}
+    - {item: 12, requirement: "Evidence-bundle contract", result: PASS, evidence: "Contract Section 12 (six profiles, 42 keys, 15 sections, 16 rules); EP-EVID-001..012; SLO-004"}
+    - {item: 13, requirement: "Open-source contribution workflow", result: PASS, evidence: "03_product/ENGINEERING_PREVIEW_CONTRIBUTION_WORKFLOW.md verified at 557e335 (E1-002_verifier_review.yaml AC1 PASS); blob 4c834fc0 unchanged"}
+    - {item: 14, requirement: "Evaluation suite", result: PASS, evidence: "06_evaluation/ENGINEERING_PREVIEW_EVALUATION_SUITE.md EP-EVAL-0.2 verified at 557e335 (AC2 PASS); blob 3d474bbd unchanged; counts recomputed here"}
+    - {item: 15, requirement: "Release acceptance criteria", result: PASS, evidence: "10_checkpoints/stage_checkpoints/ENGINEERING_PREVIEW_V0_1_RELEASE_ACCEPTANCE.yaml verified at 557e335 (AC3 PASS); only the e1_specification_gate block and future_stage_prerequisites.E1_gate changed by this pass"}
+  ownership_and_protocol: "E1-001 covered items 1-12 and E1-002 items 13-15 exactly as Section 18 assigns; each task completed author/challenger/fixer/independent-verifier; no author marked its own work verified."
+  answers_what_correctness_means: "PASS — contract Section 11.1 conjunction, Section 14 hard invariants, Section 15 hard acceptance, and the suite's deterministic oracle model define correctness before architecture or code."
+
+charter_section_22:
+  result: PASS_FOR_E1_SCOPE_WITH_RELEASE_ITEMS_DEFERRED
+  applicability_rule: "Section 22 says 'E1-002 must make the release criteria testable. At minimum, the future E5 gate must require ...'. The E1-gate obligation is testability of each criterion; satisfaction belongs to the future E5 exact-candidate gate."
+  items:
+    - {criterion: "end-to-end primary workflow success on declared representative repositories and task classes", e1_applicability: TESTABILITY, result: PASS, later: DEFERRED_TO_LATER_GATE, evidence: "SLO-001 population (five task classes x >=20, clean repo >=20, claimed conditions >=10) with thresholds; EP-WF-004; final_decision requires every_preview_SLO_pass"}
+    - {criterion: "restart/recovery, interruption, duplicate-effect, workspace-isolation, and failure-path evidence", e1_applicability: TESTABILITY, result: PASS, later: DEFERRED_TO_LATER_GATE, evidence: "SLO-002/003; EP-CTL-*, EP-WF-009/019, EP-NEG-EXT-01; recovery_and_rollback_claims check"}
+    - {criterion: "completion-predicate and independent-verification evidence", e1_applicability: TESTABILITY, result: PASS, later: DEFERRED_TO_LATER_GATE, evidence: "EP-FALSE-*, VER-ADQ-*, independent_release_verification block"}
+    - {criterion: "security-negative tests and resolution of release-blocking findings", e1_applicability: TESTABILITY, result: PASS, later: DEFERRED_TO_LATER_GATE, evidence: "required_test_and_security_negative_results check; 23/23 families mandatory; non_compensating_blockers"}
+    - {criterion: "evidence-bundle schema and content validation", e1_applicability: TESTABILITY, result: PASS, later: DEFERRED_TO_LATER_GATE, evidence: "evidence_bundle_schema_semantics_and_references check; SLO-004; EP-EVID-*"}
+    - {criterion: "deterministic declared build/test/package outputs where applicable", e1_applicability: TESTABILITY, result: PASS, later: DEFERRED_TO_LATER_GATE, evidence: "artifact_package_dependency_and_release_manifest_closure check; exact_candidate_revision_and_bundle_binding; workflow Section 9 future implementation task must name build/test/package contracts (missing = blocking UNKNOWN)"}
+    - {criterion: "forbidden-artifact, secret, private-data, external-code, branding, and clean-room checks", e1_applicability: TESTABILITY, result: PASS, later: DEFERRED_TO_LATER_GATE, evidence: "secret_and_private_data_scan (12 surfaces), forbidden_reconstructed_artifact_scan, clean_room_source_dependency_and_fixture_provenance; EP-CONTRIB-005"}
+    - {criterion: "provider/model/configuration limits and known unsupported cases", e1_applicability: TESTABILITY, result: PASS, later: DEFERRED_TO_LATER_GATE, evidence: "known_limitations_complete_and_consistent; RC UNKNOWN_E2_E3/REJECTED rows; route eligibility classes; EP-ROUTE-*"}
+    - {criterion: "open-source license, provenance, setup, contribution, test, security-reporting, and release documentation", e1_applicability: TESTABILITY, result: PASS, later: DEFERRED_TO_LATER_GATE, evidence: "open_source_documentation_complete with seven required items and FAIL on missing/stale; license_and_rights_review BLOCKED under R-029 (no outbound license or inbound terms selected) — a legal/governance decision correctly assigned to the release gate, not an E2 architecture input; see NOTE G-E1-N4"}
+    - {criterion: "exact known limitations and preview-grade, not production-grade, claims", e1_applicability: TESTABILITY, result: PASS, later: DEFERRED_TO_LATER_GATE, evidence: "known_limitations required with ten current entries; contract Section 14 'preview correctness gates, not claims'; PRD Section 1"}
+    - {criterion: "independent release verification and human release approval", e1_applicability: TESTABILITY, result: PASS, later: DEFERRED_TO_LATER_GATE, evidence: "independent_release_verification (exact candidate, not author/fixer, separate session, verifier error remains UNVERIFIED); human_release_approval cannot waive and does not publish; final_decision list"}
+  not_waived: "No documentation or release-readiness criterion is waived; each has a mandatory checkpoint check with not_applicable_permitted false and a FAIL/BLOCKED consequence."
+
+open_questions:
+  result: OPEN_QUESTIONS_PASS
+  items:
+    - {unknown: "final client technology / interaction form", classification: SAFE_FOR_E2, basis: "Charter Section 19 last bullet; D-016 'not yet selected'; PRD Section 14"}
+    - {unknown: "language/runtime, database, event store, workflow engine, durable state/history/projection/compaction architecture", classification: SAFE_FOR_E2, basis: "Charter Section 19; contract Sections 3.1, 3.3, 13.4"}
+    - {unknown: "sandbox/isolation mechanism and demonstrated tier", classification: SAFE_FOR_E2, basis: "Charter Section 12 last paragraph, Section 19; PRD Section 8 items 9-10; E3 then supplies evidence"}
+    - {unknown: "model/provider gateway or direct integration; capability topology (direct adapters vs MCP-or-equivalent)", classification: SAFE_FOR_E2, basis: "Charter Section 5.3/19; contract Section 9.1 'E2 chooses the capability topology'"}
+    - {unknown: "authentication mechanism for the local principal", classification: SAFE_FOR_E2, basis: "Contract Section 3.2 fixes semantics; mechanism E2"}
+    - {unknown: "concurrency/ownership mechanism (versions, CAS, leases, actors, workflow ownership)", classification: SAFE_FOR_E2, basis: "Charter Section 15/19; contract Section 4.4 'E2 selects the mechanism'; FC-002"}
+    - {unknown: "error-code registry representation; evidence serialization/storage; hash/log/integrity mechanism", classification: SAFE_FOR_E2, basis: "Contract Sections 10.2, 12.1, 3.3"}
+    - {unknown: "supported host platforms, repository sizes, languages, build systems, tool catalog", classification: SAFE_FOR_E2, basis: "PRD Section 14; E2 declares candidate manifest; suite RC UNKNOWN_E2_E3 fails closed"}
+    - {unknown: "declared supported local persistence boundary (device/media loss)", classification: SAFE_FOR_E2, basis: "Contract Section 7 'until E2 and E5 define and test it'; persistence_boundary evidence key"}
+    - {unknown: "package/release/update/migration implementation", classification: SAFE_FOR_E2, basis: "PRD Section 14; charter Section 22 'does not imply a particular packaging technology'"}
+    - {unknown: "model/provider eligibility, model-role assignments, empirical performance, cost/latency evidence, verifier-independence strategy comparison", classification: DEFERRED_TO_E3, basis: "Contract Section 9.3/11.3; A-004/A-009; benchmark plan D-016 gate"}
+    - {unknown: "finite numeric values for verification-rerun ceiling, deterministic-check repetition rule, and correction-attempt ceiling (policy-owned; no registered owner task yet)", classification: DEFERRED_TO_E3, basis: "Checkpoint scored_run_common_protocol (missing value BLOCKED before scored freeze); V-E1-002-N2; owner task to be registered during E2/E3 planning — see NOTE G-E1-N3"}
+    - {unknown: "reference-environment manifest binding for SLO-002/SLO-003 latency placeholders", classification: DEFERRED_TO_E3, basis: "measurement_definition_governance.latency_placeholder_rule"}
+    - {unknown: "prototype/benchmark budget, funded API access, account quotas, data-policy approvals", classification: DEFERRED_TO_E3, basis: "PROJECT_STATE unresolved_p0_questions; S0-005; charter Section 20"}
+    - {unknown: "policy-defined low-risk task classes for same-model verification", classification: DEFERRED_TO_E3, basis: "Suite Section 7.3/9: HIGH for every scored task until a versioned policy is independently verified"}
+    - {unknown: "outbound open-source license, inbound contribution terms, contributor certificate/agreement, third-party rights clearance", classification: DEFERRED_TO_E5, basis: "R-029; checkpoint license_and_rights_review BLOCKED; workflow Section 1 explicit UNKNOWN release blockers; recommended founder decision before E4 accepts external contributions (NOTE G-E1-N4)"}
+    - {unknown: "exact release candidate, build/package digests, supported-environment manifest, release documentation", classification: DEFERRED_TO_E5, basis: "future_release_candidate_binding null; E5 exact-candidate verification"}
+    - {unknown: "customer demand, willingness to pay, pricing, market size, production suitability", classification: FUTURE_PRODUCT, basis: "D-016 deferred startup track; PRD Section 14"}
+    - {unknown: "reference-product runtime behavior/parity", classification: FUTURE_PRODUCT, basis: "S0-004 BLOCKED external dependency; baseline is zero-run documentation"}
+    - {unknown: "multi-agent, cloud, multi-tenant, General/Finance Edition behavior", classification: FUTURE_PRODUCT, basis: "FC-001..009 compatibility only"}
+  must_resolve_before_E2: []
+  product_semantic_unknown_handed_to_E2_as_architecture_choice: NONE_FOUND
+
+architecture_neutrality:
+  result: ARCHITECTURE_NEUTRALITY_PASS
+  scan: "Word-bounded scan of the charter, PRD, user flows, contract, workflow, suite, and checkpoint for client (Electron, Tauri, browser/web, CLI-as-final), languages/runtimes, databases, event stores, workflow engines, sandbox vendors, container/VM technologies, cloud providers, agent/model frameworks, providers/models, and concurrency frameworks. Hits: charter Section 16.2 Level C not-to-copy list (Electron, SQLite, protobuf, JSONL); charter Section 20 candidate-system list (Codex, Terra, Luna, Claude Code, DeepSeek, GPT — 'none is selected by E0'); contract Section 9.6 package-registry credential examples ('Maven/Gradle/Cargo/NuGet'); 'MCP or equivalent' as an E2 alternative / untrusted-input example; 'worktree' as a Git repository condition with an 'E2-selected equivalent' permitted. No final selection of any listed category; PROJECT_STATE architecture_selected false; MODEL_REGISTRY no_provider_or_model_locked true."
+  reconstruction_identifier_scan: "Zero matches for the reconstruction's internal identifiers or audit PAT-/ADOPT/ADAPT/REJECT labels in the seven E1 artifacts."
+
+clean_room:
+  result: CLEAN_ROOM_PASS
+  no_reconstructed_source_imported: "Repository contains md/yaml/csv/json/gitignore only; reconstruction identifier scan zero; external audit artifacts unchanged since their verified commits"
+  audit_remains_evidence_only: "Charter Section 16.2 Level A/B/C; contract Section 18; PRD Section 13 (Level B reserved for E2, Level C excluded)"
+  fixtures_synthetic_original: "Suite Section 5: SYNTHETIC_LOCAL_CLEAN_ROOM, SYNTHETIC_SECRET_MARKER placeholders, no real endpoint/credential/package/model call"
+  no_private_or_customer_evidence_in_public_artifacts: "Secret-pattern scan zero; S1-002 scorecard remains header-only; D-015 restricted storage outside the repository; no .env files"
+  license_rights_clearance: "Assigned to E5 release gate (license_and_rights_review BLOCKED, R-029); current policy (R-029 mitigation: keep contribution work specification-only) does not make it an E1 specification defect"
+
+governance_consistency:
+  result: PASS
+  pre_gate_state_confirmed: "E0-001/E1-001/E1-002 VERIFIED in TASK_REGISTRY and PROJECT_STATE completed list; E1 gate NOT_EVALUATED in PROJECT_STATE (stage_gate_status, phases.E1.gate_status) and checkpoint; E2-E5 NOT_STARTED; active/ready/backlog lists empty; architecture NOT_SELECTED (false/null); application code NONE (false/null); evaluation cases implemented 0 / run 0; model benchmarks 0; paid API calls 0; AUTONOMY_ELIGIBLE NOT_ELIGIBLE; AUTONOMOUS_BUILD_AUTHORIZED NO; S1-003 BLOCKED/DEFERRED/NOT_EXECUTED; 11 unique task IDs; 15 resolving acyclic dependencies; every task in exactly one PROJECT_STATE list with matching status."
+  contradictory_current_state_instructions: "None in authoritative records. README.md still advertises E1-001 READY / E1-002 BACKLOG and quotes an E1-001 authoring instruction under a VERIFY_STAGE_E1 heading (stale entry-point text; NOTE G-E1-N1). Artifact line-3 status strings and checkpoint author/fixer self-status fields are historical by precedent (V-E0-N1, V-E1-N5, V-E1-002-N4)."
+
+new_material_findings:
+  blocker: 0
+  high: 0
+  medium: 0
+  low: 0
+  notes:
+    - note_id: G-E1-N1
+      text: >-
+        README.md is stale (Current phase E1-001 ready; task-status bullet; a "MODE:
+        VERIFY_STAGE_E1" block whose body is the old E1-001 authoring instruction). Not in this
+        verifier's authorized edit list. Recommended founder commit-time refresh: E0-001/E1-001/
+        E1-002 VERIFIED; E1 gate VERIFIED (E1_GATE_PASSED); E2 NOT_STARTED pending task-graph
+        definition; architecture not selected; next command MODE: PLAN_STAGE_E2.
+    - note_id: G-E1-N2
+      text: >-
+        The release checkpoint's e1_specification_gate.prerequisites.E1-002 read
+        NOT_VERIFIED_FIXER_PASS at 557e335 because the E1-002 verifier did not edit the
+        checkpoint (outside its edit list). TASK_REGISTRY/PROJECT_STATE were authoritative
+        (VERIFIED). This gate pass corrected that field inside the gate block it is designated to
+        fill; no other checkpoint content changed (diff limited to the e1_specification_gate
+        block and future_stage_prerequisites.E1_gate). Top-level author_pass_status,
+        fixer_pass_status, coverage.status, validation_status, and the provisional NA record
+        status remain historical self-status per precedent.
+    - note_id: G-E1-N3
+      text: >-
+        The versioned task/qualification policy authority that must supply finite
+        verification-rerun, check-repetition, and correction-ceiling values has no registered
+        owner task (V-E1-002-N2). Absence is BLOCKED before any scored freeze, so E2 is safe;
+        E2/E3 planning should register the owner and independent-review path.
+    - note_id: G-E1-N4
+      text: >-
+        No outbound license or inbound contribution terms exist (R-029; license_and_rights_review
+        BLOCKED). This is correctly a release-gate blocker and not an E2 architecture input, but
+        it also prevents accepting any external contribution; the founder should decide it
+        before any E4 contribution intake rather than at E5.
+    - note_id: G-E1-N5
+      text: >-
+        Composition parent references count 39 total / 32 distinct in this pass versus "37" in
+        the E1-002 verifier record; the difference is counting method only — every reference
+        resolves to a catalog case and the 16 composition IDs are identical in suite and
+        checkpoint.
+    - note_id: G-E1-N6
+      text: >-
+        PROJECT_STATE unresolved_p0_questions entry engineering_preview_v0_1_correctness_contract
+        is closed by this gate (V-E1-N8) and moved to a resolved_p0_questions record;
+        engineering_preview_architecture_alternatives, prototype_budget, and
+        funded_api_access_and_account_quotas remain open for E2/E3.
+    - note_id: G-E1-N7
+      text: >-
+        No E2 task exists in TASK_REGISTRY.yaml. Consistent with the Stage 0 -> Stage 1
+        precedent (gate verification, then a separate transition that activates only
+        already-defined tasks), this pass does not invent an E2 task; PROJECT_STATE records the
+        E2 activation condition as satisfied and E2 status stays NOT_STARTED until MODE:
+        PLAN_STAGE_E2 defines the architecture-comparison task graph within charter Section 19.
+
+mechanical_checks:
+  validator: "scratchpad gate_validate.rb (Ruby 2.6 Psych; 100 assertions; output retained in the scratchpad session directory, not in the repository)"
+  results:
+    - "strict YAML parse: 46/46 tracked YAML files parse; zero duplicate keys (AST walk)"
+    - "task/state reconciliation: 11 unique task IDs; dependencies resolve, acyclic; every task in exactly one PROJECT_STATE list with matching status; no READY/CLAIMED/READY_FOR_REVIEW task; no E2 task"
+    - "E0/E1 task verification provenance: three distinct verifier records with reviewed commits; blobs unchanged at HEAD (28d1708c, 575f2864, c6adc1cd); challenger E1-001 blob e677c33a unchanged"
+    - "traceability consistency: 127 canonical IDs re-extracted; 170 rows; 34 range expansions; 701 case edges; 8 protocol edges; 709 total; projection symmetric difference 0/0; dispositions typed truthful; stored counts equal"
+    - "canonical requirement coverage: 119/119 case-backed IDs have >=1 case; 8/8 SLO/MET bind PROT blocks; zero SLO/MET row edges"
+    - "checkpoint projection consistency: evaluation_case_ids set- and order-equal (170); oracle_ids and fixture_ids set-equal; every EP-* reference in the checkpoint resolves"
+    - "oracle usage: 18 defined; 17 catalog-referenced + OR-METRIC-PROTOCOL x 8 protocols; 18/18 non-claims"
+    - "fixture references: 11 defined, 11 used, zero orphans; VER-ADQ 9/9 and COMP 16/16 identical to checkpoint lists; composition parents 39/32 all resolve"
+    - "security-negative coverage: 23/23 NEG keys set-equal to contract Section 15; all cases resolve"
+    - "repository-condition coverage: RC-01..16 dispositions equal contract Section 8.1 rows in order; suite EP-REPO cells match"
+    - "Git/effect coverage: GE-01..30 triples equal contract Section 8.4 rows in order; PROHIBITED_V0_1 <=> NOT_APPLICABLE_PROHIBITED; every REMOTE_EFFECT gated/prohibited; suite EP-GIT cells match"
+    - "lifecycle/combination/evidence cardinalities: 32 / 12 / 9 / 12 / 7 rows; 42 keys / 15 sections / 16 rules equal to the contract; EVR-03 traces EP-WF-019"
+    - "E1-001 frozen-byte preservation: PRD 4a817887, user flows e09e92f7, contract 8e11bdf0, charter 50f21ea0, benchmark plan cc902fb9, MODEL_REGISTRY 6b137d1d, DECISION_LOG 41e349cc, SOURCE_LEDGER f28e5f37 identical at cced384 and the working tree"
+    - "E1-002 final-artifact integrity: workflow 4c834fc0, suite 3d474bbd, checkpoint 36cda336, author handoff 70588b2f, fixer handoff b2324b87, challenger review 9cd1142c identical at 557e335 and the pre-edit working tree"
+    - "architecture-selection scan: reviewed hits listed under architecture_neutrality; no selection"
+    - "application-code scan: no source/manifest/lock/build files tracked or untracked"
+    - "benchmark/run-status scan: MODEL_REGISTRY 13/13 NOT_RUN, PLAN_ONLY_NOT_AUTHORIZED_TO_RUN, no_paid_calls_run true; no benchmark directory; checkpoint runs 0"
+    - "paid-call status: 0 (registry, checkpoint, PROJECT_STATE counters)"
+    - "clean-room/source-import scan: reconstruction identifiers zero; file types md/yaml/csv/json/gitignore"
+    - "secret scan: zero high-confidence matches repository-wide; no .env files"
+    - "allowed-path scope: this pass changed only PROJECT_STATE.yaml, the release checkpoint's gate block, and created this record"
+    - "git diff --check: clean before and after edits"
+  post_edit_validation: "Release checkpoint re-parsed after the gate-block edit: e1_specification_gate.current_result VERIFIED, 13/13 required_results PASS, future_stage_prerequisites.E1_gate VERIFIED, coverage intact (170 case IDs); PROJECT_STATE re-parsed; git diff --check clean."
+
+acceptance_gate_conditions:
+  - {condition: "E0-001, E1-001, E1-002 independently VERIFIED", result: PASS}
+  - {condition: "final artifacts form a coherent specification baseline", result: PASS}
+  - {condition: "product semantics frozen for architecture work", result: PASS}
+  - {condition: "evaluation semantics sufficiently concrete", result: PASS}
+  - {condition: "traceability coherent", result: PASS}
+  - {condition: "false-completion prevention operational", result: PASS}
+  - {condition: "security and authority boundaries frozen at product level", result: PASS}
+  - {condition: "recovery/durability semantics frozen at product level", result: PASS}
+  - {condition: "evidence semantics stable", result: PASS}
+  - {condition: "remaining UNKNOWNs legitimately belong to E2 or later", result: PASS}
+  - {condition: "architecture unselected", result: PASS}
+  - {condition: "no application code", result: PASS}
+  - {condition: "no material unresolved finding requires E1 correction", result: PASS}
+  - {condition: "charter Section 18 satisfied", result: PASS}
+  - {condition: "all currently applicable specification-gate conditions in the release checkpoint satisfied (13/13)", result: PASS}
+  - {condition: "E3 results required for E1?", result: NOT_REQUIRED_BY_AUTHORITATIVE_GATE}
+
+files_created:
+  - 10_checkpoints/stage_checkpoints/ENGINEERING_PREVIEW_E1_SPECIFICATION_GATE_VERIFICATION.yaml
+files_modified:
+  - 01_governance/PROJECT_STATE.yaml
+  - 10_checkpoints/stage_checkpoints/ENGINEERING_PREVIEW_V0_1_RELEASE_ACCEPTANCE.yaml (e1_specification_gate block and future_stage_prerequisites.E1_gate only)
+files_intentionally_not_modified:
+  - 01_governance/TASK_REGISTRY.yaml (no stage-gate field exists in its schema; no E2 task exists to make READY; E1 task entries already carry their verifier records)
+  - README.md (outside authorized edit list; see G-E1-N1)
+  - 03_product/ENGINEERING_PREVIEW_PRD.md, ENGINEERING_PREVIEW_USER_FLOWS.md, ENGINEERING_PREVIEW_CORRECTNESS_CONTRACT.md, ENGINEERING_PREVIEW_CHARTER.md, ENGINEERING_PREVIEW_CONTRIBUTION_WORKFLOW.md
+  - 06_evaluation/ENGINEERING_PREVIEW_EVALUATION_SUITE.md, MODEL_ROLE_BENCHMARK_PLAN.md
+  - 01_governance/MODEL_REGISTRY.yaml, DECISION_LOG.md, ASSUMPTION_REGISTER.md, RISK_REGISTER.md, SOURCE_LEDGER.csv
+
+security_checks:
+  - "No secrets, credentials, tokens, or private keys in the reviewed repository or in this gate patch (pattern scan zero matches)."
+  - "No customer, prospect, account, connector, provider API, or external system accessed; no outreach, spend, spike, benchmark, evaluation-case run, or paid call."
+  - "No reconstructed Grok Bot code or external implementation material read into or imported into the project; the external reference repository was not opened."
+  - "This gate patch changes only governance/gate status records and adds this checkpoint; it authorizes no execution, architecture, model role, E3/E4/E5 work, release, autonomy eligibility, or autonomous build."
+
+stage_gate_transition:
+  e1_gate_status_after_verification: VERIFIED
+  e1_gate_verdict: E1_GATE_PASSED
+  e2_status_after_verification: NOT_STARTED_ACTIVATION_CONDITION_SATISFIED
+  e2_task_activated: false
+  e2_task_reason: "No E2 task exists in TASK_REGISTRY.yaml; none invented."
+  architecture_selected: false
+  application_code_created: false
+  evaluation_cases_implemented: 0
+  evaluation_cases_run: 0
+  model_benchmarks_run: 0
+  paid_api_calls: 0
+  e3_started: false
+  autonomy_eligible: NOT_ELIGIBLE
+  autonomous_build_authorized: false
+  s1_003_resumed: false
+  next_command_after_founder_review_and_commit: "MODE: PLAN_STAGE_E2 — define the E2 architecture-alternatives/ADR task graph within charter Section 19 against the verified E1 baseline; select no architecture, run no spike/benchmark/paid call, write no application code, do not authorize autonomous build, do not resume S1-003."

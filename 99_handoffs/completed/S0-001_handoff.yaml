@@ -1,0 +1,355 @@
+handoff_id: H-S0-001-20260821
+task_id: S0-001
+stage: 0
+author_model: "Codex (runtime model identifier not exposed)"
+reviewer_requested: true
+started_at: null
+completed_at: "2026-08-21T12:58:08-04:00"
+files_read:
+  - .gitignore
+  - 00_inbox/README.md
+  - 00_inbox/prepared_materials/01_FOUNDER_BRIEF.md
+  - 00_inbox/prepared_materials/02_PRODUCT_REFERENCE_LINKS.md
+  - 00_inbox/prepared_materials/03_GROKBOT_EXAMPLES/EXPERIMENT_TEMPLATE.md
+  - 00_inbox/prepared_materials/03_GROKBOT_EXAMPLES/README.md
+  - 00_inbox/prepared_materials/03_GROKBOT_EXAMPLES/TEST_MATRIX.md
+  - 00_inbox/prepared_materials/04_TARGET_WORKFLOWS.md
+  - 00_inbox/prepared_materials/05_MODEL_ACCESS.md
+  - 00_inbox/prepared_materials/06_BUILD_CONSTRAINTS.md
+  - 00_inbox/prepared_materials/07_EXISTING_CODE/README.md
+  - 00_inbox/prepared_materials/08_COMPETITOR_EXAMPLES.md
+  - 00_inbox/prepared_materials/09_UI_REFERENCES/README.md
+  - 00_inbox/prepared_materials/10_CUSTOMER_NOTES/INTERVIEW_TEMPLATE.md
+  - 00_inbox/prepared_materials/10_CUSTOMER_NOTES/README.md
+  - 00_inbox/prepared_materials/11_RANDOM_IDEAS.md
+  - 00_inbox/prepared_materials/12_EXISTING_RESEARCH/README.md
+  - 00_inbox/prepared_materials/ASSUMPTIONS_AND_OPEN_QUESTIONS.md
+  - 00_inbox/uploaded_originals/README.md
+  - 01_governance/ASSUMPTION_REGISTER.md
+  - 01_governance/DECISION_LOG.md
+  - 01_governance/MODEL_REGISTRY.yaml
+  - 01_governance/PROJECT_STATE.yaml
+  - 01_governance/RISK_REGISTER.md
+  - 01_governance/SOURCE_LEDGER.csv
+  - 01_governance/TASK_REGISTRY.yaml
+  - 99_handoffs/HANDOFF_TEMPLATE.yaml
+  - 99_handoffs/completed/README.md
+  - AGENTS.md
+  - CLAUDE.md
+  - FILE_MANIFEST.json
+  - MASTER_OPERATING_PROMPT.md
+  - README.md
+  - SECURITY.md
+files_created:
+  - 99_handoffs/completed/S0-001_handoff.yaml
+files_modified:
+  - 01_governance/DECISION_LOG.md
+  - 01_governance/PROJECT_STATE.yaml
+  - 01_governance/TASK_REGISTRY.yaml
+files_deleted: []
+decisions_made:
+  - "No architecture, customer wedge, MVP workflow, or model role was selected."
+  - "The initialization inventory is scoped to the 34 tracked input files at base commit 4d99fff945a796d22fbe2ab7ec43e1310425ab71; author-created Stage 0 outputs are recorded by handoffs and the final diff."
+assumptions_added: []
+tests_run:
+  - "git status --short"
+  - "git ls-files --cached --others --exclude-standard | sort"
+  - "git ls-files count versus FILE_MANIFEST.json entries"
+  - "FILE_MANIFEST SHA-256 verification for all 33 listed entries"
+  - "tracked symlink-mode and filesystem symlink checks"
+test_results:
+  - "Initial git status was clean."
+  - "34 tracked files were present at initialization."
+  - "FILE_MANIFEST.json declared and contained 33 entries; its only missing tracked path was FILE_MANIFEST.json itself."
+  - "Corrected checksum harness reported checksum_mismatches=0 for all 33 manifest entries."
+  - "No tracked symlink mode and no non-.git filesystem symlink were found."
+  - "The first checksum-loop attempt produced 33 false mismatches because a shell variable named path replaced zsh PATH; the corrected harness used file_path and absolute utility paths and passed."
+  - "A final input-integrity check covered all 18 FILE_MANIFEST entries under 00_inbox and reported input_checksum_mismatches=0; git diff for 00_inbox contained zero lines."
+security_checks:
+  - "No file under 00_inbox/uploaded_originals was changed."
+  - "No secret file, credential, customer record, screenshot, recording, transcript, or application code was present in the tracked inventory."
+  - "No symlinks or reparse-like indirections were found in the project tree outside .git."
+known_limitations:
+  - "FILE_MANIFEST.json is a generated inventory aid, not the repository source of truth, and does not list itself."
+  - "Filesystem timestamps were not treated as evidence of semantic freshness; freshness below comes from file content, base commit context, and primary-source reopening requirements."
+  - "Independent challenger and verifier reviews have not run."
+  - "Historical timestamp clarification added during F-S0-001-03 remediation: the three initial Stage 0 handoffs used one batch-written completed_at value and did not capture real per-task started_at values. The timestamps were not fabricated, but they do not establish task duration or ordering. Future handoffs, beginning with the S0-001 fixer handoff, must record distinct non-null start and completion times."
+unverified_claims:
+  - "Founder-reported hardware and product subscriptions were not independently inspected."
+  - "Prepared public-product and model claims were not treated as verified by this inventory task."
+  - "Historical author-model clarification added during F-S0-001-04 remediation: the authoring surface is recorded as Codex, but the exact runtime model identifier was not exposed and the review request's GPT-5.6 Sol description is not founder-confirmed in the repository."
+blockers:
+  - grok_bot_account_build_plan_region_and_rollout_missing
+  - funded_model_api_accounts_quotas_and_budget_missing
+  - customer_interviews_and_usage_evidence_missing
+  - independent_challenger_and_verifier_unassigned
+recommended_next_task: REVIEW_TASK_S0-001
+repository_commit_or_patch: "Uncommitted Stage 0 working tree based on 4d99fff945a796d22fbe2ab7ec43e1310425ab71"
+
+inventory_scope:
+  base_commit: 4d99fff945a796d22fbe2ab7ec43e1310425ab71
+  reviewed_commit: f151f28
+  fix_baseline_commit: 9a2900ad11b92c69404193feae88d5aac1734242
+  tracked_input_file_count: 34
+  reviewed_commit_file_count: 39
+  fix_baseline_tracked_file_count: 42
+  combined_inventory_file_count_including_uncommitted_fixer_handoff: 43
+  original_evidence_file_count: 0
+  application_source_file_count: 0
+  customer_evidence_record_count: 0
+  black_box_observation_count: 0
+  manifest_entry_count: 33
+  manifest_self_exclusion: FILE_MANIFEST.json
+
+authority_classes:
+  GOVERNING_INSTRUCTION: "Controls agent work in this repository."
+  AUTHORITATIVE_PROJECT_STATE: "Mutable repository record authoritative for its stated project-state function; it is not primary external evidence."
+  PREPARED_FOUNDER_INPUT: "Structured founder statement, proposal, template, queue, or draft; not validated customer or product evidence."
+  PRIMARY_EVIDENCE_CONTAINER_INSTRUCTION: "Explains where scrubbed originals belong; the README itself is not an original observation."
+  REPOSITORY_METADATA: "Navigation, tooling, manifest, or handoff scaffolding; not product/customer evidence."
+  AUTHOR_OUTPUT_CHANGES_REQUESTED_NOT_VERIFIED: "Author-created deliverable with an independent challenger verdict of CHANGES_REQUESTED; not verifier-approved evidence."
+  AUTHOR_FACTUAL_HANDOFF_NOT_VERIFICATION: "Author process and evidence record; factual where reproducible, but not proof of independent review or acceptance."
+  INDEPENDENT_CHALLENGER_REVIEW_NOT_VERIFIER_DECISION: "Independent challenger record and finding evidence; not a verifier acceptance decision."
+  AUTHOR_FIXER_HANDOFF_PENDING_INDEPENDENT_REVIEW: "Author's factual fix record awaiting independent review; not proof that findings or acceptance criteria are verified."
+
+repository_inventory:
+  - path: .gitignore
+    role: local_and_secret_exclusion_rules
+    authority: REPOSITORY_METADATA
+    freshness: CURRENT_AT_BASE_COMMIT_2026_08_21
+    evidence_or_assumption: NEITHER
+  - path: 00_inbox/README.md
+    role: inbox_authority_and_handling_guidance
+    authority: GOVERNING_INSTRUCTION
+    freshness: CURRENT_AT_BASE_COMMIT_2026_08_21
+    evidence_or_assumption: NEITHER
+  - path: 00_inbox/prepared_materials/01_FOUNDER_BRIEF.md
+    role: founder_intent_resources_and_provisional_strategy
+    authority: PREPARED_FOUNDER_INPUT
+    freshness: BASELINE_DATED_2026_08_21
+    evidence_or_assumption: MIXED_FOUNDER_STATEMENTS_AND_EXPLICIT_PROVISIONAL_HYPOTHESES_NOT_CUSTOMER_EVIDENCE
+  - path: 00_inbox/prepared_materials/02_PRODUCT_REFERENCE_LINKS.md
+    role: starter_primary_source_map_and_research_questions
+    authority: PREPARED_FOUNDER_INPUT
+    freshness: BASELINE_DATED_2026_08_21_REOPEN_REQUIRED
+    evidence_or_assumption: SOURCE_POINTERS_AND_UNVERIFIED_SUMMARIES_NOT_OBSERVATIONS
+  - path: 00_inbox/prepared_materials/03_GROKBOT_EXAMPLES/EXPERIMENT_TEMPLATE.md
+    role: black_box_experiment_template
+    authority: PREPARED_FOUNDER_INPUT
+    freshness: CURRENT_AT_BASE_COMMIT_2026_08_21
+    evidence_or_assumption: TEMPLATE_ONLY_NO_OBSERVATION
+  - path: 00_inbox/prepared_materials/03_GROKBOT_EXAMPLES/README.md
+    role: black_box_collection_rules
+    authority: PREPARED_FOUNDER_INPUT
+    freshness: CURRENT_AT_BASE_COMMIT_2026_08_21
+    evidence_or_assumption: INSTRUCTION_ONLY_NO_OBSERVATION
+  - path: 00_inbox/prepared_materials/03_GROKBOT_EXAMPLES/TEST_MATRIX.md
+    role: proposed_black_box_test_catalog
+    authority: PREPARED_FOUNDER_INPUT
+    freshness: CURRENT_AT_BASE_COMMIT_2026_08_21
+    evidence_or_assumption: TEST_PROPOSALS_ONLY_ZERO_RESULTS
+  - path: 00_inbox/prepared_materials/04_TARGET_WORKFLOWS.md
+    role: candidate_workflow_catalog_and_completion_predicates
+    authority: PREPARED_FOUNDER_INPUT
+    freshness: CURRENT_AT_BASE_COMMIT_2026_08_21
+    evidence_or_assumption: DESIGN_HYPOTHESES_NOT_CUSTOMER_EVIDENCE
+  - path: 00_inbox/prepared_materials/05_MODEL_ACCESS.md
+    role: founder_reported_access_and_initial_model_hypotheses
+    authority: PREPARED_FOUNDER_INPUT
+    freshness: BASELINE_DATED_2026_08_21_REOPEN_AND_ACCOUNT_CHECK_REQUIRED
+    evidence_or_assumption: FOUNDER_REPORT_PLUS_UNVERIFIED_PUBLIC_AND_API_CLAIMS
+  - path: 00_inbox/prepared_materials/06_BUILD_CONSTRAINTS.md
+    role: confirmed_and_provisional_project_constraints
+    authority: PREPARED_FOUNDER_INPUT
+    freshness: CURRENT_AT_BASE_COMMIT_2026_08_21
+    evidence_or_assumption: MIXED_CONFIRMED_INTENT_PROVISIONAL_BUDGET_AND_UNKNOWNS
+  - path: 00_inbox/prepared_materials/07_EXISTING_CODE/README.md
+    role: prior_code_intake_rules_and_empty_state
+    authority: PREPARED_FOUNDER_INPUT
+    freshness: CURRENT_AT_BASE_COMMIT_2026_08_21
+    evidence_or_assumption: DOCUMENTED_ABSENCE_OF_REUSABLE_CODE_IN_REPOSITORY
+  - path: 00_inbox/prepared_materials/08_COMPETITOR_EXAMPLES.md
+    role: competitor_research_queue_and_dimensions
+    authority: PREPARED_FOUNDER_INPUT
+    freshness: CURRENT_AT_BASE_COMMIT_2026_08_21
+    evidence_or_assumption: INVESTIGATION_QUEUE_NOT_COMPETITOR_FINDINGS
+  - path: 00_inbox/prepared_materials/09_UI_REFERENCES/README.md
+    role: ui_reference_intake_rules_and_initial_principles
+    authority: PREPARED_FOUNDER_INPUT
+    freshness: CURRENT_AT_BASE_COMMIT_2026_08_21
+    evidence_or_assumption: DESIGN_PRINCIPLES_NO_UI_OBSERVATIONS
+  - path: 00_inbox/prepared_materials/10_CUSTOMER_NOTES/INTERVIEW_TEMPLATE.md
+    role: customer_interview_template
+    authority: PREPARED_FOUNDER_INPUT
+    freshness: CURRENT_AT_BASE_COMMIT_2026_08_21
+    evidence_or_assumption: TEMPLATE_ONLY_NO_INTERVIEW
+  - path: 00_inbox/prepared_materials/10_CUSTOMER_NOTES/README.md
+    role: customer_evidence_policy_and_empty_state
+    authority: PREPARED_FOUNDER_INPUT
+    freshness: CURRENT_AT_BASE_COMMIT_2026_08_21
+    evidence_or_assumption: EXPLICITLY_RECORDS_ZERO_CUSTOMER_EVIDENCE
+  - path: 00_inbox/prepared_materials/11_RANDOM_IDEAS.md
+    role: unvalidated_idea_backlog
+    authority: PREPARED_FOUNDER_INPUT
+    freshness: CURRENT_AT_BASE_COMMIT_2026_08_21
+    evidence_or_assumption: HYPOTHESES_AND_PROPOSALS_ONLY
+  - path: 00_inbox/prepared_materials/12_EXISTING_RESEARCH/README.md
+    role: external_research_intake_rules_and_empty_state
+    authority: PREPARED_FOUNDER_INPUT
+    freshness: CURRENT_AT_BASE_COMMIT_2026_08_21
+    evidence_or_assumption: EXPLICITLY_RECORDS_ZERO_INCLUDED_PAPERS_OR_REPORTS
+  - path: 00_inbox/prepared_materials/ASSUMPTIONS_AND_OPEN_QUESTIONS.md
+    role: prioritized_question_and_assumption_seed_list
+    authority: PREPARED_FOUNDER_INPUT
+    freshness: CURRENT_AT_BASE_COMMIT_2026_08_21
+    evidence_or_assumption: EXPLICIT_ASSUMPTIONS_AND_UNKNOWNS
+  - path: 00_inbox/uploaded_originals/README.md
+    role: scrubbed_original_evidence_intake_instruction
+    authority: PRIMARY_EVIDENCE_CONTAINER_INSTRUCTION
+    freshness: CURRENT_AT_BASE_COMMIT_2026_08_21
+    evidence_or_assumption: INSTRUCTION_ONLY_ZERO_ORIGINALS_PRESENT
+  - path: 01_governance/ASSUMPTION_REGISTER.md
+    role: authoritative_open_assumption_register
+    authority: AUTHORITATIVE_PROJECT_STATE
+    freshness: INITIAL_STAGE_0_STATE_AT_BASE_COMMIT
+    evidence_or_assumption: EXPLICIT_ASSUMPTIONS_NOT_FACTS
+  - path: 01_governance/DECISION_LOG.md
+    role: authoritative_confirmed_provisional_and_deferred_decisions
+    authority: AUTHORITATIVE_PROJECT_STATE
+    freshness: INITIAL_STAGE_0_STATE_AT_BASE_COMMIT
+    evidence_or_assumption: DECISIONS_WITH_PROVISIONAL_ITEMS_EXPLICITLY_UNVALIDATED
+  - path: 01_governance/MODEL_REGISTRY.yaml
+    role: authoritative_model_candidate_and_access_record
+    authority: AUTHORITATIVE_PROJECT_STATE
+    freshness: INITIAL_DRAFT_DATED_2026_08_21_REVERIFICATION_REQUIRED
+    evidence_or_assumption: INITIAL_PUBLIC_CLAIMS_FOUNDER_REPORTS_AND_ROLE_HYPOTHESES
+  - path: 01_governance/PROJECT_STATE.yaml
+    role: authoritative_current_stage_gate_and_next_action
+    authority: AUTHORITATIVE_PROJECT_STATE
+    freshness: INITIAL_STATE_DATED_2026_08_21
+    evidence_or_assumption: PROJECT_STATE_NOT_EXTERNAL_EVIDENCE
+  - path: 01_governance/RISK_REGISTER.md
+    role: authoritative_risk_register
+    authority: AUTHORITATIVE_PROJECT_STATE
+    freshness: INITIAL_STAGE_0_STATE_AT_BASE_COMMIT
+    evidence_or_assumption: RISK_JUDGMENTS_NOT_OBSERVED_INCIDENTS
+  - path: 01_governance/SOURCE_LEDGER.csv
+    role: authoritative_index_of_external_sources_and_claim_scope
+    authority: AUTHORITATIVE_PROJECT_STATE
+    freshness: INITIAL_LEDGER_ACCESSED_DATE_2026_08_21_REOPEN_REQUIRED
+    evidence_or_assumption: DERIVED_LEDGER_NOT_PRIMARY_EVIDENCE_ITSELF
+  - path: 01_governance/TASK_REGISTRY.yaml
+    role: authoritative_task_scope_status_dependencies_and_acceptance
+    authority: AUTHORITATIVE_PROJECT_STATE
+    freshness: INITIAL_STAGE_0_STATE_AT_BASE_COMMIT
+    evidence_or_assumption: PROJECT_STATE_NOT_EXTERNAL_EVIDENCE
+  - path: 99_handoffs/HANDOFF_TEMPLATE.yaml
+    role: factual_handoff_schema
+    authority: REPOSITORY_METADATA
+    freshness: CURRENT_AT_BASE_COMMIT_2026_08_21
+    evidence_or_assumption: TEMPLATE_ONLY
+  - path: 99_handoffs/completed/README.md
+    role: completed_handoff_directory_instruction
+    authority: GOVERNING_INSTRUCTION
+    freshness: CURRENT_AT_BASE_COMMIT_2026_08_21
+    evidence_or_assumption: INSTRUCTION_ONLY_ZERO_PRIOR_HANDOFFS
+  - path: AGENTS.md
+    role: repository_agent_operating_rules
+    authority: GOVERNING_INSTRUCTION
+    freshness: CURRENT_AT_BASE_COMMIT_2026_08_21
+    evidence_or_assumption: NEITHER
+  - path: CLAUDE.md
+    role: provider_specific_repository_entrypoint
+    authority: REPOSITORY_METADATA
+    freshness: CURRENT_AT_BASE_COMMIT_2026_08_21
+    evidence_or_assumption: NEITHER
+  - path: FILE_MANIFEST.json
+    role: generated_path_size_and_checksum_snapshot
+    authority: REPOSITORY_METADATA
+    freshness: GENERATED_2026_08_21_AT_BASE_COMMIT
+    evidence_or_assumption: CHECKSUM_METADATA_EXCLUDES_ITSELF_AND_IS_NOT_SOURCE_OF_TRUTH
+  - path: MASTER_OPERATING_PROMPT.md
+    role: master_project_process_scope_stages_and_output_contract
+    authority: GOVERNING_INSTRUCTION
+    freshness: CURRENT_AT_BASE_COMMIT_2026_08_21
+    evidence_or_assumption: NEITHER
+  - path: README.md
+    role: project_entrypoint_and_status_summary
+    authority: REPOSITORY_METADATA
+    freshness: INITIAL_STAGE_0_SUMMARY_AT_BASE_COMMIT
+    evidence_or_assumption: NAVIGATION_AND_DERIVED_STATUS_NOT_PRIMARY_EVIDENCE
+  - path: SECURITY.md
+    role: repository_security_and_disclosure_policy
+    authority: GOVERNING_INSTRUCTION
+    freshness: CURRENT_AT_BASE_COMMIT_2026_08_21
+    evidence_or_assumption: NEITHER
+
+repository_inventory_addendum_at_fix_baseline:
+  - path: 02_research/GROK_BOT_BASELINE_2026-08-21.md
+    role: sourced_reference_product_feature_and_evidence_baseline
+    authority: AUTHOR_OUTPUT_CHANGES_REQUESTED_NOT_VERIFIED
+    freshness: AUTHORED_AT_F151F28_CHANGES_REQUESTED_AT_874AE4B_REFRESH_REQUIRED
+    evidence_or_assumption: DOCUMENTATION_DERIVED_BASELINE_NOT_BLACK_BOX_OBSERVATION
+  - path: 06_evaluation/MODEL_ROLE_BENCHMARK_PLAN.md
+    role: project_specific_model_role_evaluation_plan
+    authority: AUTHOR_OUTPUT_CHANGES_REQUESTED_NOT_VERIFIED
+    freshness: AUTHORED_AT_F151F28_CHANGES_REQUESTED_AT_B8735FB_REVISION_PENDING
+    evidence_or_assumption: PLAN_ONLY_ZERO_BENCHMARK_RESULTS
+  - path: 99_handoffs/completed/S0-001_handoff.yaml
+    role: initial_s0_001_author_inventory_and_process_record_with_fixer_addendum
+    authority: AUTHOR_FACTUAL_HANDOFF_NOT_VERIFICATION
+    freshness: AUTHORED_AT_F151F28_CHALLENGED_AT_43DAAD7_FIXER_ADDENDUM_UNCOMMITTED_2026_08_21
+    evidence_or_assumption: FACTUAL_HANDOFF_AND_INVENTORY_RECORD_NOT_PROOF_OF_ACCEPTANCE
+  - path: 99_handoffs/completed/S0-002_handoff.yaml
+    role: initial_s0_002_author_research_handoff
+    authority: AUTHOR_FACTUAL_HANDOFF_NOT_VERIFICATION
+    freshness: AUTHORED_AT_F151F28_CHANGES_REQUESTED_AT_874AE4B
+    evidence_or_assumption: FACTUAL_HANDOFF_NOT_PROOF_OF_RESEARCH_ACCEPTANCE
+  - path: 99_handoffs/completed/S0-003_handoff.yaml
+    role: initial_s0_003_author_model_research_and_benchmark_handoff
+    authority: AUTHOR_FACTUAL_HANDOFF_NOT_VERIFICATION
+    freshness: AUTHORED_AT_F151F28_CHANGES_REQUESTED_AT_B8735FB
+    evidence_or_assumption: FACTUAL_HANDOFF_NOT_PROOF_OF_MODEL_OR_BENCHMARK_ACCEPTANCE
+  - path: 99_handoffs/completed/S0-001_challenger_review.yaml
+    role: independent_s0_001_challenger_review_and_findings
+    authority: INDEPENDENT_CHALLENGER_REVIEW_NOT_VERIFIER_DECISION
+    freshness: REVIEW_COMMITTED_AT_43DAAD7_FIX_PASS_PENDING_REVIEW_2026_08_21
+    evidence_or_assumption: REPRODUCIBLE_REVIEW_EVIDENCE_AND_CHALLENGER_JUDGMENT_NOT_VERIFIER_ACCEPTANCE
+  - path: 99_handoffs/completed/S0-002_challenger_review.yaml
+    role: independent_s0_002_challenger_review_and_findings
+    authority: INDEPENDENT_CHALLENGER_REVIEW_NOT_VERIFIER_DECISION
+    freshness: REVIEW_COMMITTED_AT_874AE4B_FIX_NOT_STARTED
+    evidence_or_assumption: REPRODUCIBLE_REVIEW_EVIDENCE_AND_CHALLENGER_JUDGMENT_NOT_VERIFIER_ACCEPTANCE
+  - path: 99_handoffs/completed/S0-003_challenger_review.yaml
+    role: independent_s0_003_challenger_review_and_findings
+    authority: INDEPENDENT_CHALLENGER_REVIEW_NOT_VERIFIER_DECISION
+    freshness: REVIEW_COMMITTED_AT_B8735FB_FIX_NOT_STARTED
+    evidence_or_assumption: REPRODUCIBLE_REVIEW_EVIDENCE_AND_CHALLENGER_JUDGMENT_NOT_VERIFIER_ACCEPTANCE
+  - path: 99_handoffs/completed/S0-001_fixer_handoff.yaml
+    role: s0_001_fixer_changes_finding_resolutions_and_verification_record
+    authority: AUTHOR_FIXER_HANDOFF_PENDING_INDEPENDENT_REVIEW
+    freshness: UNCOMMITTED_FIXER_OUTPUT_2026_08_21_PENDING_REVIEW
+    evidence_or_assumption: FACTUAL_FIX_RECORD_NOT_PROOF_OF_INDEPENDENT_ACCEPTANCE
+
+fixer_attribution_addendum:
+  finding_id: F-S0-001-02
+  added_at: "2026-08-21T18:00:57-04:00"
+  decision_log_change: "The Stage 0 author reconciliation note was written in the initial author batch under S0-001's DECISION_LOG.md allowance on behalf of S0-002 and S0-003 research outcomes."
+  effect: "The note changed no D-00x status and selected no architecture, customer wedge, MVP workflow, or model role."
+  audit_treatment: "This attribution supplements the original handoff; it does not rewrite the original files_modified list or pretend the provenance was recorded before challenger review."
+
+missing_input_list:
+  priority_0:
+    - "Eligible Grok Bot account, installed application build, plan, region, enabled rollout controls, and safe test environment."
+    - "Repeated Grok Bot black-box observations with exact prompts, initial state, evidence, and independent external-state checks."
+    - "Funded OpenAI, Anthropic, and DeepSeek API-account availability, exact entitlements, quotas, retention/region settings, and minimal-call evidence."
+    - "Confirmed prototype model and infrastructure budget."
+    - "Independent challenger and verifier assignments for Stage 0."
+  required_before_stage_1_gate:
+    - "Actual customer interviews, workflow artifacts, pilot willingness, and willingness-to-pay evidence; none is currently present."
+  required_before_architecture_or_production:
+    - "Review provider terms, data use, rate limits, reselling restrictions, and commercial-deployment rights; cross-reference MAG-005 for the unresolved DeepSeek license, hosting, and commercial-deployment review."
+    - "Record which cloud providers are actually available to the founder and which account, region, quota, and budget constraints apply."
+    - "Decide whether customers bring provider keys, the SaaS resells inference, or both; cross-reference MAG-006 because this remains an input to billing and credential architecture."
+  absent_but_not_currently_required:
+    - "Prior reusable application code, UI screenshots/recordings, external papers, and existing research reports."

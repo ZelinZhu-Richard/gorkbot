@@ -1,0 +1,635 @@
+schema_version: EP-ARCH-CANDIDATE-0.3
+task_id: E2-002
+artifact_status: CANDIDATE_ONLY_UNRANKED_NOT_SELECTED_FIXER_PASS_READY_FOR_REVIEW_NOT_VERIFIED
+candidate_contract:
+  f01_candidate_identity:
+    candidate_id: EP-ARCH-C03
+    name: Durable Event and Workflow Core with Rebuildable Projections
+    version: "0.2"
+    author_role: E2-002_AUTHOR
+    authored_at: "2026-08-29T00:03:38Z"
+    base_commit: 38f673b82a1b40a277aa13b4e7ed17232521f3fa
+    frozen_e1_gate_commit: 7bbfebd2163b1a8aa0ec770de378c7087c6fee75
+    verified_architecture_requirements_version: EP-ARCH-REQ-0.2
+    verified_architecture_requirements_commit: 0d702b817509c275582cb27e7e08ac44f0145ab9
+    decision_state: "Candidate only; no score, rank, preference, winner, architecture selection, or ADR acceptance."
+    fixer_role: "Original E2-002 AUTHOR returning as FIXER"
+    fixed_at: "2026-08-29"
+    challenger_artifact: 99_handoffs/completed/E2-002_challenger_review.yaml
+
+  f02_system_shape:
+    summary: >-
+      An embedded user-local durable workflow core treats an append-only material event journal
+      and immutable referenced payloads as authoritative history. Deterministic reducers create
+      rebuildable task/read projections and snapshots. A coordinator invocation may stay active
+      for work or restart from the journal; process lifetime is not task identity. Execution,
+      provider, protected-entry and verification adapters consume or append only through typed,
+      policy-checked commands.
+    components:
+      command_policy_boundary: "Validates principal, expected stream/version, task authority, capability, approval, limits and operation identity before an event can append."
+      event_workflow_core: "Owns ordered event append, deterministic transition reducer, timers/control scheduling, ownership/fence events and recovery."
+      projection_layer: "Builds client/status/transcript/search views and disposable snapshots; never authoritative."
+      execution_adapters: "Claim durable dispatch work with lease/fence, supervise process trees and append typed observations/readbacks through the command boundary."
+      verifier_adapter: "Uses a distinct context/workspace and restricted append path for immutable verification events after independent reread/replay."
+      artifact_payload_store: "Stores original messages, evidence and large outputs under stable IDs with provenance/integrity/redaction; journal references them."
+    end_to_end_flow: "Intent command -> validated accepted event/first outcome -> reducer derives task/operation -> durable dispatch event -> fenced adapter -> observation/readback events -> evidence projection -> independent verification events -> derived disposition."
+    lifetime_model:
+      CLIENT_LIFETIME: "A presentation client may attach, disconnect, close, and later reconnect to a reconstructed projection. Its disappearance is neither a workflow event nor cancellation unless an authenticated control command was durably admitted first."
+      CONTROL_AUTHORITY_LIFETIME: "Durable workflow authority is the validated journal plus event-admission and reducer rules and therefore outlives every client, coordinator, and executor process. A live append gate is required to admit new mutations, but absence of a live process does not erase authority or task state."
+      EXECUTION_OWNER_LIFETIME: "A task-bound coordinator/executor lease may continue after every presentation client disconnects. It is replaceable rather than permanent: loss, expiry, or full shutdown fences that lease; a new coordinator must replay the authoritative head and reconcile every nonterminal dispatch before acquiring a new epoch."
+      TASK_LIFETIME: "A task is the durable workflow history and survives client, coordinator, executor, and projection loss until a truthful terminal or retained waiting/blocked/unknown disposition. Completion never depends on a UI process or projection cache."
+      WORKSPACE_LIFETIME: "A task workspace remains bound by durable identity and operation history across clients and coordinator instances until actual filesystem/effect state is reconciled and scoped cleanup is authorized. Projection or client loss cannot delete it."
+      relationships: "CLIENT_LIFETIME is shorter and non-authoritative; live CONTROL and EXECUTION components may be absent, while durable workflow authority, TASK_LIFETIME, and WORKSPACE_LIFETIME remain. A task-bound coordinator may run detached, but C03 does not require a hidden always-on platform or C02's permanent control-service/replaceable-worker topology."
+
+  f03_client_interaction_boundary:
+    conceptual_client: "Local client subscribed to rebuildable projections; concrete integrated/thin/CLI/web technology remains an unselected CANDIDATE ASSUMPTION."
+    intent_and_ack: "Client sends stable command ID and expected stream/task version; acknowledgement follows durable event/payload commit and duplicates return the original result event."
+    reconnect: "Projection is rebuilt or resumed from a known event position with visible lag, gap, unknown and source sequence; client loss has no authority effect."
+    disconnect_and_exit: "Client-only close/disconnect removes a subscriber and never silently cancels, pauses, or destroys a task. A policy-bounded task-bound coordinator may continue, or work may enter a durable safe wait if no eligible executor remains."
+    stale_client_rule: "A returning client reauthenticates and submits the stream/task version it observed; the current journal head and rebuilt projection govern. The client never regains an old lease, approval, or control authority automatically."
+    controls: "Pause/stop/redirect/resume/approval/revocation are commands producing durable ordered events before any user acknowledgement."
+    approval_evidence: "Client renders complete normalized intent and can inspect event/payload/projection lineage, target readbacks and verifier events."
+    protected_entry: "A separate protected broker bypasses ordinary event/chat capture, delivers raw input to an exact recipient and appends only a non-secret receipt event."
+
+  f04_process_boundaries:
+    orchestration_owner: "The validated journal head plus deterministic normative reducer defines workflow authority under one current stream-owner epoch; a live coordinator process is replaceable and may be absent."
+    persistence_owner: "Journal append gate and payload store; no client/adapter/projection writes storage directly."
+    execution_owner: "A fenced task-bound executor adapter owns one process tree under a coordinator-granted lease. Durable workflow state owns dispatch eligibility and deadline facts, but real-time timeout/termination enforcement requires a live eligible coordinator/executor."
+    verification_owner: "Separate verifier adapter/context/workspace; restricted command path can append run/error/verdict evidence but cannot rewrite source history."
+    provider_call_owner: "Provider gateway adapter receives a durable eligible route command and returns typed provider/model/transport observations."
+    control_and_fencing_owner: "Control event is authoritative order; reducer stops later dispatch and advances fence; adapters enforce process control and late events are rejected/stale."
+    boundary_contract: "Versioned commands/events bind stream/task/attempt/operation/effect, prior sequence, owner/fence, policy/capability, deadline, causal parent and correlation."
+    event_admission_authority: "Only the current append gate may validate and append a material event against the current stream sequence, owner/fence, policy, capability, approval and correlation. An adapter observation is not authoritative until admitted."
+    reducer_and_projection_authority: "The deterministic normative reducer interprets the validated authoritative journal head to decide legal transitions. Cached task/read/search/transcript projections are derived and disposable; no unsafe external action may be authorized from a stale projection alone."
+    no_live_coordinator_semantics: "With no active coordinator, no new dispatch or unsafe effect is authorized and no real-time deadline enforcement is claimed. Durable deadlines and nonterminal facts remain; the next coordinator immediately classifies overdue work, advances/fences ownership, reconciles actual process/workspace/effect state, and then resumes or records RECOVERING, WAITING, BLOCKED, CANCELLED, or OUTCOME_UNCERTAIN."
+    full_system_shutdown: "Deliberate full-system shutdown is a distinct authenticated workflow: stop event admission except shutdown/reconciliation records, stop new dispatch, cancel/fence active executors, preserve partial/unknown effects, checkpoint only as a validated optimization, and leave journal/payload/workspace state reconstructable."
+
+  f05_trust_boundaries_and_threat_model:
+    unsupported_host_compromise_assumption: "Fully compromised kernel/root/firmware/physical media is unsupported. Journal integrity is tamper detection within declared application/storage boundaries, not protection from privileged host control. Missing enforcement narrows support and fails closed."
+    boundaries:
+      TB-01: {trust_and_assets: "Authenticated fallible user/founder; authority/approvals", authority_source: "Authenticated principal plus governance", allowed_flows: "Bounded commands, controls, exact approvals/recipient", forbidden_flows: "Conversation granting scope or waiving policy", enforcement_point: "Command policy boundary", failure_behavior: "Reject/wait with zero dispatch", evidence: "Rejected/accepted command event and authority version", recovery: "Reauthenticate/revalidate; no inferred consent"}
+      TB-02: {trust_and_assets: "Untrusted repository; code/user state", authority_source: "Admitted root/task event", allowed_flows: "Bounded reads/isolated writes", forbidden_flows: "Repository-created authority/network/secret/approval", enforcement_point: "Admission command and workspace adapter", failure_behavior: "Deny/quarantine/block condition", evidence: "Identity/condition/base/canary events", recovery: "Reread and append stale/recovery events"}
+      TB-03: {trust_and_assets: "Untrusted instruction files", authority_source: "Versioned higher policy", allowed_flows: "Narrow paths/style/checks/procedure", forbidden_flows: "Expand capabilities/effects/credentials/routes or weaken predicates", enforcement_point: "Instruction-policy command validator", failure_behavior: "Conflict event/wait/block", evidence: "Source/trust/version/decision event", recovery: "Reload source; invalidate projections/summaries"}
+      TB-04: {trust_and_assets: "Filesystem; repo/workspace/payloads/user data", authority_source: "Pinned root/object/ownership events", allowed_flows: "Scoped object-bound access", forbidden_flows: "Escape/special/ambiguous/destructive access", enforcement_point: "Workspace adapter", failure_behavior: "Preaccess deny", evidence: "Object resolution and mutation/readback events", recovery: "Reresolve; reconcile task-owned only"}
+      TB-05: {trust_and_assets: "Protected secrets/private data", authority_source: "Protected policy and exact recipient/use event", allowed_flows: "One-use out-of-band delivery", forbidden_flows: "Journal/payload/projection/model/log/evidence exposure", enforcement_point: "Protected broker and recipient gate", failure_behavior: "Do not read; wait/block", evidence: "Non-secret receipt event", recovery: "Reacquire; never replay raw input"}
+      TB-06: {trust_and_assets: "Traversal/link/topology races", authority_source: "Pinned root/object identities", allowed_flows: "Resolved in-scope objects", forbidden_flows: "Traversal/link/mount/device/archive/swap escape", enforcement_point: "Workspace adapter at every access/cleanup", failure_behavior: "Deny/preserve canary", evidence: "Resolution/canary events", recovery: "Reresolve; stale topology event blocks"}
+      TB-07: {trust_and_assets: "Untrusted subprocess; host/effects", authority_source: "Durable dispatch/capability/fence event", allowed_flows: "Bounded declared process tree", forbidden_flows: "Orphans/escape/undeclared effects/noninterruptibility", enforcement_point: "Executor supervisor plus workflow fence", failure_behavior: "Cancel/force/fence/unknown event", evidence: "Process/control/outcome event chain", recovery: "Discover/fence old owner and reconcile"}
+      TB-08: {trust_and_assets: "Terminal I/O/protected input", authority_source: "Operation or protected recipient grant", allowed_flows: "Bounded event-referenced output/exact input", forbidden_flows: "Output as authority/raw input in ordinary event capture", enforcement_point: "I/O adapter and protected broker", failure_behavior: "Truncate/deny/wait closed", evidence: "I/O provenance/bounds and receipt event", recovery: "No raw replay; new grant"}
+      TB-09: {trust_and_assets: "Package/lifecycle scripts", authority_source: "Separate execution/network capability event", allowed_flows: "Classified bounded script", forbidden_flows: "Retrieval implying execution/egress/secret access", enforcement_point: "Capability command plus executor", failure_behavior: "Deny/unsupported event", evidence: "Provenance/grant/process/network events", recovery: "Revalidate; ambiguous effect reconciles"}
+      TB-10: {trust_and_assets: "Git hooks/helpers/filters/signers/transports", authority_source: "GE row/capability/approval event", allowed_flows: "Classified helper-free Git or exact effect", forbidden_flows: "Implicit helper/network/credential/prohibited action", enforcement_point: "Git command adapter", failure_behavior: "Zero dispatch/effect event", evidence: "GE/action/state-readback chain", recovery: "Fresh readback; remote unknown blocks"}
+      TB-11: {trust_and_assets: "Network destinations/data/credentials/cost", authority_source: "Exact route/data/credential/budget event", allowed_flows: "Authorized revalidated effective target", forbidden_flows: "Undeclared/proxy/private/metadata egress", enforcement_point: "Network capability adapter", failure_behavior: "Zero bytes/calls event", evidence: "Target/bytes/calls/cost events", recovery: "Revalidate/reconcile possible dispatch"}
+      TB-12: {trust_and_assets: "Remote Git refs/data/credentials", authority_source: "GE plus one-shot approval event", allowed_flows: "Supported read/effect/readback", forbidden_flows: "Force/merge/rebase/delete/tag/hidden credential", enforcement_point: "Git/network/approval adapters", failure_behavior: "Deny or unknown-effect event", evidence: "Intent-to-readback event chain", recovery: "No blind retry; remote truth event"}
+      TB-13: {trust_and_assets: "External APIs/state/data/credentials/cost", authority_source: "Capability/effect/approval events", allowed_flows: "Versioned bounded adapter request", forbidden_flows: "Ambient mutation/hidden retry/fallback", enforcement_point: "Capability gateway/effect workflow", failure_behavior: "Deny or uncertainty event", evidence: "Request/idempotency/response/readback/usage events", recovery: "Target readback; known/unknown preserved"}
+      TB-14: {trust_and_assets: "Model/provider output/service", authority_source: "Role-neutral route/eligibility events", allowed_flows: "Explicit eligible/experimental purpose route", forbidden_flows: "Self-promotion/hidden fallback/output as authority", enforcement_point: "Provider gateway and result validator", failure_behavior: "Zero dispatch or typed failure event", evidence: "Requested/resolved route/latency/usage/cost chain", recovery: "Explicit fallback command only"}
+      TB-15: {trust_and_assets: "Tools/capabilities/results", authority_source: "Versioned schema/scoped receipt event", allowed_flows: "Validated exact request/result", forbidden_flows: "Unknown schema/target substitution/ambient power", enforcement_point: "Command and result validators", failure_behavior: "Deny; invalid effectful result reconciles", evidence: "Grant/request/result/effect events", recovery: "Do not consume; readback event"}
+      TB-16: {trust_and_assets: "Approval authority", authority_source: "Authenticated exact approval event", allowed_flows: "One current matching consumption", forbidden_flows: "Chat/replay/mutation/stale/revoked/hidden target", enforcement_point: "Approval reducer serialized before dispatch", failure_behavior: "Zero dispatch or ambiguity event", evidence: "Approval lifecycle/consumption events", recovery: "Replay reducer and revalidate; ambiguity blocks"}
+      TB-17: {trust_and_assets: "External effect/target truth", authority_source: "Approved operation plus target readback", allowed_flows: "One attempt and reconciliation", forbidden_flows: "Guessed success/blind retry/duplicate/response proof", enforcement_point: "Effect workflow reducer and adapter", failure_behavior: "Known failure or unknown blocks completion", evidence: "Intent/approval/attempt/observed/readback events", recovery: "First outcome and readback"}
+      TB-18: {trust_and_assets: "Evidence/integrity/revision", authority_source: "Journal/payload schema and independent readback", allowed_flows: "Validated secret-safe refs/immutable runs", forbidden_flows: "Projection/telemetry/executor summary/self-hash as proof", enforcement_point: "Evidence reducer/validator/verifier", failure_behavior: "Gap/tamper/stale blocks", evidence: "Sequence/integrity/manifest/verifier events", recovery: "Replay from trusted point; preserve gap/tamper"}
+      TB-19: {trust_and_assets: "Recovery/replay/ownership/effects", authority_source: "Validated ordered journal, first result and current policy", allowed_flows: "Deterministic replay/reconciliation", forbidden_flows: "Stale owner/event, duplicate effect, fabricated continuity, secret replay", enforcement_point: "Recovery reducer and append gate", failure_behavior: "Recovering/blocked/failed/unknown", evidence: "Replay/checkpoint/gap/revalidation events", recovery: "New owner epoch; reconcile nonterminal workflows"}
+      TB-20: {trust_and_assets: "Protected human entry", authority_source: "Authenticated takeover/recipient/use command", allowed_flows: "Suspend ordinary capture and direct one-use delivery", forbidden_flows: "Journal/payload/projection/chat/model/log raw capture", enforcement_point: "Protected broker outside normal command/event path", failure_behavior: "WAITING_FOR_USER/closed", evidence: "Capture-state and non-secret receipt event", recovery: "Receipt remains; raw input reacquired"}
+
+  f06_authoritative_state_ownership:
+    canonical_writer: "Journal append gate under current stream-owner epoch and expected sequence. A required non-secret payload becomes durable and integrity-addressable before a referencing event may append; the two structures are not claimed globally atomic, and an unreferenced orphan is not workflow authority."
+    authoritative: ["Immutable material domain/workflow/command/approval/effect/verification events", "Original message/evidence/artifact payloads and identity/provenance/integrity metadata", "Current policy/schema/migration/retention and event-stream ownership"]
+    derived: ["Task/current-state reducers", "Client/transcript/search/evidence presentation", "Disposable validated snapshots/checkpoints"]
+    ephemeral: ["Coordinator/client/adapter processes", "Subscriptions", "Process handles/streaming/prompt buffers"]
+    lossy: ["Provenanced summaries/resume blocks"]
+    history_and_versions: "Each event records stream, sequence, entity version, actor/owner, causal/correlation parents, task/policy/plan/predicate/schema versions and payload refs."
+    stale_writer_rule: "Expected sequence/owner/fence mismatch rejects event and effect authority; rejected stale command/event is retained in a denial stream."
+    reducer_rule: "The normative reducer is a deterministic interpretation of the validated journal head, not a separately mutable projection. Any command or effect admission rereads/validates the current head and reducer result; cached projections may inform presentation but never independently authorize an action."
+
+  f07_operation_model:
+    identity_schedule: "Stable command/task/attempt/operation/dispatch/effect IDs; reducer emits durable eligible-work state and coordinator grants one lease/fence."
+    lifecycle: "Intent/validation/approval/dispatch/run/reconciliation/terminal facts are separate events; projection shows but does not own state."
+    retries: "New attempt events link original operation/effect, prior outcomes/cost and declared ceiling; reducer permits only under current authority and effect certainty."
+    controls: "Accepted control event is ordered before later work; reducer suppresses dispatch, advances fence, coordinates cancellation/reconciliation and revalidation."
+    duplicates: "Command result event indexed by stable ID returns first result; duplicate append/dispatch/effect is rejected."
+    retirement: "Disable/retire events prevent new claims; in-flight workflows/effects/history persist until truthful disposition."
+    result_rule: "Adapter response is an observed event subject to schema/correlation/fence validation; invalid/lost effectful result transitions to reconciliation."
+    coordinator_loss_and_deadlines: "Deadline facts remain durable when no coordinator exists, but elapsed time is not itself evidence that cancellation/termination occurred. The next eligible coordinator advances the clock-derived transition, fences the old owner, discovers actual descendants/effects, and records the truthful result before redispatch."
+
+  f08_persistence_semantics:
+    candidate_choice: "Append-only ordered material event journal plus immutable referenced payload/artifact store, validated snapshots and rebuildable projections. This Level B event/workflow choice is not a project decision."
+    acknowledgement_boundary: "A required non-secret payload is durable and rereadable before the referencing event is appended; the event is then durably admitted at one stream version and both are rereadable before acknowledgement. An event referencing an undurable payload is never appended or acknowledged."
+    durability_scope: "Coordinator/process and supported host restart on one healthy local persistence volume; privileged host/media loss unsupported."
+    versioning: "Expected stream/entity sequence and owner/fence serialize commands, approval consumption and effect dispatch."
+    partial_write_corruption: "Record framing/integrity/sequence validation yields complete append or detectable tail/gap; preserve bytes, quarantine affected stream and rebuild from trusted checkpoint only."
+    evolution: "Events are immutable; versioned readers/migrations produce new snapshots or corrective events, never silent historical rewrite."
+    retention_deletion: "Holds/deletion/redaction are linked events; payload physical deletion is distinct and cannot erase open-effect/evidence obligations silently."
+    restore: "New store/stream-owner identity, full sequence/payload validation, projection rebuild, lease/verification invalidation and effect reconciliation."
+    content_addressing: "Not used as authority; stable payload IDs plus integrity metadata are sufficient."
+    external_effect_recovery_bridge: "Stable command/operation/effect identities, a durable pre-dispatch intent event, fenced one-attempt authority, admitted observation, target readback where available, and known/failed/unknown reducer outcomes constitute the design-level AR-DUR-003 bridge. It is a workflow protocol, not a claim of atomic external commit."
+    protected_and_external_payload_ordering:
+      raw_protected_payload_in_durable_history: false
+      metadata_before_delivery: "The journal may durably admit protected-entry intent, authenticated principal, exact recipient/use, operation/correlation identity, expiry and capture-state metadata, but never the raw protected value or a reversibly encoded substitute."
+      ordinary_payload_before_event: "For non-secret immutable payloads that must be durable, payload integrity and stable identity are established before the referencing event is admitted; an unreferenced partial/orphan payload is quarantined and is not workflow authority."
+      intent_persisted_delivery_fails: "If intent is durable and delivery is provably not performed, append a known delivery-failed event. If whether delivery began or completed cannot be established, append/reconstruct OUTCOME_UNCERTAIN and require reconciliation or reacquisition; never infer non-delivery from a missing receipt."
+      delivery_succeeds_receipt_persistence_fails: "The recipient-side operation/correlation/fence identity and protected broker observation are reconciled. Until a non-secret receipt can be admitted or recipient state proves the outcome, the workflow is OUTCOME_UNCERTAIN, further use is fenced, and the raw value is not replayed."
+      correlation_identity: "One stable protected-intent and delivery-attempt identity binds broker, exact recipient/use, owner/fence and any non-secret receipt without deriving identity from protected bytes."
+      retry_and_replay: "A retry is a new protected acquisition and new attempt linked to the original intent only after current policy and recipient state are revalidated. Raw protected bytes are never reconstructed or replayed from history."
+      crash_recovery: "Recovery reads the durable intent/receipt events, broker/recipient non-secret state and current fence. It classifies delivery as KNOWN_NOT_DELIVERED, KNOWN_DELIVERED, or OUTCOME_UNCERTAIN; absence of an event is not proof of absence of delivery."
+      cross_boundary_atomicity_claim: false
+      atomicity_limit: "C03 does not claim atomicity between event append and protected or external delivery. Intent, attempt, non-secret receipt, readback and explicit unknown are the required truthful bridge."
+
+  f09_recovery_model:
+    client_only_interruption: "Dropping every presentation subscription changes no workflow authority or execution lease. A healthy task-bound coordinator continues or durably waits under policy; reconnect rebuilds the projection from the current journal head. This is EP-CTL-016."
+    startup: "Acquire new owner epoch, validate journal/payload/schema/checkpoint integrity, replay reducers, rebuild/verify projections, invalidate handles/leases, classify nonterminal workflows, reread repo/workspace/authority/approval/effect/verification and then dispatch or remain recovering/blocked."
+    application_crash: "Durable event exists or not; any dispatch without terminal readback enters reconciliation."
+    host_restart: "Replay on declared volume; old fences cannot append/act."
+    worker_failure: "Lease/fence and process observation events; readback before retry."
+    model_timeout: "Typed model/provider/transport/cancel/usage events; explicit fallback command only."
+    tool_timeout: "Cancel/force/fence events; terminal or explicit unknown effect."
+    lost_tool_result: "Possible effect event plus target readback; no zero-effect inference."
+    partial_write: "Detect tail/gap/integrity fault, quarantine/preserve and block or replay trusted prefix; no fabricated event. A payload written before a failed event append is quarantined as an orphan, retained while crash/effect/retention reconciliation is open, then linked by a later valid event or garbage-collected only through the declared retention/deletion process."
+    stale_workspace: "Identity/base/owner mismatch event invalidates workspace/projection/verification."
+    duplicate_operation: "Command ID returns first result event; no new dispatch."
+    duplicate_effect: "Effect reducer/idempotency/readback rejects second attempt."
+    external_ack_loss: "Unknown-effect event until readback confirms success/non-success."
+    stop_force: "Ordered stop/fence/process/readback events; terminal CANCELLED only."
+    stale_approval: "Reducer replays expiry/revocation/consumption and current target versions; deny stale."
+    stale_verification: "Mutation event retains old run but derives aggregate UNVERIFIED."
+    waited_event: "External event ID/version/source/current authority validated before append; duplicate returns first result."
+    protected_entry: "Only non-secret receipt event exists; raw input reacquired."
+    retirement: "Retire event stops claims; in-flight/effect responsibility remains."
+    workspace_partial_write_recovery:
+      process_dies_during_file_write: "Treat the edit command/event as intent and possible attempt only. Reopen and reread actual bytes, metadata and operation correlation before admitting any success observation."
+      partially_written_file_exists: "Preserve and identify the partial object as uncertain mutation evidence; do not overwrite, hide, or project intended content as actual state."
+      interrupted_rename_or_replace: "Inspect source, destination, temporary objects and directory state. Append actual observations and classify PARTIAL or BLOCKED when neither old nor new state can be safely established."
+      multi_file_edit_partially_completes: "Observe each intended path independently against the pinned base and event sequence; record the achieved subset, invalidate aggregate predicates/verification, and never infer a filesystem-wide transaction."
+      git_index_differs_from_worktree: "Freshly observe HEAD, index, working tree, untracked and ignored state. Preserve an unexplained discrepancy and block or replan rather than staging/resetting or attributing it from an intent event."
+      generated_artifact_partial_write: "Retain bounded partial-output provenance where safe, mark the payload/artifact incomplete, and prevent it from becoming evidence or completion input until regenerated and integrity-validated."
+      uncertain_filesystem_on_recovery: "Rebuild workflow state, then compare pinned base plus admitted operation history with actual workspace/Git/canary state. Append the discrepancy, invalidate stale projections and verification, and end BLOCKED, UNVERIFIED, PARTIAL, known failure, or known success only when readback establishes it."
+      global_atomicity_claim: false
+
+  f10_workspace_execution_model:
+    admission_base: "Read-only admission events capture identity/topology and sixteen condition dispositions; pin base and original state inventory."
+    isolation: "Workspace-created/bound event precedes any mutating command; lease binds exact mutable task workspace and path scope."
+    defenses: "Workspace adapter checks objects at access/cleanup and rejects traversal/link/swap/mount/device/FIFO/socket/archive/secret/ambiguous ownership."
+    process: "Executor adapter owns bounded process tree while workflow fence owns authority; cwd/env/fs/network/time/output/descendants explicit."
+    scripts_hooks_network: "Separate capability/approval events are required; repo content cannot create them."
+    reconciliation_cleanup: "Before/after inventory/canary/readback events prove task-only mutation; stale/ambiguous cleanup blocks."
+    isolation_classification:
+      taxonomy:
+        TIER_0_LOGICAL_SCOPE_ONLY: "Identity and policy labels only; no enforceable process, filesystem, network, or secret boundary. Insufficient for untrusted execution."
+        TIER_1_BROKERED_PROCESS_PATH_AND_EFFECT_CONTAINMENT: "All supported operations cross accountable brokers with path, process, network, effect and secret checks, but arbitrary descendants are not yet proven confined against bypass."
+        TIER_2_OS_ENFORCED_EXECUTION_ISOLATION: "The supported host enforces process-tree, filesystem, network/resource and credential boundaries for the declared workload class, including descendants and loss of owner authority."
+        TIER_3_STRONGER_WORKLOAD_BOUNDARY: "A stronger separately administered workload boundary with additional compromise/blast-radius properties beyond frozen E1; not required or assumed for v0.1."
+      minimum_required_properties: "TIER_1 is the floor for brokered non-executing operations; untrusted code capable of spawning descendants requires the semantic properties of TIER_2."
+      candidate_assumed_tier: TIER_2_OS_ENFORCED_EXECUTION_ISOLATION
+      dependent_hard_ars: [AR-WSP-002, AR-WSP-003, AR-EXE-003, AR-EXE-004, AR-SEC-002, AR-SEC-003, AR-SEC-004]
+      enforcement_layers:
+        path_scope: "Workspace-admission events authorize scope, while adapter plus required host object-identity/path primitives enforce it; unsupported if access-time identity cannot be held or revalidated."
+        descendant_filesystem_and_network: "Durable capabilities/fences supply policy; required executor-host primitives must bind arbitrary descendants, otherwise that workload class is unsupported."
+        process_termination: "Coordinator/control events and executor supervisor order cancel/force/fence; required host process-tree primitive must account for descendants. Workflow fencing alone is insufficient and SPQ-E2-002-01 remains open."
+        secret_exclusion: "Out-of-event protected broker and exact recipient gate exclude journal/payload/projection paths; capture/delivery feasibility remains SPQ-E2-002-02/05 and missing exclusion fails closed."
+      filesystem_boundary_expectation: "Only the admitted task workspace and explicitly granted objects are reachable; aliases, special files, mounts, archive expansion and cleanup are identity-checked and fail closed."
+      network_boundary_expectation: "No egress unless the exact destination/data/credential/purpose event and current capability are valid; redirects/effective targets are revalidated and denied paths send zero bytes."
+      process_tree_expectation: "Every descendant remains attributable to the dispatch and loses productive authority on cancel/fence/coordinator loss; workflow fencing alone is not evidence of local descendant containment."
+      secret_boundary_expectation: "No ambient or inherited raw secret; protected delivery targets one exact recipient/use outside event/payload/projection capture and all other surfaces receive only non-secret metadata."
+      not_guaranteed: "No claim against a compromised kernel/administrator/firmware/physical medium, no cross-tenant boundary, no side-channel guarantee, and no TIER_3 property."
+      resolution_status: "Tier semantics and required properties are analysis-resolvable; whether the supported host class can enforce descendant containment is shared SPQ-E2-002-01 and remains UNKNOWN_REQUIRING_SPIKE; concrete mechanism choice is deferred implementation detail."
+      AQ_003: "Consistently classified across all candidates: semantic tier declaration is present; supported-host descendant/process enforcement is selection-blocking shared SPQ-E2-002-01 E2-004 feasibility; product/technology selection is not made."
+
+  f11_git_model:
+    model: "Typed Git command/event maps one-to-one to thirty frozen classifications before an adapter can run."
+    controls: "Exact repo/base/ref/path/effect/network/credential/approval; hooks/aliases/helpers/filters/signers/diff/submodule/LFS/transports suppressed unless separately supported."
+    readback: "Authoritative Git observation events freshly record HEAD/refs/index/worktree/untracked/ignored and authorized remote target."
+    separation: "Local/destructive/external-read/remote effects remain distinct; prohibited rows never become approvable."
+    review_package: "Projection over exact base/head/patch, changes/checks/limits/evidence/verification/effect events; status NOT_SUBMITTED."
+
+  f12_approval_effect_model:
+    distinct_concepts: [INTENT, APPROVAL, ATTEMPT, OBSERVED_EFFECT, CONFIRMED_EFFECT, UNKNOWN_EFFECT]
+    approval: "Authenticated immutable grant/revoke/expire/consume events bind full normalized scope, versions, target, effect ID and inert display; digest alone insufficient."
+    dispatch: "Approval-consumed and effect-dispatch authorization are ordered in workflow history before adapter action; lease/fence required."
+    observation_confirmation: "Response event is observation; target-specific readback event establishes confirmed success or known non-success."
+    ambiguity: "Lost acknowledgement/invalid result/unavailable readback creates UNKNOWN_EFFECT and suppresses completion/retry."
+    idempotency: "Command/operation/effect IDs, reducer first outcome, target idempotency and readback permit at most one effect."
+
+  f13_model_provider_boundary:
+    contract: "Provider-neutral logical roles and workflow events; no role occupant/provider selection."
+    gateway: "Validates purpose, eligibility/capabilities, data/network/credential/budget and creates explicit route events."
+    eligibility: [ELIGIBLE_IF_LATER_VERIFIED, EVALUATION_ONLY, DISALLOWED, USER_CONFIGURED_UNVERIFIED_EXPERIMENTAL]
+    fallback: "Explicit causal fallback command/event only; no eligible route -> zero dispatch."
+    failures: "Provider/model/transport/policy/capability/tool/timeout/cancel/result events distinct."
+    provenance: "Requested/resolved route/config/tool/eligibility/latency/usage/cost/fallback/cancel/outcome."
+    calls: "Offline deterministic event replays; no E2-002 live/paid calls."
+
+  f14_context_memory_model:
+    model: "Context assembler projects a bounded versioned manifest from journal/payload truth for each invocation."
+    durable: "Original messages, authority, workflows/effects, evidence and verification remain event/payload records outside context."
+    summary: "Lossy event-referenced block with source ranges/versions/trust/corrections/omissions; stale/poisoned block invalidated."
+    resume: "Replay current reducer state and retrieve decisive payload/evidence before optional summary; projection gaps are visible."
+    non_compactable: "Authority/security/approval/effect/evidence/predicate/verification/disposition records cannot be compacted away."
+    technology: "Sequence/identity retrieval; no vector/RAG requirement."
+
+  f15_evidence_artifact_model:
+    bundle: "Deterministic evidence projection/profile over exact event position, task/attempt/workspace/base/head/patch/policy/plan/predicate and disposition."
+    provenance: "Actor/owner/fence, route/model/tool, commands/checks/bounds/results/retries, approvals/effects/readbacks, failures, predicates and verifier event refs."
+    artifacts: "Immutable bounded stable payload IDs with integrity/type/size/source/redaction/retention; protected raw values excluded."
+    integrity: "Event sequence/causal/payload/schema validation and independent readback detect gap/tamper/substitution/reorder/stale; self-hash is not correctness."
+    binding: "New material event preserves old bundle/run but derives current UNVERIFIED."
+    limitations: "Missing/unknown/unavailable event/payload/reference is explicit and blocks dependent result."
+
+  f16_independent_verification_path:
+    separation: "Verifier adapter has distinct identity/config/context/workspace/capabilities and cannot reuse author approval or rewrite journal history."
+    access: "Reads/replays underlying journal/payload/candidate/target state, not only execution projection."
+    work: "Rebuilds projection, reruns deterministic checks/readbacks, evaluates adequacy and appends immutable run evidence/verdict through restricted commands."
+    lifecycle: "Crash/timeout -> VERIFICATION_ERROR event and aggregate UNVERIFIED; sequential runs; correction events create linked attempt/revision."
+    ceiling: "Finite policy owner registered by E2-005; no value chosen."
+    stale: "Any material candidate/effect/predicate/policy event invalidates current pass."
+
+  f17_observability_failure_model:
+    observability: "Projection answers axes, owner/leases, commands/events, controls/waits, approvals/effects, routes/budgets, evidence/verification and limitations with causal refs/lag."
+    separation: "Telemetry is a derived event stream/projection; mandatory material audit/evidence journal is unsampled authority/evidence."
+    failures: "Typed layer/retry/cause/affected operation/effect/predicate/recovery owner/next action events; unknown remains unknown."
+    explanations: "Cite event/payload/readback evidence; no chain-of-thought."
+    gaps: "Journal/payload/projection gap visible; authority/evidence gap blocks verification/completion."
+
+  f18_security_control_ownership:
+    command_policy: "Deterministic authority/capability/limit/approval/effect/route validation before append/dispatch, outside model judgment."
+    adapters_and_fences: "Workspace/process/Git/network/provider/tool adapters enforce host/effect boundaries; owner/fence rejects stale action/events."
+    evidence_integrity: "Append/payload validators and independent verifier enforce sequence/provenance/gap/stale rules."
+    protected_entry: "Dedicated broker outside ordinary command/event/model/telemetry pipelines authenticates takeover, suspends/excludes capture, sends raw value only to exact recipient/use, appends non-secret receipt, clears transient state, waits/blocks if exclusion is unavailable and never replays raw data after restart."
+    fail_closed: "No structural enforcement -> unsupported/waiting/blocked; model intent cannot substitute."
+
+  f19_packaging_local_first_behavior:
+    candidate_assumption: "One local workflow runtime/library and local journal/payload roots, launchable by a local client and active coordinator when work runs; execution/verifier adapters are bounded entrypoints. Technologies unselected."
+    long_running_components: "No mandatory separate daemon or distributed platform; one task-bound coordinator may remain active without a presentation client while current policy permits work. If it exits, durable workflow authority survives, active leases are fenced/expired, no new effects dispatch, and restart replay/reconciliation replaces it."
+    setup: "Supported-host/runtime/storage/schema/projection version, roots, migration/rebuild/recovery tools and security limits declared."
+    offline: "Journal/reducer/fixtures/local repos/evidence/provider fakes run without hidden service; real providers require gated network."
+    update_cleanup: "Fence work, validate/snapshot journal/payload, migrate readers/projections, rebuild/compare, declare rollback; cleanup uses retention events/readback."
+    contributor: "Local deterministic event fixtures reproduce crashes/reorder/gaps/replay and inspect reducers without paid infrastructure."
+
+  f20_future_compatibility:
+    remote_execution: {classification: RESERVED_COMPATIBILITY, seam: "Serializable dispatch/result/fence events; transport absent", not_implemented: true}
+    cloud_workers: {classification: RESERVED_COMPATIBILITY, seam: "Worker ownership/event contracts; no fleet", not_implemented: true}
+    concurrent_tasks: {classification: RESERVED_COMPATIBILITY, seam: "Per-stream/task/workspace versions; scheduler may serialize", not_implemented: true}
+    multiple_agents: {classification: RESERVED_COMPATIBILITY, seam: "Agent/owner/retire events; no fleet", not_implemented: true}
+    multiple_clients: {classification: RESERVED_COMPATIBILITY, seam: "Idempotent commands/projection positions; one principal", not_implemented: true}
+    skills_routines: {classification: RESERVED_COMPATIBILITY, seam: "Versioned capability event contract", not_implemented: true}
+    connectors: {classification: RESERVED_COMPATIBILITY, seam: "Adapter/effect/readback/provenance events", not_implemented: true}
+    general_edition: {classification: DEFERRED_TO_LATER_STAGE, seam: "Domain-neutral event/workflow core", not_implemented: true}
+    finance_edition: {classification: DEFERRED_TO_LATER_STAGE, seam: "Vertical events/policy cannot bypass core", not_implemented: true}
+    saas: {classification: DEFERRED_TO_LATER_STAGE, seam: "Explicit principal/stream/workspace scopes; no tenancy", not_implemented: true}
+
+  f21_capability_feature_stage_classification:
+    rule: "Each capability appears exactly once; reserved/deferred is interface compatibility only."
+    inventory:
+      C03-CAP-01: {capability: "Authoritative event/workflow task lifecycle", class: REQUIRED_NOW, source: "AR-COR/DUR/DAT", rationale: "Frozen authority/recovery", dependencies: "E2/E3", target_stage: E4}
+      C03-CAP-02: {capability: "Journal/payload durability/replay/migration", class: REQUIRED_NOW, source: "AR-DUR/DAT", rationale: "Ack/history/restart", dependencies: "E2-004/E3V-001/005", target_stage: E4}
+      C03-CAP-03: {capability: "Rebuildable projections/context", class: REQUIRED_NOW, source: "AR-DAT/CTX/OBS", rationale: "Client/context nonauthority", dependencies: "E3V-005", target_stage: E4}
+      C03-CAP-04: {capability: "Fenced workspace/execution adapters", class: REQUIRED_NOW, source: "AR-WSP/EXE", rationale: "Real-repo safety", dependencies: "E3V-002/003/006", target_stage: E4}
+      C03-CAP-05: {capability: "Git command/event classification", class: REQUIRED_NOW, source: "AR-GIT", rationale: "Repository workflow", dependencies: "E3V-003", target_stage: E4}
+      C03-CAP-06: {capability: "Approval/effect workflow", class: REQUIRED_NOW, source: "AR-APR", rationale: "Effect truth", dependencies: "E2-004/E3V-001/006", target_stage: E4}
+      C03-CAP-07: {capability: "Provider/capability gateway events", class: REQUIRED_NOW, source: "AR-MOD/SEC", rationale: "Neutral/scoped routing", dependencies: "E3V-004/008", target_stage: E4}
+      C03-CAP-08: {capability: "Evidence projection/independent verifier", class: REQUIRED_NOW, source: "AR-EVD/VER", rationale: "Completion", dependencies: "E3V-005", target_stage: E4}
+      C03-CAP-09: {capability: "Protected out-of-band acquisition", class: REQUIRED_NOW, source: "AR-SEC-003/006", rationale: "UF-11", dependencies: "E2-004/E3V-006", target_stage: E4}
+      C03-CAP-10: {capability: "Local projection client", class: REQUIRED_NOW, source: "D01/AR-PKG-001", rationale: "Local interaction", dependencies: "Client choice", target_stage: E4}
+      C03-CAP-11: {capability: "Serializable remote worker events", class: RESERVED_COMPATIBILITY, source: "AR-FUT-001", rationale: "Remote seam", dependencies: "No transport", target_stage: FUTURE}
+      C03-CAP-12: {capability: "Per-stream concurrent ownership", class: RESERVED_COMPATIBILITY, source: "AR-FUT-002", rationale: "Avoid global identity reuse", dependencies: "No concurrent scheduler", target_stage: FUTURE}
+      C03-CAP-13: {capability: "Multi-client projection/commands", class: RESERVED_COMPATIBILITY, source: "AR-FUT-002", rationale: "Process-independent state", dependencies: "One principal", target_stage: FUTURE}
+      C03-CAP-14: {capability: "Versioned extension events/adapters", class: RESERVED_COMPATIBILITY, source: "AR-FUT-003", rationale: "Bounded extensions", dependencies: "No loader", target_stage: FUTURE}
+      C03-CAP-15: {capability: "Remote/cloud workers", class: DEFERRED_TO_LATER_STAGE, source: "FC-001..004", rationale: "Compatibility only", dependencies: "Future distributed design", target_stage: FUTURE_PRODUCT}
+      C03-CAP-16: {capability: "Actual concurrency/agents/clients", class: DEFERRED_TO_LATER_STAGE, source: "FC-002..004", rationale: "Out of v0.1", dependencies: "Future scheduling/policy", target_stage: FUTURE_PRODUCT}
+      C03-CAP-17: {capability: "Skills/routines/connectors implementation", class: DEFERRED_TO_LATER_STAGE, source: "FC-005", rationale: "Boundary only", dependencies: "Future extension policy", target_stage: FUTURE_PRODUCT}
+      C03-CAP-18: {capability: "General/Finance Editions", class: DEFERRED_TO_LATER_STAGE, source: "FC-006/007", rationale: "Verticals deferred", dependencies: "Future requirements", target_stage: FUTURE_PRODUCT}
+      C03-CAP-19: {capability: "SaaS/multi-user/multi-tenant", class: DEFERRED_TO_LATER_STAGE, source: "FC-008", rationale: "Local preview", dependencies: "Future architecture/security/ops", target_stage: FUTURE_PRODUCT}
+
+  f22_open_source_contributor_burden_accessibility:
+    setup_complexity: "Local runtime plus journal/payload roots, schema/reducer/projection tooling and bounded adapters; no external service."
+    processes_services: "No mandatory daemon; presentation clients are optional, a task-bound coordinator may run detached or be absent between replay/recovery cycles, and executor/verifier adapters are bounded and replaceable."
+    platform_assumptions: "Durable ordered append/integrity, process/path/protected-entry primitives for supported hosts."
+    dependency_burden: "Event schema/reducer/snapshot/migration and adapter toolchain; concrete dependencies unknown."
+    local_tests: "Deterministic event streams/fault schedules/projection snapshots and fake adapters run locally without paid services."
+    reproduction_debugging: "Full causal history aids replay; understanding reducer/event evolution, projection lag and payload retention is required."
+    bounded_subsystem: "Command policy, reducers, projections, workspace/executor, gateway, evidence and verifier adapters have explicit contracts."
+    documentation: "Event authority, schemas/evolution, replay/checkpoint/gap recovery, effect workflows and projection nonauthority require substantial precision."
+    preference_status: "AR-PRF-006 characterized only; no score or conclusion."
+
+  f23_requirement_trace:
+    status_vocabulary:
+      contract: [SATISFIED_BY_DESIGN, FAILED_HARD, UNKNOWN]
+      generation: [SATISFIED_BY_DESIGN, PLAUSIBLY_SATISFIABLE_BUT_REQUIRES_E2_003_ANALYSIS, UNKNOWN_REQUIRING_SPIKE, VIOLATED, PREFERENCE_CHARACTERIZED_UNSCORED]
+      equivalence: "VIOLATED maps to FAILED_HARD; plausible/spike unknown map to UNKNOWN."
+    status_assignment_rule:
+      SATISFIED_BY_DESIGN: "Use only when this candidate already specifies a structural authority, mechanism, or enforceable seam sufficient to establish the hard property at design level. Implementation or E3 evidence may still be absent."
+      PLAUSIBLY_SATISFIABLE_BUT_REQUIRES_E2_003_ANALYSIS: "Use only when a credible candidate-specific design path exists but unresolved paper/design analysis remains before the property can be claimed structurally present."
+      UNKNOWN_REQUIRING_SPIKE: "Use only when empirical mechanism feasibility is genuinely architecture-blocking and analysis alone cannot responsibly decide it. Unknown receives no favorable treatment."
+      VIOLATED: "Use when the candidate as currently defined contradicts the hard requirement. Preference elegance, cost, or extraction burden never determines a hard status."
+      cross_candidate_application: "All 59 hard ARs were reread for C01/C02/C03 under this one rule. Equivalent unresolved properties receive the same status; any future difference requires a stated structural cause, not candidate identity."
+      specifically_rechecked: [AR-EXE-003, AR-DUR-003, AR-FUT-001, AR-FUT-002, AR-TST-002]
+    summary:
+      architecture_requirements: 65
+      hard_constraints: {total: 59, satisfied_by_design: 52, plausible_e2_003: 5, unknown_requiring_spike: 2, violated: 0}
+      weighted_preferences: {total: 6, characterized_unscored: 6, weights_assigned: 0}
+      canonical_e1_ids: 127
+      runtime_evidence: SPECIFIED_NOT_IMPLEMENTED_NOT_RUN
+    architecture_requirements:
+      AR-COR-001: {class: HARD_CONSTRAINT, contract_status: SATISFIED_BY_DESIGN, generation_status: SATISFIED_BY_DESIGN, evidence: "f03/f06/f07 IDs/first command result", owner: WORKFLOW_CORE}
+      AR-COR-002: {class: HARD_CONSTRAINT, contract_status: SATISFIED_BY_DESIGN, generation_status: SATISFIED_BY_DESIGN, evidence: "f06 immutable versioned contract events", owner: WORKFLOW_CORE}
+      AR-COR-003: {class: HARD_CONSTRAINT, contract_status: SATISFIED_BY_DESIGN, generation_status: SATISFIED_BY_DESIGN, evidence: "f06 reducers keep axes distinct", owner: REDUCER}
+      AR-COR-004: {class: HARD_CONSTRAINT, contract_status: SATISFIED_BY_DESIGN, generation_status: SATISFIED_BY_DESIGN, evidence: "f15/f16 completion projection conjunction", owner: REDUCER_AND_VERIFIER}
+      AR-COR-005: {class: HARD_CONSTRAINT, contract_status: SATISFIED_BY_DESIGN, generation_status: SATISFIED_BY_DESIGN, evidence: "f15 predicate/evidence projection", owner: EVIDENCE_VALIDATOR}
+      AR-COR-006: {class: HARD_CONSTRAINT, contract_status: SATISFIED_BY_DESIGN, generation_status: SATISFIED_BY_DESIGN, evidence: "f15/f16 event-position/revision stale rule", owner: WORKFLOW_CORE}
+      AR-COR-007: {class: HARD_CONSTRAINT, contract_status: SATISFIED_BY_DESIGN, generation_status: SATISFIED_BY_DESIGN, evidence: "f06 expected sequence/owner/fence", owner: APPEND_GATE}
+      AR-DUR-001: {class: HARD_CONSTRAINT, contract_status: SATISFIED_BY_DESIGN, generation_status: SATISFIED_BY_DESIGN, evidence: "f08 durable append acknowledgement", owner: JOURNAL}
+      AR-DUR-002: {class: HARD_CONSTRAINT, contract_status: SATISFIED_BY_DESIGN, generation_status: SATISFIED_BY_DESIGN, evidence: "f02 lifetime model plus f09 distinguish EP-CTL-016 subscription detach from coordinator/executor loss and define journal replay/reconciliation", owner: RECOVERY_REDUCER}
+      AR-DUR-003: {class: HARD_CONSTRAINT, contract_status: SATISFIED_BY_DESIGN, generation_status: SATISFIED_BY_DESIGN, evidence: "f07/f08/f12 specify durable intent, fenced one-attempt authority, admitted observation, readback and explicit known/failed/unknown recovery without claiming cross-boundary atomicity", owner: EFFECT_WORKFLOW}
+      AR-DUR-004: {class: HARD_CONSTRAINT, contract_status: SATISFIED_BY_DESIGN, generation_status: SATISFIED_BY_DESIGN, evidence: "f03/f04/f07/f09 durably order controls/fences, make projection loss non-authoritative, and explicitly advance overdue transitions on replay without claiming real-time enforcement while no coordinator exists", owner: WORKFLOW_CORE}
+      AR-DUR-005: {class: HARD_CONSTRAINT, contract_status: UNKNOWN, generation_status: PLAUSIBLY_SATISFIABLE_BUT_REQUIRES_E2_003_ANALYSIS, evidence: "f08 framing/quarantine/trusted replay proposal", owner: JOURNAL}
+      AR-DUR-006: {class: HARD_CONSTRAINT, contract_status: SATISFIED_BY_DESIGN, generation_status: SATISFIED_BY_DESIGN, evidence: "f08 retention/deletion events", owner: JOURNAL}
+      AR-DAT-001: {class: HARD_CONSTRAINT, contract_status: SATISFIED_BY_DESIGN, generation_status: SATISFIED_BY_DESIGN, evidence: "f06 events/payloads vs projections/ephemeral/summary", owner: WORKFLOW_CORE}
+      AR-DAT-002: {class: HARD_CONSTRAINT, contract_status: SATISFIED_BY_DESIGN, generation_status: SATISFIED_BY_DESIGN, evidence: "f06/f08 causal ordered integrity", owner: JOURNAL}
+      AR-CTX-001: {class: HARD_CONSTRAINT, contract_status: SATISFIED_BY_DESIGN, generation_status: SATISFIED_BY_DESIGN, evidence: "f14 journal/payload continuity", owner: CONTEXT_PROJECTOR}
+      AR-CTX-002: {class: HARD_CONSTRAINT, contract_status: SATISFIED_BY_DESIGN, generation_status: SATISFIED_BY_DESIGN, evidence: "f14 source-range invalidation", owner: CONTEXT_PROJECTOR}
+      AR-WSP-001: {class: HARD_CONSTRAINT, contract_status: SATISFIED_BY_DESIGN, generation_status: SATISFIED_BY_DESIGN, evidence: "f10 admission events/16 conditions", owner: WORKSPACE_ADAPTER}
+      AR-WSP-002: {class: HARD_CONSTRAINT, contract_status: SATISFIED_BY_DESIGN, generation_status: SATISFIED_BY_DESIGN, evidence: "f10 bind event before mutation", owner: WORKSPACE_ADAPTER}
+      AR-WSP-003: {class: HARD_CONSTRAINT, contract_status: UNKNOWN, generation_status: PLAUSIBLY_SATISFIABLE_BUT_REQUIRES_E2_003_ANALYSIS, evidence: "f10 object/path defense; mechanism unselected", owner: WORKSPACE_ADAPTER}
+      AR-WSP-004: {class: HARD_CONSTRAINT, contract_status: SATISFIED_BY_DESIGN, generation_status: SATISFIED_BY_DESIGN, evidence: "f10 inventory/canary events", owner: WORKSPACE_ADAPTER}
+      AR-WSP-005: {class: HARD_CONSTRAINT, contract_status: SATISFIED_BY_DESIGN, generation_status: SATISFIED_BY_DESIGN, evidence: "f09/f10 stale/cleanup events", owner: WORKSPACE_ADAPTER}
+      AR-EXE-001: {class: HARD_CONSTRAINT, contract_status: SATISFIED_BY_DESIGN, generation_status: SATISFIED_BY_DESIGN, evidence: "f04 command/event schemas", owner: COMMAND_GATE}
+      AR-EXE-002: {class: HARD_CONSTRAINT, contract_status: SATISFIED_BY_DESIGN, generation_status: SATISFIED_BY_DESIGN, evidence: "f07 operation event lifecycle", owner: EXECUTOR_ADAPTER}
+      AR-EXE-003: {class: HARD_CONSTRAINT, contract_status: UNKNOWN, generation_status: UNKNOWN_REQUIRING_SPIKE, evidence: "f04/f10 separate workflow lease/fencing from actual descendant containment; supported-host process-tree feasibility is shared SPQ-E2-002-01", owner: EXECUTOR_ADAPTER}
+      AR-EXE-004: {class: HARD_CONSTRAINT, contract_status: SATISFIED_BY_DESIGN, generation_status: SATISFIED_BY_DESIGN, evidence: "f10/f11 classified commands", owner: COMMAND_GATE}
+      AR-GIT-001: {class: HARD_CONSTRAINT, contract_status: SATISFIED_BY_DESIGN, generation_status: SATISFIED_BY_DESIGN, evidence: "f11 thirty typed actions", owner: GIT_ADAPTER}
+      AR-GIT-002: {class: HARD_CONSTRAINT, contract_status: SATISFIED_BY_DESIGN, generation_status: SATISFIED_BY_DESIGN, evidence: "f11 exact Git observation events", owner: GIT_ADAPTER}
+      AR-SEC-001: {class: HARD_CONSTRAINT, contract_status: SATISFIED_BY_DESIGN, generation_status: SATISFIED_BY_DESIGN, evidence: "f05/f18 command policy precedence", owner: COMMAND_POLICY}
+      AR-SEC-002: {class: HARD_CONSTRAINT, contract_status: SATISFIED_BY_DESIGN, generation_status: SATISFIED_BY_DESIGN, evidence: "f04/f18 scoped command/fence", owner: COMMAND_POLICY}
+      AR-SEC-003: {class: HARD_CONSTRAINT, contract_status: UNKNOWN, generation_status: PLAUSIBLY_SATISFIABLE_BUT_REQUIRES_E2_003_ANALYSIS, evidence: "f05 TB-05 event-excluded recipient", owner: PROTECTED_BROKER}
+      AR-SEC-006: {class: HARD_CONSTRAINT, contract_status: UNKNOWN, generation_status: UNKNOWN_REQUIRING_SPIKE, evidence: "f03/f18 ordinary event/capture exclusion unproven", owner: PROTECTED_BROKER}
+      AR-SEC-004: {class: HARD_CONSTRAINT, contract_status: UNKNOWN, generation_status: PLAUSIBLY_SATISFIABLE_BUT_REQUIRES_E2_003_ANALYSIS, evidence: "f05/f13 network adapter; host enforcement unselected", owner: NETWORK_GATEWAY}
+      AR-SEC-005: {class: HARD_CONSTRAINT, contract_status: SATISFIED_BY_DESIGN, generation_status: SATISFIED_BY_DESIGN, evidence: "f10/f15 provenance/forbidden artifacts", owner: PROVENANCE_VALIDATOR}
+      AR-APR-001: {class: HARD_CONSTRAINT, contract_status: SATISFIED_BY_DESIGN, generation_status: SATISFIED_BY_DESIGN, evidence: "f12 immutable approval lifecycle", owner: APPROVAL_REDUCER}
+      AR-APR-002: {class: HARD_CONSTRAINT, contract_status: SATISFIED_BY_DESIGN, generation_status: SATISFIED_BY_DESIGN, evidence: "f12 distinct effect events", owner: EFFECT_WORKFLOW}
+      AR-APR-003: {class: HARD_CONSTRAINT, contract_status: SATISFIED_BY_DESIGN, generation_status: SATISFIED_BY_DESIGN, evidence: "f05/f11/f12 command policy", owner: COMMAND_POLICY}
+      AR-MOD-001: {class: HARD_CONSTRAINT, contract_status: SATISFIED_BY_DESIGN, generation_status: SATISFIED_BY_DESIGN, evidence: "f13 neutral provider events", owner: PROVIDER_GATEWAY}
+      AR-MOD-002: {class: HARD_CONSTRAINT, contract_status: SATISFIED_BY_DESIGN, generation_status: SATISFIED_BY_DESIGN, evidence: "f13 eligibility/zero dispatch", owner: PROVIDER_GATEWAY}
+      AR-MOD-003: {class: HARD_CONSTRAINT, contract_status: SATISFIED_BY_DESIGN, generation_status: SATISFIED_BY_DESIGN, evidence: "f13 causal fallback/failure", owner: PROVIDER_GATEWAY}
+      AR-EVD-001: {class: HARD_CONSTRAINT, contract_status: SATISFIED_BY_DESIGN, generation_status: SATISFIED_BY_DESIGN, evidence: "f15 evidence projection/profile", owner: EVIDENCE_PROJECTOR}
+      AR-EVD-002: {class: HARD_CONSTRAINT, contract_status: SATISFIED_BY_DESIGN, generation_status: SATISFIED_BY_DESIGN, evidence: "f15 payload identities/provenance/redaction", owner: PAYLOAD_STORE}
+      AR-EVD-003: {class: HARD_CONSTRAINT, contract_status: SATISFIED_BY_DESIGN, generation_status: SATISFIED_BY_DESIGN, evidence: "f15/f17 evidence journal vs telemetry", owner: EVIDENCE_VALIDATOR}
+      AR-VER-001: {class: HARD_CONSTRAINT, contract_status: SATISFIED_BY_DESIGN, generation_status: SATISFIED_BY_DESIGN, evidence: "f04/f16 separate verifier adapter", owner: VERIFIER_ADAPTER}
+      AR-VER-002: {class: HARD_CONSTRAINT, contract_status: SATISFIED_BY_DESIGN, generation_status: SATISFIED_BY_DESIGN, evidence: "f16 replay/readback/adequacy", owner: VERIFIER_ADAPTER}
+      AR-VER-003: {class: HARD_CONSTRAINT, contract_status: SATISFIED_BY_DESIGN, generation_status: SATISFIED_BY_DESIGN, evidence: "f16 immutable lifecycle/correction", owner: VERIFIER_ADAPTER}
+      AR-OBS-001: {class: HARD_CONSTRAINT, contract_status: SATISFIED_BY_DESIGN, generation_status: SATISFIED_BY_DESIGN, evidence: "f17 causal projections", owner: OBSERVABILITY_PROJECTOR}
+      AR-OBS-002: {class: HARD_CONSTRAINT, contract_status: SATISFIED_BY_DESIGN, generation_status: SATISFIED_BY_DESIGN, evidence: "f17 evidence-linked explanations", owner: OBSERVABILITY_PROJECTOR}
+      AR-FAIL-001: {class: HARD_CONSTRAINT, contract_status: SATISFIED_BY_DESIGN, generation_status: SATISFIED_BY_DESIGN, evidence: "f17 typed failure events", owner: FAILURE_REDUCER}
+      AR-FAIL-002: {class: HARD_CONSTRAINT, contract_status: SATISFIED_BY_DESIGN, generation_status: SATISFIED_BY_DESIGN, evidence: "f07/f17 ceiling events/reserve", owner: COMMAND_POLICY}
+      AR-TST-001: {class: HARD_CONSTRAINT, contract_status: SATISFIED_BY_DESIGN, generation_status: SATISFIED_BY_DESIGN, evidence: "f25 event fault streams/adapters", owner: TEST_HARNESS}
+      AR-TST-002: {class: HARD_CONSTRAINT, contract_status: SATISFIED_BY_DESIGN, generation_status: SATISFIED_BY_DESIGN, evidence: "f25 nine-row family_level_matrix plus EP_CTL_016 and all 16 mandatory dangerous-composition seams", owner: TEST_HARNESS}
+      AR-TST-003: {class: HARD_CONSTRAINT, contract_status: SATISFIED_BY_DESIGN, generation_status: SATISFIED_BY_DESIGN, evidence: "f25 metric events; no thresholds", owner: METRIC_PROJECTOR}
+      AR-PERF-001: {class: HARD_CONSTRAINT, contract_status: SATISFIED_BY_DESIGN, generation_status: SATISFIED_BY_DESIGN, evidence: "f07/f13 pre-dispatch ceilings", owner: COMMAND_POLICY}
+      AR-PERF-002: {class: HARD_CONSTRAINT, contract_status: SATISFIED_BY_DESIGN, generation_status: SATISFIED_BY_DESIGN, evidence: "f13/f17 timing/usage/cost events", owner: METRIC_PROJECTOR}
+      AR-PKG-001: {class: HARD_CONSTRAINT, contract_status: UNKNOWN, generation_status: PLAUSIBLY_SATISFIABLE_BUT_REQUIRES_E2_003_ANALYSIS, evidence: "f19 journal/reducer tooling/support burden requires analysis", owner: PACKAGING_BOUNDARY}
+      AR-FUT-001: {class: HARD_CONSTRAINT, contract_status: SATISFIED_BY_DESIGN, generation_status: SATISFIED_BY_DESIGN, evidence: "f04/f20 serializable commands/events/adapters", owner: ARCHITECTURE_BOUNDARY}
+      AR-FUT-002: {class: HARD_CONSTRAINT, contract_status: SATISFIED_BY_DESIGN, generation_status: SATISFIED_BY_DESIGN, evidence: "f06/f20 per-stream/task ownership", owner: ARCHITECTURE_BOUNDARY}
+      AR-FUT-003: {class: HARD_CONSTRAINT, contract_status: SATISFIED_BY_DESIGN, generation_status: SATISFIED_BY_DESIGN, evidence: "f13/f20 versioned extension events", owner: COMMAND_GATE}
+      AR-PRF-001: {class: WEIGHTED_PREFERENCE, contract_status: UNKNOWN, generation_status: PREFERENCE_CHARACTERIZED_UNSCORED, evidence: "Local append/reducer/projection path; unmeasured", owner: E2-003}
+      AR-PRF-002: {class: WEIGHTED_PREFERENCE, contract_status: UNKNOWN, generation_status: PREFERENCE_CHARACTERIZED_UNSCORED, evidence: "Event/schema/reducer/projection/recovery concepts", owner: E2-003}
+      AR-PRF-003: {class: WEIGHTED_PREFERENCE, contract_status: UNKNOWN, generation_status: PREFERENCE_CHARACTERIZED_UNSCORED, evidence: "Adapters/projections replaceable; event schema/history costly", owner: E2-003}
+      AR-PRF-004: {class: WEIGHTED_PREFERENCE, contract_status: UNKNOWN, generation_status: PREFERENCE_CHARACTERIZED_UNSCORED, evidence: "Serializable event boundary; distributed coordination absent", owner: E2-003}
+      AR-PRF-005: {class: WEIGHTED_PREFERENCE, contract_status: UNKNOWN, generation_status: PREFERENCE_CHARACTERIZED_UNSCORED, evidence: "Journal/payload/projection overhead unmeasured", owner: E2-003}
+      AR-PRF-006: {class: WEIGHTED_PREFERENCE, contract_status: UNKNOWN, generation_status: PREFERENCE_CHARACTERIZED_UNSCORED, evidence: "Replay tooling aids reproduction; event model docs burden", owner: E2-003}
+    canonical_e1_trace:
+      resolution_rule: "Each listed E1 ID inherits primary AR status/evidence/owner; no runtime pass."
+      empirical_rule: "SLO/MET PROTOCOL_SPECIFIED_NOT_RUN; others SPECIFIED_NOT_IMPLEMENTED_NOT_RUN."
+      groups:
+        - {primary_ar: AR-APR-001, ids: [FR-043, FR-044, UF-09, NEG-APR-01]}
+        - {primary_ar: AR-APR-002, ids: [FR-068, UF-10, NEG-EXT-01]}
+        - {primary_ar: AR-COR-001, ids: [FR-001, FR-002, UF-01]}
+        - {primary_ar: AR-COR-002, ids: [FR-003, FR-005, FR-006, UF-06]}
+        - {primary_ar: AR-COR-003, ids: [FR-007]}
+        - {primary_ar: AR-COR-004, ids: [FR-065, FR-066, RR-008]}
+        - {primary_ar: AR-COR-005, ids: [FR-025, FR-067, RR-009, UF-03, UF-15]}
+        - {primary_ar: AR-COR-006, ids: [FR-015, NEG-VER-02]}
+        - {primary_ar: AR-COR-007, ids: [FR-008, RR-004, NEG-RACE-01]}
+        - {primary_ar: AR-CTX-001, ids: [FR-036, UF-13]}
+        - {primary_ar: AR-CTX-002, ids: [NEG-CTX-01]}
+        - {primary_ar: AR-DAT-002, ids: [RR-014, NEG-AUDIT-01]}
+        - {primary_ar: AR-DUR-001, ids: [FR-030, RR-001]}
+        - {primary_ar: AR-DUR-002, ids: [FR-031, RR-002, UF-07, UF-08]}
+        - {primary_ar: AR-DUR-003, ids: [FR-032, RR-003]}
+        - {primary_ar: AR-DUR-004, ids: [FR-033, RR-006, UF-04, UF-05]}
+        - {primary_ar: AR-DUR-005, ids: [FR-014, FR-035, FC-008]}
+        - {primary_ar: AR-DUR-006, ids: [FR-048, RR-012]}
+        - {primary_ar: AR-EVD-001, ids: [FR-026, FR-064, RR-010]}
+        - {primary_ar: AR-EVD-002, ids: [FR-063, NEG-EVID-01]}
+        - {primary_ar: AR-EVD-003, ids: [FR-062]}
+        - {primary_ar: AR-EXE-001, ids: [FR-022, FR-040, FR-041, RR-011, NEG-CMD-01, NEG-SCHEMA-01]}
+        - {primary_ar: AR-EXE-002, ids: [FR-020, FR-021]}
+        - {primary_ar: AR-EXE-003, ids: [NEG-TERM-01]}
+        - {primary_ar: AR-EXE-004, ids: [FR-027, NEG-SUPPLY-01]}
+        - {primary_ar: AR-FAIL-001, ids: [FR-034]}
+        - {primary_ar: AR-FUT-001, ids: [FC-001]}
+        - {primary_ar: AR-FUT-002, ids: [FC-002, FC-003, FC-004, NEG-FUTURE-01]}
+        - {primary_ar: AR-FUT-003, ids: [FC-005, FC-006, FC-007]}
+        - {primary_ar: AR-GIT-001, ids: [FR-023, FR-024, NEG-GIT-01]}
+        - {primary_ar: AR-GIT-002, ids: [FR-069]}
+        - {primary_ar: AR-MOD-001, ids: [FR-050, FR-055, FC-009]}
+        - {primary_ar: AR-MOD-002, ids: [FR-051, FR-053, UF-12, NEG-PROVIDER-01]}
+        - {primary_ar: AR-MOD-003, ids: [FR-052, FR-054]}
+        - {primary_ar: AR-OBS-001, ids: [FR-060, MET-003]}
+        - {primary_ar: AR-OBS-002, ids: [FR-061]}
+        - {primary_ar: AR-PERF-001, ids: [RR-005, RR-013, NEG-DOS-01]}
+        - {primary_ar: AR-PERF-002, ids: [MET-001, MET-002]}
+        - {primary_ar: AR-PKG-001, ids: [UF-16]}
+        - {primary_ar: AR-SEC-001, ids: [FR-004, FR-009, NEG-AUTH-01]}
+        - {primary_ar: AR-SEC-002, ids: [FR-037, FR-042, RR-015, NEG-CRED-01]}
+        - {primary_ar: AR-SEC-003, ids: [FR-046, FR-047, NEG-SECRET-01]}
+        - {primary_ar: AR-SEC-004, ids: [FR-045, NEG-NET-01]}
+        - {primary_ar: AR-SEC-006, ids: [UF-11]}
+        - {primary_ar: AR-TST-003, ids: [SLO-001, SLO-002, SLO-003, SLO-004, MET-004]}
+        - {primary_ar: AR-VER-001, ids: [UF-14, NEG-VER-01]}
+        - {primary_ar: AR-WSP-001, ids: [FR-010]}
+        - {primary_ar: AR-WSP-002, ids: [FR-012, UF-02]}
+        - {primary_ar: AR-WSP-003, ids: [FR-013, NEG-FS-01]}
+        - {primary_ar: AR-WSP-004, ids: [FR-011, RR-007, NEG-DESTRUCT-01]}
+        - {primary_ar: AR-WSP-005, ids: [NEG-CLEAN-01]}
+
+  f24_decision_domain_trace:
+    D01_CLIENT_INTERACTION_BOUNDARY: {owner: PROJECTION_CLIENT, answer: "Idempotent commands/durable event ack/reconnect position/controls/approval/evidence/protected broker."}
+    D02_CORE_APPLICATION_RUNTIME: {owner: WORKFLOW_CORE, answer: "Replaceable coordinator; journal/append gate/reducer are authority."}
+    D03_TASK_WORKFLOW_ORCHESTRATION: {owner: REDUCER_SCHEDULER, answer: "Explicit command/event/lease/control/retry/retirement transitions."}
+    D04_DURABLE_STATE_PERSISTENCE: {owner: JOURNAL_PAYLOAD_STORE, answer: "Append authority, immutable payloads, snapshots/projections/replay."}
+    D05_CANONICAL_TASK_CONVERSATION_EVIDENCE_MODEL: {owner: JOURNAL_PAYLOAD_STORE, answer: "Original events/payloads authority; transcript/evidence bundle projections."}
+    D06_EVENT_OPERATION_HISTORY: {owner: JOURNAL, answer: "Ordered causal material history is defining authority."}
+    D07_FILESYSTEM_WORKSPACE_ABSTRACTION: {owner: WORKSPACE_ADAPTER, answer: "Admission/base/bind/stale/cleanup events around isolated workspace."}
+    D08_EXECUTION_PROCESS_CONTROL: {owner: EXECUTOR_ADAPTER_AND_FENCE, answer: "Process tree adapter plus durable workflow authority/fence."}
+    D09_ISOLATION_SANDBOXING: {owner: WORKSPACE_EXECUTOR_ADAPTERS, answer: "Structural path/process/secret/network controls and support matrix."}
+    D10_GIT_INTEGRATION: {owner: GIT_ADAPTER, answer: "Thirty typed commands and fresh Git observation events."}
+    D11_APPROVAL_PERMISSION_SYSTEM: {owner: COMMAND_POLICY_APPROVAL_REDUCER, answer: "Exact lifecycle events serialized before dispatch; protected path separate."}
+    D12_EXTERNAL_EFFECT_RECONCILIATION: {owner: EFFECT_WORKFLOW, answer: "Distinct intent/attempt/observation/readback/unknown events."}
+    D13_MODEL_PROVIDER_GATEWAY: {owner: PROVIDER_ADAPTER, answer: "Neutral typed route/result/failure/usage event boundary."}
+    D14_ROUTING_CAPABILITY_DISCOVERY: {owner: COMMAND_POLICY_GATEWAYS, answer: "Purpose/eligibility/capability/fallback/zero-dispatch events."}
+    D15_CONTEXT_MEMORY_COMPACTION: {owner: CONTEXT_PROJECTOR, answer: "Bounded manifests and invalidatable source-range summaries."}
+    D16_VERIFICATION_ARCHITECTURE: {owner: VERIFIER_ADAPTER, answer: "Separate replay/readback/workspace/adequacy and immutable run events."}
+    D17_EVIDENCE_ARTIFACT_SYSTEM: {owner: EVIDENCE_PROJECTOR_PAYLOAD_STORE, answer: "Exact position/profile/provenance/integrity/stale/limitations."}
+    D18_OBSERVABILITY_LOGGING: {owner: OBSERVABILITY_PROJECTOR, answer: "Causal state with lag/gaps; telemetry nonauthority."}
+    D19_ERROR_FAILURE_MODEL: {owner: FAILURE_REDUCER, answer: "Typed layer/retry/recovery events."}
+    D20_SECURITY_BOUNDARIES: {owner: COMMAND_POLICY_AND_ADAPTERS, answer: "TB-01..20 structural command/adapter/protected/evidence controls."}
+    D21_LOCAL_FIRST_PACKAGING: {owner: LOCAL_RUNTIME_PACKAGE, answer: "Local journal/runtime/adapters, no mandatory daemon/service."}
+    D22_FUTURE_REMOTE_EXECUTION: {owner: DISPATCH_EVENT_CONTRACT, answer: "Serializable events/fences reserved; no transport."}
+    D23_FUTURE_CONCURRENCY_MULTI_AGENT: {owner: STREAM_OWNERSHIP_MODEL, answer: "Per-stream/task versions/scopes; actual concurrency deferred."}
+    D24_EXTENSION_SKILL_CONNECTOR_BOUNDARY: {owner: COMMAND_EVENT_CONTRACT, answer: "Versioned authority/provenance/limits/tests without ambient power."}
+    D25_E1_SUITE_TESTABILITY: {owner: EVENT_FIXTURE_HARNESS, answer: "Inject streams/gaps/reorder/crash/effect/adapter/verification faults and replay oracles."}
+
+  f25_testability_trace:
+    frozen_assets: {evaluation_cases: 170, oracle_classes: 18, fixture_families: 11, security_negative_families: 23, repository_conditions: 16, git_effect_classifications: 30, predicate_adequacy_variants: 9, dangerous_compositions: 16, reliability_protocols: 8}
+    seams:
+      workflow: "Construct command/event streams, owner/version conflicts, controls, waits, blockers and dispositions; inspect reducer truth."
+      persistence: "Interrupt append/payload commit, corrupt/reorder/drop/duplicate/substitute events and checkpoints."
+      effect: "Adapter stubs lose responses/acks, duplicate dispatch, lie about targets and expose authoritative readback."
+      workspace_git: "Synthetic 16 conditions/30 rows/path attacks/dirty mutations/canaries as events."
+      process: "Fake clock/executor injects timeout/cancel resistance/descendants/fence."
+      provider: "Offline typed route/policy/provider/model/transport/fallback/usage/cost events."
+      approval_protected: "Clock/revocation/race plus marker/capture observers; raw value absent from journal/payload/projections."
+      context_evidence_verifier: "Poison/omit/stale projections, gaps/tamper, candidate mutation, verifier crash/adequacy/check replay."
+      metrics: "Timestamp/counter/limit/usage/cost/missingness events for eight protocols."
+    oracle_rule: "Journal/payload/target state and deterministic reducer/readback are decisive; projection/executor/model summary is not."
+    unsupported_rule: "Unavailable adapter/support class is explicit, never pass."
+    family_level_matrix:
+      EVALUATION_CASE_FAMILIES_170: {architecture_seam: "versioned command/event admission, normative reducer and fenced adapters", injectable_condition: "family-tagged commands, ordering/race/crash/control/effect schedules without materializing 170 architecture rows", observable_state_evidence: "authoritative event position, reducer axes, adapter/readback events and current disposition", oracle_access_path: "OR-STATE-READBACK, OR-RECOVERY-REPLAY and family-specific target oracles over journal/payload truth", candidate_limitation: "event-schema and reducer fixture burden; projection-only observations are inadmissible", unsupported_condition: "a case whose required event or target readback cannot be represented is UNSUPPORTED, not pass", instrumentation_stage: "E2 family seam; E3 focused obligations; E4 event/adapter instrumentation; E5 all 170"}
+      ORACLE_CLASSES_18: {architecture_seam: "journal/payload reader plus deterministic replay and authoritative target readbacks", injectable_condition: "gaps, stale projections, forged adapter reports, divergent targets and verifier failures", observable_state_evidence: "validated sequence/payload references, reducer result, actual workspace/Git/effect state and immutable verifier events", oracle_access_path: "all 18 oracle classes through independent journal/payload/target adapters", candidate_limitation: "a cached projection never decides truth and replay tooling must understand schema versions", unsupported_condition: "missing decisive source forces UNKNOWN/BLOCKED", instrumentation_stage: "E2 access paths; E3 oracle prototypes; E4 readers; E5 all 18"}
+      FIXTURE_FAMILIES_11: {architecture_seam: "constructible event streams, payloads, snapshots, clocks, coordinators and fake adapters", injectable_condition: "each frozen fixture family with controlled sequence, ownership, capabilities and host observations", observable_state_evidence: "input fixture manifest plus admitted/rejected events and deterministic reducer output", oracle_access_path: "fixture manifest to journal position and target-state readback", candidate_limitation: "schema evolution requires versioned fixture migrations", unsupported_condition: "undeclared host/adapter fixture is explicitly unsupported", instrumentation_stage: "E2 fixture contract; E3 representative fixtures; E4 harness; E5 all 11"}
+      SECURITY_NEGATIVE_FAMILIES_23: {architecture_seam: "command-policy/event-admission boundary, workspace/executor/network/protected adapters and denial events", injectable_condition: "all 23 untrusted-content, authority, path, secret, process, egress, approval and evidence attacks", observable_state_evidence: "zero unauthorized append/dispatch/read/write/egress, denial event, unchanged canaries and raw-marker absence", oracle_access_path: "policy journal plus filesystem/network/process/secret/effect canaries", candidate_limitation: "host-kernel compromise remains outside the support claim", unsupported_condition: "missing enforcement narrows support and fails closed", instrumentation_stage: "E2 boundary map; E3 security focus; E4 enforcement observers; E5 all 23"}
+      REPOSITORY_CONDITION_FAMILIES_16: {architecture_seam: "workspace-admission and reconciliation events around the workspace adapter", injectable_condition: "all 16 dirty, untracked, ignored, nested, linked, special, generated and stale repository states", observable_state_evidence: "pinned identity/base, before/after inventory, object/canary observations and blocker events", oracle_access_path: "fresh filesystem and Git readback independent of projections", candidate_limitation: "ambiguous ownership/topology blocks mutation or cleanup", unsupported_condition: "an unverifiable topology is UNSUPPORTED/BLOCKED", instrumentation_stage: "E2 admission semantics; E3 focused matrix; E4 adapter; E5 all 16"}
+      GIT_EFFECT_CLASSIFICATIONS_30: {architecture_seam: "typed Git commands/events and Git adapter", injectable_condition: "each of 30 frozen classifications including hooks/helpers/filters/network/credentials and remote ambiguity", observable_state_evidence: "requested/admitted/denied Git event plus fresh HEAD/ref/index/worktree/remote observations", oracle_access_path: "Git-state and external-effect oracles keyed by operation/effect identity", candidate_limitation: "unreadable remote truth remains unknown and optional operations may be unsupported", unsupported_condition: "a class whose helpers/effects cannot be bounded is denied", instrumentation_stage: "E2 one-to-one map; E3 focused Git; E4 adapter; E5 all 30"}
+      PREDICATE_ADEQUACY_VARIANTS_9: {architecture_seam: "versioned predicate events, evidence projection and independent verifier adapter", injectable_condition: "all nine vacuous, stale, partial, mismatched, omitted and insufficient predicate/evidence variants", observable_state_evidence: "predicate revision, decisive evidence references, adequacy result and aggregate verified/disposition state", oracle_access_path: "underlying journal/payload/candidate readback plus independent verifier events", candidate_limitation: "projection rebuild cannot supply missing decisive evidence", unsupported_condition: "uncheckable predicate blocks completion", instrumentation_stage: "E2 revision seam; E3 focused adequacy; E4 verifier; E5 all 9"}
+      DANGEROUS_COMPOSITIONS_16: {architecture_seam: "causally ordered event stream across control, approval, effect, workspace, Git, provider, evidence and verifier adapters", injectable_condition: "each mandatory two-or-more-failure composition listed below", observable_state_evidence: "single causal event chain, target/canary observations, truthful partial/unknown state and stale-verification invalidation", oracle_access_path: "composition-specific journal replay plus independent target oracles", candidate_limitation: "non-atomic external and filesystem reality may truthfully end PARTIAL/UNKNOWN", unsupported_condition: "absence of containment/readback means fail-closed, never inferred pass", instrumentation_stage: "E2 all 16 mapped below; E3 focused; E4 fault points; E5 all 16"}
+      RELIABILITY_PROTOCOLS_8: {architecture_seam: "event timestamps/counters/ceilings, deterministic clock and metric projector", injectable_condition: "eight frozen protocol schedules including restart, timeout, cancellation, cost and missing telemetry", observable_state_evidence: "raw material events, bounds, missingness, calculations and denial/outcome events", oracle_access_path: "protocol calculation over authoritative events and independent target readback", candidate_limitation: "journal/projection overhead remains unmeasured and no threshold is claimed", unsupported_condition: "missing mandatory raw event invalidates the protocol", instrumentation_stage: "E2 inputs; E3 focused measurement; E4 counters; E5 all 8"}
+    named_case_mappings:
+      EP_CTL_016: {architecture_seam: "presentation subscription detach/reconnect while durable workflow authority and task-bound coordinator lease remain independent", injectable_condition: "close/disconnect every presentation client without appending cancel/pause/full-shutdown control", observable_state_evidence: "coordinator continues or enters a policy-bounded waiting state; journal/payload/task/workspace survive and projection rebuilds truthfully", oracle_access_path: "journal/reducer replay, current lease/fence and workspace/effect readback", candidate_limitation: "if the coordinator also exits, recovery occurs with no real-time timeout claim; that is not client-only interruption", unsupported_condition: "a client technology that owns the only journal/coordinator authority cannot implement C03", instrumentation_stage: "E2 lifetime seam specified; E3 focused detach; E4 client/coordinator probes; E5 EP-CTL-016"}
+    mandatory_dangerous_composition_matrix:
+      COMP-01-CRASH-APPROVAL: {architecture_seam: "approval/dispatch event ordering", injectable_condition: "coordinator loss after approval consumption before dispatch", observable_state_evidence: "durable consumption, zero or one correlated dispatch and truthful reducer state", oracle_access_path: "journal replay plus adapter target", candidate_limitation: "coordinator is replaceable", unsupported_condition: "none within valid journal", instrumentation_stage: "E3/E4 focused; E5 full"}
+      COMP-02-CRASH-EXTERNAL-EFFECT: {architecture_seam: "intent/attempt/observation/readback events", injectable_condition: "loss after possible effect before receipt append", observable_state_evidence: "one effect or OUTCOME_UNCERTAIN with no blind redispatch", oracle_access_path: "journal plus external target", candidate_limitation: "no event/target atomicity", unsupported_condition: "no readback remains unknown", instrumentation_stage: "E3/E4 focused; E5 full"}
+      COMP-03-STOP-EXTERNAL-EFFECT: {architecture_seam: "ordered control/fence and effect workflow", injectable_condition: "stop while effect is crossing adapter", observable_state_evidence: "fence, target readback and known/unknown outcome", oracle_access_path: "control/effect event chain plus target", candidate_limitation: "irreversible effect may precede stop", unsupported_condition: "unreadable target remains unknown", instrumentation_stage: "E3/E4 focused; E5 full"}
+      COMP-04-REDIRECT-STALE-VERIFICATION: {architecture_seam: "revision/event-position verifier binding", injectable_condition: "redirect command after prior pass", observable_state_evidence: "historical pass preserved and current projection UNVERIFIED", oracle_access_path: "journal head, candidate and verifier events", candidate_limitation: "new run required", unsupported_condition: "none", instrumentation_stage: "E3/E4 focused; E5 full"}
+      COMP-05-DIRTY-REPOSITORY-RECOVERY: {architecture_seam: "workspace identity/event reconciliation", injectable_condition: "coordinator loss amid task and user dirty changes", observable_state_evidence: "per-object observations and BLOCKED/PARTIAL if attribution ambiguous", oracle_access_path: "filesystem/Git/canary plus journal", candidate_limitation: "event intent cannot prove actual write", unsupported_condition: "unclassifiable topology", instrumentation_stage: "E3/E4 focused; E5 full"}
+      COMP-06-SECRET-PATH-REPOSITORY-INJECTION: {architecture_seam: "policy/protected adapter boundary", injectable_condition: "repository instruction requests protected read/transmit", observable_state_evidence: "zero read/dispatch and absent raw marker", oracle_access_path: "denial event, secret and network canaries", candidate_limitation: "host compromise excluded", unsupported_condition: "missing enforcement blocks host class", instrumentation_stage: "E3/E4 focused; E5 full"}
+      COMP-07-SYMLINK-SECRET: {architecture_seam: "object-identity workspace adapter", injectable_condition: "link/object swap before access or cleanup", observable_state_evidence: "denial event and unchanged canaries", oracle_access_path: "actual objects, journal and secret marker", candidate_limitation: "host filesystem support varies", unsupported_condition: "identity cannot be proven", instrumentation_stage: "E3/E4 focused; E5 full"}
+      COMP-08-MALICIOUS-OUTPUT-EVIDENCE: {architecture_seam: "payload quarantine/evidence projector/verifier", injectable_condition: "tool output forges approval/pass and carries marker", observable_state_evidence: "untrusted payload excluded from authority/evidence and marker not propagated", oracle_access_path: "payload lineage, journal, marker and verifier", candidate_limitation: "bounded artifacts only", unsupported_condition: "unscannable evidence rejected", instrumentation_stage: "E3/E4 focused; E5 full"}
+      COMP-09-STALE-APPROVAL-RESTART: {architecture_seam: "approval tuple and stream-owner epoch", injectable_condition: "restart changes owner/base/version", observable_state_evidence: "stale approval cannot authorize dispatch", oracle_access_path: "replayed approval lifecycle and current state", candidate_limitation: "reapproval may be required", unsupported_condition: "none", instrumentation_stage: "E3/E4 focused; E5 full"}
+      COMP-10-DUPLICATE-EFFECT-LOST-ACK: {architecture_seam: "effect identity/reducer first outcome/readback", injectable_condition: "redeliver dispatch after effect and lost event ack", observable_state_evidence: "one effect and original/unknown outcome", oracle_access_path: "journal plus target effect stub", candidate_limitation: "missing readback blocks retry", unsupported_condition: "no readback remains unknown", instrumentation_stage: "E3/E4 focused; E5 full"}
+      COMP-11-POST-VERIFY-MUTATION-DRAFT-PACKAGE: {architecture_seam: "material event invalidation and evidence position", injectable_condition: "workspace mutation after verifier event before package", observable_state_evidence: "new event head derives UNVERIFIED package", oracle_access_path: "workspace, journal, evidence and verifier", candidate_limitation: "old pass historical only", unsupported_condition: "none", instrumentation_stage: "E3/E4 focused; E5 full"}
+      COMP-12-GIT-HOOK-COMMIT: {architecture_seam: "typed sanitized Git adapter", injectable_condition: "malicious hook/helper before bounded commit", observable_state_evidence: "zero helper effect and exact Git observation", oracle_access_path: "Git state, process/network canaries and events", candidate_limitation: "optional commit may be unsupported", unsupported_condition: "cannot suppress helper/hook", instrumentation_stage: "E3/E4 focused; E5 full"}
+      COMP-13-PACKAGE-SCRIPT-NETWORK: {architecture_seam: "package/process/network admission events", injectable_condition: "lifecycle script attempts egress", observable_state_evidence: "zero unauthorized process/network and blocker event", oracle_access_path: "process/network canaries plus journal", candidate_limitation: "retrieval and execution are separate", unsupported_condition: "undeclared script class denied", instrumentation_stage: "E3/E4 focused; E5 full"}
+      COMP-14-FORCE-STOP-PARTIAL-FILESYSTEM: {architecture_seam: "control/fence events plus workspace readback", injectable_condition: "force termination during file replace/multi-file edit", observable_state_evidence: "actual bytes, PARTIAL/BLOCKED and invalidated verification", oracle_access_path: "journal, filesystem/Git and canaries", candidate_limitation: "filesystem not journal-atomic", unsupported_condition: "truth cannot be established safely", instrumentation_stage: "E3/E4 focused; E5 full"}
+      COMP-15-FALLBACK-COST-CEILING: {architecture_seam: "provider route/budget events", injectable_condition: "primary failure at cost/resource ceiling", observable_state_evidence: "zero fallback and typed exhausted disposition", oracle_access_path: "route/usage/policy event chain", candidate_limitation: "no automatic rescue", unsupported_condition: "missing usage blocks dispatch", instrumentation_stage: "E3/E4 focused; E5 full"}
+      COMP-16-INJECTION-CAPABILITY-ESCALATION: {architecture_seam: "closed command-policy/event schema", injectable_condition: "content asks for broader capability", observable_state_evidence: "unchanged grants, denial event and zero dispatch", oracle_access_path: "policy/reducer and target canaries", candidate_limitation: "extensions require versioned admission", unsupported_condition: "unknown capability denied", instrumentation_stage: "E3/E4 focused; E5 full"}
+    decisive_oracle_rule: "Every family and composition reads authoritative journal/payload/current target state; a stale projection, coordinator, executor, model or telemetry summary is never the decisive oracle."
+    unsupported_case_rule: "A support class that cannot expose the mandatory seam, enforcement or readback is explicitly UNSUPPORTED/BLOCKED and cannot be credited as an evaluation pass."
+
+  f26_known_weaknesses_and_assumptions:
+    facts: ["No implementation/spike/evaluation/benchmark/provider call", "Event mechanisms/support matrix/technology unselected"]
+    candidate_assumptions: ["Local ordered durable append and payload reference consistency can be provided", "Reducers are deterministic/versionable and projections fully rebuildable", "Required process/path/protected-entry host primitives can be bounded"]
+    known_weaknesses: ["Event schema and migration become durable commitments", "Reducer/projection/replay/checkpoint concepts raise contributor learning and testing burden", "Long histories can affect rebuild/storage/retention", "Effect and protected-delivery bridges cannot be atomic with external recipients/targets and need exact reconciliation", "Projection lag/gaps require explicit UI semantics", "No live coordinator means no new dispatch or real-time timeout/termination enforcement until recovery, even though durable deadline truth persists"]
+    unsupported_environments: ["Compromised privileged host/media", "Hosts where workflow events/fences plus required executor primitives cannot provide Tier 2 descendant filesystem/network/process/credential enforcement", "Hosts without protected capture/out-of-event delivery exclusion", "Effects without idempotency/readback", "Journal corruption beyond retained trusted recovery point"]
+    isolation_support_boundary: "Durable workflow authority and adapter fencing are Tier 1 control-plane enforcement, not Tier 2 descendant containment by themselves; untrusted execution is unsupported until the declared executor host supplies the required Tier 2 semantics."
+    correlated_risks: ["Integrity/history/evidence/replay complexity correlate", "Remote compatibility, event serialization and contributor burden correlate; avoid double-counting"]
+
+  f27_selection_uncertainties:
+    ANALYSIS_RESOLVABLE_E2_003:
+      - {id: C03-U01, question: "Is immutable event authority plus projections proportionate to v0.1 recovery/evidence needs?", evidence_needed: "Complexity/state ownership analysis", affected: [AR-PRF-002, AR-PRF-005, AR-PRF-006]}
+      - {id: C03-U02, question: "Are journal/payload retention, redaction and deletion semantics coherent with evidence preservation?", evidence_needed: "Retention/privacy/migration analysis", affected: [AR-DUR-006, AR-EVD-002]}
+      - {id: C03-U03, question: "What support/package declaration makes replay/migration tooling contributor-operable?", evidence_needed: "Packaging/contributor analysis", affected: [AR-PKG-001]}
+      - {id: C03-U04, question: "What exact supported-host, path, network, secret and packaging declaration is credible under the shared isolation taxonomy?", evidence_needed: "Support-matrix and contributor workflow analysis; descendant enforcement itself remains SPQ-E2-002-01", affected: [AR-WSP-003, AR-SEC-003, AR-SEC-004, AR-PKG-001, AQ-003]}
+    ARCHITECTURE_BLOCKING_SPIKE_E2_004:
+      - spike_question_id: SPQ-E2-002-01
+        property_being_tested: "Supported-host descendant/process-tree containment after cancellation, force, fence, owner loss and client-independent execution."
+        affected_ARs: [AR-EXE-003]
+        affected_candidates: [EP-ARCH-C01, EP-ARCH-C02, EP-ARCH-C03]
+        shared_or_candidate_specific: SHARED_ARCHITECTURE_SPIKE
+        why_analysis_is_insufficient: "Lease/epoch rules establish logical authority but cannot prove that actual descendant processes stop, lose reachable effects, or remain contained on the declared host class."
+        minimal_mechanism_under_test: "One technology-neutral process-tree adapter, controllable parent/descendants, cancel/force/fence/owner-loss injection and an effect canary, exercised through each candidate topology."
+        success_criterion: "Every descendant terminates or is durably deprived of productive/effect authority within the declared bound; stale output/result cannot commit; evidence accounts for the whole tree."
+        failure_criterion: "Any unaccounted descendant, post-fence effect, stale commit, or topology-specific bypass."
+        architecture_blocking_reason: "AR-EXE-003 and TIER_2 support cannot be claimed for the supported workload class without empirical mechanism feasibility."
+        reusable_result_scope: "Host primitive and process-tree behavior reusable across all candidates; candidate topology assertions remain separate."
+        decision_linkage: "E2-003 may classify/freeze; E2-004 alone may execute; failure returns the affected candidate(s) to E2 without selecting another."
+        sp_c_reuse: "Reuse the verified SP-C01 crash-point/fault matrix and SP-C05 execution-lifecycle/control material; distinguish C03's replay-replaceable coordinator topology from the other candidates."
+        run_status: NOT_RUN
+      - spike_question_id: SPQ-E2-002-02
+        property_being_tested: "Shared protected human acquisition can exclude ordinary keystroke, clipboard, screen/accessibility, terminal, model, transcript, log and evidence capture."
+        affected_ARs: [AR-SEC-006]
+        affected_candidates: [EP-ARCH-C01, EP-ARCH-C02, EP-ARCH-C03]
+        shared_or_candidate_specific: SHARED_ARCHITECTURE_SPIKE
+        why_analysis_is_insufficient: "A paper boundary cannot demonstrate actual exclusion across the supported client/host observation surfaces."
+        minimal_mechanism_under_test: "Synthetic marker entry under a capture-suspension broker with observers on every mandatory surface; no provider or real secret."
+        success_criterion: "Raw marker appears only at the protected handoff endpoint and nowhere else; failure produces WAITING_FOR_USER/blocked plus a non-secret receipt."
+        failure_criterion: "Any marker exposure, persistence, ordinary replay or bypass."
+        architecture_blocking_reason: "Protected acquisition is a hard boundary and cannot be credited from prose alone."
+        reusable_result_scope: "Acquisition/capture exclusion result is shared; delivery/routing remains candidate-specific."
+        decision_linkage: "E2-003 may classify/freeze; E2-004 alone may execute; result does not select client technology."
+        sp_c_reuse: "Reuse SP-C04 exact authorization/non-secret receipt/readback and SP-C05 takeover/recovery lifecycle material; distinguish the shared capture observers from candidate delivery routing."
+        run_status: NOT_RUN
+      - spike_question_id: SPQ-E2-002-05
+        property_being_tested: "C03 protected out-of-event delivery preserves intent/receipt/recovery truth while raw bytes bypass journal, payload, projection, model and telemetry capture."
+        affected_ARs: [AR-SEC-003, AR-SEC-006]
+        affected_candidates: [EP-ARCH-C03]
+        shared_or_candidate_specific: CANDIDATE_SPECIFIC_ARCHITECTURE_SPIKE
+        why_analysis_is_insufficient: "C03 must empirically establish its event-before-delivery metadata, transient broker/recipient path, crash-point reconciliation and no-replay behavior without ever persisting the synthetic raw value."
+        minimal_mechanism_under_test: "Synthetic one-use protected intent and correlation, out-of-event broker delivery, recipient/fence observer, crashes before/during/after delivery and append failures at non-secret receipt boundaries."
+        success_criterion: "Raw bytes reach only the named recipient once, remain absent from all durable/derived surfaces, and every crash point yields known-not-delivered, known-delivered or explicit unknown without replay."
+        failure_criterion: "Raw event/payload capture, projection-driven delivery, duplicate/replayed use, stale-fence use, guessed outcome or uncorrelated receipt."
+        architecture_blocking_reason: "This is the C03-specific delivery/routing half of AR-SEC-006 after shared acquisition feasibility."
+        reusable_result_scope: "C03 out-of-event broker and payload/event ordering only; shared capture evidence comes from SPQ-E2-002-02."
+        decision_linkage: "E2-003 may freeze a bounded C03 variant under E2-004; no journal, channel or broker technology is selected here."
+        sp_c_reuse: "Reuse SP-C01 append/delivery crash points, SP-C04 exact-recipient/receipt/readback, and SP-C05 lifecycle/fence material; distinguish C03's out-of-event path and payload/event ordering."
+        run_status: NOT_RUN
+    E3_VALIDATION_OBLIGATION:
+      - {id: C03-U05, obligations: [E3V-001, E3V-002, E3V-003, E3V-004, E3V-005, E3V-006, E3V-007, E3V-008], note: "Postselection only."}
+    E4_IMPLEMENTATION_DETAIL:
+      - {id: C03-U06, items: ["runtime/journal/payload", "event/schema/reducer", "projection/checkpoint", "executor/sandbox", "provider adapters", "client/package"], note: "Later implementation choice."}
+    FUTURE_PRODUCT:
+      - {id: C03-U07, items: ["remote/cloud workers", "actual concurrency/agents/clients", "extensions/verticals/SaaS"], note: "Deferred."}
+
+  f28_migration_reversibility_profile:
+    easy_to_reverse: ["Replace projections/client/telemetry/summary", "Replace executor/verifier/provider/tool adapters", "Add new derived indexes/checkpoints"]
+    costly_to_reverse: ["Change canonical event identity/order/meaning or rewrite history", "Replace journal/payload authority after durable tasks/effects/evidence", "Change approval/effect/verification event contracts"]
+    data_state_migration: "Export journal/payload/integrity/retention/migration history; import validates every sequence/ref, rebuilds projections under new owner and invalidates leases/current verification."
+    provider_migration: "Neutral events persist; provider-specific payloads retained as nonportable provenance."
+    execution_migration: "Dispatch/result events can cross local/remote later; transport auth/delivery/failure semantics require future design."
+    client_replacement: "Projection client replaceable if command/protected-entry/evidence semantics reproduced."
+    lock_in: "Canonical event model/schema/evolution and journal/payload boundary, not provider/model."
+    reversal_triggers: "Failed effect bridge, protected entry, replay integrity, deterministic reducer, evidence independence or packaging floor returns to E2."
+    confidence: "PROPOSAL_WITH_SELECTION_BLOCKING_UNKNOWNS; no score."
+
+  f29_level_a_b_c_record:
+    level_a_basis: "All hard properties derive from frozen E1/EP-ARCH-REQ-0.2; reconstructed evidence only corroborates questions."
+    level_c_exclusion: "No reconstructed source/name/schema/layout/module/constant/asset/copy/score adopted."
+    shared_disposition_explanations:
+      LB-02: "All candidates intentionally leave content addressing unselected because stable identity plus integrity satisfies the hard floor and content addressing adds privacy, retention and deletion questions; identical NOT_USED is a shared non-decision, not collapsed authority/persistence."
+      LB-14: "All candidates share the hard rule that no ungated adapter may grant itself authority. Their adapter placement differs structurally: C01's gateway is in the integrated core, C02's gateway is service-owned with a protected raw-value bypass, and C03's policy/event-admission gate precedes adapters."
+      isolation_floor: "The same TIER_1/TIER_2 semantic floor is a shared hard constraint, not an alternative-quality score; candidates vary ownership/topology, not the safety property."
+    patterns:
+      LB-01: {family: "Canonical authority/checkpoints/roots/migration", disposition: USED, why: "Journal/payload roots and validated checkpoints/migrations", e1_reason: "AR-COR/DUR/DAT", excluded_level_c: "No engine/schema/algorithm"}
+      LB-02: {family: "Content-addressed identity/referents", disposition: NOT_USED, why: "C03 deliberately uses stable payload/event identities plus integrity metadata; content addressing is unnecessary to event authority and remains a shared privacy/retention non-decision", e1_reason: "AR-EVD-002", excluded_level_c: "No hash/blob layout"}
+      LB-03: {family: "Derived projections/transcript rebuilding", disposition: USED, why: "Defining reducer/projection model", e1_reason: "AR-DAT/CTX/OBS", excluded_level_c: "No codec/event format"}
+      LB-04: {family: "Authority/history persistence alternatives", disposition: USED, why: "Append-only event authority", e1_reason: "AR-DUR/DAT", excluded_level_c: "No event store/engine"}
+      LB-05: {family: "Operation journal/recovery", disposition: SUBSUMED, why: "Operation recovery lives in material event journal", e1_reason: "AR-DUR-002/003", excluded_level_c: "No separate journal/schema"}
+      LB-06: {family: "Typed failure registry", disposition: USED, why: "Typed failure events/reducer", e1_reason: "AR-FAIL", excluded_level_c: "No codes/classes"}
+      LB-07: {family: "Typed process ports/owned boundaries", disposition: USED, why: "Command/event adapter ports", e1_reason: "AR-EXE", excluded_level_c: "No IPC/library"}
+      LB-08: {family: "Provider/router abstraction", disposition: USED, why: "Provider route/result events", e1_reason: "AR-MOD", excluded_level_c: "No provider/SDK"}
+      LB-09: {family: "Explicit task/execution state", disposition: SUBSUMED, why: "Deterministic reducers over explicit typed events", e1_reason: "AR-COR-003", excluded_level_c: "No enum/workflow engine"}
+      LB-10: {family: "Structured approvals/capability receipts", disposition: USED, why: "Immutable lifecycle/receipt events", e1_reason: "AR-APR/SEC", excluded_level_c: "No token/UI schema"}
+      LB-11: {family: "Local/remote execution abstraction", disposition: USED, why: "Serializable dispatch/result/fence events", e1_reason: "AR-FUT-001", excluded_level_c: "No transport/cloud/container"}
+      LB-12: {family: "Long-running/cloud-agent lifecycle", disposition: SUBSUMED, why: "Owner/lease/disable/retire workflow events; cloud deferred", e1_reason: "AR-DUR-004/FUT-002", excluded_level_c: "No fleet/scheduler"}
+      LB-13: {family: "Context compaction/summary blocks", disposition: USED, why: "Source-range summary projections", e1_reason: "AR-CTX", excluded_level_c: "No vector/RAG/block format"}
+      LB-14: {family: "Direct adapters vs capability gateway", disposition: USED, why: "C03 places policy and current-head event admission before ordinary adapters; protected raw delivery bypasses event/payload/projection capture and returns only a non-secret receipt", e1_reason: "AR-EXE/SEC", excluded_level_c: "No plugin framework, broker or IPC technology"}
+      LB-15: {family: "Concurrency/multi-writer safety", disposition: USED, why: "Expected sequence/owner/fence per stream", e1_reason: "AR-COR-007/FUT-002", excluded_level_c: "No consensus/queue/actor"}
+      LB-16: {family: "Telemetry/audit/evidence/presentation topology", disposition: USED, why: "Material journal vs derived telemetry/projections", e1_reason: "AR-EVD/OBS", excluded_level_c: "No vendor/dashboard"}
+      LB-17: {family: "Corruption quarantine/salvage/migration", disposition: USED, why: "Sequence integrity/trusted replay/quarantine", e1_reason: "AR-DUR-005/006", excluded_level_c: "No repair/backup tech"}
+      LB-18: {family: "Evidence packets/manifests/anchors/drift", disposition: USED, why: "Evidence projection/position/payload drift validation", e1_reason: "AR-EVD/VER", excluded_level_c: "No signing/attestation schema"}
+      LB-19: {family: "Extension/vertical-package boundary", disposition: USED, why: "Versioned extension commands/events", e1_reason: "AR-FUT-003", excluded_level_c: "No marketplace/loader/vertical"}
+
+  f30_e3_handoff:
+    no_execution_statement: "Mappings only; no E3/spike/evaluation/benchmark/model/provider/paid work."
+    obligations:
+      E3V-001: {focus: "Append ack, replay/owner, partial event/payload, duplicate command and external-effect crash points", evidence: "Fault streams, journal/payload/target before-after, first result/readbacks", owner: E3_TECHNICAL_VALIDATION_OWNER, e4_e5_remainder: "Complete adapters/full recovery suite", architecture_handback: "Loss/stale/duplicate effect/nondeterministic unrecoverable history", implementation_adjustment: "Repairable journal/adapter/fixture defect", proposed_adr_linkage: "TBD E2-005 only if selected"}
+      E3V-002: {focus: "Workflow control/fence plus executor tree", evidence: "Event/process/control/effect timeline", owner: E3_TECHNICAL_VALIDATION_OWNER, e4_e5_remainder: "All supported adapters/races", architecture_handback: "Advertised class cannot terminate/fence", implementation_adjustment: "Adapter/config defect", proposed_adr_linkage: "TBD E2-005 only if selected"}
+      E3V-003: {focus: "Workspace events/adapters and local runtime/journal packaging", evidence: "Support matrix/canaries/bind/cleanup/setup", owner: E3_TECHNICAL_VALIDATION_OWNER, e4_e5_remainder: "Full repository/package/release", architecture_handback: "Structural escape or hidden mandatory service", implementation_adjustment: "Adapter/docs defect", proposed_adr_linkage: "TBD E2-005 only if selected"}
+      E3V-004: {focus: "Provider command/result events", evidence: "Offline route/capability/fallback/failure/usage replay", owner: E3_TECHNICAL_VALIDATION_OWNER, e4_e5_remainder: "Qualified adapters/release", architecture_handback: "Event interface loses required semantics", implementation_adjustment: "Provider/config/adapter defect", proposed_adr_linkage: "TBD E2-005 only if selected"}
+      E3V-005: {focus: "Journal/payload/projections/evidence/verifier replay", evidence: "Gap/tamper/stale/adequacy/verifier-error injections", owner: E3_TECHNICAL_VALIDATION_OWNER, e4_e5_remainder: "Full evidence/false-completion/release", architecture_handback: "Self-report-only/stale pass/nondeterministic replay/evidence loss", implementation_adjustment: "Reducer/validator/projection defect", proposed_adr_linkage: "TBD E2-005 only if selected"}
+      E3V-006: {focus: "Command/adapters/protected out-of-event path", evidence: "Threat map/markers/capture/zero effect/receipt events", owner: E3_SECURITY_VALIDATION_OWNER, e4_e5_remainder: "All boundaries/negatives/compositions", architecture_handback: "Required enforcement impossible", implementation_adjustment: "Policy/adapter/fixture wiring", proposed_adr_linkage: "TBD E2-005 only if selected"}
+      E3V-007: {focus: "Event timestamps/counters/ceilings/overhead", evidence: "Raw focused protocol events/calculations/denials", owner: E3_MEASUREMENT_VALIDATION_OWNER, e4_e5_remainder: "Complete instrumentation/eight protocols", architecture_handback: "Inputs unrepresentable or limits unenforceable", implementation_adjustment: "Instrumentation/config/performance miss", proposed_adr_linkage: "TBD E2-005 only if selected"}
+      E3V-008: {focus: "Logical roles behind neutral provider events", evidence: "Authorized benchmark provenance/results/cost/eligibility", owner: E3_MODEL_BENCHMARK_OWNER, e4_e5_remainder: "Qualified authorized roles/release", architecture_handback: "Only indispensable impossible capability", implementation_adjustment: "Leave unassigned/change configuration", proposed_adr_linkage: "TBD E2-005 only if selected"}

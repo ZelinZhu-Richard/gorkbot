@@ -1,0 +1,840 @@
+registry_status: SECOND_FIX_READY_FOR_REVIEW_NOT_VERIFIED
+public_source_verified_on_local_date: "2026-08-22"
+public_source_access_window_utc: "2026-08-22T04:13:42Z..2026-08-22T04:13:51Z"
+account_access_verified_on: null
+benchmark_plan: 06_evaluation/MODEL_ROLE_BENCHMARK_PLAN.md
+
+e3_eligibility_schema_plan:
+  status: PLANNED_NOT_POPULATED_NO_RESULTS
+  planning_authority: PLAN_STAGE_E3
+  planned_protocol: 06_evaluation/model_role_benchmark/E3_MODEL_ROLE_BENCHMARK_PROTOCOL.yaml
+  population_authority: "E3-007 may add evidence-backed proposal records only after E3-006 is independently VERIFIED; E3-008 must independently confirm them. PLAN_STAGE_E3 adds no result."
+  current_qualification_record_count: 0
+  current_eligible_configuration_count: 0
+  current_role_assignment_count: 0
+  configuration_role_verdict_vocabulary:
+    ELIGIBLE: "The exact configuration passes every frozen hard gate and threshold for the named role, task classes, scope and qualification window; classification alone does not authorize use."
+    ELIGIBLE_WITH_CONSTRAINTS: "The exact configuration passes only inside explicitly recorded task, capability, tool, data, route, budget, latency/resource, fallback or environment constraints; outside them it is not eligible."
+    INELIGIBLE: "Valid evidence fails a hard gate or required threshold for the named role/task/scope."
+    INCONCLUSIVE: "Admitted evidence is insufficient, invalid, conflicting, incomplete or too imprecise for a favorable decision."
+    NOT_TESTED: "No admitted qualifying block exists; no eligibility or normal-route credit."
+  preserved_route_eligibility_vocabulary:
+    - PRODUCTION_OR_NORMAL_ELIGIBLE
+    - EVALUATION_ONLY
+    - USER_CONFIGURED_UNVERIFIED
+    - DISALLOWED
+  route_separation_rule: "Every E3 benchmark attempt uses route_purpose E3_EVALUATION and route_eligibility EVALUATION_ONLY. Benchmark admission is not normal-task eligibility. USER_CONFIGURED_UNVERIFIED supplies no E3 gate credit; DISALLOWED never runs."
+  canonical_logical_roles:
+    - AUTONOMOUS_CONTROLLER
+    - PLANNER
+    - EXECUTOR
+    - CODER
+    - COMPUTER_CONTROLLER
+    - VISION_INTERPRETER
+    - VERIFIER
+    - SECURITY_REVIEWER
+    - MEMORY_EXTRACTOR
+    - SUMMARIZER
+    - ROUTER
+  e3_gate_critical_roles:
+    - AUTONOMOUS_CONTROLLER
+    - PLANNER
+    - EXECUTOR
+    - CODER
+    - VERIFIER
+    - SECURITY_REVIEWER
+  required_future_configuration_identity_fields:
+    - system_or_product
+    - provider
+    - exact_model_id
+    - served_version_or_snapshot
+    - interface_and_service_tier
+    - account_data_region_policy_refs
+    - reasoning_effort_and_sampling
+    - role_prompt_and_policy_version
+    - tools_and_capability_configuration
+    - context_truncation_cache_policy
+    - fallback_policy
+    - verifier_separation_configuration
+    - cost_latency_resource_policy
+  required_future_qualification_record_fields:
+    - configuration_id
+    - route_purpose
+    - route_eligibility_during_run
+    - logical_role
+    - task_classes_and_tested_scope
+    - unsupported_scope
+    - protocol_fixture_harness_grader_versions
+    - admitted_run_and_attempt_counts
+    - raw_and_normalized_evidence_refs
+    - correctness_and_false_completion_results
+    - security_and_hard_boundary_results
+    - cost_latency_usage_retry_and_correction_results
+    - eligibility_verdict
+    - constraints
+    - independent_verifier
+    - qualification_date_and_window
+    - expiry_and_revalidation_triggers
+    - supersedes_or_superseded_by
+  stale_or_revalidation_triggers:
+    - moving_alias_or_served_version_change
+    - prompt_tool_context_fallback_or_policy_change
+    - account_data_region_or_credential_policy_change
+    - role_task_requirement_or_protocol_change
+    - qualification_window_expiry
+    - security_incident_or_material_provider_drift
+  invariants:
+    - "A model family name is never eligible without an exact tested configuration."
+    - "One configuration needs a separate verdict for each role and task-class envelope."
+    - "A fallback is a separately eligible exact configuration; hidden fallback is forbidden."
+    - "Superseded and unfavorable records remain append-only evidence."
+    - "No eligibility record activates E4 without E3_GATE_PASSED and a separate explicit Founder AUTONOMOUS_BUILD_AUTHORIZED decision."
+
+claim_status_vocabulary:
+  VERIFIED_PUBLIC: "Current first-party public source directly supports the claim."
+  FOUNDER_ACCOUNT_VERIFIED: "Authorized account evidence or a minimal authorized call supports the claim for the founder's account."
+  PUBLIC_BUT_ACCOUNT_UNVERIFIED: "Public availability is documented, but the founder's account, quota, region, balance, and entitlement were not tested."
+  INFERENCE: "Reasoned interpretation rather than a direct source statement; never used as account or production proof."
+  UNKNOWN: "Evidence is absent, ambiguous, account-specific, or not tested."
+  STALE_OR_INCORRECT: "A prior value is contradicted or superseded by the current primary source."
+
+access_dimension_rule:
+  dimensions:
+    - CONSUMER_PRODUCT_ACCESS
+    - PUBLIC_API_AVAILABILITY
+    - FOUNDER_ACCOUNT_ACCESS
+    - PRODUCTION_SUITABILITY
+  rule: "Each provider and candidate records all four dimensions. No dimension may be inferred from another."
+  founder_account_verified_claims_in_this_registry: 0
+
+verification_scope:
+  claim_status: VERIFIED_PUBLIC
+  included:
+    - current_public_product_identity
+    - current_public_api_availability
+    - current_public_model_identifiers_and_release_status
+    - current_public_context_and_output_limits
+    - current_public_list_and_service_tier_pricing
+    - selected_public_capability_data_control_and_jurisdiction_constraints
+  excluded:
+    - founder_account_login_or_subscription_state
+    - funded_api_access_or_balance
+    - account_model_entitlements
+    - account_rate_limits_or_quotas
+    - negotiated_pricing
+    - actual_api_responses_or_served_versions
+    - benchmark_performance
+    - legal_or_security_approval_for_production
+  warning: "Founder-reported consumer access and public catalog availability do not prove funded API access, account entitlement, production quotas, contractual suitability, or benchmark fitness. No credentials were inspected or stored; no API model call or paid benchmark was run."
+
+source_freshness:
+  claim_status: VERIFIED_PUBLIC
+  exact_final_reachability_window_utc: "2026-08-22T04:13:42Z..2026-08-22T04:13:51Z"
+  method: "Current first-party pages were reopened and checked for the recorded facts during the fixer pass. The final read-only reachability pass returned HTTP 200 for all 39 S0-003 primary URLs; the exact shared window is recorded here and per source/model."
+  drift_records:
+    - claim: "GPT-5.6 Sol short-context standard pricing was $5.00 input / $0.50 cached input / $6.25 cache write / $30.00 output in the original author record."
+      claim_status: STALE_OR_INCORRECT
+      current_value: "$4.00 / $0.40 / $5.00 / $20.00 promotional pricing, available at least through 2026-11-21."
+      evidence: [SRC-017, SRC-020]
+      historical_note: "The challenger established that the old values matched archived pages earlier on 2026-08-21; this is source drift, not a fabricated original value."
+    - claim: "Anthropic's public Sonnet 5 launch pricing was described as introductory, with a planned 2026-09-01 increase."
+      claim_status: STALE_OR_INCORRECT
+      current_value: "$2 input / $10 output per MTok is now the standard price; the planned increase will not occur."
+      evidence: [SRC-021, SRC-022]
+
+targeted_second_fix_source_reverification:
+  claim_status: VERIFIED_PUBLIC
+  exact_reachability_window_utc: "2026-08-22T15:24:10Z..2026-08-22T15:24:11Z"
+  source_ids: [SRC-021, SRC-023]
+  result: "Both current Anthropic primary pages returned HTTP 200. SRC-021 states month-level reliable knowledge cutoffs of Jan 2026 / May 2026 / Jan 2026 / Feb 2025 for Fable 5 / Opus 5 / Sonnet 5 / Haiku 4.5 and does not state an Opus 5 availability date. SRC-023 states a 512-token prompt-caching minimum without documenting an HTTP 400 for prompts below that threshold."
+  scope: "Targeted verification for V-S0-003-01..03 only; the earlier 39-source window remains the freshness record for all other S0-003 claims."
+
+providers:
+  - provider: OpenAI
+    access_dimensions:
+      CONSUMER_PRODUCT_ACCESS:
+        value: "Founder reported ChatGPT Pro and Codex access; exact product-to-API model mapping and current entitlement were not tested."
+        claim_status: UNKNOWN
+      PUBLIC_API_AVAILABILITY:
+        value: "Current public API catalog and model pages document the listed hosted candidates."
+        claim_status: VERIFIED_PUBLIC
+      FOUNDER_ACCOUNT_ACCESS:
+        value: "Funded account, model entitlements, rate tier, balance, quotas, and a minimal authorized model call are not recorded."
+        claim_status: UNKNOWN
+      PRODUCTION_SUITABILITY:
+        value: "Requires workflow benchmark, account verification, cost limits, data-control selection, and security review."
+        claim_status: UNKNOWN
+    public_data_controls:
+      claim_status: VERIFIED_PUBLIC
+      api_training_default: "API data is not used to train or improve OpenAI models unless the customer explicitly opts in."
+      abuse_monitoring_retention: "By default, abuse-monitoring logs may contain customer content and are retained for up to 30 days, subject to stated legal or safety exceptions."
+      zero_data_retention_and_modified_abuse_monitoring: "Available only to eligible customers after OpenAI approval and additional requirements; founder eligibility is UNKNOWN."
+      responses_application_state: "Responses API application state is retained for at least 30 days by default when stored; ZDR forces store=false, with documented feature-specific exceptions."
+      regional_processing: "Eligible data-residency endpoints for models released on or after 2026-03-05 carry a 10% uplift; availability and founder approval are UNKNOWN."
+      supported_geography: "United States of America is listed as supported; an allowed geography does not prove account access."
+      source_ids: [SRC-036, SRC-038]
+    public_usage_tiers:
+      claim_status: VERIFIED_PUBLIC
+      tiers:
+        - {tier: Free, qualification: "allowed geography", monthly_usage_limit_usd: 100}
+        - {tier: Tier_1, qualification: "$5 paid", monthly_usage_limit_usd: 100}
+        - {tier: Tier_2, qualification: "$50 paid", monthly_usage_limit_usd: 500}
+        - {tier: Tier_3, qualification: "$100 paid", monthly_usage_limit_usd: 1000}
+        - {tier: Tier_4, qualification: "$250 paid", monthly_usage_limit_usd: 5000}
+        - {tier: Tier_5, qualification: "$1000 paid", monthly_usage_limit_usd: 200000}
+      account_note: "The founder's usage tier remains UNKNOWN."
+      source_ids: [SRC-037]
+    public_tool_fees:
+      claim_status: VERIFIED_PUBLIC
+      web_search_per_1000_calls_usd: 10.00
+      file_search_per_1000_calls_usd: 2.50
+      file_search_storage_usd_per_gb_day: 0.10
+      hosted_shell_or_code_interpreter_container_usd_per_20_minute_session:
+        1_gb: 0.03
+        4_gb: 0.12
+        16_gb: 0.48
+        64_gb: 1.92
+      container_billing_wording_ambiguity: "The same current pricing page labels the table rates per 20-minute session per container, then states that eligible container sessions are billed by the minute with a five-minute minimum. Applicability and proration for the founder account are UNKNOWN and must be read back before cost modeling."
+      note: "Retrieved content tokens and model tokens can add model-rate charges; negotiated and partner-cloud prices are account-specific."
+      source_ids: [SRC-020]
+
+  - provider: Anthropic
+    access_dimensions:
+      CONSUMER_PRODUCT_ACCESS:
+        value: "Founder reported Claude Max and Claude Code access; exact model inclusion, usage credits, and current entitlement were not independently tested."
+        claim_status: UNKNOWN
+      PUBLIC_API_AVAILABILITY:
+        value: "Current Claude API documentation lists Fable 5, Opus 5, Sonnet 5, and Haiku 4.5."
+        claim_status: VERIFIED_PUBLIC
+      FOUNDER_ACCOUNT_ACCESS:
+        value: "Funded API credits, model entitlements, organization retention configuration, and rate tier are not recorded."
+        claim_status: UNKNOWN
+      PRODUCTION_SUITABILITY:
+        value: "Requires workflow benchmark, account verification, retention and refusal review, cost limits, and security approval."
+        claim_status: UNKNOWN
+    public_data_controls:
+      claim_status: VERIFIED_PUBLIC
+      training: "Anthropic states retained API data is not used for model training without express permission."
+      standard_messages_retention: "Conversation content is not retained by default for eligible models/features; feature-specific retention and safety/legal exceptions apply."
+      zdr: "Organization-level ZDR is available on request for eligible models and features; consumer products are not covered."
+      fable_exception: "Fable 5 is a Covered Model requiring 30-day retention and is not available under ZDR; a workspace-specific 30-day override can be enabled."
+      flagged_content_exception: "Anthropic may retain trust-and-safety flagged inputs and outputs for up to two years even under ZDR or HIPAA arrangements."
+      official_wording_ambiguity: "The platform retention page says conversation content is not retained by default except Covered Models, while a linked Privacy Center summary says API inputs and outputs are automatically deleted within 30 days. The exact operational distinction is not stated; feature-specific documentation, contract, and organization settings must control."
+      source_ids: [SRC-049, SRC-062, SRC-063]
+    public_rate_tiers:
+      claim_status: VERIFIED_PUBLIC
+      monthly_spend_caps_usd: {Start: 500, Build: 1000, Scale: 200000, Custom: "No fixed public cap"}
+      start_tier_model_limits:
+        claude_fable_5: {rpm: 1000, input_tokens_per_minute: 500000, output_tokens_per_minute: 100000}
+        claude_opus_5: {rpm: 1000, input_tokens_per_minute: 2000000, output_tokens_per_minute: 400000}
+        claude_sonnet_5: {rpm: 1000, input_tokens_per_minute: 2000000, output_tokens_per_minute: 400000}
+        claude_haiku_4_5: {rpm: 1000, input_tokens_per_minute: 2000000, output_tokens_per_minute: 400000}
+      account_note: "Build, Scale, and Custom tiers also exist; the founder's tier is UNKNOWN."
+      source_ids: [SRC-048]
+
+  - provider: DeepSeek
+    access_dimensions:
+      CONSUMER_PRODUCT_ACCESS:
+        value: "DeepSeek documents V4-Pro on app and web, and the founder reported unspecified DeepSeek access; founder model entitlement was not tested."
+        claim_status: PUBLIC_BUT_ACCOUNT_UNVERIFIED
+      PUBLIC_API_AVAILABILITY:
+        value: "Current public API pricing and change-log pages document V4 Pro, V4 Flash, and V4 Flash Vision Exp."
+        claim_status: VERIFIED_PUBLIC
+      FOUNDER_ACCOUNT_ACCESS:
+        value: "Funded balance, model entitlement, concurrency, jurisdiction eligibility, and a minimal authorized call are not recorded."
+        claim_status: UNKNOWN
+      PRODUCTION_SUITABILITY:
+        value: "Requires workflow benchmark, account verification, contractual and data-jurisdiction review, retention clarification, and security approval."
+        claim_status: UNKNOWN
+    public_platform_terms:
+      claim_status: VERIFIED_PUBLIC
+      operator: "Hangzhou DeepSeek Artificial Intelligence Co., Ltd."
+      governing_law: "Laws of the People's Republic of China in the mainland."
+      dispute_forum: "Court with jurisdiction over the operator's registered office in Hangzhou after attempted negotiation."
+      customer_input_output_rights: "The terms state that, subject to law and terms, customers may use inputs and outputs for personal use, research, derivative products, and training other models. This is not a statement that DeepSeek will not train on API data."
+      source_ids: [SRC-058]
+    public_privacy_terms:
+      claim_status: VERIFIED_PUBLIC
+      last_update: "2026-02-10"
+      collected_content: "The policy lists prompts, uploaded files, photos, chat history, and outputs among data it may collect."
+      training_use: "The policy states personal data may be used to train and improve machine-learning models and gives a right to opt out of training or optimization use."
+      storage_jurisdiction: "The policy states DeepSeek directly collects, processes, and stores personal data in the People's Republic of China."
+      retention: "Retention is described as as long as necessary for services and stated legal or business purposes; no fixed API-specific retention period is published."
+      official_scope_ambiguity: "The policy covers linked services and paid open-platform payment data, but expressly says downstream-application end-user personal-data processing is not covered. It does not isolate API prompts or publish an API-specific no-training or retention commitment. Therefore API content treatment beyond the published text remains UNKNOWN."
+      production_conclusion:
+        value: "No sensitive or customer fixture may be sent until the founder obtains an applicable API data-processing and retention answer and approves the jurisdiction."
+        claim_status: INFERENCE
+      source_ids: [SRC-059]
+
+models:
+  - logical_name: openai_gpt_5_6_sol
+    provider: OpenAI
+    family: GPT-5.6
+    tier: Sol
+    candidate_class: flagship
+    exact_api_model_id: gpt-5.6-sol
+    source_accessed_at_utc: "2026-08-22T04:13:42Z..2026-08-22T04:13:51Z"
+    access_dimensions:
+      CONSUMER_PRODUCT_ACCESS: {value: "Exact ChatGPT or Codex entitlement to this API ID was not verified.", claim_status: UNKNOWN}
+      PUBLIC_API_AVAILABILITY: {value: "Hosted API model documented.", claim_status: VERIFIED_PUBLIC}
+      FOUNDER_ACCOUNT_ACCESS: {value: "No entitlement or call verified.", claim_status: UNKNOWN}
+      PRODUCTION_SUITABILITY: {value: "Not benchmarked or policy-approved.", claim_status: UNKNOWN}
+    identifiers:
+      claim_status: VERIFIED_PUBLIC
+      exact_api_model_id: gpt-5.6-sol
+      aliases: [gpt-5.6]
+      dated_snapshot: "No separate dated snapshot is listed on the reviewed page."
+    public_specs:
+      claim_status: VERIFIED_PUBLIC
+      context_window_tokens: 1050000
+      maximum_input_tokens: 922000
+      max_output_tokens: 128000
+      knowledge_cutoff: "2026-02-16"
+      modalities: {input: [text, image], output: [text]}
+      features: {function_calling: SUPPORTED, structured_outputs: SUPPORTED, streaming: SUPPORTED, responses_api: SUPPORTED, batch_api: SUPPORTED, computer_use: SUPPORTED_VIA_RESPONSES_API, fine_tuning: NOT_SUPPORTED}
+      reasoning_effort: [none, low, medium, high, xhigh, max]
+      default_reasoning_effort: medium
+    public_list_pricing_usd_per_1m_tokens:
+      claim_status: VERIFIED_PUBLIC
+      promotional_through_at_least: "2026-11-21"
+      standard_short: {input: 4.00, cached_input: 0.40, cache_write: 5.00, output: 20.00}
+      standard_long_over_272000_input: {input: 8.00, cached_input: 0.80, cache_write: 10.00, output: 30.00}
+      batch_short: {input: 2.00, cached_input: 0.20, cache_write: 2.50, output: 10.00}
+      batch_long_over_272000_input: {input: 4.00, cached_input: 0.40, cache_write: 5.00, output: 15.00}
+      flex_short: {input: 2.00, cached_input: 0.20, cache_write: 2.50, output: 10.00}
+      flex_long_over_272000_input: {input: 4.00, cached_input: 0.40, cache_write: 5.00, output: 15.00}
+      fast_short: {input: 8.00, cached_input: 0.80, cache_write: 10.00, output: 40.00}
+      fast_long_over_272000_input: {input: 16.00, cached_input: 1.60, cache_write: 20.00, output: 60.00}
+      note: "Long-context, regional-processing, and tool charges apply as documented; founder pricing is UNKNOWN."
+    public_rate_limit_context:
+      claim_status: VERIFIED_PUBLIC
+      value: "Free tier not supported; page lists Tier 1 at 500 RPM and 500000 TPM. Founder tier is UNKNOWN."
+    proposed_roles: [PLANNER, CODER, VERIFIER, INTEGRATOR, COMPUTER_CONTROLLER]
+    role_assignment_status: HYPOTHESIS_ONLY
+    benchmark_status: NOT_RUN
+    source_ids: [SRC-009, SRC-017, SRC-020, SRC-036, SRC-037]
+
+  - logical_name: openai_gpt_5_6_terra
+    provider: OpenAI
+    family: GPT-5.6
+    tier: Terra
+    candidate_class: balanced
+    exact_api_model_id: gpt-5.6-terra
+    source_accessed_at_utc: "2026-08-22T04:13:42Z..2026-08-22T04:13:51Z"
+    access_dimensions:
+      CONSUMER_PRODUCT_ACCESS: {value: "Exact ChatGPT or Codex entitlement to this API ID was not verified.", claim_status: UNKNOWN}
+      PUBLIC_API_AVAILABILITY: {value: "Hosted API model documented.", claim_status: VERIFIED_PUBLIC}
+      FOUNDER_ACCOUNT_ACCESS: {value: "No entitlement or call verified.", claim_status: UNKNOWN}
+      PRODUCTION_SUITABILITY: {value: "Not benchmarked or policy-approved.", claim_status: UNKNOWN}
+    identifiers: {claim_status: VERIFIED_PUBLIC, exact_api_model_id: gpt-5.6-terra, aliases: [], dated_snapshot: "No separate dated snapshot is listed on the reviewed page."}
+    public_specs:
+      claim_status: VERIFIED_PUBLIC
+      context_window_tokens: 1050000
+      maximum_input_tokens: 922000
+      max_output_tokens: 128000
+      knowledge_cutoff: "2026-02-16"
+      modalities: {input: [text, image], output: [text]}
+      features: {function_calling: SUPPORTED, structured_outputs: SUPPORTED, streaming: SUPPORTED, responses_api: SUPPORTED, batch_api: SUPPORTED, computer_use: SUPPORTED_VIA_RESPONSES_API, fine_tuning: NOT_SUPPORTED}
+      reasoning_effort: [none, low, medium, high, xhigh, max]
+      default_reasoning_effort: medium
+    public_list_pricing_usd_per_1m_tokens:
+      claim_status: VERIFIED_PUBLIC
+      standard_short: {input: 2.00, cached_input: 0.20, cache_write: 2.50, output: 12.00}
+      standard_long_over_272000_input: {input: 4.00, cached_input: 0.40, cache_write: 5.00, output: 18.00}
+      batch_short: {input: 1.00, cached_input: 0.10, cache_write: 1.25, output: 6.00}
+      batch_long_over_272000_input: {input: 2.00, cached_input: 0.20, cache_write: 2.50, output: 9.00}
+      flex_short: {input: 1.00, cached_input: 0.10, cache_write: 1.25, output: 6.00}
+      flex_long_over_272000_input: {input: 2.00, cached_input: 0.20, cache_write: 2.50, output: 9.00}
+      fast_short: {input: 4.00, cached_input: 0.40, cache_write: 5.00, output: 24.00}
+      fast_long_over_272000_input: {input: 8.00, cached_input: 0.80, cache_write: 10.00, output: 36.00}
+    public_rate_limit_context: {claim_status: VERIFIED_PUBLIC, value: "Free tier not supported; page lists Tier 1 at 500 RPM and 500000 TPM. Founder tier is UNKNOWN."}
+    proposed_roles: [EXECUTOR, CODER, SUMMARIZER, COMPUTER_CONTROLLER]
+    role_assignment_status: HYPOTHESIS_ONLY
+    benchmark_status: NOT_RUN
+    source_ids: [SRC-009, SRC-018, SRC-020, SRC-036, SRC-037]
+
+  - logical_name: openai_gpt_5_6_luna
+    provider: OpenAI
+    family: GPT-5.6
+    tier: Luna
+    candidate_class: low_cost
+    exact_api_model_id: gpt-5.6-luna
+    source_accessed_at_utc: "2026-08-22T04:13:42Z..2026-08-22T04:13:51Z"
+    access_dimensions:
+      CONSUMER_PRODUCT_ACCESS: {value: "Exact ChatGPT or Codex entitlement to this API ID was not verified.", claim_status: UNKNOWN}
+      PUBLIC_API_AVAILABILITY: {value: "Hosted API model documented.", claim_status: VERIFIED_PUBLIC}
+      FOUNDER_ACCOUNT_ACCESS: {value: "No entitlement or call verified.", claim_status: UNKNOWN}
+      PRODUCTION_SUITABILITY: {value: "Not benchmarked or policy-approved.", claim_status: UNKNOWN}
+    identifiers: {claim_status: VERIFIED_PUBLIC, exact_api_model_id: gpt-5.6-luna, aliases: [], dated_snapshot: "No separate dated snapshot is listed on the reviewed page."}
+    public_specs:
+      claim_status: VERIFIED_PUBLIC
+      context_window_tokens: 1050000
+      maximum_input_tokens: 922000
+      max_output_tokens: 128000
+      knowledge_cutoff: "2026-02-16"
+      modalities: {input: [text, image], output: [text]}
+      features: {function_calling: SUPPORTED, structured_outputs: SUPPORTED, streaming: SUPPORTED, responses_api: SUPPORTED, batch_api: SUPPORTED, computer_use: SUPPORTED_VIA_RESPONSES_API, fine_tuning: NOT_SUPPORTED}
+      reasoning_effort: [none, low, medium, high, xhigh, max]
+      default_reasoning_effort: medium
+    public_list_pricing_usd_per_1m_tokens:
+      claim_status: VERIFIED_PUBLIC
+      standard_short: {input: 0.20, cached_input: 0.02, cache_write: 0.25, output: 1.20}
+      standard_long_over_272000_input: {input: 0.40, cached_input: 0.04, cache_write: 0.50, output: 1.80}
+      batch_short: {input: 0.10, cached_input: 0.01, cache_write: 0.125, output: 0.60}
+      batch_long_over_272000_input: {input: 0.20, cached_input: 0.02, cache_write: 0.25, output: 0.90}
+      flex_short: {input: 0.10, cached_input: 0.01, cache_write: 0.125, output: 0.60}
+      flex_long_over_272000_input: {input: 0.20, cached_input: 0.02, cache_write: 0.25, output: 0.90}
+      fast_short: {input: 0.40, cached_input: 0.04, cache_write: 0.50, output: 2.40}
+      fast_long_over_272000_input: {input: 0.80, cached_input: 0.08, cache_write: 1.00, output: 3.60}
+    public_rate_limit_context:
+      claim_status: VERIFIED_PUBLIC
+      value: "Luna has a distinct published table: Tier 1 is 500 RPM / 500000 TPM / 5000000 batch-queue tokens; Tier 5 is 30000 RPM / 180000000 TPM. Founder tier is UNKNOWN."
+    proposed_roles: [ROUTER, MEMORY_EXTRACTOR, STRUCTURED_EXECUTOR, SUMMARIZER]
+    role_assignment_status: HYPOTHESIS_ONLY
+    benchmark_status: NOT_RUN
+    source_ids: [SRC-009, SRC-019, SRC-020, SRC-036, SRC-037]
+
+  - logical_name: openai_gpt_5_3_codex
+    provider: OpenAI
+    family: GPT-5.3
+    tier: Codex
+    candidate_class: specialized_coding
+    exact_api_model_id: gpt-5.3-codex
+    source_accessed_at_utc: "2026-08-22T04:13:42Z..2026-08-22T04:13:51Z"
+    access_dimensions:
+      CONSUMER_PRODUCT_ACCESS: {value: "Codex product access was founder-reported; access to this exact API ID was not verified.", claim_status: UNKNOWN}
+      PUBLIC_API_AVAILABILITY: {value: "Hosted API model documented.", claim_status: VERIFIED_PUBLIC}
+      FOUNDER_ACCOUNT_ACCESS: {value: "No entitlement or call verified.", claim_status: UNKNOWN}
+      PRODUCTION_SUITABILITY: {value: "Not benchmarked or policy-approved.", claim_status: UNKNOWN}
+    identifiers: {claim_status: VERIFIED_PUBLIC, exact_api_model_id: gpt-5.3-codex, aliases: []}
+    public_specs:
+      claim_status: VERIFIED_PUBLIC
+      context_window_tokens: 400000
+      max_output_tokens: 128000
+      knowledge_cutoff: "2025-08-31"
+      modalities: {input: [text, image], output: [text]}
+      reasoning_effort: [low, medium, high, xhigh]
+      features: {responses_api: SUPPORTED, structured_outputs: SUPPORTED, function_calling: SUPPORTED}
+    public_list_pricing_usd_per_1m_tokens: {claim_status: VERIFIED_PUBLIC, standard: {input: 1.75, cached_input: 0.175, output: 14.00}, fast: {input: 3.50, cached_input: 0.35, output: 28.00}}
+    proposed_roles: [CODER, INTEGRATOR]
+    role_assignment_status: HYPOTHESIS_ONLY
+    benchmark_status: NOT_RUN
+    source_ids: [SRC-039, SRC-020, SRC-036]
+
+  - logical_name: openai_gpt_5_4_mini
+    provider: OpenAI
+    family: GPT-5.4
+    tier: Mini
+    candidate_class: specialized_low_cost_agent
+    exact_api_model_id: gpt-5.4-mini
+    source_accessed_at_utc: "2026-08-22T04:13:42Z..2026-08-22T04:13:51Z"
+    access_dimensions:
+      CONSUMER_PRODUCT_ACCESS: {value: "Exact consumer-product access was not tested.", claim_status: UNKNOWN}
+      PUBLIC_API_AVAILABILITY: {value: "Hosted API model and dated snapshot documented.", claim_status: VERIFIED_PUBLIC}
+      FOUNDER_ACCOUNT_ACCESS: {value: "No entitlement or call verified.", claim_status: UNKNOWN}
+      PRODUCTION_SUITABILITY: {value: "Not benchmarked or policy-approved.", claim_status: UNKNOWN}
+    identifiers: {claim_status: VERIFIED_PUBLIC, exact_api_model_id: gpt-5.4-mini, dated_snapshot: gpt-5.4-mini-2026-03-17}
+    public_specs:
+      claim_status: VERIFIED_PUBLIC
+      context_window_tokens: 400000
+      max_output_tokens: 128000
+      knowledge_cutoff: "2025-08-31"
+      modalities: {input: [text, image], output: [text]}
+      reasoning_effort: [none, low, medium, high, xhigh]
+      default_reasoning_effort: none
+      features: {responses_api: SUPPORTED, batch_api: SUPPORTED, structured_outputs: SUPPORTED, function_calling: SUPPORTED, computer_use: SUPPORTED_VIA_RESPONSES_API}
+    public_list_pricing_usd_per_1m_tokens: {claim_status: VERIFIED_PUBLIC, standard: {input: 0.75, cached_input: 0.075, output: 4.50}, regional_processing_uplift_percent: 10}
+    proposed_roles: [CODER, EXECUTOR, COMPUTER_CONTROLLER, ROUTER]
+    role_assignment_status: HYPOTHESIS_ONLY
+    benchmark_status: NOT_RUN
+    source_ids: [SRC-040, SRC-036]
+
+  - logical_name: openai_gpt_5_4_nano
+    provider: OpenAI
+    family: GPT-5.4
+    tier: Nano
+    candidate_class: low_cost_specialist
+    exact_api_model_id: gpt-5.4-nano
+    source_accessed_at_utc: "2026-08-22T04:13:42Z..2026-08-22T04:13:51Z"
+    access_dimensions:
+      CONSUMER_PRODUCT_ACCESS: {value: "Exact consumer-product access was not tested.", claim_status: UNKNOWN}
+      PUBLIC_API_AVAILABILITY: {value: "Hosted API model and dated snapshot documented.", claim_status: VERIFIED_PUBLIC}
+      FOUNDER_ACCOUNT_ACCESS: {value: "No entitlement or call verified.", claim_status: UNKNOWN}
+      PRODUCTION_SUITABILITY: {value: "Not benchmarked or policy-approved.", claim_status: UNKNOWN}
+    identifiers: {claim_status: VERIFIED_PUBLIC, exact_api_model_id: gpt-5.4-nano, dated_snapshot: gpt-5.4-nano-2026-03-17}
+    public_specs:
+      claim_status: VERIFIED_PUBLIC
+      context_window_tokens: 400000
+      max_output_tokens: 128000
+      knowledge_cutoff: "2025-08-31"
+      modalities: {input: [text, image], output: [text]}
+      reasoning_effort: [none, low, medium, high, xhigh]
+      default_reasoning_effort: none
+      features: {responses_api: SUPPORTED, batch_api: SUPPORTED, structured_outputs: SUPPORTED, function_calling: SUPPORTED, computer_use: NOT_SUPPORTED}
+    public_list_pricing_usd_per_1m_tokens: {claim_status: VERIFIED_PUBLIC, standard: {input: 0.20, cached_input: 0.02, output: 1.25}, regional_processing_uplift_percent: 10}
+    proposed_roles: [ROUTER, CLASSIFIER, MEMORY_EXTRACTOR, SUMMARIZER]
+    role_assignment_status: HYPOTHESIS_ONLY
+    benchmark_status: NOT_RUN
+    source_ids: [SRC-041, SRC-036]
+
+  - logical_name: anthropic_claude_fable_5
+    provider: Anthropic
+    family: Claude Fable 5
+    tier: Fable
+    candidate_class: premium_adaptive_reasoning
+    exact_api_model_id: claude-fable-5
+    source_accessed_at_utc: "2026-08-22T15:24:10Z..2026-08-22T15:24:11Z"
+    source_access_scope: "Targeted second-fix recheck of SRC-021 and SRC-023; other source IDs retain their ledgered 2026-08-22T04:13:42Z..2026-08-22T04:13:51Z provenance."
+    access_dimensions:
+      CONSUMER_PRODUCT_ACCESS: {value: "Exact Claude product or Claude Code entitlement to this API ID was not tested.", claim_status: UNKNOWN}
+      PUBLIC_API_AVAILABILITY: {value: "Hosted Claude API model is currently documented.", claim_status: VERIFIED_PUBLIC}
+      FOUNDER_ACCOUNT_ACCESS: {value: "No API entitlement, retention configuration, or call was verified.", claim_status: UNKNOWN}
+      PRODUCTION_SUITABILITY: {value: "Not benchmarked; mandatory retention, refusal behavior, cost, and security have not been approved.", claim_status: UNKNOWN}
+    identifiers:
+      claim_status: VERIFIED_PUBLIC
+      exact_api_model_id: claude-fable-5
+      dated_snapshot: "Anthropic documents this dateless identifier as a pinned snapshot for Claude 4.6 and later models."
+    release_context:
+      claim_status: VERIFIED_PUBLIC
+      initial_public_launch: "2026-06-09"
+      service_interruption: "Anthropic reported that US export controls applied on 2026-06-12 led it to suspend access for all users, followed by staged redeployment after the controls lifted and global access restoration on 2026-07-01."
+      documentation_tension: "The current model overview still says API availability began 2026-06-09. That is a catalog date, not evidence of uninterrupted availability; continuous availability is UNKNOWN."
+    public_specs:
+      claim_status: VERIFIED_PUBLIC
+      context_window_tokens: 1000000
+      max_output_tokens: 128000
+      reliable_knowledge_cutoff: "2026-01"
+      modalities: {input: [text, image], output: [text]}
+      thinking: "Adaptive thinking is always enabled; default effort is high. Manual effort budget, disabling thinking, non-default temperature/top_p/top_k, and assistant-prefill can produce documented HTTP 400 errors."
+      thinking_display: "Raw chain of thought is never returned. thinking.display defaults to omitted; summarized returns readable summary text, and same-model continuation must round-trip thinking blocks unchanged."
+      tokenizer_and_billing: "Compared with pre-Opus-4.7 models, the same text may produce roughly 30% more tokens; workload token counting must be re-baselined."
+      prompt_cache_minimum_tokens: 512
+      structured_outputs: SUPPORTED_GA
+      structured_outputs_interface: "output_config.format; strict tool use is also documented."
+      computer_use: SUPPORTED
+      computer_use_interface: "Non-beta computer_toolset_20260801; Anthropic documents approximately 4520 input-token overhead for the toolset."
+      refusal_semantics: "A refusal is a successful HTTP 200 response with stop_reason=refusal and stop_details.category. A request refused before output is not billed for input; a mid-stream refusal bills input and emitted output and the partial output must be discarded. Anthropic documents false-positive refusals on some benign coding tasks."
+      fallback_semantics: "The opt-in fallbacks parameter is beta on the Claude API, unavailable in Message Batches and listed partner platforms, and produces a separate fallback-model response that must not be credited to Fable."
+    public_data_controls:
+      claim_status: VERIFIED_PUBLIC
+      retention: "Fable 5 requires 30-day retention and is not eligible for ZDR. Requests lacking the required workspace retention configuration can return HTTP 400."
+      training: "Anthropic states retained API data is not used for model training without express permission."
+      flagged_content_exception: "Trust-and-safety flagged inputs and outputs may be retained for up to two years."
+    public_list_pricing_usd_per_1m_tokens:
+      claim_status: VERIFIED_PUBLIC
+      standard: {input: 10.00, output: 50.00}
+      batch: {input: 5.00, output: 25.00}
+      prompt_cache_write_5_minute: 12.50
+      prompt_cache_write_1_hour: 20.00
+      prompt_cache_read: 1.00
+    public_rate_limit_context: {claim_status: VERIFIED_PUBLIC, value: "Start tier documents 1000 RPM, 500000 input TPM, and 100000 output TPM; founder tier is UNKNOWN."}
+    proposed_roles: [PLANNER, VERIFIER, COMPUTER_CONTROLLER]
+    role_assignment_status: HYPOTHESIS_ONLY
+    benchmark_status: NOT_RUN
+    source_ids: [SRC-010, SRC-021, SRC-022, SRC-023, SRC-046, SRC-047, SRC-048, SRC-049, SRC-062, SRC-063]
+
+  - logical_name: anthropic_claude_opus_5
+    provider: Anthropic
+    family: Claude Opus 5
+    tier: Opus
+    candidate_class: premium_generalist
+    exact_api_model_id: claude-opus-5
+    source_accessed_at_utc: "2026-08-22T15:24:10Z..2026-08-22T15:24:11Z"
+    source_access_scope: "Targeted second-fix recheck of SRC-021; other source IDs retain their ledgered 2026-08-22T04:13:42Z..2026-08-22T04:13:51Z provenance."
+    access_dimensions:
+      CONSUMER_PRODUCT_ACCESS: {value: "Exact Claude product or Claude Code entitlement to this API ID was not tested.", claim_status: UNKNOWN}
+      PUBLIC_API_AVAILABILITY: {value: "Hosted Claude API model is currently documented.", claim_status: VERIFIED_PUBLIC}
+      FOUNDER_ACCOUNT_ACCESS: {value: "No API entitlement, organization configuration, or call was verified.", claim_status: UNKNOWN}
+      PRODUCTION_SUITABILITY: {value: "Not benchmarked or policy-approved.", claim_status: UNKNOWN}
+    identifiers: {claim_status: VERIFIED_PUBLIC, exact_api_model_id: claude-opus-5, dated_snapshot: "Dateless identifier documented as a pinned snapshot."}
+    release_context:
+      claim_status: UNKNOWN
+      public_api_availability_date: null
+      note: "Current public API availability is separately VERIFIED_PUBLIC under access_dimensions; SRC-021 states current availability but gives no initial availability date for Claude Opus 5."
+    public_specs:
+      claim_status: VERIFIED_PUBLIC
+      context_window_tokens: 1000000
+      max_output_tokens: 128000
+      reliable_knowledge_cutoff: "2026-05"
+      modalities: {input: [text, image], output: [text]}
+      features: {adaptive_thinking: SUPPORTED, structured_outputs: SUPPORTED_GA, strict_tool_use: SUPPORTED, computer_use: SUPPORTED_COMPUTER_TOOLSET_20260801}
+      computer_toolset_input_token_overhead_approx: 4520
+    public_list_pricing_usd_per_1m_tokens:
+      claim_status: VERIFIED_PUBLIC
+      standard: {input: 5.00, output: 25.00}
+      batch: {input: 2.50, output: 12.50}
+      prompt_cache_write_5_minute: 6.25
+      prompt_cache_read: 0.50
+    public_rate_limit_context: {claim_status: VERIFIED_PUBLIC, value: "Start tier documents 1000 RPM, 2000000 input TPM, and 400000 output TPM; founder tier is UNKNOWN."}
+    proposed_roles: [PLANNER, CODER, VERIFIER, COMPUTER_CONTROLLER]
+    role_assignment_status: HYPOTHESIS_ONLY
+    benchmark_status: NOT_RUN
+    source_ids: [SRC-021, SRC-022, SRC-046, SRC-047, SRC-048, SRC-049]
+
+  - logical_name: anthropic_claude_sonnet_5
+    provider: Anthropic
+    family: Claude Sonnet 5
+    tier: Sonnet
+    candidate_class: balanced_generalist
+    exact_api_model_id: claude-sonnet-5
+    source_accessed_at_utc: "2026-08-22T15:24:10Z..2026-08-22T15:24:11Z"
+    source_access_scope: "Targeted second-fix recheck of SRC-021; other source IDs retain their ledgered 2026-08-22T04:13:42Z..2026-08-22T04:13:51Z provenance."
+    access_dimensions:
+      CONSUMER_PRODUCT_ACCESS: {value: "Exact Claude product or Claude Code entitlement to this API ID was not tested.", claim_status: UNKNOWN}
+      PUBLIC_API_AVAILABILITY: {value: "Hosted Claude API model is currently documented.", claim_status: VERIFIED_PUBLIC}
+      FOUNDER_ACCOUNT_ACCESS: {value: "No API entitlement, organization configuration, or call was verified.", claim_status: UNKNOWN}
+      PRODUCTION_SUITABILITY: {value: "Not benchmarked or policy-approved.", claim_status: UNKNOWN}
+    identifiers: {claim_status: VERIFIED_PUBLIC, exact_api_model_id: claude-sonnet-5, dated_snapshot: "Dateless identifier documented as a pinned snapshot."}
+    public_specs:
+      claim_status: VERIFIED_PUBLIC
+      context_window_tokens: 1000000
+      max_output_tokens: 128000
+      reliable_knowledge_cutoff: "2026-01"
+      modalities: {input: [text, image], output: [text]}
+      features: {adaptive_thinking: SUPPORTED, structured_outputs: SUPPORTED_GA, strict_tool_use: SUPPORTED, computer_use: SUPPORTED_COMPUTER_TOOLSET_20260801}
+      computer_toolset_input_token_overhead_approx: 4590
+    public_list_pricing_usd_per_1m_tokens:
+      claim_status: VERIFIED_PUBLIC
+      standard: {input: 2.00, output: 10.00}
+      batch: {input: 1.00, output: 5.00}
+      prompt_cache_write_5_minute: 2.50
+      prompt_cache_read: 0.20
+      current_price_note: "$2/$10 is the current standard price; Anthropic states the previously planned September increase will not occur."
+    public_rate_limit_context: {claim_status: VERIFIED_PUBLIC, value: "Start tier documents 1000 RPM, 2000000 input TPM, and 400000 output TPM; founder tier is UNKNOWN."}
+    proposed_roles: [PLANNER, CODER, EXECUTOR, VERIFIER, COMPUTER_CONTROLLER]
+    role_assignment_status: HYPOTHESIS_ONLY
+    benchmark_status: NOT_RUN
+    source_ids: [SRC-021, SRC-022, SRC-046, SRC-047, SRC-048, SRC-049]
+
+  - logical_name: anthropic_claude_haiku_4_5
+    provider: Anthropic
+    family: Claude Haiku 4.5
+    tier: Haiku
+    candidate_class: low_cost_fast
+    exact_api_model_id: claude-haiku-4-5-20251001
+    source_accessed_at_utc: "2026-08-22T15:24:10Z..2026-08-22T15:24:11Z"
+    source_access_scope: "Targeted second-fix recheck of SRC-021; other source IDs retain their ledgered 2026-08-22T04:13:42Z..2026-08-22T04:13:51Z provenance."
+    access_dimensions:
+      CONSUMER_PRODUCT_ACCESS: {value: "Exact Claude product or Claude Code entitlement to this API ID was not tested.", claim_status: UNKNOWN}
+      PUBLIC_API_AVAILABILITY: {value: "Hosted Claude API model and dated ID are currently documented.", claim_status: VERIFIED_PUBLIC}
+      FOUNDER_ACCOUNT_ACCESS: {value: "No API entitlement, organization configuration, or call was verified.", claim_status: UNKNOWN}
+      PRODUCTION_SUITABILITY: {value: "Not benchmarked or policy-approved.", claim_status: UNKNOWN}
+    identifiers: {claim_status: VERIFIED_PUBLIC, exact_api_model_id: claude-haiku-4-5-20251001, alias: claude-haiku-4-5}
+    public_specs:
+      claim_status: VERIFIED_PUBLIC
+      context_window_tokens: 200000
+      max_output_tokens: 64000
+      reliable_knowledge_cutoff: "2025-02"
+      modalities: {input: [text, image], output: [text]}
+      features: {extended_thinking: SUPPORTED, structured_outputs: SUPPORTED_GA, strict_tool_use: SUPPORTED, computer_use: SUPPORTED_ONLY_WITH_OLDER_BETA_COMPUTER_20250124}
+      computer_use_comparison_note: "The current computer toolset is not listed for Haiku 4.5; its documented interface remains an older beta tool version and must not be treated as equivalent without a controlled benchmark."
+    public_list_pricing_usd_per_1m_tokens:
+      claim_status: VERIFIED_PUBLIC
+      standard: {input: 1.00, output: 5.00}
+      batch: {input: 0.50, output: 2.50}
+      prompt_cache_write_5_minute: 1.25
+      prompt_cache_read: 0.10
+    public_rate_limit_context: {claim_status: VERIFIED_PUBLIC, value: "Start tier documents 1000 RPM, 2000000 input TPM, and 400000 output TPM; founder tier is UNKNOWN."}
+    proposed_roles: [ROUTER, EXECUTOR, SUMMARIZER, COMPUTER_CONTROLLER]
+    role_assignment_status: HYPOTHESIS_ONLY
+    benchmark_status: NOT_RUN
+    source_ids: [SRC-021, SRC-022, SRC-046, SRC-047, SRC-048, SRC-049]
+
+  - logical_name: deepseek_v4_pro_0813
+    provider: DeepSeek
+    family: DeepSeek V4
+    tier: Pro
+    candidate_class: premium_generalist
+    exact_api_model_id: deepseek-v4-pro
+    source_accessed_at_utc: "2026-08-22T04:13:42Z..2026-08-22T04:13:51Z"
+    access_dimensions:
+      CONSUMER_PRODUCT_ACCESS: {value: "DeepSeek documents V4-Pro on app and web; founder access to the API alias or displayed 0813 version was not tested.", claim_status: PUBLIC_BUT_ACCOUNT_UNVERIFIED}
+      PUBLIC_API_AVAILABILITY: {value: "V4 Pro is documented as generally available through the API.", claim_status: VERIFIED_PUBLIC}
+      FOUNDER_ACCOUNT_ACCESS: {value: "No funded balance, entitlement, or served-version call was verified.", claim_status: UNKNOWN}
+      PRODUCTION_SUITABILITY: {value: "Not benchmarked; data jurisdiction, retention, training treatment, and compatibility require approval or clarification.", claim_status: UNKNOWN}
+    identifiers: {claim_status: VERIFIED_PUBLIC, exact_api_model_id: deepseek-v4-pro, public_served_or_product_version: DeepSeek-V4-Pro-0813, displayed_product_name: DeepSeek-V4-Pro}
+    release_context: {claim_status: VERIFIED_PUBLIC, general_availability: "2026-08-13"}
+    public_specs:
+      claim_status: VERIFIED_PUBLIC
+      context_window_tokens: 1000000
+      max_output_tokens: 384000
+      modalities: {input: [text], output: [text]}
+      reasoning_effort:
+        documented_native_values: [low, high, max]
+        openai_compatibility_mapping: {low: low, medium: high, high: high, xhigh: high, max: max}
+        default: high
+        ignored_in_thinking_mode: [temperature, top_p, presence_penalty, frequency_penalty]
+      structured_output_semantics: "JSON Object mode is supported, but is not JSON Schema enforcement; the prompt must request JSON and include an example, and empty output is documented as possible."
+      strict_tool_use: "Available only on the beta base URL and only for a documented JSON-Schema subset."
+      thinking_tool_calls: "reasoning_content must be returned on the next tool-call turn or the request can fail with HTTP 400."
+      compatibility_limits: "OpenAI Responses and Anthropic-compatible endpoints are documented, but unsupported Anthropic model names are remapped and numerous fields are ignored; compatibility is not behavioral parity."
+      computer_control: {value: "No native computer-control interface was established in the reviewed first-party API documentation.", claim_status: UNKNOWN}
+      preview_weights: {value: "A first-party Hugging Face card publishes MIT-licensed DeepSeek-V4-Pro-Preview weights; parity with the hosted 0813 service was not established.", claim_status: VERIFIED_PUBLIC}
+    public_list_pricing_usd_per_1m_tokens:
+      claim_status: VERIFIED_PUBLIC
+      off_peak_utc: {hours: "all hours except documented peak windows", input_cache_hit: 0.022, input_cache_miss: 0.66, output: 1.98}
+      peak_utc: {hours: ["01:00-04:00", "06:00-10:00"], input_cache_hit: 0.044, input_cache_miss: 1.32, output: 3.96}
+      documented_concurrency: 500
+    proposed_roles: [PLANNER, CODER, VERIFIER]
+    role_assignment_status: HYPOTHESIS_ONLY
+    benchmark_status: NOT_RUN
+    source_ids: [SRC-011, SRC-024, SRC-050, SRC-051, SRC-052, SRC-053, SRC-054, SRC-055, SRC-056, SRC-058, SRC-059, SRC-060]
+
+  - logical_name: deepseek_v4_flash_0731
+    provider: DeepSeek
+    family: DeepSeek V4
+    tier: Flash
+    candidate_class: low_cost_generalist
+    exact_api_model_id: deepseek-v4-flash
+    source_accessed_at_utc: "2026-08-22T04:13:42Z..2026-08-22T04:13:51Z"
+    access_dimensions:
+      CONSUMER_PRODUCT_ACCESS: {value: "Exact consumer-product availability and founder access were not tested.", claim_status: UNKNOWN}
+      PUBLIC_API_AVAILABILITY: {value: "API version is publicly documented, with conflicting official labels 'official release' and 'public beta'.", claim_status: VERIFIED_PUBLIC}
+      FOUNDER_ACCOUNT_ACCESS: {value: "No funded balance, entitlement, or served-version call was verified.", claim_status: UNKNOWN}
+      PRODUCTION_SUITABILITY: {value: "Not benchmarked; release-label ambiguity and provider data terms require resolution.", claim_status: UNKNOWN}
+    identifiers: {claim_status: VERIFIED_PUBLIC, exact_api_model_id: deepseek-v4-flash, public_served_or_product_version: DeepSeek-V4-Flash-0731, displayed_product_name: DeepSeek-V4-Flash}
+    release_context:
+      claim_status: VERIFIED_PUBLIC
+      date: "2026-07-31"
+      official_documentation_ambiguity: "One current first-party page calls 0731 an official release while the change log calls it public beta. Stability or GA status is therefore UNKNOWN."
+    public_specs:
+      claim_status: VERIFIED_PUBLIC
+      context_window_tokens: 1000000
+      max_output_tokens: 384000
+      modalities: {input: [text], output: [text]}
+      reasoning_effort:
+        documented_native_values: [low, high, max]
+        openai_compatibility_mapping: {low: low, medium: high, high: high, xhigh: high, max: max}
+        default: high
+        ignored_in_thinking_mode: [temperature, top_p, presence_penalty, frequency_penalty]
+      structured_output_semantics: "JSON Object mode, not schema enforcement; documented prompt and empty-output caveats apply."
+      strict_tool_use: "Available only on the beta base URL and for a supported schema subset."
+      compatibility_limits: "OpenAI Responses and Anthropic-compatible interfaces are documented, with field omissions and model-name remapping; compatibility is not parity."
+      computer_control: {value: "No native computer-control interface was established in the reviewed first-party API documentation.", claim_status: UNKNOWN}
+      preview_weights: {value: "A first-party Hugging Face card publishes MIT-licensed DeepSeek-V4-Flash-Preview weights; parity with hosted 0731 was not established.", claim_status: VERIFIED_PUBLIC}
+    public_list_pricing_usd_per_1m_tokens:
+      claim_status: VERIFIED_PUBLIC
+      off_peak_utc: {input_cache_hit: 0.007, input_cache_miss: 0.22, output: 0.66}
+      peak_utc: {hours: ["01:00-04:00", "06:00-10:00"], input_cache_hit: 0.014, input_cache_miss: 0.44, output: 1.32}
+      documented_concurrency: 2500
+    proposed_roles: [CODER, EXECUTOR, ROUTER, SUMMARIZER]
+    role_assignment_status: HYPOTHESIS_ONLY
+    benchmark_status: NOT_RUN
+    source_ids: [SRC-011, SRC-024, SRC-050, SRC-051, SRC-052, SRC-053, SRC-054, SRC-055, SRC-056, SRC-058, SRC-059, SRC-061]
+
+  - logical_name: deepseek_v4_flash_vision_exp
+    provider: DeepSeek
+    family: DeepSeek V4
+    tier: Flash Vision Exp
+    candidate_class: experimental_vision
+    exact_api_model_id: deepseek-v4-flash-vision-exp
+    source_accessed_at_utc: "2026-08-22T04:13:42Z..2026-08-22T04:13:51Z"
+    access_dimensions:
+      CONSUMER_PRODUCT_ACCESS: {value: "No consumer-product inclusion was established or tested.", claim_status: UNKNOWN}
+      PUBLIC_API_AVAILABILITY: {value: "Experimental multimodal API model is publicly documented.", claim_status: VERIFIED_PUBLIC}
+      FOUNDER_ACCOUNT_ACCESS: {value: "No funded balance, entitlement, or call was verified.", claim_status: UNKNOWN}
+      PRODUCTION_SUITABILITY: {value: "Experimental model is not benchmarked or approved; production fitness is UNKNOWN.", claim_status: UNKNOWN}
+    identifiers: {claim_status: VERIFIED_PUBLIC, exact_api_model_id: deepseek-v4-flash-vision-exp, public_served_or_product_version: DeepSeek-V4-Flash-Vision-Exp, displayed_product_name: DeepSeek-V4-Flash-Vision-Exp}
+    release_context: {claim_status: VERIFIED_PUBLIC, experimental_release: "2026-08-21", release_status: EXPERIMENTAL}
+    public_specs:
+      claim_status: VERIFIED_PUBLIC
+      context_window_tokens: 1000000
+      max_output_tokens: 384000
+      modalities: {input: [text, image], output: [text]}
+      capability_context: "DeepSeek describes text performance as on par with V4 Flash and vision as improved; this marketing statement is not project benchmark evidence."
+      documented_interfaces: [CHAT_COMPLETIONS, ANTHROPIC_MESSAGES_COMPATIBILITY, RESPONSES_COMPATIBILITY]
+      image_tokenization: "The release page states each image is tokenized to at most 384 tokens."
+      structured_output_semantics: "The current pricing table marks JSON Output and tool calls supported; JSON Object and strict-tool caveats are documented globally, but reliability for this experimental vision model was not tested."
+      reasoning_effort: {value: "The reviewed release and pricing pages do not separately state which effort controls apply to Vision Exp.", claim_status: UNKNOWN}
+      compatibility_limits: "Documented compatibility transports do not establish feature or behavioral parity; model-name remapping and ignored-field caveats remain relevant."
+      computer_control: {value: "Vision input does not establish a native action interface; none was found in reviewed first-party API documentation.", claim_status: UNKNOWN}
+    public_list_pricing_usd_per_1m_tokens:
+      claim_status: VERIFIED_PUBLIC
+      off_peak_utc: {input_cache_hit: 0.007, input_cache_miss: 0.22, output: 0.66}
+      peak_utc: {hours: ["01:00-04:00", "06:00-10:00"], input_cache_hit: 0.014, input_cache_miss: 0.44, output: 1.32}
+      documented_concurrency: 2500
+    proposed_roles: [VISION_ANALYST]
+    role_assignment_status: HYPOTHESIS_ONLY
+    benchmark_status: NOT_RUN
+    source_ids: [SRC-011, SRC-050, SRC-052, SRC-053, SRC-054, SRC-055, SRC-056, SRC-057, SRC-058, SRC-059]
+
+excluded_or_deferred_public_candidates:
+  - candidate: computer-use-preview
+    claim_status: VERIFIED_PUBLIC
+    disposition: EXCLUDED_FROM_NEW_BENCHMARK
+    reason: "OpenAI marks the model deprecated; it is Responses-only, lacks structured outputs, and should not anchor a new production benchmark."
+    source_ids: [SRC-043]
+  - candidate: codex-mini-latest
+    claim_status: VERIFIED_PUBLIC
+    disposition: EXCLUDED_FROM_NEW_BENCHMARK
+    reason: "OpenAI marks the model deprecated and directs direct API users elsewhere."
+    source_ids: [SRC-042]
+  - candidate: [gpt-oss-120b, gpt-oss-20b]
+    claim_status: VERIFIED_PUBLIC
+    disposition: DEFERRED_UNTIL_SELF_HOSTING_IS_IN_SCOPE
+    reason: "Open-weight Apache 2.0 models are relevant only if self-hosting becomes an applicable verified product/architecture constraint (E1/E2 while D-016 is active; Stage 1 if the startup track resumes); the OpenAI hosted API pages list no hosted rate limits."
+    source_ids: [SRC-044, SRC-045]
+
+documented_ambiguities:
+  - ambiguity_id: MRA-001
+    topic: claude_fable_5_continuous_availability
+    claim_status: UNKNOWN
+    record: "The catalog states availability began 2026-06-09, while Anthropic's release record documents suspension and staged restoration. Do not infer uninterrupted availability."
+  - ambiguity_id: MRA-002
+    topic: deepseek_api_content_privacy_scope
+    claim_status: UNKNOWN
+    record: "The current privacy policy describes PRC storage and possible training use, but does not isolate API prompts and excludes downstream-app end-user processing. API-specific retention and training treatment require written clarification."
+  - ambiguity_id: MRA-003
+    topic: deepseek_v4_flash_release_status
+    claim_status: UNKNOWN
+    record: "Current first-party pages use both 'official release' and 'public beta' for V4 Flash 0731."
+  - ambiguity_id: MRA-004
+    topic: compatibility_vs_behavioral_parity
+    claim_status: INFERENCE
+    record: "OpenAI-compatible, Anthropic-compatible, and Responses-compatible transports reduce integration friction but do not prove identical schema, tool, reasoning, or behavioral semantics."
+  - ambiguity_id: MRA-005
+    topic: anthropic_standard_api_retention_wording
+    claim_status: UNKNOWN
+    record: "The platform page says conversation content is not retained by default except Covered Models; the linked Privacy Center summary says API inputs and outputs are automatically deleted within 30 days. No account-specific conclusion is inferred from these different descriptions."
+  - ambiguity_id: MRA-006
+    topic: openai_container_billing_wording
+    claim_status: UNKNOWN
+    record: "The pricing table gives container rates per 20-minute session, while its footnote says eligible sessions are billed by the minute with a five-minute minimum. Account applicability and proration require billing readback."
+
+access_gaps:
+  - gap_id: MAG-001
+    dimension: FOUNDER_ACCOUNT_ACCESS
+    provider: OpenAI
+    status: UNKNOWN
+    closure_evidence: "Authorized account dashboard evidence plus a minimal explicitly authorized API call recording exact returned model ID, tier/quota, timestamp, and cost."
+  - gap_id: MAG-002
+    dimension: FOUNDER_ACCOUNT_ACCESS
+    provider: Anthropic
+    status: UNKNOWN
+    closure_evidence: "Authorized account evidence for credits, model entitlement, rate tier, and retention configuration plus a minimal explicitly authorized call."
+  - gap_id: MAG-003
+    dimension: FOUNDER_ACCOUNT_ACCESS
+    provider: DeepSeek
+    status: UNKNOWN
+    closure_evidence: "Authorized funded-balance and entitlement evidence plus a minimal explicitly authorized call."
+  - gap_id: MAG-004
+    dimension: PRODUCTION_SUITABILITY
+    provider: OpenAI
+    status: UNKNOWN
+    closure_evidence: "Selected-workflow benchmark, cost and latency evidence, data-control selection, threat review, and founder approval."
+  - gap_id: MAG-005
+    dimension: PRODUCTION_SUITABILITY
+    provider: Anthropic
+    status: UNKNOWN
+    closure_evidence: "Selected-workflow benchmark, refusal/retention evaluation, cost and latency evidence, threat review, and founder approval."
+  - gap_id: MAG-006
+    dimension: PRODUCTION_SUITABILITY
+    provider: DeepSeek
+    status: UNKNOWN
+    closure_evidence: "Selected-workflow benchmark plus written API data-treatment, retention, and jurisdiction acceptance; cost, compatibility, and security evidence; founder approval."
+
+benchmark_policy:
+  status: PLAN_ONLY_NOT_AUTHORIZED_TO_RUN
+  no_paid_calls_run: true
+  no_provider_or_model_locked: true
+  rule: "While D-016 engineering-first mode is active, an independently verified E1 Engineering Preview specification and task/evaluation suite—not paused S1-003 or customer-wedge selection—must define the eligible task classes and shortlist, and E2 plus separate budget/account/data-policy/run gates must pass before E3 execution. If a separate founder decision resumes the startup track, the preserved Stage 1 customer-workflow gate applies again. Public specifications are screening evidence, not product evidence, a permanent role assignment, autonomous-build authorization, or production approval."

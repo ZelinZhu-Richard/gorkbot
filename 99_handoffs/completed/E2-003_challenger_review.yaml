@@ -1,0 +1,962 @@
+review_id: R-E2-003-20260829-CHALLENGER
+task_id: E2-003
+stage: E2
+mode: REVIEW_TASK_E2-003
+role: CHALLENGER
+reviewer_model: "Claude Fable 5 (claude-fable-5) via Claude Code"
+reviewer_independence: >-
+  Independent of the recorded E2-003 author ("Codex (runtime model identifier not exposed) — E2-003 AUTHOR");
+  this review shares no conversation state with the E2-003 author pass or with the E2-001/E2-002
+  author/fixer sessions. Same model/product as the prior E2-001/E2-002 challenger and verifier sessions
+  is disclosed; those were separate sessions. Claude Code is one of the named E3 candidate systems;
+  this review selects no role occupant, architecture, candidate, technology, client surface, host class,
+  or mechanism and creates or accepts no ADR.
+started_at: "2026-08-29T14:05:00Z (approximate; exact session start not captured; review began after committed HEAD c870c83 was observed with a clean working tree)"
+completed_at: "2026-08-29T14:52:16Z"
+reviewed_commit: c870c83a5f97c639c0c248c2e650ad31371c5164
+reviewed_state: >-
+  Branch chore/initialize-project-materials at committed HEAD c870c83 ("Compare Engineering Preview
+  architecture alternatives", founder commit 2026-08-29T10:11:53-04:00), working tree clean at review
+  start. The E2-003 handoff describes the patch as an uncommitted working-tree patch against
+  b5b35a7fc5190ddbe359bd99f51fea4189ccff6a; the founder committed it as c870c83, and this review is
+  against the committed bytes (precedent V-E2-002-N3). Author base b5b35a7 = E2-002 verification
+  commit; E2-002 verified candidate commit 1a1c542.
+verdict: E2_003_CHANGES_REQUESTED
+verdict_rationale: >-
+  No BLOCKER. The comparison is mechanically complete and symmetric: 195/195 unique source-backed
+  cells whose evidence strings reconcile 195/195 to the frozen f23 records; identical 52/5/2/0 inputs
+  moved to identical 57/2/0 results under one written vocabulary; hard results never compensated by
+  preferences; no weights, scores, ranks, or winner; 25 domains, 20 threat boundaries, 19 Level B
+  families and all six preferences compared with visible candidate-specific burdens; V-E2-002-01 and
+  V-E2-002-02 correctly dispositioned; dominance and the author's five sensitivity tendencies
+  supportable; frozen E1/E2-001/E2-002 bytes preserved; no spike, ADR, code, run, benchmark, paid
+  call, or selection. Changes are required because the retained E2-004 set is not the minimal
+  architecture-blocking set: both retained items (E2U-S01 descendant containment, E2U-S02 protected
+  acquisition) are candidate-invariant platform/client mechanism validations that the verified
+  E2-001 register already assigns to E3V-002 and E3V-006 with ARCHITECTURE_HANDBACK, that frozen E1
+  resolves by fail-closed unsupported-class / WAITING_FOR_USER semantics, and whose outcome cannot
+  change the choice among C01/C02/C03 (F-E2-003-01, F-E2-003-02, HIGH). E2-003 applies E3 treatment
+  to the same class of host-primitive dependency for AR-WSP-003/AR-SEC-004 and the author's own
+  delivery reclassification reasoning (§10) applies verbatim to acquisition; S02 as contracted
+  cannot observe any real client surface and would either pass as prototype theater or deadlock as
+  INCONCLUSIVE_BLOCKING. Two MEDIUM items (a C01-only "unfavorable" valence label propagated into
+  governance; inconsistent eliminate/block/no-go consequence rules) and five LOW items complete the
+  list. The re-derived minimal E2-004 preselection set is empty (NO_PRESELECTION_SPIKE_REQUIRED
+  closure with E3V-002/E3V-006 obligations and ADR missing-evidence linkage); the fixer may instead
+  retain a spike only with a written demonstration that its outcome could differ by candidate and
+  change the selection. E2_003_CHANGES_REQUESTED does not verify E2-003; E2-004 remains BACKLOG.
+method:
+  - "Read the mandatory governance, frozen E1, verified E2-001, verified E2-002 (candidates, overview, challenger/fixer/verifier records), E2-003 deliverables, handoff, D-016, charter §19, SP-C01/C04/C05 and the exact current E2-003/E2-004 registry entries."
+  - "Recomputed the comparison baseline and every author count from committed bytes with Ruby/Psych, Ruby CSV, shasum, git and grep: candidates, 65 ARs (59/6), 25 domains, 20 TBs, 19 LB, 8 E3V, 5 SPQ, 28 f27 records, per-candidate f23 status maps, matrix rows/columns/cells/blanks/duplicates, per-candidate result/class/uncertainty/correlation/E3 distributions, evidence-string equality with f23, normalization arithmetic, partition and resolution counts."
+  - "Re-derived every hard-status transition for the seven non-SATISFIED ARs (AR-DUR-005, AR-WSP-003, AR-SEC-003, AR-SEC-004, AR-PKG-001, AR-EXE-003, AR-SEC-006) and the required material rechecks (AR-DUR-003/004, AR-TST-002, AR-FUT-001/002, AR-VER-001, AR-COR-007) against the frozen requirement text, the candidate f04/f08/f09/f10/f18/f19/f22/f28 blocks and the E2-002 verifier evidence."
+  - "Re-derived all five normalized SPQ questions against the plan §13 taxonomy definition, the E2-001 §9 E3 obligations and handback rules, AQ-003/004/010, the frozen E1 fail-closed semantics (PRD FR-033/FR-040/FR-046/FR-047, correctness contract §9.6 and line 955, UF-11, EP-CTL-005, EP-NEG-TERM-01) and the candidates' shared TIER_2 isolation declarations."
+  - "Tested strict pairwise dominance (six pairs) and seven priority profiles (A-G) from the comparison and candidate records without weights."
+  - "Ran scans over the four E2-003 artifacts for selection language (with context), secret patterns, technology/vendor/model/host tokens, absolute external paths and Level C reconstruction paths; checked allowed paths, frozen-artifact diffs, candidate SHA-256, spike/ADR/code directories, YAML duplicate keys, and git diff --check."
+  - "Did not fix findings, run a spike, evaluation case, benchmark, or paid call, select a candidate/architecture/technology, create or accept an ADR, activate E2-004, or modify any comparison, candidate, E2-001, E1, or governance file."
+files_read:
+  - MASTER_OPERATING_PROMPT.md
+  - AGENTS.md
+  - README.md
+  - SECURITY.md
+  - 01_governance/PROJECT_STATE.yaml
+  - 01_governance/TASK_REGISTRY.yaml
+  - 01_governance/DECISION_LOG.md
+  - 01_governance/ASSUMPTION_REGISTER.md
+  - 01_governance/RISK_REGISTER.md
+  - 01_governance/MODEL_REGISTRY.yaml
+  - 02_research/GROK_BOT_018_RECONSTRUCTED_ARCHITECTURE_AUDIT.md
+  - 03_product/ENGINEERING_PREVIEW_CHARTER.md
+  - 03_product/ENGINEERING_PREVIEW_PRD.md
+  - 03_product/ENGINEERING_PREVIEW_USER_FLOWS.md
+  - 03_product/ENGINEERING_PREVIEW_CORRECTNESS_CONTRACT.md
+  - 06_evaluation/ENGINEERING_PREVIEW_EVALUATION_SUITE.md
+  - 05_architecture/ENGINEERING_PREVIEW_E2_ARCHITECTURE_PLAN.md
+  - 05_architecture/ENGINEERING_PREVIEW_ARCHITECTURE_REQUIREMENTS.md
+  - 05_architecture/ENGINEERING_PREVIEW_E1_ARCHITECTURE_TRACEABILITY.csv
+  - 05_architecture/ENGINEERING_PREVIEW_ARCHITECTURE_ALTERNATIVES.md
+  - 05_architecture/candidates/EP-ARCH-C01.yaml
+  - 05_architecture/candidates/EP-ARCH-C02.yaml
+  - 05_architecture/candidates/EP-ARCH-C03.yaml
+  - 05_architecture/ENGINEERING_PREVIEW_ARCHITECTURE_COMPARISON.md
+  - 05_architecture/ENGINEERING_PREVIEW_ARCHITECTURE_DECISION_MATRIX.csv
+  - 05_architecture/ENGINEERING_PREVIEW_ARCHITECTURE_UNCERTAINTY_REGISTER.yaml
+  - 10_checkpoints/stage_checkpoints/ENGINEERING_PREVIEW_V0_1_RELEASE_ACCEPTANCE.yaml
+  - 10_checkpoints/stage_checkpoints/ENGINEERING_PREVIEW_E1_SPECIFICATION_GATE_VERIFICATION.yaml
+  - 99_handoffs/HANDOFF_TEMPLATE.yaml
+  - 99_handoffs/completed/E2-001_verifier_review.yaml
+  - 99_handoffs/completed/E2-002_challenger_review.yaml
+  - 99_handoffs/completed/E2-002_verifier_review.yaml
+  - 99_handoffs/completed/E2-003_handoff.yaml
+recomputed_counts:
+  candidates: 3
+  candidate_ids: [EP-ARCH-C01, EP-ARCH-C02, EP-ARCH-C03]
+  candidate_sha256_matches_author_record: true
+  candidate_bytes_changed_since_1a1c542: false
+  architecture_requirements: 65
+  hard_constraints: 59
+  weighted_preferences: 6
+  decision_domains_per_candidate: 25
+  threat_boundaries_per_candidate: 20
+  level_b_families_per_candidate: 19
+  e3_obligations: 8
+  e2_002_normalized_spike_questions: 5
+  e2_002_spike_questions_shared: 2
+  e2_002_spike_questions_candidate_specific: 3
+  e2_002_spike_references: 9
+  e2_002_spikes_run: 0
+  e2_002_f27_uncertainty_records: {EP-ARCH-C01: 9, EP-ARCH-C02: 9, EP-ARCH-C03: 10, total: 28}
+  e2_002_hard_input_map_per_candidate: "52 SATISFIED_BY_DESIGN / 5 PLAUSIBLY_SATISFIABLE_BUT_REQUIRES_E2_003_ANALYSIS / 2 UNKNOWN_REQUIRING_SPIKE / 0 VIOLATED (identical across candidates; PLAUSIBLE = AR-DUR-005, AR-WSP-003, AR-SEC-003, AR-SEC-004, AR-PKG-001; UNKNOWN = AR-EXE-003, AR-SEC-006)"
+  matrix_lines: 196
+  matrix_header_columns: 18
+  matrix_data_rows: 195
+  matrix_unique_criterion_ids: 65
+  matrix_unique_candidate_criterion_pairs: 195
+  matrix_duplicate_pairs: 0
+  matrix_blank_cells: 0
+  matrix_rows_with_criterion_class_or_title_inconsistent_across_candidates: 0
+  matrix_hard_rows: 177
+  matrix_preference_rows: 18
+  matrix_evidence_strings_equal_to_f23: "195/195"
+  matrix_hard_input_generation_status_equal_to_f23: "177/177"
+  matrix_criterion_class_equal_to_f23: "195/195"
+  matrix_hard_e3_obligation_within_e2_001_declared_set: "177/177 (AR-COR-002 NONE = NONE)"
+  comparison_result_per_candidate: "57 CONFIRMED_SATISFIED_FOR_COMPARISON / 6 QUALITATIVE_TRADEOFF_NO_SCORE / 2 ARCHITECTURE_BLOCKING_SPIKE (each candidate)"
+  claim_type_per_candidate: "C01 52 PROPOSAL / 11 INFERENCE / 2 UNKNOWN; C02 52/11/2; C03 50/13/2"
+  retained_blocking_ars_per_candidate: [AR-EXE-003, AR-SEC-006]
+  retained_blocking_ars_identical_across_candidates: true
+  source_evidence_chars_per_candidate: {EP-ARCH-C01: 11009, EP-ARCH-C02: 10138, EP-ARCH-C03: 10324}
+  rationale_chars_per_candidate: {EP-ARCH-C01: 15283, EP-ARCH-C02: 14441, EP-ARCH-C03: 14694}
+  uncertainty_register_records: 28
+  normalization_arithmetic: "28 source records - 4 (shared SPQ-01/02 dedup) + 3 (E3 technical/model split) + 1 (weight authority) = 28"
+  partition: {PAPER_RESOLVABLE: 10, E2_PRESELECTION_SPIKE_REQUIRED: 2, E3_POSTSELECTION_TECHNICAL_VALIDATION: 6, E3_MODEL_OR_CONFIGURATION_BENCHMARK: 3, DEFERRED_OUT_OF_SCOPE: 7}
+  analytic_resolutions: {RESOLVED_FAVORABLE: 5, RESOLVED_UNFAVORABLE: 1, RESOLVED_NEUTRAL: 4, remaining: 0}
+  analytic_resolution_valence_per_candidate: "C01 1 favorable / 1 neutral / 1 unfavorable; C02 2 / 1 / 0; C03 2 / 2 / 0"
+  matrix_correlation_group_names: 16
+  matrix_preference_correlation_groups: 3
+  comparison_doc_correlation_groups: 5
+  comparison_doc_sections_recounted: "25 domain rows; 20 TB rows; 19 LB rows; 6 preference rows; 10 testability rows; 8 recovery rows; 7 correctness rows; 6 sensitivity rows; 5 paper-resolvable AR rows; 2 blocker rows; 10 recheck rows"
+  spike_contract_fields_present: "E2U-S01 13/13; E2U-S02 13/13 (question, hypothesis, alternatives, minimal_prototype, workload, success_criteria, failure_criteria, security_checks, finite_budget, stop_condition, artifact, decision_rule, adr_linkage) plus no_go_result and sp_c_reuse"
+  author_changed_files: 7
+  author_changed_files_within_allowed_paths: "7/7"
+  yaml_strict_parse: "8/8 PASS, 0 duplicate keys (register, handoff, PROJECT_STATE, TASK_REGISTRY, MODEL_REGISTRY, C01, C02, C03)"
+  git_diff_check: CLEAN
+  architecture_selected: false
+  preferred_candidate: null
+  accepted_adrs: 0
+  spikes_run: 0
+  evaluation_cases_run: 0
+  model_benchmarks_run: 0
+  paid_api_calls: 0
+  application_code: NONE
+section_results:
+  comparison_matrix: COMPARISON_MATRIX_PASS
+  hard_constraint_discipline: HARD_CONSTRAINT_COMPARISON_PASS
+  symmetric_hard_status: SYMMETRIC_HARD_STATUS_PASS
+  analytic_resolutions: ANALYTIC_RESOLUTION_PASS
+  v_e2_002_01: V_E2_002_01_PASS
+  v_e2_002_02: V_E2_002_02_PASS
+  retained_spikes: "AUTHOR 2 (E2U-S01, E2U-S02); CHALLENGER RE-DERIVED 0 E2 preselection spikes (both MOVE_TO_E3)"
+  s01_descendant_containment: S01_SPIKE_NOT_JUSTIFIED
+  s02_protected_acquisition: S02_SPIKE_NOT_JUSTIFIED
+  removed_reclassified_spikes: REMOVED_SPIKES_PASS
+  minimal_e2_004_set: "0 preselection spikes — NO_PRESELECTION_SPIKE_REQUIRED closure with E3V-002 and E3V-006 obligations, handback rules and ADR missing-evidence linkage"
+  hard_fairness: HARD_FAIRNESS_PASS
+  preference_comparison: PREFERENCE_COMPARISON_PASS
+  decision_domains: DOMAIN_COMPARISON_PASS
+  correctness: CORRECTNESS_COMPARISON_PASS
+  durability_recovery: RECOVERY_COMPARISON_PASS
+  security: SECURITY_COMPARISON_PASS
+  isolation: ISOLATION_COMPARISON_PASS
+  testability: TESTABILITY_COMPARISON_PASS
+  contributor_burden: CONTRIBUTOR_COMPARISON_PASS
+  implementation_complexity: COMPLEXITY_COMPARISON_PASS
+  local_first: LOCAL_FIRST_COMPARISON_PASS
+  future_evolution: FUTURE_EVOLUTION_PASS
+  migration_reversibility: MIGRATION_COMPARISON_PASS
+  level_b: LEVEL_B_COMPARISON_PASS
+  dominance: DOMINANCE_PASS
+  sensitivity: SENSITIVITY_PASS
+  c01_decision_readiness: "ANALYTICALLY_VIABLE; author NEEDS_E2_004 does not follow from a minimal set — READY_FOR_E2_005_AFTER_INDEPENDENTLY_VERIFIED_E2_004_NO_SPIKE_CLOSURE if F-E2-003-01/02 are accepted"
+  c02_decision_readiness: "ANALYTICALLY_VIABLE; same conditional readiness as C01"
+  c03_decision_readiness: "ANALYTICALLY_VIABLE; same conditional readiness as C01"
+  e2_004_input: E2_004_INPUT_FAIL
+  e2_005_input: E2_005_INPUT_PASS
+  premature_selection: NO_SELECTION_BIAS_PASS
+  frozen_artifacts: FROZEN_ARTIFACTS_PASS
+  governance: GOVERNANCE_RECONCILED_PASS
+section_evidence:
+  comparison_matrix: >-
+    196 lines = 18-column header + 195 data rows; 65 unique criterion_id x 3 candidate_id = 195
+    unique pairs, 0 duplicates, 0 blank cells; criterion_class/title identical across candidates
+    for every AR; 177 HARD_CONSTRAINT rows + 18 WEIGHTED_PREFERENCE rows; every row carries
+    claim_type, source_evidence (requirement anchor + candidate f23 anchor + candidate evidence),
+    comparison_rationale, comparison_result, uncertainty_id, uncertainty_classification,
+    related_e3_uncertainty_id, blocking_consequence, correlation_group, e3_obligation and
+    preference_characterization. The "candidate evidence:" substring equals the frozen f23 evidence
+    string in 195/195 cells; input_generation_status equals f23 generation_status in 177/177 hard
+    cells. Evidence volume is comparable per candidate (11,009 / 10,138 / 10,324 source chars;
+    15,283 / 14,441 / 14,694 rationale chars); no candidate receives materially less evidence.
+    Hard and preference rows remain distinct (different result vocabulary, uncertainty linkage and
+    preference_characterization NOT_APPLICABLE for hard rows).
+  hard_constraint_discipline: >-
+    Every hard cell moved from the verified E2-002 status under one written rule: 52 SATISFIED_BY_DESIGN
+    -> CONFIRMED_SATISFIED_FOR_COMPARISON (PROPOSAL; "design confirmation only"); 5 PLAUSIBLE ->
+    CONFIRMED_SATISFIED_FOR_COMPARISON (INFERENCE) via E2U-PAPER-C01-U03 / C02-U02 / C02-U03 /
+    C03-U03 / C03-U04 with §4.2 per-candidate analysis; 2 UNKNOWN_REQUIRING_SPIKE ->
+    ARCHITECTURE_BLOCKING_SPIKE (UNKNOWN; "no favorable score or assumed pass"). No VIOLATED result;
+    no preference row carries a hard result; no hard cell cites a preference as justification; both
+    UNKNOWNs block E2-005 for every candidate. Re-derived rechecks: AR-EXE-003 kept blocking (staging
+    disputed in F-E2-003-01, credit not disputed); AR-DUR-003 confirmed in all three from f08/f12
+    intent/attempt/readback/unknown-effect bridges with no atomicity claim; AR-DUR-004 confirmed from
+    f03/f04/f07/f09 durable ordered control with no-live-owner semantics recorded truthfully
+    (V-E2-002-N6); AR-DUR-005 confirmed from f08/f09 (C01 transactional old/new + quarantine; C02
+    corruption_partial_write + retention_migration + restore; C03 versioning + partial_write_corruption
+    + evolution + payload-before-event ordering + orphan reconciliation); AR-SEC-003 confirmed from f04
+    protected_delivery_path (C01 co-resident one-use scope; C02 service-issued non-secret authorization
+    with raw bypass; C03 out-of-event broker); AR-SEC-006 kept blocking (staging disputed in
+    F-E2-003-02); AR-TST-002 confirmed from f25 family_level_matrix + EP_CTL_016 + 16 compositions;
+    AR-FUT-001/002 confirmed at the seam/ownership floor with extraction cost in AR-PRF-003/004;
+    AR-PKG-001 confirmed at the explicit no-hidden-service floor with burden in AR-PRF-006. No hard
+    failure was compensated; no unresolved hard question received optimistic credit.
+  symmetric_hard_status: >-
+    The two retained blocking ARs are AR-EXE-003 and AR-SEC-006 for all three candidates (identical
+    uncertainty_id E2U-S01 / E2U-S02). Candidate-specific hard-relevant risks are visible rather than
+    hidden: C01 broad trusted core and headless task-bound continuation (§6 D02/D20, §7, §13, f02
+    lifetime_model); C02 service as sole live authority/availability and security boundary plus
+    lease/fence and IPC authentication (§6 D02/D20, §8 SPOF row, §9 TB-05/TB-15); C03 reducer/schema/
+    append-validation correctness inside the trusted design and no-live-coordinator interval (§6 D20,
+    §8, §9 closing paragraph). Equal hard counts are not presented as equal quality: §16.1 and §16.2
+    record distinct costs per candidate.
+  analytic_resolutions: >-
+    All ten PAPER_RESOLVABLE records are genuinely analysis-owned: six are preference/proportionality
+    characterizations (C01-U01, C01-U02, C02-U01, C03-U01, C03-U02 in part, and the burden halves of
+    the packaging questions) and four/five are structural-floor confirmations of PLAUSIBLE hard ARs
+    (C01-U03, C02-U02, C02-U03, C03-U03, C03-U04). Each cites committed candidate structure
+    (f02/f04/f06/f08/f09/f10/f15/f16/f18/f19/f20/f22/f23/f25/f26/f28); none invents an empirical
+    observation; none resolves an E3 question or elevates an implementation detail. Weaknesses: the
+    valence labels are asymmetric (F-E2-003-03) and the three host-class questions are labelled
+    RESOLVED_FAVORABLE although their host-class half is deferred to E3V-003/006 (F-E2-003-05).
+  v_e2_002_01: >-
+    AR-DUR-005 semantics (versioned, complete-or-detectably-interrupted records; incompatible/corrupt
+    data fails or migrates visibly with original evidence preserved) are addressed for C02 by f08
+    corruption_partial_write, retention_migration and restore plus f09 partial_write /
+    workspace_partial_write_recovery, and for C03 by f08 versioning, partial_write_corruption,
+    evolution, protected_and_external_payload_ordering (payload-before-event) plus f09 partial_write
+    and orphan reconciliation — the same f08/f09 content the E2-002 verifier cited and that
+    F-E2-002-08/09 added. Comparison §4.2 supplies the per-candidate analysis; the register links
+    AR-DUR-005 to E2U-PAPER-C02-U03 / C03-U04 with V-E2-002-01 as a source_ref; frozen candidate f27
+    pointers are unchanged. The missing pointer was bookkeeping; no spike is needed; C01 received the
+    same treatment (E2U-PAPER-C01-U03), so no candidate was favoured.
+  v_e2_002_02: >-
+    Frozen semantics: AR-SEC-003 is the exact-recipient/least-scope delivery boundary; AR-SEC-006 is
+    the acquisition/takeover boundary; E1 (correctness contract §9.6) makes the recipient boundary "an
+    E2-selected protected recipient boundary", i.e. an interface decision, and E3V-006 owns "recipient
+    isolation". Every candidate specifies a sufficient protected-delivery seam (C01 f04
+    protected_delivery_path one-use recipient/use/fence scope; C02 f04 protected_delivery_path with
+    scope_validator, opaque authorization, forbidden_raw_observers, worker_replacement and
+    crash_semantics; C03 out-of-event broker with non-secret receipt event). Candidate-specific
+    delivery failure would revise the selected candidate's ADR, not change which shape is coherent, so
+    E3V-006 is the correct owner and the handback rule is explicit in each E3U-*-PROTECTED-DELIVERY
+    record ("structural impossibility or a hard failure in E3 triggers ADR handback/revision"). The
+    split is recorded uniformly for all three; AR-SEC-003 is not overstated (design-level vocabulary
+    with E3 obligation). The disposition is accepted; its reasoning is exactly what F-E2-003-02 asks
+    the author to apply to acquisition.
+  retained_spikes: >-
+    SPQ-E2-002-01 -> author KEEP_E2_004 (E2U-S01); challenger MOVE_TO_E3 (E3V-002) with
+    architecture-level PAPER closure — see F-E2-003-01. SPQ-E2-002-02 -> author KEEP_E2_004 (E2U-S02);
+    challenger MOVE_TO_E3 (E3V-006) with architecture-level PAPER closure — see F-E2-003-02.
+    SPQ-E2-002-03/04/05 -> author and challenger MOVE_TO_E3 (E3V-006) as E3U-C01/C02/C03-PROTECTED-
+    DELIVERY. No question is NOT_REQUIRED (each remains a real E3 obligation with handback). No item
+    should MOVE_TO_E4. Re-derived retained E2-004 set: empty.
+  s01_descendant_containment: >-
+    Blocks AR-EXE-003 only. The uncertainty is implementation/host technology (does the supported host
+    primitive terminate or durably deprive descendants), not semantic architecture feasibility: frozen
+    E1 admits fencing when termination is unavailable (PRD FR-033 "safe/available force termination or
+    authority fencing"; correctness contract l.955 "safe force termination or authority fencing occurs
+    when available"; EP-CTL-005; EP-NEG-TERM-01 "force/fence when available"; AR-EXE-003 "any
+    unkillable work is fenced/accounted"). The requirement can be satisfied at architecture level by
+    the containment interface every candidate already declares (supervisor-owned process tree,
+    required host primitive, cancel/force-or-fence/settle bounds, stale-result rejection by
+    epoch/lease/fence, fail-closed unsupported class) with mechanism validation under E3V-002, which
+    the verified E2-001 register already assigns ("Host-specific process-tree and fencing support
+    requires E3 validation"; E3V-002 handback "A structural inability to control/fence an advertised
+    class returns to E2"). Candidate choice does not change feasibility: the author's contract uses
+    one technology-neutral adapter with thin wrappers and declares the host primitive result reusable
+    across all candidates; in every topology the owner-death case reduces to the same primitive.
+    Tier 2 semantic isolation is the shared floor and is enough at architecture level. This is a
+    shared platform mechanism, not a candidate discriminator; failure narrows the supported host
+    class (already an explicit AR-PKG-001 declaration) rather than invalidating any shape or the
+    frozen requirement.
+  s02_protected_acquisition: >-
+    Hard ARs: AR-SEC-006 (and AR-SEC-003 via delivery). Shared across all candidates by the author's
+    own record; no candidate changes acquisition feasibility, which depends on the client surface
+    (ADR-E2-001, unselected under D-016) and host observation surfaces. The architecture can and does
+    require a protected-entry interface contract (distinct path, capture suspension/exclusion,
+    exact-recipient handoff, non-secret receipt, fail-closed WAITING_FOR_USER/blocker, no raw replay)
+    in C01/C02/C03 f04/f18, leaving the concrete secure-input mechanism to E3V-006, which E2-001
+    explicitly assigns ("E3V-006 owns the focused capture-suspension/acquisition-boundary
+    validation"; AQ-010 "E2-004 only if feasibility remains selection-blocking"). The product
+    requirement does not depend on proving OS/client capture exclusion before selection: UF-11 step 2
+    and AR-SEC-006 define the fail-closed branch. If all candidates fail, the consequence is a
+    product/client-support limitation shared equally, not one architecture being inferior. As
+    contracted the spike cannot produce architecture evidence (no client/host class; self-defined
+    observers; zero dependencies) — see F-E2-003-02.
+  removed_reclassified_spikes: >-
+    SPQ-03/04/05 no longer block E2 because the exact-recipient protocol is a structurally explicit
+    interface in each candidate (seams above) whose concrete IPC/memory/crash-point correctness is
+    selected-mechanism validation; E3V-006 is the E2-001-declared owner of recipient isolation; E3
+    must validate one-use consumption, forbidden-surface cleanliness, replacement/revocation and
+    crash ambiguity without raw persistence; a structural inability to keep raw bytes out of the
+    candidate's ordinary paths forces ADR handback (recorded in each E3U record), while a miswired
+    adapter is implementation correction (E2-001 §9 rule 3). None still blocks candidate viability.
+  minimal_e2_004_set: >-
+    Minimum empirical evidence genuinely required before E2-005 may propose ADRs: none. Both
+    remaining hard unknowns are candidate-invariant, have fail-closed E1 semantics, are owned by
+    E3V-002/E3V-006 with handback in the verified E2-001 register, and cannot change the selection
+    among C01/C02/C03 (plan §13 definition). E2-004 should therefore produce the registry-anticipated
+    NO_PRESELECTION_SPIKE_REQUIRED closure, carrying for each removed item: the non-selection-blocking
+    demonstration, the E3 obligation and handback rule, the ADR (plan §9 ID) missing-evidence entry,
+    and the explicit product consequence of a later negative result (unsupported host/workload class;
+    protected entry unsupported on a client class => WAITING_FOR_USER). One shared experiment would be
+    preferred over duplicated candidate experiments if any spike were retained; none is required.
+  hard_fairness: >-
+    Same evidentiary bar: identical rationale template and vocabulary for every hard cell; §4.2 gives
+    each candidate a mechanism-specific paragraph per PLAUSIBLE AR. Unknowns symmetric (same two ARs,
+    same blocking consequence). Complexity is charged to every candidate (C01 broad-core coupling,
+    C02 lifecycle/IPC/lease, C03 event/reducer/projection) and never as a hard status. Integration,
+    service/worker and event-model risks each appear in the preference rows, §13 and §16.2 as
+    descriptions, not counts; no future-compatibility benefit offsets a hard uncertainty (hard map is
+    equal and §5 AR-PRF-004 states "not a hard-status difference").
+  preference_comparison: >-
+    Six rows (AR-PRF-001..006) x three candidates; every cell QUALITATIVE_TRADEOFF_NO_SCORE with
+    preference_characterization; no weights, numeric values, hidden totals or ranks anywhere
+    (E2U-PREFERENCE-WEIGHTS NOT_ASSIGNED_BY_POLICY). Hard compliance is separate (§4 before §5). The
+    matrix pairs the preferences into three groups {001,005} {002,006} {003,004}; the comparison §3
+    discloses five groups with E2-001 §8 semantics; the two vocabularies do not map to each other and
+    PRF-003's dual membership is not stated (F-E2-003-06, LOW; no arithmetic double counting exists
+    because nothing is summed).
+  decision_domains: >-
+    D01-D25 each have a C01, C02 and C03 shape cell, a comparative strengths/weaknesses cell and a
+    U/H-P/M cell; sampled against f24 (D08, D16, D21) the claims trace to candidate structure; every
+    unresolved question is mapped to E2-004 (D08/D09/D20 blockers), E3 (mechanism/fault/instrumentation
+    evidence) or deferred future product (D22-D24).
+  correctness: >-
+    §7 compares truthful completion, revision binding/stale invalidation, independent verification,
+    predicate adequacy, partial outcomes, evidence integrity and executor/verifier separation. C01's
+    broad trusted core is stated as a burden ("broad core remains trusted authority") while the
+    independence floor (separate verifier process/context reading core authority) holds; C02's
+    authority races are bounded by service epoch/lease binding (f06) with stale-writer rejection;
+    C03's derived projections are explicitly non-authoritative with projection lag/staleness burden
+    (f22, §6 D01/D15). No hard violation is fabricated; no burden is hidden.
+  durability_recovery: >-
+    §8 compares source of truth, complexity, single point of failure, ambiguous effect strategy,
+    reconciliation cost, partial writes/corruption, client exit and pause/stop/force, and closes with
+    "tradeoffs, not a recovery winner"; "transactional"/"replaceable"/"journal" framing is offset by
+    each candidate's stated limit (C01 centralized recovery/blast radius; C02 lease/fence and service
+    availability; C03 journal/payload/reducer/checkpoint/retention surface). Stale workspace,
+    duplicate delivery, stale approval and stale verification are confirmed per candidate in matrix
+    cells and f09 keys but are not compared as rows (F-E2-003-09, LOW).
+  security: >-
+    All 20 boundaries compared on enforcement locality, trusted boundary, blast radius, protected
+    entry, process containment, effect authority, provider/tool boundary and evidence integrity;
+    §9 explicitly refuses process-count inference and declares no candidate more secure overall.
+    One mild unearned superlative (C03 TB-05 "strongest raw-event exclusion rule" — the three
+    exclusion rules are design-equivalent) is recorded as note N4.
+  isolation: >-
+    Truly common: TIER_2 semantic floor, dependent hard ARs, enforcement layers, fail-closed
+    unsupported classes, AQ-003 disposition (identical f10 blocks). Differs by topology: locality of
+    brokers/supervisors and enforcement burden only. The retained S01 question is a platform
+    mechanism question by the author's own contract and §11 ("the shared hard floor is unchanged");
+    isolation differences therefore cannot influence candidate selection, which is the basis of
+    F-E2-003-01.
+  testability: >-
+    §12 compares seams for the 170 cases, 18 oracles, 11 fixtures, 23 negative families, 16
+    repository conditions, 30 Git/effect rows, 9 adequacy variants, 16 compositions, 8 protocols and
+    EP-CTL-016; fault injection, state observation, substitution, process kill, stale state,
+    approval/effect simulation and independent verification are covered; C03 is not rewarded for
+    inspectable events ("more substitution points are not automatically better"; "no score") and
+    C01 is not rewarded for one process ("extra injection points are not automatically better").
+  contributor_burden: >-
+    §13 descriptions are supported by f22 (C01 "core failures can span several colocated
+    responsibilities"; C02 "Correlation spans IPC and worker leases"; C03 "understanding
+    reducer/event evolution, projection lag and payload retention is required"). The same facts
+    appear in AR-PRF-002 and AR-PRF-006 rows and in §16.2 without a cross-reference; no counting
+    occurs, so this is a presentation issue folded into F-E2-003-07.
+  implementation_complexity: >-
+    Qualitative only; not a hard constraint. C01 coupling/recovery concentration/migration coupling,
+    C02 lifecycle/IPC/protocol contract-version burden, C03 schema evolution/reducer correctness/
+    replay tools/projection debugging are named. C02 service-worker version skew across separately
+    updated processes is not named explicitly (note N4).
+  local_first: >-
+    §13 covers setup/process count, startup/idle, offline, shutdown/update/migration; C03's task-bound
+    coordinator during active work is stated ("task-bound/absent"; f19/f22) so the no-daemon claim
+    does not hide a live coordinator; C01's shutdown/checkpoint/migration coupling is stated
+    ("integrated store/core migrations are coupled"); during active work C01 and C03 both run one
+    task-bound owner process while C02 runs a persistent service — correctly reflected.
+  future_evolution: >-
+    §6 D22-D24 and §13 compare remote, cloud workers, concurrency, agents, clients, skills,
+    connectors, editions and SaaS as reserved seams only (f20 RESERVED_COMPATIBILITY,
+    not_implemented true in all three); C02/C03 seams are credited as lower adaptation cost, not as
+    hard advantage; C01's extraction cost is stated (arguably over- rather than under-stated, see
+    F-E2-003-03).
+  migration_reversibility: >-
+    §13 distinguishes foundational lock-in (C01 integrated single-writer core and store/history/
+    effect semantics; C02 service/store authority and lease/effect protocol; C03 canonical event
+    identity/order/meaning and journal/payload boundary) from reversible decisions, and §5
+    AR-PRF-003 names the material data/state migration each faces; "adapter" language is not used
+    to understate state migration.
+  level_b: >-
+    f29 statuses recomputed and matching §14: LB-02 NOT_USED in all three; C03 LB-05 and LB-09
+    SUBSUMED; LB-12 SUBSUMED for C01/C03 and USED for C02; every other family USED. §14 explicitly
+    treats counts as non-scores, credits C03 with "stronger structural alignment and higher burden,
+    not a count advantage" and gives C01 no bonus for LB-02/LB-14 non-use.
+  dominance: >-
+    Strict pairwise re-test. C01 vs C02: C01 worse on worker replaceability/remote seam. C01 vs C03:
+    C01 worse on causal reconstruction/replay. C02 vs C01: C02 worse on local topology/latency/
+    setup. C02 vs C03: C02 worse on deterministic replay/reconstruction. C03 vs C01: C03 worse on
+    conceptual burden/current-state simplicity/storage overhead. C03 vs C02: C03 worse on direct
+    worker replaceability and contributor concepts. Every pair has a strictly-worse dimension and
+    the same unresolved hard unknowns; no candidate dominates.
+  sensitivity: >-
+    A minimal local complexity: C01 gains, C02 loses, C03 mixed — supported. B recovery rigor: C03
+    gains — supported. C future remote: C02 most directly, C03 via serializable events, C01 pays
+    extraction — supported. D contributor accessibility: mixed, E3V-003 observation — supported.
+    E migration reversibility: no stable order — supported. F security boundary clarity: no stable
+    gainer (one high-authority locus vs narrower worker authority with more authenticated crossings
+    and a service boundary vs explicit admission with schema/reducer correctness in the trusted
+    design) — consistent with §9 but absent from §16.2. G testability/debuggability: C03 replay,
+    C02 substitution, C01 low topology, no score — consistent with §12 but absent from §16.2
+    (F-E2-003-07). No overall ranking results from any profile.
+  decision_readiness: >-
+    All three candidates survive the analytic hard gate with equal maps and no candidate-specific
+    unresolved hard risk. NEEDS_E2_004 follows only from the author's two-spike set; both spikes are
+    shared, cannot distinguish candidates, and block implementation-class evidence rather than
+    candidate comparison or ADR proposal (which may carry missing evidence per plan §9). If
+    F-E2-003-01/02 are accepted, readiness for each candidate is
+    READY_FOR_E2_005_AFTER_INDEPENDENTLY_VERIFIED_E2_004_NO_SPIKE_CLOSURE; no candidate is
+    ANALYTICALLY_NONVIABLE or NEEDS_ARCHITECTURE_REVISION; no candidate is preferred.
+  e2_004_input: >-
+    Both contracts carry ID, question, candidate applicability, ARs, blocking reason, minimal
+    prototype, success, failure, no-go, evidence/artifact, stop condition, budget and decision
+    linkage (13/13 fields). They fail as E2-004 input because (a) they are staged at the wrong gate
+    (F-E2-003-01/02); (b) S02 cannot instantiate its mandatory OS-surface observers without a declared
+    client/host class and zero dependencies, so a PASS would be prototype theater and the realistic
+    disposition is INCONCLUSIVE_BLOCKING (F-E2-003-02); (c) S01's "technology-neutral adapter" must
+    bind to an unselected host primitive, so its result is valid only for that mechanism, which is
+    E3V-002's object; (d) consequence rules conflict across matrix/register/§16.3 and do not map the
+    E2-004 disposition vocabulary (F-E2-003-04); (e) adr_linkage does not use the plan §9 ADR IDs
+    (F-E2-003-08). If the fixer converts E2-004 to a no-spike closure, the register already holds
+    most of the required content and needs relabelling plus the demonstrations above.
+  e2_005_input: >-
+    §17 enumerates comparison baseline, surviving candidates, hard map plus E2-004 outcomes,
+    unweighted preferences/sensitivity, the ten resolutions and both verifier dispositions,
+    recovery/security/testability/contributor/local-first/future/migration evidence, E3 obligations
+    with handback, and "explicit decisions for proposed ADRs" without naming ADR-E2-001..009 or
+    mapping missing evidence to them (F-E2-003-08, LOW). No ADR is written.
+  premature_selection: >-
+    Word scan over the four artifacts: preferred 4, recommended/recommend 3, winner 23, rank/ranked/
+    ranking 27, score/scored/scoring 26, selected 8, dominant 1, default 5, best 0, leading 0,
+    favorite 0 — every context is a negation or policy statement ("no winner", "not ranked",
+    "unranked", "NOT_SELECTED", "preferred candidate NONE/null", "deny-by-default", "hands the
+    selected ADR back"). Preferred candidate null/NONE in register, handoff, registry and
+    PROJECT_STATE; architecture_selected false. No candidate consistently receives more generous
+    evidentiary treatment (equal templates, comparable evidence volume, equal hard maps). The C01-only
+    UNFAVORABLE valence label is a latent asymmetry (F-E2-003-03), not a selection.
+  frozen_artifacts: >-
+    git diff c2f7093..HEAD -- 03_product 06_evaluation 10_checkpoints: empty (E1 byte-preserved
+    since the E1 gate commit); git diff 0d702b8..HEAD on the three E2-001 artifacts: empty; git diff
+    1a1c542..HEAD on 05_architecture/candidates and the alternatives overview: empty; candidate
+    SHA-256 equal to the author's recorded values (ea9ff609…, 899f7fa0…, 72cacf1c…); no
+    05_architecture/spikes, 05_architecture/adrs or 04_decisions directory; no application source
+    files; no model/provider comparison; no Level C path tokens in the E2-003 artifacts.
+  governance: >-
+    PROJECT_STATE and TASK_REGISTRY reconcile: E2-001 VERIFIED, E2-002 VERIFIED (1a1c542), E2-003
+    READY_FOR_REVIEW / READY_FOR_REVIEW_NOT_VERIFIED_AUTHOR_PASS, E2-004..006 BACKLOG (E2-004
+    blocked_by E2_003_NOT_INDEPENDENTLY_VERIFIED), gate NOT_EVALUATED, architecture_selected false,
+    preferred_candidate null, accepted_architecture_adrs 0, architecture_spikes_run /
+    technical_spikes_run 0, evaluation_cases_run 0, model_benchmarks_run 0, paid_api_calls 0,
+    autonomy_eligibility NOT_ELIGIBLE, autonomous_build_authorized false, S1-003 BLOCKED /
+    DEFERRED. The author's seven changed paths are all within E2-003 allowed_files_to_change;
+    README (not an allowed path) remains stale from the E2-002 cycle (note N2).
+analytic_resolution_table:
+  - {id: E2U-PAPER-C01-U01, question: "Can the broad integrated core remain modular enough for independent testing and bounded contributor ownership?", author_resolution: RESOLVED_NEUTRAL, affected: "AR-PRF-002, AR-PRF-006", evidence_architectural: true, empirical_claim_invented: false, challenger_disposition: RESOLUTION_VALID, note: "Preference characterization from f02/f04/f16/f22/f25/f26/f28; mixed; no rank."}
+  - {id: E2U-PAPER-C01-U02, question: "What preference cost and reversibility burden follows from later extracting C01 remote/concurrency seams?", author_resolution: RESOLVED_UNFAVORABLE, affected: "AR-PRF-003, AR-PRF-004", evidence_architectural: true, empirical_claim_invented: false, challenger_disposition: RESOLUTION_VALID, note: "Valid as a preference finding; the valence label is asymmetric versus C02/C03 (F-E2-003-03)."}
+  - {id: E2U-PAPER-C01-U03, question: "What persistence, packaging, repository, and host support declaration is credible for C01?", author_resolution: RESOLVED_FAVORABLE, affected: "AR-DUR-005, AR-WSP-003, AR-SEC-003, AR-SEC-004, AR-PKG-001, AQ-003", evidence_architectural: true, empirical_claim_invented: false, challenger_disposition: RESOLUTION_VALID, note: "Structural floor confirmed from f08/f09/f10/f18/f19; the host-class half is deferred to E3V-001/003/006 without saying so (F-E2-003-05)."}
+  - {id: E2U-PAPER-C02-U01, question: "Is the service/client/worker boundary proportionate for local v0.1?", author_resolution: RESOLVED_NEUTRAL, affected: "AR-PRF-002, AR-PRF-006", evidence_architectural: true, empirical_claim_invented: false, challenger_disposition: RESOLUTION_VALID, note: "Preference characterization; proportionality depends on unassigned priorities."}
+  - {id: E2U-PAPER-C02-U02, question: "What service lifecycle/authentication/update contract is supportable without hidden state?", author_resolution: RESOLVED_FAVORABLE, affected: "AR-PKG-001", evidence_architectural: true, empirical_claim_invented: false, challenger_disposition: RESOLUTION_VALID, note: "Packaging hard floor (visible service, no hidden cloud) from f03/f04/f19/f22; toolchain remains E3V-003."}
+  - {id: E2U-PAPER-C02-U03, question: "Which persistence/path/network/protected-secret host classes are credible for C02?", author_resolution: RESOLVED_FAVORABLE, affected: "AR-DUR-005, AR-WSP-003, AR-SEC-003, AR-SEC-004, AR-PKG-001, AQ-003", evidence_architectural: true, empirical_claim_invented: false, challenger_disposition: RESOLUTION_VALID, note: "Carries V-E2-002-01; structural floor confirmed; host-class half deferred (F-E2-003-05)."}
+  - {id: E2U-PAPER-C03-U01, question: "Is immutable event authority plus projections proportionate to v0.1 recovery/evidence needs?", author_resolution: RESOLVED_NEUTRAL, affected: "AR-PRF-002, AR-PRF-005, AR-PRF-006", evidence_architectural: true, empirical_claim_invented: false, challenger_disposition: RESOLUTION_VALID, note: "Preference characterization; complexity is not a hard violation."}
+  - {id: E2U-PAPER-C03-U02, question: "Are journal/payload retention, redaction, and deletion semantics coherent with evidence preservation?", author_resolution: RESOLVED_NEUTRAL, affected: "AR-DUR-006, AR-EVD-002", evidence_architectural: true, empirical_claim_invented: false, challenger_disposition: RESOLUTION_VALID, note: "Coherent floor from f06/f08/f09/f15/f18; retention/erasure evidence E3/E5."}
+  - {id: E2U-PAPER-C03-U03, question: "What support/package declaration makes replay/migration tooling contributor-operable?", author_resolution: RESOLVED_FAVORABLE, affected: "AR-PKG-001", evidence_architectural: true, empirical_claim_invented: false, challenger_disposition: RESOLUTION_VALID, note: "Packaging hard floor from f19/f22/f25; walkthrough E3V-003."}
+  - {id: E2U-PAPER-C03-U04, question: "Which persistence/path/network/protected-secret host classes are credible for C03?", author_resolution: RESOLVED_FAVORABLE, affected: "AR-DUR-005, AR-WSP-003, AR-SEC-003, AR-SEC-004, AR-PKG-001, AQ-003", evidence_architectural: true, empirical_claim_invented: false, challenger_disposition: RESOLUTION_VALID, note: "Carries V-E2-002-01; payload-before-event and orphan reconciliation present in f08; host-class half deferred (F-E2-003-05)."}
+spike_rederivation:
+  - {source_id: SPQ-E2-002-01, author: "KEEP_E2_004 as E2U-S01-DESCENDANT-CONTAINMENT", challenger: MOVE_TO_E3, owner: E3V-002, basis: "Candidate-invariant host primitive; E1 admits fence-when-unavailable and fail-closed unsupported class; E2-001 already places host process-tree support in E3; identical treatment already given to AR-WSP-003/AR-SEC-004 host primitives; cannot change selection (F-E2-003-01)."}
+  - {source_id: SPQ-E2-002-02, author: "KEEP_E2_004 as E2U-S02-PROTECTED-ACQUISITION", challenger: MOVE_TO_E3, owner: E3V-006, basis: "Candidate-invariant client/host capture exclusion; UF-11 step 2 / AR-SEC-006 fail-closed branch; E2-001 assigns capture-suspension validation to E3V-006; depends on the unselected client surface (ADR-E2-001); contract cannot observe real surfaces (F-E2-003-02)."}
+  - {source_id: SPQ-E2-002-03, author: "MOVE_TO_E3 as E3U-C01-PROTECTED-DELIVERY", challenger: MOVE_TO_E3, owner: E3V-006, basis: "Agree; co-resident one-use recipient path is an explicit interface; delivery failure hands ADR back."}
+  - {source_id: SPQ-E2-002-04, author: "MOVE_TO_E3 as E3U-C02-PROTECTED-DELIVERY", challenger: MOVE_TO_E3, owner: E3V-006, basis: "Agree; service-issued non-secret authorization with raw bypass is an explicit interface (f04 protected_delivery_path)."}
+  - {source_id: SPQ-E2-002-05, author: "MOVE_TO_E3 as E3U-C03-PROTECTED-DELIVERY", challenger: MOVE_TO_E3, owner: E3V-006, basis: "Agree; out-of-event broker with non-secret receipt event is an explicit interface."}
+minimal_e2_004_set:
+  challenger_retained_preselection_spikes: []
+  challenger_retained_count: 0
+  closure_form: NO_PRESELECTION_SPIKE_REQUIRED
+  required_closure_content:
+    - "Per removed item: the plan §13 test (could a result differ by candidate and change the selection?) answered NO with the candidate-invariance evidence; the frozen-E1 fail-closed consequence quoted; the E3 obligation (E3V-002 / E3V-006) and its ARCHITECTURE_HANDBACK trigger; the plan §9 ADR that must carry the item as missing evidence (ADR-E2-004 for descendant containment; ADR-E2-001 and ADR-E2-005 for protected acquisition; ADR-E2-005 for candidate delivery)."
+    - "Explicit product consequence of a later negative E3 result: unsupported host/workload class for untrusted execution; protected entry unsupported on a client class => task.wait_reasons WAITING_FOR_USER or blocker, never improvised acquisition."
+    - "No favorable empirical credit: the AR-EXE-003 and AR-SEC-006 cells remain design-level CONFIRMED_SATISFIED_FOR_COMPARISON with E3 obligation, never implemented/validated."
+  if_fixer_retains_a_spike: "Only with a written demonstration, against plan §13, of the candidate-dependent mechanism by which the outcome could differ between C01, C02 and C03 and change the selection, the counterfactual eliminations, a declared client/host class and observer realization for S02, and one consequence rule mapped to the E2-004 disposition vocabulary."
+dominance_pairs:
+  - {pair: "C01 vs C02", dominates: false, c01_worse_on: "worker replaceability; remote-execution seam; localized worker failure"}
+  - {pair: "C01 vs C03", dominates: false, c01_worse_on: "causal reconstruction / deterministic replay; evidence provenance replay"}
+  - {pair: "C02 vs C01", dominates: false, c02_worse_on: "local topology; control-path length; setup/lifecycle burden; service availability boundary"}
+  - {pair: "C02 vs C03", dominates: false, c02_worse_on: "deterministic replay / rebuild; explicit history-state alignment"}
+  - {pair: "C03 vs C01", dominates: false, c03_worse_on: "conceptual burden; current-state read simplicity; storage/retention overhead"}
+  - {pair: "C03 vs C02", dominates: false, c03_worse_on: "direct worker replaceability; contributor concepts; service-centralized routing"}
+  - {shared_unresolved_hard_uncertainty: "identical for all three (AR-EXE-003, AR-SEC-006)", result: NO_CANDIDATE_DOMINATES}
+sensitivity_profiles:
+  - {profile: "A minimal local complexity", tendency: "C01 gains; C02 loses; C03 mixed", supported: true, in_author_table: true}
+  - {profile: "B recovery rigor", tendency: "C03 gains; C01/C02 rely on transaction/history reconciliation", supported: true, in_author_table: true}
+  - {profile: "C future remote evolution", tendency: "C02 most directly; C03 via serializable events; C01 extraction cost", supported: true, in_author_table: true}
+  - {profile: "D contributor accessibility", tendency: "mixed; requires E3V-003 observation", supported: true, in_author_table: true}
+  - {profile: "E migration reversibility", tendency: "no stable order; different lock-in centers", supported: true, in_author_table: true}
+  - {profile: "F security boundary clarity", tendency: "no stable gainer; distinct trusted-boundary tradeoffs", supported: true, in_author_table: false}
+  - {profile: "G testability/debuggability", tendency: "C03 replay; C02 substitution; C01 low topology; no score", supported: true, in_author_table: false}
+  - {overall_ranking_produced: false}
+candidate_readiness:
+  EP-ARCH-C01: {author: NEEDS_E2_004, challenger: "ANALYTICALLY_VIABLE — READY_FOR_E2_005_AFTER_INDEPENDENTLY_VERIFIED_E2_004_NO_SPIKE_CLOSURE if F-E2-003-01/02 accepted; otherwise author label stands", nonviable: false, needs_architecture_revision: false}
+  EP-ARCH-C02: {author: NEEDS_E2_004, challenger: "ANALYTICALLY_VIABLE — same conditional readiness", nonviable: false, needs_architecture_revision: false}
+  EP-ARCH-C03: {author: NEEDS_E2_004, challenger: "ANALYTICALLY_VIABLE — same conditional readiness", nonviable: false, needs_architecture_revision: false}
+  preferred_candidate: null
+  architecture_selected: false
+new_findings:
+  - finding_id: F-E2-003-01
+    severity: HIGH
+    candidate_or_component: >-
+      E2U-S01-DESCENDANT-CONTAINMENT (uncertainty register classification, state, spike_contract);
+      matrix AR-EXE-003 cells x3; comparison §4.3, §11, §15, §16.3, §17; handoff e2_spikes_retained /
+      blockers; TASK_REGISTRY author_uncertainty_summary and author_readiness; PROJECT_STATE
+      comparison_preselection_spike_count / notes; RISK_REGISTER R-030 mitigation text
+    requirement_or_uncertainty: >-
+      AR-EXE-003 (hard); PRD FR-033/FR-040; NEG-TERM-01 / EP-NEG-TERM-01; EP-CTL-005; AQ-004; E3V-002;
+      plan §13 definition of E2_PRESELECTION_SPIKE_REQUIRED ("mechanism feasibility could change the
+      architecture choice"); E2-001 §9 handback rule 1; E2-003 acceptance criterion 4; E2-004
+      gate_invariant and disposition vocabulary
+    evidence: >-
+      (1) Frozen E1 admits fencing when termination is unavailable: PRD FR-033 "safe/available force
+      termination or authority fencing"; correctness contract line 955 "safe force termination or
+      authority fencing occurs when available; descendants/effects are terminal or explicitly
+      uncertain"; EP-CTL-005 "Resistant descendants require bounded force-stop or authority fence";
+      EP-NEG-TERM-01 "force/fence when available"; AR-EXE-003 required property "any unkillable work is
+      fenced/accounted". (2) The verified E2-001 register already places host process-tree support in
+      E3: AR-EXE-003 Uncertainty "Host-specific process-tree and fencing support requires E3
+      validation"; E3V-002 owns "descendant accounting" with handback "A structural inability to
+      control/fence an advertised class returns to E2"; AQ-004 "possible E2-004 feasibility question;
+      validate under E3V-002". Comparison §4.3 gives no reason why that placement is wrong; its
+      justification ("prose cannot prove supported-host descendant termination, post-fence effect
+      deprivation, or whole-tree accounting") is the definition of E3 postselection validation, not
+      of a feasibility that could change the architecture choice. (3) The question is
+      candidate-invariant by the author's own contract: "one technology-neutral process-tree adapter"
+      with "three thin topology wrappers"; reusable_result_scope "Host primitive and process-tree
+      behavior reusable across all candidates"; all three f10 isolation_classification blocks declare
+      the identical TIER_2 assumption, the identical "required host process-tree primitive must
+      account for descendants", and the identical fail-closed consequence "otherwise untrusted
+      execution is unsupported". The only candidate-owned layer (C01 owner epoch, C02 service
+      lease/fence, C03 workflow owner/fence) is analysis-confirmed in §4.3/§4.4. In every topology the
+      owner-death case (C01 core, C02 worker, C03 executor adapter) reduces to the same host-primitive
+      question. (4) Failure cannot invalidate a candidate shape or the frozen requirement: the
+      no_go_result narrows "the current Tier 2 support declaration", which is shared, and AR-PKG-001
+      requires explicit supported/unsupported host declarations. (5) E2-003 applies E3 treatment to
+      the same class of host-primitive dependency without a distinguishing principle: f10 path_scope
+      ("required host object-identity/path primitives; unsupported if access-time identity cannot be
+      held") -> AR-WSP-003 CONFIRMED with E3V-003; f10 descendant_filesystem_and_network ("required
+      host execution primitives must make the boundary apply to arbitrary descendants, otherwise
+      untrusted execution is unsupported") -> AR-SEC-004 CONFIRMED with E3V-006; f10
+      process_termination (same structure) -> ARCHITECTURE_BLOCKING_SPIKE. (6) MASTER_OPERATING_PROMPT
+      Stage 4 lists sandbox lifecycle and pause/resume/worker-restart as technical-spike subjects,
+      i.e. E3 under the D-016 mapping. (7) A "technology-neutral adapter" must still bind to some host
+      primitive to observe anything, so any result is valid only for that unselected mechanism/host;
+      E3V-002 is defined to test the selected mechanism. (8) The contract's three topology wrappers
+      would re-implement each candidate's control-plane fencing, which is closer to application code
+      than a minimal spike.
+    why_it_matters: >-
+      E2-004 would execute a 15-case spike whose outcome cannot change the choice among C01/C02/C03
+      and whose FAIL/INCONCLUSIVE outcome would block all three candidates equally on a platform
+      question that E1 already resolves by fail-closed unsupported-class declaration: an unnecessary
+      preselection spike, a mislabelled uncertainty class (acceptance criterion 4), a false
+      NEEDS_E2_004 readiness for every candidate, and a contradiction of the verified E2-001
+      E3V-002/AQ-004 placement and of E2-003's own AR-WSP-003/AR-SEC-004 treatment. The E2-004
+      registry's disposition DEFERRED_TO_E3_NON_SELECTION_BLOCKING shows the taxonomy expects this
+      reclassification; E2-003 is where classification authority sits.
+    required_fix: >-
+      Either (a) reclassify E2U-S01 to E3_POSTSELECTION_TECHNICAL_VALIDATION under E3V-002 (state
+      RECLASSIFIED_TO_E3) and record an architecture-level PAPER closure for AR-EXE-003 in all three
+      candidates: the containment interface (supervisor-owned process tree, host-primitive
+      requirement, cooperative-cancel / force-or-fence / settle bounds, stale-result rejection by
+      epoch/lease/fence, whole-tree accounting) is structurally specified, the fail-closed
+      unsupported-class declaration exists, and no candidate can be distinguished by the host
+      primitive; set the three matrix AR-EXE-003 cells to CONFIRMED_SATISFIED_FOR_COMPARISON with
+      uncertainty/related_e3 pointing at the E3V-002 record and blocking_consequence "E3V-002
+      ARCHITECTURE_HANDBACK narrows the supported host/workload class; does not select or eliminate a
+      candidate"; add the item to the ADR-E2-004 missing-evidence list; recompute the 28-item
+      partition, the hard map (59 confirmed / 0 blocking if F-E2-003-02 is also accepted),
+      §4.1/§4.3/§15/§16.3/§17, handoff, TASK_REGISTRY, PROJECT_STATE and the R-030 text; or (b) retain
+      E2U-S01 only with an explicit written demonstration, against the plan §13 definition, of the
+      specific candidate-dependent mechanism by which a spike outcome could differ between C01, C02
+      and C03 and change the selection, the counterfactual (which candidate a given schedule would
+      eliminate and why the others would not), and a reconciliation of the AR-WSP-003/AR-SEC-004
+      asymmetry. In either route do not credit AR-EXE-003 as implemented or empirically validated and
+      do not modify the frozen candidate records.
+    verification_method: >-
+      Parse the register for E2U-S01 classification/state and partition totals; confirm the three
+      matrix AR-EXE-003 cells agree; grep comparison/handoff/registry/PROJECT_STATE/R-030 for spike
+      counts and NEEDS_E2_004 labels; confirm E3V-002 linkage and handback wording; confirm no
+      favorable empirical claim was added; confirm candidate SHA-256 values unchanged.
+  - finding_id: F-E2-003-02
+    severity: HIGH
+    candidate_or_component: >-
+      E2U-S02-PROTECTED-ACQUISITION (register classification, state, spike_contract); matrix
+      AR-SEC-006 cells x3; comparison §4.3, §10, §11, §15, §16.3; RISK_REGISTER R-009 mitigation text;
+      handoff/registry/PROJECT_STATE spike counts and readiness
+    requirement_or_uncertainty: >-
+      AR-SEC-006 (hard) and AR-SEC-003; UF-11 steps 2-3; correctness contract §9.6; AQ-010; E3V-006;
+      plan §9 ADR-E2-001 (client surface) and ADR-E2-005 (secret/protected-entry boundary); plan
+      §13; E2-004 forbidden_actions ("select a technology") and challenger_requirements ("prototype
+      theater or hidden implementation")
+    evidence: >-
+      (1) Frozen E1 defines the consequence of an unavailable acquisition boundary: UF-11 step 2 "If
+      a supported secret-safe or human-takeover boundary does not exist, add
+      task.wait_reasons=WAITING_FOR_USER or a task.blocker_refs record; do not improvise"; AR-SEC-006
+      "If that acquisition boundary cannot be guaranteed, the task fails closed to WAITING_FOR_USER
+      or a blocker with zero improvised acquisition". A negative result narrows the supported
+      client/host class; it invalidates neither the requirement nor any candidate shape, and all
+      three candidates already specify the fail-closed branch (C01 f18 protected_human_entry; C02
+      f18 protected_entry; C03 f18 protected_entry). (2) The verified E2-001 register assigns the
+      validation to E3: AR-SEC-006 Evaluation linkage "E3V-006 owns the focused
+      capture-suspension/acquisition-boundary validation without altering the frozen suite"; E3V-006
+      subset "protected-entry capture suspension/exclusion, recipient isolation" with
+      ARCHITECTURE_HANDBACK; AQ-010 "E2-004 only if feasibility remains selection-blocking". (3) The
+      question is candidate-invariant: register rationale "The question is shared before
+      candidate-specific delivery"; reusable_result_scope "Acquisition/capture exclusion result is
+      shared"; the contract has no candidate wrappers. Its answer depends on the client surface
+      (terminal, local web, desktop) that D-016 leaves unselected and plan §9 assigns to ADR-E2-001;
+      a client-neutral spike cannot inform that ADR without pre-selecting a client class, which
+      E2-004 forbids. (4) The author's reasoning for reclassifying delivery (§10 "A candidate's E3
+      delivery failure hands the selected ADR back for revision; it never becomes a favorable E2
+      assumption"; E3U-*-PROTECTED-DELIVERY) applies verbatim to acquisition; §4.3's only reason for
+      keeping acquisition in E2 ("cannot prove ... from prose") applies equally to AR-SEC-003, which
+      the author paper-resolved. (5) As contracted the spike cannot yield architecture evidence: it
+      requires "complete observers" for keystroke, clipboard, screen_and_screenshot,
+      accessibility_state and terminal surfaces with dependencies_or_installations 0, no declared
+      client/host class, a harness-defined protected-acquisition adapter, and the rule "missing
+      capture is not a clean result". Either the harness observes only surfaces it defines itself
+      (a PASS would be prototype theater clearing a hard blocker for all candidates) or the mandatory
+      OS-level observers are missing and the disposition is INCONCLUSIVE_BLOCKING, which the contract
+      makes block E2-005 for all three candidates on a non-discriminating question. The
+      required_content "Exact local environment/support declaration" would be whatever machine the
+      E2-004 author uses, not a declared product support class.
+    why_it_matters: >-
+      A hollow PASS would convert a hard property into cleared evidence with no observed client
+      surface (R-030 "treats an unknown as favorable"); a predictable INCONCLUSIVE_BLOCKING would
+      deadlock E2 on a platform/client question that cannot distinguish candidates and that E1
+      resolves by fail-closed WAITING_FOR_USER. Either outcome is an unnecessary or insufficient
+      E2-004 spike and false decision readiness, and the classification contradicts the verified
+      E2-001 E3V-006/AQ-010 placement and the author's own delivery reclassification.
+    required_fix: >-
+      Either (a) reclassify E2U-S02 to E3_POSTSELECTION_TECHNICAL_VALIDATION under E3V-006 (state
+      RECLASSIFIED_TO_E3); record the architecture-level PAPER closure for AR-SEC-006 in all three
+      candidates (protected path distinct from ordinary pipelines, capture suspension/exclusion
+      interface, exact-recipient handoff per AR-SEC-003, non-secret durable receipt, fail-closed
+      WAITING_FOR_USER/blocker, no raw replay on recovery — present in f04/f18 of each candidate);
+      set the three matrix AR-SEC-006 cells to CONFIRMED_SATISFIED_FOR_COMPARISON with E3V-006 linkage
+      and blocking_consequence "E3V-006 ARCHITECTURE_HANDBACK narrows the supported client/host
+      class; protected entry unsupported on a class means WAITING_FOR_USER, never improvised
+      acquisition"; link the missing evidence to ADR-E2-001 and ADR-E2-005; merge or align with
+      E3U-C0x-PROTECTED-DELIVERY so acquisition and delivery are validated under one E3V-006 protocol
+      after the client-surface ADR; recompute partition, readiness, §15/§16.3/§17, handoff,
+      registry, PROJECT_STATE and the R-009 text; or (b) retain E2U-S02 only with an explicit
+      demonstration of how its result changes an E2 decision without pre-selecting a client class, a
+      concrete statement of how each mandatory observer will be realized with zero dependencies on an
+      undeclared host, and a prototype-theater control (observers independent of the acquisition
+      adapter under test). In either route do not credit AR-SEC-006 as validated, select no client
+      technology, mechanism or product, and do not modify the frozen candidate records.
+    verification_method: >-
+      Parse the register for E2U-S02 classification/state and E3V-006 linkage; confirm the three
+      matrix AR-SEC-006 cells and partition totals; confirm UF-11 step 2 is quoted in the closure;
+      confirm ADR-E2-001/ADR-E2-005 missing-evidence linkage exists; grep governance for spike counts,
+      R-009 wording and NEEDS_E2_004; confirm no client technology, mechanism or host product was
+      selected.
+  - finding_id: F-E2-003-03
+    severity: MEDIUM
+    candidate_or_component: >-
+      Uncertainty register resolution values for E2U-PAPER-C01-U01..U03, C02-U01..U03, C03-U01..U04;
+      analytic_resolution_counts; handoff paper_resolution_effects; TASK_REGISTRY
+      author_uncertainty_summary.paper_resolution_effects; PROJECT_STATE E2-003 note and
+      activation_condition_status; comparison §15
+    requirement_or_uncertainty: >-
+      E2-003 gate_invariant (may not encode a decision); E2-001 §8 (4) correlation/no-double-count
+      and (5) sensitivity disclosure; AR-PRF-003/AR-PRF-004; comparison §5 AR-PRF-003 and §16.2
+      "lowest migration lock-in" conclusions
+    evidence: >-
+      Resolutions: C01-U01 NEUTRAL, C01-U02 UNFAVORABLE, C01-U03 FAVORABLE; C02-U01 NEUTRAL, C02-U02
+      FAVORABLE, C02-U03 FAVORABLE; C03-U01 NEUTRAL, C03-U02 NEUTRAL, C03-U03 FAVORABLE, C03-U04
+      FAVORABLE — per candidate C01 1F/1N/1U, C02 2F/1N/0U, C03 2F/2N/0U. The sole UNFAVORABLE is
+      C01's extraction/reversibility question (AR-PRF-003/004) while §5 AR-PRF-003 concludes "Each
+      has a different lock-in center; no candidate is universally lowest-lock-in" and §16.2 "No
+      stable tendency". C02's foundational lock-in (f28 costly_to_reverse "Merge service back into a
+      client or split canonical authority"; lease/effect protocol) and C03's (f28 "Change canonical
+      event identity/order/meaning or rewrite history"; journal/payload boundary) are of the same
+      kind but were never posed as a reversibility question, so they receive no valence. The 5/1/4
+      tally is propagated into PROJECT_STATE (notes; comparison summary), TASK_REGISTRY and the
+      handoff. The vocabulary RESOLVED_FAVORABLE/UNFAVORABLE/NEUTRAL is author-introduced (absent
+      from E2-001 §8, plan §13 and the E2-003 acceptance criteria).
+    why_it_matters: >-
+      A per-candidate valence vector in which one candidate alone carries an "unfavorable" mark is an
+      implicit ranking signal for E2-005 that the comparison's own text contradicts; it can bias
+      selection even though every artifact states the labels are not a rank.
+    required_fix: >-
+      Either pose the same reversibility/extraction question for all three candidates (C02:
+      service-authority extraction/merge and lease/effect-protocol migration; C03: event
+      identity/order/meaning evolution and journal/payload boundary migration) and label
+      symmetrically from the same evidence type, or replace valence labels on preference-only
+      resolutions with a neutral label (e.g. RESOLVED_PREFERENCE_CHARACTERIZED) and remove
+      per-candidate favorable/unfavorable counts from the handoff, TASK_REGISTRY and PROJECT_STATE
+      summaries while keeping the tradeoff prose.
+    verification_method: >-
+      Recompute resolution values per candidate from the register; grep handoff, TASK_REGISTRY and
+      PROJECT_STATE for favorable/unfavorable counts; confirm §5/§16.2 conclusions and the register
+      labels are consistent.
+  - finding_id: F-E2-003-04
+    severity: MEDIUM
+    candidate_or_component: >-
+      Matrix AR-EXE-003 / AR-SEC-006 blocking_consequence (6 cells); register E2U-S01 / E2U-S02
+      decision_rule, no_go_result and stop_condition; comparison §4.1, §4.3, §16.3, §17; handoff
+      candidate_readiness.conditional_after_spikes
+    requirement_or_uncertainty: >-
+      E2-003 acceptance criterion 5 (decision rule; stop condition); E2-004 acceptance criteria
+      (PASS / FAIL / INCONCLUSIVE_BLOCKING / DEFERRED_TO_E3_NON_SELECTION_BLOCKING) and
+      completion_transition (INCONCLUSIVE_BLOCKING requires escalation or a prospective task split);
+      E2-001 §9 handback rules if F-E2-003-01/02 move the items to E3
+    evidence: >-
+      Matrix cells: "E2-005 selection is blocked unless the shared ... spike passes for this
+      candidate wrapper; failure eliminates the candidate." Register S01 FAIL: "keeps the affected
+      topology/candidate blocked. A shared host-primitive failure blocks all candidates and requires a
+      supported-host or architecture-contract revision; no other candidate is selected by default."
+      Register S02 FAIL: "blocks all candidates for the declared client/host class until the support
+      boundary or architecture is prospectively revised." §16.3: "otherwise the exact failed property
+      requires architecture/support-boundary revision or no-go." §4.1: "conditionally eligible for
+      E2-005 only if both blockers pass." Neither contract maps the E2-004 disposition
+      DEFERRED_TO_E3_NON_SELECTION_BLOCKING or references the INCONCLUSIVE_BLOCKING escalation /
+      task-split rule in its stop_condition.
+    why_it_matters: >-
+      E2-004 must apply one prospectively frozen consequence per outcome; "eliminates", "blocked
+      until revised" and "no-go" produce different E2-005 inputs and different candidate readiness,
+      and a result-time choice among them is exactly the post-result redefinition E2-004 forbids. If
+      F-E2-003-01/02 are accepted the same inconsistency migrates into the E3 handback wording and
+      must still be resolved once.
+    required_fix: >-
+      One consequence table per retained item (PASS / FAIL-shared / FAIL-topology-specific /
+      INCONCLUSIVE_BLOCKING / DEFERRED_TO_E3_NON_SELECTION_BLOCKING) stating the exact E2-005 input
+      and candidate status each produces, applied identically in the matrix cells, the register, §4.1
+      / §16.3 / §17 and the handoff; align stop_condition with the E2-004 escalation / task-split
+      rule; if the items move to E3, state the single ARCHITECTURE_HANDBACK consequence
+      (support-class narrowing; no candidate elimination or default selection) in the same places.
+    verification_method: >-
+      grep "eliminates" in the matrix; compare register decision_rule / no_go_result and §16.3 text;
+      confirm each of the five E2-004 disposition values is mapped once.
+  - finding_id: F-E2-003-05
+    severity: LOW
+    candidate_or_component: "E2U-PAPER-C01-U03, E2U-PAPER-C02-U03, E2U-PAPER-C03-U04 resolution labels and rationale; comparison §4.2"
+    requirement_or_uncertainty: "AR-WSP-003, AR-SEC-004, AR-PKG-001, AR-DUR-005, AR-SEC-003 (PLAUSIBLE in verified E2-002 for 'host mechanism unselected' / 'supported-host/toolchain proof pending'); AQ-003; E3V-001/003/006"
+    evidence: >-
+      The three questions ask which persistence/path/network/protected-secret host classes or support
+      declarations are credible; the resolutions are RESOLVED_FAVORABLE while the rationales confirm
+      only structural mechanisms and state "exact mechanisms remain E3V-001/003/006"; no host class is
+      named anywhere in E2-003 (consistent with technology neutrality). The empirical half of each
+      question is therefore deferred to E3 without a RECLASSIFIED_TO_E3 component or an explicit
+      statement that the question was narrowed to its structural half.
+    why_it_matters: >-
+      A reader of the register or the 5/1/4 tally would infer that host-support credibility was
+      analyzed; the honest disposition is structural-floor RESOLVED plus an E3 pointer for the
+      host-class declaration. The CONFIRMED_SATISFIED_FOR_COMPARISON matrix results are unaffected
+      (the vocabulary already carries the E3 obligation).
+    required_fix: >-
+      Split each record into a structural resolution (no valence, per F-E2-003-03) and an explicit
+      E3V-003 / E3V-006 pointer for the host-class declaration, or reword the question to the
+      structural half and say so; keep the matrix results.
+    verification_method: "Read the three register records; recompute the resolution tally."
+  - finding_id: F-E2-003-06
+    severity: LOW
+    candidate_or_component: "Comparison §3 correlated-group table; matrix correlation_group column; handoff/registry correlation statements"
+    requirement_or_uncertainty: "E2-001 §8 (4) correlation disclosure sets; E2-003 required test 'correlated-criterion ... checks'"
+    evidence: >-
+      §3 discloses five groups (RECOVERY_CORRECTNESS_EVIDENCE, SECURITY_AUTHORITY_EFFECT_ISOLATION,
+      MAINTAINABILITY_PACKAGING_MIGRATION, FUTURE_REMOTE_CONCURRENCY_REVERSIBILITY,
+      PERFORMANCE_LOCAL_OVERHEAD_COST) matching E2-001 §8; the matrix uses 16 group names that appear
+      nowhere in §3 (e.g. DURABILITY_RECOVERY_AND_DATA 10 rows, EVIDENCE_VERIFICATION_AND_OBSERVABILITY
+      8, CORRECTNESS_AND_AUTHORITY 7; preferences PREFERENCE_LATENCY_AND_LOCAL_OVERHEAD {PRF-001,
+      PRF-005}, PREFERENCE_MAINTAINABILITY_AND_PACKAGING {PRF-002, PRF-006},
+      PREFERENCE_MIGRATION_REMOTE_AND_REVERSIBILITY {PRF-003, PRF-004}); E2-001 §8 places migration
+      in both the maintainability/packaging/contributor set and the remote/concurrency/reversibility
+      set, whereas the matrix assigns PRF-003 only to the latter.
+    why_it_matters: >-
+      The correlated-criterion check cannot be reproduced against one declared vocabulary; PRF-003's
+      dual membership is where complexity/contributor and reversibility would double count if E2-005
+      later weights. No arithmetic double counting exists now because nothing is summed.
+    required_fix: "Adopt one vocabulary (map the 16 matrix names to the five §3 groups or vice versa); state PRF-003's dual membership and the no-double-count rule explicitly in §3 and the register weight item."
+    verification_method: "Compare the set of matrix correlation_group values with the §3 table."
+  - finding_id: F-E2-003-07
+    severity: LOW
+    candidate_or_component: "Comparison §16.2 sensitivity table; handoff dominance_and_sensitivity.sensitivity_summary; §13 cross-references"
+    requirement_or_uncertainty: "E2-003 acceptance criterion 6 (surviving trade-offs and sensitivity); E2-001 §8 (5) sensitivity to plausible alternative weight/group choices"
+    evidence: >-
+      §16.2 has six emphases (minimal topology; causal reconstruction; replaceable workers/remote;
+      contributor accessibility; lowest migration lock-in; lowest evidence/storage overhead); the
+      handoff lists five (omits evidence/storage overhead); there is no row for security-boundary
+      clarity (material in the §9 closing paragraph) or testability/debuggability (material in the
+      §12 closing paragraph); the minimal-topology and contributor-accessibility rows reuse the §13
+      complexity facts without a cross-reference to that single source.
+    why_it_matters: "Two plausible priority profiles are untested in the sensitivity section and the handoff does not match the artifact; readers may count the same complexity facts under two profiles."
+    required_fix: >-
+      Add security-boundary-clarity and testability/debuggability rows (no stable security gainer;
+      testability replay vs substitution vs low topology, no score); make the handoff summary equal
+      §16.2; cite §13 once from the two complexity-derived rows.
+    verification_method: "Count §16.2 rows and compare with the handoff; confirm the two profiles are present."
+  - finding_id: F-E2-003-08
+    severity: LOW
+    candidate_or_component: "Comparison §17 E2-005 input list; register spike_contract.adr_linkage for E2U-S01 / E2U-S02; E3U-* decision_linkage"
+    requirement_or_uncertainty: "Plan §9 ADR-E2-001..009 decomposition and required ADR fields (missing evidence, E3 validation obligations); E2-003 acceptance criterion 5 ('ADR linkage')"
+    evidence: >-
+      §17 ends with "explicit decisions for proposed ADRs without treating the present comparison as a
+      recommendation" and names no ADR; adr_linkage says "E2-005 execution/isolation/control ADR
+      decision" and "E2-005 client/protected-entry/security ADR decisions" without the plan §9 IDs;
+      no E2-003 artifact maps comparison sections, uncertainty records or missing-evidence items to
+      ADR-E2-001..009.
+    why_it_matters: "E2-005 must write nine ADRs each with a missing-evidence field; without a mapping, the two E3-owned items (or retained spikes), the three delivery obligations, the weight-authority item and E3V-008 have no declared ADR home."
+    required_fix: "Add a table ADR-E2-001..009 -> comparison sections/domains -> uncertainty records -> missing evidence / E3 obligations (descendant containment -> ADR-E2-004; protected acquisition -> ADR-E2-001 and ADR-E2-005; candidate delivery -> ADR-E2-005; preference weights -> E2-005 policy; E3V-008 -> ADR-E2-006), without proposing any decision."
+    verification_method: "Confirm the nine ADR IDs appear in §17 or the register with the linkage above."
+  - finding_id: F-E2-003-09
+    severity: LOW
+    candidate_or_component: "Comparison §8 durability and recovery table"
+    requirement_or_uncertainty: "AR-WSP-005 (stale workspace), AR-COR-001 / AR-DUR-004 (duplicate intake/delivery and retirement), AR-APR-001 (stale approval), AR-VER-003 (stale verification); E2-003 acceptance criterion 3 (durability/recovery)"
+    evidence: >-
+      §8 compares eight dimensions; stale workspace, duplicate intake/delivery, stale approval and
+      stale verification are confirmed per candidate in matrix cells and in candidate f09 keys
+      (C02/C03: stale_workspace, duplicate_operation, duplicate_effect, stale_approval,
+      stale_verification; C01 f09 scenarios) but are not compared across candidates.
+    why_it_matters: "The recovery comparison confirms these properties but does not show how the three topologies differ in detecting and reconciling them, which is decision-relevant preference evidence for E2-005."
+    required_fix: "Add four cross-candidate rows citing the f09 keys; keep the 'not a recovery winner' conclusion."
+    verification_method: "Count §8 rows; confirm the four dimensions appear with C01/C02/C03 cells."
+notes:
+  - "N-E2-003-01: The 156 SATISFIED and 15 PLAUSIBLE matrix rationales are templated sentences that concatenate the candidate's own f23 evidence string (0/195 transcription mismatches). They are bookkeeping projections; the substantive comparison lives in the comparison document (§4.2, §6-§14). The verifier should not treat matrix rationales as independent analysis, but no cell is wrong."
+  - "N-E2-003-02: README.md still reports E2-001 READY / E2-002..006 BACKLOG and next command EXECUTE_TASK_E2-003 with E2-001 instructions; README is outside the E2-003 allowed paths, so this is a founder commit-time refresh item (precedent V-E2-002-N2)."
+  - "N-E2-003-03: PROJECT_STATE unresolved_p0_questions still contains the resolved engineering_preview_architecture_alternatives entry (with resolved_at) alongside the open comparison question; pre-existing from the E2-002 verification patch, not introduced by E2-003."
+  - "N-E2-003-04: Two small asymmetries in prose: C02's service/worker protocol version skew across separately updated processes is not named in the complexity discussion, and C03's TB-05 'strongest raw-event exclusion rule' is a mild superlative — the three raw-exclusion rules are design-equivalent (each excludes raw bytes from its ordinary/authoritative paths)."
+  - "N-E2-003-05: affected_criteria lists for the host-class questions include AQ-003, a question ID rather than a criterion; cosmetic."
+  - "N-E2-003-06: The handoff's repository_commit_or_patch says the patch is uncommitted at founder request; the founder committed it as c870c83 (2026-08-29T10:11:53-04:00). Reviewed against committed bytes; the committed path set equals the seven paths the handoff lists."
+  - "N-E2-003-07: The E2-004 registry's disposition vocabulary includes DEFERRED_TO_E3_NON_SELECTION_BLOCKING, so an E2-004 author could still defer S01/S02 with evidence if the fixer disputes F-E2-003-01/02; the taxonomy nevertheless makes E2-003 the classification owner, and E2-004 may execute only prospectively classified items."
+  - "N-E2-003-08: AR-COR-002 e3_obligation NONE matches E2-001 (NONE). AR-TST-002 cells list E3V-001 only although E2-001 declares E3V-001..007; cosmetic."
+  - "N-E2-003-09: Author started_at is UNKNOWN_NOT_CAPTURED (precedent); the technology scan's single 'Codex' token is the author-model attribution, not a technology selection."
+  - "N-E2-003-10: 'Preferred candidate NONE' and 'architecture NOT_SELECTED' are asserted consistently in the comparison header, register, handoff, TASK_REGISTRY and PROJECT_STATE; the challenger confirms no hidden ranking after context-reading every selection-word hit."
+acceptance_criteria_evaluation:
+  - criterion: "Every candidate and criterion cell records class, claim type, source/evidence, rationale, result, uncertainty, and consequence."
+    result: PASS
+    basis: "195/195 cells carry all seven elements (plus correlation group, E3 obligation and preference characterization); 0 blank cells; evidence strings reconcile 195/195 to f23."
+  - criterion: "Hard constraints are evaluated before weighted preferences; every hard failure eliminates the candidate without averaging."
+    result: PASS
+    basis: "§4 precedes §5; no hard failure exists; no preference compensates a hard result; UNKNOWN cells receive no credit; the two blocking ARs block every candidate."
+  - criterion: "Criteria cover correctness, false completion, durability/recovery, security/isolation, approvals/effects, evidence, complexity, local experience, observability, E1-suite testability, provider neutrality, performance/resources, portability, maintainability, contributor accessibility, remote/SaaS/Finance compatibility, and migration/reversibility."
+    result: PASS
+    basis: "The 65 verified ARs plus §6-§14 cover every listed subject; portability and Finance compatibility appear via AR-PKG-001/AR-FUT-003, §6 D21-D24 and §13."
+  - criterion: "Every unknown is exactly one of PAPER_RESOLVABLE, E2_PRESELECTION_SPIKE_REQUIRED, E3_POSTSELECTION_TECHNICAL_VALIDATION, E3_MODEL_OR_CONFIGURATION_BENCHMARK, or DEFERRED_OUT_OF_SCOPE, with owner, rationale, decision linkage, and blocking consequence."
+    result: PARTIAL
+    basis: "28/28 records carry exactly one class, owner, rationale, decision_linkage and blocking_consequence; the classification of E2U-S01 and E2U-S02 as E2_PRESELECTION_SPIKE_REQUIRED is disputed (F-E2-003-01/02) and the valence labels are asymmetric (F-E2-003-03, F-E2-003-05)."
+  - criterion: "Every proposed E2 spike contract includes question, hypothesis, alternatives, minimal prototype, workload, success/failure criteria, security checks, finite budget, stop condition, artifact, decision rule, and ADR linkage; relevant SP-C contracts are reused or explicitly distinguished."
+    result: PARTIAL
+    basis: "13/13 fields present in both contracts and SP-C01/C04/C05 reuse is named and narrowed; substantively the contracts are staged at the wrong gate, S02 cannot realize its mandatory observers without a declared client/host class, consequence rules conflict, and adr_linkage does not use the plan §9 IDs (F-E2-003-01/02/04/08)."
+  - criterion: "The comparison reports surviving trade-offs and sensitivity without selecting or recommending a winner."
+    result: PASS
+    basis: "§16 reports dominance, six sensitivity emphases and readiness with no winner; two profiles (security clarity, testability) are missing from §16.2 (F-E2-003-07, LOW)."
+required_tests_evaluation:
+  - test: "Matrix schema, candidate/criterion set equality, unique cell, source-reference, and classification-closure checks."
+    result: PASS
+    basis: "Re-run: schema EP-ARCH-MATRIX-0.1 on 195/195 rows; 65 AR IDs set-equal to the E2-001 headings; 3 candidate IDs; 195 unique pairs; every source_evidence carries requirement and f23 anchors; 28 register records each with one class and every matrix uncertainty_id resolving to a register record or NONE_AT_E2_COMPARISON."
+  - test: "Hard-failure non-compensation, UNKNOWN-blocking, correlated-criterion, weight-freeze, and sensitivity-policy tests."
+    result: PASS
+    basis: "No compensation; both UNKNOWNs block; weights unassigned (E2U-PREFERENCE-WEIGHTS); sensitivity qualitative. Correlated-criterion vocabulary is inconsistent between §3 and the matrix (F-E2-003-06, LOW) and two profiles are missing (F-E2-003-07, LOW)."
+  - test: "Spike-contract completeness for every E2_PRESELECTION_SPIKE_REQUIRED item."
+    result: PARTIAL
+    basis: "Field completeness 13/13 for both; substantive executability and staging fail (F-E2-003-01/02/04)."
+  - test: "No-winner/no-ADR/no-code/no-run/no-benchmark/no-paid-call/frozen-E1, clean-room, secret, scope, YAML/CSV, and git diff --check."
+    result: PASS
+    basis: "All scans clean; 7/7 author paths allowed; 8/8 YAML strict parse with 0 duplicate keys; CSV uniform 18 columns; frozen E1 unchanged since c2f7093, E2-001 since 0d702b8, candidates since 1a1c542 with matching SHA-256; no spikes/adrs/code directories; git diff --check clean; counters zero; autonomy unchanged."
+mechanical_checks:
+  - "Ruby/Psych strict parse plus mapping-node duplicate-key walk: 8/8 files PASS, 0 duplicate keys."
+  - "Ruby CSV: 196 lines = header + 195 rows; 18 columns uniform; 65 unique criterion_id; 3 candidate_id; 195 unique pairs; 0 duplicates; 0 blank cells; class/title consistent per AR; 177 hard / 18 preference rows."
+  - "Evidence reconciliation: 195/195 'candidate evidence:' strings equal f23 evidence; 177/177 hard input_generation_status equal f23 generation_status; 195/195 criterion_class equal f23 class; 177/177 hard e3_obligation within the E2-001 declared set."
+  - "f27 source records 9/9/10 = 28; normalization 28 - 4 + 3 + 1 = 28; partition 10/2/6/3/7; resolutions 5/1/4; five unique SPQ (2 shared / 3 specific / 9 references / 0 run)."
+  - "f29 Level B statuses match §14 (LB-02 NOT_USED x3; C03 LB-05/LB-09 SUBSUMED; LB-12 SUBSUMED C01/C03, USED C02); f05 20 TB per candidate; f24 25 domains per candidate; f25 family_level_matrix + EP_CTL_016 + compositions present."
+  - "Candidate SHA-256: ea9ff609a2c89c96b721fef4f6005d28238940b17085ffc2d82a13ff5b688e92 / 899f7fa0933da3a7657a928f0aa5e2b4b94ffc80778bf6ba8d5a36fb6c45ba81 / 72cacf1cf6d7d99807b3d0c4c10180bb9dc079516443843ac3c87919d319e4f0, equal to the author's record; git diff 1a1c542..HEAD on candidates/overview empty; 0d702b8..HEAD on E2-001 artifacts empty; c2f7093..HEAD on 03_product/06_evaluation/10_checkpoints empty."
+  - "Author diff b5b35a7..HEAD: exactly 7 files (comparison, matrix, register, handoff, PROJECT_STATE, TASK_REGISTRY, RISK_REGISTER), all within allowed_files_to_change; RISK_REGISTER changes limited to R-009/R-030 mitigation text; git diff --check clean; working tree clean at review start."
+  - "Scans over the four E2-003 artifacts: 0 secret-pattern hits; 0 technology/vendor/model/host-product tokens except one 'Codex' author attribution; 0 absolute external paths; 0 Level C reconstruction path tokens; every selection-word hit is a negation/policy context; no 05_architecture/spikes, 05_architecture/adrs or 04_decisions directory; 0 application source files."
+  - "Governance: PROJECT_STATE and TASK_REGISTRY agree on E2-001/E2-002 VERIFIED, E2-003 READY_FOR_REVIEW, E2-004..006 BACKLOG, gate NOT_EVALUATED, architecture_selected false, preferred_candidate null, ADRs 0, spikes 0, evaluation runs 0, benchmarks 0, paid calls 0, autonomy NOT_ELIGIBLE / not authorized, S1-003 BLOCKED/DEFERRED."
+security_checks:
+  - "No secret, credential, private data, network access, provider/model call, paid call, spike execution, evaluation case, benchmark, external effect, or application code was used or created by this review."
+  - "Only Ruby/Psych, Ruby CSV, shasum, git and grep were run over committed repository bytes; no file outside 99_handoffs/completed/E2-003_challenger_review.yaml was created or modified."
+  - "The review names no client technology, host product, isolation mechanism, provider, model, or role occupant."
+files_created:
+  - 99_handoffs/completed/E2-003_challenger_review.yaml
+files_modified: []
+files_deleted: []
+frozen_e1_files_modified: []
+comparison_artifacts_modified_by_challenger: false
+candidate_files_modified_by_challenger: false
+findings_fixed_by_challenger: false
+governance_note: >-
+  Following the E1-001, E1-002, E2-001 and E2-002 challenger precedent, this pass modifies no
+  governance file: TASK_REGISTRY.yaml and PROJECT_STATE.yaml remain at the author's
+  READY_FOR_REVIEW / READY_FOR_REVIEW_NOT_VERIFIED_AUTHOR_PASS state; E2-004 is not activated;
+  the fixer records challenger_evidence / challenger_verdict / challenger_finding_counts and the
+  founder commits. E2_003_CHANGES_REQUESTED is not VERIFIED.
+scope_control:
+  e2_003_status: READY_FOR_REVIEW
+  e2_003_verified: false
+  e2_004_status: BACKLOG
+  e2_004_activated_by_this_review: false
+  e2_005_through_e2_006_status: BACKLOG
+  e2_gate_status: NOT_EVALUATED
+  architecture_selected: false
+  architecture_candidates: 3
+  preferred_candidate: null
+  candidates_ranked_or_compared_toward_winner: false
+  accepted_architecture_adrs: 0
+  adr_decisions_written: 0
+  architecture_spikes_run: 0
+  spike_contracts_executed: 0
+  application_code_created: false
+  evaluation_cases_implemented: 0
+  evaluation_cases_run: 0
+  model_benchmarks_run: 0
+  paid_api_calls: 0
+  external_actions_performed: false
+  model_roles_locked: false
+  e3_started: false
+  autonomy_eligible: NOT_ELIGIBLE
+  autonomous_build_authorized: false
+  s1_003_status: DEFERRED_NOT_EXECUTED
+  frozen_e1_modified: false
+  e2_001_artifacts_modified: false
+  e2_002_candidate_artifacts_modified: false
+blockers: []
+finding_counts: {BLOCKER: 0, HIGH: 2, MEDIUM: 2, LOW: 5, NOTE: 10}
+recommended_next_task: FIX_TASK_E2-003
+next_command: >-
+  MODE: FIX_TASK_E2-003 — address F-E2-003-01..09 within E2-003 allowed paths only (comparison,
+  decision matrix, uncertainty register, governance, handoff, fixer handoff): reclassify or
+  explicitly re-justify E2U-S01/E2U-S02 against the plan §13 definition with E3V-002/E3V-006
+  linkage and ADR missing-evidence mapping, make the analytic-resolution labels symmetric,
+  unify consequence rules, and recompute every derived count; do not modify frozen E1, E2-001,
+  or the verified candidate records; do not select a candidate, create or accept an ADR, run a
+  spike, evaluation case, benchmark, or paid call, or activate E2-004; then request an
+  independent post-fix verifier.
+repository_commit_or_patch: >-
+  Uncommitted E2-003 challenger review based on c870c83a5f97c639c0c248c2e650ad31371c5164 on
+  chore/initialize-project-materials; intentionally left uncommitted for the founder.

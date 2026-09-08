@@ -1,0 +1,67 @@
+name: Governance CI
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+      - "chore/**"
+      - "feat/**"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: governance-ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    name: Validate repository governance
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Check out full history
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install validator dependency
+        run: python -m pip install --disable-pip-version-check "PyYAML==6.0.2"
+
+      - name: Run governance regression tests
+        run: python -m unittest discover -s tests -v
+
+      - name: Run governance validator
+        run: python scripts/validate_governance.py
+
+      - name: Check committed diff for whitespace errors
+        shell: bash
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          PR_BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          PUSH_BEFORE_SHA: ${{ github.event.before }}
+        run: |
+          set -euo pipefail
+
+          base_sha=""
+          if [[ "$EVENT_NAME" == "pull_request" ]]; then
+            base_sha="$PR_BASE_SHA"
+          elif [[ -n "$PUSH_BEFORE_SHA" && "$PUSH_BEFORE_SHA" != "0000000000000000000000000000000000000000" ]]; then
+            base_sha="$PUSH_BEFORE_SHA"
+          elif git rev-parse HEAD^ >/dev/null 2>&1; then
+            base_sha="$(git rev-parse HEAD^)"
+          fi
+
+          if [[ -n "$base_sha" ]]; then
+            git diff --check "$base_sha" "$GITHUB_SHA"
+          else
+            git diff-tree --check --root "$GITHUB_SHA"
+          fi

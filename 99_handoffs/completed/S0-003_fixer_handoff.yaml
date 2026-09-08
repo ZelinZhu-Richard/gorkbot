@@ -1,0 +1,267 @@
+handoff_id: H-S0-003-FIX-20260822
+task_id: S0-003
+stage: 0
+mode: FIX_TASK_S0-003
+role: FIXER
+author_model: "Codex (runtime model identifier not exposed)"
+reviewer_requested: true
+started_at: "2026-08-22T03:54:16Z"
+completed_at: "2026-08-22T04:24:04Z"
+files_read:
+  - MASTER_OPERATING_PROMPT.md
+  - AGENTS.md
+  - 00_inbox/prepared_materials/05_MODEL_ACCESS.md
+  - 00_inbox/prepared_materials/06_BUILD_CONSTRAINTS.md
+  - 01_governance/PROJECT_STATE.yaml
+  - 01_governance/TASK_REGISTRY.yaml
+  - 01_governance/DECISION_LOG.md
+  - 01_governance/MODEL_REGISTRY.yaml
+  - 01_governance/SOURCE_LEDGER.csv
+  - 01_governance/ASSUMPTION_REGISTER.md
+  - 01_governance/RISK_REGISTER.md
+  - 06_evaluation/MODEL_ROLE_BENCHMARK_PLAN.md
+  - 99_handoffs/HANDOFF_TEMPLATE.yaml
+  - 99_handoffs/completed/S0-003_handoff.yaml
+  - 99_handoffs/completed/S0-003_challenger_review.yaml
+files_created:
+  - 99_handoffs/completed/S0-003_fixer_handoff.yaml
+files_modified:
+  - 01_governance/MODEL_REGISTRY.yaml
+  - 01_governance/PROJECT_STATE.yaml
+  - 01_governance/RISK_REGISTER.md
+  - 01_governance/SOURCE_LEDGER.csv
+  - 01_governance/TASK_REGISTRY.yaml
+  - 06_evaluation/MODEL_ROLE_BENCHMARK_PLAN.md
+files_deleted: []
+decisions_made:
+  - "No customer segment, MVP workflow, architecture, application implementation, provider lock, permanent model-role assignment, or Stage 1 work was selected or performed."
+  - "No paid benchmark, founder-account API call, credential inspection, or black-box account observation was performed."
+  - "All important access claims remain separated into CONSUMER_PRODUCT_ACCESS, PUBLIC_API_AVAILABILITY, FOUNDER_ACCOUNT_ACCESS, and PRODUCTION_SUITABILITY; no dimension is inferred from another."
+  - "Current first-party documentation disagreements are retained as ambiguity records rather than forced into false consistency."
+  - "The benchmark is gated on a Stage 1-selected customer workflow and an explicit founder budget/account/data authorization; the generic Stage 0 cases remain templates."
+assumptions_added: []
+tests_run:
+  - "Reopened and fact-checked the current first-party OpenAI, Anthropic, and DeepSeek model, pricing, capability, data-control, rate-limit, release, compatibility, legal-policy, and first-party model-card sources used by the correction."
+  - "Fetched all 39 S0-003 primary URLs over HTTPS in one bounded final reachability pass."
+  - "Parsed MODEL_REGISTRY.yaml, PROJECT_STATE.yaml, TASK_REGISTRY.yaml, and this handoff with Ruby YAML."
+  - "Parsed SOURCE_LEDGER.csv with Ruby CSV and checked row width, unique IDs, unique URLs, access timestamps, and missing source references."
+  - "Validated all registry claim_status values, all four access dimensions per provider/model, 13 exact candidate IDs, and registry source IDs against the ledger."
+  - "Checked corrected OpenAI pricing, candidate coverage, documented capability/policy fields, benchmark workflow/cost/artifact/grader/failure/computer-control controls, and absence of pending placeholders."
+  - "Checked the changed-path set against the original S0-003 scope plus prospective S0-003-A1; checked that S0-001, S0-002, ASSUMPTION_REGISTER.md, DECISION_LOG.md, inbox originals, application code, and Stage 1 artifacts were not changed."
+  - "Ran git diff --check and inspected git status --short."
+test_results:
+  - "39 of 39 S0-003 current primary URLs returned HTTP 200 during 2026-08-22T04:13:42Z..2026-08-22T04:13:51Z."
+  - "MODEL_REGISTRY.yaml contains 13 public candidates; every model and provider contains all four required access dimensions; founder-account verified claims remain zero; all roles are HYPOTHESIS_ONLY and all benchmark statuses are NOT_RUN."
+  - "SOURCE_LEDGER.csv contains 63 data rows and 12 columns with unique source IDs and URLs; all S0-003 source rows have exact UTC access provenance and all registry source IDs resolve."
+  - "OpenAI Sol current short/long Standard, Batch, Flex, and Fast prices and promotional end condition match the reopened pricing page; Terra/Luna tier prices and Codex Fast prices are recorded."
+  - "The benchmark plan contains an explicit Stage 1 workflow gate, USD 0–100-compatible staged cost formula/caps, future artifact layout and run schema contract, seed rules, grader-family independence, provider/model/harness failure taxonomy, and separate actual-action and plan-only computer tracks plus MB-015 visual-state recognition."
+  - "All governance and handoff YAML parsed, CSV invariants passed, no PENDING placeholder remained, changed-path scope validation passed, and git diff --check returned no whitespace errors."
+security_checks:
+  - "External pages were treated as untrusted evidence; no external instruction was accepted as repository authority."
+  - "No credentials, cookies, account identifiers, private customer fixtures, API responses, or secrets were collected or written."
+  - "DeepSeek's documented PRC storage/processing and possible training use are recorded as a production blocker for sensitive/customer data pending written clarification and approval."
+  - "The benchmark plan requires isolated computer harnesses, malicious-page traps, approval boundaries, fresh external-state readback, raw-trace preservation, and hard budget stops before future execution."
+known_limitations:
+  - "No founder funded API account, model entitlement, balance, quota, organization data setting, region, or minimal model call was verified for any provider."
+  - "Public API availability does not establish consumer inclusion, founder access, production suitability, reliability, latency, or task quality. All such fields remain UNKNOWN or NOT_RUN."
+  - "GPT-5.6 Sol promotional pricing and moving provider documentation may drift after the recorded access window; run-date price reopening remains mandatory."
+  - "Anthropic's current platform and Privacy Center pages use different standard-retention wording; DeepSeek's current pages use conflicting V4 Flash release labels and do not isolate API-content retention/training treatment; OpenAI's container pricing table and footnote use different billing-unit wording. These are recorded ambiguities, not resolved facts."
+  - "The proposed benchmark thresholds and USD 25 reserve/at-most-USD 75 benchmark allocation are design proposals. They require Stage 1 challenge and founder authorization before use."
+unverified_claims:
+  - "Actual founder account availability, served model versions, rate tiers, costs, policy configuration, and API behavior remain UNKNOWN."
+  - "No candidate has demonstrated project-task success, structured-output reliability, computer-control reliability, cost per verified success, or production suitability."
+  - "No selected customer workflow exists yet, so no final benchmark shortlist or mandatory-role matrix exists."
+blockers:
+  - independent_post_fix_review_pending
+  - stage_1_customer_workflow_not_selected
+  - founder_api_accounts_entitlements_and_budget_not_verified
+recommended_next_task: REVIEW_TASK_S0-003
+repository_commit_or_patch: "Uncommitted S0-003 fixer patch based on d264d862c2949ec42de9a1a67c976167f60858d5; the current founder instruction explicitly requires this fixer result to remain uncommitted."
+
+scope_control:
+  original_allowed_files:
+    - 01_governance/MODEL_REGISTRY.yaml
+    - 06_evaluation/
+    - 01_governance/TASK_REGISTRY.yaml
+    - 01_governance/PROJECT_STATE.yaml
+    - 99_handoffs/completed/
+  prospective_amendment:
+    amendment_id: S0-003-A1
+    effective_at: "2026-08-22T03:54:16Z"
+    paths_added_for_this_fixer_only:
+      - 01_governance/SOURCE_LEDGER.csv
+      - 01_governance/RISK_REGISTER.md
+    reason: "New primary-source records and material provider-policy risks are necessary to resolve F-S0-003-01 through F-S0-003-05."
+  historical_audit_note: "The original S0-003 author changed SOURCE_LEDGER.csv, ASSUMPTION_REGISTER.md, and RISK_REGISTER.md outside the then-current allowed list. D-009 and the original handoff preserve that deviation. S0-003-A1 is prospective only, does not cure the history, and did not authorize any fixer edit to ASSUMPTION_REGISTER.md."
+
+dependency_provenance:
+  original_author_execution: "S0-003 author work completed before S0-001 was independently VERIFIED. This remains a historical dependency-order deviation."
+  fixer_entry_state: "S0-001 and S0-002 were independently VERIFIED before this fixer began; baseline HEAD was d264d862c2949ec42de9a1a67c976167f60858d5."
+  historical_record_preserved: true
+
+source_reverification:
+  factual_review_basis: "Current first-party pages were reopened for the corrected facts; no author snapshot was treated as current proof."
+  final_reachability_started_at: "2026-08-22T04:13:42Z"
+  final_reachability_completed_at: "2026-08-22T04:13:51Z"
+  result: "39 of 39 S0-003 primary URLs returned HTTP 200."
+  source_ids:
+    - SRC-009
+    - SRC-010
+    - SRC-011
+    - SRC-017
+    - SRC-018
+    - SRC-019
+    - SRC-020
+    - SRC-021
+    - SRC-022
+    - SRC-023
+    - SRC-024
+    - SRC-036
+    - SRC-037
+    - SRC-038
+    - SRC-039
+    - SRC-040
+    - SRC-041
+    - SRC-042
+    - SRC-043
+    - SRC-044
+    - SRC-045
+    - SRC-046
+    - SRC-047
+    - SRC-048
+    - SRC-049
+    - SRC-050
+    - SRC-051
+    - SRC-052
+    - SRC-053
+    - SRC-054
+    - SRC-055
+    - SRC-056
+    - SRC-057
+    - SRC-058
+    - SRC-059
+    - SRC-060
+    - SRC-061
+    - SRC-062
+    - SRC-063
+
+finding_resolutions:
+  - finding_id: F-S0-003-01
+    resolution: FIXED
+    files_changed:
+      - 01_governance/MODEL_REGISTRY.yaml
+      - 01_governance/SOURCE_LEDGER.csv
+      - 06_evaluation/MODEL_ROLE_BENCHMARK_PLAN.md
+      - 99_handoffs/completed/S0-003_fixer_handoff.yaml
+    evidence:
+      - "Candidate pool expanded from six flagship/subscription-shaped entries to 13, adding GPT-5.3 Codex, GPT-5.4 mini/nano, Claude Opus 5/Sonnet 5/Haiku 4.5, and DeepSeek Vision Exp."
+      - "Deprecated computer-use-preview and codex-mini-latest are explicitly excluded; gpt-oss candidates are explicitly deferred until self-hosting is in scope."
+    verification:
+      - "Registry parse lists all 13 exact IDs, all new source IDs resolve, and role assignments remain HYPOTHESIS_ONLY with benchmark_status NOT_RUN."
+  - finding_id: F-S0-003-02
+    resolution: FIXED
+    files_changed:
+      - 01_governance/MODEL_REGISTRY.yaml
+      - 01_governance/SOURCE_LEDGER.csv
+      - 99_handoffs/completed/S0-003_fixer_handoff.yaml
+    evidence:
+      - "Sol prices now record $4/$0.40/$5/$20 short Standard and $8/$0.80/$10/$30 long Standard, with Batch/Flex/Fast short and long tables and promotion through at least 2026-11-21."
+      - "The old $5/$0.50/$6.25/$30 value remains a STALE_OR_INCORRECT drift record with the challenger's archive context; all S0-003 models and ledger sources carry the exact current access window."
+    verification:
+      - "Current pricing page was reopened and 39/39 final source URLs returned HTTP 200; pricing assertions and absence of pending timestamps passed."
+  - finding_id: F-S0-003-03
+    resolution: FIXED
+    files_changed:
+      - 01_governance/MODEL_REGISTRY.yaml
+      - 01_governance/RISK_REGISTER.md
+      - 01_governance/SOURCE_LEDGER.csv
+      - 06_evaluation/MODEL_ROLE_BENCHMARK_PLAN.md
+      - 99_handoffs/completed/S0-003_fixer_handoff.yaml
+    evidence:
+      - "Fable now records GA structured output/strict tools, current computer toolset and overhead, public rate/spend tiers, mandatory retention and 400 behavior, thinking/sampling/prefill/cache/tokenizer constraints, refusal/billing/fallback semantics, and June suspension/false-positive context."
+      - "R-018 now includes false-positive, retention, and regulatory/service-suspension risk."
+    verification:
+      - "Registry field checks and current Anthropic source comparison confirm the required Fable fields and source links."
+  - finding_id: F-S0-003-04
+    resolution: FIXED
+    files_changed:
+      - 01_governance/MODEL_REGISTRY.yaml
+      - 01_governance/RISK_REGISTER.md
+      - 01_governance/SOURCE_LEDGER.csv
+      - 06_evaluation/MODEL_ROLE_BENCHMARK_PLAN.md
+      - 99_handoffs/completed/S0-003_fixer_handoff.yaml
+    evidence:
+      - "DeepSeek records PRC operator/law/forum/storage, possible training use and opt-out, absence of a fixed API-specific retention term, Pro GA, Flash label ambiguity, Vision experimental status, effort controls, JSON-object limitations, beta strict tools, compatibility remapping/ignored fields, and preview-weight parity limits."
+      - "R-020 blocks sensitive/customer use pending written API-specific terms and approval."
+    verification:
+      - "DeepSeek source IDs SRC-050..061 and the current pricing source resolve; registry schema and policy-field checks passed."
+  - finding_id: F-S0-003-05
+    resolution: FIXED
+    files_changed:
+      - 01_governance/MODEL_REGISTRY.yaml
+      - 01_governance/SOURCE_LEDGER.csv
+      - 06_evaluation/MODEL_ROLE_BENCHMARK_PLAN.md
+      - 99_handoffs/completed/S0-003_fixer_handoff.yaml
+    evidence:
+      - "OpenAI records Sol/Terra/Luna Standard/Batch/Flex/Fast pricing, Codex Fast pricing, regional uplift, tool fees and the container-billing wording ambiguity, 922K max input/default medium effort, no-training default, up-to-30-day abuse logs, approval-only ZDR/MAM, supported geography, and public usage tiers."
+    verification:
+      - "OpenAI pricing/data/rate/country sources were reopened; registry values, model limits, and source references passed validation."
+  - finding_id: F-S0-003-06
+    resolution: FIXED
+    files_changed:
+      - 01_governance/TASK_REGISTRY.yaml
+      - 99_handoffs/completed/S0-003_fixer_handoff.yaml
+    evidence:
+      - "S0-003-A1 prospectively adds only SOURCE_LEDGER.csv and RISK_REGISTER.md for this fixer and explicitly preserves the original deviation; ASSUMPTION_REGISTER.md was not authorized or changed."
+    verification:
+      - "Git changed-path comparison passes against original scope plus S0-003-A1; the historical deviation remains in D-009/original handoff/new handoff."
+  - finding_id: F-S0-003-07
+    resolution: FIXED
+    files_changed:
+      - 06_evaluation/MODEL_ROLE_BENCHMARK_PLAN.md
+      - 99_handoffs/completed/S0-003_fixer_handoff.yaml
+    evidence:
+      - "Plan now blocks paid comparison until Stage 1 selects the customer workflow and records completion/cost/latency/approval needs; defines artifact directories, run schemas, seeds, USD 0/5/20/50/75 cumulative gates, conservative estimates, and hard stops inside A-007."
+    verification:
+      - "Required gate, formula, artifact-path, seed, cap, and no-authorization markers are present; execution count remains zero."
+  - finding_id: F-S0-003-08
+    resolution: FIXED
+    files_changed:
+      - 06_evaluation/MODEL_ROLE_BENCHMARK_PLAN.md
+      - 99_handoffs/completed/S0-003_fixer_handoff.yaml
+    evidence:
+      - "Same-model/family grades are diagnostic and excluded; selection-impacting open-ended grading requires a blinded different-provider/family grader or blinded human, with exact grader identity and evidence recorded."
+    verification:
+      - "Plan contains SELF_OR_SAME_FAMILY exclusion, different-provider/family rule, independent dispute resolution, and deterministic external-state authority."
+  - finding_id: F-S0-003-09
+    resolution: FIXED
+    files_changed:
+      - 06_evaluation/MODEL_ROLE_BENCHMARK_PLAN.md
+      - 99_handoffs/completed/S0-003_fixer_handoff.yaml
+    evidence:
+      - "Outcome taxonomy separates account, harness/fixture, provider transport/capacity/policy, model refusal/task, tool/environment, grader, and unknown-layer failures with explicit denominators and bounded reruns."
+    verification:
+      - "Plan reports provider availability, model task success, and end-to-end success separately and forbids fallback credit to the requested model."
+  - finding_id: F-S0-003-10
+    resolution: FIXED
+    files_changed:
+      - 01_governance/MODEL_REGISTRY.yaml
+      - 01_governance/PROJECT_STATE.yaml
+      - 01_governance/SOURCE_LEDGER.csv
+      - 01_governance/TASK_REGISTRY.yaml
+      - 99_handoffs/completed/S0-003_fixer_handoff.yaml
+    evidence:
+      - "Current records contain non-null fixer/source timestamps and the current base commit; the original unverified-dependency execution, date-only/null/batched author provenance, and same-day Sol drift remain historical evidence rather than being rewritten."
+    verification:
+      - "Governance YAML parses; current dependency state is verified before fixer entry; exact source window is present in registry/ledger/handoff; history notes remain."
+  - finding_id: F-S0-003-11
+    resolution: FIXED
+    files_changed:
+      - 01_governance/MODEL_REGISTRY.yaml
+      - 06_evaluation/MODEL_ROLE_BENCHMARK_PLAN.md
+      - 99_handoffs/completed/S0-003_fixer_handoff.yaml
+    evidence:
+      - "MB-008 now requires actual isolated-site action execution through a documented computer interface, complete trace, injection/approval/recovery traps, and deterministic fresh-state readback; plan-only is a separate non-qualifying diagnostic."
+      - "MB-015 separately tests raw-screenshot state/control/coordinate recognition, uncertainty, layout/theme/occlusion variants, and stale-state rejection."
+    verification:
+      - "Plan and registry cross-check documented computer interfaces and distinguish vision input from action support; MB-008 and MB-015 required fields are present."

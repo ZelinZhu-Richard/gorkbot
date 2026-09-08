@@ -1,0 +1,274 @@
+review_id: R-S0-002-20260821-VERIFIER
+handoff_id: H-S0-002-VERIFY-20260821
+task_id: S0-002
+stage: 0
+mode: REVIEW_TASK_S0-002
+role: VERIFIER
+author_model: "Claude Fable 5 (claude-fable-5) via Claude Code — author of this verifier artifact only; not an author or fixer of any S0-002 content"
+reviewer_model: "Claude Fable 5 (claude-fable-5) via Claude Code"
+reviewer_independence: "Independent of the S0-002 author and fixer, which the repository records as 'Codex (runtime model identifier not exposed)' (D-010). The verifier is the same model/product as the S0-002 challenger (Claude Fable 5 via Claude Code) but ran in a separate session with no shared conversation state, re-derived every fact from the repository and from its own live retrieval of the primary sources, and did not rely on the challenger's archived copies (it re-fetched Internet Archive captures itself). The AGENTS.md sole-author rule is satisfied: the author/fixer (Codex) did not mark its own work verified."
+reviewer_requested: false
+started_at: "2026-08-21T23:17:00-04:00"
+completed_at: "2026-08-21T23:34:28-04:00"
+verified_commit: fb89315
+verified_commit_full_state: "Branch chore/initialize-project-materials at fb89315 (Fix S0-002 Grok Bot baseline findings; committed 2026-08-21T23:19:41-04:00 by the founder git identity); working tree clean before this pass; 44 tracked files; directories 00_inbox, 01_governance, 02_research, 06_evaluation, 99_handoffs only. History: 48f6df8 (S0-001 VERIFIED) -> fb89315 (S0-002 fixer pass, 6 files, +315/-43)."
+verdict: VERIFIED
+verdict_rationale: >-
+  All four S0-002 acceptance criteria and both required tests pass against the current tree and
+  against the live primary sources as retrieved by this verifier (24/24 official URLs HTTP 200 in
+  the window 2026-08-22T03:22:27Z..03:22:34Z; nine cited docs pages dated August 11, 2026, four dated
+  August 20, 2026, JSON-LD dateModified agreeing in every case). All seven challenger findings
+  (F-S0-002-01..07) are RESOLVED by the committed fixer pass fb89315; each challenger
+  verification_method command was re-run by the verifier and every quoted documentation fact added
+  by the fixer was re-located in the live page text. The baseline states the product is a
+  vendor-labelled beta / Early beta launched 2026-08-11 by X.AI LLC / SpaceXAI on Cursor identity,
+  billing and administration; records current plan eligibility as of the August 20/21 change with
+  the drift preserved rather than rewritten; classifies the teams-page model/provider policy as a
+  documented fact for the team/enterprise surface with the conditional individual Default Model
+  control kept as an explicit ambiguity; carries the documented security, persistence, credential,
+  Cloud Agents, privacy-mode, audit, spend-cap and team facts; preserves five official-source
+  contradictions/ambiguities (DOC-A-001..005), including the per-Bot-VM versus user/member-computer
+  conflict, without inventing a backend; and keeps installed build, account, plan, region, rollout
+  and black-box observations UNKNOWN with zero runs claimed. The fixer changed only the six paths
+  inside S0-002 allowed_files_to_change (no D-009 amendment needed); S0-001 artifacts, S0-003
+  deliverables, 00_inbox, DECISION_LOG, ASSUMPTION_REGISTER, RISK_REGISTER and MODEL_REGISTRY are
+  byte-identical to 48f6df8; no Stage 1, architecture or application work exists. No BLOCKER, HIGH
+  or MEDIUM issue remains. The only new items are one LOW governance-pointer staleness (reconciled
+  by this pass) and NOTEs. S0-002 is therefore VERIFIED. This verdict covers S0-002 only; S0-003
+  and the Stage 0 gate were deliberately not evaluated.
+
+method:
+  - "Read MASTER_OPERATING_PROMPT.md, AGENTS.md, CLAUDE.md, 01_governance/{PROJECT_STATE.yaml,TASK_REGISTRY.yaml,DECISION_LOG.md,SOURCE_LEDGER.csv,ASSUMPTION_REGISTER.md,RISK_REGISTER.md}, 02_research/GROK_BOT_BASELINE_2026-08-21.md in full, 99_handoffs/completed/S0-002_{handoff,challenger_review,fixer_handoff}.yaml in full, the S0-001 verifier review (format precedent and immutability baseline), 99_handoffs/HANDOFF_TEMPLATE.yaml, 99_handoffs/completed/README.md, 00_inbox/prepared_materials/02_PRODUCT_REFERENCE_LINKS.md, and the GB-0xx IDs in 00_inbox/prepared_materials/03_GROKBOT_EXAMPLES/TEST_MATRIX.md."
+  - "Independently mirrored all 24 ledgered Grok Bot primary URLs (SRC-001..008, 012..016, 025..035) with curl from their live addresses, recorded UTC timestamp, HTTP status and byte size per URL, extracted visible text, page <title>, 'Last updated' strings and JSON-LD datePublished/dateModified, and compared each GBF row, the Record status block, the Source freshness section, DOC-A-001..005, the parity map, the open questions and every ledger claims_supported/limitations entry against the live text sentence by sentence."
+  - "Re-fetched Internet Archive captures myself (CDX listing; id_ raw retrieval) for x.ai/news/introducing-grok-bot (20260812101728, 20260821181409) and docs.x.ai/grok-bot/faq (20260819230525) to corroborate, independently of the challenger's copies, that the launch post's plan sentence was edited after publication and that the FAQ drifted from 'August 11, 2026' / three plans to 'August 20, 2026' / six plans."
+  - "Re-ran every challenger verification_method command for F-S0-002-01..07 and the author's/fixer's reproducible checks (Ruby CSV/YAML parses, citation cross-check, GBF sequence, git diff --check) myself; did not rely on recorded fixer test_results."
+  - "Checked fixer scope and immutability with git diff 48f6df8 fb89315 (stat, per-file diffs, out-of-scope path diff, ledger row-level diff for S0-003 model rows), secrets/PII regexes over the fixer patch, commit author identity, and a tree scan for application code or new directories."
+  - "No subagents were used. Network access was used only to retrieve the listed public primary sources and public archive captures; no account, sign-in, download or product interaction occurred."
+
+files_read:
+  - MASTER_OPERATING_PROMPT.md
+  - AGENTS.md
+  - CLAUDE.md
+  - README.md (clean-room lines only)
+  - 01_governance/PROJECT_STATE.yaml
+  - 01_governance/TASK_REGISTRY.yaml
+  - 01_governance/DECISION_LOG.md
+  - 01_governance/SOURCE_LEDGER.csv
+  - 01_governance/ASSUMPTION_REGISTER.md
+  - 01_governance/RISK_REGISTER.md
+  - 02_research/GROK_BOT_BASELINE_2026-08-21.md
+  - 99_handoffs/HANDOFF_TEMPLATE.yaml
+  - 99_handoffs/completed/README.md
+  - 99_handoffs/completed/S0-002_handoff.yaml
+  - 99_handoffs/completed/S0-002_challenger_review.yaml
+  - 99_handoffs/completed/S0-002_fixer_handoff.yaml
+  - 99_handoffs/completed/S0-001_verifier_review.yaml
+  - 00_inbox/prepared_materials/02_PRODUCT_REFERENCE_LINKS.md
+  - 00_inbox/prepared_materials/03_GROKBOT_EXAMPLES/TEST_MATRIX.md (GB-0xx ID presence only)
+  - git history 48f6df8..fb89315 (show, diff, log -p)
+  - 24 live primary sources listed under live_source_verification
+files_created:
+  - 99_handoffs/completed/S0-002_verifier_review.yaml
+files_modified:
+  - 01_governance/TASK_REGISTRY.yaml
+  - 01_governance/PROJECT_STATE.yaml
+files_deleted: []
+decisions_made:
+  - "S0-002 status advanced READY_FOR_REVIEW -> VERIFIED in TASK_REGISTRY.yaml with verifier fields added; S0-002 moved from active_task_ids to completed_task_ids in PROJECT_STATE.yaml."
+  - "S0-004 blocked_by entry 'S0-002_independent_review_pending' removed because it is a direct consequence of this verdict; S0-004 remains BLOCKED on the two founder-input blockers and its dependency S0-002 is now satisfied. No other S0-004 field was changed."
+  - "The baseline document, the author handoff, the challenger review and the fixer handoff were NOT edited: the verifier does not modify the artifact it verifies, so verified_commit fb89315 refers to the exact verified content (see V-S0-002-02)."
+  - "No S0-003, Stage 0 gate, Stage 1, architecture or application decision was made or evaluated."
+  - "All changes are left uncommitted for the founder; no git commit or push was performed."
+assumptions_added: []
+
+live_source_verification:
+  window_started_at_utc: "2026-08-22T03:22:27Z"
+  window_completed_at_utc: "2026-08-22T03:22:34Z"
+  local_equivalent: "2026-08-21T23:22:27-04:00 .. 23:22:34-04:00"
+  access_method: "curl -sS -L with a desktop browser User-Agent, max-time 30s, direct live HTTPS; HTML saved, text extracted locally; titles, 'Last updated' strings and JSON-LD dates parsed from the saved HTML."
+  result: "24 of 24 official primary URLs returned HTTP 200 (sizes 93 KB..545 KB). The fixer's recorded 24/24 HTTP 200 result is reproduced at a later time; the fixer's own window (03:06:16Z..03:07:34Z) cannot be re-observed."
+  documentation_dates_observed:
+    august_11_2026: [SRC-001, SRC-002, SRC-003, SRC-004, SRC-005, SRC-007, SRC-012, SRC-013, SRC-016, SRC-035]
+    august_20_2026: [SRC-006, SRC-008, SRC-014, SRC-015]
+    other: "SRC-033 'Last updated: August 12, 2026' with the Grok Bot availability entry under the 'August 11' heading; SRC-025 page date 'Aug 11, 2026' (JSON-LD datePublished/dateModified 2026-08-11); SRC-026 page date 'Aug 21, 2026' (JSON-LD 2026-08-21); SRC-027 post timestamp 'August 11, 2026, 7:34pm'; SRC-028..032 and SRC-034 display no publication/update date."
+  sources:
+    - {source_id: SRC-001, http: 200, last_updated: "August 11, 2026", note: "contains both 'Each Bot runs on a persistent cloud VM' and 'All of your Bots use the same persistent cloud computer' / 'isolated to your account, not to an individual Bot'; 'persists that path as a routine' without rollout qualifier"}
+    - {source_id: SRC-002, http: 200, last_updated: "August 11, 2026", note: "50 Bots and group chats combined; duplicate carries profile/settings/skills/routines/avatar not history/memory/attachments; deletion leaves shared files and sign-ins; memory guidance"}
+    - {source_id: SRC-003, http: 200, last_updated: "August 11, 2026", note: "redirect; 'Stop now' does not undo; two to six Bots; @everyone; Bot-to-group handoffs text-only; async wake; threads/reactions; search may vary during rollout"}
+    - {source_id: SRC-004, http: 200, last_updated: "August 11, 2026", note: "'When Teach a task is available'; ten minutes; draft skill; gradual enablement; 50 routines per Bot; 20 run records; unattended pause prompt; event triggers via Cursor account integrations"}
+    - {source_id: SRC-005, http: 200, last_updated: "August 11, 2026", note: "Allow once/Deny/Always allow; iPhone Approve once/Deny; Auto Review 'When ... available', model-based, Require Approval wins; rules stored on current desktop and synced to its computer; secure secret request masked/excluded/not shown to model; local policy default 'Ask every time'; 'Do not use separate Bots as a security boundary'; Legacy Privacy Mode unsupported"}
+    - {source_id: SRC-006, http: 200, last_updated: "August 20, 2026", note: "per-member managed Linux VM; non-root; hosted MCP tokens stay with Cursor backend, computer never stores them; not MDM-enrolled by default; Cloud Agents toggle on by default; static egress IPs; org-admin Kill deletes VM, durable storage kept; 'Reset recreates the computer and keeps its data'; mobile cannot reset; team ceiling 'Coming soon' Never/Ask every time/Always; no model picker, fixed set per surface, automatic failover, analytics show serving model, billing follows serving model; Privacy Mode (Legacy) blocks; audit view coming; no Grok Bot-specific spend cap yet; sessions can drop on recreation or network-address change; FAQ 'Does each Bot get its own computer? No.'; plans: Individuals SuperGrok Plus/Heavy, Cursor Pro+/Ultra or one-time trial; self-serve Teams Standard and Premium; Enterprise rolling out"}
+    - {source_id: SRC-007, http: 200, last_updated: "August 11, 2026", note: "'Default Model, when model selection is available'; Auto-review rules not an account-synchronized policy; group chats lack the per-Bot notification switch; mobile push rolling out; Usage & Billing when available; Update/Reset Agent Computer semantics"}
+    - {source_id: SRC-008, http: 200, last_updated: "August 20, 2026", note: "background continuation; one computer per user not per Bot; one computer-use task per Bot screen; eligible plans SuperGrok Plus, SuperGrok Heavy, Cursor Pro+, Cursor Ultra, Cursor Teams Standard and Premium; weekly usage; on-demand; 'whichever has more usage'; platforms macOS/Windows/iOS 18+, Linux/Android/iPad unsupported at initial launch; teach-by-demonstration draft skill, gradual rollout"}
+    - {source_id: SRC-012, http: 200, last_updated: "August 11, 2026", note: "six attachments; 25 MB; 200 MB video; cards and preview; evidence guidance; /workspace shared files"}
+    - {source_id: SRC-013, http: 200, last_updated: "August 11, 2026", note: "one computer per user account; shared cookies/sessions/files/command-line credentials; per-Bot screens are work surfaces not security boundaries; connectors account-wide; Update/Recover preserve durable state, Reset can discard recent unsaved work; local computer separate"}
+    - {source_id: SRC-014, http: 200, last_updated: "August 20, 2026", note: "eligible plan list (six plans); macOS Apple silicon/Intel, Windows x64/Arm64, no Linux desktop; Legacy Privacy Mode must change; Cursor sign-in/SSO; takeover for credentials; browser session persists on shared computer"}
+    - {source_id: SRC-015, http: 200, last_updated: "August 20, 2026", note: "iOS 18+ iPhone, not iPad/Android; six-plan list; push rolling out; Active pause/resume; editing/testing/deleting routines desktop-only; teach workflows not on iPhone"}
+    - {source_id: SRC-016, http: 200, last_updated: "August 11, 2026", note: "recovery order; Recover/Update preserve durable files and logins; Reset can lose recent or unsynced work; stuck-task guidance; attachment limits; routine and approval troubleshooting"}
+    - {source_id: SRC-025, http: 200, last_updated: "Aug 11, 2026 (page date)", note: "header label 'Early beta'; 'Grok Bot is in beta and available today for SuperGrok Plus and Heavy, Cursor Pro+ and Ultra, and Cursor Teams Standard and Premium subscribers'; 'Bots share a computer of their own in the cloud'; 'saves your workflow as a routine'; footer '© 2026 X.AI LLC'; enterprise waitlist"}
+    - {source_id: SRC-026, http: 200, last_updated: "Aug 21, 2026 (page date)", note: "'We launched Grok Bot in beta on August 11'; now included with SuperGrok Plus, SuperGrok Heavy, Cursor Pro+, Cursor Ultra, Cursor Teams (Standard and Premium); enterprise waitlist"}
+    - {source_id: SRC-027, http: 200, last_updated: "August 11, 2026, 7:34pm (post timestamp)", note: "Cursor staff (kevinn) 'launching Grok Bot in early beta'; persistent cloud computer; shared computer, per-Bot screens; still lists the original 'SuperGrok Heavy, Cursor Ultra, and Cursor Teams Premium' plans (superseded, as the ledger states)"}
+    - {source_id: SRC-028, http: 200, last_updated: "not displayed", note: "title 'Plans and billing | Cursor Docs' under cursor.com/help; Ultra/Pro+/Teams included, Enterprise via account executive, SuperGrok Plus/Heavy link as usage grant (permanent), SuperGrok Team/Enterprise and basic SuperGrok not included, Cursor Pro not included; weekly reset; on-demand continuation; trial = usage credit with 7-day window; macOS/iOS share one usage bucket"}
+    - {source_id: SRC-029, http: 200, last_updated: "not displayed", note: "'You sign in there yourself; the agent doesn't see your password'; 'Sidebar Sections require Grok Bot v1.2.0 or later'; beta label is expectation-setting, 'not subject to Cursor's Beta Services terms'"}
+    - {source_id: SRC-030, http: 200, last_updated: "not displayed", note: "conversation history stored separately from the box; durable copy of synced box data on the server; Reset rebuilds from scratch, unsynced data will not come back; recoverability table incl. local files not covered"}
+    - {source_id: SRC-031, http: 200, last_updated: "not displayed", note: "'Grok Bot uses your Cursor account. There is no separate Grok Bot login.'; persistent authentication errors are known issues; phone-verification failures can block access and need support"}
+    - {source_id: SRC-032, http: 200, last_updated: "not displayed", note: "'Use Grok Bot's secure secret card. Don't paste secrets into chat or save them in ordinary files.'"}
+    - {source_id: SRC-033, http: 200, last_updated: "August 12, 2026", note: "'August 11 — Grok Bot — Grok Bot is now available. Durable AI teammates that work on a persistent cloud computer, with messaging, approvals, connectors, and routines.'"}
+    - {source_id: SRC-034, http: 200, last_updated: "not displayed", note: "'Access to Grok Bot' appears under Pro+ ($20/mo Individual tier group), Ultra, Teams Standard and Teams Premium ($40/user/mo); not under Hobby or Pro"}
+    - {source_id: SRC-035, http: 200, last_updated: "August 11, 2026", note: "eight role examples; read-and-prepare first; approvals before external actions; routines only after reliability"}
+
+archive_corroboration:
+  - "x.ai/news/introducing-grok-bot capture 20260812101728: header 'Early beta'; 'Grok Bot is in beta and available today for SuperGrok Heavy, Cursor Ultra, and Cursor Teams Premium subscribers on desktop and iOS.'; 'Bots share a computer of their own in the cloud'; 'It saves your workflow as a routine'."
+  - "x.ai/news/introducing-grok-bot capture 20260821181409: header 'Early beta'; plan sentence now 'SuperGrok Plus and Heavy, Cursor Pro+ and Ultra, and Cursor Teams Standard and Premium' (matches live). Confirms the post-publication edit the ledger (SRC-025 limitations) and fixer handoff describe."
+  - "docs.x.ai/grok-bot/faq capture 20260819230525: 'Last updated: August 11, 2026'; 'Eligible plans include SuperGrok Heavy, Cursor Ultra, and Cursor Teams Premium.'; live page: 'August 20, 2026' and the six-plan list. Confirms the drift recorded in the baseline's 'SOURCE DRIFT — OBSERVED AND PRESERVED' paragraph and in the author-handoff known_limitations."
+  - "CDX listings: introducing-grok-bot captures 20260812101728, 20260818220510, 20260821181409; faq captures 20260814030107, 20260819230525. The challenger's 2026-08-11T17:40Z launch-post capture did not appear in this CDX query; nothing in the baseline depends on it."
+
+tests_run:
+  - "curl mirror of 24 primary URLs with UTC timestamps, HTTP status, byte size; python3 text extraction; regex extraction of <title>, 'Last updated: <Month d, yyyy>', JSON-LD datePublished/dateModified per page"
+  - "Sentence-level comparison of GBF-001..031, Record status, Source freshness, DOC-A-001..005, parity map, strong inferences, open questions and the black-box plan against the extracted live text; grep of SRC-034 plan blocks; grep of SRC-033 Grok Bot entry"
+  - "web.archive.org CDX queries and id_ raw retrieval for 2 launch-post captures and 1 FAQ capture; regex extraction of plan sentence, beta label, 'Last updated'"
+  - "ruby -rcsv: SOURCE_LEDGER.csv data rows, column widths, duplicate IDs, duplicate URLs, ID continuity SRC-001..035, docs.x.ai publisher values, SRC-006/008/014/015 dates, SRC-025..035 rows, primary/secondary classes"
+  - "ruby: SRC IDs cited by the baseline vs ledger; GBF table-row IDs (count, uniqueness, sequence); DOC-A ids; fixer-handoff source list vs ledger (24 id/url pairs)"
+  - "ruby -ryaml: parse PROJECT_STATE, TASK_REGISTRY, MODEL_REGISTRY, HANDOFF_TEMPLATE and all 9 files under 99_handoffs/completed; HANDOFF_TEMPLATE key presence for the S0-002 author and fixer handoffs"
+  - "Challenger verification_method commands for F-S0-002-01..07 (grep 'Cursor Pro+', grep -i beta, grep introducing-grok-bot, grep 'model picker', grep -i 'whether users can select models' / 'default-model selection', grep -E of the F-04 fact list, grep 'Each Bot runs on a persistent cloud VM', grep -c cursor.com/help/grok-bot, grep use-cases, grep -E 'access time|2026-08-20' on the author handoff)"
+  - "git show --stat fb89315; git diff 48f6df8 fb89315 --stat; git diff 48f6df8 fb89315 -- <every S0-001/S0-003/inbox/governing/decision/assumption/risk/model-registry path>; git diff 48f6df8 fb89315 -- 01_governance/{TASK_REGISTRY,PROJECT_STATE}.yaml 99_handoffs/completed/S0-002_handoff.yaml 02_research/GROK_BOT_BASELINE_2026-08-21.md 01_governance/SOURCE_LEDGER.csv (read in full); ledger row-level grep for SRC-009..011/017..024 changes"
+  - "git diff --check 48f6df8 HEAD; trailing-newline scan over git ls-files; git show -s --format='%an <%ae> %ad' fb89315; git status --porcelain; git ls-files extension scan for application code; ls -d */"
+  - "grep -i -E of key/token/password/private-key/JWT/sk-/ghp_ patterns and email/phone/IP patterns over git log -p 48f6df8..fb89315"
+  - "grep -c of each GB-0xx ID referenced by the baseline's black-box plan in 03_GROKBOT_EXAMPLES/TEST_MATRIX.md"
+test_results:
+  - "24/24 HTTP 200 at 2026-08-22T03:22:27Z..03:22:34Z. Titles: 'SpaceXAI Docs' for all 14 docs.x.ai/grok-bot pages and the release notes; 'SpaceXAI' for the two x.ai/news posts; 'Cursor Docs' for the five cursor.com/help pages; 'Cursor · Pricing'; 'Cursor - Community Forum'."
+  - "'Last updated' and JSON-LD dateModified agree on every docs.x.ai page: 10 x August 11, 2026 (incl. use-cases), 4 x August 20, 2026 (faq, get-started, mobile, teams-and-enterprises), release notes August 12, 2026. Matches SOURCE_LEDGER publication_or_update_date for SRC-001..008, 012..016, 033, 035 and the baseline's 'nine ... August 11 / four ... August 20' statement."
+  - "Every GBF row, Record status line, DOC-A record, parity-map row and ledger claims_supported entry that I checked is supported by the live text (see live_source_verification notes). No row asserts an undocumented mechanism; rollout qualifiers are preserved; plan text matches the six-plan current list with the Cursor-help exclusions; the per-Bot-VM sentence, the 'keeps its data' sentence, the unqualified 'persists that path as a routine' sentence, the Ask-every-time/Never/Ask/Always labels and the conditional 'Default Model' line are all present in the live sources exactly as DOC-A-001..005 describe."
+  - "Archive captures corroborate both the post-publication edit of the launch post and the FAQ drift from August 11 / three plans to August 20 / six plans (see archive_corroboration)."
+  - "SOURCE_LEDGER.csv: 35 data rows x 11 columns, all rows 11 wide, 0 duplicate IDs, 0 duplicate URLs, IDs continuous SRC-001..035, all 14 docs.x.ai/grok-bot rows publisher 'SpaceXAI (X.AI LLC) official documentation', SRC-006/008/014/015 dated 2026-08-20 and accessed 2026-08-21, SRC-025..035 present and primary, 0 secondary rows. Baseline cites 23 distinct SRC IDs, all present. 31 unique GBF IDs in sequence GBF-001..031 (the 32nd regex match is the parity-map cell 'GBF-029'). DOC-A-001..005 present. Fixer-handoff 24 id/url pairs all match the ledger."
+  - "All 13 YAML files parse; author and fixer handoffs contain every HANDOFF_TEMPLATE key; fixer started_at/completed_at (22:58:27 -> 23:13:44 -04:00) non-null and distinct. git diff --check 48f6df8..HEAD clean. Only file lacking a trailing newline is the pre-existing 99_handoffs/completed/S0-001_fixer_handoff.yaml (V-S0-001-02; unchanged)."
+  - "Challenger verification_method commands: 'Cursor Pro+' hits GBF-028 (line 66); 'beta' hits Record status (line 10) and the conclusion; introducing-grok-bot row present (SRC-025; SRC-027 also titled 'Introducing Grok Bot'); 'model picker' hits GBF-031 (line 69) and DOC-A-005 (line 95) and the parity map row reads 'no member/admin picker'; the open-questions list no longer asks whether users can select models and no 'default-model selection' rollout sentence remains; all F-04 facts found (non-root, never stores those tokens, Cloud Agents, static egress, audit view, spend cap, Privacy Mode (Legacy), synced box, mobile device management, account-wide, not an account-synchronized, per-Bot notification switch, phone-verification, shared across every team, network-address change) inside GBF rows 46-67 and DOC-A-003; 'Each Bot runs on a persistent cloud VM' hits DOC-A-001 (line 77); 5 cursor.com/help/grok-bot rows; use-cases row SRC-035; author handoff lines 58-60 carry the dependency, timestamp and access-time/drift limitations."
+  - "Fixer commit fb89315 touched exactly 01_governance/PROJECT_STATE.yaml, 01_governance/SOURCE_LEDGER.csv, 01_governance/TASK_REGISTRY.yaml, 02_research/GROK_BOT_BASELINE_2026-08-21.md, 99_handoffs/completed/S0-002_fixer_handoff.yaml (new), 99_handoffs/completed/S0-002_handoff.yaml == fixer handoff files_created + files_modified; all six inside S0-002 allowed_files_to_change. Out-of-scope diff (MODEL_REGISTRY.yaml, 06_evaluation/, all S0-001 and S0-003 handoffs/reviews, S0-002 challenger review, 00_inbox/, DECISION_LOG.md, ASSUMPTION_REGISTER.md, RISK_REGISTER.md, AGENTS.md, MASTER_OPERATING_PROMPT.md, README.md, SECURITY.md, CLAUDE.md) = 0 lines. Ledger rows SRC-009..011/017..024 (S0-003 model sources) unchanged (0 diff lines). TASK_REGISTRY diff touches only the S0-002 entry (status, fixer_* fields, verification_status). S0-002_handoff.yaml changes are append-only (+14/-0: three known_limitations entries and a fixer_addendum); original tests_run/test_results/timestamps intact."
+  - "Commit fb89315 authored by the founder git identity (GitHub noreply). Secrets/PII scan over the fixer patch: 0 credential/token/private-key/JWT hits (only documentation prose about 'secure secret' cards); the only email address is the commit author's GitHub noreply. 0 application-code files; directories unchanged (00_inbox, 01_governance, 02_research, 06_evaluation, 99_handoffs); working tree clean at fb89315 before this pass."
+  - "All 18 GB-0xx IDs referenced by the baseline's black-box plan (GB-006, 007, 009-014, 017, 023, 024, 028-030, 032-035) exist in TEST_MATRIX.md (35 IDs GB-001..035)."
+
+security_checks:
+  - "No file under 00_inbox changed since the S0-001 verified state; original evidence untouched."
+  - "No secrets, credentials, cookies, account identifiers, PII, customer data, screenshots, binaries or application code in the fixer patch or the working tree; external pages were treated as untrusted evidence and no page instruction was followed."
+  - "No product account, sign-in, download, purchase, trial activation or black-box action was performed by the verifier; only public pages and public archive captures were read."
+  - "Verifier changed only TASK_REGISTRY.yaml, PROJECT_STATE.yaml and this new artifact; nothing committed."
+
+acceptance_criteria_evaluation:
+  - criterion: "Every consequential claim links to a current primary source or is labeled."
+    result: PASS
+    evidence: "31 feature rows each cite ledgered primary sources and carry a MASTER-vocabulary evidence label; Record status, DOC-A records, parity map, strong inferences and open questions cite SRC IDs; all 23 cited IDs exist in the 35-row ledger; every cited page was reopened live by the verifier and each checked claim was found in the current text; the previously stale GBF-028/metering-row plan text is now current and the model/provider policy is a sourced VERIFIED FACT (GBF-031). The challenger's PARTIAL is cleared."
+  - criterion: "Research date and product version context are explicit."
+    result: PASS
+    evidence: "Record status states research date 2026-08-21 (original pass), revalidation 2026-08-22T03:07:34Z with local equivalent, vendor-labelled beta / Early beta, launch 2026-08-11, Cursor-help beta characterisation, publisher X.AI LLC / SpaceXAI with Cursor identity/billing/administration, documentation dates (nine August 11, four August 20), August 21 expansion, the bounded v1.2.0 reference, installed build UNKNOWN, account/plan/region/rollout UNKNOWN, zero black-box runs. All reproduced against live sources. The challenger's PARTIAL is cleared."
+  - criterion: "Unknown implementation details remain unknown."
+    result: PASS
+    evidence: "No row asserts scheduler, VM, memory, routing, model-set identity, sync or security implementation; DOC-A-001 explicitly declines to resolve the per-Bot-VM wording into a backend mechanism; open questions and handoff unverified_claims preserve the unknowns; strong inferences are bounded and labeled."
+  - criterion: "Public observations are not confused with clean-room design proposals."
+    result: PASS
+    evidence: "No design proposal appears; the parity map 'Clean-room status' column says no design selected; R-019 and the DECISION_LOG reconciliation note keep the shared computer as comparison input only; the conclusion states no architecture, MVP workflow or wedge is selected."
+  - criterion: "Required test: Challenger source spot-check."
+    result: PASS
+    evidence: "Performed by the challenger over 14 pages plus archives on 2026-08-21 and independently re-performed by this verifier over all 24 ledgered sources plus 3 archive captures."
+  - criterion: "Required test: Link and date validation."
+    result: PASS
+    evidence: "24/24 links HTTP 200 at 03:22Z; every displayed/JSON-LD date matches the ledger and the baseline; drift and the launch-post edit are recorded and archive-corroborated."
+
+original_finding_dispositions:
+  - finding_id: F-S0-002-01
+    severity: HIGH
+    disposition: RESOLVED
+    evidence: "SRC-006/008/014/015 dated 2026-08-20 (live pages confirm); SRC-025/026/028 added; GBF-028 rewritten with the six current plan paths, Cursor Pro / basic SuperGrok / SuperGrok Team-Enterprise exclusions, one-time trial usage credit with seven-day window, weekly reset and on-demand continuation, 'whichever has more usage', enterprise rollout, known auth/phone-verification blocks; parity-map metering row updated; 'SOURCE DRIFT — OBSERVED AND PRESERVED' paragraph names the four pages and the archive support; fixer handoff and author-handoff addendum carry the UTC access window with local equivalent; known_limitations record the drift. Every statement re-checked against live text."
+  - finding_id: F-S0-002-02
+    severity: HIGH
+    disposition: RESOLVED
+    evidence: "Record status now states beta / Early beta, launch 2026-08-11, Cursor-help 'not Cursor Beta Services' characterisation, publisher/ecosystem context, v1.2.0 bounded reference, installed build UNKNOWN, August 21 expansion; ledger rows SRC-025 (launch post), SRC-026 (expansion), SRC-027 (Cursor staff post), SRC-033 (release notes), SRC-028..032 (Cursor help pages relied on) present with correct dates; all facts re-located in the live pages."
+  - finding_id: F-S0-002-03
+    severity: HIGH
+    disposition: RESOLVED
+    evidence: "GBF-031 'Model and provider policy' is VERIFIED FACT — DOCUMENTED FOR TEAM/ENTERPRISE SURFACE quoting no picker, no planned choice, no per-team list, fixed set per surface, automatic failover, analytics show serving model, billing follows serving model (all present verbatim-equivalent in live SRC-006 and its FAQ); limit column and DOC-A-005 keep SRC-007's conditional 'Default Model' as an explicit surface ambiguity and the fixed-set identity as unknown; parity-map row 'Model selection and transparency' added; open-questions bullet narrowed to residual unknowns and states non-choice/failover are documented facts; the 'default-model selection varies by account' rollout sentence removed."
+  - finding_id: F-S0-002-04
+    severity: MEDIUM
+    disposition: RESOLVED
+    evidence: "GBF-006 (member VM shared across teams, screens not security boundaries), GBF-008 (connectors account-wide; hosted MCP tokens stay in Cursor backend, never stored on the computer), GBF-011 (conversation history outside box, durable synced copy, unsynced loss, local files excluded, session drop after recreation/network change; DOC-A-003), GBF-023 (rules stored on current desktop, synced to its computer, not account-synchronized), GBF-024 (agent doesn't see password; secure secret card; not in chat/files), GBF-026 (group chats lack per-Bot switch), GBF-028 (auth/phone-verification blocks), GBF-029 (non-root, Cloud Agents default-on, static egress, Kill keeps durable storage, not MDM-enrolled, Privacy Mode (Legacy) blocks, audit view coming, no spend cap yet) all present with source IDs and residual unknowns; SRC-030/031/032 ledgered. Every fact re-located in the live pages."
+  - finding_id: F-S0-002-05
+    severity: MEDIUM
+    disposition: RESOLVED
+    evidence: "Section 'Documented inconsistencies and ambiguities in official sources' with DOC-A-001 (per-Bot VM vs one user/member computer; resolving reading user/member scope, screens not boundaries, mechanism unknown), DOC-A-002 (routine vs draft skill; rollout-dependent draft-skill reading), DOC-A-003 (Reset keeps data vs unsynced loss), DOC-A-004 (local-policy labels), DOC-A-005 (no picker vs conditional Default Model); referenced from the GBF-005/006/011/019/031 limit columns and the parity map. Both sides of each conflict verified present in the live sources; no backend explanation is invented."
+  - finding_id: F-S0-002-06
+    severity: LOW
+    disposition: RESOLVED
+    evidence: "All 14 docs.x.ai/grok-bot rows carry publisher 'SpaceXAI (X.AI LLC) official documentation' (site title 'SpaceXAI Docs', footer 'X.AI LLC' confirmed); SRC-035 use-cases row added; 5 Cursor help rows, cursor.com/pricing, the Cursor forum post and the release notes ledgered; the x.ai/news 403 limitation is not recorded because x.ai/news pages returned HTTP 200 to both the fixer and the verifier (x.ai/bot is not ledgered), so the conditional 'where applicable' clause is not triggered."
+  - finding_id: F-S0-002-07
+    severity: LOW
+    disposition: RESOLVED
+    evidence: "S0-002_handoff.yaml known_limitations now record (a) the S0-001 READY-not-VERIFIED dependency deviation, (b) the null started_at / batch completed_at limitation, (c) the missing per-page access time and the August 20/21 drift, without altering the original results; the fixer handoff records distinct non-null start/end times and the exact UTC source-access window; S0-001 was VERIFIED (48f6df8) before the fixer pass began (22:58:27 -04:00)."
+
+independent_checks:
+  A_source_freshness: "PASS — current plan eligibility (six plans; Cursor Pro/basic SuperGrok/SuperGrok Team-Enterprise excluded; one-time trial; enterprise rolling out) matches live SRC-006/008/014/015/025/026/028/034; ledger dates match displayed/JSON-LD dates; UTC access windows are recorded in the fixer handoff (03:06:16Z..03:07:34Z) and reproduced by the verifier (03:22:27Z..03:22:34Z); same-day drift is represented as observed-and-preserved with the historical author result left intact and archive-corroborated."
+  B_product_version_context: "PASS — launch 2026-08-11, beta / Early beta (vendor label; Cursor help says not Beta Services terms), publisher X.AI LLC / SpaceXAI, Cursor identity/billing/usage/privacy/admin, rollout qualifiers and plan limits, v1.2.0 bounded; documented behavior is labelled VERIFIED FACT — DOCUMENTED and no directly observed project-account behavior is claimed."
+  C_model_provider_policy: "PASS — no picker, fixed set per surface, automatic failover, serving-model analytics and billing are VERIFIED FACT for the team/enterprise surface; residual unknowns (set identity, surface mapping, failover triggers, analytics reliability, individual conditional control) are correctly OPEN; nothing documented remains misfiled as UNKNOWN."
+  D_security_persistence_team_facts: "PASS — user/member scope, non-root, hosted-MCP token placement, secure secret card, session drop on recreation/network change, Cloud Agents default-on toggle, Privacy Mode (Legacy) block, audit view coming, no Grok Bot-specific spend cap, SSO/dashboard/team rules/MCP policy/Kill/MDM/static egress, and the durable-state layers (conversation history outside box, durable synced copy, unsynced loss, local files excluded) are present with sources and residual unknowns."
+  E_documentation_contradictions_preserved: "PASS — DOC-A-001 keeps 'Each Bot runs on a persistent cloud VM' alongside the user/member-computer wording (including the SRC-006 FAQ 'No.') and states the mechanism is unknown; DOC-A-002..005 likewise preserve both statements with bounded resolving readings."
+  F_source_ledger: "PASS — 35 rows, all consequential sources present, publishers correct (SpaceXAI (X.AI LLC); Cursor official Help Center for cursor.com/help pages whose page chrome reads 'Cursor Docs ... Help'; Cursor; Cursor staff), dates correct, accessed_date 2026-08-21 (local) with exact UTC windows in the handoffs, all rows primary and correctly so, no secondary source used as evidence, 24/24 citations resolve."
+  G_governance_and_scope: "PASS — fixer changed only allowed paths (no D-009 amendment required); historical review evidence preserved (challenger review unchanged, author handoff append-only); S0-001 VERIFIED and its artifacts unchanged; S0-003 CHANGES_REQUESTED with deliverables, handoff and review untouched; Stage 1 not started; no architecture or application code."
+  H_black_box_limit: "PASS — baseline, author handoff, fixer handoff and PROJECT_STATE consistently state UNKNOWN build/account/plan/region/rollout and zero black-box runs; GBF-028 says entitlement/auth/allowance/metering 'remain unverified by account readback'; the conclusion blocks runtime-parity and account-availability claims."
+
+new_findings:
+  - finding_id: V-S0-002-01
+    severity: LOW
+    status: RESOLVED_BY_VERIFIER_GOVERNANCE_UPDATE
+    requirement: "Stage 0 gate 'governance files agree with one another'; PROJECT_STATE/TASK_REGISTRY as authoritative state."
+    evidence: "At fb89315: PROJECT_STATE.working_tree_base_commit still pointed at 48f6df8 although the fixer patch had been committed as fb89315; verifier_model said 'S0-002/S0-003 verifier not yet assigned'; S0-004 blocked_by listed 'S0-002_independent_review_pending'; TASK_REGISTRY S0-002 had no verifier fields. The fixer handoff repository_commit_or_patch ('Uncommitted ... founder explicitly requested that this task remain uncommitted') was accurate when written and is now superseded by the founder's commit fb89315 (same pattern as V-S0-001-03)."
+    consequence: "Transitional staleness only; no acceptance impact."
+    correction: "This pass sets S0-002 VERIFIED with verifier fields in TASK_REGISTRY, removes the S0-002-review blocker from S0-004 (S0-004 stays BLOCKED on founder inputs), sets verifier_model, working_tree_base_commit, last_verified_checkpoint, active/completed task lists, next_recommended_action, updated_at and notes in PROJECT_STATE; historical fixer fields and handoff text were not rewritten."
+    verification_method: "ruby -ryaml parse; TASK_REGISTRY S0-002 status VERIFIED; PROJECT_STATE completed_task_ids contains S0-002; S0-004 blocked_by has no S0-002 entry."
+  - finding_id: V-S0-002-02
+    severity: NOTE
+    status: RECORDED
+    evidence: "02_research/GROK_BOT_BASELINE_2026-08-21.md Record status still reads 'Author status: READY_FOR_REVIEW (fixer pass complete; not independently verified)'. This is an author-maintained line inside the verified deliverable; the authoritative status is TASK_REGISTRY (99_handoffs/completed/README.md: verification remains in the task registry). Deliberately left unchanged so that verified_commit fb89315 identifies the exact verified content. Any future S0-002-scoped revision (e.g. the S0-004 baseline_revision deliverable) should refresh that line."
+  - finding_id: V-S0-002-03
+    severity: NOTE
+    status: RECORDED
+    evidence: "Citation-precision nits carried from the challenger remain cosmetic: GBF-007 cites SRC-001 alongside SRC-008/SRC-013 for the one-computer-use-task-per-screen limit (stated in SRC-008/SRC-013, not SRC-001); GBF-008 cites SRC-032 (secrets guidance) in a row about tools/connectors. DOC-A-002 names only SRC-001 for the unqualified 'saves ... as a routine' wording, which SRC-025 and SRC-027 also use. None affects any acceptance criterion."
+  - finding_id: V-S0-002-04
+    severity: NOTE
+    status: RECORDED
+    evidence: "Live SRC-027 (Cursor forum staff post) still lists the original three plans (SuperGrok Heavy, Cursor Ultra, Cursor Teams Premium); the ledger correctly flags that list as superseded on August 21. Live SRC-025 has been edited in place to the six-plan sentence while keeping the 'Aug 11, 2026' date and JSON-LD dateModified 2026-08-11; the ledger limitation and the archive captures above preserve the launch-day wording."
+  - finding_id: V-S0-002-05
+    severity: NOTE
+    status: RECORDED
+    evidence: "SOURCE_LEDGER accessed_date is a local calendar date (2026-08-21); exact UTC access windows live in the fixer handoff (03:06:16Z..03:07:34Z) and this artifact (03:22:27Z..03:22:34Z). Adequate for traceability; future passes may prefer UTC timestamps in the ledger column."
+  - finding_id: V-S0-002-06
+    severity: NOTE
+    status: RECORDED
+    evidence: "The x.ai/news HTTP 403 automated-fetch limitation reported by the challenger was not reproduced by the fixer or the verifier (HTTP 200 with a browser User-Agent); no ledger note is required. Cursor help pages and cursor.com/pricing display no publication/update date; 'not_displayed' is the honest ledger value."
+  - finding_id: V-S0-002-07
+    severity: NOTE
+    status: RECORDED
+    evidence: "Verifier and challenger are the same model/product (Claude Fable 5 via Claude Code) in separate sessions; author/fixer is Codex. Independence from the author holds; the founder may prefer a different-vendor verifier for the Stage 0 gate (same as V-S0-001-06)."
+  - finding_id: V-S0-002-08
+    severity: NOTE
+    status: RECORDED
+    evidence: "This verifier artifact is the 45th tracked file and post-dates the S0-001 inventory (43 files at adc87c4 plus the S0-001 verifier artifact). Classification for the record: role independent_s0_002_verifier_review_and_decision; authority INDEPENDENT_VERIFIER_DECISION; evidence_or_assumption REPRODUCED_VERIFICATION_EVIDENCE_AND_VERIFIER_JUDGMENT."
+  - finding_id: V-S0-002-09
+    severity: NOTE
+    status: CARRIED_FORWARD
+    evidence: "99_handoffs/completed/S0-001_fixer_handoff.yaml still lacks a trailing newline (V-S0-001-02); unchanged, cosmetic, outside S0-002."
+
+passes_confirmed:
+  - "24/24 live primary sources reachable; dates and quoted facts reproduced; drift and launch-post edit archive-corroborated."
+  - "All seven challenger findings resolved in the committed fixer pass; every challenger verification command re-run and passing."
+  - "Baseline keeps documented facts, bounded inferences, official-source contradictions and unknowns separate; no fabricated observation, no implementation claim, no design proposal; zero black-box runs consistently stated."
+  - "Ledger 35 x 11, unique IDs/URLs, correct publishers/dates, all primary, all citations resolve."
+  - "Fixer scope inside allowed files; S0-001 and S0-003 untouched; no secrets, PII, code, Stage 1 or architecture artifacts."
+
+known_limitations:
+  - "started_at is approximate (session start shortly before the first repository read); completed_at is exact. The live-source window timestamps are exact."
+  - "Verification covers S0-002 only; S0-003 and the Stage 0 gate remain unverified and were deliberately not evaluated; Stage 1 was not started."
+  - "The verifier can confirm the current live state and archived states of public pages; it cannot reproduce the fixer's exact 03:06Z..03:07Z window or the author's undated 2026-08-21 access. Pages may change again after 03:22Z; the verdict applies to the content as ledgered and as observed in this window."
+  - "No product account, installed build or black-box run was available to the verifier; nothing in this verdict asserts account eligibility, rollout access or runtime behavior."
+unverified_claims: []
+blockers: []
+blockers_for_task: []
+recommended_next_task: "Founder commits this artifact and the governance updates. Then FIX_TASK_S0-003 (F-S0-003-01..11, D-009 applied), then an independent REVIEW_TASK_S0-003 verifier pass, then VERIFY_STAGE_0. S0-004 remains BLOCKED on founder inputs (eligible account/build/plan/region); its S0-002 review dependency is now satisfied."
+repository_commit_or_patch: "Verification performed against committed state fb89315 with live sources accessed 2026-08-22T03:22:27Z..03:22:34Z and archive captures retrieved 2026-08-22T03:26Z..03:27Z; this artifact and the TASK_REGISTRY/PROJECT_STATE updates are left uncommitted in the working tree for the founder to commit."
