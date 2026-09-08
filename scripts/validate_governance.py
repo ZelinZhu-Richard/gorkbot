@@ -11,11 +11,15 @@ from __future__ import annotations
 import csv
 import hashlib
 import json
+import os
 import re
+import stat
+import subprocess
 import sys
-from collections.abc import Iterable
+from collections.abc import Iterable, Iterator
+from contextlib import contextmanager
 from pathlib import Path
-from typing import Any
+from typing import Any, TextIO
 
 import yaml
 
@@ -42,6 +46,34 @@ LIST_STATUS_CLASSES = {
     "completed_task_ids": "completed",
     "blocked_task_ids": "blocked",
 }
+
+# Mode authority: MASTER_OPERATING_PROMPT.md, "Operating modes". The one
+# repository extension is founder-recorded in 01_governance/TASK_REGISTRY.yaml,
+# E0-001.scope_amendments E0-001-A1 (INITIALIZE_ENGINEERING_PREVIEW under D-016).
+# README is validated input, never a source of permitted modes.
+LITERAL_MODES = {
+    "INITIALIZE",
+    "STATUS",
+    "ADVANCE_STAGE",
+    "AUDIT_ARCHITECTURE",
+    "AUDIT_SECURITY",
+    "AUDIT_PRODUCT",
+    "BENCHMARK_MODELS",
+    "PREPARE_VC",
+    "RESUME",
+    "INITIALIZE_ENGINEERING_PREVIEW",
+}
+TASK_MODE_FAMILIES = ("EXECUTE_TASK", "REVIEW_TASK", "FIX_TASK", "VERIFY_TASK")
+# Preserve the existing registry-backed target token grammar: nonempty ASCII
+# uppercase/digit segments separated by single underscores or hyphens. This
+# includes TASK_REGISTRY's S0-001/S1-001 and E0-001/E3-003 conventions without
+# limiting routes to today's task IDs; membership is checked separately.
+TASK_MODE_PATTERN = re.compile(
+    rf"({'|'.join(TASK_MODE_FAMILIES)})_([A-Z0-9]+(?:[_-][A-Z0-9]+)*)"
+)
+# Numeric stages are documented in the Master prompt; E-prefixed stages in its
+# D-016 override and 03_product/ENGINEERING_PREVIEW_CHARTER.md, section 17.
+STAGE_MODE_PATTERN = re.compile(r"(PLAN_STAGE|VERIFY_STAGE)_(E?[0-9]+)")
 
 SECRET_PATTERNS: tuple[tuple[str, re.Pattern[str]], ...] = (
     (
@@ -291,7 +323,7 @@ def check_task_graph_and_state() -> tuple[int, int]:
         visit(task_id, [])
 
     # A verified label is usable only while its entire declared task dependency
-    # closure remains completed. Traverse from each executable root so reopening
+    # closure remains completed. Traverse from each ready/active root so reopening
     # an upstream task invalidates every affected root, without requiring
     # unrelated tasks or treating decision_dependencies as task dependencies.
     # Missing references, self-dependencies and cycles are checked above.
@@ -338,52 +370,205 @@ def check_task_graph_and_state() -> tuple[int, int]:
             f"PROJECT_STATE task lists are missing registry tasks: {', '.join(missing)}"
         )
 
-    check_readme_routing(state, state_lists["ready_task_ids"])
+    check_readme_routing(state, task_by_id)
     return len(task_by_id), sum(len(items) for items in state_lists.values())
 
 
-def extract_mode(text: str) -> str | None:
-    match = re.search(r"\bMODE:\s*[A-Z0-9_-]+", text)
-    return match.group(0).replace("  ", " ") if match else None
+def extract_mode(text: Any, label: str) -> str:
+    # The designated command must lead its block/value. A newline or an em/en
+    # dash may introduce explanatory prose, as in PROJECT_STATE today. Do not
+    # accept a valid prefix of a malformed command or choose among commands.
+    if not isinstance(text, str) or len(re.findall(r"\bMODE\s*:", text, re.I)) != 1:
+        raise ValidationError(f"{label} must contain exactly one MODE command")
+    first_line = text.strip().split("\n", 1)[0]
+    match = re.fullmatch(
+        r"MODE:[ \t]*([A-Z][A-Z0-9]*(?:[_-][A-Z0-9]+)*)"
+        r"(?:[ \t]+[—–][ \t]+[^\n]+)?[ \t]*",
+        first_line,
+    )
+    if match is None:
+        raise ValidationError(f"{label} contains a malformed MODE command")
+    return match.group(1)
 
 
-def check_readme_routing(state: dict[str, Any], ready_ids: list[str]) -> None:
+def recognize_mode(mode: str) -> tuple[str, str | None]:
+    """Recognize a complete mode token and return its family and optional target.
+
+    Recognition grants no spending, run admission, stage advancement or build
+    authority. Eligibility and every separately required approval remain separate.
+    """
+    if mode in LITERAL_MODES:
+        return mode, None
+    for pattern in (TASK_MODE_PATTERN, STAGE_MODE_PATTERN):
+        match = pattern.fullmatch(mode)
+        if match is not None:
+            return match.group(1), match.group(2)
+    raise ValidationError(f"Unrecognized MODE command: {mode!r}")
+
+
+def check_readme_routing(
+    state: dict[str, Any], task_by_id: dict[str, dict[str, Any]]
+) -> None:
     readme_path = ROOT / "README.md"
-    readme = readme_path.read_text(encoding="utf-8")
+    try:
+        readme = readme_path.read_text(encoding="utf-8")
+    except (OSError, UnicodeError) as exc:
+        raise ValidationError("Cannot read README.md current-command block") from exc
+    # Commented-out instructions are not the designated current command.
+    readme = re.sub(r"<!--.*?(?:-->|$)", "", readme, flags=re.DOTALL)
     marker = "The next command for the planning model is:"
-    if marker not in readme:
-        raise ValidationError(f"README.md is missing the '{marker}' section")
-    readme_mode = extract_mode(readme.split(marker, 1)[1])
-    if readme_mode is None:
-        raise ValidationError("README.md next-command section contains no MODE command")
-
-    state_mode = extract_mode(str(state.get("next_recommended_action", "")))
-    if state_mode is not None and readme_mode != state_mode:
+    if readme.count(marker) != 1:
+        raise ValidationError("README.md must contain exactly one current-command marker")
+    block = re.match(
+        r"\s*```(?:text)?[ \t]*\n(.*?)\n```[ \t]*(?:\n|$)",
+        readme.split(marker, 1)[1],
+        re.DOTALL,
+    )
+    if block is None:
+        raise ValidationError("README.md current-command block is missing or malformed")
+    readme_mode = extract_mode(block.group(1), "README.md current-command block")
+    state_mode = extract_mode(
+        state.get("next_recommended_action"), "PROJECT_STATE.next_recommended_action"
+    )
+    if readme_mode != state_mode:
         raise ValidationError(
             f"README next command {readme_mode!r} does not match "
             f"PROJECT_STATE next_recommended_action {state_mode!r}"
         )
 
-    if len(ready_ids) == 1:
-        expected = f"MODE: EXECUTE_TASK_{ready_ids[0]}"
-        if readme_mode != expected:
+    family, target = recognize_mode(readme_mode)
+    if family in TASK_MODE_FAMILIES and target is not None:
+        check_task_target(family, target, task_by_id)
+
+
+def check_task_target(
+    family: str, task_id: str, task_by_id: dict[str, dict[str, Any]]
+) -> None:
+    # All recognized task families must name an existing registry entry.
+    if task_id not in task_by_id:
+        raise ValidationError(f"{family} target {task_id!r} is not in TASK_REGISTRY")
+    # Summary classification and prerequisite completion are separate checks.
+    # AGENTS.md permits only READY/CLAIMED execution, regardless of READY count.
+    # This routing check grants no empirical run admission, budget or E3 authority.
+    # Recognized review/fix/verification modes do not imply execution eligibility.
+    if family != "EXECUTE_TASK":
+        return
+    status = task_by_id[task_id].get("status")
+    if status not in {"READY", "CLAIMED"}:
+        raise ValidationError(
+            f"EXECUTE_TASK target {task_id!r} has ineligible status {status!r}; "
+            "execution requires READY or CLAIMED"
+        )
+
+
+def git_file_records(*options: str) -> list[bytes]:
+    overrides = sorted(
+        name for name in ("GIT_DIR", "GIT_COMMON_DIR", "GIT_WORK_TREE", "GIT_INDEX_FILE")
+        if name in os.environ
+    )
+    if overrides:
+        raise ValidationError(
+            "Secret scan does not support Git repository/index overrides: "
+            + ", ".join(overrides)
+        )
+    try:
+        result = subprocess.run(
+            ["git", "ls-files", "--full-name", "-z", *options],
+            cwd=ROOT, check=True, capture_output=True,
+        )
+    except (OSError, subprocess.CalledProcessError) as exc:
+        # Git's stderr is untrusted and may contain sensitive data.
+        raise ValidationError("Secret scan Git file enumeration failed") from exc
+    if result.stdout and not result.stdout.endswith(b"\0"):
+        raise ValidationError("Secret scan Git file enumeration is not NUL-delimited")
+    records = result.stdout.split(b"\0")[:-1]
+    if any(not record for record in records):
+        raise ValidationError("Secret scan Git file enumeration contains an empty entry")
+    return records
+
+
+def security_path(raw_path: bytes) -> Path:
+    relative = Path(os.fsdecode(raw_path))
+    if (
+        not relative.parts or relative.is_absolute() or ".." in relative.parts
+        or any(part.lower() == ".git" for part in relative.parts)
+    ):
+        raise ValidationError("Secret scan Git enumeration contains an unsafe path")
+    return ROOT / relative
+
+
+def security_files() -> list[Path]:
+    """Scan working-tree bytes at all indexed paths, plus nonignored untracked files.
+
+    Ignore rules and EXCLUDED_DIRS never filter the mandatory indexed set. Stage
+    metadata lets us reject symlinks, gitlinks and unmerged entries explicitly.
+    Repository/index environment overrides are unsupported and fail closed.
+    This is neither a staged-blob audit nor a full-history scan.
+    """
+    tracked: set[Path] = set()
+    for record in git_file_records("--cached", "--stage"):
+        metadata, separator, raw_path = record.partition(b"\t")
+        fields = metadata.split()
+        if not separator or len(fields) != 3:
+            raise ValidationError("Secret scan Git index enumeration is malformed")
+        path = security_path(raw_path)
+        mode, _, stage = fields
+        if mode not in {b"100644", b"100755"} or stage != b"0":
             raise ValidationError(
-                f"Exactly one task is READY ({ready_ids[0]}), but README routes to "
-                f"{readme_mode!r} instead of {expected!r}"
+                f"Secret scan unsupported indexed entry {rel(path)!r}; "
+                "requires a regular file at index stage 0"
             )
+        tracked.add(path)
+    # Local policy: standard Git ignores exclude only untracked generated/local
+    # content. Keep this optional coverage separate from the mandatory set.
+    untracked = {
+        security_path(record)
+        for record in git_file_records("--others", "--exclude-standard")
+    }
+    return sorted(tracked | untracked)
+
+
+@contextmanager
+def open_security_text(path: Path) -> Iterator[TextIO]:
+    """Open a regular working-tree file without following any child symlink.
+
+    Directory descriptors keep ancestor swaps from redirecting the scan outside
+    ROOT. Nonblocking open allows FIFOs to be rejected without hanging on read.
+    """
+    directory_fd = os.open(ROOT, os.O_RDONLY | os.O_DIRECTORY)
+    file_fd = None
+    try:
+        for part in path.relative_to(ROOT).parts[:-1]:
+            child_fd = os.open(
+                part, os.O_RDONLY | os.O_DIRECTORY | os.O_NOFOLLOW, dir_fd=directory_fd
+            )
+            os.close(directory_fd)
+            directory_fd = child_fd
+        file_fd = os.open(
+            path.name, os.O_RDONLY | os.O_NOFOLLOW | os.O_NONBLOCK, dir_fd=directory_fd
+        )
+        if not stat.S_ISREG(os.fstat(file_fd).st_mode):
+            raise ValidationError(f"Secret scan unsupported nonregular file: {rel(path)!r}")
+        with os.fdopen(file_fd, "r", encoding="utf-8") as handle:
+            file_fd = None  # The text handle now owns this descriptor.
+            yield handle
+    finally:
+        if file_fd is not None:
+            os.close(file_fd)
+        os.close(directory_fd)
 
 
 def check_secrets() -> tuple[int, int]:
     scanned = 0
     matches = 0
-    for path in repo_files():
+    for path in security_files():
         lower_name = path.name.lower()
         if lower_name in FORBIDDEN_TRACKED_NAMES and lower_name != ".env.example":
             raise ValidationError(f"Forbidden credential-bearing filename is tracked: {rel(path)}")
         if path.suffix.lower() in FORBIDDEN_TRACKED_SUFFIXES:
             raise ValidationError(f"Forbidden secret-key file is tracked: {rel(path)}")
         try:
-            with path.open("r", encoding="utf-8") as handle:
+            with open_security_text(path) as handle:
                 line_number = 0
                 while text := handle.readline(SECRET_SCAN_LINE_LIMIT + 1):
                     line_number += 1
@@ -393,17 +578,28 @@ def check_secrets() -> tuple[int, int]:
                             f"characters) exceeded in {rel(path)} line {line_number}; "
                             "cannot safely scan this file"
                         )
+                    if "\0" in text:
+                        raise ValidationError(
+                            f"Secret scan unsupported NUL-bearing content in {rel(path)!r}; "
+                            "requires UTF-8 text without NUL bytes"
+                        )
                     for label, pattern in SECRET_PATTERNS:
                         if pattern.search(text):
                             raise ValidationError(
                                 f"Possible {label} in {rel(path)} line {line_number}; "
                                 "replace it with a non-secret reference or synthetic marker"
                             )
-        except UnicodeDecodeError:
-            # Preserve non-UTF-8 binary detection without loading the full file.
-            continue
+        except UnicodeDecodeError as exc:
+            # Unsupported content fails even when it contains no credential.
+            # Binary assets need an explicitly reviewed scanning strategy.
+            raise ValidationError(
+                f"Secret scan requires UTF-8 text; undecodable file: {rel(path)!r}"
+            ) from exc
         except OSError as exc:
-            raise ValidationError(f"Secret scan could not read {rel(path)}: {exc}") from exc
+            raise ValidationError(
+                f"Secret scan could not read {rel(path)!r}: {type(exc).__name__}; "
+                "missing, unreadable or unsupported path (symlinks are not followed)"
+            ) from exc
         scanned += 1
     return scanned, matches
 
@@ -447,13 +643,15 @@ def check_frozen_digests() -> int:
 def main() -> int:
     checks: list[tuple[str, Any]] = []
     try:
+        # Reject unsupported tracked content/paths and credentials before any
+        # format parser can follow a symlink or echo a credential in an error.
+        scanned_files, secret_matches = check_secrets()
         checks.append(("YAML files", check_yaml()))
         checks.append(("CSV files", check_csv()))
         checks.append(("JSON files", check_json()))
         task_count, listed_count = check_task_graph_and_state()
         checks.append(("Task registry entries", task_count))
         checks.append(("State-listed task entries", listed_count))
-        scanned_files, secret_matches = check_secrets()
         checks.append(("Text files secret-scanned", scanned_files))
         checks.append(("Secret matches", secret_matches))
         checks.append(("Frozen digests verified", check_frozen_digests()))
