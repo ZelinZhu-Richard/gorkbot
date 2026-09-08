@@ -130,6 +130,119 @@ class GovernanceValidationTests(unittest.TestCase):
         ):
             validator.check_task_graph_and_state()
 
+    def test_review_reproduction_matching_execution_typo_is_rejected(self):
+        # Copy the real, valid graph; E3-003 is READY with satisfied dependencies.
+        for relative in ("01_governance/TASK_REGISTRY.yaml", "01_governance/PROJECT_STATE.yaml"):
+            shutil.copyfile(REPOSITORY_ROOT / relative, self.root / relative)
+        self.tasks = yaml.safe_load((self.root / "01_governance/TASK_REGISTRY.yaml").read_text())["tasks"]
+        self.state = yaml.safe_load((self.root / "01_governance/PROJECT_STATE.yaml").read_text())
+        self.set_current_command("MODE: EXECUTE-TASK_E3-003")
+        self.write_governance()
+        with self.assertRaisesRegex(
+            validator.ValidationError, "Unrecognized MODE command: 'EXECUTE-TASK_E3-003'"
+        ):
+            validator.check_task_graph_and_state()
+
+    def test_execution_like_unknown_modes_fail_regardless_of_ready_count(self):
+        for ready_count in (0, 1, 2):
+            for prefix in ("EXECUTE-TASK", "EXECUTE_TASKS", "RUN_TASK", "EXECUTE"):
+                for target in ("E3-003", "MISSING"):
+                    mode = f"{prefix}_{target}"
+                    with self.subTest(ready_count=ready_count, mode=mode):
+                        statuses = {"E3-003": "BACKLOG"}
+                        statuses.update({f"READY-{i}": "READY" for i in range(ready_count)})
+                        self.write_routing_fixture(statuses, f"MODE: {mode}")
+                        with self.assertRaisesRegex(
+                            validator.ValidationError, f"Unrecognized MODE command: '{mode}'"
+                        ):
+                            validator.check_task_graph_and_state()
+
+    def test_unknown_modes_fail_even_with_ready_apparent_targets(self):
+        for mode in (
+            "EXECUTE-TASK_E3-003", "EXECUTE_TASKS_E3-003", "RUN_TASK_E3-003",
+            "EXECUTE_E3-003", "VERIFY-TASK_E3-002", "STATUS_EXTRA", "SOMETHING_UNKNOWN",
+            "REVIEW_ANYTHING", "VERIFY_ANYTHING", "PLAN_ANYTHING", "AUDIT_ANYTHING",
+            "RUN_ANYTHING", "EXECUTE_ANYTHING", "INITIALIZE_ENGINEERING_PREVIEW_EXTRA",
+        ):
+            with self.subTest(mode=mode):
+                self.write_routing_fixture(
+                    {"E3-003": "READY", "E3-002": "READY"}, f"MODE: {mode}"
+                )
+                with self.assertRaisesRegex(
+                    validator.ValidationError, f"Unrecognized MODE command: '{mode}'"
+                ):
+                    validator.check_task_graph_and_state()
+
+    def test_parameterized_families_require_nonempty_well_formed_suffixes(self):
+        for family in (
+            "EXECUTE_TASK", "REVIEW_TASK", "FIX_TASK", "VERIFY_TASK", "PLAN_STAGE", "VERIFY_STAGE",
+        ):
+            for suffix, reason in (
+                ("", "Unrecognized MODE command"),
+                ("_", "malformed MODE command"),
+                ("__E3-003", "malformed MODE command"),
+                ("_E3-003_", "malformed MODE command"),
+                ("_E3--003", "malformed MODE command"),
+                ("_E3-003/OTHER", "malformed MODE command"),
+                ("_E3-003.extra", "malformed MODE command"),
+                ("_e3-003", "malformed MODE command"),
+            ):
+                with self.subTest(family=family, suffix=suffix):
+                    # Even a matching registry entry cannot permit malformed syntax.
+                    statuses = {suffix[1:]: "READY"} if suffix[1:] else {}
+                    self.write_routing_fixture(statuses, f"MODE: {family}{suffix}")
+                    with self.assertRaisesRegex(validator.ValidationError, reason):
+                        validator.check_task_graph_and_state()
+
+    def test_stage_families_reject_nonnumeric_and_partial_suffixes(self):
+        for family in ("PLAN_STAGE", "VERIFY_STAGE"):
+            for stage in ("E", "S3", "THREE", "3E", "E3_EXTRA", "3_EXTRA", "E3-003"):
+                with self.subTest(family=family, stage=stage):
+                    self.write_routing_fixture({}, f"MODE: {family}_{stage}")
+                    with self.assertRaisesRegex(validator.ValidationError, "Unrecognized MODE command"):
+                        validator.check_task_graph_and_state()
+
+    def test_all_documented_literal_modes_and_authorized_extension_pass(self):
+        # Independent expectations from MASTER_OPERATING_PROMPT, Operating modes,
+        # plus TASK_REGISTRY E0-001-A1; do not import the implementation's allowlist.
+        for mode in (
+            "INITIALIZE", "STATUS", "ADVANCE_STAGE", "AUDIT_ARCHITECTURE", "AUDIT_SECURITY",
+            "AUDIT_PRODUCT", "BENCHMARK_MODELS", "PREPARE_VC", "RESUME",
+            "INITIALIZE_ENGINEERING_PREVIEW",
+        ):
+            with self.subTest(mode=mode):
+                self.write_routing_fixture({"E3-003": "BACKLOG"}, f"MODE: {mode}")
+                self.assertEqual(validator.check_task_graph_and_state(), (2, 2))
+
+    def test_documented_parameterized_families_and_suffix_conventions_pass(self):
+        for family in ("EXECUTE_TASK", "REVIEW_TASK", "FIX_TASK", "VERIFY_TASK"):
+            for target in ("S0-001", "S12-001", "E0-001", "E3-003", "E5-001", "TARGET", "TASK_1-A"):
+                with self.subTest(family=family, target=target):
+                    status = "READY" if family == "EXECUTE_TASK" else "BACKLOG"
+                    self.write_routing_fixture({target: status}, f"MODE: {family}_{target}")
+                    self.assertEqual(validator.check_task_graph_and_state(), (2, 2))
+        for family in ("PLAN_STAGE", "VERIFY_STAGE"):
+            for stage in ("0", "1", "12", "E0", "E3", "E5"):
+                with self.subTest(family=family, stage=stage):
+                    self.write_routing_fixture({}, f"MODE: {family}_{stage}")
+                    self.assertEqual(validator.check_task_graph_and_state(), (1, 1))
+
+    def test_nonexecution_task_targets_require_registry_membership(self):
+        for family in ("REVIEW_TASK", "FIX_TASK", "VERIFY_TASK"):
+            with self.subTest(family=family):
+                self.write_routing_fixture({}, f"MODE: {family}_MISSING")
+                with self.assertRaisesRegex(
+                    validator.ValidationError, f"{family} target 'MISSING' is not in TASK_REGISTRY"
+                ):
+                    validator.check_task_graph_and_state()
+
+    def test_nonexecution_task_modes_do_not_require_execution_eligible_status(self):
+        for family in ("REVIEW_TASK", "FIX_TASK", "VERIFY_TASK"):
+            for status in ("BACKLOG", "BLOCKED", "VERIFIED", "READY_FOR_REVIEW", "IN_PROGRESS"):
+                with self.subTest(family=family, status=status):
+                    self.write_routing_fixture({"E3-002": status}, f"MODE: {family}_E3-002")
+                    self.assertEqual(validator.check_task_graph_and_state(), (2, 2))
+
     def test_readme_state_command_mismatch_fails(self):
         self.write_routing_fixture({"TARGET": "READY"}, "MODE: EXECUTE_TASK_TARGET")
         self.state["next_recommended_action"] = "MODE: REVIEW_TASK_TARGET"
@@ -155,7 +268,7 @@ class GovernanceValidationTests(unittest.TestCase):
 
     def test_malformed_and_ambiguous_commands_fail_in_each_source(self):
         for command, reason in (
-            ("MODE: EXECUTE_TASK", "missing or malformed target"),
+            ("MODE: EXECUTE_TASK", "Unrecognized MODE command: 'EXECUTE_TASK'"),
             ("MODE: EXECUTE_TASK_", "malformed MODE command"),
             ("MODE: EXECUTE_TASK_T-002/OTHER", "malformed MODE command"),
             ("MODE: EXECUTE_TASK_T-002 or T-001", "malformed MODE command"),
@@ -164,8 +277,8 @@ class GovernanceValidationTests(unittest.TestCase):
             ("MODE: EXECUTE_TASK_T-002\nMODE: EXECUTE_TASK_T-001", "exactly one MODE"),
             ("No current command", "exactly one MODE"),
         ):
-            # Missing-target syntax reaches per-target validation only if both
-            # sources agree; parser errors are also exercised in each source.
+            # Incomplete families reach mode recognition only if both sources
+            # agree; parser errors are also exercised in each source.
             for source in ("both", "readme", "state") if command != "MODE: EXECUTE_TASK" else ("both",):
                 with self.subTest(command=command, source=source):
                     self.set_current_command(command if source != "state" else "MODE: EXECUTE_TASK_T-002")
@@ -195,7 +308,8 @@ class GovernanceValidationTests(unittest.TestCase):
         readme.write_text(
             "## Historical example\n```text\nMODE: EXECUTE_TASK_MISSING\n```\n\n"
             + readme.read_text(encoding="utf-8")
-            + "\n## Other examples\n```text\nMODE: EXECUTE_TASK_T-001\n```\n",
+            + "\n## Other examples\n```text\nMODE: EXECUTE_TASK_T-001\n```\n"
+            + "\n## Historical typo\n```text\nMODE: EXECUTE-TASK_E3-003\n```\n",
             encoding="utf-8",
         )
         self.state["next_recommended_action"] += " — execute only this registry entry."

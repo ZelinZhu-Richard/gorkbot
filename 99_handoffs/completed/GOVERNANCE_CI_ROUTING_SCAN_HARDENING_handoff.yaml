@@ -125,3 +125,88 @@ remaining_failures: []
 independent_review_status: PENDING
 recommended_next_task: "Independent review of this uncommitted bounded maintenance patch."
 repository_commit_or_patch: "Uncommitted working-tree patch on chore/governance-ci-routing-and-scan, based on 3e695d2d946c4341d51a61ed541962f2be27a8b4."
+
+malformed_mode_correction_addendum:
+  recorded_at: "2026-09-08T17:44:21Z"
+  author_model: "Codex (GPT-6 session; author/fixer)"
+  classification: "VERIFIED FACT for the local checks recorded below; author-side evidence only, not independent project verification."
+  finding: "Reject malformed execution-mode spellings."
+  requested_pr: 5
+  reviewed_commit: a317802cdca8a94118e36eb7c0aa98ff4e256783
+  working_branch: chore/governance-ci-routing-and-scan
+  scope_authority: "Direct user instruction for a bounded repository-validator correction, not an E3 task. Only scripts/validate_governance.py, tests/test_validate_governance.py and an append-only correction to this handoff are authorized. Governance files are read-only; no registry task/status update is authorized."
+  historical_evidence_preserved: "All bytes preceding this addendum retain the original maintenance author's results and limitations. They do not claim this correction was included in the earlier 59-test runs or earlier mutation checks."
+  files_modified:
+    - scripts/validate_governance.py
+    - tests/test_validate_governance.py
+    - 99_handoffs/completed/GOVERNANCE_CI_ROUTING_SCAN_HARDENING_handoff.yaml
+  files_created: []
+  files_deleted: []
+  documented_mode_grammar:
+    primary_authority: "MASTER_OPERATING_PROMPT.md, Operating modes."
+    literal_modes:
+      - INITIALIZE
+      - STATUS
+      - ADVANCE_STAGE
+      - AUDIT_ARCHITECTURE
+      - AUDIT_SECURITY
+      - AUDIT_PRODUCT
+      - BENCHMARK_MODELS
+      - PREPARE_VC
+      - RESUME
+    repository_extension:
+      literal: INITIALIZE_ENGINEERING_PREVIEW
+      authority: "01_governance/TASK_REGISTRY.yaml, E0-001.scope_amendments E0-001-A1 records the founder's explicit mode under confirmed D-016. PROJECT_STATE.s1_003_authorization_reconciliation also records this mode. No arbitrary INITIALIZE_* family is permitted."
+    task_families: [EXECUTE_TASK, REVIEW_TASK, FIX_TASK, VERIFY_TASK]
+    task_suffix: "Preserve existing [A-Z0-9]+(?:[_-][A-Z0-9]+)* token syntax and require exact registry membership for all four task families. Supports S0-001/S12-001 and E0-001/E3-003/E5-001 conventions without restricting commands to today's IDs."
+    stage_families: [PLAN_STAGE, VERIFY_STAGE]
+    stage_suffix: "E?[0-9]+: nonempty ASCII numeric stages, optionally prefixed with E. Numeric stages come from the Master prompt; Engineering Preview conventions come from its D-016 override and ENGINEERING_PREVIEW_CHARTER.md section 17. Recognition does not validate a stage gate or authorize stage work."
+    matching: "Exact literal membership or re.fullmatch of a complete parameterized command; no prefix-only recognition, autocorrection, case conversion, hyphen normalization, fuzzy matching, or README-derived permissions."
+  unknown_mode_failure_behavior: "After the existing extraction and source-agreement checks, recognize_mode raises ValidationError for every unrecognized token before mode-specific routing. Empty/malformed lexical suffixes still fail the existing malformed MODE command check. An incomplete family is not a literal mode."
+  execution_eligibility: "All task-targeted commands require an existing registry target. Only the exact EXECUTE_TASK family additionally requires exact READY or CLAIMED status. Existing dependency-closure and state-list checks are unchanged. Review, fix, verification, planning and stage recognition do not inherit execution-status requirements. Recognition grants no spending, run admission, empirical execution, stage advancement, autonomy or build authority."
+  exact_review_reproduction:
+    setup: "An isolated temporary fixture copies the current repository task registry and project state, then places MODE: EXECUTE-TASK_E3-003 in both the designated README block and PROJECT_STATE.next_recommended_action. E3-003 is READY with satisfied dependencies in this reviewed snapshot."
+    result: "ValidationError: Unrecognized MODE command: 'EXECUTE-TASK_E3-003'"
+    additional_negative_matrix: "EXECUTE-TASK, EXECUTE_TASKS, RUN_TASK and EXECUTE spellings with apparent BACKLOG E3-003 or nonexistent MISSING targets are each rejected for Unrecognized MODE command with zero, one and two READY tasks. Separate READY-target cases also cover VERIFY-TASK_E3-002, STATUS_EXTRA, arbitrary unknown modes and unauthorized broad prefixes."
+    malformed_suffixes: "All six parameterized families reject absent suffixes, trailing/doubled separators, slash/dot suffixes and lowercase IDs, even when a malformed ID exists as a READY registry entry. Stage-specific tests reject E, S3, THREE, 3E, E3_EXTRA, 3_EXTRA and E3-003."
+  valid_mode_compatibility: "All nine documented literals and the one substantiated extension pass. All six parameterized families have positive syntax cases; numeric and Engineering Preview stages pass. READY/CLAIMED execution routes pass; existing ineligible/nonexistent execution failures remain effective. Nonexecution task modes accept BACKLOG/BLOCKED/VERIFIED/READY_FOR_REVIEW/IN_PROGRESS targets but reject nonexistent targets. Historical examples including a malformed execution spelling outside the designated block are ignored; command mismatch and ambiguity tests remain intact."
+  environment:
+    interpreter: /opt/anaconda3/bin/python
+    python: "3.13.9, packaged by Anaconda, Inc., Clang 20.1.8"
+    pyyaml: "6.0.3"
+    git: "2.55.0"
+    dependency_changes: NONE
+  commands_and_results:
+    - command: "PYTHONDONTWRITEBYTECODE=1 python -m unittest discover -s tests -v"
+      result: "Baseline: exit 0, 59 tests passed. Tests-first run against the unfixed validator: exit 1, 68 tests run, 63 failures including subtests, 0 errors. Corrected validator: exit 0, all 68 tests passed in 3.149s, 0 failures/errors. All 59 earlier test methods retained and nine added."
+    - command: "PYTHONDONTWRITEBYTECODE=1 python scripts/validate_governance.py"
+      result: "Exit 0: 89 YAML, 7 CSV, 1 JSON, 25 registry tasks, 25 state entries, 160 text files scanned, 0 secret matches, 30 frozen digests."
+    - command: "git diff --check"
+      result: "Exit 0, no whitespace errors."
+    - command: "git status --short; git branch --show-current; git rev-parse HEAD; git diff --cached --raw; shasum -a 256 .git/index"
+      result: "Initial working tree clean; branch and HEAD match the requested branch and reviewed commit. Working-tree modifications are restricted to the three listed paths. Staged diff empty; index SHA-256 unchanged at 75d63cee5bca48002f4d879d122aa4453923e104acc3860c3b934ca2254326d2."
+    - command: "PYTHONDONTWRITEBYTECODE=1 python /private/tmp/gorkbot_mode_mutation_check.py"
+      result: "Scratch control/mutant results below. Runner exits 0 after asserting the control succeeds and the mutant is caught."
+    - command: "PYTHONDONTWRITEBYTECODE=1 python - (read-only SHA-256 and AST comparisons against a317802cdca8a94118e36eb7c0aa98ff4e256783)"
+      result: "157 tracked files outside the allowed set are byte-identical; no untracked additions. All preexisting validator functions/classes except the routing and renamed target-check functions are AST-identical, including extraction, dependency closure, reconciliation, scanning, Git enumeration and frozen-digest enforcement. All 59 previous test methods remain; only the incomplete-family diagnostic expectation and the historical-example test were updated."
+  mutation_check:
+    method: "Copy only validator, tests, README, PROJECT_STATE and TASK_REGISTRY to separate TemporaryDirectory roots. On the mutant only, replace recognize_mode's final Unrecognized MODE command ValidationError with return mode, None. This restores permissive acceptance of unknown modes while retaining recognized task-target checks. Run full unittest discovery in a subprocess for each copy."
+    control: {tests_run: 68, exit_code: 0, failures_including_subtests: 0, errors: 0}
+    allow_unknown_modes: {tests_run: 68, exit_code: 1, failures_including_subtests: 60, errors: 0}
+    catching_tests_and_failure_counts:
+      test_execution_like_unknown_modes_fail_regardless_of_ready_count: 24
+      test_malformed_and_ambiguous_commands_fail_in_each_source: 1
+      test_parameterized_families_require_nonempty_well_formed_suffixes: 6
+      test_review_reproduction_matching_execution_typo_is_rejected: 1
+      test_stage_families_reject_nonnumeric_and_partial_suffixes: 14
+      test_unknown_modes_fail_even_with_ready_apparent_targets: 14
+    local_evidence: "/private/tmp/gorkbot_modes_mutation_results.json and gorkbot_modes_mutation_control.log / gorkbot_modes_mutation_allow_unknown_modes.log; scratch repositories were temporary and these local runner/log artifacts are not committed."
+  scope_preservation: "README, authoritative governance state, CI workflow, architecture, ADRs, E3 protocols, QPA, model records, autonomy and all unrelated validator logic are unchanged. No E3 task was executed. No branch/PR was created; no repository staging, commit, push, merge or review-conversation resolution occurred. Existing scanner fixtures perform Git writes only inside isolated temporary test repositories."
+  known_limitations:
+    - "This is author-side local verification. Independent review is pending; the finding is not marked independently verified or remotely resolved."
+    - "Remote CI has not run on these uncommitted changes. The CI Python 3.12/PyYAML 6.0.2 combination was not exercised locally."
+    - "Recognition is a fixed repository-authority allowlist; any future documented mode extension requires an explicit validator/test update. Syntax recognition alone is not approval enforcement or a production-readiness claim."
+    - "Existing scanner limitations in the historical handoff remain unchanged."
+  remaining_failures: []
+  independent_review_status: PENDING
+  recommended_next_action: "Focused independent review of this uncommitted correction on the existing branch."

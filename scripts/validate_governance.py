@@ -47,6 +47,34 @@ LIST_STATUS_CLASSES = {
     "blocked_task_ids": "blocked",
 }
 
+# Mode authority: MASTER_OPERATING_PROMPT.md, "Operating modes". The one
+# repository extension is founder-recorded in 01_governance/TASK_REGISTRY.yaml,
+# E0-001.scope_amendments E0-001-A1 (INITIALIZE_ENGINEERING_PREVIEW under D-016).
+# README is validated input, never a source of permitted modes.
+LITERAL_MODES = {
+    "INITIALIZE",
+    "STATUS",
+    "ADVANCE_STAGE",
+    "AUDIT_ARCHITECTURE",
+    "AUDIT_SECURITY",
+    "AUDIT_PRODUCT",
+    "BENCHMARK_MODELS",
+    "PREPARE_VC",
+    "RESUME",
+    "INITIALIZE_ENGINEERING_PREVIEW",
+}
+TASK_MODE_FAMILIES = ("EXECUTE_TASK", "REVIEW_TASK", "FIX_TASK", "VERIFY_TASK")
+# Preserve the existing registry-backed target token grammar: nonempty ASCII
+# uppercase/digit segments separated by single underscores or hyphens. This
+# includes TASK_REGISTRY's S0-001/S1-001 and E0-001/E3-003 conventions without
+# limiting routes to today's task IDs; membership is checked separately.
+TASK_MODE_PATTERN = re.compile(
+    rf"({'|'.join(TASK_MODE_FAMILIES)})_([A-Z0-9]+(?:[_-][A-Z0-9]+)*)"
+)
+# Numeric stages are documented in the Master prompt; E-prefixed stages in its
+# D-016 override and 03_product/ENGINEERING_PREVIEW_CHARTER.md, section 17.
+STAGE_MODE_PATTERN = re.compile(r"(PLAN_STAGE|VERIFY_STAGE)_(E?[0-9]+)")
+
 SECRET_PATTERNS: tuple[tuple[str, re.Pattern[str]], ...] = (
     (
         "private key",
@@ -363,6 +391,21 @@ def extract_mode(text: Any, label: str) -> str:
     return match.group(1)
 
 
+def recognize_mode(mode: str) -> tuple[str, str | None]:
+    """Recognize a complete mode token and return its family and optional target.
+
+    Recognition grants no spending, run admission, stage advancement or build
+    authority. Eligibility and every separately required approval remain separate.
+    """
+    if mode in LITERAL_MODES:
+        return mode, None
+    for pattern in (TASK_MODE_PATTERN, STAGE_MODE_PATTERN):
+        match = pattern.fullmatch(mode)
+        if match is not None:
+            return match.group(1), match.group(2)
+    raise ValidationError(f"Unrecognized MODE command: {mode!r}")
+
+
 def check_readme_routing(
     state: dict[str, Any], task_by_id: dict[str, dict[str, Any]]
 ) -> None:
@@ -393,22 +436,23 @@ def check_readme_routing(
             f"PROJECT_STATE next_recommended_action {state_mode!r}"
         )
 
-    check_execution_target(readme_mode, task_by_id)
+    family, target = recognize_mode(readme_mode)
+    if family in TASK_MODE_FAMILIES and target is not None:
+        check_task_target(family, target, task_by_id)
 
 
-def check_execution_target(mode: str, task_by_id: dict[str, dict[str, Any]]) -> None:
+def check_task_target(
+    family: str, task_id: str, task_by_id: dict[str, dict[str, Any]]
+) -> None:
+    # All recognized task families must name an existing registry entry.
+    if task_id not in task_by_id:
+        raise ValidationError(f"{family} target {task_id!r} is not in TASK_REGISTRY")
     # Summary classification and prerequisite completion are separate checks.
     # AGENTS.md permits only READY/CLAIMED execution, regardless of READY count.
     # This routing check grants no empirical run admission, budget or E3 authority.
-    # Other lifecycle/planning/stage modes do not imply execution eligibility.
-    if not mode.startswith("EXECUTE_TASK"):
+    # Recognized review/fix/verification modes do not imply execution eligibility.
+    if family != "EXECUTE_TASK":
         return
-    match = re.fullmatch(r"EXECUTE_TASK_([A-Z0-9]+(?:[_-][A-Z0-9]+)*)", mode)
-    if match is None:
-        raise ValidationError("EXECUTE_TASK command has a missing or malformed target")
-    task_id = match.group(1)
-    if task_id not in task_by_id:
-        raise ValidationError(f"EXECUTE_TASK target {task_id!r} is not in TASK_REGISTRY")
     status = task_by_id[task_id].get("status")
     if status not in {"READY", "CLAIMED"}:
         raise ValidationError(
