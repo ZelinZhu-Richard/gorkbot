@@ -1,0 +1,220 @@
+handoff_id: PR1_PREMERGE_CLOSEOUT_2026-10-12
+task_id: null
+stage: repository_maintenance
+author_model: "Codex primary session"
+reviewer_requested: "Fresh independent agent review of the maintenance patch; no stage/task verification"
+started_at: null
+completed_at: null
+scope_authority: >-
+  Direct Founder MODE RESUME request for PR #1 closeout. This is repository
+  maintenance, not a registered E3 task. No task ID, task-state transition,
+  empirical result, model assignment, QPA approval or autonomy authority is created.
+baseline:
+  pull_request: https://github.com/ZelinZhu-Richard/gorkbot/pull/1
+  base_branch: main
+  base_commit: 64d4bbccc04c9ed2d5f1549476b78ff2a4cfd633
+  source_branch: chore/initialize-project-materials
+  source_commit: 850cb42eef1ffa55553706dd35ab7350eb75902f
+  maintenance_branch: chore/pr1-premerge-closeout
+files_read:
+  - AGENTS.md
+  - MASTER_OPERATING_PROMPT.md
+  - SECURITY.md
+  - README.md
+  - 01_governance/PROJECT_STATE.yaml
+  - 01_governance/TASK_REGISTRY.yaml
+  - 01_governance/DECISION_LOG.md
+  - scripts/validate_governance.py
+  - tests/test_validate_governance.py
+  - .github/workflows/governance-ci.yml
+  - 06_evaluation/ENGINEERING_PREVIEW_EVALUATION_SUITE.md
+  - 06_evaluation/technical_validation/E3_TECHNICAL_VALIDATION_PROTOCOLS.yaml
+  - 10_checkpoints/stage_checkpoints/ENGINEERING_PREVIEW_V0_1_RELEASE_ACCEPTANCE.yaml
+  - 10_checkpoints/stage_checkpoints/ENGINEERING_PREVIEW_E1_SPECIFICATION_GATE_VERIFICATION.yaml
+  - 10_checkpoints/stage_checkpoints/ENGINEERING_PREVIEW_E2_ARCHITECTURE_VERIFICATION.yaml
+  - 10_checkpoints/stage_checkpoints/ENGINEERING_PREVIEW_E2_ARCHITECTURE_GATE_VERIFICATION.yaml
+  - 99_handoffs/HANDOFF_TEMPLATE.yaml
+  - 99_handoffs/completed/E1-002_verifier_review.yaml
+  - 99_handoffs/completed/E2-006_verifier_review.yaml
+  - 99_handoffs/completed/E3-001_fixer_handoff.yaml
+  - 99_handoffs/completed/E3-001_verifier_review.yaml
+  - 99_handoffs/completed/E3-002_verifier_review.yaml
+  - 99_handoffs/completed/GOVERNANCE_CI_FOUR_FINDINGS_fixer_handoff.yaml
+  - 99_handoffs/completed/GOVERNANCE_CI_ROUTING_SCAN_HARDENING_handoff.yaml
+files_created:
+  - 99_handoffs/completed/PR1_PREMERGE_CLOSEOUT_handoff.yaml
+files_modified:
+  - scripts/validate_governance.py
+  - tests/test_validate_governance.py
+files_deleted: []
+decisions_made:
+  - "Protect the entire accepted post-E2-gate release checkpoint with an additive exact SHA-256 pin; retain and require the historical E2-006 pin unchanged. No checkpoint, historical review, historical digest source or accepted decision is edited."
+  - "There is no blanket exemption for status fields. Rollback to the historical artifact and any further change, including metadata or stage status, fail validation."
+  - "Traverse declared task dependencies from completed roots as well as ready/active roots. The existing completed-status classifier and global missing-reference/self-dependency/cycle checks remain unchanged."
+  - "Preserve the exact supported qualified VERIFIED status as Phase A completion only. Dependency satisfaction and execution eligibility grant no empirical admission, spending or build authority."
+  - "Unrelated BACKLOG tasks, decision_dependencies and blocked_by do not become task prerequisites. A disconnected VERIFIED root still must satisfy its own declared dependency closure."
+  - "Update the previous unrelated-task positive fixture to give its historical VERIFIED task an empty dependency list; add an explicit negative fixture for the formerly accepted disconnected VERIFIED -> BACKLOG graph. Order the reopened READY-root fixture first so completed intermediates cannot mask the intended READY failure assertion."
+  - "Keep the workflow unchanged: regression tests already run unconditionally after dependency installation and before the validator. Read-only permissions, triggers, dependency/Python versions, timeout and whitespace step are preserved."
+assumptions_added: []
+frozen_artifact_provenance:
+  historical_pin: 69f9c76445be0e6ee7ec3f0c68ddef8d1f29e307bedf26f5453cdfd5d280cc83
+  accepted_current_digest: 5a29dffcc4618b44cfe5669306dcf646fa471c5895a215c6b8fe6e6a860752e7
+  historical_source_reviewed_commit: 85902bfc61f9ebb8363f6b4d69194c3a1a275f14
+  historical_source_record_commit: f413dd8decc2964c042d911e96e5982681b13017
+  checkpoint_modifying_commits:
+    - commit: 0044276289378051ecfe32ab04318c50aee3b4ad
+      purpose: E1-002 author
+      digest: a9bc83d6da861a02403ae1b941cbbe641a7a02d4e60ab64c20edea9f357b72d0
+    - commit: 557e3354479b635b0872b4c60e914b8f29e50185
+      purpose: E1-002 fixer; subsequently independently verified
+      digest: 30d0c1ace90f24e032046246fde9c59109638c5409ecab6322f2f8dd5853d69c
+    - commit: c2f70931ce13d0619a0dff4f48951e9278bb0c1c
+      purpose: Independent E1 gate; e1_specification_gate and future_stage_prerequisites.E1_gate updates
+      digest: 69f9c76445be0e6ee7ec3f0c68ddef8d1f29e307bedf26f5453cdfd5d280cc83
+    - commit: c8c1c36dc3996b1484e257cc94ec82bc14427daa
+      purpose: Independent E2 gate; only future_stage_prerequisites.E2_gate NOT_EVALUATED to VERIFIED
+      digest: 5a29dffcc4618b44cfe5669306dcf646fa471c5895a215c6b8fe6e6a860752e7
+  authorization_evidence:
+    - "E1-002_verifier_review.yaml reviewed fixer commit 557e3354479b635b0872b4c60e914b8f29e50185, the authorized checkpoint scope, and all eleven challenger findings."
+    - "The E1 gate record expressly records its gate/status changes and post-edit validation. Those changes already belong to the historical E2-006 pin."
+    - "E2-006_verifier_review.yaml note V-E2-006-N8 assigns the release prerequisite block to VERIFY_STAGE_E2."
+    - "ENGINEERING_PREVIEW_E2_ARCHITECTURE_GATE_VERIFICATION.yaml records a fresh independent gate verifier reviewing f413dd8decc2964c042d911e96e5982681b13017. G-E2-N6 authorizes the exact one-field transition and post_edit_validation records the accepted current full-file digest."
+    - "The E2 gate record's broad no-frozen-E1-file-modified wording is qualified by its explicit edit disclosures in G-E2-N6, post_edit_validation and files_modified. Whole-file bytes changed; frozen evaluation semantics did not. Preserve that historical record verbatim."
+    - "E3-001_fixer_handoff.yaml reports the same sole historical mismatch and attributes it to c8c1c36; its independent verifier checks frozen-path preservation."
+    - "E3_TECHNICAL_VALIDATION_PROTOCOLS.yaml pins the current digest. E3-002_verifier_review.yaml independently reproduces all nine source digests, including this checkpoint, at 2cab09c77082bd5771a8ccf8bfb17e0db8ef9734; that review is committed as f6d0fb6a67851d995dce072960b042489535ae9c."
+  independent_provenance_reproduction:
+    role: Fresh read-only checkpoint_provenance agent
+    result: >-
+      Exactly four modifying commits; current bytes equal the E2 gate commit.
+      Reversing exactly the E2_gate line reproduces the historical pinned bytes
+      and digest. Across all 39 historical source pins, 38 match and this sole
+      mismatch is explained. Historical E2-006 checkpoint, E2 gate record,
+      E2-006 review and E3-002 review remain byte-identical to their original commits.
+    authority_conclusion: Existing transition reconciled; no new Founder approval invented or required for it
+  normative_fields: >-
+    All current checkpoint bytes are protected, including thresholds, populations,
+    denominators, measurement definitions, cases, protocols, hard invariants,
+    exclusions, non-waivable blockers, acceptance predicates, release approval,
+    QPA null values, history and unadvanced E3/E4/E5 fields. Threshold/population
+    changes require the existing prospective E1-002 amendment and independent
+    review rules; semantic changes also require the specified E1-001 process.
+  mutable_projection_boundary: >-
+    The only established post-pin transition is future_stage_prerequisites.E2_gate
+    NOT_EVALUATED to VERIFIED in c8c1c36. This evidence grants no ongoing mutability
+    to that field, other statuses, measurement values or acceptance criteria.
+review_thread_disposition:
+  - comment_id: 3941489757
+    finding: Unknown task statuses bypass validation
+    disposition: Addressed in merged PR 4; explicit status classifier and unknown/missing-status regression pass
+  - comment_id: 3941489760
+    finding: READY task prerequisites not verified
+    disposition: Addressed in merged PR 4; direct/transitive ready/active closure regressions pass and remain enforced
+  - comment_id: 3941489765
+    finding: Tracked files larger than 5 MB skipped
+    disposition: Addressed in merged PR 4; large-text detection, clean large text and bounded-line regressions pass
+  - comment_id: 3941489767
+    finding: Registry tasks omitted from state lists
+    disposition: Addressed in merged PR 4; exact reconciliation and unknown/duplicate/omitted task regressions pass
+  - comment_id: 3952307419
+    finding: Zero/multiple READY routes bypass eligibility
+    disposition: Addressed in merged PR 5; per-target routing regressions pass; follow-up 3124c293f9a6c0453725936d546e374a7c119ac8 rejects undocumented modes
+  - comment_id: 3952307422
+    finding: Tracked files in excluded directories skipped
+    disposition: Addressed in merged PR 5; security_files uses Git-aware indexed enumeration independent of repo_files exclusions; real forced-tracked fixture regressions pass
+  - comment_id: 3952307425
+    finding: Undecodable files silently skipped
+    disposition: Addressed in merged PR 5; strict incremental UTF-8, NUL/binary rejection and safe read-error regressions pass
+  - comment_id: 3963250740
+    finding: Release acceptance omitted from frozen digest checks
+    disposition: Fixed in this local patch; historical/current pins reconciled and complete current bytes protected
+  - comment_id: 3963250744
+    finding: VERIFIED task dependency closures not enforced
+    disposition: Fixed in this local patch; completed roots require fully completed declared closures
+  # All nine threads were unresolved when inspected. Outdated flags alone were
+  # not treated as evidence of remediation. No thread resolution was performed.
+tests_run:
+  - "python -m unittest discover -s tests -v"
+  - "python scripts/validate_governance.py"
+  - "git diff --check"
+  - "git status --short"
+  - "Byte comparison of all baseline tracked paths outside the two source/test edits"
+  - "Scratch-copy mutation checks; no production files edited by mutations"
+test_results:
+  - "78 tests pass (68 baseline plus 10 new methods); new negatives assert the intended frozen-digest or dependency-closure diagnostic."
+  - "Completed-root coverage includes direct/two-hop/three-hop invalid closures, ordinary and exact qualified VERIFIED roots, valid chains/diamond graphs, and disconnected completed roots."
+  - "Checkpoint coverage includes threshold/population/denominator/acceptance changes, historical rollback, missing/replaced historical pin, missing artifact, unauthorized E3 status and appended metadata. The valid current artifact passes and the source pin is not rewritten."
+  - "Initial validator run before adding this handoff: 89 YAML, 7 CSV, 1 JSON, 25 registry tasks, 25 state-listed tasks, 160 scanned text files, zero secret matches, 31 frozen digests."
+  - "All 158 baseline tracked paths outside scripts/validate_governance.py and tests/test_validate_governance.py are byte-identical to baseline 850cb42eef1ffa55553706dd35ab7350eb75902f."
+  - "README designated command and PROJECT_STATE agree exactly on EXECUTE_TASK_E3-003; E3-003 is READY with declared dependency E3-001 VERIFIED. This is a routing consistency check, not task execution."
+  - "Git diff whitespace check passes."
+  - "Validator including this handoff: 90 YAML, 7 CSV, 1 JSON, 25 registry tasks, 25 state-listed tasks, 161 scanned text files, zero secret matches, 31 frozen digests; exit 0."
+mutation_checks:
+  - "Omit release checkpoint from frozen selection: 6 selected tests, 10 failing assertions, exit 1."
+  - "Remove completed roots from dependency closure: 4 selected tests, 31 failing assertions, exit 1."
+  - "Remove per-target routing validation: 1 selected test, 3 failing assertions, exit 1."
+  - "Restore directory exclusion to the tracked security set: 1 selected test, 8 failing assertions, exit 1."
+  - "Restore UnicodeDecodeError -> continue: 1 selected test, 1 failing assertion, exit 1."
+  - "Every mutation was applied to a temporary scratch copy of tracked working-tree files; failures were assertions, not import/runtime errors."
+independent_patch_review:
+  status: NO_ACTIONABLE_FINDINGS
+  reviewer: Fresh premerge_patch_review agent
+  scope: Implementation, tests, provenance, routing, preservation of previous fixes and draft handoff
+  findings: "0 BLOCKER / HIGH / MEDIUM / LOW"
+  baseline: 850cb42eef1ffa55553706dd35ab7350eb75902f
+  reviewed_validator_sha256: 08289fb727ebc165f913469950143f85ee629fd6f36706de620434e47a1e70cd
+  reviewed_tests_sha256: 40cd1707c1d47846482b32d21eda0aa76fd7c297e9328724cfcf6b1f97daedf2
+  reviewed_validator_diff_sha256: c491cfcef9c4238a05cbcb6f82c2aadb78d4821a065626b949b5d78ac5cf0b91
+  reviewed_tests_diff_sha256: 80592333cf698933723be35bfc95224b08f6cd2b2bcced05987a73832683306f
+  reviewed_combined_executable_diff_sha256: 02d0ea195b5f1b425a54c149b683c222950edb6b57c170906fac03ba0524bca8
+  reviewed_draft_handoff_sha256: e1dccd9b845040d081033b2f29951a336f8772f0cd55cda1cb96354cd2c29204
+  reproduced_results:
+    - "78 tests pass in 3.773 seconds."
+    - "Independent 1728-case dependency DAG matrix: 864 accepted, 864 closure rejections, zero mismatches."
+    - "All five scratch mutations independently reproduced with 10/31/3/8/1 assertion failures respectively and zero execution errors."
+    - "Validator including draft handoff passes with 90/7/1 format counts, 25/25 tasks, 161 scanned files, zero matches and 31 frozen digests."
+    - "Four historical checkpoint digests reproduced; 39 source pins have exactly the one authorized mismatch; four cited historical records equal original commits; 158 baseline tracked paths outside executable edits unchanged."
+  limitations:
+    - "Local Python 3.13.9/PyYAML 6.0.3; exact CI runtime not tested. Initial python3 attempts failed at import because PyYAML was absent; successful checks used python."
+    - "GitHub metadata and the description update were not independently requeried by this reviewer; those are primary-agent readback evidence."
+    - "Subsequent handoff edits record this review result and publication state; no executable code changed after the reviewed fingerprints."
+    - "Independent logical agent role, not independent human, product, E3 or stage verification."
+security_checks:
+  - "No real credentials used; existing tests construct synthetic patterns only in isolated temporary fixtures."
+  - "Secret patterns, tracked-file enumeration, strict decoding, binary rejection, bounded reads and safe diagnostics are unchanged."
+  - "No accepted architecture, product, E3 protocol, QPA, model, registry, project-state, README, historical handoff, checkpoint or workflow edits."
+known_limitations:
+  - "Local Python 3.13.9 / PyYAML 6.0.3 differs from CI Python 3.12 / PyYAML 6.0.2; the exact CI environment was not run locally."
+  - "The additive post-gate pin is a specific existing authorization, not permission to automatically refresh hashes for future changes."
+  - "Pattern scanning covers working-tree bytes at indexed paths plus nonignored untracked files, not staged blobs/full history or an exhaustive credential audit. Unsupported binary/NUL/non-UTF-8 content and oversized lines still fail closed; POSIX no-follow APIs remain required."
+  - "Independent agent review is a separate logical role, not a human review or an E3/stage/product verification result."
+  - "The session start time was not captured."
+github_state_at_inspection:
+  head: 850cb42eef1ffa55553706dd35ab7350eb75902f
+  is_draft: false
+  mergeable: MERGEABLE
+  merge_state: CLEAN
+  submitted_reviews: Three Codex COMMENTED reviews; no APPROVED review returned
+  unresolved_threads: 9
+  baseline_checks: Two Governance CI Validate repository governance checks SUCCESS on 2026-09-08
+  baseline_check_urls:
+    - https://github.com/ZelinZhu-Richard/gorkbot/actions/runs/34291355980/job/102278379495
+    - https://github.com/ZelinZhu-Richard/gorkbot/actions/runs/34291352305/job/102278368020
+  branch_protection: "main protection endpoint returned 404 Branch not protected; effective branch-rules endpoint returned []"
+  limitation: Baseline green checks do not validate this uncommitted closeout patch
+github_description_update:
+  result: Updated and read back byte-for-byte by the primary agent
+  title_changed: false
+  head_base_or_state_changed: false
+  content: >-
+    Actual foundation scope, existing unconditional regression CI, current task
+    state, historical versus outstanding findings, reconciled checkpoint hashes
+    and authorization, local-only closeout evidence, pending publication/fresh CI,
+    branch-protection and licensing limits, and normal merge policy with separate
+    Founder confirmation. Removed stale draft and already-completed hygiene claims.
+  review_threads_resolved: 0
+unverified_claims: []
+blockers:
+  - "Earlier user instruction prohibits staging/committing/pushing; explicit approval to publish and integrate the reviewed patch has been requested."
+  - "Closeout patch has not reached PR #1's head or passed fresh GitHub checks."
+recommended_next_task: "On explicit approval, commit/push this reviewed maintenance branch, open its narrow PR, integrate via normal merge after CI, then recheck PR #1; merge PR #1 only with separate Founder confirmation."
+repository_commit_or_patch: "Uncommitted patch on chore/pr1-premerge-closeout, based on 850cb42eef1ffa55553706dd35ab7350eb75902f; no commit history rewritten."

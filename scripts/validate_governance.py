@@ -113,7 +113,25 @@ FROZEN_DIGEST_SOURCE = Path(
     "10_checkpoints/stage_checkpoints/"
     "ENGINEERING_PREVIEW_E2_ARCHITECTURE_VERIFICATION.yaml"
 )
+RELEASE_ACCEPTANCE_PATH = (
+    "10_checkpoints/stage_checkpoints/"
+    "ENGINEERING_PREVIEW_V0_1_RELEASE_ACCEPTANCE.yaml"
+)
+# Preserve the E2-006 historical pin. The independent E2 gate record's G-E2-N6
+# and post_edit_validation authorize and hash the sole subsequent change:
+# future_stage_prerequisites.E2_gate: NOT_EVALUATED -> VERIFIED, committed in
+# c8c1c36dc3996b1484e257cc94ec82bc14427daa. E3-002_verifier_review.yaml later
+# independently reproduces the post-gate digest. This additive pin freezes ALL
+# current bytes; it is not a general exemption for status fields or a repin of
+# historical evidence. Any further change requires its own governed review.
+RELEASE_ACCEPTANCE_HISTORICAL_DIGEST = (
+    "69f9c76445be0e6ee7ec3f0c68ddef8d1f29e307bedf26f5453cdfd5d280cc83"
+)
+RELEASE_ACCEPTANCE_POST_GATE_DIGEST = (
+    "5a29dffcc4618b44cfe5669306dcf646fa471c5895a215c6b8fe6e6a860752e7"
+)
 FROZEN_EXACT_PATHS = {
+    RELEASE_ACCEPTANCE_PATH,
     "06_evaluation/ENGINEERING_PREVIEW_EVALUATION_SUITE.md",
     "06_evaluation/MODEL_ROLE_BENCHMARK_PLAN.md",
     "10_checkpoints/stage_checkpoints/"
@@ -323,12 +341,13 @@ def check_task_graph_and_state() -> tuple[int, int]:
         visit(task_id, [])
 
     # A verified label is usable only while its entire declared task dependency
-    # closure remains completed. Traverse from each ready/active root so reopening
-    # an upstream task invalidates every affected root, without requiring
-    # unrelated tasks or treating decision_dependencies as task dependencies.
+    # closure remains completed. Traverse from each ready/active/completed root
+    # so reopening an upstream task invalidates every affected root, even with
+    # no ready/active task downstream. Unrelated tasks need not be completed;
+    # decision_dependencies are not task dependencies.
     # Missing references, self-dependencies and cycles are checked above.
     for task_id, deps in dependencies.items():
-        if task_classes[task_id] in {"ready", "active"}:
+        if task_classes[task_id] in {"ready", "active", "completed"}:
             pending = list(deps)
             checked: set[str] = set()
             while pending:
@@ -613,6 +632,12 @@ def check_frozen_digests() -> int:
             f"{FROZEN_DIGEST_SOURCE.as_posix()} has no reviewed_artifact_digests_sha256 map"
         )
 
+    if pins.get(RELEASE_ACCEPTANCE_PATH) != RELEASE_ACCEPTANCE_HISTORICAL_DIGEST:
+        raise ValidationError(
+            "Release-acceptance historical digest pin is missing or changed; "
+            "preserve the E2-006 evidence and its independently authorized E2 gate transition"
+        )
+
     selected: dict[str, str] = {}
     for path_value, digest_value in pins.items():
         if not isinstance(path_value, str) or not isinstance(digest_value, str):
@@ -628,6 +653,8 @@ def check_frozen_digests() -> int:
         raise ValidationError("Frozen digest selection is unexpectedly empty")
 
     for relative, expected in sorted(selected.items()):
+        if relative == RELEASE_ACCEPTANCE_PATH:
+            expected = RELEASE_ACCEPTANCE_POST_GATE_DIGEST
         path = ROOT / relative
         if not path.is_file():
             raise ValidationError(f"Frozen artifact is missing: {relative}")
