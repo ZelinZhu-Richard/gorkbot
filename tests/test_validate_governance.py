@@ -1,5 +1,6 @@
 """Governance regressions using isolated temporary repository fixtures."""
 
+import hashlib
 import io
 import os
 import shutil
@@ -436,6 +437,42 @@ class GovernanceValidationTests(unittest.TestCase):
         self.write_dependency_chain(["READY", "VERIFIED", "VERIFIED"])
         self.assertEqual(validator.check_task_graph_and_state(), (3, 3))
 
+    def test_completed_tasks_require_completed_dependency_closures(self):
+        # No READY/active task depends on these completed roots and masks the
+        # completed-root invariant.
+        for root_status in ("VERIFIED", "VERIFIED_PHASE_A_PROTOCOL_CRITERIA_NOT_EXECUTION_READY"):
+            for depth in (1, 2, 3):
+                for leaf_status in ("BACKLOG", "BLOCKED", "READY", "CLAIMED", "READY_FOR_REVIEW"):
+                    with self.subTest(root=root_status, depth=depth, leaf=leaf_status):
+                        self.write_dependency_chain([root_status] + ["VERIFIED"] * (depth - 1) + [leaf_status])
+                        self.set_current_command("MODE: STATUS")
+                        self.write_governance()
+                        with self.assertRaisesRegex(
+                            validator.ValidationError,
+                            rf"Task T-001 has unsatisfied dependencies.*closure.*T-{depth + 1:03d} \({leaf_status}\)",
+                        ):
+                            validator.check_task_graph_and_state()
+
+    def test_completed_dependency_graphs_pass_without_execution_routes(self):
+        for statuses in (
+            ["VERIFIED"],
+            ["VERIFIED", "VERIFIED", "VERIFIED"],
+            ["VERIFIED", "VERIFIED_PHASE_A_PROTOCOL_CRITERIA_NOT_EXECUTION_READY", "VERIFIED"],
+        ):
+            with self.subTest(statuses=statuses):
+                self.write_dependency_chain(statuses)
+                self.set_current_command("MODE: STATUS")
+                self.write_governance()
+                self.assertEqual(validator.check_task_graph_and_state(), (len(statuses),) * 2)
+
+    def test_completed_diamond_graph_passes(self):
+        self.write_dependency_chain(["VERIFIED"] * 4)
+        self.tasks[0]["dependencies"] = ["T-002", "T-003"]
+        self.tasks[1]["dependencies"] = ["T-004"]
+        self.set_current_command("MODE: STATUS")
+        self.write_governance()
+        self.assertEqual(validator.check_task_graph_and_state(), (4, 4))
+
     def test_transitive_incomplete_statuses_fail_for_executable_tasks(self):
         for root_status in ("READY", "CLAIMED", "ACTIVE", "IN_PROGRESS", "READY_FOR_REVIEW"):
             for leaf_status in ("BACKLOG", "BLOCKED", "READY", "READY_FOR_REVIEW", "ACTIVE"):
@@ -497,6 +534,9 @@ class GovernanceValidationTests(unittest.TestCase):
                 self.tasks[0]["status"] = "BACKLOG"
                 self.state["completed_task_ids"].remove("UPSTREAM")
                 self.state["backlog_task_ids"].append("UPSTREAM")
+                # Keep the intended READY root first: completed intermediates
+                # now also reject this closure, so fail-fast order matters.
+                self.tasks.sort(key=lambda task: task["task_id"] != root)
                 self.write_governance()
                 with self.assertRaisesRegex(
                     validator.ValidationError,
@@ -523,12 +563,26 @@ class GovernanceValidationTests(unittest.TestCase):
         self.tasks[1]["blocked_by"] = ["UNRELATED"]
         self.tasks.extend([
             {"task_id": "UNRELATED", "status": "BACKLOG", "dependencies": []},
-            {"task_id": "HISTORICAL", "status": "VERIFIED", "dependencies": ["UNRELATED"]},
+            {"task_id": "HISTORICAL", "status": "VERIFIED", "dependencies": []},
         ])
         self.state["backlog_task_ids"].append("UNRELATED")
         self.state["completed_task_ids"].append("HISTORICAL")
         self.write_governance()
         self.assertEqual(validator.check_task_graph_and_state(), (5, 5))
+
+    def test_disconnected_completed_task_with_incomplete_dependency_fails(self):
+        self.write_dependency_chain(["READY", "VERIFIED", "VERIFIED"])
+        self.tasks.extend([
+            {"task_id": "UNRELATED", "status": "BACKLOG", "dependencies": []},
+            {"task_id": "HISTORICAL", "status": "VERIFIED", "dependencies": ["UNRELATED"]},
+        ])
+        self.state["backlog_task_ids"].append("UNRELATED")
+        self.state["completed_task_ids"].append("HISTORICAL")
+        self.write_governance()
+        with self.assertRaisesRegex(
+            validator.ValidationError, r"Task HISTORICAL has unsatisfied dependencies.*UNRELATED \(BACKLOG\)"
+        ):
+            validator.check_task_graph_and_state()
 
     def test_real_repository_dependency_graph_passes(self):
         for relative in ("01_governance/TASK_REGISTRY.yaml", "01_governance/PROJECT_STATE.yaml", "README.md"):
@@ -972,6 +1026,94 @@ class GovernanceValidationTests(unittest.TestCase):
                     validator.check_secrets()
                 self.assertIn(f"Possible {label} in patterns.txt", str(error.exception))
                 self.assertNotIn(token, str(error.exception))
+
+
+class FrozenReleaseAcceptanceTests(unittest.TestCase):
+    def setUp(self):
+        temporary = tempfile.TemporaryDirectory()
+        self.addCleanup(temporary.cleanup)
+        self.root = Path(temporary.name)
+        root_patch = patch.object(validator, "ROOT", self.root)
+        root_patch.start()
+        self.addCleanup(root_patch.stop)
+        self.release = self.root / validator.RELEASE_ACCEPTANCE_PATH
+        self.source_path = self.root / validator.FROZEN_DIGEST_SOURCE
+        self.source_path.parent.mkdir(parents=True)
+        self.source = yaml.safe_load((REPOSITORY_ROOT / validator.FROZEN_DIGEST_SOURCE).read_text(encoding="utf-8"))
+        # Retain another frozen artifact so omitting the release checkpoint
+        # cannot be hidden by the existing empty-selection safeguard.
+        paths = (validator.RELEASE_ACCEPTANCE_PATH, "06_evaluation/ENGINEERING_PREVIEW_EVALUATION_SUITE.md")
+        self.pins = {
+            relative: self.source["reviewed_artifact_digests_sha256"][relative]
+            for relative in paths
+        }
+        for relative in paths:
+            destination = self.root / relative
+            destination.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copyfile(REPOSITORY_ROOT / relative, destination)
+        self.original = self.release.read_bytes()
+        self.write_pins()
+
+    def write_pins(self):
+        self.source_path.write_text(
+            yaml.safe_dump({"reviewed_artifact_digests_sha256": self.pins}), encoding="utf-8"
+        )
+
+    def test_current_checkpoint_passes_without_rewriting_historical_pin(self):
+        before = self.source_path.read_bytes()
+        self.assertEqual(validator.check_frozen_digests(), 2)
+        self.assertEqual(self.source_path.read_bytes(), before)
+        self.assertNotEqual(self.pins[validator.RELEASE_ACCEPTANCE_PATH], hashlib.sha256(self.original).hexdigest())
+
+    def test_authorized_status_transition_reproduces_historical_digest(self):
+        current = b"  E2_gate: VERIFIED\n"
+        self.assertEqual(self.original.count(current), 1)
+        historical = self.original.replace(current, b"  E2_gate: NOT_EVALUATED\n", 1)
+        self.assertEqual(hashlib.sha256(historical).hexdigest(), self.pins[validator.RELEASE_ACCEPTANCE_PATH])
+        self.release.write_bytes(historical)
+        with self.assertRaisesRegex(validator.ValidationError, "Frozen artifact digest mismatch.*RELEASE_ACCEPTANCE"):
+            validator.check_frozen_digests()
+
+    def test_frozen_threshold_population_and_acceptance_mutations_fail(self):
+        for before, after in (
+            (b"overall_rate_minimum: 0.95", b"overall_rate_minimum: 0.90"),
+            (b"minimum_scored_attempts: 100", b"minimum_scored_attempts: 10"),
+            (b"denominator: ALL_ELIGIBLE_LAUNCHED_ATTEMPTS", b"denominator: SUCCESSFUL_ATTEMPTS_ONLY"),
+            (b"all_required_before_release: true", b"all_required_before_release: false"),
+            (b"pass_requires: ALL_MANDATORY_CASES_SUBVARIANTS_PROTOCOLS_AND_CHECKS_COMPLETE_AND_PASS_NO_BLOCKERS_EXACT_E5_PASS_AND_HUMAN_APPROVAL", b"pass_requires: ANY_CASE_PASS"),
+        ):
+            with self.subTest(field=before.split(b":", 1)[0]):
+                self.assertIn(before, self.original)
+                self.release.write_bytes(self.original.replace(before, after, 1))
+                with self.assertRaisesRegex(validator.ValidationError, "Frozen artifact digest mismatch.*RELEASE_ACCEPTANCE"):
+                    validator.check_frozen_digests()
+
+    def test_other_status_and_metadata_changes_are_not_exempt(self):
+        for changed in (
+            self.original.replace(b"  E3_gate: NOT_EVALUATED\n", b"  E3_gate: VERIFIED\n", 1),
+            self.original + b"\n# unsolicited metadata change\n",
+        ):
+            with self.subTest(change=hashlib.sha256(changed).hexdigest()):
+                self.assertNotEqual(changed, self.original)
+                self.release.write_bytes(changed)
+                with self.assertRaisesRegex(validator.ValidationError, "Frozen artifact digest mismatch.*RELEASE_ACCEPTANCE"):
+                    validator.check_frozen_digests()
+
+    def test_missing_or_replaced_historical_pin_fails(self):
+        for replacement in (None, hashlib.sha256(self.original).hexdigest(), "0" * 64):
+            with self.subTest(replacement=replacement):
+                if replacement is None:
+                    self.pins.pop(validator.RELEASE_ACCEPTANCE_PATH, None)
+                else:
+                    self.pins[validator.RELEASE_ACCEPTANCE_PATH] = replacement
+                self.write_pins()
+                with self.assertRaisesRegex(validator.ValidationError, "historical digest pin is missing or changed"):
+                    validator.check_frozen_digests()
+
+    def test_missing_release_checkpoint_fails(self):
+        self.release.unlink()
+        with self.assertRaisesRegex(validator.ValidationError, "Frozen artifact is missing.*RELEASE_ACCEPTANCE"):
+            validator.check_frozen_digests()
 
 
 if __name__ == "__main__":
