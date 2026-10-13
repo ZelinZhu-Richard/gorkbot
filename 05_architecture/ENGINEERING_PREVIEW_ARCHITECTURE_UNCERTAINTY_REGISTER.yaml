@@ -1,0 +1,823 @@
+schema_version: EP-ARCH-UNCERTAINTY-0.2
+task_id: E2-003
+artifact_status: FIXER_PASS_READY_FOR_REVIEW_NOT_VERIFIED
+author_base_commit: b5b35a7fc5190ddbe359bd99f51fea4189ccff6a
+fixer_base_commit: dcb35439003fe2e1814b09e6e0c725e754d02dac
+architecture_selected: false
+preferred_candidate: null
+accepted_architecture_adrs: 0
+spikes_run: 0
+evaluation_cases_run: 0
+model_benchmarks_run: 0
+paid_api_calls: 0
+application_code_created: false
+
+classification_vocabulary:
+  - PAPER_RESOLVABLE
+  - E2_PRESELECTION_SPIKE_REQUIRED
+  - E3_POSTSELECTION_TECHNICAL_VALIDATION
+  - E3_MODEL_OR_CONFIGURATION_BENCHMARK
+  - DEFERRED_OUT_OF_SCOPE
+
+resolution_vocabulary:
+  analytic:
+    - RESOLVED_TRADEOFF
+    - RESOLVED_SUPPORTS_PROPERTY
+    - RESOLVED_ARCHITECTURE_SEAM_PRESENT_E3_VALIDATION_REQUIRED
+  prospective:
+    - RECLASSIFIED_TO_E3
+    - RECLASSIFIED_TO_E4
+    - DEFERRED_BY_POLICY
+
+classification_policy:
+  one_classification_per_item: true
+  unknown_receives_favorable_credit: false
+  hard_failure_compensation_permitted: false
+  e2_004_execution_authorized_by_this_artifact: false
+  e3_execution_authorized_by_this_artifact: false
+  architecture_selection_authorized_by_this_artifact: false
+  selection_blocker_reclassification_test: >-
+    Under E2 plan section 13, empirical work remains preselection only when its outcome can
+    distinguish candidates or establish a system-wide prerequisite without which no candidate
+    can responsibly be proposed. A provider-, platform-, client-, or selected-mechanism question
+    with an architecture seam in every candidate is postselection E3 validation when its scope,
+    fail-closed behavior, and E2/ADR handback rule are explicit.
+  rule: >-
+    PAPER_RESOLVABLE closes only a bounded architecture fact or tradeoff.
+    E3_POSTSELECTION_TECHNICAL_VALIDATION supplies no favorable E2 empirical credit.
+    E3_MODEL_OR_CONFIGURATION_BENCHMARK assigns no model/provider/configuration in E2.
+    DEFERRED_OUT_OF_SCOPE cannot be guessed. Missing or inconclusive evidence always fails closed.
+
+source_recomputation:
+  candidate_source_records:
+    EP-ARCH-C01: 9
+    EP-ARCH-C02: 9
+    EP-ARCH-C03: 10
+    total: 28
+  source_class_counts:
+    ANALYSIS_RESOLVABLE_E2_003: 10
+    ARCHITECTURE_BLOCKING_SPIKE_E2_004_REFERENCES: 9
+    E3_VALIDATION_OBLIGATION: 3
+    E4_IMPLEMENTATION_DETAIL: 3
+    FUTURE_PRODUCT: 3
+  source_spike_questions:
+    unique: 5
+    shared: 2
+    candidate_specific: 3
+    candidate_references: 9
+    run: 0
+  normalization:
+    source_derived_normalized_items: 27
+    shared_spike_reference_deduplication_delta: -4
+    split_mixed_e3_technical_and_model_bundles_delta: 3
+    new_cross_candidate_weight_authority_item: 1
+    final_normalized_items: 28
+  final_partition:
+    PAPER_RESOLVABLE: 10
+    E2_PRESELECTION_SPIKE_REQUIRED: 0
+    E3_POSTSELECTION_TECHNICAL_VALIDATION: 8
+    E3_MODEL_OR_CONFIGURATION_BENCHMARK: 3
+    DEFERRED_OUT_OF_SCOPE: 7
+    total: 28
+  analytic_resolution_counts:
+    RESOLVED_TRADEOFF: 5
+    RESOLVED_SUPPORTS_PROPERTY: 2
+    RESOLVED_ARCHITECTURE_SEAM_PRESENT_E3_VALIDATION_REQUIRED: 3
+    remaining: 0
+  e2_004_minimum_set:
+    retained_preselection_spike_ids: []
+    retained_count: 0
+    historical_questions_reclassified_to_e3: 5
+    duplicated_questions: 0
+    expected_independent_output: NO_PRESELECTION_SPIKE_REQUIRED
+
+prior_verifier_dispositions:
+  V-E2-002-01:
+    status: PRESERVED_IN_COMPARISON_LAYER
+    detail: >-
+      C02-U03 and C03-U04 include AR-DUR-005 from each frozen candidate's f08/f09/f23.
+      No verified candidate definition was modified.
+  V-E2-002-02:
+    status: PRESERVED_AND_STRENGTHENED
+    detail: >-
+      SPQ-E2-002-03, SPQ-E2-002-04, and SPQ-E2-002-05 retain provenance and are
+      explicitly assigned to E3V-006 with evidence, fail-closed, and handback rules.
+
+source_reconciliation:
+  - source_candidate: EP-ARCH-C01
+    source_id: C01-U01
+    normalized_ids: [E2U-PAPER-C01-U01]
+  - source_candidate: EP-ARCH-C01
+    source_id: C01-U02
+    normalized_ids: [E2U-PAPER-C01-U02]
+  - source_candidate: EP-ARCH-C01
+    source_id: C01-U03
+    normalized_ids: [E2U-PAPER-C01-U03]
+  - source_candidate: EP-ARCH-C01
+    source_id: SPQ-E2-002-01
+    normalized_ids: [E2U-S01-DESCENDANT-CONTAINMENT]
+    note: Shared historical question deduplicated; prospectively reclassified to E3V-002.
+  - source_candidate: EP-ARCH-C01
+    source_id: SPQ-E2-002-02
+    normalized_ids: [E2U-S02-PROTECTED-ACQUISITION]
+    note: Shared historical question deduplicated; prospectively reclassified to E3V-006.
+  - source_candidate: EP-ARCH-C01
+    source_id: SPQ-E2-002-03
+    normalized_ids: [E3U-C01-PROTECTED-DELIVERY]
+  - source_candidate: EP-ARCH-C01
+    source_id: C01-U04
+    normalized_ids: [E3U-C01-TECHNICAL, E3U-C01-MODEL-CONFIGURATION]
+  - source_candidate: EP-ARCH-C01
+    source_id: C01-U05
+    normalized_ids: [E4U-C01-IMPLEMENTATION]
+  - source_candidate: EP-ARCH-C01
+    source_id: C01-U06
+    normalized_ids: [FUTU-C01-PRODUCT]
+  - source_candidate: EP-ARCH-C02
+    source_id: C02-U01
+    normalized_ids: [E2U-PAPER-C02-U01]
+  - source_candidate: EP-ARCH-C02
+    source_id: C02-U02
+    normalized_ids: [E2U-PAPER-C02-U02]
+  - source_candidate: EP-ARCH-C02
+    source_id: C02-U03
+    normalized_ids: [E2U-PAPER-C02-U03]
+    note: V-E2-002-01 comparison-layer reconciliation includes AR-DUR-005.
+  - source_candidate: EP-ARCH-C02
+    source_id: SPQ-E2-002-01
+    normalized_ids: [E2U-S01-DESCENDANT-CONTAINMENT]
+  - source_candidate: EP-ARCH-C02
+    source_id: SPQ-E2-002-02
+    normalized_ids: [E2U-S02-PROTECTED-ACQUISITION]
+  - source_candidate: EP-ARCH-C02
+    source_id: SPQ-E2-002-04
+    normalized_ids: [E3U-C02-PROTECTED-DELIVERY]
+  - source_candidate: EP-ARCH-C02
+    source_id: C02-U04
+    normalized_ids: [E3U-C02-TECHNICAL, E3U-C02-MODEL-CONFIGURATION]
+  - source_candidate: EP-ARCH-C02
+    source_id: C02-U05
+    normalized_ids: [E4U-C02-IMPLEMENTATION]
+  - source_candidate: EP-ARCH-C02
+    source_id: C02-U06
+    normalized_ids: [FUTU-C02-PRODUCT]
+  - source_candidate: EP-ARCH-C03
+    source_id: C03-U01
+    normalized_ids: [E2U-PAPER-C03-U01]
+  - source_candidate: EP-ARCH-C03
+    source_id: C03-U02
+    normalized_ids: [E2U-PAPER-C03-U02]
+  - source_candidate: EP-ARCH-C03
+    source_id: C03-U03
+    normalized_ids: [E2U-PAPER-C03-U03]
+  - source_candidate: EP-ARCH-C03
+    source_id: C03-U04
+    normalized_ids: [E2U-PAPER-C03-U04]
+    note: V-E2-002-01 comparison-layer reconciliation includes AR-DUR-005.
+  - source_candidate: EP-ARCH-C03
+    source_id: SPQ-E2-002-01
+    normalized_ids: [E2U-S01-DESCENDANT-CONTAINMENT]
+  - source_candidate: EP-ARCH-C03
+    source_id: SPQ-E2-002-02
+    normalized_ids: [E2U-S02-PROTECTED-ACQUISITION]
+  - source_candidate: EP-ARCH-C03
+    source_id: SPQ-E2-002-05
+    normalized_ids: [E3U-C03-PROTECTED-DELIVERY]
+  - source_candidate: EP-ARCH-C03
+    source_id: C03-U05
+    normalized_ids: [E3U-C03-TECHNICAL, E3U-C03-MODEL-CONFIGURATION]
+  - source_candidate: EP-ARCH-C03
+    source_id: C03-U06
+    normalized_ids: [E4U-C03-IMPLEMENTATION]
+  - source_candidate: EP-ARCH-C03
+    source_id: C03-U07
+    normalized_ids: [FUTU-C03-PRODUCT]
+
+consequence_model:
+  terms:
+    CANDIDATE_NONVIABLE: >-
+      Current evidence proves one candidate has a structural contradiction with a hard AR.
+      The candidate leaves the survivor set; no other candidate is selected by default.
+    E2_005_BLOCKED: >-
+      A verified selection-blocking uncertainty or repository lifecycle gate prevents E2-005.
+      Currently the lifecycle blocks E2-005 pending E2-003 verification and E2-004 closure.
+    ARCHITECTURE_REVISION_REQUIRED: >-
+      A proposed baseline must change; this does not by itself identify one candidate as nonviable.
+    E3_HAND_BACK_TO_E2: >-
+      E3 evidence structurally disproves a required assumption/property in a linked proposed or accepted ADR.
+      E3 stops and returns evidence to E2; it does not redesign silently.
+    IMPLEMENTATION_CONFIGURATION_FAILURE: >-
+      A mechanism, adapter, fixture, wiring, or supported configuration fails while an alternate conforming
+      realization remains possible. Correct or replace it and revalidate without automatic ADR reopening.
+    PRODUCT_CLASS_UNSUPPORTED: >-
+      No demonstrated safe mechanism exists for a host/client/workload class. Narrow support and fail closed;
+      hand back only if a linked ADR requires that class/property and no conforming alternative remains.
+    EVIDENCE_MISSING_FAIL_CLOSED: >-
+      Missing, invalid, incomplete, or inconclusive evidence grants no success credit and cannot broaden scope.
+  profiles:
+    ANALYSIS_CLOSED:
+      success: The bounded architecture fact/tradeoff is recorded without empirical or ranking credit.
+      failure: A contrary hard fact would be CANDIDATE_NONVIABLE or ARCHITECTURE_REVISION_REQUIRED; none was found.
+      missing: The item would remain unresolved and E2_005_BLOCKED; no favorable inference is permitted.
+      invalidates_candidate: Only a proven candidate-specific hard contradiction.
+      e2_progression: Closed items do not independently block the required E2-004 closure.
+      adr_reopen: Not applicable before an ADR; later contrary evidence follows E3_HAND_BACK_TO_E2 when linked.
+      alternate_implementation: Architecture facts do not prove a concrete implementation.
+    E3_HARD_PROPERTY:
+      success: Validates only the exact selected mechanism/configuration/tested scope.
+      failure: Root-cause as IMPLEMENTATION_CONFIGURATION_FAILURE, PRODUCT_CLASS_UNSUPPORTED, or E3_HAND_BACK_TO_E2.
+      missing: EVIDENCE_MISSING_FAIL_CLOSED; the protected operation/support claim stays waiting, blocked, or unsupported.
+      invalidates_candidate: Only structural impossibility for a required hard property, not one failed mechanism.
+      e2_progression: Does not block E2-005 after verified no-spike closure because every candidate exposes the seam.
+      adr_reopen: Required only when the failure disproves a linked ADR assumption/property and no alternate remains.
+      alternate_implementation: Permitted when it conforms to the same boundary and is independently revalidated.
+    E3_MODEL_ELIGIBILITY:
+      success: Qualifies only the tested logical-role occupant/provider/configuration within tested scope.
+      failure: Leaves the role/configuration ineligible; it does not invalidate the architecture gateway by itself.
+      missing: Role remains unassigned and no paid call or benchmark is inferred.
+      invalidates_candidate: No, unless later evidence proves the provider-neutral architecture contract structurally impossible.
+      e2_progression: Does not block E2-005 architecture comparison.
+      adr_reopen: Only on structural contradiction with the linked routing ADR.
+      alternate_implementation: Alternate eligible model/provider/configuration may be evaluated under separate authority.
+    E4_IMPLEMENTATION_CHOICE:
+      success: A later authorized implementation conforms to E2/E3 contracts.
+      failure: Correct or replace the implementation; hand back only on structural architecture contradiction.
+      missing: No application construction or autonomous build is authorized.
+      invalidates_candidate: No automatic invalidation.
+      e2_progression: Does not block E2-005.
+      adr_reopen: Only with evidence of structural contradiction.
+      alternate_implementation: Explicitly permitted after authorization.
+    FUTURE_SCOPE_POLICY:
+      success: A later registered decision may authorize bounded future scope.
+      failure: Scope remains deferred; v0.1 architecture compatibility seam is unaffected.
+      missing: No future product is inferred or implemented.
+      invalidates_candidate: No.
+      e2_progression: Does not block E2-005 beyond the hard compatibility floor.
+      adr_reopen: Only a later authorized governance decision can change scope.
+      alternate_implementation: Not applicable before scope authorization.
+    PREFERENCE_AUTHORITY:
+      success: E2-005 records an explicit qualitative priority rationale or prospectively governed weights.
+      failure: No overall score/rank may be produced; hard-gate comparison remains available.
+      missing: No weights, scores, preferred candidate, or favorable inference.
+      invalidates_candidate: Never; preferences cannot compensate for or create a hard result.
+      e2_progression: Does not block E2-004 hard/no-spike closure.
+      adr_reopen: Not applicable until a later accountable decision records its rationale.
+      alternate_implementation: Not applicable.
+
+uncertainties:
+  - uncertainty_id: E2U-PAPER-C01-U01
+    classification: PAPER_RESOLVABLE
+    state: RESOLVED
+    resolution: RESOLVED_TRADEOFF
+    consequence_profile: ANALYSIS_CLOSED
+    source_refs: ["EP-ARCH-C01:f27:C01-U01"]
+    candidates: [EP-ARCH-C01]
+    affected_criteria: [AR-PRF-002, AR-PRF-006]
+    owner: E2-003_AUTHOR_ANALYSIS
+    question: Can the broad integrated core remain modular enough for independent testing and bounded contributor ownership?
+    finding: >-
+      Explicit policy, execution, gateway, evidence, and verifier ports support bounded tests; integrated
+      authority still creates broad-core coupling and contributor blast radius. This is a tradeoff, not valence.
+    evidence: EP-ARCH-C01 f02, f04, f16, f22, f25, f26, and f28.
+    decision_linkage: E2-003 preference groups 02 and 06; E2-005 may consider only after E2-004 closure.
+
+  - uncertainty_id: E2U-PAPER-C01-U02
+    classification: PAPER_RESOLVABLE
+    state: RESOLVED
+    resolution: RESOLVED_TRADEOFF
+    consequence_profile: ANALYSIS_CLOSED
+    source_refs: ["EP-ARCH-C01:f27:C01-U02"]
+    candidates: [EP-ARCH-C01]
+    affected_criteria: [AR-PRF-003, AR-PRF-004]
+    owner: E2-003_AUTHOR_ANALYSIS
+    question: What preference cost and reversibility burden follows from later extracting C01 remote/concurrency seams?
+    finding: >-
+      Versioned ports preserve the hard compatibility floor, while later remote/multi-owner evolution must
+      extract authority and migrate integrated store/history/effect semantics. The cost remains explicit without a loser label.
+    evidence: EP-ARCH-C01 f20, f23 AR-FUT-001/002 and AR-PRF-003/004, f26, and f28.
+    decision_linkage: E2-003 preference groups 03 and 04; no architecture selection.
+
+  - uncertainty_id: E2U-PAPER-C01-U03
+    classification: PAPER_RESOLVABLE
+    state: RESOLVED
+    resolution: RESOLVED_ARCHITECTURE_SEAM_PRESENT_E3_VALIDATION_REQUIRED
+    consequence_profile: ANALYSIS_CLOSED
+    source_refs: ["EP-ARCH-C01:f27:C01-U03"]
+    candidates: [EP-ARCH-C01]
+    affected_criteria: [AR-DUR-005, AR-WSP-003, AR-SEC-003, AR-SEC-004, AR-PKG-001, AQ-003]
+    owner: E2-003_AUTHOR_ANALYSIS
+    question: What persistence, packaging, repository, and host support declaration is credible for C01?
+    finding: >-
+      Transaction/quarantine/migration, workspace broker, protected-recipient, network-zero-dispatch, and visible
+      packaging seams establish the architecture floor. Concrete host, toolchain, and client feasibility remains E3V-001/003/006.
+    evidence: EP-ARCH-C01 f08, f09, f10, f18, f19, f23, and f26.
+    decision_linkage: E2-003 hard gate; no host primitive is claimed proven.
+
+  - uncertainty_id: E2U-PAPER-C02-U01
+    classification: PAPER_RESOLVABLE
+    state: RESOLVED
+    resolution: RESOLVED_TRADEOFF
+    consequence_profile: ANALYSIS_CLOSED
+    source_refs: ["EP-ARCH-C02:f27:C02-U01"]
+    candidates: [EP-ARCH-C02]
+    affected_criteria: [AR-PRF-002, AR-PRF-006]
+    owner: E2-003_AUTHOR_ANALYSIS
+    question: Is the service/client/worker boundary proportionate for local v0.1?
+    finding: >-
+      Clear authority and replaceable-worker boundaries trade against service lifecycle, IPC/authentication,
+      lease/fence, setup, and multi-process debugging burden. No unassigned priority is inferred.
+    evidence: EP-ARCH-C02 f02, f04, f19, f22, f25, f26, and f28.
+    decision_linkage: E2-003 preference groups 02 and 06 and sensitivity profiles.
+
+  - uncertainty_id: E2U-PAPER-C02-U02
+    classification: PAPER_RESOLVABLE
+    state: RESOLVED
+    resolution: RESOLVED_SUPPORTS_PROPERTY
+    consequence_profile: ANALYSIS_CLOSED
+    source_refs: ["EP-ARCH-C02:f27:C02-U02"]
+    candidates: [EP-ARCH-C02]
+    affected_criteria: [AR-PKG-001]
+    owner: E2-003_AUTHOR_ANALYSIS
+    question: What service lifecycle/authentication/update contract is supportable without hidden state?
+    finding: >-
+      The named local service, clients, workers, state owner, IPC/authentication, lifecycle, recovery, migration,
+      and update responsibilities make the topology explicit; its cost remains a separate preference tradeoff.
+    evidence: EP-ARCH-C02 f03, f04, f19, f22, f23 AR-PKG-001, and f26.
+    decision_linkage: E2-003 hard packaging gate; exact walkthrough remains E3V-003.
+
+  - uncertainty_id: E2U-PAPER-C02-U03
+    classification: PAPER_RESOLVABLE
+    state: RESOLVED
+    resolution: RESOLVED_ARCHITECTURE_SEAM_PRESENT_E3_VALIDATION_REQUIRED
+    consequence_profile: ANALYSIS_CLOSED
+    source_refs: ["EP-ARCH-C02:f27:C02-U03", V-E2-002-01]
+    candidates: [EP-ARCH-C02]
+    affected_criteria: [AR-DUR-005, AR-WSP-003, AR-SEC-003, AR-SEC-004, AR-PKG-001, AQ-003]
+    owner: E2-003_AUTHOR_ANALYSIS
+    question: Which persistence/path/network/protected-secret host classes are credible for C02?
+    finding: >-
+      f08/f09 plus service/workspace, direct protected-recipient, network, and packaging seams establish the
+      architecture floor. Concrete host, toolchain, and client feasibility remains E3V-001/003/006.
+    evidence: EP-ARCH-C02 f08, f09, f10, f18, f19, f23, and V-E2-002-01.
+    decision_linkage: E2-003 hard gate; no host primitive is claimed proven.
+
+  - uncertainty_id: E2U-PAPER-C03-U01
+    classification: PAPER_RESOLVABLE
+    state: RESOLVED
+    resolution: RESOLVED_TRADEOFF
+    consequence_profile: ANALYSIS_CLOSED
+    source_refs: ["EP-ARCH-C03:f27:C03-U01"]
+    candidates: [EP-ARCH-C03]
+    affected_criteria: [AR-PRF-002, AR-PRF-005, AR-PRF-006]
+    owner: E2-003_AUTHOR_ANALYSIS
+    question: Is immutable event authority plus projections proportionate to v0.1 recovery/evidence needs?
+    finding: >-
+      Deterministic reconstruction and fault fixtures trade against event/reducer/checkpoint/payload-retention,
+      replay-tooling, and contributor-learning burden. Proportionality depends on unassigned priorities.
+    evidence: EP-ARCH-C03 f02, f06, f08, f09, f15, f22, f25, f26, and f28.
+    decision_linkage: E2-003 preference groups 02, 05, and 06 and sensitivity profiles.
+
+  - uncertainty_id: E2U-PAPER-C03-U02
+    classification: PAPER_RESOLVABLE
+    state: RESOLVED
+    resolution: RESOLVED_TRADEOFF
+    consequence_profile: ANALYSIS_CLOSED
+    source_refs: ["EP-ARCH-C03:f27:C03-U02"]
+    candidates: [EP-ARCH-C03]
+    affected_criteria: [AR-DUR-006, AR-EVD-002]
+    owner: E2-003_AUTHOR_ANALYSIS
+    question: Are journal/payload retention, redaction, and deletion semantics coherent with evidence preservation?
+    finding: >-
+      Historical facts remain distinct from payload accessibility and deletion/redaction actions remain evidenced;
+      physical erasure, privacy, long-history, reference, and migration burdens remain explicit tradeoffs.
+    evidence: EP-ARCH-C03 f06, f08, f09, f15, f18, f23 AR-DUR-006/AR-EVD-002, and f28.
+    decision_linkage: E2-003 durability/evidence comparison; implementation evidence remains later work.
+
+  - uncertainty_id: E2U-PAPER-C03-U03
+    classification: PAPER_RESOLVABLE
+    state: RESOLVED
+    resolution: RESOLVED_SUPPORTS_PROPERTY
+    consequence_profile: ANALYSIS_CLOSED
+    source_refs: ["EP-ARCH-C03:f27:C03-U03"]
+    candidates: [EP-ARCH-C03]
+    affected_criteria: [AR-PKG-001]
+    owner: E2-003_AUTHOR_ANALYSIS
+    question: What support/package declaration makes replay/migration tooling contributor-operable?
+    finding: >-
+      The local runtime, journal/payload state, reducers/projections/checkpoints, migration tools, lifecycle,
+      inspection, and failures are explicit; conceptual burden remains a preference, not a packaging-floor failure.
+    evidence: EP-ARCH-C03 f19, f22, f23 AR-PKG-001, f25, f26, and f28.
+    decision_linkage: E2-003 hard packaging gate; exact walkthrough remains E3V-003.
+
+  - uncertainty_id: E2U-PAPER-C03-U04
+    classification: PAPER_RESOLVABLE
+    state: RESOLVED
+    resolution: RESOLVED_ARCHITECTURE_SEAM_PRESENT_E3_VALIDATION_REQUIRED
+    consequence_profile: ANALYSIS_CLOSED
+    source_refs: ["EP-ARCH-C03:f27:C03-U04", V-E2-002-01]
+    candidates: [EP-ARCH-C03]
+    affected_criteria: [AR-DUR-005, AR-WSP-003, AR-SEC-003, AR-SEC-004, AR-PKG-001, AQ-003]
+    owner: E2-003_AUTHOR_ANALYSIS
+    question: Which persistence/path/network/protected-secret host classes are credible for C03?
+    finding: >-
+      f08/f09 plus workspace adapters, out-of-event recipient, network admission, and packaging seams establish
+      the architecture floor. Concrete host, toolchain, and client feasibility remains E3V-001/003/006.
+    evidence: EP-ARCH-C03 f08, f09, f10, f18, f19, f23, and V-E2-002-01.
+    decision_linkage: E2-003 hard gate; no host primitive is claimed proven.
+
+  - uncertainty_id: E2U-S01-DESCENDANT-CONTAINMENT
+    classification: E3_POSTSELECTION_TECHNICAL_VALIDATION
+    state: RECLASSIFIED_NOT_RUN_POSTSELECTION
+    resolution: RECLASSIFIED_TO_E3
+    consequence_profile: E3_HARD_PROPERTY
+    source_refs:
+      - SPQ-E2-002-01
+      - EP-ARCH-C01:f27:SPQ-E2-002-01
+      - EP-ARCH-C02:f27:SPQ-E2-002-01
+      - EP-ARCH-C03:f27:SPQ-E2-002-01
+      - E2-003_challenger_review:F-E2-003-01
+    candidates: [EP-ARCH-C01, EP-ARCH-C02, EP-ARCH-C03]
+    affected_criteria: [AR-EXE-003]
+    owner: E3V-002_OWNER_AFTER_VERIFIED_E2_AND_SEPARATE_E3_AUTHORIZATION
+    original_question: >-
+      Can the declared supported host class terminate or durably deprive every descendant of productive/effect
+      authority after cancellation, force-stop deadline, owner loss, and fence installation?
+    architecture_fact: >-
+      Every candidate exposes process-tree identity/control and a distinct durable authority fence: C01 epoch,
+      C02 lease/fence, C03 workflow owner/fence. Unsupported force-termination classes fail closed.
+    why_not_e2_selection_blocking: >-
+      The concrete host primitive is provider/platform/process-class dependent, is not selected, and cannot
+      distinguish the three architectures because all use the same structural contract and E3V-002 obligation.
+    required_e3_evidence: >-
+      For every claimed supported host/platform/process/configuration class: representative parent/descendant tree;
+      cancellation, forced stop, owner loss, stale-result and post-fence effect schedules; force primitive/permissions;
+      survivor/orphan discovery; bounded timelines; fence/result/effect rejection; recovery readback; exact limitations.
+    process_tree_vs_fence: >-
+      Process-tree containment proves descendant termination/accounting; authority fencing proves stale work cannot
+      publish authoritative results or effects. Neither is substituted for the other.
+    success_implication: Validates only the exact tested scope and does not create comparative E2 credit.
+    failure_implication: Root-cause under E3_HARD_PROPERTY; force-unavailable scope remains unsupported and fenced.
+    missing_evidence: EVIDENCE_MISSING_FAIL_CLOSED; never infer whole-tree feasibility.
+    e2_adr_handback: >-
+      E3_HAND_BACK_TO_E2 only if evidence shows the proposed/accepted execution/isolation ADR cannot realize
+      AR-EXE-003 for a required supported class and no conforming mechanism remains.
+    historical_e2_004_contract:
+      status: SUPERSEDED_NOT_AUTHORIZED_NOT_RUN
+      provenance_preserved: true
+      spike_directory_created: false
+      reason: Plan section 13 candidate-discrimination test assigns concrete mechanism validation to E3V-002.
+
+  - uncertainty_id: E2U-S02-PROTECTED-ACQUISITION
+    classification: E3_POSTSELECTION_TECHNICAL_VALIDATION
+    state: RECLASSIFIED_NOT_RUN_POSTSELECTION
+    resolution: RECLASSIFIED_TO_E3
+    consequence_profile: E3_HARD_PROPERTY
+    source_refs:
+      - SPQ-E2-002-02
+      - EP-ARCH-C01:f27:SPQ-E2-002-02
+      - EP-ARCH-C02:f27:SPQ-E2-002-02
+      - EP-ARCH-C03:f27:SPQ-E2-002-02
+      - E2-003_challenger_review:F-E2-003-02
+    candidates: [EP-ARCH-C01, EP-ARCH-C02, EP-ARCH-C03]
+    affected_criteria: [AR-SEC-006]
+    owner: E3V-006_OWNER_AFTER_VERIFIED_E2_AND_SEPARATE_E3_AUTHORIZATION
+    original_question: >-
+      Can a supported protected human-acquisition boundary exclude ordinary capture, return only a non-secret
+      receipt, fail closed when protection is unavailable, and avoid raw replay after recovery?
+    architecture_fact: >-
+      Every candidate defines a distinct protected boundary, capture exclusion/suspension interface, exact recipient,
+      unauthorized-surface exclusion, non-secret receipt, no replay, and fail-to-WAIT.
+    why_not_e2_selection_blocking: >-
+      Client technology and execution configuration are unselected, so a preselection harness cannot observe the
+      real selected client surfaces or distinguish candidates. Concrete mechanism validation belongs to E3V-006.
+    required_e3_evidence: >-
+      Using a synthetic sentinel only, validate selected-client protected acquisition; complete capture observers;
+      exact-recipient/use/lease-or-fence/expiry; crash/replacement/revocation/recovery; no raw persistence/replay;
+      forbidden-surface scans; non-secret receipt/readback; exact supported and unsupported configuration scope.
+    success_implication: Validates only the tested client/execution configuration and provides no E2 winner credit.
+    failure_implication: Root-cause as implementation/configuration failure, unsupported product class, or structural handback.
+    missing_evidence: EVIDENCE_MISSING_FAIL_CLOSED; remain WAITING_FOR_USER/blocked and never use ordinary input.
+    e2_adr_handback: >-
+      E3_HAND_BACK_TO_E2 only if no conforming mechanism can realize a hard protected-entry property required by
+      the linked proposed/accepted ADR. Failure of one mechanism alone does not invalidate the architecture.
+    historical_e2_004_contract:
+      status: SUPERSEDED_NOT_AUTHORIZED_NOT_RUN
+      provenance_preserved: true
+      spike_directory_created: false
+      reason: No selected client surface exists before E2-005; concrete validation is E3V-006.
+
+  - uncertainty_id: E3U-C01-PROTECTED-DELIVERY
+    classification: E3_POSTSELECTION_TECHNICAL_VALIDATION
+    state: NOT_RUN_POSTSELECTION
+    resolution: RECLASSIFIED_TO_E3
+    consequence_profile: E3_HARD_PROPERTY
+    source_refs: [SPQ-E2-002-03, V-E2-002-02]
+    candidates: [EP-ARCH-C01]
+    affected_criteria: [AR-SEC-003, AR-SEC-006]
+    owner: E3V-006_OWNER
+    original_question: Can C01 deliver once to its co-resident exact recipient without ordinary capture?
+    why_not_e2_selection_blocking: C01 already exposes the exact recipient/use/fence and core-bypass protected seam.
+    architecture_seam: Co-resident raw path outside ordinary core/model/log/evidence capture; non-secret receipt and no replay.
+    required_e3_evidence: Exact delivery, capture exclusion, crash/revocation/recovery, forbidden-surface scans, receipt, and non-replay.
+    success_implication: Validates only the selected C01 client/execution configuration.
+    failure_implication: Alternate mechanism/configuration first; structural impossibility invokes E3_HAND_BACK_TO_E2 for ADR-E2-005.
+    missing_evidence: EVIDENCE_MISSING_FAIL_CLOSED and WAITING_FOR_USER.
+    e2_adr_handback: Reopen ADR-E2-005 only if no conforming C01 delivery realization can satisfy the required hard property.
+
+  - uncertainty_id: E3U-C02-PROTECTED-DELIVERY
+    classification: E3_POSTSELECTION_TECHNICAL_VALIDATION
+    state: NOT_RUN_POSTSELECTION
+    resolution: RECLASSIFIED_TO_E3
+    consequence_profile: E3_HARD_PROPERTY
+    source_refs: [SPQ-E2-002-04, V-E2-002-02]
+    candidates: [EP-ARCH-C02]
+    affected_criteria: [AR-SEC-003, AR-SEC-006]
+    owner: E3V-006_OWNER
+    original_question: Can C02 bind non-secret authorization and direct delivery to one current worker/use/lease/fence?
+    why_not_e2_selection_blocking: C02 already exposes service-bypass raw delivery and replacement/reacquisition semantics.
+    architecture_seam: Non-secret service authorization, direct client-to-worker path, lease/fence recipient, receipt, no replay.
+    required_e3_evidence: Authorization, exact delivery, capture exclusion, replacement/crash/revocation, receipt, forbidden surfaces, and non-replay.
+    success_implication: Validates only the selected C02 client/execution configuration.
+    failure_implication: Alternate mechanism/configuration first; structural impossibility invokes E3_HAND_BACK_TO_E2 for ADR-E2-005.
+    missing_evidence: EVIDENCE_MISSING_FAIL_CLOSED and WAITING_FOR_USER.
+    e2_adr_handback: Reopen ADR-E2-005 only if no conforming C02 delivery realization can satisfy the required hard property.
+
+  - uncertainty_id: E3U-C03-PROTECTED-DELIVERY
+    classification: E3_POSTSELECTION_TECHNICAL_VALIDATION
+    state: NOT_RUN_POSTSELECTION
+    resolution: RECLASSIFIED_TO_E3
+    consequence_profile: E3_HARD_PROPERTY
+    source_refs: [SPQ-E2-002-05, V-E2-002-02]
+    candidates: [EP-ARCH-C03]
+    affected_criteria: [AR-SEC-003, AR-SEC-006]
+    owner: E3V-006_OWNER
+    original_question: Can C03 preserve exact protected delivery and truthful receipt/recovery without raw event/payload/projection capture?
+    why_not_e2_selection_blocking: C03 already exposes an out-of-event broker and non-secret causal receipt/recovery seam.
+    architecture_seam: Raw path excluded from journal/payload/projections, exact recipient/fence, non-secret facts, no raw replay.
+    required_e3_evidence: Broker/recipient/crash ordering, capture exclusion, zero raw replay, receipt/recovery truth, and forbidden-surface scans.
+    success_implication: Validates only the selected C03 client/execution configuration.
+    failure_implication: Alternate mechanism/configuration first; structural impossibility invokes E3_HAND_BACK_TO_E2 for ADR-E2-005.
+    missing_evidence: EVIDENCE_MISSING_FAIL_CLOSED and WAITING_FOR_USER.
+    e2_adr_handback: Reopen ADR-E2-005 only if no conforming C03 delivery realization can satisfy the required hard property.
+
+  - uncertainty_id: E3U-C01-TECHNICAL
+    classification: E3_POSTSELECTION_TECHNICAL_VALIDATION
+    state: NOT_RUN_POSTSELECTION
+    consequence_profile: E3_HARD_PROPERTY
+    source_refs: ["EP-ARCH-C01:f27:C01-U04", "EP-ARCH-C01:f30"]
+    candidates: [EP-ARCH-C01]
+    affected_criteria: [E3V-001, E3V-002, E3V-003, E3V-004, E3V-005, E3V-006, E3V-007]
+    owner: E3_TECHNICAL_SECURITY_AND_MEASUREMENT_VALIDATION_OWNERS
+    question: Do C01 selected mechanisms satisfy focused E3 contracts?
+    decision_linkage: E3V-001..007 only after verified E2 and separate E3 authorization.
+
+  - uncertainty_id: E3U-C02-TECHNICAL
+    classification: E3_POSTSELECTION_TECHNICAL_VALIDATION
+    state: NOT_RUN_POSTSELECTION
+    consequence_profile: E3_HARD_PROPERTY
+    source_refs: ["EP-ARCH-C02:f27:C02-U04", "EP-ARCH-C02:f30"]
+    candidates: [EP-ARCH-C02]
+    affected_criteria: [E3V-001, E3V-002, E3V-003, E3V-004, E3V-005, E3V-006, E3V-007]
+    owner: E3_TECHNICAL_SECURITY_AND_MEASUREMENT_VALIDATION_OWNERS
+    question: Do C02 selected mechanisms satisfy focused E3 contracts?
+    decision_linkage: E3V-001..007 only after verified E2 and separate E3 authorization.
+
+  - uncertainty_id: E3U-C03-TECHNICAL
+    classification: E3_POSTSELECTION_TECHNICAL_VALIDATION
+    state: NOT_RUN_POSTSELECTION
+    consequence_profile: E3_HARD_PROPERTY
+    source_refs: ["EP-ARCH-C03:f27:C03-U05", "EP-ARCH-C03:f30"]
+    candidates: [EP-ARCH-C03]
+    affected_criteria: [E3V-001, E3V-002, E3V-003, E3V-004, E3V-005, E3V-006, E3V-007]
+    owner: E3_TECHNICAL_SECURITY_AND_MEASUREMENT_VALIDATION_OWNERS
+    question: Do C03 selected mechanisms satisfy focused E3 contracts?
+    decision_linkage: E3V-001..007 only after verified E2 and separate E3 authorization.
+
+  - uncertainty_id: E3U-C01-MODEL-CONFIGURATION
+    classification: E3_MODEL_OR_CONFIGURATION_BENCHMARK
+    state: NOT_RUN_POSTSELECTION
+    consequence_profile: E3_MODEL_ELIGIBILITY
+    source_refs: ["EP-ARCH-C01:f27:C01-U04", "EP-ARCH-C01:f30:E3V-008"]
+    candidates: [EP-ARCH-C01]
+    affected_criteria: [E3V-008]
+    owner: E3_MODEL_BENCHMARK_OWNER
+    question: Which logical-role occupants/configurations, if any, qualify behind C01 provider-neutral gateway?
+
+  - uncertainty_id: E3U-C02-MODEL-CONFIGURATION
+    classification: E3_MODEL_OR_CONFIGURATION_BENCHMARK
+    state: NOT_RUN_POSTSELECTION
+    consequence_profile: E3_MODEL_ELIGIBILITY
+    source_refs: ["EP-ARCH-C02:f27:C02-U04", "EP-ARCH-C02:f30:E3V-008"]
+    candidates: [EP-ARCH-C02]
+    affected_criteria: [E3V-008]
+    owner: E3_MODEL_BENCHMARK_OWNER
+    question: Which logical-role occupants/configurations, if any, qualify behind C02 provider-neutral gateway?
+
+  - uncertainty_id: E3U-C03-MODEL-CONFIGURATION
+    classification: E3_MODEL_OR_CONFIGURATION_BENCHMARK
+    state: NOT_RUN_POSTSELECTION
+    consequence_profile: E3_MODEL_ELIGIBILITY
+    source_refs: ["EP-ARCH-C03:f27:C03-U05", "EP-ARCH-C03:f30:E3V-008"]
+    candidates: [EP-ARCH-C03]
+    affected_criteria: [E3V-008]
+    owner: E3_MODEL_BENCHMARK_OWNER
+    question: Which logical-role occupants/configurations, if any, qualify behind C03 provider-neutral gateway?
+
+  - uncertainty_id: E4U-C01-IMPLEMENTATION
+    classification: DEFERRED_OUT_OF_SCOPE
+    state: DEFERRED
+    resolution: RECLASSIFIED_TO_E4
+    consequence_profile: E4_IMPLEMENTATION_CHOICE
+    source_refs: ["EP-ARCH-C01:f27:C01-U05"]
+    candidates: [EP-ARCH-C01]
+    affected_criteria: [client_runtime, embedded_store, process_api, isolation_mechanism, provider_adapters, package_update_tooling]
+    owner: FUTURE_AUTHORIZED_E4_IMPLEMENTATION_OWNER
+    question: Which concrete technologies later implement C01?
+
+  - uncertainty_id: E4U-C02-IMPLEMENTATION
+    classification: DEFERRED_OUT_OF_SCOPE
+    state: DEFERRED
+    resolution: RECLASSIFIED_TO_E4
+    consequence_profile: E4_IMPLEMENTATION_CHOICE
+    source_refs: ["EP-ARCH-C02:f27:C02-U05"]
+    candidates: [EP-ARCH-C02]
+    affected_criteria: [service_client_runtime, ipc_auth, store_schema, worker_supervisor, isolation_mechanism, provider_adapters]
+    owner: FUTURE_AUTHORIZED_E4_IMPLEMENTATION_OWNER
+    question: Which concrete technologies later implement C02?
+
+  - uncertainty_id: E4U-C03-IMPLEMENTATION
+    classification: DEFERRED_OUT_OF_SCOPE
+    state: DEFERRED
+    resolution: RECLASSIFIED_TO_E4
+    consequence_profile: E4_IMPLEMENTATION_CHOICE
+    source_refs: ["EP-ARCH-C03:f27:C03-U06"]
+    candidates: [EP-ARCH-C03]
+    affected_criteria: [runtime_journal_payload, event_schema_reducer, projections, executor_isolation, provider_adapters]
+    owner: FUTURE_AUTHORIZED_E4_IMPLEMENTATION_OWNER
+    question: Which concrete technologies later implement C03?
+
+  - uncertainty_id: FUTU-C01-PRODUCT
+    classification: DEFERRED_OUT_OF_SCOPE
+    state: DEFERRED
+    resolution: DEFERRED_BY_POLICY
+    consequence_profile: FUTURE_SCOPE_POLICY
+    source_refs: ["EP-ARCH-C01:f27:C01-U06"]
+    candidates: [EP-ARCH-C01]
+    affected_criteria: [remote_cloud_workers, multiple_agents_clients, skills_connectors, General_Finance, SaaS]
+    owner: FUTURE_PRODUCT_GOVERNANCE
+    question: Which deferred future product features are later authorized for C01?
+
+  - uncertainty_id: FUTU-C02-PRODUCT
+    classification: DEFERRED_OUT_OF_SCOPE
+    state: DEFERRED
+    resolution: DEFERRED_BY_POLICY
+    consequence_profile: FUTURE_SCOPE_POLICY
+    source_refs: ["EP-ARCH-C02:f27:C02-U06"]
+    candidates: [EP-ARCH-C02]
+    affected_criteria: [remote_cloud_workers, multiple_agents_clients, extensions_verticals, SaaS]
+    owner: FUTURE_PRODUCT_GOVERNANCE
+    question: Which deferred future product features are later authorized for C02?
+
+  - uncertainty_id: FUTU-C03-PRODUCT
+    classification: DEFERRED_OUT_OF_SCOPE
+    state: DEFERRED
+    resolution: DEFERRED_BY_POLICY
+    consequence_profile: FUTURE_SCOPE_POLICY
+    source_refs: ["EP-ARCH-C03:f27:C03-U07"]
+    candidates: [EP-ARCH-C03]
+    affected_criteria: [remote_cloud_workers, multiple_agents_clients, extensions_verticals, SaaS]
+    owner: FUTURE_PRODUCT_GOVERNANCE
+    question: Which deferred future product features are later authorized for C03?
+
+  - uncertainty_id: E2U-PREFERENCE-WEIGHTS
+    classification: DEFERRED_OUT_OF_SCOPE
+    state: NOT_ASSIGNED_BY_POLICY
+    resolution: DEFERRED_BY_POLICY
+    consequence_profile: PREFERENCE_AUTHORITY
+    source_refs:
+      - ENGINEERING_PREVIEW_ARCHITECTURE_REQUIREMENTS.md:AR-PRF-001..006
+      - ENGINEERING_PREVIEW_E2_ARCHITECTURE_PLAN.md
+      - TASK_REGISTRY.yaml:E2-003
+    candidates: [EP-ARCH-C01, EP-ARCH-C02, EP-ARCH-C03]
+    affected_criteria: [AR-PRF-001, AR-PRF-002, AR-PRF-003, AR-PRF-004, AR-PRF-005, AR-PRF-006]
+    owner: E2-005_ACCOUNTABLE_DECISION_AUTHORITY_WITH_FOUNDER_PRIORITY_INPUT_IF_NEEDED
+    question: What prospective priority, if any, should the six preferences receive?
+
+e3_obligation_contracts:
+  E3V-001:
+    property: Selected persistence/recovery mechanism preserves canonical truth, partial-write safety, migration, quarantine, and ambiguity.
+    required_evidence: Versioned recovery/corruption/partial-write/migration fixtures and authoritative readback for the selected state model.
+    success: Validates exact tested persistence configuration only.
+    failure: Correct/replace mechanism unless structural impossibility requires E3_HAND_BACK_TO_E2 for ADR-E2-002/003/004.
+    missing: EVIDENCE_MISSING_FAIL_CLOSED; recovery claim remains unvalidated.
+  E3V-002:
+    property: >-
+      Selected containment plus authority fencing accounts for descendants, provides bounded cooperative/force-stop
+      behavior where claimed, rejects stale results/effects, and fails closed where force termination is unavailable.
+    required_evidence:
+      - Exact host/platform/process/configuration support declaration and versions.
+      - Representative parent/child/descendant identity, accounting, cancellation, force-stop, owner-loss, and recovery observations.
+      - Durable epoch/lease/workflow fence and rejection of stale result, approval, and effect authority.
+      - Force-termination primitive, permissions, bounds, unavailable behavior, survivor/orphan discovery, and limitations.
+      - Commands/configuration, ordered observations/timestamps, authority/effect records, readback, and explicit unsupported scope.
+    success: Validates only tested host/platform/process/configuration classes; never generalize beyond them.
+    failure: IMPLEMENTATION_CONFIGURATION_FAILURE or PRODUCT_CLASS_UNSUPPORTED unless structural impossibility requires E3_HAND_BACK_TO_E2.
+    missing: EVIDENCE_MISSING_FAIL_CLOSED; execution remains blocked/fenced and support scope cannot broaden.
+    handback: Reopen the linked ADR only when no conforming realization can satisfy required AR-EXE-003 semantics.
+  E3V-003:
+    property: Selected local packaging, workspace, Git, startup/recovery, and contributor workflow is operable on each claimed platform.
+    required_evidence: Clean supported-host setup, workspace/path/Git scenarios, interruption/recovery, inspectability, and exact limitations.
+    success: Validates tested package/toolchain/platform scope only.
+    failure: Correct packaging/configuration or narrow support; structural support-boundary contradiction hands back to ADR-E2-001/004/009.
+    missing: EVIDENCE_MISSING_FAIL_CLOSED; platform remains unsupported.
+  E3V-004:
+    property: Selected capability, approval, gateway, audit, redaction, and unauthorized-adapter controls enforce policy.
+    required_evidence: Deny/allow, stale approval, takeover/revocation, redaction, gateway bypass, audit/readback, and scope fixtures.
+    success: Validates tested policy/gateway configuration only.
+    failure: Correct/replace configuration; structural authority-boundary contradiction hands back to ADR-E2-001/005/008.
+    missing: EVIDENCE_MISSING_FAIL_CLOSED; effect remains denied or waiting.
+  E3V-005:
+    property: Selected orchestration/effect mechanism preserves idempotency, truthful ambiguity, reconciliation, and noncompensating completion.
+    required_evidence: Duplicate input/operation/effect, lost acknowledgement, stale verification, crash/recovery, reconciliation, and readback fixtures.
+    success: Validates tested mechanism/effect class only.
+    failure: Correct/replace mechanism or narrow effect support; structural contradiction hands back to ADR-E2-003/005.
+    missing: EVIDENCE_MISSING_FAIL_CLOSED with UNKNOWN_OUTCOME where outcome cannot be proven.
+  E3V-006:
+    property: >-
+      Selected client/execution configuration provides protected acquisition, complete capture exclusion, exact-recipient
+      one-use delivery, replacement/recovery revocation, no raw replay, unauthorized-surface exclusion, and fail-to-WAIT.
+    required_evidence:
+      - Synthetic sentinel only; no real secret.
+      - Complete named observer/capture-surface inventory for the selected client/execution configuration.
+      - Exact task/operation/recipient/purpose/lease-or-fence/expiry binding and one-use delivery.
+      - Crash, cancellation, replacement, revocation, expiry, receipt, recovery, and reacquisition behavior.
+      - Raw-value absence from transcript, model context, logs, telemetry, evidence, caches/history, journal/payload/projections, and all other unauthorized surfaces.
+      - Exact supported and unsupported client/platform/configuration scope and independent readback/scans.
+    success: Validates only the tested client/execution configuration; no architecture-wide generalization.
+    failure: IMPLEMENTATION_CONFIGURATION_FAILURE or PRODUCT_CLASS_UNSUPPORTED unless no conforming seam realization remains.
+    missing: EVIDENCE_MISSING_FAIL_CLOSED; task remains WAITING_FOR_USER/blocked and never falls back to ordinary capture.
+    handback: Reopen ADR-E2-005 only for structural inability to realize a required protected-entry property.
+  E3V-007:
+    property: Selected evidence/artifact/provenance/integrity mechanism binds exact state, independently verifies, detects drift, and preserves typed failures.
+    required_evidence: Manifest, drift, corruption, large-output, verifier-independence, provenance, and readback fixtures.
+    success: Validates tested evidence/storage configuration only.
+    failure: Correct/replace mechanism; structural evidence-boundary contradiction hands back to ADR-E2-002/007/008.
+    missing: EVIDENCE_MISSING_FAIL_CLOSED; verification/completion remains unsatisfied.
+  E3V-008:
+    property: Only independently benchmarked eligible logical-role occupants/providers/configurations may be assigned.
+    required_evidence: Separate authorized benchmark plan execution, raw results, eligibility gates, cost/scope, and independent verification.
+    success: Qualifies only tested role/provider/configuration scope.
+    failure: Leaves that configuration unassigned; does not choose another or invalidate architecture automatically.
+    missing: No assignment, no benchmark inference, and no paid call.
+    handback: Only a structural provider-neutral routing contradiction can return ADR-E2-006 to E2.
+
+e2_004_no_spike_closure_contract:
+  lifecycle_step_required: true
+  current_status: NOT_RUN_BLOCKED_PENDING_E2_003_INDEPENDENT_VERIFICATION
+  retained_preselection_spike_ids: []
+  verifier_must_confirm:
+    - Every E2-003 PAPER_RESOLVABLE item is resolved.
+    - No architecture-blocking empirical uncertainty remains.
+    - All empirical residuals are legitimately assigned to E3 or E4.
+    - Every deferred hard property has a structural architecture seam.
+    - Every E3 deferral has explicit evidence and tested-scope requirements.
+    - Every E3 deferral has fail-closed behavior.
+    - Every E3 deferral has an E2/ADR handback trigger.
+    - No candidate receives favorable credit from missing evidence.
+    - No spike was skipped merely to save effort.
+  pass_output: NO_PRESELECTION_SPIKE_REQUIRED
+  failure_output: E2_005_BLOCKED_WITH_EXACT_UNCLOSED_ITEM
+  bypass_permitted: false
+
+candidate_readiness:
+  EP-ARCH-C01: ANALYTICALLY_VIABLE_READY_FOR_E2_005_AFTER_INDEPENDENTLY_VERIFIED_E2_004_NO_SPIKE_CLOSURE
+  EP-ARCH-C02: ANALYTICALLY_VIABLE_READY_FOR_E2_005_AFTER_INDEPENDENTLY_VERIFIED_E2_004_NO_SPIKE_CLOSURE
+  EP-ARCH-C03: ANALYTICALLY_VIABLE_READY_FOR_E2_005_AFTER_INDEPENDENTLY_VERIFIED_E2_004_NO_SPIKE_CLOSURE
+
+e2_e3_boundary:
+  e2_decides:
+    - system structure and authority ownership
+    - interfaces and trust boundaries
+    - required containment and protected-entry seams
+    - recovery, evidence, and verification architecture
+  e3_validates:
+    - concrete mechanism feasibility
+    - selected platform and client behavior
+    - model, provider, and configuration eligibility
+    - bounded empirical obligations E3V-001 through E3V-008
+  handback_rule: >-
+    E3 hands back only when evidence disproves an assumption/property required by a linked proposed or accepted ADR
+    and no conforming realization remains. E3 may not silently redesign E2.
+
+status_assertions:
+  architecture: NOT_SELECTED
+  preferred_candidate: NONE
+  accepted_adrs: 0
+  preselection_spike_set: []
+  architecture_spikes_run: 0
+  application_code: NONE
+  evaluation_runs: 0
+  model_benchmarks: 0
+  paid_calls: 0
+  autonomy_eligible: NOT_ELIGIBLE
+  autonomous_build_authorized: false

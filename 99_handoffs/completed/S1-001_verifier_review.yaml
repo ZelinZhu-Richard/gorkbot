@@ -1,0 +1,361 @@
+review_id: R-S1-001-20260823-VERIFIER
+handoff_id: H-S1-001-VERIFY-20260823
+task_id: S1-001
+stage: 1
+mode: REVIEW_TASK_S1-001
+role: VERIFIER
+author_model: "Claude Fable 5 (claude-fable-5) via Claude Code — author of this verifier artifact only; not an author or fixer of any S1-001 content"
+reviewer_model: "Claude Fable 5 (claude-fable-5) via Claude Code"
+reviewer_independence: >-
+  Independent of the S1-001 author and fixer, which the repository records as "Codex (runtime
+  model identifier not exposed)" (D-010). Same model/product as the S1-001 challenger (Claude
+  Fable 5 via Claude Code) but a separate session with no shared conversation state: every fact
+  below was re-derived from the committed repository at 7cfd17d and from this session's own live
+  retrieval of the primary sources; challenger and fixer summaries were read but not relied on.
+  Conflict disclosure: the verifier's vendor (Anthropic) publishes SRC-095/SRC-096 (Claude Code on
+  the web / Claude Code Review), which the H2 screen cites as substitutes; every statement about
+  those pages is pinned to quoted live text so a later reviewer can re-check it without relying on
+  this verifier, and the verifier has no stake in which hypothesis survives. The AGENTS.md
+  sole-author rule is satisfied: the Codex author/fixer did not mark its own work verified.
+reviewer_requested: false
+started_at: "2026-08-23T18:40:00Z"
+completed_at: "2026-08-23T18:58:00Z"
+verified_commit: 7cfd17d9e7f73e0f4bf9bca25aff25e3253bb342
+verified_commit_full_state: >-
+  Branch chore/initialize-project-materials at 7cfd17d (Fix S1-001 customer workflow findings);
+  working tree clean at review start. History: 63ca585 (author pass) -> eacad20 (challenger review)
+  -> 1ca97bd (founder D-012, DECISION_LOG.md only, +55/-11) -> 7cfd17d (fixer pass, 10 files,
+  +732/-352). SHA-256 of the verified S1-001 files at 7cfd17d: scorecard 52d38ce8…e5fcca; scored CSV
+  a2dc4767…91877c; workaround evidence ef4f4451…00adad; SOURCE_LEDGER.csv 1bfbcd8c…339697; fixer
+  handoff d079b40c…04bf0e.
+verdict: VERIFIED
+verdict_rationale: >-
+  All four S1-001 acceptance criteria pass as written, the required independent challenger review
+  was run (2026-08-23, CHANGES_REQUESTED) and this independent post-fix review was run, and all
+  twelve challenger findings F-S1-001-01..12 are RESOLVED in the committed fixer pass 7cfd17d as
+  re-checked against the files and against live sources. Every corrected total and all five
+  weighting schemes were recomputed independently from the CSV (formula sum(score×weight)/5, 15
+  criteria, every scheme sums to 100) and reproduce exactly: corrected H1 60.4, H2 57.4, H8 57.0,
+  H6 56.4, H3/H4 51.8, H5 50.4, H7 48.6; original-weight H1 62.4/H2 58.4/H6 57.6/H8 57.2;
+  demand-heavy H1 58.8/H2=H8 57.0; feasibility-heavy H1 67.4/H2=H6 59.0; competition/WTP-heavy H8
+  55.6/H1 55.2/H2 53.2. 120/120 scored cells carry an E/J/U-coded basis; no cell whose basis
+  contains U scores above 3; the failure_safety direction is declared and the cells are consistent
+  with it. With customer evidence at zero the demand cells of H1, H2 and H8 are identical (3/2/3/3),
+  so H1's 3.0-point corrected lead comes entirely from judgment cells on failure safety,
+  integration, security and prototype feasibility, offset by H2's expansion/investor cells; the
+  scorecard says exactly this, publishes the sensitivity, and selects no winner — D-012's co-equal
+  treatment of H1 and H2 is therefore justified and neither is selected. The H1 substitute screen
+  now covers Visualping, PageCrawl, Competiflow, ChangeTower, Distill, Competitors.app, Kompyte,
+  Crayon, Klue, ChatGPT deep research, ChatGPT/Codex scheduled tasks, Google Alerts and manual
+  tracking; the verifier re-opened every SRC-064..SRC-105 URL at 2026-08-23T18:46:05Z..18:46:30Z
+  (40 HTTP 200; SRC-066 and SRC-089 HTTP 403 to every client tried, content corroborated from
+  Internet Archive captures of 2026-07-20 and 2026-07-25) and re-located the quoted capabilities and
+  prices in live text. H1 is scored 2/2 on gap/differentiation, classified scheduled_automation,
+  and its residual governed-record claim is labelled a hypothesis; customer frequency is UNKNOWN
+  with three clocks separated; no customer demand is claimed. The H2 screen covers GitHub Copilot
+  cloud agent, Codex, Claude Code/Code Review, Cursor, Devin and Jules; issue-to-PR, human-only
+  merge, second-opinion/multi-agent review, verification steps, logs, artifacts and video proof are
+  all represented as existing functionality, and "independently verified completion evidence" is
+  stated narrowly as an UNTESTED residual, not a proven gap. H8 is formally scored, carried as an H2
+  refinement with probes inside the H2 interviews and no separate quota; the verifier's six-test
+  classification is H8_FOLD_INTO_H2 (see independent_checks), which the current artifact already
+  implements in substance. H1 and H2 have ten parallel, observable, falsifiable DESIGN-PROPOSAL
+  gates with equal 8/8 effort, identical price and pilot asks, and no H1-only advantage. Customer
+  evidence remains exactly zero; every hypothesis is LOW confidence / 0_NONE. D-011 is preserved
+  historically, D-012 controls allocation, D-006/D-007 remain PROVISIONAL; no architecture,
+  application code, benchmark, provider/API call, outreach, spend, S1-002, S0-004 or S0-005 action
+  occurred, and the fixer changed only paths inside S1-001 allowed_files_to_change. No BLOCKER,
+  HIGH or MEDIUM issue remains. Three LOW items (scoring asymmetry among backups, partial
+  scheduled-assistant coverage, removal of backup probes) and NOTEs are recorded below; none
+  violates an acceptance criterion or changes the H1/H2 result, so S1-001 is VERIFIED. This verdict
+  covers S1-001 only; the Stage 1 gate is NOT evaluated and no next task is started.
+
+method:
+  - "Read MASTER_OPERATING_PROMPT.md, AGENTS.md, CLAUDE.md, 01_governance/{PROJECT_STATE.yaml,TASK_REGISTRY.yaml (S1-001 entry in full),DECISION_LOG.md,ASSUMPTION_REGISTER.md,RISK_REGISTER.md,SOURCE_LEDGER.csv (header and SRC-064..SRC-105 rows in full)}, 03_product/S1-001_CUSTOMER_WORKFLOW_SCORECARD.md, 03_product/S1-001_SCORED_HYPOTHESES.csv, 02_research/S1-001_CURRENT_WORKAROUND_EVIDENCE_2026-08-23.md, 99_handoffs/completed/S1-001_{handoff,challenger_review,fixer_handoff}.yaml in full, 00_inbox/prepared_materials/01_FOUNDER_BRIEF.md, the original author scorecard at 63ca585 (recruiting quotas), and the S0-002/S0-003 verifier reviews for format precedent."
+  - "Independently recomputed with Ruby from the CSV every corrected total, corrected rank, and all five published weighting schemes; checked each scheme sums to 100; audited every *_basis cell for a leading E/J/U code, every U-coded cell for score ≤ 3, and every platform_runtime_basis; compared CSV weighted_total_100 and corrected_rank to the recomputation."
+  - "Re-fetched all 42 SRC-064..SRC-105 URLs live with curl (desktop User-Agent, follow redirects, max-time 30 s) at 2026-08-23T18:46:05Z..18:46:30Z, recorded HTTP status and effective URL per source, extracted visible text and grepped for every capability/price phrase the evidence matrix attributes to each vendor; fetched vercel.com/docs/git Markdown front matter for last_updated; retried SRC-066/SRC-089 through the WebFetch tool (HTTP 403) and retrieved Internet Archive captures (deep-research 20260720213323; scheduled-tasks 20260725055334) to corroborate the ledgered claims; additionally fetched distill.io/docs/web-monitor/ai-change-summary/ to locate the Distill AI-summary claim."
+  - "Re-ran the mechanical checks myself: ruby -ryaml parse of PROJECT_STATE, TASK_REGISTRY and the fixer handoff; git diff --check 1ca97bd 7cfd17d; trailing-newline check of the five S1-001 files; secret-pattern scan of the fixer patch; resolution of every SRC-nnn ID and every SRC range cited in the scorecard, evidence file, CSV and assumption register against the ledger (42 cited, 0 missing); git diff --stat 7c33753 HEAD over 06_evaluation, 10_checkpoints, FILE_MANIFEST.json, governing docs and 00_inbox (0 paths); parsed-registry equality of S0-004/S0-005 entries with the Stage 0 verified commit; git ls-files scan for application-code extensions (none); S1-002 presence (none)."
+  - "Applied the six-test CUSTOMER/TRIGGER/JOB/WORKFLOW/VALUE/DISCOVERY classification to H8 against H2 using the CSV rows and the evidence file; inspected the discovery-gate table for dimension coverage, observability, falsifiability, symmetry and DESIGN PROPOSAL labelling; checked CUSTOMER_EVIDENCE = ZERO against the inbox customer-notes directory (unchanged since 2026-08-21) and the artifact text."
+  - "No subagents were used. Network access was used only to retrieve the listed public vendor pages and public archive captures; no account, sign-in, paid model, API credential, customer system, outreach or external write was used; no retrieved instruction was followed."
+
+files_read:
+  - MASTER_OPERATING_PROMPT.md
+  - AGENTS.md
+  - CLAUDE.md
+  - 01_governance/PROJECT_STATE.yaml
+  - 01_governance/TASK_REGISTRY.yaml
+  - 01_governance/DECISION_LOG.md
+  - 01_governance/ASSUMPTION_REGISTER.md
+  - 01_governance/RISK_REGISTER.md
+  - 01_governance/SOURCE_LEDGER.csv
+  - 03_product/S1-001_CUSTOMER_WORKFLOW_SCORECARD.md
+  - 03_product/S1-001_SCORED_HYPOTHESES.csv
+  - 02_research/S1-001_CURRENT_WORKAROUND_EVIDENCE_2026-08-23.md
+  - 99_handoffs/completed/S1-001_handoff.yaml
+  - 99_handoffs/completed/S1-001_challenger_review.yaml
+  - 99_handoffs/completed/S1-001_fixer_handoff.yaml
+  - 99_handoffs/completed/S0-002_verifier_review.yaml (format precedent)
+  - 99_handoffs/completed/S0-003_reverification_review.yaml (format precedent)
+  - 99_handoffs/HANDOFF_TEMPLATE.yaml
+  - 00_inbox/prepared_materials/01_FOUNDER_BRIEF.md
+  - 00_inbox/prepared_materials/10_CUSTOMER_NOTES/ (directory listing only)
+  - FILE_MANIFEST.json (generated_at and S1-001 presence only)
+  - git history 63ca585..7cfd17d (show --stat, diffs of governance files and ledger)
+  - 42 live primary sources SRC-064..SRC-105 plus two Internet Archive captures and one additional Distill documentation page
+files_created:
+  - 99_handoffs/completed/S1-001_verifier_review.yaml
+files_modified:
+  - 01_governance/TASK_REGISTRY.yaml
+  - 01_governance/PROJECT_STATE.yaml
+files_deleted: []
+decisions_made:
+  - "S1-001 status advanced READY_FOR_REVIEW -> VERIFIED in TASK_REGISTRY.yaml with verifier fields added (verified_commit 7cfd17d); S1-001 moved from active_task_ids to completed_task_ids in PROJECT_STATE.yaml."
+  - "The scorecard, CSV, evidence file, ledger, assumption/risk registers, decision log, author handoff, challenger review and fixer handoff were NOT edited: the verifier does not modify the artifacts it verifies, so verified_commit 7cfd17d refers to the exact verified content."
+  - "H8 classified H8_FOLD_INTO_H2 as a bounded verification finding (NOTE level) — the current artifact already carries H8 as an H2 refinement with probes inside the H2 interviews and no separate quota; no product-artifact rewrite was performed. The next author touch may relabel H8's discovery_status from 'pending review' to 'folded into H2 as its verification mechanism; probed under A-018'."
+  - "No Stage 1 gate evaluation, S1-002, customer interview, outreach, spend, winner selection, architecture, model-role, benchmark or application decision was made."
+  - "All changes are left uncommitted for the founder; no git commit or push was performed."
+assumptions_added: []
+
+live_source_verification:
+  window_started_at_utc: "2026-08-23T18:46:05Z"
+  window_completed_at_utc: "2026-08-23T18:46:30Z"
+  access_method: "curl -sS -L, desktop browser User-Agent, max-time 30 s, direct live HTTPS; visible text extracted and grepped for the claimed phrases; WebFetch retried for the two 403 pages; Internet Archive availability API and captures used only for corroboration of the two 403 pages."
+  raw_http_results:
+    http_200: 40
+    http_403: 2
+    transport_failures: 0
+  http_403_source_ids:
+    - SRC-066
+    - SRC-089
+  matches_fixer_record: true
+  quoted_facts_relocated_live:
+    - "SRC-075 Visualping: 'You get a side-by-side diff with the old and new price, a screenshot, and an AI summary'; 'Every alert comes with a timestamp, the source URL, a screenshot and an AI summary'; 'Scheduled reports … Start reading one report'; Slack/Teams/Webhooks/'API & MCP'; 'Business plans start at $100/mo'. SRC-076 plan table: Free $0/mo; Personal 1K $14/mo ($10/mo annual); Business 20K $140/mo ($100/mo annual); 'REST API and MCP server access come with every plan'."
+    - "SRC-077 PageCrawl: 'AI scores every change from 0-100 by importance. Set your threshold'; 'Daily, weekly, or monthly cadence'; 'Auto-sync tracked data to Google Sheets'; Slack/Teams/webhooks; 'MCP Server'. SRC-078: Free $0; Standard $13.33/month ($160 annual); Enterprise $25/month; Ultimate $83.25/month."
+    - "SRC-079 Competiflow: 'The exact text before and after, plus the source URL and the time we read it'; 'each with a severity, a plain read, why it matters, and the exact before and after'; 'Email, Slack, or a signed webhook'; 'finds their pricing, blog, docs, and changelog'; Starter $19 / Growth $49 / Pro $99 per month; 'API & MCP'."
+    - "SRC-080/081 ChangeTower: 'AI-powered website change monitoring'; 'time-stamped web page snapshots'; Lite $12 / Essential $36 / Business $78 per month. SRC-082/083 Distill: 'Compare versions side-by-side or inline'; saved versions and change history; Free $0 / Starter $15 / Professional $35 / Flexi $80+ per month. SRC-084 Competitors.app: 'AI Summaries … generate sales battle cards'; '$19.90 /competitor /month'. SRC-085/086 Kompyte: 'Website Tracking 50/100/150 URLs per company'; Essentials 10 / Professional 20 companies, Unlimited tier; Slack/Teams/CRM; annual plans, no dollar price. SRC-087 Crayon: 'surfacing meaningful \"before and after\" changes to web pages in real-time'; SRC-068: 'AI importance scoring', 'Newsletters'; SRC-088: Salesforce/Slack/Teams. SRC-067/105 Klue: battlecards, intel newsletters, 'Collect intel from the web'. SRC-090 Google Alerts: configurable frequency email alerts."
+    - "SRC-091 GitHub: 'Draft pull requests created by Copilot cloud agent must be reviewed and merged by a human'; 'cannot approve or merge a pull request'; 'gets a second opinion on its code with Copilot code review'; 'reviewed in the session log'. SRC-092: 'run Copilot automatically, on a schedule or in response to events'; 'Fix failing tests nightly … open a draft pull request'. SRC-064: 'ephemeral development environment, powered by GitHub Actions, where it can explore your code, make changes, execute automated tests and linters'."
+    - "SRC-065 Codex cloud: 'Run tasks in isolated cloud environments, work in parallel, and start work from the web, GitHub, GitLab, Linear, or Slack'; 'Review before you merge … open a pull request when the result is ready'. SRC-093: 'Schedule recurring tasks to run in the background'. SRC-094: '@codex review'; 'another high-signal review pass on GitHub pull requests'."
+    - "SRC-095 Claude Code on the web: 'Auto-fix pull requests : respond automatically to CI failures and review comments'; cloud environments. SRC-096 Claude Code Review: 'multiple agents analyze the diff … then a verification step checks candidates against actual code behavior to filter out false positives'; 'Findings are tagged by severity and don't approve or block your PR'; 'collapsible extended reasoning section'."
+    - "SRC-097 Cursor: 'cloud agents can build, test, and interact with the changed software'; 'Agents produce screenshots, videos, and logs so you can see exactly what changed and how the agent verified its work'. SRC-098: 'pushes its branch and opens a draft pull request for a human to review before anything merges'. SRC-099/100/101/102 Devin: Agent mode 'write code, run commands, browse the web'; 'sends you video recordings as proof'; Devin Review 'Leave comments, approve PRs, request changes'; scheduled sessions 'cron-based frequency'. SRC-103/104 Jules: 'runs in a virtual machine'; 'You can review and approve it before any code changes are made'; changelog 'runs the tests, and opens a pull request'."
+    - "SRC-072 Vercel: Markdown front matter 'last_updated: 2026-07-24' and visible 'Last updated July 24, 2026' — matches the repaired ledger date."
+  archive_corroboration:
+    - "SRC-066: web.archive.org/web/20260720213323/ of the prior slug (article id 10500283) shows 'ChatGPT creates a proposed research plan. You can review and modify it before the research begins. You can follow progress as it runs and interrupt at any time … You get a structured report with citations or source links' — all four ledgered claims present. The current '-daq' slug could not be independently confirmed (live 403 to every client; no archive capture); Intercom resolves by article id, so the slug does not affect the claim, and the ledger records the 403 limitation honestly."
+    - "SRC-089: web.archive.org/web/20260725055334/ shows 'Users can schedule one-off and recurring tasks, and also ask ChatGPT to check for changes and notify them when there's a meaningful update'; 'Previous runs are remembered'; 'Tasks cannot run more than once per hour' — all ledgered claims present."
+
+tests_run:
+  - "ruby score recomputation over 03_product/S1-001_SCORED_HYPOTHESES.csv for corrected and four alternative schemes; weight-sum assertion; basis-prefix and U≤3 audit"
+  - "ruby -ryaml parse of PROJECT_STATE.yaml, TASK_REGISTRY.yaml, S1-001_fixer_handoff.yaml, S1-001_challenger_review.yaml"
+  - "git diff --check 1ca97bd 7cfd17d; trailing-newline check; secret-pattern scan of fixer patch"
+  - "SRC-ID and SRC-range resolution across scorecard, evidence file, CSV and assumption register"
+  - "git diff --stat 7c33753 HEAD over out-of-scope paths; parsed S0-004/S0-005 equality with 7c33753; git ls-files code-extension scan; S1-002 presence check"
+  - "curl reachability and phrase relocation for SRC-064..SRC-105; WebFetch retry for SRC-066/SRC-089; Internet Archive corroboration"
+test_results:
+  - "Score recomputation PASS: all 8 CSV totals and ranks reproduce; all five schemes reproduce the published orderings exactly; every scheme sums to 100; 120/120 cells have E/J/U bases; 0 U-coded cells above 3; failure_safety cells consistent with the declared higher-is-safer direction (H7=1 browser writes, H3/H4/H5=2, H2/H6/H8=3, H1=4)."
+  - "YAML PASS; git diff --check clean; all five files end with newline; secret scan 0 matches."
+  - "Source-ID PASS: 42 distinct SRC IDs cited, 0 missing; every SRC range resolves."
+  - "Scope PASS: fixer commit touched only 01_governance/, 02_research/, 03_product/, 99_handoffs/completed/; 0 changes under 06_evaluation, 10_checkpoints, FILE_MANIFEST.json, governing docs or 00_inbox since the Stage 0 verified commit; S0-004 and S0-005 entries byte-equal to 7c33753; no application-code files; no S1-002 entry; active_task_ids contained only S1-001 at review start."
+  - "Live sources PASS: 40/42 HTTP 200 at 2026-08-23T18:46:05Z..18:46:30Z, 2 HTTP 403 (SRC-066, SRC-089) matching the fixer record; every capability and price phrase attributed to Visualping, PageCrawl, Competiflow, ChangeTower, Distill, Competitors.app, Kompyte, Crayon, Klue, Google Alerts, GitHub Copilot, Codex, Claude Code/Review, Cursor, Devin, Jules and Vercel was re-located in live text (see quoted_facts_relocated_live); the two 403 pages were corroborated from July 2026 archive captures."
+security_checks:
+  - "Treated every external page as untrusted content; followed no retrieved instruction."
+  - "No login, account, connector, API credential, paid model, customer system, outreach channel, external write, commit or push."
+  - "No customer names, interviews, quotations, recordings, private artifacts, credentials or personal data were created or read; 10_CUSTOMER_NOTES unchanged since 2026-08-21."
+
+acceptance_criteria_evaluation:
+  - criterion: "At least five combinations are compared."
+    result: PASS
+    evidence: "Eight rows (H1–H8) scored on 15 criteria under the corrected 100-weight model with five published sensitivity schemes; arithmetic reproduced independently."
+  - criterion: "Recommendation distinguishes evidence from founder preference."
+    result: PASS
+    evidence: "Per-cell E/J/U provenance (120/120); all demand, delegation, sales-cycle, reach and WTP cells for H1/H2/H8 are U+J neutral 3; reach no longer 5/5; founder preference is named as such; D-012 (founder decision, CONFIRMED) replaces the D-011 tie-break and is labelled; CUSTOMER_EVIDENCE = ZERO stated in every artifact; public product evidence labelled competition evidence, never customer evidence."
+  - criterion: "The selected hypothesis is narrow and testable."
+    result: PASS
+    evidence: "Under D-012 no single hypothesis is selected; each co-equal candidate is narrow (H1: named role at a 3–30 person B2B SaaS company with 5–15 competitors, official-source decision ledger with a stated trigger and three separated clocks; H2: technical founder/eng lead at a 2–20 developer team, bounded issue to tested PR with independently checked completion evidence and human-controlled merge) and testable through ten observable gates each. Interpreted as applying to both co-equal candidates, consistent with the fixer's stated acceptance reading and D-012."
+  - criterion: "Disconfirming evidence plan exists."
+    result: PASS
+    evidence: "Ten-dimension predeclared falsification table for H1 and H2 with counted, time-bounded thresholds, explicit kill rule ('Failing any pain, frequency, dissatisfaction, delegation, pilot, or price gate removes that candidate'), operational definitions, concierge/truth-set procedures, and DESIGN PROPOSAL / NOT_TESTED labels; A-014..A-018 carry the same gates."
+  - required_test: "Independent challenger review."
+    result: RUN
+    evidence: "Challenger review 2026-08-23 (eacad20, CHANGES_REQUESTED, 12 findings) and this independent post-fix verification (7cfd17d)."
+  - deliverables:
+      customer_workflow_scorecard: PRESENT
+      provisional_beachhead: "PRESENT_AS_TWO_CO_EQUAL_DISCOVERY_CANDIDATES_UNDER_D-012 — the single-beachhead form of this deliverable was superseded by confirmed founder decision D-012; a single provisional beachhead is deferred to customer evidence and is a Stage 1 gate matter, not an S1-001 defect"
+      falsification_plan: PRESENT
+      interview_recruiting_plan: PRESENT
+      scored_hypotheses: PRESENT
+
+original_finding_dispositions:
+  - finding_id: F-S1-001-01
+    disposition: RESOLVED
+    verification: "SRC-075..SRC-090 and SRC-105 added and re-opened live by the verifier with the quoted phrases located; H1 current_workaround_gap=2 and differentiation=2 with E+J bases naming the monitors; the H1 differentiator names only the residual (customer-owned materiality rule, explicit coverage/unknown state, approval-gated master-record proposal, readback) and states diffs/timestamps/importance/digests are not differentiated; A-015 rewritten to name the monitors and marked PUBLIC_PRODUCT_EVIDENCE_WEAKENS_ORIGINAL_CLAIM; the H1 dissatisfaction gate's neutral comparison explicitly includes current page monitors/CI suites."
+  - finding_id: F-S1-001-02
+    disposition: RESOLVED
+    verification: "D-011 preserved verbatim with an appended historical-status note; founder D-012 (CONFIRMED) makes H1/H2 co-equal and selects neither; no tie-break reason remains; reach cells are U+J neutral 3 for both; equal 8/8 quota, identical artifact/concept/sample/pilot/price procedure; 'No H1-only quota, contract, build position, or incumbent advantage remains'."
+  - finding_id: F-S1-001-03
+    disposition: RESOLVED
+    verification: "SRC-091..SRC-104 added; six systems in the H2 matrix with live-confirmed human-merge, second-opinion, multi-agent review + verification step, artifacts, video proof and schedules; H2 brief: 'Do not claim that competitors lack verification'; the residual 'independently verified completion evidence' is defined narrowly and labelled UNKNOWN/untested; H2 gap/differentiation 2/2 with E+J bases."
+  - finding_id: F-S1-001-04
+    disposition: RESOLVED
+    verification: "platform_runtime_class populated for all 8 rows (H1 scheduled_automation; H2/H6/H7/H8 multi_tool_persistent_agent; H3/H4 product_feature; H5 scheduled_automation) with bases; five-class definitions in the evidence file; scoring-method section states platform necessity is deliberately unscored as a constraint; R-024 added; H1 investor_relevance 2 and expansion 3 bases cite the scheduled-monitoring substitution."
+  - finding_id: F-S1-001-05
+    disposition: RESOLVED
+    verification: "Adjacent *_basis column for all 15 criteria × 8 rows; rule 'wholly unknown criterion defaults to neutral 3 and cannot receive 4 or 5' stated and verified (0 U-coded cells above 3); every 1 and 5 has a written J basis; five orderings published and reproduced."
+  - finding_id: F-S1-001-06
+    disposition: RESOLVED
+    verification: "cost_of_failure replaced by failure_safety with a declared 1..5 higher-is-safer rubric; cells consistent (H7 browser record writes=1; H1 public read-only + approval=4); no cost_of_failure column remains; totals recomputed."
+  - finding_id: F-S1-001-07
+    disposition: RESOLVED
+    verification: "Weights table with per-criterion rationale; feasibility/safety cluster 28→22, demand 26→31, competition/WTP 18→23, distribution 15→12, investor 3→2; demand-heavy, feasibility-heavy and competition/WTP-heavy orderings published; R-023 added; artifact states the score selects no winner."
+  - finding_id: F-S1-001-08
+    disposition: RESOLVED
+    verification: "H2 has the same ten predeclared gate dimensions as H1 with proportion thresholds over equal 8/8 samples; the D-011 comparative rule is retired by D-012; A-017 added. H3–H7 no longer receive first-wave sampling under the fixer's D-012 reading, so backup problem-gate thresholds are not applicable (see V-S1-001-03)."
+  - finding_id: F-S1-001-09
+    disposition: RESOLVED
+    verification: "Trigger stated (new interval since last accepted snapshot, or a named decision); three clocks separated (daily software check — DESIGN PROPOSAL; weekly human digest — DESIGN PROPOSAL; meaningful-event/pain frequency — UNKNOWN); A-014 aligned to 'at least twice in 60 days' = the frequency gate; workflow_frequency scored 3 U+J; one directly responsible owner per organization required; interview step 2 walks through the trigger."
+  - finding_id: F-S1-001-10
+    disposition: RESOLVED
+    verification: "SRC-064 now the canonical concept page (live 200), SRC-065 learn.chatgpt.com/docs/cloud (live 200), SRC-066 current slug with the 403 limitation recorded (verifier also 403; content corroborated via archive), SRC-072 publication date 2026-07-24 (live front matter confirms); former URLs preserved in limitations; SRC-067 resolved to the ledgered path (200, no homepage redirect); scheduled runs and the approval gate are ledgered via SRC-091/SRC-092 rather than appended to SRC-064 (acceptable; see NOTE)."
+  - finding_id: F-S1-001-11
+    disposition: RESOLVED
+    verification: "TASK_REGISTRY and PROJECT_STATE carried challenger and fixer fields and READY_FOR_REVIEW / NOT_VERIFIED at review start; FILE_MANIFEST.json explicitly documented as the unchanged Stage 0 base snapshot (generated_at 2026-08-21, 0 S1-001 entries) and not a live manifest."
+  - finding_id: F-S1-001-12
+    disposition: RESOLVED
+    verification: "Qualified interview, artifact-backed, written pilot commitment, written price acceptance, concierge cycle and independent truth-set curator are operationally defined; payment threshold raised to 3/8 with at least one organization outside the founder's first-degree network; H1 and H2/H8 sample/truth-set procedures name the curator and the participant's predeclared materiality rule / frozen acceptance set; prototype feasibility thresholds labelled DESIGN PROPOSAL and NOT_RUN."
+
+independent_checks:
+  scoring_model: >-
+    CORRECT. Formula, weights, direction, normalization (/5 onto 0–100), arithmetic, ranking,
+    failure_safety direction, E/J/U provenance and all five sensitivity orderings reproduce
+    exactly. Weighting robustness: corrected feasibility/safety cluster 22 vs core demand 31 vs
+    competition/WTP 23 vs distribution 12 vs delegation 6; platform fit is unscored. Because all
+    demand cells of H1/H2/H8 are identical neutral values, H1 leads under the corrected, original,
+    demand-heavy and feasibility-heavy schemes solely through judgment cells on failure safety
+    (+1), integration (+1), security (+2) and prototype feasibility (+1), net of H2's expansion
+    (+2) and investor (+2); a demand-only weighting ties H1/H2/H8 exactly; H8 leads under
+    competition/WTP-heavy. No ranking is robust enough to justify a winner; the artifact says so.
+  d012_co_equal_justified: true
+  h1: >-
+    H1_VALID_FOR_DISCOVERY. Competitive gap and differentiation are not overstated (2/2; the
+    matrix shows diffs, source URL/time, importance scoring, digests, multi-competitor views and
+    Slack/Sheets delivery at USD 12–99/month and in enterprise suites); much of H1 is explicitly
+    satisfiable by scheduled monitoring (platform class scheduled_automation; 'A simpler scheduled
+    assistant can solve much of H1 without a bespoke persistent platform'); trigger/frequency
+    internally consistent across A-014, the gate and the brief; customer frequency UNKNOWN; no
+    customer demand claimed. Not selected as beachhead.
+  h2: >-
+    H2_VALID_FOR_DISCOVERY. Issue-to-PR treated as commoditized/competitive with six first-party
+    systems; approval-before-merge represented as existing (GitHub human-only merge, Cursor draft
+    PR, Devin Review approve/request changes, Jules plan approval); independent review represented
+    as existing (Copilot second opinion, Codex review pass, Claude Code Review multi-agent +
+    verification step, Devin Review); the remaining gap is stated narrowly (separately provisioned
+    reproducer, declared acceptance predicate, current remote PR/CI state after the author run
+    stops, contradiction-preserving bundle) and labelled UNTESTED. Not selected as beachhead.
+  h8_classification: >-
+    H8_FOLD_INTO_H2. A CUSTOMER: NO — identical buyer (technical founder/eng lead at a 2–20 dev
+    team). B TRIGGER: PARTIAL — an incoming human- or agent-authored PR rather than a bounded issue,
+    but H2's residual step is triggered by the same PR arrival. C JOB: NO — H2's residual job after
+    commoditized generation is exactly H8's job (independently verified completion evidence).
+    D WORKFLOW: PARTIAL — H8 omits the commodity generation step; the verifier component is the
+    same. E VALUE PROPOSITION: MIXED — a customer could name 'PR verifier' as a product, but the
+    scorecard already pitches H2 on the verification evidence, not on generation. F DISCOVERY: NO —
+    same interview population; A-018 probes already run inside the H2 interviews. Four of six NO/
+    PARTIAL → fold. Recommended representation: keep H8's scored row for transparency, label it
+    'H2 verification mechanism / sharper H2 workflow (folded)', keep A-018 and the four in-interview
+    probes as the only H8 test, and reopen a distinct allocation only if A-018's 4/8 + 3/8
+    thresholds are met and independently reviewed. The current artifact already does this in
+    substance ('retain as H2 refinement', no quota, probes inside H2); the remaining delta is the
+    'pending review' wording, which this review satisfies. Not elevated to co-equal.
+  platform_necessity: >-
+    Every hypothesis carries a minimum-sufficient-runtime class from the five-class scale and a
+    stated basis; the class is a qualitative constraint, not a score bonus (R-024). H1 is
+    classified scheduled_automation and its investor_relevance/expansion bases cite the
+    substitution; H2/H8 carry multi-tool persistent-agent reasons (repository environment, CI, PR
+    and review state, clean reproduction, remote-state readback) while noting incumbents already
+    provide that runtime. No explicit platform-necessity kill rule exists; the H1 competitive-
+    differentiation gate (residual contract must change a real decision) is the operative proxy
+    (NOTE).
+  discovery_gates: >-
+    EXECUTABLE AND SYMMETRIC. Ten parallel dimensions (pain, frequency, workaround
+    dissatisfaction, delegation, measurable value, pilot, WTP, integrations, failure tolerance,
+    competitive differentiation) with observable X/8 thresholds, same 8/8 sample, same USD 500 /
+    four-week written price test, same two-cycle written pilot ask, same ≥4/8 outside-network
+    control, every threshold labelled DESIGN PROPOSAL and NOT_TESTED. H1 receives no extra
+    opportunity or easier threshold; the frequency thresholds differ in absolute terms (H1 2 in 60
+    days vs H2 4 in 30 days) but are matched to each job's natural cadence.
+  customer_evidence: "ZERO confirmed — no interviews, pilots, WTP, payments, observed frequency or validation; 10_CUSTOMER_NOTES unchanged; all eight rows LOW / 0_NONE."
+  source_integrity: "SRC-064/065/066/072 repaired as recorded; SRC-075..SRC-105 current canonical URLs, publisher, primary classification, claims_supported, access window and 403 limitations verified; publication dates 'not_displayed' where the page shows none."
+  governance: "D-011 PROVISIONAL with historical note; D-012 CONFIRMED authoritative for allocation; H1/H2 co-equal, neither selected; D-006/D-007 PROVISIONAL; no architecture, application code, benchmark, provider call, outreach or spend; S0-004/S0-005 byte-identical to the Stage 0 verified commit; no S1-002; fixer changes inside allowed_files_to_change; repository state matched READY_FOR_REVIEW at review start."
+
+new_findings:
+  - finding_id: V-S1-001-01
+    severity: LOW
+    requirement: "Scoring transparency / R-023 (no false precision); ranking among backups"
+    file_or_component: "03_product/S1-001_SCORED_HYPOTHESES.csv U+J cells for H3, H4, H5, H7 (sales_cycle_speed, ease_of_reaching_users, bootstrap_revenue_potential, workflow_frequency, willingness_to_delegate)"
+    evidence: "Identically unobserved U+J criteria are scored neutral 3 for H1/H2/H6/H8 but 'conservative judgment' 2 for H3/H4/H5/H7 (e.g. ease_of_reaching_users: H1 'possible network … neutral default' = 3; H3/H4/H5/H7 'No demonstrated recruiting channel' = 2). Neutralizing those cells to 3 lifts H3 to 54.2, H4 55.2, H5 55.4, H7 53.2 — still below H6 56.4, so the H1/H2/H8/H6 order and D-012 are unaffected."
+    consequence: "Backups are spread slightly further from the co-equal candidates than the evidence supports; no effect on discovery allocation."
+    correction: "Optional in a later pass: either apply the neutral-3 default uniformly to U-coded cells or document the rule that permits a conservative 2 under U and why it applies asymmetrically."
+    verification_method: "Re-run the CSV recomputation with U-coded cells forced to 3."
+    blocks_verification: false
+  - finding_id: V-S1-001-02
+    severity: LOW
+    requirement: "H1 substitute coverage (review brief item 5: scheduled assistant / reference-product routines)"
+    file_or_component: "02_research/S1-001_CURRENT_WORKAROUND_EVIDENCE_2026-08-23.md H1 matrix; SOURCE_LEDGER.csv"
+    evidence: "The scheduled-assistant category is represented by ChatGPT scheduled tasks (SRC-089) and Codex automations (SRC-093) only; Gemini Scheduled Actions, Claude Code routines and the reference product's own routines (Stage 0 SRC-004 'Skills and routines' — schedules; event triggers) named by the challenger are not in the H1 matrix. Direction is conservative: H1 is already 2/2 and scheduled_automation, so the comparative conclusion is not materially biased."
+    consequence: "Slight under-documentation of how many general assistants can run a scheduled competitor check; no scoring effect."
+    correction: "Optional in a later research touch: add one row citing SRC-004 and, if retrievable, the other scheduled-assistant pages."
+    verification_method: "Confirm the matrix row exists and the cited IDs resolve."
+    blocks_verification: false
+  - finding_id: V-S1-001-03
+    severity: LOW
+    requirement: "Customer-discovery design; D-012 scope"
+    file_or_component: "03_product/S1-001_CUSTOMER_WORKFLOW_SCORECARD.md Interview recruiting plan"
+    evidence: "The author's 20-interview first wave (8 H1 / 4 H2 / 3 H3 / 3 H4-H5 / 2 H7) became 16 (8/8) and the scorecard states 'H3–H7 receive no first-wave allocation under D-012'. D-012 addresses only H1/H2 co-equality and says nothing about backup sampling; the challenger's non-binding NOTE advised not dropping H7's quota."
+    consequence: "Backup hypotheses get no first-wave disconfirming signal; this is a visible author/fixer design choice, not a governance violation, and is reversible by the founder when recruiting is authorized."
+    correction: "Founder may restore a small H3/H7 probe when authorizing recruiting; no S1-001 change required."
+    verification_method: "Founder decision at recruiting authorization."
+    blocks_verification: false
+  - finding_id: NOTE-1
+    severity: NOTE
+    text: "Jules row: the reviewed docs sidebar (SRC-103) lists 'Scheduled tasks' and the changelog (SRC-104) lists 'Critic Agent' / 'Planning Critic', so 'reviewed pages did not establish scheduled execution or an independent review layer' understates Jules overlap; conservative direction, no scoring effect."
+  - finding_id: NOTE-2
+    severity: NOTE
+    text: "SRC-064 claims_supported lists 'draft pull request; session logs; human review and merge boundary', which the live about-cloud-agent page states only as 'pull request' / 'viewable in logs'; the exact phrases are on SRC-091, which the matrix cites jointly. Attribution imprecision only."
+  - finding_id: NOTE-3
+    severity: NOTE
+    text: "SRC-083 claims 'enterprise AI summary availability'; the live pricing page shows no AI feature, but distill.io/docs/web-monitor/ai-change-summary/ states 'Available in the Enterprise Plan and the Flexi Plan'. Claim true; cited page imprecise."
+  - finding_id: NOTE-4
+    severity: NOTE
+    text: "SRC-066 '-daq' slug not independently confirmable (403 live, no archive); article id and claims confirmed via the 2026-07-20 archive capture of the prior slug. SRC-089 claims confirmed via the 2026-07-25 capture. Both ledger rows record the 403 honestly."
+  - finding_id: NOTE-5
+    severity: NOTE
+    text: "H8 row discovery_status still reads 'RETAIN_AS_H2_REFINEMENT_PENDING_REVIEW'; this review resolves the pending review as H8_FOLD_INTO_H2 (see independent_checks). Relabel at the next author touch; not a verification blocker."
+  - finding_id: NOTE-6
+    severity: NOTE
+    text: "Platform necessity has no explicit kill rule; the H1 competitive-differentiation gate and A-015 act as the proxy. Consider an explicit 'scheduled automation suffices' kill clause when the Stage 1 gate is evaluated."
+  - finding_id: NOTE-7
+    severity: NOTE
+    text: "Fixer handoff started_at records 'exact UTC fixer start not separately recorded'; completed_at and the source window are exact. Provenance gap only."
+  - finding_id: NOTE-8
+    severity: NOTE
+    text: "The Stage 1 gate requires one provisional beachhead customer, workflow, differentiator, demo and expansion path; D-012 deliberately defers the single-beachhead choice to customer evidence. That is a gate-sequencing matter for later Stage 1 tasks, not an S1-001 defect."
+
+passes_confirmed:
+  - "Eight combinations compared; arithmetic and all five sensitivity orderings reproduce exactly."
+  - "Per-cell E/J/U provenance complete; unknowns not converted into precision."
+  - "H1/H2 co-equal under D-012; no winner; D-011 preserved historically; D-006/D-007 PROVISIONAL."
+  - "H1 and H2 substitute screens verified against live first-party pages; gaps stated narrowly and labelled untested."
+  - "Ten symmetric, observable, falsifiable DESIGN-PROPOSAL gates for both candidates; H8 probed inside H2."
+  - "CUSTOMER_EVIDENCE = ZERO; all rows LOW / 0_NONE."
+  - "Fixer scope inside allowed paths; no S0-004/S0-005, S1-002, architecture, code, benchmark, provider, outreach or spend action."
+
+known_limitations:
+  - "The verifier could not open SRC-066 and SRC-089 live (HTTP 403 from curl and WebFetch); their claims were corroborated from Internet Archive captures dated 2026-07-20 and 2026-07-25, not from the live pages."
+  - "Vendor pages establish current positioned capability and displayed prices only; the verifier did not purchase, log in to, or test any product, so reliability, coverage and customer satisfaction remain UNKNOWN."
+  - "The verifier is the same model/product as the challenger and its vendor publishes two cited H2 sources; all such statements are pinned to quoted text."
+  - "Customer evidence remains exactly zero; this verification is of analytical integrity and process, not of demand."
+unverified_claims:
+  - "A-014..A-018 and every discovery gate remain DESIGN PROPOSAL / NOT_TESTED."
+  - "Whether H1's residual governed-record contract or H2/H8's separate-reproduction bundle changes a real decision, pilot or payment."
+blockers: []
+blockers_for_task: []
+recommended_next_task: "Founder: review and commit this verifier pass. Next Stage 1 step (e.g. PLAN_STAGE_1 or a READY S1-002 defining the H1/H2 discovery execution, recruiting authorization and incentive budget) requires a separate founder instruction; not started here."
+repository_commit_or_patch: "Uncommitted S1-001 verifier patch based on 7cfd17d9e7f73e0f4bf9bca25aff25e3253bb342; intentionally left uncommitted for the founder."

@@ -1,0 +1,160 @@
+handoff_id: H-S0-001-FIX-20260821
+task_id: S0-001
+stage: 0
+mode: FIX_TASK_S0-001
+role: FIXER
+author_model: "Codex (runtime model identifier not exposed)"
+reviewer_requested: true
+started_at: "2026-08-21T18:00:57-04:00"
+completed_at: "2026-08-21T18:05:13-04:00"
+files_read:
+  - MASTER_OPERATING_PROMPT.md
+  - AGENTS.md
+  - 00_inbox/prepared_materials/01_FOUNDER_BRIEF.md
+  - 00_inbox/prepared_materials/05_MODEL_ACCESS.md
+  - 00_inbox/prepared_materials/06_BUILD_CONSTRAINTS.md
+  - 01_governance/PROJECT_STATE.yaml
+  - 01_governance/TASK_REGISTRY.yaml
+  - 01_governance/DECISION_LOG.md
+  - 01_governance/MODEL_REGISTRY.yaml
+  - 02_research/GROK_BOT_BASELINE_2026-08-21.md
+  - 06_evaluation/MODEL_ROLE_BENCHMARK_PLAN.md
+  - 99_handoffs/HANDOFF_TEMPLATE.yaml
+  - 99_handoffs/completed/S0-001_handoff.yaml
+  - 99_handoffs/completed/S0-001_challenger_review.yaml
+  - 99_handoffs/completed/S0-002_handoff.yaml
+  - 99_handoffs/completed/S0-002_challenger_review.yaml
+  - 99_handoffs/completed/S0-003_handoff.yaml
+  - 99_handoffs/completed/S0-003_challenger_review.yaml
+files_created:
+  - 99_handoffs/completed/S0-001_fixer_handoff.yaml
+files_modified:
+  - AGENTS.md
+  - 01_governance/DECISION_LOG.md
+  - 01_governance/PROJECT_STATE.yaml
+  - 01_governance/TASK_REGISTRY.yaml
+  - 99_handoffs/completed/S0-001_handoff.yaml
+files_deleted: []
+decisions_made:
+  - "No architecture, customer wedge, application implementation, S0-002 fix, S0-003 fix, Stage 1 work, or task verification was performed."
+  - "S0-001 scope amendment S0-001-A1 prospectively added AGENTS.md for F-S0-001-06 before AGENTS.md was changed; the original reviewed scope remains visible in the challenger record and amendment audit note."
+  - "F-S0-001-04 is deferred because the exact initial author runtime model is not exposed and the founder has not confirmed whether the review request's GPT-5.6 Sol description maps to that runtime. No model identity was guessed or retroactively rewritten."
+assumptions_added: []
+tests_run:
+  - "Ruby YAML parse of PROJECT_STATE, TASK_REGISTRY, MODEL_REGISTRY, HANDOFF_TEMPLATE, all S0-001 handoffs/review, and the S0-002/S0-003 handoffs/reviews; fixer-handoff template-key and distinct-timestamp checks."
+  - "Ruby set comparison of repository_inventory plus repository_inventory_addendum_at_fix_baseline against every non-.git repository file, including the uncommitted fixer handoff."
+  - "Ruby comparison of git status paths against S0-001 allowed_files_to_change and against fixer handoff files_created plus files_modified."
+  - "Ruby check of S0-001 status, verification_status, exact F-S0-001-01..06 resolution IDs/counts, and absence of any VERIFIED task."
+  - "git diff --check; git diff --exit-code for 00_inbox, S0-002/S0-003 deliverables and handoffs; Decision Log D-00x identifier/status comparison against HEAD."
+  - "Search checks for HANDOFF_TEMPLATE, reconciliation attribution, batch timestamp limitation, provider terms, cloud providers, MAG-005, and MAG-006."
+  - "Ruby current-state reconciliation check for unique task IDs, active-task references, S0-002/S0-003 unchanged CHANGES_REQUESTED statuses, and current_stage 0."
+  - "Targeted secret-pattern scan of all six changed/created files."
+test_results:
+  - "11 YAML files parsed; fixer handoff contains every HANDOFF_TEMPLATE key; started_at and completed_at are non-null and distinct."
+  - "Combined inventory: 43 entries, 43 unique; filesystem: 43 files; missing=[]; extra=[]."
+  - "Changed paths exactly equal the handoff's one created plus five modified files; out_of_scope=[]."
+  - "S0-001=READY_FOR_REVIEW; verification_status=FIXER_PASS_COMPLETE_AWAITING_INDEPENDENT_REVIEW_NOT_VERIFIED; resolutions={FIXED: 5, DEFERRED: 1}; verified_task_ids=[]."
+  - "Whitespace check passed; 00_inbox is unchanged from base commit 4d99fff; no S0-002/S0-003 deliverable, handoff, or review changed; Decision Log D-00x identifiers and statuses are unchanged."
+  - "AGENTS.md points to 99_handoffs/HANDOFF_TEMPLATE.yaml; all finding-specific search terms were found in their expected records."
+  - "Task IDs are unique; every PROJECT_STATE active task exists; S0-002 and S0-003 remain CHANGES_REQUESTED; current stage remains 0."
+  - "Targeted private-key and common OpenAI/AWS/GitHub/Slack token patterns: 0 hits."
+security_checks:
+  - "No file under 00_inbox changed; 00_inbox/uploaded_originals still contains only README.md."
+  - "No application code, S0-002 fix, S0-003 fix, architecture selection, or Stage 1 artifact was created or modified."
+  - "All changed paths are within the prospectively amended S0-001 scope; AGENTS.md was changed only after S0-001-A1 was recorded."
+  - "Targeted secret-pattern scan returned secret_pattern_hits=[]."
+known_limitations:
+  - "F-S0-001-04 remains deferred pending founder confirmation of the initial authoring product/model. The repository continues to record the known authoring surface as Codex and the exact runtime identifier as not exposed."
+  - "The combined inventory is a snapshot of fix baseline commit 9a2900ad11b92c69404193feae88d5aac1734242 plus this uncommitted fixer handoff; later repository additions require a later inventory reconciliation."
+unverified_claims:
+  - "The review request described the initial author as GPT-5.6 Sol, but that mapping is not confirmed by authoritative repository evidence."
+blockers:
+  - founder_confirmation_of_initial_author_product_and_runtime_model
+recommended_next_task: REVIEW_TASK_S0-001
+repository_commit_or_patch: "Uncommitted S0-001 fixer patch based on 9a2900ad11b92c69404193feae88d5aac1734242; founder explicitly requested that this task remain uncommitted."
+
+finding_resolutions:
+  - finding_id: F-S0-001-01
+    resolution: FIXED
+    files_changed:
+      - 99_handoffs/completed/S0-001_handoff.yaml
+      - 99_handoffs/completed/S0-001_fixer_handoff.yaml
+    evidence:
+      - "The historical 34-file base inventory remains intact. A separate addendum classifies every file added after base commit 4d99fff through the uncommitted fixer handoff, including all three challenger reviews."
+      - "inventory_scope now records reviewed commit f151f28, fix baseline 9a2900a, the 42-file pre-fix tree, and the 43-file combined snapshot."
+    verification:
+      - "Combined base inventory plus addendum contains 43 unique paths and exactly equals the 43 non-.git repository files after creation of this fixer handoff; missing=[] and extra=[]."
+  - finding_id: F-S0-001-02
+    resolution: FIXED
+    files_changed:
+      - 01_governance/DECISION_LOG.md
+      - 99_handoffs/completed/S0-001_handoff.yaml
+      - 99_handoffs/completed/S0-001_fixer_handoff.yaml
+    evidence:
+      - "The Decision Log now attributes the reconciliation note to the initial Stage 0 author batch under S0-001's allowance on behalf of S0-002/S0-003 research outcomes and states that no D-00x status changed."
+      - "The original S0-001 handoff has a clearly dated attribution addendum rather than a rewritten original files_modified history."
+    verification:
+      - "Search finds the reconciliation provenance in both DECISION_LOG.md and the original handoff; the Decision Log diff changes no D-00x status."
+  - finding_id: F-S0-001-03
+    resolution: FIXED
+    files_changed:
+      - 99_handoffs/completed/S0-001_handoff.yaml
+      - 99_handoffs/completed/S0-001_fixer_handoff.yaml
+    evidence:
+      - "The original handoff known_limitations now states that initial Stage 0 timestamps were batch-written, started_at was not captured, and duration/ordering cannot be inferred."
+      - "This fixer handoff records real, distinct, non-null fix start and completion times."
+    verification:
+      - "The original limitation is present; this handoff has distinct non-null started_at 2026-08-21T18:00:57-04:00 and completed_at 2026-08-21T18:05:13-04:00."
+  - finding_id: F-S0-001-04
+    resolution: DEFERRED
+    files_changed:
+      - 01_governance/PROJECT_STATE.yaml
+      - 01_governance/TASK_REGISTRY.yaml
+      - 99_handoffs/completed/S0-001_handoff.yaml
+      - 99_handoffs/completed/S0-001_fixer_handoff.yaml
+    evidence:
+      - "The repository identifies the authoring surface as Codex but does not expose the exact runtime model; the challenger records an unconfirmed GPT-5.6 Sol description from the review request."
+      - "The fixer records the gap explicitly and leaves the historical author_model values unchanged pending founder confirmation."
+    verification:
+      - PENDING_FOUNDER_CONFIRMATION
+  - finding_id: F-S0-001-05
+    resolution: FIXED
+    files_changed:
+      - 99_handoffs/completed/S0-001_handoff.yaml
+      - 99_handoffs/completed/S0-001_fixer_handoff.yaml
+    evidence:
+      - "missing_input_list now includes a required_before_architecture_or_production tier for provider terms/commercial rights, available cloud providers, and BYOK versus resale, with MAG-005/MAG-006 cross-references."
+    verification:
+      - "Search finds provider terms, cloud providers, MAG-005, and MAG-006 under missing_input_list.required_before_architecture_or_production."
+  - finding_id: F-S0-001-06
+    resolution: FIXED
+    files_changed:
+      - AGENTS.md
+      - 01_governance/TASK_REGISTRY.yaml
+      - 99_handoffs/completed/S0-001_fixer_handoff.yaml
+    evidence:
+      - "Prospective scope amendment S0-001-A1 was recorded before AGENTS.md changed."
+      - "AGENTS.md now points directly to 99_handoffs/HANDOFF_TEMPLATE.yaml, the actual schema location."
+    verification:
+      - "AGENTS.md names 99_handoffs/HANDOFF_TEMPLATE.yaml; YAML parsing confirms that the named template exists and parses."
+
+founder_confirmation_addendum:
+  recorded_at: "2026-08-21T19:39:00-04:00"
+  finding_id: F-S0-001-04
+  founder_confirmation:
+    authoring_surface: Codex
+    exact_runtime_model: UNKNOWN_NOT_EXPOSED
+    statement: "Founder confirmed that the original MODE: INITIALIZE Stage 0 author pass was executed in Codex."
+  resolution: FIXED
+  evidence:
+    - "Founder directly confirmed on 2026-08-21 that MODE: INITIALIZE was run in Codex."
+    - "The repository already records the authoring surface as Codex."
+    - "The exact underlying runtime model was not exposed and therefore remains unknown."
+  interpretation:
+    - "The author must be identified as Codex for execution provenance."
+    - "Do not relabel the initial author as GPT-5.6 Sol without independent runtime evidence."
+    - "The unknown exact underlying model is not a blocker to S0-001 verification."
+  supersedes:
+    - "The DEFERRED resolution for F-S0-001-04 in finding_resolutions."
+    - "The founder_confirmation_of_initial_author_product_and_runtime_model blocker."
+  remaining_blocker: false

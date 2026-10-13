@@ -1,0 +1,329 @@
+checkpoint_id: STAGE_0_VERIFICATION
+mode: VERIFY_STAGE_0
+stage: 0
+stage_name: intake_governance_reference_research
+verdict: STAGE_0_VERIFIED
+gate_status: VERIFIED
+verified_at_utc: "2026-08-22T16:54:44Z"
+reviewed_commit: 665bd03f091d4a57853d081b3ed9a350a256c481
+pre_verification_worktree_status: CLEAN
+verification_patch_status: UNCOMMITTED_FOR_FOUNDER
+
+verifier:
+  role: INDEPENDENT_STAGE_GATE_VERIFIER
+  model: "Codex (runtime model identifier not exposed)"
+  independence: >-
+    This was a fresh repository-first Stage 0 gate pass assigned by the repository operator. The
+    verifier did not author or fix the reviewed S0-001, S0-002, or S0-003 committed deliverables.
+    The authoring surface is the same Codex product label recorded for the original author, so that
+    relationship is disclosed; exact runtime-model equality cannot be established because D-010
+    keeps the original and current runtime identifiers UNKNOWN_NOT_EXPOSED. The underlying task
+    verdicts were issued by independent Claude verifier sessions, not by their Codex author.
+  method: >-
+    Reconstructed the gate from the repository, read every required artifact and all Stage 0
+    author/fixer/challenger/verifier records, checked the committed state and history, ran structural
+    and provenance checks, and performed a bounded current-primary-source continuity spot-check.
+
+authoritative_contract:
+  source: MASTER_OPERATING_PROMPT.md
+  stage_objective: "establish a trustworthy foundation"
+  required_work_lines: "127-140"
+  exact_gate_lines: "142-148"
+  next_stage_requires_separate_advance: true
+
+task_verification:
+  S0-001:
+    classification: PASS
+    status: VERIFIED
+    verified_commit: adc87c4
+    verifier_artifact: 99_handoffs/completed/S0-001_verifier_review.yaml
+    provenance_resolution: "D-010 and the founder confirmation addendum preserve Codex as the authoring surface and the exact runtime model as UNKNOWN_NOT_EXPOSED."
+    unresolved_material_findings: []
+    author_self_verified: false
+  S0-002:
+    classification: PASS
+    status: VERIFIED
+    verified_commit: fb89315
+    verifier_artifact: 99_handoffs/completed/S0-002_verifier_review.yaml
+    baseline: 02_research/GROK_BOT_BASELINE_2026-08-21.md
+    evidence_boundary: "Official-documentation baseline; build/account/plan/region/rollout and runtime behavior remain UNKNOWN; black-box run count is 0."
+    unresolved_material_findings: []
+    author_self_verified: false
+  S0-003:
+    classification: PASS
+    status: VERIFIED
+    verified_commit: 6fb9557
+    first_verifier_artifact: 99_handoffs/completed/S0-003_verifier_review.yaml
+    first_verifier_verdict: CHANGES_REQUIRED
+    second_fixer_artifact: 99_handoffs/completed/S0-003_second_fixer_handoff.yaml
+    reverifier_artifact: 99_handoffs/completed/S0-003_reverification_review.yaml
+    reverifier_verdict: VERIFIED
+    finding_resolution: "V-S0-003-01, V-S0-003-02, V-S0-003-03, and V-S0-003-04 are RESOLVED."
+    role_assignment_status: HYPOTHESIS_ONLY
+    benchmark_execution_count: 0
+    paid_benchmark_run: false
+    founder_api_access_status: UNKNOWN
+    unresolved_material_findings: []
+    author_self_verified: false
+
+post_s0_001_inventory_reconciliation:
+  s0_001_verified_tree_file_count: 43
+  reviewed_head_file_count: 50
+  files_added_after_s0_001_verified_tree:
+    - {path: 99_handoffs/completed/S0-001_verifier_review.yaml, role: "S0-001 independent verifier evidence", authority: "verified review artifact"}
+    - {path: 99_handoffs/completed/S0-002_fixer_handoff.yaml, role: "S0-002 fixer evidence", authority: "historical execution record"}
+    - {path: 99_handoffs/completed/S0-002_verifier_review.yaml, role: "S0-002 independent verifier evidence", authority: "verified review artifact"}
+    - {path: 99_handoffs/completed/S0-003_fixer_handoff.yaml, role: "S0-003 first fixer evidence", authority: "historical execution record"}
+    - {path: 99_handoffs/completed/S0-003_verifier_review.yaml, role: "S0-003 preserved first verifier failure", authority: "CHANGES_REQUIRED review artifact"}
+    - {path: 99_handoffs/completed/S0-003_second_fixer_handoff.yaml, role: "S0-003 second fixer evidence", authority: "historical execution record"}
+    - {path: 99_handoffs/completed/S0-003_reverification_review.yaml, role: "S0-003 independent re-verifier evidence", authority: "verified review artifact"}
+  current_checkpoint_file:
+    path: 10_checkpoints/stage_checkpoints/STAGE_0_VERIFICATION.yaml
+    role: "Stage 0 gate decision and evidence"
+    authority: "verified checkpoint after this pass"
+  result: PASS
+  note: "The seven committed additions are the exact adc87c4..665bd03 added-file set. This checkpoint is self-identifying and necessarily post-dates the reviewed clean HEAD."
+
+required_work_results:
+  - requirement_id: S0-RW-01
+    requirement: "inventory every available file"
+    classification: PASS
+    evidence:
+      - 99_handoffs/completed/S0-001_handoff.yaml
+      - 99_handoffs/completed/S0-001_verifier_review.yaml
+      - "The S0-001 inventory matched its verified tree; later Stage 0 artifacts are self-identifying governance/review records and all 50 current tracked files were reconciled during this gate pass."
+  - requirement_id: S0-RW-02
+    requirement: "preserve original evidence"
+    classification: PASS
+    evidence:
+      - FILE_MANIFEST.json
+      - "All 18 manifest entries under 00_inbox matched their recorded SHA-256 digests; uploaded_originals contains only its preserved README placeholder."
+  - requirement_id: S0-RW-03
+    requirement: "verify current Grok Bot behavior from primary sources"
+    classification: PASS
+    evidence:
+      - 02_research/GROK_BOT_BASELINE_2026-08-21.md
+      - 99_handoffs/completed/S0-002_verifier_review.yaml
+      - "The result is explicitly a current official-documentation behavior baseline, not reproduced account behavior."
+  - requirement_id: S0-RW-04
+    requirement: "build a feature inventory and evidence ledger"
+    classification: PASS
+    evidence:
+      - 02_research/GROK_BOT_BASELINE_2026-08-21.md
+      - 01_governance/SOURCE_LEDGER.csv
+      - "63 unique source rows; all 62 SRC references used by the baseline/registry/plan resolve."
+  - requirement_id: S0-RW-05
+    requirement: "separate verified behavior from design inference"
+    classification: PASS
+    evidence:
+      - "The baseline defines VERIFIED FACT — DOCUMENTED, DOCUMENTED PRODUCT CLAIM, INFERENCE, UNKNOWN, CONFLICTING OFFICIAL SOURCES, and DESIGN PROPOSAL."
+  - requirement_id: S0-RW-06
+    requirement: "identify rollout-dependent or unknown behavior"
+    classification: PASS
+    evidence:
+      - "The baseline, A-011/A-012, R-016, S0-004 blockers, and PROJECT_STATE preserve account/build/plan/region/rollout/runtime behavior as UNKNOWN."
+  - requirement_id: S0-RW-07
+    requirement: "establish model, assumption, risk, decision, task, and project-state records"
+    classification: PASS
+    evidence:
+      - "13 model candidates, 13 assumptions, 20 risks, 10 unique decisions, 6 unique tasks, and one reconciled project state."
+  - requirement_id: S0-RW-08
+    requirement: "prepare a black-box product test plan"
+    classification: PASS
+    evidence:
+      - 00_inbox/prepared_materials/03_GROKBOT_EXAMPLES/TEST_MATRIX.md
+      - 00_inbox/prepared_materials/03_GROKBOT_EXAMPLES/EXPERIMENT_TEMPLATE.md
+      - "The Stage 0 contract requires the plan, not execution; S0-004 preserves execution as a blocked external dependency."
+
+exact_gate_results:
+  - requirement_id: S0-GATE-01
+    requirement: "consequential product claims are sourced or labeled"
+    classification: PASS
+    evidence: "Baseline claim rows resolve to ledgered sources or carry explicit claim/unknown/conflict labels; model claims use the registry vocabulary."
+  - requirement_id: S0-GATE-02
+    requirement: "current product version and research date are explicit"
+    classification: PASS
+    evidence: "Baseline research/access windows and source update dates are explicit; exact installed project build remains correctly UNKNOWN."
+  - requirement_id: S0-GATE-03
+    requirement: "no fabricated observations exist"
+    classification: PASS
+    evidence: "Black-box runs are 0, benchmark runs are 0, customer interviews are 0, and no founder-account API call is claimed."
+  - requirement_id: S0-GATE-04
+    requirement: "unresolved high-impact questions are visible"
+    classification: PASS
+    evidence: "PROJECT_STATE unresolved_p0_questions, S0-004/S0-005 blockers, MAG-001..006, assumptions, and risks keep the unknowns visible."
+  - requirement_id: S0-GATE-05
+    requirement: "governance files agree with one another"
+    classification: PASS
+    evidence: "PROJECT_STATE task lists match TASK_REGISTRY; VERIFIED/BLOCKED/BACKLOG states reconcile; this checkpoint update replaces the pre-gate transactional pointers."
+
+expanded_gate_results:
+  - {requirement_id: S0-EG-01, requirement: "trustworthy repository governance", classification: PASS, evidence: "YAML/CSV parse, ID uniqueness/reference resolution, task lists, history, and reviewer evidence all reconcile."}
+  - {requirement_id: S0-EG-02, requirement: "preserved original inputs", classification: PASS, evidence: "18/18 00_inbox manifest SHA-256 values match; no original was overwritten."}
+  - {requirement_id: S0-EG-03, requirement: "clear authoritative/non-authoritative separation", classification: PASS, evidence: "README, inbox guidance, handoff guidance, baseline, and founder materials distinguish repository authority, prepared inputs, hypotheses, and evidence."}
+  - {requirement_id: S0-EG-04, requirement: "current source ledger", classification: PASS, evidence: "63 unique current rows, 12-column schema, references resolve, and bounded live continuity checks passed on the research date."}
+  - {requirement_id: S0-EG-05, requirement: "current reference-product baseline", classification: PASS, evidence: "S0-002 verified official-documentation baseline remains byte-identical after verification and bounded source continuity checks found no gate-changing contradiction."}
+  - {requirement_id: S0-EG-06, requirement: "explicit VERIFIED / INFERENCE / UNKNOWN distinctions", classification: PASS, evidence: "Baseline and model-registry vocabularies define and consistently use fact/inference/unknown/conflict/account-access labels."}
+  - {requirement_id: S0-EG-07, requirement: "feature/capability understanding sufficient for later product work", classification: PASS, evidence: "Feature inventory, parity baseline, evidence gaps, and black-box priorities are detailed enough for Stage 1/2 while preserving reference unknowns."}
+  - {requirement_id: S0-EG-08, requirement: "current model/provider landscape", classification: PASS, evidence: "13 current public candidates across OpenAI, Anthropic, and DeepSeek with exact identifiers, dated access provenance, current public prices/policies, and explicit exclusions/deferred candidates."}
+  - {requirement_id: S0-EG-09, requirement: "consumer access separated from API availability", classification: PASS, evidence: "MODEL_REGISTRY access_dimensions separate CONSUMER_PRODUCT_ACCESS and PUBLIC_API_AVAILABILITY."}
+  - {requirement_id: S0-EG-10, requirement: "founder account access separated from public API availability", classification: PASS, evidence: "All 13 FOUNDER_ACCOUNT_ACCESS claim statuses are UNKNOWN; founder_account_verified_claims_in_this_registry is 0."}
+  - {requirement_id: S0-EG-11, requirement: "no model roles prematurely locked", classification: PASS, evidence: "All 13 role_assignment_status values are HYPOTHESIS_ONLY; no provider or permanent role is selected."}
+  - {requirement_id: S0-EG-12, requirement: "benchmark plan defined but not prematurely executed", classification: PASS, evidence: "Plan is PLAN_ONLY_NOT_AUTHORIZED, Stage-1-workflow-gated, budget USD 0, and execution count 0; all candidate benchmark_status values are NOT_RUN."}
+  - {requirement_id: S0-EG-13, requirement: "current assumptions explicitly recorded", classification: PASS, evidence: "A-001..A-013 are unique, OPEN, and include validation/disconfirmation evidence."}
+  - {requirement_id: S0-EG-14, requirement: "current risks explicitly recorded", classification: PASS, evidence: "R-001..R-020 are unique and include reference-behavior, API-access, temporal-drift, public-repository, and provider-policy risks."}
+  - {requirement_id: S0-EG-15, requirement: "high-impact unknowns visible", classification: PASS, evidence: "Customer/workflow, budget, account access, Grok build/rollout, provider terms, and benchmark readiness remain explicit."}
+  - {requirement_id: S0-EG-16, requirement: "no architecture selected prematurely", classification: PASS, evidence: "current_architecture_version is null; D-006..008 remain provisional; no architecture artifact/directory exists."}
+  - {requirement_id: S0-EG-17, requirement: "no application implementation started", classification: PASS, evidence: "current_code_commit is null; 50 tracked files include no application-source extension or executable; existing-code input states none."}
+  - {requirement_id: S0-EG-18, requirement: "no fabricated customer evidence", classification: PASS, evidence: "Customer-notes README explicitly records zero interviews/usage evidence; founder hypotheses remain provisional."}
+  - {requirement_id: S0-EG-19, requirement: "no fabricated black-box observations", classification: PASS, evidence: "Baseline records zero runs; experiment folder contains templates/matrix only."}
+  - {requirement_id: S0-EG-20, requirement: "no fabricated API account access", classification: PASS, evidence: "No entitlement, funded balance, quota, retention configuration, minimal call, usage, or billing readback is claimed."}
+  - {requirement_id: S0-EG-21, requirement: "clean-room rules preserved", classification: PASS, evidence: "Reference facts remain comparison evidence rather than copied implementation or selected architecture; original evidence is untouched."}
+  - {requirement_id: S0-EG-22, requirement: "repository safe for current public visibility", classification: PASS, evidence: "Current-tree and 16-commit-history scans found no common provider keys, tokens, JWTs, private-key blocks, or email addresses; no private customer data or raw captures are present."}
+  - {requirement_id: S0-EG-23, requirement: "S0-004 gate disposition", classification: DEFERRED_EXTERNAL_DEPENDENCY, evidence: "The Stage 0 contract requires a black-box plan and explicit unknowns, not account execution; exact future claim/action triggers are recorded below."}
+  - {requirement_id: S0-EG-24, requirement: "S0-005 gate disposition", classification: DEFERRED_EXTERNAL_DEPENDENCY, evidence: "The Stage 0 contract requires public landscape understanding; exact paid-execution and Stage 4 boundaries are recorded below."}
+
+classification_counts:
+  PASS: 35
+  FAIL: 0
+  PARTIAL: 0
+  DEFERRED_EXTERNAL_DEPENDENCY: 2
+  NOT_APPLICABLE: 0
+
+deferred_dependencies:
+  S0-004:
+    gate_disposition: LEGITIMATE_DEFERRED_EXTERNAL_DEPENDENCY
+    stage_0_closure_required: false
+    current_status: BLOCKED
+    external_blockers:
+      - eligible_grok_bot_account_and_plan_not_recorded
+      - installed_app_build_and_safe_test_environment_not_recorded
+    required_before:
+      - "Any claim that Grok Bot runtime behavior, rollout, reliability, cancellation, approval, recovery, isolation, or false-completion behavior was directly observed or reproduced."
+      - "Any parity/improvement claim or product/architecture decision that depends on those currently UNKNOWN runtime behaviors, unless the consuming artifact retains them as reference UNKNOWN and does not rely on them."
+    not_required_before:
+      - ADVANCE_STAGE
+      - "Stage 1 customer/workflow selection"
+      - "Stage 2 parity mapping when the affected capabilities remain reference unknown"
+      - "Unrelated provider-agnostic architecture comparison or technical spikes"
+    future_stage_boundary: >-
+      No entire numbered stage is categorically blocked by S0-004 because MASTER explicitly permits
+      reference-unknown classifications in Stage 2. Runtime-parity, comparative-improvement, and
+      observed-reference-behavior claims may not proceed without VERIFIED S0-004 evidence.
+  S0-005:
+    gate_disposition: LEGITIMATE_DEFERRED_EXTERNAL_DEPENDENCY
+    stage_0_closure_required: false
+    current_status: BLOCKED
+    external_blockers:
+      - founder_has_not_recorded_funded_api_accounts_or_budget
+      - approved_retention_region_and_data_classification_settings_unknown
+    required_before:
+      - "Any paid comparative model benchmark or BENCHMARK_MODELS execution beyond the explicitly authorized minimal S0-005 smoke calls."
+      - "Any model/provider technical spike using real funded API accounts, and any final model-role, production-suitability, or account-dependent provider/architecture lock."
+      - "The Stage 4 gate: S0-005 must be VERIFIED and actual access evidence must cover at least two providers before provider abstraction across at least two providers can be accepted as evidence."
+    not_required_before:
+      - ADVANCE_STAGE
+      - "Stage 1 customer/workflow selection"
+      - "Stage 2 product/parity definition"
+      - "Provider-agnostic Stage 3 architecture options, provided account-dependent claims remain UNKNOWN and required spikes stay open"
+    future_stage_boundary: >-
+      S0-005 is the permitted first account-access action through its minimal authorized smoke calls.
+      It must be VERIFIED before any paid comparative run or real-provider technical spike; even if
+      no earlier trigger occurs, it is mandatory before the Stage 4 provider-abstraction requirement
+      or any production model/provider recommendation can pass.
+
+cross_file_consistency:
+  project_state_vs_task_registry: PASS
+  verified_artifacts_exist: PASS
+  contradictory_task_states: PASS
+  active_completed_blocked_lists_reconcile: PASS
+  decision_ids_unique: PASS
+  assumption_and_risk_references_resolve: PASS
+  source_references_resolve: PASS
+  model_ids_and_claim_vocabulary: PASS
+  handoff_chronology: PASS
+  D-009_visible: PASS
+  D-010_visible: PASS
+  S0-003_first_failure_preserved: PASS
+  S0-003_reverification_separate: PASS
+  pre_verification_HEAD_clean: PASS
+
+stage_level_regression_checks:
+  baseline_vs_product_assumptions: PASS
+  model_registry_vs_benchmark_plan: PASS
+  stale_governance_pointers: PASS_AFTER_CHECKPOINT_UPDATE
+  untracked_blockers: PASS
+  architecture_disguised_as_fact: PASS
+  founder_hypotheses_presented_as_evidence: PASS
+  unsupported_model_availability_claims: PASS
+  missing_source_provenance: PASS
+  task_dependency_consistency: PASS
+  public_repository_secret_privacy_risk: PASS
+  accidental_stage_1_work: PASS
+  accidental_implementation_work: PASS
+
+current_primary_source_continuity_spot_check:
+  performed_on_utc_date: "2026-08-22"
+  scope: "Bounded continuity check; not a replacement for the completed task-level source reviews."
+  result: PASS
+  sources:
+    - {source_id: SRC-001, url: "https://docs.x.ai/grok-bot/overview", result: "Opened; August 11, 2026 update date and sampled core capability text remain aligned."}
+    - {source_id: SRC-006, url: "https://docs.x.ai/grok-bot/teams-and-enterprises", result: "Opened; August 20, 2026 update date, plan/rollout boundaries, and shared-computer scope remain aligned."}
+    - {source_id: SRC-009, url: "https://developers.openai.com/api/docs/models", result: "Opened; sampled GPT-5.6 IDs, public availability, and displayed price/spec values remain aligned."}
+    - {source_id: SRC-021, url: "https://platform.claude.com/docs/en/about-claude/models/overview", result: "Opened; sampled Claude IDs, public availability, prices, and month-precision cutoffs remain aligned."}
+    - {source_id: SRC-011, url: "https://api-docs.deepseek.com/quick_start/pricing/", result: "Opened; sampled V4 IDs, versions, prices, and concurrency remain aligned for the August 22 research date."}
+
+new_material_findings: []
+non_finding_observations:
+  - observation_id: OBS-STAGE-0-01
+    severity: NOTE
+    observation: >-
+      Before this pass, PROJECT_STATE still pointed at the now-committed S0-003 re-verification
+      transaction. The pass-only checkpoint update replaces those transactional pointers; no task
+      evidence or substantive gate condition was stale.
+  - observation_id: OBS-STAGE-0-02
+    severity: NOTE
+    observation: >-
+      Deliverable-local author/fixer status headers remain historical, while TASK_REGISTRY is the
+      authoritative verification record as documented in 99_handoffs/completed/README.md. This is
+      preserved intentionally and is not a contradictory task state.
+  - observation_id: OBS-STAGE-0-03
+    severity: NOTE
+    observation: >-
+      SRC-011 now announces a DeepSeek peak/off-peak weekend-rule change effective August 23, 2026.
+      The registry values remain correct for the explicit August 22 research date, and the benchmark
+      plan already requires current run-date pricing before any paid call. This is a future drift
+      trigger, not a Stage 0 gate failure.
+
+verification_commands_and_results:
+  - {check: "initial git status and HEAD", result: "PASS — clean before verification; HEAD 665bd03f091d4a57853d081b3ed9a350a256c481"}
+  - {check: "YAML/CSV/JSON parsing and cross-file invariant script", result: "PASS — 18/18 YAML before checkpoint, 63 ledger rows, 6 tasks, all references resolved"}
+  - {check: "task verifier chain and evidence-path checks", result: "PASS — S0-001/S0-002/S0-003 independently verified; first S0-003 failure preserved"}
+  - {check: "original-input digest check", result: "PASS — 18/18 00_inbox manifest entries match"}
+  - {check: "post-verification immutability/digest checks", result: "PASS — S0-001 and S0-002 artifacts unchanged; 9/9 pinned non-transactional S0-003 artifacts match; re-verifier transaction contains only expected governance/artifact paths"}
+  - {check: "current-tree and full-history common-secret-pattern scan", result: "PASS — 0 matches across 16 commits; 0 current email paths"}
+  - {check: "repository structure and scope scan", result: "PASS — 50 tracked files, 0 symlinks, 0 executables, 0 application-code files, no Stage 1 directory"}
+  - {check: "post-checkpoint validation", result: "PASS — 19/19 YAML parsed; 35 PASS and 2 DEFERRED classifications reconcile; task/state/source/model/original-input/patch-scope invariants pass; no Stage 1 or application work"}
+  - {check: "git diff --check and trailing-whitespace scan", result: "PASS after checkpoint update"}
+
+known_limitations:
+  - "No eligible Grok Bot account/build/plan/region evidence exists; S0-004 remains BLOCKED and no runtime behavior was observed."
+  - "No funded provider account, entitlement, quota, policy configuration, usage, billing, or minimal-call evidence exists; S0-005 remains BLOCKED."
+  - "Primary product/model sources are temporally unstable; current claims must be rechecked at their consuming action or run date."
+  - "This gate does not select a customer, workflow, architecture, model role, or implementation and does not execute Stage 1."
+
+files_created:
+  - 10_checkpoints/stage_checkpoints/STAGE_0_VERIFICATION.yaml
+files_modified:
+  - 01_governance/PROJECT_STATE.yaml
+  - 01_governance/TASK_REGISTRY.yaml
+files_intentionally_not_modified:
+  - 02_research/GROK_BOT_BASELINE_2026-08-21.md
+  - 01_governance/MODEL_REGISTRY.yaml
+  - 01_governance/SOURCE_LEDGER.csv
+  - 06_evaluation/MODEL_ROLE_BENCHMARK_PLAN.md
+
+stage_gate_transition:
+  current_stage_after_verification: 0
+  stage_1_started: false
+  next_command_after_founder_review_and_commit: "MODE: ADVANCE_STAGE"

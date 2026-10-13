@@ -1,0 +1,21 @@
+handoff_id:
+task_id:
+stage:
+author_model:
+reviewer_requested:
+started_at:
+completed_at:
+files_read: []
+files_created: []
+files_modified: []
+files_deleted: []
+decisions_made: []
+assumptions_added: []
+tests_run: []
+test_results: []
+security_checks: []
+known_limitations: []
+unverified_claims: []
+blockers: []
+recommended_next_task:
+repository_commit_or_patch:

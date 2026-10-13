@@ -1,0 +1,413 @@
+review_id: R-S0-003-20260821-CHALLENGER
+task_id: S0-003
+stage: 0
+mode: REVIEW_TASK_S0-003
+role: CHALLENGER
+reviewer_model: "Claude Fable 5 (claude-fable-5) via Claude Code"
+reviewer_independence: >-
+  Independent of the recorded author ("Codex (runtime model identifier not exposed)");
+  no Claude model authored S0-003. Conflict disclosure: the reviewer is itself one of the
+  registry candidates (claude-fable-5). Every statement about Anthropic models below is
+  quoted from or pinned to a current Anthropic primary page so the verifier can re-check
+  it without relying on the reviewer; the verifier should re-check F-S0-003-01 and
+  F-S0-003-03 specifically for reviewer bias.
+started_at: "2026-08-21T16:45:00-04:00"
+completed_at: "2026-08-21T17:35:00-04:00"
+reviewed_commit: 874ae4b
+reviewed_commit_full_state: "Branch chore/initialize-project-materials at 874ae4b (Review S0-002 Grok Bot baseline); working tree clean at start of review. S0-003 author artifacts (MODEL_REGISTRY.yaml, 06_evaluation/MODEL_ROLE_BENCHMARK_PLAN.md, S0-003_handoff.yaml and the S0-003 rows in SOURCE_LEDGER.csv, ASSUMPTION_REGISTER.md, RISK_REGISTER.md) unchanged since f151f28."
+verdict: CHANGES_REQUESTED
+verdict_rationale: >-
+  No BLOCKER. No fabricated model capability, no invented price, no consumer-subscription
+  access presented as API access, no secret, no role lock, no application code, no Stage 1
+  work. Personal product access, public API availability, founder account access and
+  production suitability are kept apart throughout the registry, which is the task's core
+  purpose. Every numeric claim in the registry (IDs, context, output, cutoffs, modalities,
+  feature flags, prices, concurrency, tier limits) was re-checked against the live primary
+  pages on 2026-08-21 20:55-21:15Z; all matched except the GPT-5.6 Sol prices, which the
+  Internet Archive shows were correct at 2026-08-21T10:30Z and changed later the same day
+  (promotional $4/$0.40/$20 through at least 2026-11-21). Two HIGH findings prevent
+  VERIFIED: (1) the registry is flagship-only for Anthropic and omits publicly documented,
+  cheaper, ZDR-eligible or specialised alternatives from all three providers (Claude Opus 5,
+  Sonnet 5, Haiku 4.5; OpenAI codex/computer-use models; DeepSeek V4-Flash-Vision-Exp), so
+  the benchmark's LOW-cost, ROUTER, MEMORY, SUMMARIZER and VISION roles have no Anthropic
+  candidate and the candidate pool is shaped by the founder's consumer subscriptions rather
+  than by the catalogs; (2) the flagship OpenAI prices and the absence of per-source access
+  timestamps mean the registry's headline cost numbers are now contradicted by the source
+  and the drift is not detectable from the record. Five MEDIUM findings cover publicly
+  documented capability, policy, version and jurisdiction facts that the registry labels
+  "to verify" or omits (Fable 5 structured outputs and computer use; DeepSeek PRC data terms,
+  GA release, effort controls, JSON-mode semantics; OpenAI batch/service-tier prices and
+  data controls), an allowed-files scope deviation, and a benchmark plan that is fixed before
+  the workflow is known and has no cost model against the USD 0-100 monthly envelope.
+  Acceptance criteria: 1 PASS, 2 PARTIAL, 3 PASS, 4 PASS; required test
+  "Primary-source verification" PARTIAL. Fixes are bounded and mostly inside S0-003's
+  allowed files; the scope fix needs a founder decision.
+
+method:
+  - "Read MASTER_OPERATING_PROMPT.md, AGENTS.md, CLAUDE.md, SECURITY.md, all 01_governance files, 06_evaluation/MODEL_ROLE_BENCHMARK_PLAN.md, all three Stage 0 handoffs, the S0-001 and S0-002 challenger reviews, 99_handoffs/HANDOFF_TEMPLATE.yaml, and 00_inbox/prepared_materials/{05_MODEL_ACCESS.md,06_BUILD_CONSTRAINTS.md,01_FOUNDER_BRIEF.md,ASSUMPTIONS_AND_OPEN_QUESTIONS.md}."
+  - "Re-ran the author's reproducible checks: ruby -ryaml parse of MODEL_REGISTRY.yaml, TASK_REGISTRY.yaml, PROJECT_STATE.yaml, S0-003_handoff.yaml; ruby -rcsv parse of SOURCE_LEDGER.csv (24 rows x 11 columns, no duplicate IDs); all 11 model source_ids present; git diff 4d99fff..f151f28 for S0-003-attributable changes and allowed-file compliance; git status clean."
+  - "Mirrored all 11 cited primary pages with curl on 2026-08-21 20:55-21:15Z (HTML plus the Markdown variants that OpenAI and Anthropic publish by appending .md), extracted text, and compared every registry field and ledger claims_supported entry to the exact page text."
+  - "Retrieved Internet Archive captures (CDX + id_ raw fetch) of developers.openai.com/api/docs/models/gpt-5.6-sol (2026-08-14, 2026-08-19) and /api/docs/pricing (2026-08-20T10:30Z, 2026-08-21T10:30Z) and of api-docs.deepseek.com/quick_start/pricing/ (2026-08-19) to separate author error from post-access source change."
+  - "Opened additional official primary sources not cited by S0-003 that bear on the review brief: OpenAI rate-limits, your-data, computer-use, supported-countries pages; Anthropic rate-limits, structured-outputs, computer-use-tool, choosing-a-model, introducing-claude-fable-5, api-and-data-retention, refusals-and-fallback, service-tiers, effort, supported-regions pages; DeepSeek change log, news260813 (V4-Pro GA), news260821 (V4-Flash-Vision-Exp), rate_limit, tool_calls, json_mode, thinking_mode, vision, anthropic_api, responses_api, kv_cache pages, Open Platform Terms of Service and Privacy Policy, and the Hugging Face DeepSeek-V4-Pro / DeepSeek-V4-Flash model cards."
+  - "No API key was used, requested or inspected; no model call was made; no paid benchmark was run; no Stage 1, wedge, architecture or code work was done."
+
+files_read:
+  - MASTER_OPERATING_PROMPT.md
+  - AGENTS.md
+  - CLAUDE.md
+  - SECURITY.md
+  - 01_governance/PROJECT_STATE.yaml
+  - 01_governance/TASK_REGISTRY.yaml
+  - 01_governance/MODEL_REGISTRY.yaml
+  - 01_governance/SOURCE_LEDGER.csv
+  - 01_governance/ASSUMPTION_REGISTER.md
+  - 01_governance/RISK_REGISTER.md
+  - 01_governance/DECISION_LOG.md
+  - 06_evaluation/MODEL_ROLE_BENCHMARK_PLAN.md
+  - 99_handoffs/HANDOFF_TEMPLATE.yaml
+  - 99_handoffs/completed/README.md
+  - 99_handoffs/completed/S0-003_handoff.yaml
+  - 99_handoffs/completed/S0-001_challenger_review.yaml
+  - 99_handoffs/completed/S0-002_challenger_review.yaml
+  - 00_inbox/prepared_materials/05_MODEL_ACCESS.md
+  - 00_inbox/prepared_materials/06_BUILD_CONSTRAINTS.md
+  - 00_inbox/prepared_materials/01_FOUNDER_BRIEF.md
+  - 00_inbox/prepared_materials/ASSUMPTIONS_AND_OPEN_QUESTIONS.md
+files_created:
+  - 99_handoffs/completed/S0-003_challenger_review.yaml
+files_modified:
+  - 01_governance/TASK_REGISTRY.yaml
+  - 01_governance/PROJECT_STATE.yaml
+files_deleted: []
+
+external_sources_reopened:
+  - id: SRC-009
+    url: https://developers.openai.com/api/docs/models
+    result: "Matches ledger. Catalog also lists GPT-5.6 Cyber, computer-use-preview, codex-mini-latest, GPT-5.3-Codex ('most capable agentic coding model to date'), GPT-5.4 mini ('coding, computer use, and subagents'), gpt-oss-120b/20b open-weight, Daybreak Blue/Red aliases; none in the registry."
+  - id: SRC-017
+    url: https://developers.openai.com/api/docs/models/gpt-5.6-sol
+    result: "ID, gpt-5.6 alias, 1,050,000 context, 128,000 max output, Feb 16 2026 cutoff, text+image in / text out, effort none|low|medium(default)|high|xhigh|max, features (streaming, structured_outputs, function_calling, prompt_caching, image_input, file_search, web_search), Responses tools incl. computer_use/hosted_shell/apply_patch/skills/mcp/tool_search, Batch supported, fine-tuning not supported, snapshot list = gpt-5.6-sol only, Tier 1 500 RPM / 500,000 TPM, 'Free: Not supported' all match. PRICE DIFFERS: live 2026-08-21 ~20:57Z Input $4 / Cached $0.40 / Output $20, 'promotional pricing is available at least through November 21, 2026', '>272K input priced at 2x input and 1.5x output', 'cache writes 1.25x'. Archived 2026-08-19T11:13Z shows $5.00 / $0.50 / $30.00 (registry values). Page also states 'Maximum input tokens: 922,000' (not in registry)."
+  - id: SRC-018
+    url: https://developers.openai.com/api/docs/models/gpt-5.6-terra
+    result: "All registry values match live page ($2 / $0.20 / $12; same specs and feature lists as Sol)."
+  - id: SRC-019
+    url: https://developers.openai.com/api/docs/models/gpt-5.6-luna
+    result: "All registry values match live page ($0.20 / $0.02 / $1.20). Luna rate-limit table differs from Sol/Terra (Tier 1 500 RPM / 500,000 TPM / 5,000,000 batch queue; Tier 5 30,000 RPM / 180,000,000 TPM)."
+  - id: SRC-020
+    url: https://developers.openai.com/api/docs/pricing
+    result: "Live 2026-08-21 ~21:00Z Standard table: gpt-5.6-sol $4.00 / $0.40 / cache write $5.00 / $20.00; long context $8.00 / $0.80 / $10.00 / $30.00; terra and luna unchanged; Batch and Flex tables at 50% (sol $2.00 / $0.20 / $2.50 / $10.00); Fast mode table at 2x (sol $8.00 / $0.80 / $10.00 / $40.00); footnote 'GPT-5.6 Sol's promotional pricing is available at least through November 21, 2026'; regional processing +10%; Priority renamed Fast mode 2026-07-30; tool fees (web search $10.00/1k calls; hosted shell/code interpreter containers per 20-minute session; file search $2.50/1k calls). Archived 2026-08-21T10:30:49Z and 2026-08-20T10:30:36Z show gpt-5.6-sol $5.00 / $0.50 / $6.25 / $30.00 and long $10.00 / $1.00 / $12.50 / $45.00 (registry values)."
+  - id: SRC-010
+    url: https://www.anthropic.com/news/redeploying-fable-5
+    result: "Matches ledger claim. Additional facts not in registry or R-018: Fable 5 and Mythos 5 released 2026-06-09; US export controls applied 2026-06-12 required restricting foreign nationals and Anthropic 'suspended access to both models for all users'; controls lifted 2026-06-30; global availability restored 2026-07-01 on Claude Platform, Claude.ai, Claude Code, Claude Cowork; partner clouds re-enabled later; an improved safety classifier was trained ('Users will be notified if a request to Fable 5 is blocked, and the request will instead be sent to Opus 4.8'); 'The new classifier also comes at the cost of flagging benign requests more often during routine coding and debugging tasks.'"
+  - id: SRC-021
+    url: https://platform.claude.com/docs/en/about-claude/models/overview
+    result: "claude-fable-5 ID = alias; 1M context; 128k max output; reliable cutoff Jan 2026; text+image; adaptive thinking 'Yes (always on)'; extended thinking 'No'; comparative latency 'Slower'; $10/$50; available on Claude API, Bedrock, Claude Platform on AWS, Google Cloud, Microsoft Foundry beginning 2026-06-09; 'Every Claude model ID is a pinned snapshot'; all match. Page also documents Claude Opus 5 (claude-opus-5, $5/$25, 'start with Claude Opus 5 for complex agentic coding and enterprise work'), Claude Sonnet 5 (claude-sonnet-5, $2/$10), Claude Haiku 4.5 ($1/$5), the Opus-4.7 tokenizer (~30% more tokens than pre-4.7 models), and a Models API exposing max_input_tokens / max_tokens / capabilities."
+  - id: SRC-022
+    url: https://platform.claude.com/docs/en/about-claude/pricing
+    result: "Fable 5 $10 / 5m cache write $12.50 / 1h $20 / cache hit $1 / output $50; Batch $5 / $25; all match. Also: full 1M context at standard pricing for 4.6+ models; inference_geo us 1.1x; fast mode only Opus 5 / Opus 4.8; computer_toolset_20260801 and browser_toolset_20260801 overhead figures listed for Claude Fable 5."
+  - id: SRC-023
+    url: https://platform.claude.com/docs/en/about-claude/models/migration-guide
+    result: "Always-on adaptive thinking (thinking disabled / budget_tokens return 400); effort default high; prefill returns 400; refusal returns HTTP 200 with stop_reason 'refusal' and stop_details.category; 30-day retention required, not available under ZDR, 400 invalid_request_error when org retention configuration does not meet it; per-workspace retention enablement; fallbacks parameter (beta, Claude API only); refused-before-output requests not billed; minimum cacheable prompt 512 tokens; Priority Tier supported on Fable 5. Registry claims match; several of these details are absent from the registry."
+  - id: SRC-011
+    url: https://api-docs.deepseek.com/quick_start/pricing/
+    result: "Live 2026-08-21: deepseek-v4-flash (DeepSeek-V4-Flash-0731), deepseek-v4-pro (DeepSeek-V4-Pro-0813), deepseek-v4-flash-vision-exp (new column); 1M context; max output 384K; JSON Output, Tool Calls, Responses API, Anthropic API; prices and concurrency 2500/500/2500 and peak hours all match registry. Archived 2026-08-19T19:23Z shows identical pro/flash prices without the vision-exp column; digest changed 2026-08-21T15:13Z."
+  - id: SRC-024
+    url: https://api-docs.deepseek.com/news/news260424/
+    result: "Matches ledger (2026-04-24 preview launch, aliases, OpenAI+Anthropic interfaces, open-weight collection, legacy alias retirement 2026-07-24). Page is superseded for version context by news260813 (DeepSeek-V4-Pro GA Release, 2026-08-13) and news260821 (DeepSeek-V4-Flash-Vision-Exp Release, 2026-08-21), neither ledgered."
+  - id: NOT_IN_LEDGER
+    url: https://api-docs.deepseek.com/news/news260813/
+    note: "2026-08-13: V4-Pro GA on app/web/API; 'Flexible reasoning effort for V4-Pro & V4-Flash: low for simple tasks, high for daily Agent workflows, max for complex tasks'; native Responses API 'optimized for Codex'; peak/off-peak pricing 'takes effect at 16:00 UTC, Aug 16, 2026'."
+  - id: NOT_IN_LEDGER
+    url: https://api-docs.deepseek.com/news/news260821/
+    note: "2026-08-21: deepseek-v4-flash-vision-exp live; matches V4-Flash on text; images tokenized up to 384 tokens each at V4-Flash pricing; Chat Completions, Messages and Responses; base64/URL/Files API; Files API free."
+  - id: NOT_IN_LEDGER
+    url: https://api-docs.deepseek.com/updates
+    note: "Change log: 2026-07-31 V4-Flash public beta (DeepSeek-V4-Flash-0731 'only re-post-trained'); 2026-08-13 V4-Pro GA, effort levels low/high/max, pricing change effective 2026-08-16 16:00 UTC; 2026-08-21 vision-exp."
+  - id: NOT_IN_LEDGER
+    url: https://api-docs.deepseek.com/guides/thinking_mode
+    note: "Thinking enabled by default, default effort high; OpenAI-format reasoning_effort low/high/max (medium->high, xhigh->high); Anthropic-format output_config.effort; Responses reasoning.effort none/low/high/max; thinking mode ignores temperature/top_p/penalties without error; with tools, reasoning_content must be passed back or API returns 400."
+  - id: NOT_IN_LEDGER
+    url: https://api-docs.deepseek.com/guides/json_mode
+    note: "JSON Output = response_format {'type':'json_object'}: valid JSON, prompt must contain 'json' and an example; 'the API may occasionally return empty content'. Not schema-constrained."
+  - id: NOT_IN_LEDGER
+    url: https://api-docs.deepseek.com/guides/tool_calls
+    note: "Tool use in thinking mode since V3.2; 'strict Mode (Beta)' enforces function JSON schema via base_url https://api.deepseek.com/beta with strict:true; supported/unsupported JSON schema keyword lists."
+  - id: NOT_IN_LEDGER
+    url: https://api-docs.deepseek.com/quick_start/rate_limit
+    note: "Account-level concurrency 500 (pro) / 2500 (flash, vision-exp); HTTP 429 above limit; capacity expansion on request at no cost; user_id isolation; 10-minute server close if inference has not started."
+  - id: NOT_IN_LEDGER
+    url: https://api-docs.deepseek.com/guides/anthropic_api
+    note: "Anthropic-format compatibility: unsupported model names auto-map to deepseek-v4-flash; claude-opus* -> v4-pro, claude-sonnet*/haiku* -> v4-flash; cache_control ignored; thinking budget_tokens ignored; anthropic-beta ignored for /messages."
+  - id: NOT_IN_LEDGER
+    url: https://cdn.deepseek.com/policies/en-US/deepseek-open-platform-terms-of-service.html
+    note: "Effective 2026-04-29; operated by Hangzhou DeepSeek Artificial Intelligence Co., Ltd.; Inputs/Outputs usable for derivative products and distillation; 'governed by the laws of the People's Republic of China in the mainland'; disputes to the court at the registered office in Hangzhou; services may vary by jurisdiction."
+  - id: NOT_IN_LEDGER
+    url: https://cdn.deepseek.com/policies/en-US/deepseek-privacy-policy.html
+    note: "Last Update 2026-02-10; data 'directly collect, process and store ... in People's Republic of China'; used 'to train and improve our technology, such as our machine learning models'; right to opt out of training use; no API-specific retention period stated."
+  - id: NOT_IN_LEDGER
+    url: https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro
+    note: "License: MIT ('This repository and the model weights are licensed under the MIT License'); card describes the preview release; same for deepseek-ai/DeepSeek-V4-Flash. Whether the 0731/0813 served weights are published was not established."
+  - id: NOT_IN_LEDGER
+    url: https://developers.openai.com/api/docs/guides/rate-limits
+    note: "Usage tiers: Free (allowed geography) $100/month; Tier 1 $5 paid -> $100/month; Tier 2 $50 -> $500; Tier 3 $100 -> $1,000; Tier 4 $250 -> $5,000; Tier 5 $1,000 -> $200,000."
+  - id: NOT_IN_LEDGER
+    url: https://developers.openai.com/api/docs/guides/your-data
+    note: "API data not used for training unless opted in; abuse-monitoring logs retained up to 30 days; Zero Data Retention and Modified Abuse Monitoring by approval (org or project level); ZDR forces store=false on /v1/responses and /v1/chat/completions; regional processing options."
+  - id: NOT_IN_LEDGER
+    url: https://developers.openai.com/api/docs/supported-countries
+    note: "188 supported countries/territories listed; United States present."
+  - id: NOT_IN_LEDGER
+    url: https://platform.claude.com/docs/en/api/rate-limits
+    note: "Usage tiers Start / Build / Scale / Custom with monthly spend caps $500 / $1,000 / $200,000 / none; Claude Fable 5 Start tier 1,000 RPM / 500,000 ITPM / 100,000 OTPM; Build 2,000 / 1,500,000 / 300,000; Scale 4,000 / 4,000,000 / 800,000; Opus 5 has higher separate limits."
+  - id: NOT_IN_LEDGER
+    url: https://platform.claude.com/docs/en/build-with-claude/structured-outputs
+    note: "Supported models include claude-fable-5; output_config.format type json_schema GA (no beta header); strict tool use."
+  - id: NOT_IN_LEDGER
+    url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/computer-use-tool
+    note: "computer_toolset_20260801 supported on claude-fable-5, claude-mythos-5, claude-opus-5, claude-sonnet-5, claude-opus-4-8 on the Claude API without beta header; browser use tool also documented."
+  - id: NOT_IN_LEDGER
+    url: https://platform.claude.com/docs/en/manage-claude/api-and-data-retention
+    note: "Fable 5 / Mythos 5 are Covered Models requiring 30-day retention; not ZDR; 400 error 'your organization or workspace must have data retention enabled'; ZDR orgs can enable 30-day retention for a single workspace; Opus 4.8 remains ZDR-eligible."
+  - id: NOT_IN_LEDGER
+    url: https://platform.claude.com/docs/en/about-claude/models/choosing-a-model
+    note: "Vendor selection matrix: Fable 5 for 'highest available capability'; Opus 5 for 'complex agentic coding ... computer use'; Sonnet 5 for 'coding, agents'; Haiku 4.5 for 'sub-agent tasks'. Vendor guidance, not project evidence."
+  - id: NOT_IN_LEDGER
+    url: https://platform.claude.com/docs/en/api/supported-regions
+    note: "175 supported countries/regions listed; United States present."
+
+tests_run:
+  - "ruby -ryaml: MODEL_REGISTRY.yaml, TASK_REGISTRY.yaml, PROJECT_STATE.yaml, S0-003_handoff.yaml parse."
+  - "ruby -rcsv: SOURCE_LEDGER.csv rows/columns/duplicates; model source_ids vs ledger IDs."
+  - "git diff --stat 4d99fff f151f28; git diff on ASSUMPTION_REGISTER.md, RISK_REGISTER.md, SOURCE_LEDGER.csv; git log on 06_evaluation and MODEL_REGISTRY.yaml; git status."
+  - "curl mirror of 11 cited URLs (+ .md variants) and 30 supplementary official URLs; text extraction; field-by-field comparison."
+  - "Internet Archive CDX + id_ retrieval for the OpenAI Sol model page, OpenAI pricing page and DeepSeek pricing page."
+  - "Coverage audit of MODEL_ROLE_BENCHMARK_PLAN.md against the review checklist (roles, verified success, cost, latency, tool use, source fidelity, instruction adherence, security, external-state verification, recovery, grader independence, reproducibility, version pinning, settings control, provider-vs-model failure, lock-in avoidance, budget)."
+test_results:
+  - "All four YAML files parse; ledger 24 rows x 11 columns, no duplicate IDs; all 11 model source_ids present (author results reproduced)."
+  - "11/11 cited URLs reachable (HTTP 200); 30/30 supplementary official URLs reachable except platform.claude.com/docs/en/about-claude/data-retention (404; correct page is manage-claude/api-and-data-retention)."
+  - "Registry vs live page: 100% of GPT-5.6 Terra, GPT-5.6 Luna, Claude Fable 5 and DeepSeek V4 Pro/Flash fields match; GPT-5.6 Sol prices (standard and long context) do not match the live page as of 2026-08-21 ~20:57Z but do match archived copies of 2026-08-19 (model page) and 2026-08-21T10:30Z (pricing page)."
+  - "DeepSeek pricing page: pro/flash prices identical on 2026-08-19 archive and live; only a deepseek-v4-flash-vision-exp column was added on 2026-08-21."
+  - "S0-003-attributable edits touched 3 files outside S0-003 allowed_files_to_change (ASSUMPTION_REGISTER.md A-009/A-013; RISK_REGISTER.md R-008/R-017/R-018; SOURCE_LEDGER.csv SRC-009..011, SRC-017..024); all are listed in the handoff files_modified, so the deviation was not silent."
+  - "Benchmark plan: verified success, false completion, cost per verified success, latency p50/p90/p95, first-pass schema validity, tool validity, source fidelity, security, external-state verification, recovery, hard gates, replication, blinding, version recording and selection rules are present; gaps: no cost model, no Stage 1 gating, no provider-vs-model failure taxonomy, grader-model independence not required, no harness/results location."
+
+claim_classification:
+  - claim: "OpenAI API model IDs gpt-5.6-sol (alias gpt-5.6), gpt-5.6-terra, gpt-5.6-luna; 1,050,000 context; 128,000 max output; knowledge cutoff 2026-02-16; text+image input, text output; function calling, structured outputs, streaming, Responses API, computer use via Responses tool list; fine-tuning not supported; reasoning effort none..max"
+    classification: VERIFIED_PUBLIC
+  - claim: "OpenAI dated snapshot not listed; default snapshot equals the alias"
+    classification: VERIFIED_PUBLIC
+  - claim: "OpenAI Tier 1 500 RPM / 500,000 TPM; free tier not supported"
+    classification: VERIFIED_PUBLIC
+  - claim: "GPT-5.6 Sol standard $5.00 / cached $0.50 / cache write $6.25 / output $30.00 and long-context $10.00 / $1.00 / $12.50 / $45.00"
+    classification: STALE_OR_INCORRECT
+    note: "Correct at access on 2026-08-21 before ~10:30Z (archived); live page now $4.00 / $0.40 / $5.00 / $20.00 and $8.00 / $0.80 / $10.00 / $30.00, promotional through at least 2026-11-21."
+  - claim: "GPT-5.6 Terra $2.00 / $0.20 / $2.50 / $12.00 (long $4.00 / $0.40 / $5.00 / $18.00); GPT-5.6 Luna $0.20 / $0.02 / $0.25 / $1.20 (long $0.40 / $0.04 / $0.50 / $1.80)"
+    classification: VERIFIED_PUBLIC
+  - claim: "OpenAI batch API support, batch/flex/fast prices, maximum input tokens 922,000, default effort medium, data-use/retention controls, supported countries"
+    classification: UNKNOWN
+    note: "Not recorded by the registry although publicly documented (see F-S0-003-05)."
+  - claim: "claude-fable-5 API ID = alias; generally available on the Claude API (no access approval), Bedrock, Claude Platform on AWS, Google Cloud, Microsoft Foundry; pinned dateless ID; 1M context; 128k output; reliable cutoff Jan 2026; text+image; tool use via Messages API; adaptive thinking always on; manual extended thinking unsupported; default effort high; refusal as HTTP 200 stop_reason refusal; 30-day retention required, no ZDR"
+    classification: VERIFIED_PUBLIC
+  - claim: "Claude Fable 5 $10 / $12.50 / $20 / $1 / $50; batch $5 / $25"
+    classification: VERIFIED_PUBLIC
+  - claim: "Claude Fable 5 structured_outputs: TO_VERIFY_AND_BENCHMARK"
+    classification: STALE_OR_INCORRECT
+    note: "Publicly documented as supported (output_config.format json_schema, strict tool use, no beta header); benchmarking reliability is still appropriate but the availability label is wrong."
+  - claim: "Claude Fable 5 computer use, public rate-limit tiers, refusal categories and fallbacks parameter, 400 on missing retention configuration, prefill/sampling restrictions, tokenizer overhead, June 2026 export-control suspension"
+    classification: UNKNOWN
+    note: "Not recorded by the registry although publicly documented (see F-S0-003-03)."
+  - claim: "deepseek-v4-pro (DeepSeek-V4-Pro-0813) and deepseek-v4-flash (DeepSeek-V4-Flash-0731); 1M context; 384K max output; thinking and non-thinking modes; JSON output; tool calls; Responses API; Anthropic-compatible API; off-peak/peak prices; peak hours 01:00-04:00 and 06:00-10:00 UTC; concurrency 500 / 2500"
+    classification: VERIFIED_PUBLIC
+  - claim: "DeepSeek vision not established for pro/flash aliases; separate deepseek-v4-flash-vision-exp product"
+    classification: VERIFIED_PUBLIC
+    note: "Vision-exp released 2026-08-21; not entered as a candidate."
+  - claim: "DeepSeek open-weight license and commercial terms not reviewed (MAG-005)"
+    classification: UNKNOWN
+    note: "Hugging Face model cards state MIT; Open Platform TOS and Privacy Policy (PRC law, PRC storage, training use with opt-out) are public (see F-S0-003-04)."
+  - claim: "DeepSeek reasoning-effort controls (low/high/max since 2026-08-13), GA release date, pricing effective date, JSON-mode semantics, strict tool mode beta, Anthropic-compat model mapping"
+    classification: UNKNOWN
+    note: "Not recorded by the registry although publicly documented (see F-S0-003-04)."
+  - claim: "Founder-reported ChatGPT Pro, Codex, Claude Max, Claude Code, DeepSeek access"
+    classification: PUBLIC_BUT_ACCOUNT_UNVERIFIED
+    note: "Correctly recorded as REPORTED_NOT_INDEPENDENTLY_VERIFIED with production_api_access_inference NONE."
+  - claim: "Founder funded API accounts, entitlements, rate tiers, negotiated prices, regions, retention settings, minimal authorized calls"
+    classification: UNKNOWN
+    note: "Correctly recorded as UNKNOWN / NOT_RUN; no FOUNDER_ACCOUNT_VERIFIED claim exists anywhere in the registry, which is correct for this task."
+  - claim: "Proposed roles per model"
+    classification: INFERENCE
+    note: "Labelled HYPOTHESIS_ONLY; inherited from 00_inbox/prepared_materials/05_MODEL_ACCESS.md routing hypotheses."
+  - claim: "PROJECT_STATE note 'Public model catalogs and prices were verified; funded account access and API smoke tests were not.'"
+    classification: STALE_OR_INCORRECT
+    note: "True at access time for the catalog pages; the Sol price is no longer supported by the source and the registry has no access timestamp; challenger review now supersedes this author statement."
+
+acceptance_criteria_evaluation:
+  - criterion: "Personal product access is separated from API access."
+    result: PASS
+    evidence: "MODEL_REGISTRY.yaml personal_product_access (5 rows, production_api_access_inference NONE, REPORTED_NOT_INDEPENDENTLY_VERIFIED), provider_account_access (funded_account_status UNKNOWN, minimal_authorized_api_test NOT_RUN), per-model founder_account_api_access NOT_VERIFIED, warning block, not_verified_by_this_record list, MAG-001/002; benchmark plan access gate 'Public catalog availability is not sufficient. A candidate with unknown account access remains NOT_RUN'. No consumer access is inferred into API access anywhere."
+  - criterion: "Exact versions and verification dates are recorded."
+    result: PARTIAL
+    evidence: "Exact public IDs, DeepSeek served-version labels, Anthropic pinned-ID statement, OpenAI 'snapshot not listed' and public_source_verified_on 2026-08-21 are recorded. Missing: per-source UTC access timestamps (the Sol price changed later on the verification date and the record cannot show which version was read; F-S0-003-02, -10); DeepSeek GA release (2026-08-13) and price-effective date (2026-08-16) and the 2026-07-31 / 2026-08-13 / 2026-08-21 release posts that actually define the served versions (F-S0-003-04); OpenAI promotional-price end date (F-S0-003-02)."
+  - criterion: "No model role is locked based only on reputation."
+    result: PASS
+    evidence: "role_assignment_status HYPOTHESIS_ONLY on all six entries; benchmark_policy role_assignments_locked false and provider_reputation_is_evidence false; plan 'does not assign a permanent role to any provider'; DECISION_LOG note 'no ... model-role assignment was selected'. Caveat raised as F-S0-003-01: the candidate pool itself is narrowed to the founder's subscription-favoured flagships, which is the remaining reputation channel."
+  - criterion: "Benchmark includes success, cost, latency, and structured-output reliability."
+    result: PASS
+    evidence: "verified_task_success_rate, false_completion_rate, cost_per_verified_success (undefined at zero successes), model/tool USD per run, TTFT and total time median/p90/p95, first-pass JSON Schema validity and validity-after-repair, tool-name/argument validity, per-role thresholds and hard gates are all defined in MODEL_ROLE_BENCHMARK_PLAN.md."
+  - criterion: "Required test: Primary-source verification."
+    result: PARTIAL
+    evidence: "11 primary pages reopened by the author and every recorded value matched them at access time (archive-confirmed for the only discrepancy). Incomplete because documented facts within the same pages or one link away were labelled TO_VERIFY or omitted (F-S0-003-03/04/05), the DeepSeek version context cites the superseded April preview post (F-S0-003-04), and no access timestamps were kept (F-S0-003-10)."
+  - criterion: "Deliverable: verified_model_registry"
+    result: PARTIAL
+    evidence: "Present and well-structured; stale Sol price; candidate coverage and field completeness gaps (F-S0-003-01..05)."
+  - criterion: "Deliverable: model_role_benchmark_plan"
+    result: PARTIAL
+    evidence: "Present with 14 cases, metrics, gates, replication, blinding, selection and reporting rules; gaps in Stage 1 gating, cost model, failure taxonomy, grader independence, harness location (F-S0-003-07/08/09/11)."
+  - criterion: "Deliverable: access_gap_list"
+    result: PASS
+    evidence: "MAG-001..006 in the registry and 'Current access gaps blocking execution' in the plan; S0-005 is correctly defined as the account-verification task and is BLOCKED on founder inputs."
+
+benchmark_plan_review:
+  tests_capabilities_that_matter: "PARTIAL - cases map to runtime primitives (tool conformance, approvals, external-state verification, recovery, memory, security) but MB-001/002/003/012/014 mirror this repository's own Stage 0 governance process rather than a customer workflow; no workflow-specific case can exist before Stage 1."
+  avoids_benchmarking_before_workflow_known: "PARTIAL - the plan says results are preliminary but does not gate production role selection on workflow-specific cases added after Stage 1/2 (F-S0-003-07)."
+  separates_roles: "PASS - ten logical roles, per-case primary roles, per-role-group thresholds; COMPUTER_CONTROLLER and VISION_INTERPRETER coverage is thin (F-S0-003-11)."
+  measures_end_to_end_success: "PASS - completion predicates, deterministic graders first, verified_task_success_rate, false_completion_rate, artifact_acceptance_rate."
+  includes_cost_and_latency: "PASS for metrics; FAIL for budget - no cost model or staged order against A-007 USD 0-100/month (F-S0-003-07)."
+  includes_tool_use_reliability: "PASS - MB-007, tool-name/argument validity, phantom-tool rate, bounded-retry compliance."
+  includes_source_fidelity: "PASS - MB-001, MB-014, claim-to-source precision/recall, current-authority selection."
+  includes_repository_instruction_adherence: "PASS - MB-002/003/004 allowed-files diff, scope-adherence rate, 'out-of-scope file modified' trap."
+  includes_security_behavior: "PASS - MB-006, MB-008, MB-010, MB-011, hard_boundary_violation_rate, non-averageable hard gates."
+  includes_external_state_verification: "PASS - MB-009 independent target reread."
+  includes_failure_recovery: "PASS - MB-005, MB-007, recovery_rate."
+  prevents_self_grading_bias: "PARTIAL - 'not the only grader of its own correctness' and blinding are required, but the grader/challenger model family is not required to differ from the candidate (F-S0-003-08)."
+  reproducible: "PARTIAL - fixture/case/grader versioning and full run-config recording are required; no harness, results directory, run-record schema or seed policy (F-S0-003-07)."
+  records_exact_model_versions: "PASS - model ID, returned version/snapshot, service tier, endpoint region per run; drift rerun rule."
+  controls_temperature_and_reasoning: "PASS - each effort level is a separate configuration; sampling settings recorded; 'Unsupported parameters ... are part of operational fit'. Note that Fable 5 restricts sampling parameters and DeepSeek thinking mode ignores temperature/top_p silently, which the plan should list explicitly."
+  distinguishes_provider_failure_from_model_failure: "PARTIAL - failure category, rate-limit waits and refusal/fallback rate are recorded but no taxonomy separates provider outage/429/timeout/regulatory suspension from policy refusal, harness error and model task failure (F-S0-003-09)."
+  avoids_premature_architecture_lock: "PASS - no vendor ranking, fallback normalization required, unresolved tradeoffs recorded; weakened only by the narrow candidate pool (F-S0-003-01)."
+
+scope_and_dependency_check:
+  allowed_files: "Deviation: ASSUMPTION_REGISTER.md, RISK_REGISTER.md, SOURCE_LEDGER.csv edited (listed in handoff) but outside S0-003 allowed_files_to_change (F-S0-003-06). MODEL_REGISTRY.yaml, 06_evaluation/, TASK_REGISTRY.yaml, PROJECT_STATE.yaml, 99_handoffs/completed/ edits are in scope."
+  dependency_order: "S0-003 depends on S0-001, which was READY (not VERIFIED) when S0-003 ran and is CHANGES_REQUESTED (LOW only) now; no substantive effect (F-S0-003-10)."
+  forbidden_actions: "None found: no Stage 1 work, no customer segment, no MVP workflow, no architecture choice, no application code, no paid benchmark, no fabricated founder access, no consumer-equals-API inference, no secret."
+
+findings:
+  - finding_id: F-S0-003-01
+    severity: HIGH
+    requirement: "S0-003 objective 'Confirm available model products, API access, costs, limits'; acceptance criterion 3 (no role locked by reputation); MASTER 'Use the least expensive model that has demonstrated sufficient reliability'; MASTER model-routing roles incl. VISION_INTERPRETER, SUMMARIZER, ROUTER, MEMORY_EXTRACTOR; 05_MODEL_ACCESS.md 'specialized coding model' and 'lower-cost candidate' columns."
+    file_or_component: "01_governance/MODEL_REGISTRY.yaml models[] (six entries); 06_evaluation/MODEL_ROLE_BENCHMARK_PLAN.md 'Candidate configurations'"
+    evidence: "Anthropic overview (SRC-021, live): 'start with Claude Opus 5 for complex agentic coding and enterprise work. For workloads that need the highest available capability, use Claude Fable 5'; Claude Opus 5 claude-opus-5 $5/$25, Claude Sonnet 5 claude-sonnet-5 $2/$10, Claude Haiku 4.5 $1/$5, all GA; Fable 5 comparative latency 'Slower', 30-day retention / no ZDR, classifier refusals, while Opus 4.8 'remains available under ZDR' (migration guide) and Opus 5/Sonnet 5 are Fable's documented fallback targets. OpenAI catalog (SRC-009, live) lists GPT-5.3-Codex ('most capable agentic coding model to date'), codex-mini-latest, computer-use-preview, GPT-5.4 mini ('coding, computer use, and subagents'), gpt-oss-120b/20b open-weight. DeepSeek released deepseek-v4-flash-vision-exp on 2026-08-21 (news260821) at V4-Flash pricing with Responses/Messages support. The registry contains only Sol/Terra/Luna, Fable 5, V4-Pro/Flash - exactly the products the founder subscribes to or named in 00_inbox - and records no exclusion reasons. Consequently the Anthropic provider is represented solely by its most expensive, slowest, retention-constrained model; ROUTER, MEMORY_EXTRACTOR, SUMMARIZER, STRUCTURED_EXECUTOR, VISION_INTERPRETER and low-cost fallback roles have no Anthropic candidate, no vision-capable DeepSeek candidate and no coding- or computer-use-specialised OpenAI candidate."
+    why_it_matters: "The benchmark can only select among registered candidates, so a reputation- and subscription-shaped pool pre-decides role outcomes that the plan claims to leave open; it also removes the cheapest way to test same-provider failover for Fable 5 refusals and cross-provider cost/latency frontiers that R-005, R-007 and the Pareto selection rule depend on. Production suitability (ZDR, latency, cost per verified success) differs materially between Fable 5 and Opus 5/Sonnet 5/Haiku 4.5."
+    required_fix: "Add registry entries (same schema, public-source fields only, founder_account_api_access NOT_VERIFIED) for at least claude-opus-5, claude-sonnet-5, claude-haiku-4-5-20251001 and deepseek-v4-flash-vision-exp, and either entries or an explicit 'considered_and_excluded' list with reasons for gpt-5.3-codex / codex-mini-latest / computer-use-preview / gpt-5.4-mini / gpt-oss; add the corresponding SOURCE_LEDGER rows; update the plan's 'Candidate configurations' section. Do not assign roles; keep HYPOTHESIS_ONLY."
+    verification_method: "ruby -ryaml -e 'puts YAML.load_file(\"01_governance/MODEL_REGISTRY.yaml\")[\"models\"].map{|m| m[\"exact_api_model_id\"]}' lists claude-opus-5, claude-sonnet-5, claude-haiku-4-5-20251001, deepseek-v4-flash-vision-exp; grep -n 'considered_and_excluded\\|exclusion' 01_governance/MODEL_REGISTRY.yaml returns the OpenAI specialised models with reasons; each new entry's source_ids resolve in SOURCE_LEDGER.csv."
+  - finding_id: F-S0-003-02
+    severity: HIGH
+    requirement: "S0-003 acceptance criterion 2 (exact versions and verification dates); MASTER 'Record exact model version, access method, cost'; Stage 0 gate 'consequential product claims are sourced'; R-017 mitigation 'record ... price and run date'; plan 'Standard and premium/fast service tiers are separate configurations'."
+    file_or_component: "01_governance/MODEL_REGISTRY.yaml openai_gpt_5_6_sol public_list_pricing_usd_per_1m_tokens; public_source_verified_on; 01_governance/SOURCE_LEDGER.csv SRC-017, SRC-020 accessed_date; 99_handoffs/completed/S0-003_handoff.yaml test_results"
+    evidence: "Live SRC-017 (2026-08-21 ~20:57Z): 'Input $4 | Cached input $0.4 | Output $20 ... GPT-5.6 Sol's promotional pricing is available at least through November 21, 2026'; live SRC-020 Standard row gpt-5.6-sol $4.00 / $0.40 / $5.00 / $20.00, long context $8.00 / $0.80 / $10.00 / $30.00; Batch and Flex rows $2.00 / $0.20 / $2.50 / $10.00; Fast row $8.00 / $0.80 / $10.00 / $40.00. Registry: $5.00 / $0.50 / $6.25 / $30.00 and $10.00 / $1.00 / $12.50 / $45.00, no batch/flex/fast prices. Internet Archive: Sol page 2026-08-19T11:13Z '$5.00 ... $0.50 ... $30.00'; pricing page 2026-08-21T10:30:49Z gpt-5.6-sol $5.00 / $0.50 / $6.25 / $30.00. The registry records only a date (public_source_verified_on 2026-08-21), no time, so the record cannot show which price was read on that date. Terra and Luna prices are unchanged and correct."
+    why_it_matters: "Cost per verified success for the flagship candidate - the metric the plan optimises - is overstated by 20-33 percent, and the registry lacks the batch/flex/fast prices that the plan itself treats as distinct configurations; more importantly the same-day drift shows that a date-only verification stamp cannot support the Stage 0 gate or R-017 without UTC access times. Not an author error at access time."
+    required_fix: "Update gpt-5.6-sol pricing to the live values with a 'promotional through at least 2026-11-21; list price previously $5/$0.50/$6.25/$30 until 2026-08-21' note; add batch, flex and fast service-tier prices for all three GPT-5.6 entries (and Anthropic batch is already present); add an accessed_at UTC timestamp field per model entry and per ledger row (or an accessed_time column) for SRC-009/017/018/019/020 and, ideally, all S0-003 rows; add a known_limitations entry to the S0-003 handoff recording the same-day drift; set public_source_verified_on to the new re-verification timestamp."
+    verification_method: "grep -n -E '\\$?4\\.00|input: 4\\.0' 01_governance/MODEL_REGISTRY.yaml hits the Sol block; grep -n 'November 21, 2026\\|2026-11-21' 01_governance/MODEL_REGISTRY.yaml returns the promo note; grep -n 'accessed_at\\|accessed_time' 01_governance/MODEL_REGISTRY.yaml 01_governance/SOURCE_LEDGER.csv returns values with a time component; reopening https://developers.openai.com/api/docs/pricing.md shows the recorded values."
+  - finding_id: F-S0-003-03
+    severity: MEDIUM
+    requirement: "S0-003 objective (capabilities, limits); review brief items structured outputs, computer use, rate limits, data policy, geographic restrictions, fallback implications; MASTER label discipline (documented fact must not be labelled unknown); R-018."
+    file_or_component: "01_governance/MODEL_REGISTRY.yaml anthropic_claude_fable_5 public_specs, public_rate_limit_context; 01_governance/RISK_REGISTER.md R-018 (out of S0-003 scope - see F-S0-003-06)"
+    evidence: "(a) structured_outputs is 'TO_VERIFY_AND_BENCHMARK' while platform.claude.com/docs/en/build-with-claude/structured-outputs lists 'Supported models: claude-fable-5 ...' with output_config.format type json_schema and strict tool use, no beta header. (b) No computer-use field although computer-use-tool page lists 'Supported models: claude-fable-5, claude-mythos-5, claude-opus-5, claude-sonnet-5, claude-opus-4-8' for computer_toolset_20260801 (no beta header on the Claude API) and the pricing page lists browser_toolset_20260801 overhead for Fable 5. (c) public_rate_limit_context says only 'Account and service-tier dependent' although api/rate-limits publishes Fable 5 Start 1,000 RPM / 500,000 ITPM / 100,000 OTPM, Build 2,000 / 1,500,000 / 300,000, Scale 4,000 / 4,000,000 / 800,000 and monthly spend caps $500 / $1,000 / $200,000 - the OpenAI entries do record public tier limits. (d) Omitted documented behaviours: stop_details.category on refusals; opt-in fallbacks parameter (beta, Claude API only); refused-before-output requests not billed; 400 invalid_request_error 'your organization or workspace must have data retention enabled'; per-workspace retention enablement; prefill returns 400; sampling-parameter restrictions; thinking.display default omitted; ~30% tokenizer overhead versus pre-4.7 models; 512-token cache minimum. (e) SRC-010 (cited) documents a 2026-06-12..30 US export-control suspension of all Fable 5 access and a subsequent classifier tightening that 'comes at the cost of flagging benign requests more often during routine coding and debugging tasks'; neither the registry nor R-018 records regulatory-availability or coding-false-positive risk."
+    why_it_matters: "The COMPUTER_CONTROLLER and structured-output roles cannot be planned without (a)-(b); (c)-(d) are exactly the integration, billing and failover facts the brief asks for and the benchmark harness must handle; (e) is a provider-availability and CODER-suitability risk that the registry's sole Anthropic candidate carries."
+    required_fix: "Set structured_outputs to SUPPORTED (public doc) with 'benchmark reliability'; add computer_use: SUPPORTED (computer_toolset_20260801; browser use tool) and the toolset overhead note; add public tier limits and spend caps; add refusal/fallback/billing/retention-error/prefill/sampling/tokenizer facts under public_specs or a provider_constraints block; add ledger rows for the structured-outputs, computer-use, rate-limits, api-and-data-retention and refusals-and-fallback pages; record the June 2026 suspension and classifier change in the registry entry (and propose an R-018 amendment or new risk for the founder/governance task, since RISK_REGISTER is outside S0-003 scope)."
+    verification_method: "grep -n -E 'computer_toolset_20260801|structured_outputs: SUPPORTED|export control|stop_details' 01_governance/MODEL_REGISTRY.yaml returns hits in the Fable block; grep -c 'platform.claude.com/docs/en/agents-and-tools/tool-use/computer-use-tool' 01_governance/SOURCE_LEDGER.csv >= 1."
+  - finding_id: F-S0-003-04
+    severity: MEDIUM
+    requirement: "S0-003 objective; acceptance criterion 2 (versions and dates); review brief items data-retention/training policy, commercial-use constraints, geographic restrictions, reasoning controls, structured outputs, incompatibilities; MAG-004 / MAG-005; 06_BUILD_CONSTRAINTS.md 'Review provider terms, data use, reselling, rate limits, and commercial deployment rights'."
+    file_or_component: "01_governance/MODEL_REGISTRY.yaml deepseek_v4_pro, deepseek_v4_flash, access_gaps MAG-004/MAG-005; 01_governance/SOURCE_LEDGER.csv SRC-011, SRC-024"
+    evidence: "(a) Data/jurisdiction: DeepSeek Open Platform Terms of Service (effective 2026-04-29) - operator Hangzhou DeepSeek Artificial Intelligence Co., Ltd.; 'governed by the laws of the People's Republic of China in the mainland'; disputes to the court at the Hangzhou registered office; Privacy Policy (2026-02-10) - 'we directly collect, process and store your Personal Data in People's Republic of China'; data used 'to train and improve our technology, such as our machine learning models' with a stated opt-out right; no API-specific retention period published. None is in the registry; MAG-004 is generic. (b) Version context: SRC-024 is the 2026-04-24 preview post; the served versions come from the 2026-07-31 V4-Flash release and the 2026-08-13 V4-Pro GA release (news260813; change log), which also introduced reasoning effort levels low/high/max (OpenAI-format reasoning_effort, Anthropic-format output_config.effort, Responses reasoning.effort incl. none) and set the current peak/off-peak prices 'effective at 16:00 UTC, Aug 16, 2026'; none of these posts or facts is ledgered or recorded, so the registry's 'thinking_modes' field understates the documented reasoning controls. (c) deepseek-v4-flash-vision-exp (2026-08-21): images tokenised up to 384 tokens at V4-Flash pricing; Chat/Messages/Responses; Files API free - recorded only as a caveat string. (d) Structured output semantics: 'JSON Output' is response_format json_object - valid JSON only, prompt must contain 'json', 'the API may occasionally return empty content'; schema-constrained tool calls require 'strict Mode (Beta)' via base_url https://api.deepseek.com/beta; the registry's 'json_output: SUPPORTED' does not convey this and the plan's first-pass JSON Schema validity metric depends on it. (e) Incompatibilities: Anthropic-format endpoint maps unknown model names to deepseek-v4-flash (claude-opus* -> v4-pro, claude-sonnet*/haiku* -> v4-flash) and ignores cache_control and budget_tokens; thinking mode ignores temperature/top_p without error; with tools, reasoning_content must be echoed back or the API returns 400; server closes requests that have not started inference after 10 minutes; concurrency 429 is account-level. (f) Open weights: Hugging Face DeepSeek-V4-Pro and DeepSeek-V4-Flash model cards state MIT license (preview weights); MAG-005 says licence 'not reviewed'."
+    why_it_matters: "For a multi-tenant SaaS backend, PRC-law jurisdiction, PRC data storage and training use are first-order production-suitability facts for the DeepSeek candidates (and for any customer data-residency promise); the silent model-name mapping and ignored parameters are exactly the provider-specific incompatibilities the brief asks the registry to capture so a fallback path does not quietly call the wrong model; the JSON-mode semantics determine how the structured-output metric must be measured."
+    required_fix: "Add a public_policy_constraints block to both DeepSeek entries (operator, governing law, storage location, training use and opt-out, retention 'not published', terms effective dates) and an api_compatibility_notes block ((e) above); record reasoning_effort levels and their mapping, json_output semantics and strict-mode beta; add a deepseek_v4_flash_vision_exp entry (or explicit exclusion) per F-S0-003-01; update served-version provenance with the 2026-07-31 and 2026-08-13 dates and the 2026-08-16 price-effective date; revise MAG-005 to record MIT licence and the remaining unknown (whether 0731/0813 weights are published, hosting terms); add ledger rows for news260813, news260821, updates, thinking_mode, json_mode, tool_calls, rate_limit, anthropic_api, the TOS, the Privacy Policy and the two model cards."
+    verification_method: "grep -n -E \"People's Republic of China|Hangzhou|reasoning_effort|json_object|strict|claude-opus\" 01_governance/MODEL_REGISTRY.yaml returns hits inside the DeepSeek blocks; grep -c 'api-docs.deepseek.com/news/news260813' 01_governance/SOURCE_LEDGER.csv >= 1; grep -n 'MIT' 01_governance/MODEL_REGISTRY.yaml hits MAG-005 or the DeepSeek entries."
+  - finding_id: F-S0-003-05
+    severity: MEDIUM
+    requirement: "S0-003 objective (access, costs, limits); review brief items batch API, data retention/training, geographic restrictions, rate limits, reasoning controls; plan 'service tiers are separate configurations'."
+    file_or_component: "01_governance/MODEL_REGISTRY.yaml openai_gpt_5_6_sol / terra / luna public_specs and public_rate_limit_context"
+    evidence: "Live SRC-017/018/019: 'Batch | v1/batch | Supported'; 'Maximum input tokens: 922,000'; 'Reasoning.effort supports: none, low, medium (default), high, xhigh, and max'; Luna rate-limit table 'default' differs from Sol/Terra 'Standard' (Tier 1 batch queue 5,000,000; Tier 5 30,000 RPM / 180,000,000 TPM). Live SRC-020: Batch, Flex and Fast tables for all three models; 'Regional processing (data residency) endpoints are charged a 10% uplift'; tool fees (web search $10.00 / 1k calls; hosted shell / code interpreter containers billed per 20-minute session; file search $2.50 / 1k calls). developers.openai.com/api/docs/guides/your-data: API data 'not used to train or improve OpenAI models (unless you explicitly opt in)'; abuse-monitoring logs 'retained for up to 30 days'; Zero Data Retention and Modified Abuse Monitoring available on approval at organization or project level; ZDR forces store=false on /v1/responses and /v1/chat/completions. rate-limits guide: usage tiers Free ($100/month, allowed geography) through Tier 5 ($1,000 paid, $200,000/month). supported-countries: 188 entries. None of these is in the registry; the entries record only standard/long-context prices, a generic 'Tier 1' sentence and 'free tier not supported'."
+    why_it_matters: "Batch (50%) and flex pricing change the cost-per-verified-success frontier for non-interactive roles (VERIFIER, SUMMARIZER, MEMORY_EXTRACTOR); the data-control facts are the OpenAI counterpart of the Fable 5 retention constraint already recorded and are needed for MAG-004; tool fees affect the plan's 'model and tool USD per run'."
+    required_fix: "Add batch_api: SUPPORTED plus batch/flex/fast prices; max_input_tokens 922000; default reasoning effort medium; Luna's distinct tier table; data_policy block (no training by default, 30-day abuse-monitoring retention, ZDR/MAM on approval, regional processing uplift); supported-countries reference; tool fee summary; add ledger rows for the rate-limits, your-data and supported-countries pages."
+    verification_method: "grep -n -E 'batch|922000|data_policy|Zero Data Retention' 01_governance/MODEL_REGISTRY.yaml returns hits in each GPT-5.6 block; grep -c 'developers.openai.com/api/docs/guides/your-data' 01_governance/SOURCE_LEDGER.csv >= 1."
+  - finding_id: F-S0-003-06
+    severity: MEDIUM
+    requirement: "AGENTS.md 'Do not silently expand scope'; TASK_REGISTRY S0-003 allowed_files_to_change; Stage 0 gate 'governance files agree with one another'; S0-001 challenger notes N-S0-001-04/05 carried forward."
+    file_or_component: "01_governance/TASK_REGISTRY.yaml S0-003 allowed_files_to_change; 99_handoffs/completed/S0-003_handoff.yaml files_modified; 01_governance/ASSUMPTION_REGISTER.md (A-009, A-013); 01_governance/RISK_REGISTER.md (R-008, R-017, R-018); 01_governance/SOURCE_LEDGER.csv (SRC-009..011, SRC-017..024)"
+    evidence: "git diff 4d99fff f151f28 shows A-009 rewritten and A-013 added, R-008 rewritten and R-017/R-018 added, and 11 model-source ledger rows added; all content is S0-003 subject matter and all three files are listed under files_modified in the S0-003 handoff, but S0-003 allowed_files_to_change lists only MODEL_REGISTRY.yaml, 06_evaluation/, TASK_REGISTRY.yaml, PROJECT_STATE.yaml and 99_handoffs/completed/. The registry requires source_ids that must resolve in SOURCE_LEDGER.csv, so the task could not satisfy its own evidence contract without the ledger; the allowed list was defective and was never amended. S0-005 (the successor task) correctly includes the ledger, assumption and risk registers."
+    why_it_matters: "A verifier applying the allowed-files check literally must fail S0-003; concurrent ownership of SOURCE_LEDGER.csv by S0-002 and S0-003 in one batch also removes the single-owner guarantee the governance model relies on. The deviation was visible, not hidden, so severity is limited to governance coherence."
+    required_fix: "Founder decision: amend TASK_REGISTRY S0-003 allowed_files_to_change to add 01_governance/SOURCE_LEDGER.csv, 01_governance/ASSUMPTION_REGISTER.md and 01_governance/RISK_REGISTER.md (retroactive, with a one-line note in the task entry or DECISION_LOG), or leave the list and record the deviation in the S0-003 handoff known_limitations with the founder's acceptance. Either way, add a handoff known_limitations entry naming the three files and the reason."
+    verification_method: "ruby -ryaml prints S0-003 allowed_files_to_change including the three paths, or grep -n 'allowed_files' 99_handoffs/completed/S0-003_handoff.yaml returns a known_limitations entry describing the deviation and acceptance."
+  - finding_id: F-S0-003-07
+    severity: MEDIUM
+    requirement: "Review brief 'avoids benchmarking models before the product workflow is known', 'can be run reproducibly', cost; A-007 / 06_BUILD_CONSTRAINTS.md 'near USD 0 to 100 per month'; MAG-003; plan preconditions 5 ('Set a per-run and per-suite budget')."
+    file_or_component: "06_evaluation/MODEL_ROLE_BENCHMARK_PLAN.md 'Evaluation set', 'Replication', 'Preconditions and access gate', 'Selection rule', 'Current access gaps blocking execution'"
+    evidence: "The 14 cases are fixed before Stage 1 (S1-001 BACKLOG); MB-001 (reconcile product pages), MB-002 (inventory fixture repository), MB-003 (governance reconciliation), MB-012 (handoff synthesis) and MB-014 (project-history reconciliation) reproduce this repository's own Stage 0 process; no sentence requires workflow-specific cases from Stage 1/2 before a production role recommendation, and no case weights exist. Replication requires >=5 scored runs for deterministic/extraction cases and >=3 for implementation/browser cases across six candidates, each effort level and service tier a separate configuration; no token estimate or USD estimate per case/block is given. Illustratively, one MB-004/MB-005/MB-013 run on claude-fable-5 at ~200k input / 20k output tokens is ~$3 ($10/$50 per MTok), so the scored pass for the three implementation cases alone on one Fable configuration is ~$27 and the full suite across configurations and effort levels plausibly exceeds the USD 0-100 monthly envelope several-fold. The plan names no harness, results directory (06_evaluation/ contains only the plan), run-record schema or seed policy."
+    why_it_matters: "Without a Stage 1 gate the suite will be scored and cited before it tests the workflow that matters, producing exactly the premature role lock the plan says it avoids; without a cost model and staged order the plan cannot be executed inside the founder's stated budget, so 'benchmark_status NOT_RUN' will persist or the budget assumption A-007 will be broken silently; without a results location the plan is not reproducible by another agent."
+    required_fix: "Label the current suite 'Stage 0 harness-validation suite (provisional)'; add a rule that production role recommendations require at least one workflow-specific case family added after S1-001 and reviewed; add a per-case token/USD estimate table and a staged execution order (deterministic + low-cost candidates first; flagship candidates only on discriminating cases; explicit USD gates per stage) reconciled with A-007 and MAG-003; specify the results directory (e.g. 06_evaluation/results/<date>_<suite_version>/), a run-record schema matching 'Record for every run', and a fixed seed/sampling policy per provider including the provider restrictions already documented (Fable 5 sampling restrictions; DeepSeek thinking mode ignoring temperature)."
+    verification_method: "grep -n -i 'Stage 1\\|S1-001' 06_evaluation/MODEL_ROLE_BENCHMARK_PLAN.md returns the gating rule; grep -n -i 'USD\\|\\$' 06_evaluation/MODEL_ROLE_BENCHMARK_PLAN.md returns a per-case estimate table; grep -n 'results/' 06_evaluation/MODEL_ROLE_BENCHMARK_PLAN.md returns the results path."
+  - finding_id: F-S0-003-08
+    severity: LOW
+    requirement: "Review brief 'prevents the same model from grading itself where that would bias results'; MASTER Stage 7 'verification that merely restates the author'."
+    file_or_component: "06_evaluation/MODEL_ROLE_BENCHMARK_PLAN.md 'Author, challenger, verifier separation'"
+    evidence: "'A model may grade bounded style dimensions, but it may not be the only grader of its own correctness or external-state completion'; 'A blinded challenger reviews sampled passes ... without provider/model labels'. Nothing requires the grading or challenger model family to differ from the candidate whose output is graded; blinding the label does not remove self-preference when a model scores its own output, and 'not the only grader' still admits it as one of two graders whose scores are averaged."
+    why_it_matters: "Rubric dimensions (plan acceptance, summary quality, security severity calibration) are where self-preference bias is largest; a tie-break or average with a self-grade moves the Pareto frontier."
+    required_fix: "Require that any non-deterministic grade of a candidate's output be produced by a model from a different provider family (or by a human), record grader model ID per grade, and exclude self-grades from scoring entirely; keep deterministic graders first."
+    verification_method: "grep -n -i 'different provider\\|grader model' 06_evaluation/MODEL_ROLE_BENCHMARK_PLAN.md returns the rule."
+  - finding_id: F-S0-003-09
+    severity: LOW
+    requirement: "Review brief 'distinguishes provider failure from model failure'; plan 'Do not normalize away provider-specific limitations'; R-014."
+    file_or_component: "06_evaluation/MODEL_ROLE_BENCHMARK_PLAN.md 'Configuration control' (failure category), 'Stability metrics', 'Selection rule'"
+    evidence: "Runs record 'failure category, intervention count, and verifier result' and 'refusal/fallback rate' but the categories are undefined; the selection rule eliminates on thresholds without stating whether provider incidents (HTTP 429 at DeepSeek concurrency limits, OpenAI/Anthropic rate-limit waits, 5xx, the DeepSeek 10-minute pre-inference close, regulatory suspensions such as Fable 5's 2026-06-12..30 export-control outage) count against verified success, are excluded, or trigger reruns; policy refusals (Fable 5 stop_reason refusal with stop_details.category; OpenAI/DeepSeek content policy) are likewise unseparated from model task failure and false completion."
+    why_it_matters: "A model can be eliminated for an outage or credited for a refusal-then-fallback, and the operational-fit signal the plan wants (fallback identity, refusal rate) is lost if everything is one failure bucket."
+    required_fix: "Add an enumerated failure_category (provider_unavailable, rate_limited, provider_timeout, policy_refusal, harness_error, model_task_failure, false_completion, boundary_violation) with scoring/rerun rules per category, and report provider-incident counts separately in the reporting template."
+    verification_method: "grep -n 'provider_unavailable\\|policy_refusal' 06_evaluation/MODEL_ROLE_BENCHMARK_PLAN.md returns the taxonomy."
+  - finding_id: F-S0-003-10
+    severity: LOW
+    requirement: "MASTER task execution rule 2 'Confirm dependencies are verified'; AGENTS.md handoff schema (started_at/completed_at); AGENTS.md completion rule 'exact results'; S0-001 challenger note N-S0-001-06 (PROJECT_STATE author claim)."
+    file_or_component: "99_handoffs/completed/S0-003_handoff.yaml (started_at, completed_at, test_results, known_limitations); 01_governance/PROJECT_STATE.yaml notes; 01_governance/TASK_REGISTRY.yaml S0-003 dependencies"
+    evidence: "S0-003 depends on S0-001, which was READY (not VERIFIED) when S0-003 ran and is CHANGES_REQUESTED now. started_at is null and completed_at is the batch stamp shared by all three Stage 0 handoffs. test_results say the pages 'documented ... public prices' with no access time; the Sol price changed later the same day, so the result cannot be reproduced or dated from the record. PROJECT_STATE note 'Public model catalogs and prices were verified; funded account access and API smoke tests were not' is an author statement recorded in state before independent review and is now partly stale."
+    why_it_matters: "Audit value only; the dependency deviation had no substantive effect because S0-001 produced LOW findings only, and the PROJECT_STATE note is corrected by this review."
+    required_fix: "In the S0-003 handoff add known_limitations entries recording (a) the dependency deviation, (b) that per-source access times were not captured and that the GPT-5.6 Sol price changed on 2026-08-21 after access; future handoffs record per-task start/end and UTC access times per reopened source. (PROJECT_STATE note updated by this review.)"
+    verification_method: "grep -n -E 'access time|2026-11-21|promotional' 99_handoffs/completed/S0-003_handoff.yaml returns the limitation entries."
+  - finding_id: F-S0-003-11
+    severity: LOW
+    requirement: "Review brief 'separates planner, coder, executor, verifier, vision, and low-cost roles'; MASTER roles COMPUTER_CONTROLLER and VISION_INTERPRETER; Stage 4 spikes 'recovery from unexpected UI state'."
+    file_or_component: "06_evaluation/MODEL_ROLE_BENCHMARK_PLAN.md MB-008, MB-013; 01_governance/MODEL_REGISTRY.yaml (no vision candidate, no computer-use field)"
+    evidence: "VISION_INTERPRETER is exercised only through MB-008 ('Operate or plan against a controlled site') and MB-013's screenshot rubric; there is no case with ground-truth UI/screenshot states (dialog, error banner, login wall, CAPTCHA, layout shift) scored for state recognition; MB-008's 'operate or plan' leaves open whether a harness executes actions or the model only emits a plan, so COMPUTER_CONTROLLER success is not end-to-end. The registry has no vision-capable DeepSeek candidate and no computer-use field for Fable 5 (F-S0-003-01/03)."
+    why_it_matters: "Browser/GUI brittleness is R-006 (High/High) and the Stage 4 spike list starts with it; a plan that cannot distinguish 'recognised the state' from 'planned plausibly' will not de-risk it."
+    required_fix: "Add MB-015 'UI state recognition' with labelled screenshot fixtures and deterministic scoring; define MB-008 as executed through a controlled harness with action logs (plan-only runs labelled separately); list the documented computer-use interfaces per candidate (OpenAI Responses computer tool / gpt-5.4+ training; Anthropic computer_toolset_20260801 + browser use; DeepSeek none documented for text models) in the candidate section."
+    verification_method: "grep -n 'MB-015' 06_evaluation/MODEL_ROLE_BENCHMARK_PLAN.md returns the case; grep -n -i 'harness' 06_evaluation/MODEL_ROLE_BENCHMARK_PLAN.md hits MB-008."
+
+notes:
+  - note_id: N-S0-003-01
+    text: "Passes confirmed: registry separates consumer access, public catalog, founder account and production suitability and never infers one from another; no FOUNDER_ACCOUNT_VERIFIED claim exists; all six entries carry founder_account_api_access NOT_VERIFIED and benchmark_status NOT_RUN; every model ID, context, output, cutoff, modality, feature flag, tier limit, concurrency and price except the GPT-5.6 Sol prices matches the live primary page; registry and ledger parse; all source_ids resolve; no secret, no API call, no paid run, no code, no architecture or wedge choice, no Stage 1 work; plan keeps role thresholds as DESIGN PROPOSAL and hard gates non-averageable."
+  - note_id: N-S0-003-02
+    text: "The Sol price change is post-access source drift, not author error: Internet Archive copies of the Sol model page (2026-08-19T11:13Z) and pricing page (2026-08-21T10:30:49Z) show the registry values; the live pages at 2026-08-21 ~20:57Z show the promotional price. Same defect class as F-S0-002-01; the structural fix is UTC access timestamps per source."
+  - note_id: N-S0-003-03
+    text: "Anthropic's own selection guidance ('start with Claude Opus 5 ... For workloads that need the highest available capability, use Claude Fable 5'; Haiku 4.5 for 'sub-agent tasks') and OpenAI's catalog descriptions are vendor statements; they are cited here only to show that documented alternatives exist, not as evidence of fitness. The project benchmark remains the only admissible evidence."
+  - note_id: N-S0-003-04
+    text: "Out-of-scope observations recorded for later tasks: OpenAI lists gpt-5.6-cyber and Daybreak Blue/Red aliases (cybersecurity program; not candidates); Anthropic Claude Mythos 5 is invitation-only (not a candidate); Anthropic Priority Tier commitments are no longer sold; Anthropic fast mode exists only for Opus 5 / Opus 4.8; OpenAI Priority processing was renamed Fast mode on 2026-07-30; the Anthropic Models API, OpenAI GET /v1/models and DeepSeek GET /models can list account-visible models for S0-005 without storing credentials."
+  - note_id: N-S0-003-05
+    text: "DeepSeek pricing page digest changed on 2026-08-21 because the deepseek-v4-flash-vision-exp column and footnote were added; pro/flash prices and concurrency are identical on the 2026-08-19 archive and the live page."
+  - note_id: N-S0-003-06
+    text: "Reviewer conflict handled: the reviewer is claude-fable-5. Findings recommending additional Anthropic candidates (F-S0-003-01) are balanced by recommending additional OpenAI and DeepSeek candidates and by quoting the vendor pages verbatim; the verifier should re-open SRC-021 and the choosing-a-model page to confirm independently."
+  - note_id: N-S0-003-07
+    text: "Carried-over items from the S0-001 review resolved here: N-S0-001-04/05 (S0-003 files_modified outside allowed scope) -> F-S0-003-06; N-S0-001-06 (PROJECT_STATE author claim 'Public model catalogs and prices were verified') -> F-S0-003-10 and PROJECT_STATE note updated by this review; dependency-order deviation -> F-S0-003-10."
+  - note_id: N-S0-003-08
+    text: "Memory references to Fable 5 in this review are to Anthropic primary pages fetched 2026-08-21; the reviewer did not use its own knowledge of its capabilities as evidence."
+
+passes_confirmed:
+  - "Consumer product access, public API availability, founder account access and production suitability are separated and never inferred from one another."
+  - "No fabricated founder API access; no consumer-equals-API inference; no secret or credential referenced."
+  - "Exact public IDs recorded and correct for all six candidates; DeepSeek served-version labels and Anthropic pinned-ID statement correct; OpenAI 'no dated snapshot' correct."
+  - "All Terra, Luna, Fable 5 and DeepSeek V4 Pro/Flash prices and limits match live primary pages; Sol prices matched at access time."
+  - "No model role locked; HYPOTHESIS_ONLY throughout; no architecture, wedge, MVP or Stage 1 decision."
+  - "Benchmark plan includes verified success, false completion, cost per verified success, latency distribution, structured-output and tool metrics, security hard gates, external-state verification, recovery, replication, blinding and version recording."
+  - "Access gaps MAG-001..006 and S0-005 correctly describe what must happen before any paid benchmark."
+  - "Registry and ledger parse; all referenced source IDs resolve; git status clean; no out-of-scope code or product files."
+
+blockers_for_task: []
+recommended_next_task: FIX_TASK_S0-003
+recommended_fix_scope: "Author edits 01_governance/MODEL_REGISTRY.yaml, 06_evaluation/MODEL_ROLE_BENCHMARK_PLAN.md and 99_handoffs/completed/S0-003_handoff.yaml for F-S0-003-01..05, -07..11 (inside S0-003 allowed files) and adds SOURCE_LEDGER.csv rows for every newly relied-on page; founder decides F-S0-003-06 (amend S0-003 allowed_files_to_change retroactively, or accept and record the deviation) before the ledger/assumption/risk edits are made; no architecture, wedge, role lock or paid run; re-run the verification_method commands above; then verifier decision. S0-005 remains BLOCKED on founder account inputs and should not start until the registry fix lands."
+repository_commit_or_patch: "Review performed against committed state 874ae4b with live web sources accessed 2026-08-21 20:55-21:15Z and Internet Archive captures as listed; review artifact and governance updates left uncommitted in the working tree for the founder to commit."

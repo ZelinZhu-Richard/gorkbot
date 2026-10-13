@@ -1,0 +1,322 @@
+review_id: R-S0-003-20260822-VERIFIER
+handoff_id: H-S0-003-VERIFY-20260822
+task_id: S0-003
+stage: 0
+mode: REVIEW_TASK_S0-003
+role: VERIFIER
+author_model: "Claude Fable 5 (claude-fable-5) via Claude Code — author of this verifier artifact only; not an author or fixer of any S0-003 content"
+reviewer_model: "Claude Fable 5 (claude-fable-5) via Claude Code"
+reviewer_independence: >-
+  Independent of the S0-003 author and fixer, which the repository records as "Codex (runtime model
+  identifier not exposed)" (D-010). The verifier is the same model/product as the S0-003 challenger
+  (Claude Fable 5 via Claude Code) but ran in a separate session with no shared conversation state,
+  re-derived every fact from the repository and from its own live retrieval of all 39 S0-003 primary
+  sources, re-ran every fixer test and every challenger verification_method command itself, and did
+  not rely on the fixer handoff's test_results. Conflict disclosure (same as challenger N-S0-003-06):
+  the verifier is itself a registry candidate (claude-fable-5); every Anthropic statement below is
+  pinned to the live Anthropic page text quoted in live_source_verification so the founder can re-check
+  it without relying on the verifier. The AGENTS.md sole-author rule is satisfied: the author/fixer
+  (Codex) did not mark its own work verified.
+reviewer_requested: false
+started_at: "2026-08-22T11:40:00Z"
+completed_at: "2026-08-22T12:10:00Z"
+reviewed_base_commit: d264d862c2949ec42de9a1a67c976167f60858d5
+reviewed_state: >-
+  Branch chore/initialize-project-materials at d264d86 (Verify S0-002 Grok Bot baseline) plus the
+  UNCOMMITTED FIX_TASK_S0-003 working-tree patch (six modified files, one new file; the founder
+  instruction kept the fixer result uncommitted). Because no commit identifies the reviewed content,
+  the exact reviewed bytes are pinned by SHA-256 under reviewed_file_digests.
+reviewed_file_digests:
+  01_governance/MODEL_REGISTRY.yaml: 9aae1cc66611cb2d36f079211845f03f18f900546bbe9710d6d66818d454e2b5
+  01_governance/PROJECT_STATE.yaml: 979638a2cc64bcdd5421dbcfd47cdfb27c6115546e5978292ced2e56e0f20983
+  01_governance/RISK_REGISTER.md: 1d49be3272535d70bd237457bfcb1897fc732b167178ab50348e577b1cd193bb
+  01_governance/SOURCE_LEDGER.csv: 461bf998607d3ed75d8dcbdcd5ac058551d4c33faa750630d19bb00a3b598d81
+  01_governance/TASK_REGISTRY.yaml: 6037b16596f2cb2f015ef6037d6715545129d8022f22dbcdc016c08484e618de
+  06_evaluation/MODEL_ROLE_BENCHMARK_PLAN.md: 05aa7799181cbefa1b3951f615de1cc8d32865522a2fda33f3c9aadfb821424c
+  99_handoffs/completed/S0-003_fixer_handoff.yaml: a4b0314fba21386659cf0d22bf8b70e523bf37f2aa364fee36e3896300282fcc
+verdict: CHANGES_REQUIRED
+verdict_rationale: >-
+  The fixer pass substantively resolves all eleven challenger findings (F-S0-003-01..11): the registry
+  now carries 13 public candidates with all four access dimensions per provider and per model, zero
+  FOUNDER_ACCOUNT_VERIFIED claims, HYPOTHESIS_ONLY roles and NOT_RUN benchmark status everywhere; the
+  GPT-5.6 Sol promotional price, all Standard/Batch/Flex/Fast short/long prices for Sol/Terra/Luna,
+  the Codex/mini/nano prices, every Anthropic list/batch/cache price, every DeepSeek peak/off-peak
+  price and concurrency limit, the OpenAI usage tiers and tool fees, the Anthropic Start-tier limits
+  and spend caps, the OpenAI/Anthropic/DeepSeek data-control, retention, training, jurisdiction and
+  compatibility facts, the Fable 5 structured-output/computer-use/refusal/fallback/retention semantics,
+  the June 2026 suspension context and the DeepSeek release sequence were all re-located by this
+  verifier in the live primary pages (39/39 HTTP 200 at 2026-08-22T11:53:56Z..11:54:18Z). The benchmark
+  plan now has the Stage 1 workflow gate, the cost model and USD 0/5/20/50/75 staged caps, the artifact
+  layout and seed policy, the grader-independence rule, the failure taxonomy, MB-008 ACTUAL_ACTION vs
+  PLAN_ONLY_DIAGNOSTIC and MB-015. YAML/CSV/Markdown are structurally valid, the changed-path set is
+  inside the original S0-003 scope plus prospective S0-003-A1, and founder API access, budget, Stage 1
+  workflow and paid benchmarks are consistently represented as UNKNOWN / USD 0 / BLOCKED / NOT_RUN /
+  PLAN_ONLY. The four S0-003 acceptance criteria pass. VERIFIED is nevertheless withheld because the
+  required test "Primary-source verification" is PARTIAL: the fix introduced two VERIFIED_PUBLIC values
+  in the new Claude Opus 5 entry that the cited sources do not support (reliable knowledge cutoff
+  "2026-01-31" where the live overview page states "May 2026"; an API availability date "2026-05-21"
+  that appears in none of the 39 fetched pages or anywhere else in the repository) and one unsupported
+  clause in the Claude Fable 5 entry (an "insufficient prompt-cache minimum" listed among documented
+  HTTP 400 causes; the migration guide documents 512 tokens only as a caching threshold). The review
+  brief item "no unsupported claims were introduced" is therefore not met. One MEDIUM and three LOW
+  findings remain; all are bounded to 01_governance/MODEL_REGISTRY.yaml (three fields) and an
+  append-only known_limitations addition to 99_handoffs/completed/S0-003_handoff.yaml. No BLOCKER or
+  HIGH issue exists; no regression to S0-001/S0-002-verified content; no Stage 1, architecture,
+  customer, role-lock, paid-run or application work was introduced.
+
+method:
+  - "Read MASTER_OPERATING_PROMPT.md, AGENTS.md, CLAUDE.md, SECURITY.md, 01_governance/{PROJECT_STATE.yaml,TASK_REGISTRY.yaml,DECISION_LOG.md,ASSUMPTION_REGISTER.md,RISK_REGISTER.md,MODEL_REGISTRY.yaml,SOURCE_LEDGER.csv} in full, 06_evaluation/MODEL_ROLE_BENCHMARK_PLAN.md in full, 99_handoffs/completed/S0-003_{handoff,challenger_review,fixer_handoff}.yaml in full, the S0-001 and S0-002 verifier reviews (format precedent and immutability baseline), 99_handoffs/HANDOFF_TEMPLATE.yaml, 99_handoffs/completed/README.md, 00_inbox/prepared_materials/{05_MODEL_ACCESS.md,06_BUILD_CONSTRAINTS.md}, FILE_MANIFEST.json header, and git show d264d86:01_governance/MODEL_REGISTRY.yaml (pre-fix registry)."
+  - "Took git diff d264d86 for every changed path (stat, full per-file diffs, ledger row-level diff of all 63 rows against the 35 pre-fix rows), git diff --check, git status, and an out-of-scope-path diff (00_inbox, ASSUMPTION_REGISTER.md, DECISION_LOG.md, governing docs, S0-001/S0-002 artifacts, S0-003 author handoff and challenger review)."
+  - "Independently mirrored all 39 S0-003 primary URLs (SRC-009, 010, 011, 017..024, 036..063) live with curl, recording UTC timestamp, HTTP status and byte size per URL, plus the .md variants OpenAI and Anthropic publish; extracted text and compared every registry value, every ledger claims_supported entry, every plan statement about documented interfaces and every R-018/R-020 fact against the live page text."
+  - "Re-ran every fixer-recorded check (Ruby YAML parse of all governance/handoff YAML, Ruby CSV invariants, registry source_id resolution, claim_status vocabulary validation, four-dimension presence, 13 exact IDs, placeholder scan, trailing-newline scan, Markdown table widths) and every challenger verification_method command for F-S0-003-01..11 myself."
+  - "Attempted Internet Archive corroboration of the GPT-5.6 Sol drift (CDX + id_ retrieval of developers.openai.com/api/docs/pricing 2026-08-21T10:30Z/2026-08-22T10:30Z and gpt-5.6-sol 2026-08-19) and of the Anthropic overview page (2026-08-22T01:25Z); the captures are client-rendered shells without the table text, so this corroboration is inconclusive (see V-S0-003-12)."
+  - "No subagents were used. Network access was used only to retrieve the listed public primary sources and public archive captures; no API key, account, sign-in, model call, paid run or product interaction occurred."
+
+files_read:
+  - MASTER_OPERATING_PROMPT.md
+  - AGENTS.md
+  - CLAUDE.md
+  - SECURITY.md
+  - FILE_MANIFEST.json (header only)
+  - 01_governance/PROJECT_STATE.yaml
+  - 01_governance/TASK_REGISTRY.yaml
+  - 01_governance/DECISION_LOG.md
+  - 01_governance/ASSUMPTION_REGISTER.md
+  - 01_governance/RISK_REGISTER.md
+  - 01_governance/MODEL_REGISTRY.yaml (working tree and d264d86 version)
+  - 01_governance/SOURCE_LEDGER.csv (working tree and d264d86 version)
+  - 06_evaluation/MODEL_ROLE_BENCHMARK_PLAN.md
+  - 99_handoffs/HANDOFF_TEMPLATE.yaml
+  - 99_handoffs/completed/README.md
+  - 99_handoffs/completed/S0-003_handoff.yaml
+  - 99_handoffs/completed/S0-003_challenger_review.yaml
+  - 99_handoffs/completed/S0-003_fixer_handoff.yaml
+  - 99_handoffs/completed/S0-001_verifier_review.yaml (format precedent)
+  - 99_handoffs/completed/S0-002_verifier_review.yaml (format precedent)
+  - 00_inbox/prepared_materials/05_MODEL_ACCESS.md
+  - 00_inbox/prepared_materials/06_BUILD_CONSTRAINTS.md
+  - git diff d264d86 (all six changed paths) and git log
+  - 39 live primary sources listed under live_source_verification
+files_created:
+  - 99_handoffs/completed/S0-003_verifier_review.yaml
+files_modified:
+  - 01_governance/TASK_REGISTRY.yaml
+  - 01_governance/PROJECT_STATE.yaml
+files_deleted: []
+decisions_made:
+  - "S0-003 status set READY_FOR_REVIEW -> CHANGES_REQUESTED in TASK_REGISTRY.yaml with verifier fields added; S0-003 remains in active_task_ids; S0-005 keeps its S0-003_independent_review_pending blocker."
+  - "The reviewed deliverables (MODEL_REGISTRY.yaml, MODEL_ROLE_BENCHMARK_PLAN.md, SOURCE_LEDGER.csv, RISK_REGISTER.md), the author handoff, the challenger review and the fixer handoff were NOT edited: the verifier does not modify the artifact it reviews; reviewed_file_digests pin the exact reviewed content."
+  - "No Stage 0 gate, Stage 1, architecture or application decision was made or evaluated."
+  - "All changes are left uncommitted for the founder; no git commit or push was performed."
+assumptions_added: []
+
+live_source_verification:
+  window_started_at_utc: "2026-08-22T11:53:56Z"
+  window_completed_at_utc: "2026-08-22T11:54:18Z"
+  local_equivalent: "2026-08-22T07:53:56-04:00 .. 07:54:18-04:00"
+  access_method: "curl -sS -L with a desktop browser User-Agent, max-time 30s, direct live HTTPS; HTML saved and text-extracted locally; OpenAI and Anthropic .md page variants also fetched and used for field comparison."
+  result: "39 of 39 S0-003 primary URLs returned HTTP 200. The fixer's recorded 39/39 HTTP 200 at 2026-08-22T04:13:42Z..04:13:51Z is reproduced about 7.7 hours later; the fixer's own window cannot be re-observed."
+  reproduced_facts:
+    - {source_id: SRC-017, note: "gpt-5.6-sol; alias gpt-5.6; effort none/low/medium(default)/high/xhigh/max; 1,050,000 context; Maximum input tokens 922,000; 128,000 output; Feb 16, 2026 cutoff; text+image in; Input $4 / Cached $0.4 / Output $20; 'promotional pricing is available at least through November 21, 2026'; >272K at 2x input/1.5x output; Batch v1/batch Supported; Fine-tuning Not supported; features incl. structured_outputs; Responses tools incl. computer_use; snapshot list = gpt-5.6-sol only; Standard Tier 1 500 RPM / 500,000 TPM"}
+    - {source_id: SRC-018, note: "gpt-5.6-terra $2 / $0.2 / $12; same specs and Standard tier table as Sol"}
+    - {source_id: SRC-019, note: "gpt-5.6-luna $0.2 / $0.02 / $1.2; distinct tier table Tier 1 500 / 500,000 / 5,000,000 batch queue; Tier 5 30,000 / 180,000,000"}
+    - {source_id: SRC-020, note: "Standard: sol $4.00/$0.40/$5.00/$20.00 long $8.00/$0.80/$10.00/$30.00; terra $2.00/$0.20/$2.50/$12.00 long $4.00/$0.40/$5.00/$18.00; luna $0.20/$0.02/$0.25/$1.20 long $0.40/$0.04/$0.50/$1.80. Batch and Flex: sol $2.00/$0.20/$2.50/$10.00 long $4.00/$0.40/$5.00/$15.00; terra $1.00/$0.10/$1.25/$6.00 long $2.00/$0.20/$2.50/$9.00; luna $0.10/$0.01/$0.125/$0.60 long $0.20/$0.02/$0.25/$0.90. Fast: sol $8.00/$0.80/$10.00/$40.00 long $16.00/$1.60/$20.00/$60.00; terra $4.00/$0.40/$5.00/$24.00 long $8.00/$0.80/$10.00/$36.00; luna $0.40/$0.04/$0.50/$2.40 long $0.80/$0.08/$1.00/$3.60. gpt-5.4-mini $0.75/$0.075/$4.50; gpt-5.4-nano $0.20/$0.02/$1.25; gpt-5.3-codex $1.75/$0.175/$14.00, Fast $3.50/$0.35/$28.00. Regional processing 10% uplift for models released on or after March 5, 2026; Priority renamed Fast mode July 30, 2026; Sol promo through November 21, 2026. Tools: web search $10.00/1k calls; containers 1 GB $0.03, 4 GB $0.12, 16 GB $0.48, 64 GB $1.92 per 20-minute session per container; file search $2.50/1k calls, storage $0.10/GB/day; footnote 'Eligible container sessions will be billed by the minute, with a 5-minute minimum per session' (MRA-006 wording ambiguity confirmed)."}
+    - {source_id: SRC-009, note: "catalog lists GPT-5.6 Sol/Terra/Luna, GPT-5.3-Codex, GPT-5.4 mini/nano, codex-mini-latest, computer-use-preview, gpt-oss-120b/20b, GPT-5.6 Cyber, Daybreak aliases"}
+    - {source_id: SRC-039, note: "gpt-5.3-codex; effort low/medium/high/xhigh; 400,000 context; 272,000 max input; 128,000 output; Aug 31, 2025 cutoff; text+image; Responses Supported, Chat Completions Not supported, Batch Not supported; structured_outputs, function_calling"}
+    - {source_id: SRC-040, note: "gpt-5.4-mini; default snapshot gpt-5.4-mini-2026-03-17; effort none(default)/low/medium/high/xhigh; 400,000 / 128,000; Aug 31, 2025; $0.75/$0.075/$4.5; regional 10% uplift; Batch Supported; Responses tools incl. computer_use"}
+    - {source_id: SRC-041, note: "gpt-5.4-nano; gpt-5.4-nano-2026-03-17; $0.2/$0.02/$1.25; 'classification, data extraction, ranking, and sub-agents'; Batch Supported; Responses tool list has no computer_use"}
+    - {source_id: SRC-042, note: "codex-mini-latest; snapshot list shows a 'Deprecated' badge; 'For direct use in the API, we recommend starting with gpt-4.1'"}
+    - {source_id: SRC-043, note: "computer-use-preview; 'only usable in the Responses API'; supported features = function_calling only (no structured_outputs); snapshot computer-use-preview-2025-03-11 with 'Deprecated' badge"}
+    - {source_id: SRC-044, note: "gpt-oss-120b 'Permissive Apache 2.0 license'; rate-limit table all zeros (no hosted tier capacity)"}
+    - {source_id: SRC-045, note: "gpt-oss-20b Apache 2.0; rate-limit table all zeros"}
+    - {source_id: SRC-036, note: "API data not used to train unless opted in; abuse-monitoring logs retained up to 30 days; ZDR and Modified Abuse Monitoring subject to prior approval, org or project level; ZDR forces store=false on /v1/responses and /v1/chat/completions; Responses 30-day application-state retention by default when stored; data-residency 10% uplift for models released on or after March 5, 2026"}
+    - {source_id: SRC-037, note: "Free allowed geography $100/month; Tier 1 $5 paid $100/month; Tier 2 $50 $500; Tier 3 $100 $1,000; Tier 4 $250 $5,000; Tier 5 $1,000 $200,000"}
+    - {source_id: SRC-038, note: "188 supported countries/territories; United States of America listed"}
+    - {source_id: SRC-021, note: "claude-fable-5 / claude-opus-5 / claude-sonnet-5 / claude-haiku-4-5-20251001 (alias claude-haiku-4-5); pricing $10/$50, $5/$25, $2/$10, $1/$5; extended thinking No/No/No/Yes; adaptive thinking Yes (always on)/Yes/Yes/No; context 1M/1M/1M/200k; max output 128k/128k/128k/64k; Reliable knowledge cutoff Jan 2026 / MAY 2026 / Jan 2026 / Feb 2025; Training data cutoff Jan 2026 / May 2026 / Jan 2026 / Jul 2025; Fable 5 available on Claude API, Bedrock, Claude Platform on AWS, Google Cloud, Microsoft Foundry beginning June 9, 2026; 'Every Claude model ID is a pinned snapshot ... Starting with the Claude 4.6 generation, model IDs use a dateless format that is also a pinned snapshot'; Opus 5/Sonnet 5 effort default high on Claude API and Claude Code; Opus-4.7 tokenizer ~30% more tokens. NO statement of a Claude Opus 5 availability date."}
+    - {source_id: SRC-022, note: "Fable 5 $10 / 5m $12.50 / 1h $20 / hit $1 / $50, batch $5/$25; Opus 5 $5 / $6.25 / $10 / $0.50 / $25, batch $2.50/$12.50; Sonnet 5 $2 / $2.50 / $4 / $0.20 / $10, batch $1/$5, note 'announced at launch as introductory pricing through August 31, 2026, is now the standard price. The previously scheduled increase to $3/$15 ... on September 1, 2026 will not occur'; Haiku 4.5 $1 / $1.25 / $2 / $0.10 / $5, batch $0.50/$2.50; inference_geo us 1.1x; fast mode Opus 5/Opus 4.8 only; computer_toolset_20260801 overhead ~4,520 on Fable 5/Mythos 5/Opus 5/Opus 4.8 and ~4,590 on Sonnet 5; browser_toolset_20260801 ~6,610/6,670; 1M context at standard pricing for 4.6+"}
+    - {source_id: SRC-023, note: "Fable 5/Mythos 5: adaptive thinking always on; thinking disabled and budget_tokens return 400; prefill returns 400; Covered Models 30-day retention, not ZDR, 400 invalid_request_error, per-workspace retention; safety classifiers stop_reason refusal as HTTP 200 with stop_details.category; not billed for input when refused before output, mid-stream refusal bills input and streamed output; opt-in fallbacks parameter beta on Claude API, not on Message Batches, Bedrock, Google Cloud, Foundry; effort default high; minimum cacheable prompt 512 tokens (documented only as a caching threshold, no 400); thinking.display defaults to omitted, summarized available; sampling-parameter and prefill restrictions carry over from Opus 5 (400); Priority Tier supported on Fable 5; Opus 5 drop-in for Opus 4.8 at $5/$25 with computer_toolset_20260801 and browser use"}
+    - {source_id: SRC-010, note: "released Fable 5 and Mythos 5 June 9; export controls June 12 ('we suspended access to both models for all users'); lifted June 30; Fable 5 available July 1 globally on Claude Platform, Claude.ai, Claude Code, Claude Cowork; AWS/Google Cloud/Foundry re-enabled 'as quickly as possible'; improved classifier, blocked requests sent to Opus 4.8; 'comes at the cost of flagging benign requests more often during routine coding and debugging tasks'"}
+    - {source_id: SRC-046, note: "Supported models include claude-fable-5, claude-opus-5, claude-sonnet-5, claude-haiku-4-5-20251001; output_config.format json_schema; strict tool use; beta headers no longer required"}
+    - {source_id: SRC-047, note: "computer_toolset_20260801 supported models claude-fable-5, claude-mythos-5, claude-opus-5, claude-sonnet-5, claude-opus-4-8; no beta header on Claude API; 17 member tools; prompt-injection caution and classifier; Earlier tool versions: computer_20251124 (beta) and computer_20250124 (beta) whose model list includes Claude Haiku 4.5"}
+    - {source_id: SRC-048, note: "monthly spend caps Start $500, Build $1,000, Scale $200,000, Custom none; Start tier Fable 5 1,000 RPM / 500,000 ITPM / 100,000 OTPM; Opus 5, Sonnet 5, Haiku 4.5 1,000 / 2,000,000 / 400,000; Build and Scale tables present; Evaluation tier note"}
+    - {source_id: SRC-049, note: "retained data never used for training without express permission; conversation content not retained by default except Covered Models (30-day); ZDR per organization on request; ZDR does not cover consumer plans, Fable 5/Mythos 5; 400 'your organization or workspace must have data retention enabled'; enable 30-day retention for a workspace; flagged content retained up to 2 years; links to the Privacy Center commercial retention policy"}
+    - {source_id: SRC-062, note: "March 16, 2026; commercial chats or coding sessions not used to train unless Development Partner Program or explicit opt-in/feedback"}
+    - {source_id: SRC-063, note: "July 1, 2026; API inputs and outputs deleted within 30 days except longer-retention services or ZDR agreement; Covered Models note; flagged inputs/outputs up to 2 years"}
+    - {source_id: SRC-011, note: "deepseek-v4-flash (DeepSeek-V4-Flash-0731), deepseek-v4-pro (DeepSeek-V4-Pro-0813), deepseek-v4-flash-vision-exp; 1M context; 384K max output; Json Output, Tool Calls, Responses API, Anthropic API; off-peak $0.007/$0.22/$0.66 flash and vision-exp, $0.022/$0.66/$1.98 pro; peak double; peak hours 01:00-04:00 and 06:00-10:00 UTC; concurrency 2500/500/2500; image tokenization footnote"}
+    - {source_id: SRC-024, note: "DeepSeek-V4 Preview 2026/04/24; open weights; OpenAI + Anthropic APIs; legacy aliases retired after Jul 24 2026"}
+    - {source_id: SRC-050, note: "2026-08-21 Vision Exp release; 2026-08-13 'The GA release of DeepSeek-V4-Pro has been rolled out on the APP, Web, and API'; effort low/high/max; native Responses API for Codex; peak/off-peak prices effective 16:00 UTC August 16, 2026; 2026-07-31 'The official release of the DeepSeek-V4-Flash API is now in public beta'; 0731 re-post-trained from Preview"}
+    - {source_id: SRC-051, note: "thinking enabled by default, default effort high; mapping low->low, medium->high, high->high, xhigh->high, max->max; Responses effort none/low/high/max; temperature/top_p/presence/frequency penalties ignored without error; reasoning_content must be passed back with tools or 400"}
+    - {source_id: SRC-052, note: "response_format json_object; prompt must contain 'json' and an example; 'the API may occasionally return empty content'"}
+    - {source_id: SRC-053, note: "strict Mode (Beta) via base_url https://api.deepseek.com/beta with strict:true; supported/unsupported JSON Schema keyword lists"}
+    - {source_id: SRC-054, note: "concurrency 500 pro / 2500 flash / 2500 vision-exp per account; 429 above limit; free capacity expansion on request; user_id isolation; 10-minute pre-inference close"}
+    - {source_id: SRC-055, note: "unsupported model names map to deepseek-v4-flash; claude-opus* -> v4-pro; claude-haiku*/sonnet* -> v4-flash; cache_control ignored; budget_tokens ignored; anthropic-beta ignored for /messages"}
+    - {source_id: SRC-056, note: "Responses API format supported natively for Codex; compatibility table with ignored/partial fields"}
+    - {source_id: SRC-057, note: "vision-exp live 2026/08/21; matches V4-Flash on text; images tokenized up to 384 tokens at V4-Flash pricing; Chat Completions, Messages and Responses; Files API free"}
+    - {source_id: SRC-058, note: "Release date April 22, 2026, Effective April 29, 2026; Hangzhou DeepSeek Artificial Intelligence Co., Ltd.; Inputs/Outputs usable for personal use, research, derivative products, training other models (distillation); governed by the laws of the People's Republic of China; negotiation then court with jurisdiction over the registered office"}
+    - {source_id: SRC-059, note: "Last Update Feb 10, 2026; prompts, uploaded files, photos, chat history collected; used to train and improve models; opt-out right; retained as long as necessary; 'we directly collect, process and store your Personal Data in People's Republic of China'; downstream end-user data not covered; payment data for open platform"}
+    - {source_id: SRC-060, note: "DeepSeek-V4-Pro card: License mit; preview version; one million token context"}
+    - {source_id: SRC-061, note: "DeepSeek-V4-Flash card: License mit; preview version; one million token context"}
+
+tests_run:
+  - "curl mirror of 39 primary URLs (+21 .md variants) with UTC timestamps, HTTP status, byte size; python text extraction; field-by-field grep comparison against MODEL_REGISTRY.yaml, SOURCE_LEDGER.csv claims_supported, MODEL_ROLE_BENCHMARK_PLAN.md candidate/interface statements and RISK_REGISTER R-018/R-020"
+  - "ruby -ryaml parse of MODEL_REGISTRY.yaml, PROJECT_STATE.yaml, TASK_REGISTRY.yaml, HANDOFF_TEMPLATE.yaml and all 12 files under 99_handoffs/completed (before this artifact); HANDOFF_TEMPLATE key presence for the fixer handoff"
+  - "ruby -rcsv: SOURCE_LEDGER.csv rows, widths, duplicate IDs/URLs, ID continuity; row-level comparison of all rows against the d264d86 ledger (first 11 columns)"
+  - "ruby: registry source_ids/evidence -> ledger resolution; 13 exact model IDs; four access dimensions per provider and per model; claim_status values against claim_status_vocabulary; FOUNDER_ACCOUNT_VERIFIED occurrence count; role_assignment_status and benchmark_status per model"
+  - "grep placeholder scan (PENDING/TODO/TBD/FIXME); trailing-newline scan over git ls-files plus the new handoff; Markdown table column-count checks for RISK_REGISTER.md and MODEL_ROLE_BENCHMARK_PLAN.md; git diff --check d264d86"
+  - "Challenger verification_method commands for F-S0-003-01..11 (see original_finding_dispositions)"
+  - "git diff d264d86 --name-only / --stat; per-file diffs of PROJECT_STATE, TASK_REGISTRY, RISK_REGISTER, SOURCE_LEDGER, MODEL_ROLE_BENCHMARK_PLAN; out-of-scope diff over 00_inbox, ASSUMPTION_REGISTER.md, DECISION_LOG.md, governing docs, S0-001/S0-002 artifacts, S0-003 author handoff and challenger review; secrets/credential/JWT/email regex scan over the patch"
+  - "Repository-wide grep for the Opus 5 date '2026-05-21' / 'May 21' and for 'May 21' / '2026-05-21' across all 39 fetched source texts; grep for a prompt-cache-minimum 400 statement across the cited Anthropic pages"
+  - "Internet Archive CDX queries and id_ raw retrieval for developers.openai.com/api/docs/pricing (20260821103049, 20260822103053), gpt-5.6-sol (20260819111317) and platform.claude.com/docs/en/about-claude/models/overview (20260822012523)"
+test_results:
+  - "39/39 HTTP 200 at 2026-08-22T11:53:56Z..11:54:18Z (sizes 23 KB..2.6 MB; .md variants 2.6 KB..158 KB)."
+  - "Every price, limit, identifier, feature flag, tier, concurrency, policy and release fact listed under reproduced_facts matches the registry, ledger, plan and risk register EXCEPT: (1) registry claude-opus-5 reliable_knowledge_cutoff '2026-01-31' vs live SRC-021 'May 2026' (reliable and training cutoff columns both May 2026); (2) registry claude-opus-5 release_context.public_api_availability '2026-05-21' (VERIFIED_PUBLIC) is stated on none of the 39 fetched pages and occurs nowhere else in the repository; (3) registry claude-fable-5 public_specs.thinking lists 'an insufficient prompt-cache minimum' among conditions that 'can produce documented HTTP 400 errors' while SRC-023 documents the 512-token minimum only as a caching threshold with no error."
+  - "All YAML files parse; fixer handoff contains every HANDOFF_TEMPLATE key plus mode/role/scope_control/dependency_provenance/source_reverification/finding_resolutions; fixer started_at/completed_at non-null and distinct (03:54:16Z -> 04:24:04Z)."
+  - "SOURCE_LEDGER.csv: 63 data rows x 12 columns (new 12th column accessed_at_utc), all rows 12 wide, 0 duplicate IDs, 0 duplicate URLs, IDs continuous SRC-001..063. The 24 S0-002 rows (SRC-001..008, 012..016, 025..035) are byte-identical to d264d86 in their original 11 columns with an empty accessed_at_utc; the 11 original S0-003 rows changed only accessed_date 2026-08-21 -> 2026-08-22 (plus SRC-020 claims_supported/limitations text) and gained the UTC window; 28 rows added (SRC-036..063), all with the UTC window."
+  - "Registry: 13 models, 3 providers; every provider and model carries CONSUMER_PRODUCT_ACCESS, PUBLIC_API_AVAILABILITY, FOUNDER_ACCOUNT_ACCESS, PRODUCTION_SUITABILITY; all 39 referenced source IDs resolve; all claim_status values are in the vocabulary; FOUNDER_ACCOUNT_VERIFIED appears once (vocabulary definition only); all 13 role_assignment_status HYPOTHESIS_ONLY and benchmark_status NOT_RUN; registry_status FIXER_BASELINE_READY_FOR_REVIEW_NOT_VERIFIED; benchmark_policy PLAN_ONLY_NOT_AUTHORIZED_TO_RUN, no_paid_calls_run true."
+  - "No PENDING/TODO/TBD placeholder in the changed files (only prose uses of 'pending'); only file lacking a trailing newline is the pre-existing S0-001_fixer_handoff.yaml (V-S0-001-02); RISK_REGISTER 22 rows x 6 columns; plan tables consistent (18 rows x 4, 25 rows x 5); git diff --check clean."
+  - "Changed paths = MODEL_REGISTRY.yaml, PROJECT_STATE.yaml, RISK_REGISTER.md, SOURCE_LEDGER.csv, TASK_REGISTRY.yaml, MODEL_ROLE_BENCHMARK_PLAN.md (+ new S0-003_fixer_handoff.yaml) == fixer files_modified/files_created; all inside original S0-003 allowed_files plus prospective S0-003-A1 (SOURCE_LEDGER.csv, RISK_REGISTER.md). Out-of-scope diff over 00_inbox, ASSUMPTION_REGISTER.md, DECISION_LOG.md, AGENTS.md, MASTER_OPERATING_PROMPT.md, README.md, SECURITY.md, CLAUDE.md, 02_research, all S0-001/S0-002 artifacts, S0-003_handoff.yaml and S0-003_challenger_review.yaml = 0 lines."
+  - "Secrets/PII scan over the patch: 0 credential/token/private-key/JWT hits; 0 email addresses; the only 'password' hit is the pre-existing SRC-029 documentation prose."
+  - "Challenger verification_method results: F-01 all 13 IDs present and excluded_or_deferred_public_candidates block exists (PASS); F-02 'input: 4.00', '2026-11-21', accessed_at fields in registry (13) and ledger column (PASS); F-03 computer_toolset_20260801 / structured_outputs: SUPPORTED_GA / export control / stop_details present, computer-use-tool URL ledgered (PASS); F-04 People's Republic of China / Hangzhou / reasoning_effort / strict / MIT present; 'json_object' and 'claude-opus' literals absent but the JSON-Object semantics and model-name remapping are recorded; news260813 not ledgered, its facts ledgered via SRC-050 change log (PASS in substance); F-05 batch / 922000 / Zero Data Retention present, 'data_policy' literal absent (block is public_data_controls), your-data URL ledgered (PASS); F-06 allowed_files unchanged per D-009 with prospective S0-003-A1; author-handoff known_limitations entry absent (see V-S0-003-04); F-07 Stage 1 gate, USD cost model, runs/ and reports/ paths present (PASS); F-08 'different provider and model family' and grader-identity recording present (PASS); F-09 taxonomy with PROVIDER_*, MODEL_POLICY_REFUSAL, UNKNOWN_LAYER present (PASS); F-10 grep on S0-003_handoff.yaml returns nothing (author handoff unchanged; substance in TASK_REGISTRY historical_dependency_provenance, fixer handoff and registry drift_records — see V-S0-003-04); F-11 MB-015 and MB-008 ACTUAL_ACTION/PLAN_ONLY_DIAGNOSTIC present (PASS)."
+  - "Internet Archive: CDX confirms captures of the OpenAI pricing page at 2026-08-20T10:30Z, 2026-08-21T10:30Z, 2026-08-22T10:30Z and the Anthropic overview page at 2026-08-22T01:25Z; the id_ raw bodies retrieved are client-rendered shells (34-235 KB) without the price/cutoff table text, so neither the Sol drift nor the Opus 5 cutoff state at the fixer's access time could be independently corroborated from the archive by this verifier."
+
+security_checks:
+  - "No file under 00_inbox changed since d264d86; original evidence untouched."
+  - "No secrets, credentials, cookies, account identifiers, PII, customer data, API responses or application code in the fixer patch or the working tree; external pages were treated as untrusted evidence and no page instruction was followed."
+  - "No provider account, sign-in, API key, model call, paid run or product interaction was performed by the verifier; only public pages and public archive captures were read."
+  - "Verifier changed only TASK_REGISTRY.yaml, PROJECT_STATE.yaml and this new artifact; nothing committed."
+
+acceptance_criteria_evaluation:
+  - criterion: "Personal product access is separated from API access."
+    result: PASS
+    evidence: "providers[].access_dimensions and models[].access_dimensions carry CONSUMER_PRODUCT_ACCESS, PUBLIC_API_AVAILABILITY, FOUNDER_ACCOUNT_ACCESS and PRODUCTION_SUITABILITY separately for all 3 providers and 13 models; access_dimension_rule 'No dimension may be inferred from another'; founder_account_verified_claims_in_this_registry 0; every FOUNDER_ACCOUNT_ACCESS value is UNKNOWN with 'not recorded / not verified' text; plan preconditions 'Public catalog availability is not sufficient. A candidate with unknown account access remains NOT_RUN'; MAG-001..003 define closure evidence. No consumer access is inferred into API access anywhere."
+  - criterion: "Exact versions and verification dates are recorded."
+    result: PASS
+    evidence: "Exact public IDs for all 13 candidates (incl. dated gpt-5.4-mini-2026-03-17 / gpt-5.4-nano-2026-03-17 / claude-haiku-4-5-20251001 and DeepSeek served labels 0813/0731), Anthropic pinned-dateless-ID statement, OpenAI 'no separate dated snapshot', public_source_access_window_utc and per-model source_accessed_at_utc 2026-08-22T04:13:42Z..04:13:51Z, ledger accessed_at_utc on all 39 S0-003 rows, DeepSeek release dates 2026-07-31 / 2026-08-13 / 2026-08-21 and 2026-08-16 price-effective date, Sol promotion end 2026-11-21, Fable launch/suspension/restoration dates. The challenger's PARTIAL is cleared. (The unsupported Opus 5 availability date is recorded as V-S0-003-01, a source-support defect rather than a missing version/date.)"
+  - criterion: "No model role is locked based only on reputation."
+    result: PASS
+    evidence: "role_assignment_status HYPOTHESIS_ONLY on all 13 entries; benchmark_policy no_provider_or_model_locked true; plan 'does not assign a permanent role to any provider'; candidate pool now spans flagship, balanced, low-cost, specialized-coding, experimental-vision classes across all three providers with an explicit excluded/deferred list and reasons; Stage 1 workflow gate precedes any shortlist; DECISION_LOG unchanged."
+  - criterion: "Benchmark includes success, cost, latency, and structured-output reliability."
+    result: PASS
+    evidence: "verified_task_success_rate, false_completion_rate, cost_per_verified_success (undefined at zero successes), model/tool USD per run, cost model and staged caps, TTFT/total time median/p90/p95, first-pass JSON Schema validity and validity-after-repair, tool-name/argument validity, provider_availability_rate / model_task_success_rate / end_to_end_success_rate with separate denominators, per-role thresholds and hard gates."
+  - criterion: "Required test: Primary-source verification."
+    result: PARTIAL
+    evidence: "39/39 current primary pages reopened by the fixer and independently by this verifier; every recorded price, limit, identifier, feature, tier, policy and release fact reproduced except the three Anthropic-entry values in V-S0-003-01 and V-S0-003-02 (one contradicted by the live page, one not stated by any ledgered source, one clause not documented). Passes once those fields are corrected and re-stamped."
+  - criterion: "Deliverable: verified_model_registry"
+    result: PARTIAL
+    evidence: "Present, well-structured, 13 candidates, current prices and policies, ambiguity records MRA-001..006; defects limited to the Opus 5 cutoff/date and the Fable cache-minimum clause (V-S0-003-01/02) and month-vs-day cutoff precision (V-S0-003-03)."
+  - criterion: "Deliverable: model_role_benchmark_plan"
+    result: PASS
+    evidence: "15 cases, Stage 1 gate, account-access gate, candidate screening rules, artifact layout and seed policy, cost model and staged caps, configuration control, replication rule with no silent reduction, failure taxonomy, grader independence, metrics, hard gates, thresholds (DESIGN PROPOSAL), selection rule, reporting template, access gaps; execution count zero; PLAN_ONLY_NOT_AUTHORIZED."
+  - criterion: "Deliverable: access_gap_list"
+    result: PASS
+    evidence: "MAG-001..006 per provider and dimension with closure evidence; plan 'Current access gaps blocking execution'; S0-005 remains the account-verification task and is BLOCKED on founder inputs."
+
+original_finding_dispositions:
+  - {finding_id: F-S0-003-01, severity: HIGH, disposition: RESOLVED, evidence: "Seven candidates added (gpt-5.3-codex, gpt-5.4-mini, gpt-5.4-nano, claude-opus-5, claude-sonnet-5, claude-haiku-4-5-20251001, deepseek-v4-flash-vision-exp) with public-source fields, founder access UNKNOWN, HYPOTHESIS_ONLY roles; computer-use-preview and codex-mini-latest excluded with the live 'Deprecated' badges confirmed; gpt-oss deferred with Apache 2.0 and zero hosted rate-limit tables confirmed; ledger rows SRC-039..047 etc. added and resolving; plan candidate section updated with role/workflow screening rules. Anthropic alternatives re-checked against live SRC-021/022/046/047/048 by this verifier (reviewer-conflict check)."}
+  - {finding_id: F-S0-003-02, severity: HIGH, disposition: RESOLVED, evidence: "Sol standard/long $4.00/$0.40/$5.00/$20.00 and $8.00/$0.80/$10.00/$30.00, Batch/Flex/Fast short and long tables for Sol/Terra/Luna, promotional_through_at_least 2026-11-21 all match live SRC-017/SRC-020; drift_records keeps the old $5/$0.50/$6.25/$30 value as STALE_OR_INCORRECT with the challenger's archive context; per-model source_accessed_at_utc and ledger accessed_at_utc column present. Author-handoff known_limitations entry not added (V-S0-003-04, LOW)."}
+  - {finding_id: F-S0-003-03, severity: MEDIUM, disposition: RESOLVED, evidence: "Fable 5 structured_outputs SUPPORTED_GA (output_config.format, strict tools), computer_use SUPPORTED via computer_toolset_20260801 with ~4520 overhead, Start-tier limits and spend caps, refusal/fallback/billing semantics, retention 400 and workspace override, prefill/sampling 400, tokenizer ~30%, cache minimum 512, thinking.display, June 2026 suspension and classifier false positives all present and re-located in live SRC-021/022/023/010/046/047/048/049; R-018 amended; ledger rows SRC-046..049 present. One over-statement remains (cache minimum listed as a 400 cause; V-S0-003-02, LOW)."}
+  - {finding_id: F-S0-003-04, severity: MEDIUM, disposition: RESOLVED, evidence: "public_platform_terms (Hangzhou operator, PRC governing law, Hangzhou forum, input/output rights), public_privacy_terms (2026-02-10, collected content, training use and opt-out, PRC storage, necessity-based retention, downstream-scope ambiguity), reasoning_effort native values and compatibility mapping, ignored sampling controls, JSON-Object semantics, beta strict tools, reasoning_content 400, Anthropic-compat remapping, preview_weights MIT, release_context 2026-08-13 GA / 2026-07-31 / 2026-08-21, vision-exp entry, MRA-002/003/004, R-020 all present and re-located in live SRC-011/050..061. news260813 itself not ledgered; its facts are ledgered through SRC-050 (NOTE V-S0-003-05)."}
+  - {finding_id: F-S0-003-05, severity: MEDIUM, disposition: RESOLVED, evidence: "batch_api SUPPORTED, maximum_input_tokens 922000, default_reasoning_effort medium, Luna distinct tier table, public_data_controls (no-training default, 30-day abuse logs, ZDR/MAM approval, Responses 30-day state, regional 10% uplift for models released on/after 2026-03-05, US supported), public_usage_tiers Free..Tier 5, public_tool_fees with MRA-006 container wording ambiguity; ledger SRC-036/037/038 present; all re-located in live pages."}
+  - {finding_id: F-S0-003-06, severity: MEDIUM, disposition: RESOLVED, evidence: "Founder decision D-009 (no retroactive amendment; one-time documented exception) plus prospective S0-003-A1 recorded in TASK_REGISTRY with reason/authorization/audit_note; fixer handoff scope_control names the three historically deviating files and states ASSUMPTION_REGISTER.md was not authorized or changed (confirmed by diff); fixer changed-path set inside original scope + A1. The author-handoff known_limitations entry the challenger also asked for is absent (V-S0-003-04, LOW)."}
+  - {finding_id: F-S0-003-07, severity: MEDIUM, disposition: RESOLVED, evidence: "Stage 1 workflow gate (BLOCKED_WORKFLOW_NOT_SELECTED, five recorded prerequisites), generic cases labelled templates, selection rule 2 forbids generic cases substituting for workflow cases, cost model with A-007 reconciliation, USD 25 reserve / at most USD 75 proposal, cumulative caps USD 0/5/20/50/75, 80% stop and hard stop, artifact layout 06_evaluation/model_role_benchmark/{harness,fixtures,schemas,runs,reports,RUN_INDEX.csv}, run-record contract, seed policy, replication rule without silent reduction; benchmark budget USD 0 absent founder authorization; plan execution count 0."}
+  - {finding_id: F-S0-003-08, severity: LOW, disposition: RESOLVED, evidence: "SELF_OR_SAME_FAMILY grades excluded from thresholds/tie-breaks/selection; selection-affecting open-ended grading requires a blinded different-provider/different-family grader or blinded human else UNRESOLVED; grader identity recorded per grade; deterministic readbacks authoritative; hard gate on self/same-family grading."}
+  - {finding_id: F-S0-003-09, severity: LOW, disposition: RESOLVED, evidence: "Nine-category outcome taxonomy with accountable layer, scoring treatment and examples; UNKNOWN_LAYER; one linked automatic retry for documented transport/capacity failures; fallback never credited to requested model; provider_availability_rate / model_task_success_rate / end_to_end_success_rate with separate denominators; reporting template lists failure counts by layer."}
+  - {finding_id: F-S0-003-10, severity: LOW, disposition: RESOLVED_IN_SUBSTANCE, evidence: "TASK_REGISTRY S0-003 historical_dependency_provenance records the pre-VERIFIED S0-001 execution and the verified-before-fixer entry state; fixer handoff has distinct non-null timestamps, exact UTC window, dependency_provenance and the Sol drift limitation; registry drift_records preserve the historical price; PROJECT_STATE note corrected. The prescribed location (S0-003_handoff.yaml known_limitations) was not used; see V-S0-003-04."}
+  - {finding_id: F-S0-003-11, severity: LOW, disposition: RESOLVED, evidence: "MB-008 redefined as ACTUAL_ACTION through the documented computer interface with full trace, approval, injection, recovery and fresh-state readback; PLAN_ONLY_DIAGNOSTIC separate and non-qualifying; MB-015 visual UI state recognition with deterministic labels; hard gate against plan-only computer qualification; documented computer interfaces per candidate listed in plan and registry (OpenAI Responses computer_use for GPT-5.6 and GPT-5.4 mini, not nano; Anthropic computer_toolset_20260801 for Fable 5/Opus 5/Sonnet 5, Haiku 4.5 only older beta computer_20250124; DeepSeek none) — all confirmed against live SRC-017/040/041/047."}
+
+new_findings:
+  - finding_id: V-S0-003-01
+    severity: MEDIUM
+    status: OPEN
+    requirement: "Registry claim_status contract ('VERIFIED_PUBLIC: Current first-party public source directly supports the claim'); AGENTS.md 'Use current primary sources'; Stage 0 gate 'consequential product claims are sourced or labeled'; review brief 'no unsupported claims introduced'; MASTER 'Record exact model version'."
+    file_or_component: "01_governance/MODEL_REGISTRY.yaml models[anthropic_claude_opus_5] release_context (line 455) and public_specs.reliable_knowledge_cutoff (line 460)"
+    evidence: "(a) release_context: {claim_status: VERIFIED_PUBLIC, public_api_availability: \"2026-05-21\"} — the entry's source_ids (SRC-021, 022, 046, 047, 048, 049) and all 39 fetched S0-003 pages contain no 'May 21' / '2026-05-21' statement; a repository-wide grep finds the date only on this registry line; the challenger review does not mention it. (b) reliable_knowledge_cutoff: \"2026-01-31\" — live SRC-021 (2026-08-22T11:54:00Z) model table row 'Reliable knowledge cutoff' reads Jan 2026 (Fable 5) | May 2026 (Opus 5) | Jan 2026 (Sonnet 5) | Feb 2025 (Haiku 4.5), and 'Training data cutoff' May 2026 for Opus 5. Whether (b) is a transcription slip from the adjacent Fable column or post-access drift could not be established (the 2026-08-22T01:25Z archive capture is a client-rendered shell); either way the VERIFIED_PUBLIC value does not match the current primary page."
+    consequence: "Two VERIFIED_PUBLIC values in a newly added candidate are not supported by the cited sources; the registry's label discipline, which is the task's core purpose, is breached for that entry and the required primary-source verification test is PARTIAL. No price, access, role, risk or plan consequence."
+    correction: "Set claude-opus-5 reliable_knowledge_cutoff to the source value at month precision (\"2026-05\") or, if the page has changed again, to the value read on the fix date; for public_api_availability either add a ledgered current first-party page that states the Opus 5 availability date and cite it, or remove the field / set it to UNKNOWN. Re-stamp source_accessed_at_utc for the entry."
+    verification_method: "grep -n 'public_api_availability\\|reliable_knowledge_cutoff' 01_governance/MODEL_REGISTRY.yaml; reopen https://platform.claude.com/docs/en/about-claude/models/overview.md and compare the Opus 5 column; if a date is kept, ruby -rcsv confirms the new source row and grep finds the date on the fetched page."
+  - finding_id: V-S0-003-02
+    severity: LOW
+    status: OPEN
+    requirement: "Same label contract as V-S0-003-01; MASTER 'Do not invent ... model capabilities'."
+    file_or_component: "01_governance/MODEL_REGISTRY.yaml models[anthropic_claude_fable_5] public_specs.thinking (line 414)"
+    evidence: "The value states that 'Manual effort budget, disabling thinking, non-default temperature/top_p/top_k, assistant-prefill, and an insufficient prompt-cache minimum can produce documented HTTP 400 errors.' SRC-023 documents 400 for budget_tokens, thinking disabled, prefill and non-default sampling parameters, but documents the 512-token minimum only as 'The minimum cacheable prompt length ... is 512 tokens' (prompts below it are not cached); no cited page documents a 400 for it."
+    consequence: "One unsupported clause inside an otherwise source-backed field; would mislead a harness author into expecting an error that is not documented."
+    correction: "Delete 'and an insufficient prompt-cache minimum' from the 400-error list (the 512-token minimum is already recorded separately as prompt_cache_minimum_tokens), or cite a current primary page that documents the error."
+    verification_method: "grep -n 'insufficient prompt-cache' 01_governance/MODEL_REGISTRY.yaml returns nothing, or the cited page text contains the 400 statement."
+  - finding_id: V-S0-003-03
+    severity: LOW
+    status: OPEN
+    requirement: "Label discipline: recorded precision must not exceed the source."
+    file_or_component: "01_governance/MODEL_REGISTRY.yaml reliable_knowledge_cutoff for claude-fable-5 (\"2026-01-31\", line 412), claude-sonnet-5 (\"2026-01-31\", line 493), claude-haiku-4-5 (\"2025-02-28\", line 527)"
+    evidence: "SRC-021 states month-level values ('Jan 2026', 'Feb 2025'); the pre-fix registry recorded Fable 5 as \"2026-01\"; the fixer rendered these as end-of-month dates, asserting a day the source does not give."
+    consequence: "Cosmetic over-precision; could be read as a documented day."
+    correction: "Record month precision (\"2026-01\", \"2025-02\") or add an explicit note that the day is a rendering convention."
+    verification_method: "grep -n 'reliable_knowledge_cutoff' 01_governance/MODEL_REGISTRY.yaml shows month-precision values or a stated convention."
+  - finding_id: V-S0-003-04
+    severity: LOW
+    status: OPEN
+    requirement: "Challenger required_fix for F-S0-003-02, F-S0-003-06 and F-S0-003-10 (known_limitations entries in 99_handoffs/completed/S0-003_handoff.yaml); AGENTS.md completion rule 'known limitations'; S0-002 precedent (append-only author-handoff addendum verified in V-S0-002/F-S0-002-07)."
+    file_or_component: "99_handoffs/completed/S0-003_handoff.yaml known_limitations / acceptance_evidence"
+    evidence: "The author handoff is byte-identical to d264d86: acceptance_evidence still reads primary_source_verification: AUTHOR_CHECK_PASSED and test_results still state that public prices were recorded, with no entry recording (a) the S0-001 READY-not-VERIFIED dependency order, (b) null started_at / batched completed_at and absent per-source access times, (c) the same-day GPT-5.6 Sol price drift, or (d) the three-file allowed-files deviation. The fixer recorded all four facts elsewhere (fixer handoff dependency_provenance / scope_control / known_limitations, TASK_REGISTRY historical_dependency_provenance and S0-003-A1 audit_note, registry drift_records, D-009), so the information is in the repository, but the challenger's verification_method for F-S0-003-10 fails and a reader of the author handoff alone sees no caveat."
+    consequence: "Audit traceability only; no acceptance-criterion impact."
+    correction: "Append (do not rewrite) known_limitations entries and a fixer_addendum to S0-003_handoff.yaml naming (a)-(d) with pointers to the fixer handoff and D-009, as the S0-002 fixer did; alternatively the founder records in DECISION_LOG that the fixer handoff is the designated location for post-review limitations, in which case this finding closes without an edit."
+    verification_method: "grep -n -E 'access time|2026-11-21|promotional|dependency|ASSUMPTION_REGISTER' 99_handoffs/completed/S0-003_handoff.yaml returns the entries, or DECISION_LOG records the alternative."
+  - finding_id: V-S0-003-05
+    severity: NOTE
+    status: RECORDED
+    evidence: "api-docs.deepseek.com/news/news260813 (V4-Pro GA post) is not ledgered as the challenger asked; the same facts (2026-08-13 GA on APP/Web/API, effort low/high/max, Responses API for Codex, prices effective 2026-08-16 16:00 UTC) are ledgered through SRC-050 (change log) and were re-located there by this verifier. Acceptable substitution."
+  - finding_id: V-S0-003-06
+    severity: NOTE
+    status: RECORDED
+    evidence: "Per-model source_accessed_at_utc and ledger accessed_at_utc all carry the same 9-second reachability window (04:13:42Z..04:13:51Z); the registry method statement says content was fact-checked during the fixer pass (03:54Z..04:24Z) and that the window is the final reachability pass. Honest and adequate for traceability; future passes may stamp the content-read time per source."
+  - finding_id: V-S0-003-07
+    severity: NOTE
+    status: RECORDED
+    evidence: "MRA-003 / deepseek_v4_flash release_context: the 'official release' vs 'public beta' tension is real, but both terms occur in the same SRC-050 entry ('The official release of the DeepSeek-V4-Flash API is now in public beta'); the registry sentence 'One current first-party page calls 0731 an official release while the change log calls it public beta' slightly misframes where the wording sits. Substance correct."
+  - finding_id: V-S0-003-08
+    severity: NOTE
+    status: RECORDED
+    evidence: "gpt-5.3-codex entry omits that Chat Completions and Batch are 'Not supported' (Responses-only) and that maximum input is 272,000 tokens; gpt-5.4-mini/nano likewise omit maximum input 272,000. Omissions, not errors; relevant to the plan's 'Batch is eligible only for asynchronous cases' and cost modelling. Recommend adding in the next registry edit."
+  - finding_id: V-S0-003-09
+    severity: NOTE
+    status: RECORDED
+    evidence: "proposed_roles vocabulary includes VISION_ANALYST (vision-exp), STRUCTURED_EXECUTOR, INTEGRATOR and CLASSIFIER, which are not among the plan's ten logical roles (the plan uses VISION_INTERPRETER; INTEGRATOR/CLASSIFIER appear in MASTER Stage 7). HYPOTHESIS_ONLY, so no acceptance impact; align naming when the Stage 1 mandatory-role map is written."
+  - finding_id: V-S0-003-10
+    severity: NOTE
+    status: RECORDED
+    evidence: "PROJECT_STATE note 41 (challenger-era) still says in present tense that 'the registry omits publicly documented lower-cost or specialised candidates'; note 48 supersedes it. Left as history, consistent with prior passes."
+  - finding_id: V-S0-003-11
+    severity: NOTE
+    status: RECORDED
+    evidence: "SOURCE_LEDGER.csv gained a 12th column (accessed_at_utc). The 24 S0-002-verified rows are byte-identical in their original 11 columns with an empty new cell; the 11 original S0-003 rows have accessed_date advanced to 2026-08-22 (re-access) and SRC-020 claims text expanded. No regression to S0-002-verified content; V-S0-002-05 anticipated a UTC column."
+  - finding_id: V-S0-003-12
+    severity: NOTE
+    status: RECORDED
+    evidence: "Archive corroboration of the Sol drift was inconclusive for this verifier (client-rendered shells); the drift_records entry rests on the challenger's archive evidence (pricing page 2026-08-21T10:30Z $5.00 row; Sol page 2026-08-19 $5/$0.50/$30) plus this verifier's live confirmation of the current $4/$0.40/$20 promotional price and the 2026-11-21 footnote. Sufficient; recorded for transparency."
+  - finding_id: V-S0-003-13
+    severity: NOTE
+    status: RECORDED
+    evidence: "Verifier and challenger are the same model/product (Claude Fable 5 via Claude Code) in separate sessions; author/fixer is Codex. Independence from the author holds; the verifier is also a registry candidate, so every Anthropic-related pass/fail above is pinned to quoted live page text; the founder may prefer a different-vendor verifier for the Stage 0 gate (same as V-S0-001-06 / V-S0-002-07)."
+  - finding_id: V-S0-003-14
+    severity: NOTE
+    status: CARRIED_FORWARD
+    evidence: "Outside S0-003 scope, unchanged: FILE_MANIFEST.json remains the 33-file 2026-08-21 snapshot (stale relative to the current tree); 99_handoffs/completed/S0-001_fixer_handoff.yaml still lacks a trailing newline (V-S0-001-02)."
+
+passes_confirmed:
+  - "39/39 live primary sources reachable; every price, limit, identifier, feature, tier, concurrency, data-control, jurisdiction, compatibility and release fact in the registry, ledger, plan and R-018/R-020 reproduced against live text, except the three Anthropic-entry values in V-S0-003-01/02."
+  - "All eleven challenger findings substantively resolved; every challenger verification command re-run (literal misses are naming differences or the author-handoff location issue in V-S0-003-04)."
+  - "Founder API access, entitlements, balances, quotas, regions and retention settings UNKNOWN / NOT_RUN throughout; budget USD 0 absent founder authorization; Stage 1 workflow BLOCKED_WORKFLOW_NOT_SELECTED; paid benchmark executions 0; PLAN_ONLY_NOT_AUTHORIZED; no role lock; no architecture, wedge, MVP, Stage 1 or application work."
+  - "YAML/CSV/Markdown structurally valid; changed paths inside original scope plus prospective S0-003-A1; ASSUMPTION_REGISTER.md, DECISION_LOG.md, 00_inbox, S0-001/S0-002 artifacts and the S0-003 author handoff and challenger review untouched; no secrets or PII."
+
+known_limitations:
+  - "started_at is approximate (session start shortly before the first repository read); completed_at is exact. The live-source window timestamps are exact."
+  - "The reviewed state is an uncommitted working tree; reviewed_file_digests identify it. Any later edit changes the digests and requires re-verification of the edited file."
+  - "Verification covers S0-003 only; the Stage 0 gate was deliberately not evaluated; Stage 1 was not started."
+  - "The verifier can confirm the current live state of public pages; it cannot reproduce the fixer's 04:13Z window, and the archive captures it retrieved were client-rendered shells. Pages may change again after 11:54Z; the verdict applies to the content as ledgered and as observed in this window."
+  - "No product account, API key or model call was available to the verifier; nothing in this review asserts account access, served behavior or benchmark fitness."
+unverified_claims: []
+blockers: []
+blockers_for_task:
+  - "V-S0-003-01 (MEDIUM) and V-S0-003-02/03/04 (LOW) must be fixed or founder-dispositioned before S0-003 can be VERIFIED."
+recommended_next_task: "MODE: FIX_TASK_S0-003 (second, narrow pass): correct the three MODEL_REGISTRY.yaml fields in V-S0-003-01..03 against reopened SRC-021/SRC-023 (adding a ledgered source only if the Opus 5 availability date is kept) and append the S0-003_handoff.yaml known_limitations per V-S0-003-04 (or record the founder alternative); then a re-verification REVIEW_TASK_S0-003 limited to the changed fields plus digest re-pin; then VERIFY_STAGE_0. S0-004 remains BLOCKED on eligible Grok Bot account/build/plan/region; S0-005 remains BLOCKED on funded API/account/budget inputs and on S0-003 verification."
+repository_commit_or_patch: "Review performed against d264d862c2949ec42de9a1a67c976167f60858d5 plus the uncommitted FIX_TASK_S0-003 working-tree patch (digests above), with live sources accessed 2026-08-22T11:53:56Z..11:54:18Z and archive CDX/id_ retrievals at 2026-08-22T11:58Z..12:01Z; this artifact and the TASK_REGISTRY/PROJECT_STATE updates are left uncommitted in the working tree for the founder to commit."

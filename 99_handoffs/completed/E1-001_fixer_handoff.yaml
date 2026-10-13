@@ -1,0 +1,413 @@
+handoff_id: H-E1-001-20260827-FIXER
+task_id: E1-001
+stage: E1
+mode: FIX_TASK_E1-001
+role: FIXER
+author_model: "Codex (runtime model identifier not exposed) — original E1-001 AUTHOR returning as FIXER"
+fixer_model: "Codex (runtime model identifier not exposed) — original E1-001 AUTHOR returning as FIXER"
+original_author_model: "Codex (runtime model identifier not exposed) — E1-001 AUTHOR"
+challenger_model: "Claude Fable 5 (claude-fable-5) via Claude Code — independent E1-001 challenger"
+reviewer_requested: "Independent post-fix VERIFIER; the fixer and read-only fixer subagents are not the required verifier"
+started_at: "2026-08-27T19:34:16Z"
+completed_at: "2026-08-27T22:00:05Z"
+base_commit: 617fc65787b39abb3c7bcb8253187c7117e5eaac
+base_branch: chore/initialize-project-materials
+challenger_reviewed_commit: cf27ef4f6fed1b04f21c572054dc0fabb24c3cdb
+task_status: READY_FOR_REVIEW
+verification_status: NOT_VERIFIED_FIXER_PASS
+
+authoritative_finding_source:
+  path: 99_handoffs/completed/E1-001_challenger_review.yaml
+  sha256: a2b2aec5270725473fbeb259515bf6dab188bec71d85ea7100a585b6045eb34e
+  verdict: CHANGES_REQUESTED
+  finding_counts: "BLOCKER 0, HIGH 2, MEDIUM 9, LOW 9"
+
+files_read:
+  - MASTER_OPERATING_PROMPT.md
+  - AGENTS.md
+  - README.md
+  - SECURITY.md
+  - 01_governance/PROJECT_STATE.yaml
+  - 01_governance/TASK_REGISTRY.yaml
+  - 01_governance/DECISION_LOG.md
+  - 01_governance/ASSUMPTION_REGISTER.md
+  - 01_governance/RISK_REGISTER.md
+  - 01_governance/MODEL_REGISTRY.yaml
+  - 02_research/GROK_BOT_BASELINE_2026-08-21.md
+  - 02_research/GROK_BOT_018_RECONSTRUCTED_ARCHITECTURE_AUDIT.md
+  - 02_research/GROK_BOT_018_ARCHITECTURE_ADOPTION_MATRIX.csv
+  - 03_product/ENGINEERING_PREVIEW_CHARTER.md
+  - 03_product/ENGINEERING_PREVIEW_PRD.md
+  - 03_product/ENGINEERING_PREVIEW_USER_FLOWS.md
+  - 03_product/ENGINEERING_PREVIEW_CORRECTNESS_CONTRACT.md
+  - 06_evaluation/MODEL_ROLE_BENCHMARK_PLAN.md
+  - 99_handoffs/completed/E1-001_handoff.yaml
+  - 99_handoffs/completed/E1-001_challenger_review.yaml
+  - 99_handoffs/completed/E0-001_verifier_review.yaml
+  - 99_handoffs/completed/EXTERNAL_GROK_BOT_018_ARCHITECTURE_AUDIT_verifier_review.yaml
+  - 99_handoffs/HANDOFF_TEMPLATE.yaml
+  - /Users/richardzhu/.codex/attachments/8971d941-f161-425c-b260-1ae24db4d3fa/pasted-text.txt
+
+external_author_input_provenance:
+  path_as_received: /Users/richardzhu/.codex/attachments/8971d941-f161-425c-b260-1ae24db4d3fa/pasted-text.txt
+  sha256: b4d239de8b268193531b064da72d95edac02066ba76d7a13101f253e54ad1e72
+  byte_count: 9282
+  line_count: 283
+  role: "Founder EXECUTE_TASK_E1-001 author brief plus mode and final-output instructions."
+  materiality: >-
+    The attachment constrained the author task and reporting format. It introduced no unique
+    product requirement not traceable to D-016, MASTER_OPERATING_PROMPT.md, SECURITY.md, the
+    independently verified Engineering Preview charter, and registered task E1-001. It is
+    versioned here by content identity and is not treated as repository authority or observed
+    product evidence.
+
+files_created:
+  - 99_handoffs/completed/E1-001_fixer_handoff.yaml
+
+files_modified:
+  - 03_product/ENGINEERING_PREVIEW_PRD.md
+  - 03_product/ENGINEERING_PREVIEW_USER_FLOWS.md
+  - 03_product/ENGINEERING_PREVIEW_CORRECTNESS_CONTRACT.md
+  - 01_governance/ASSUMPTION_REGISTER.md
+  - 01_governance/RISK_REGISTER.md
+  - 01_governance/TASK_REGISTRY.yaml
+  - 01_governance/PROJECT_STATE.yaml
+  - 99_handoffs/completed/E1-001_handoff.yaml
+
+files_deleted: []
+
+scope_amendment:
+  amendment_id: E1-001-SA-01
+  recorded_at: "2026-08-27T19:34:16Z"
+  authority: "Direct founder FIX_TASK_E1-001 instruction"
+  effect: "Prospectively added only this fixer handoff path to the original allowed files."
+  history_preserved: true
+
+finding_summary:
+  total: 20
+  fixed: 20
+  disputed: 0
+  deferred: 0
+
+finding_dispositions:
+  - finding_id: F-E1-001-01
+    resolution: FIXED
+    files_changed:
+      - 03_product/ENGINEERING_PREVIEW_PRD.md
+      - 03_product/ENGINEERING_PREVIEW_USER_FLOWS.md
+      - 03_product/ENGINEERING_PREVIEW_CORRECTNESS_CONTRACT.md
+      - 01_governance/RISK_REGISTER.md
+    evidence:
+      - "PRD §§2.3 and 6 (`FR-007`, `FR-060`, `FR-064`, `FR-067`) define the same nine semantic responsibilities as User Flows invariant 9 and Contract §2."
+      - "Contract §§4.2-4.4 and 12.1 split `task.control`, `task.reconciliation`, waits, blockers, terminal disposition, verification runs, operations, and agent state and give each its own cardinality."
+      - "Contract §4.2 contains the normative legal/invalid combination table for pause/stop/recovery/wait/block/cancel/verification/outstanding-effect stress cases."
+    verification: "Compare the nine-item lists across all three specs; validate §12.1 cardinalities and every §4.2 legal/invalid stress combination; reject terminal states with active axes or uncertain/nonterminal operations."
+
+  - finding_id: F-E1-001-02
+    resolution: FIXED
+    files_changed:
+      - 03_product/ENGINEERING_PREVIEW_PRD.md
+      - 03_product/ENGINEERING_PREVIEW_USER_FLOWS.md
+      - 03_product/ENGINEERING_PREVIEW_CORRECTNESS_CONTRACT.md
+      - 01_governance/ASSUMPTION_REGISTER.md
+      - 01_governance/RISK_REGISTER.md
+    evidence:
+      - "PRD `FR-051`/`FR-053`/`FR-054` and Contract §9.3 require independent `route_purpose` and `route_eligibility` provenance."
+      - "Normal, separately authorized E3 evaluation, explicit user-experimental, and disallowed routing have distinct rules; evaluation/user routes cannot auto-promote or count as normal/release evidence."
+      - "Contract §§12.1-12.2 preserve route provenance in every model operation/evidence record; no role, E3 run, paid call, or qualification is authorized."
+    verification: "Check all purpose/eligibility pairs, verify `DISALLOWED` dispatches zero bytes/cost, confirm E3 candidates can run only under separately authorized evaluation scope, and confirm no model role or paid call was selected/authorized."
+
+  - finding_id: F-E1-001-03
+    resolution: FIXED
+    files_changed:
+      - 03_product/ENGINEERING_PREVIEW_PRD.md
+      - 03_product/ENGINEERING_PREVIEW_USER_FLOWS.md
+      - 03_product/ENGINEERING_PREVIEW_CORRECTNESS_CONTRACT.md
+    evidence:
+      - "Contract §8.1 defines disposition semantics and one row for clean, dirty tracked, untracked, ignored, detached HEAD, no remote, shallow clone, submodules, LFS, linked worktrees, nested repositories, monorepos, in-progress Git operations, bare repositories, generated outputs, and unknown extensions."
+      - "PRD `FR-010`-`FR-012` and UF-01/UF-02 require all applicable rows, the most-restrictive disposition, composed constraints, and workspace carry/exclude facts."
+    verification: "Mechanically confirm every founder-listed repository condition has exactly one §8.1 disposition and that `REJECTED_V0_1`/`UNKNOWN_E2_E3` prevents dependent mutation/reproduction."
+
+  - finding_id: F-E1-001-04
+    resolution: FIXED
+    files_changed:
+      - 03_product/ENGINEERING_PREVIEW_PRD.md
+      - 03_product/ENGINEERING_PREVIEW_USER_FLOWS.md
+      - 03_product/ENGINEERING_PREVIEW_CORRECTNESS_CONTRACT.md
+    evidence:
+      - "Contract §§8.4 and 9.2 independently classify effect, v0.1 disposition, and approval for status/read, diff, edit, stage, unstage, branch, commit, fetch, pull, clone, stash, restore, reset, worktree create/remove, push/force-push, PR create/update, merge, remote branch deletion, and tag create/delete."
+      - "Task-owned cleanup is distinct from user/shared worktree destruction; approval never enables `PROHIBITED_V0_1`."
+    verification: "Mechanically match every required Git action to exactly one matrix row and inspect its effect/disposition/approval columns; confirm `NEG-GIT-01` and `NEG-DESTRUCT-01` cover helper egress and in-root user-material loss."
+
+  - finding_id: F-E1-001-05
+    resolution: FIXED
+    files_changed:
+      - 03_product/ENGINEERING_PREVIEW_PRD.md
+      - 03_product/ENGINEERING_PREVIEW_CORRECTNESS_CONTRACT.md
+    evidence:
+      - "PRD `FR-004`/`FR-025` and Contract §3.2 define a closed precedence chain and scope rules for AGENTS/CLAUDE/local instructions, README/CONTRIBUTING, and issue/PR content."
+      - "Repository instructions may narrow workflow/check/style/path/contribution behavior only; they cannot grant or override authority, sandbox, network, credentials, secrets, approval, destructive action, routing, predicates, or evidence."
+    verification: "Inspect §3.2's allow/deny and conflict rules and `NEG-AUTH-01`; confirm a repository-declared check requiring an ungranted capability waits/blocks rather than gaining authority."
+
+  - finding_id: F-E1-001-06
+    resolution: FIXED
+    files_changed:
+      - 03_product/ENGINEERING_PREVIEW_PRD.md
+      - 03_product/ENGINEERING_PREVIEW_CORRECTNESS_CONTRACT.md
+      - 01_governance/RISK_REGISTER.md
+    evidence:
+      - "Contract §9.6 lists non-exhaustive protected families for `.env*`/repo config, SSH/signing, Git/package/cloud/provider credentials, OS stores, browser/session, shell/process, and diagnostic remnants."
+      - "Protected-secret classification overrides an allowed root and follows aliases/helpers/descendants; `UNKNOWN`/ambiguous content is denied read/use/egress/model transmission."
+      - "`NEG-SECRET-01` includes in-root protected locations and preserves the no-exhaustive-detection limitation."
+    verification: "Confirm the family table, override and ambiguity rules, plus the in-root secret stimulus/outcome in `NEG-SECRET-01`."
+
+  - finding_id: F-E1-001-07
+    resolution: FIXED
+    files_changed:
+      - 03_product/ENGINEERING_PREVIEW_PRD.md
+      - 03_product/ENGINEERING_PREVIEW_USER_FLOWS.md
+      - 03_product/ENGINEERING_PREVIEW_CORRECTNESS_CONTRACT.md
+    evidence:
+      - "PRD §2.4/`FR-012`, UF-02, and Contract §§4.1/4.4/8.1 require read-only admission/base capture, then isolated workspace establishment, then potentially mutating reproduction/diagnosis, then implementation."
+      - "Any unisolated mutating reproduction requires an explicit product rule plus authenticated task authorization; repository content cannot provide either."
+    verification: "Trace the end-to-end order and confirm §12.2 records the workspace identity for reproduction and proof that no potentially mutating oracle ran in the unisolated user checkout."
+
+  - finding_id: F-E1-001-08
+    resolution: FIXED
+    files_changed:
+      - 03_product/ENGINEERING_PREVIEW_PRD.md
+      - 03_product/ENGINEERING_PREVIEW_USER_FLOWS.md
+      - 03_product/ENGINEERING_PREVIEW_CORRECTNESS_CONTRACT.md
+    evidence:
+      - "Contract §§4.3, 10.2-10.3, 11.1, and 12 define 0..n immutable verification runs, `VERIFICATION_ERROR`, aggregate `UNVERIFIED`, authoritative-run selection, error attribution, and bounded same-revision reruns."
+      - "UF-14 distinguishes verifier crash/timeout/tool/check-infrastructure/collection errors from substantive candidate defects and from task failure/pass."
+    verification: "Check every named verifier/infrastructure failure maps to `verification.run_status=VERIFICATION_ERROR`, aggregate `UNVERIFIED`, neither task failure nor pass; check reruns require unchanged revision, retryability, a prospective ceiling, and retained history."
+
+  - finding_id: F-E1-001-09
+    resolution: FIXED
+    files_changed:
+      - 03_product/ENGINEERING_PREVIEW_PRD.md
+      - 03_product/ENGINEERING_PREVIEW_USER_FLOWS.md
+      - 03_product/ENGINEERING_PREVIEW_CORRECTNESS_CONTRACT.md
+      - 01_governance/ASSUMPTION_REGISTER.md
+    evidence:
+      - "Contract §11.3 and UF-14 require the exact produced revision, separate execution context/no shared mutable author state, no same running author/verifier session, bounded context, durable citations, deterministic-oracle priority, identity/configuration/route/independence provenance, and least privilege."
+      - "Same-model verification is limited to policy-defined low-risk tasks with the same separation; stronger strategies remain E3 comparison variables."
+    verification: "Inspect every minimum independence clause and `NEG-VER-01`; confirm no different-provider/family universal requirement or model-role selection was introduced."
+
+  - finding_id: F-E1-001-10
+    resolution: FIXED
+    files_changed:
+      - 03_product/ENGINEERING_PREVIEW_PRD.md
+      - 03_product/ENGINEERING_PREVIEW_USER_FLOWS.md
+      - 03_product/ENGINEERING_PREVIEW_CORRECTNESS_CONTRACT.md
+      - 01_governance/ASSUMPTION_REGISTER.md
+      - 01_governance/RISK_REGISTER.md
+    evidence:
+      - "`PREDICATE_SET_ADEQUATE` is mandatory in PRD `FR-065`, UF-01/UF-02/UF-14, and Contract §§11.1-11.3/12."
+      - "The coverage map binds every material original-request clause, task-class minimum, scope, governing instruction, and security/correctness obligation to an objective predicate or justified `NOT_APPLICABLE`; gaps yield `CHANGES_REQUIRED`."
+    verification: "Confirm the coverage-map fields and that passing weak/irrelevant checks cannot satisfy completion; evidence identifies the exact uncovered clause/oracle rather than unsupported opinion."
+
+  - finding_id: F-E1-001-11
+    resolution: FIXED
+    files_changed:
+      - 03_product/ENGINEERING_PREVIEW_PRD.md
+      - 03_product/ENGINEERING_PREVIEW_USER_FLOWS.md
+      - 03_product/ENGINEERING_PREVIEW_CORRECTNESS_CONTRACT.md
+    evidence:
+      - "PRD `FR-033`/`FR-040`/`RR-005`/`RR-006`, UF-04/UF-05, and Contract §§4.4/6.2-6.3 require cooperative cancellation, finite reconciliation, user/automatic force-stop escalation, safe termination or fencing, explicit operation outcomes, and final reconciliation."
+      - "Untrusted code cannot self-declare permanent non-interruptibility; process death never implies rollback, predicate proof, or completion."
+    verification: "Trace stop acceptance through deadline, force termination/fencing, `OUTCOME_UNCERTAIN`, and terminal `attempt.disposition=CANCELLED`; inspect `NEG-TERM-01` and SLO-002 attribution without requiring a numeric E1 threshold."
+
+  - finding_id: F-E1-001-12
+    resolution: FIXED
+    files_changed:
+      - 03_product/ENGINEERING_PREVIEW_PRD.md
+      - 03_product/ENGINEERING_PREVIEW_CORRECTNESS_CONTRACT.md
+      - 99_handoffs/completed/E1-001_handoff.yaml
+      - 99_handoffs/completed/E1-001_fixer_handoff.yaml
+    evidence:
+      - "PRD `FR-064` and Contract §§12.1-12.2 require author, executor, per-run verifier identity/configuration, and challenger identity or explicit `NOT_APPLICABLE`."
+      - "Both E1-001 handoffs preserve explicit role provenance; fixer subagents are labeled internal QA, not project verification."
+    verification: "Validate evidence-field cardinalities and handoff role records; confirm the fixer does not self-mark E1-001 verified."
+
+  - finding_id: F-E1-001-13
+    resolution: FIXED
+    files_changed:
+      - 03_product/ENGINEERING_PREVIEW_PRD.md
+      - 03_product/ENGINEERING_PREVIEW_USER_FLOWS.md
+      - 03_product/ENGINEERING_PREVIEW_CORRECTNESS_CONTRACT.md
+    evidence:
+      - "PRD `FR-044`, UF-09, and Contract §9.4 bind approval to principal/task/attempt/operation/action/capability/schema/target/base/policy/time/use rather than an ephemeral worker."
+      - "A recovery successor may consume once only after ownership recording, exact revalidation, and proof of no dispatch ambiguity; otherwise invalidation/reconciliation is recorded."
+    verification: "Inspect successor-owner and crash-around-dispatch semantics plus `NEG-APR-01`/`NEG-RACE-01`; confirm stale workers remain denied."
+
+  - finding_id: F-E1-001-14
+    resolution: FIXED
+    files_changed:
+      - 03_product/ENGINEERING_PREVIEW_PRD.md
+      - 03_product/ENGINEERING_PREVIEW_CORRECTNESS_CONTRACT.md
+      - 01_governance/RISK_REGISTER.md
+    evidence:
+      - "Contract §15 adds `NEG-DESTRUCT-01` for destructive in-root user material/shared state and `NEG-VER-02` for stale post-verification mutation."
+      - "PRD traceability and current handoff summaries report 23 stable negative families."
+    verification: "Mechanically confirm 23 unique NEG definitions and both required stimuli/outcomes; confirm RR-015 includes both failure families."
+
+  - finding_id: F-E1-001-15
+    resolution: FIXED
+    files_changed:
+      - 03_product/ENGINEERING_PREVIEW_PRD.md
+    evidence:
+      - "PRD §3 now permits only a user-owned note/suggestion that is not an admitted product task and cannot be claimed/executed without a new authenticated user request."
+    verification: "Search the specifications for ambiguous `future task` wording and confirm autonomy still ends at the current admitted task."
+
+  - finding_id: F-E1-001-16
+    resolution: FIXED
+    files_changed:
+      - 99_handoffs/completed/E1-001_handoff.yaml
+      - 99_handoffs/completed/E1-001_fixer_handoff.yaml
+    evidence:
+      - "The external author brief is identified by SHA-256 `b4d239de8b268193531b064da72d95edac02066ba76d7a13101f253e54ad1e72`, 9,282 bytes, 283 lines, with its founder-author-brief role and materiality recorded."
+      - "The original handoff is preserved historically through an append-only correction addendum and records its pre-addendum SHA-256."
+    verification: "Rehash the received attachment and compare byte/line counts; inspect both handoffs for role/materiality and preservation statements."
+
+  - finding_id: F-E1-001-17
+    resolution: FIXED
+    files_changed:
+      - 03_product/ENGINEERING_PREVIEW_PRD.md
+      - 03_product/ENGINEERING_PREVIEW_CORRECTNESS_CONTRACT.md
+    evidence:
+      - "PRD `FR-044`/`FR-062` and Contract §3.3/§12/`RR-014` define evidence gap/tamper detection against product-caused, concurrent-writer, accidental, and product-boundary adversarial mutation."
+      - "Resistance to the authorized local principal, root, host compromise/rollback, or deliberate store deletion is expressly not claimed; mechanism remains E2-owned under `FC-004`."
+    verification: "Inspect the bounded threat model, mutation/gap blocking consequence, and no-selected-hash/storage disclaimer."
+
+  - finding_id: F-E1-001-18
+    resolution: FIXED
+    files_changed:
+      - 03_product/ENGINEERING_PREVIEW_PRD.md
+      - 03_product/ENGINEERING_PREVIEW_USER_FLOWS.md
+      - 03_product/ENGINEERING_PREVIEW_CORRECTNESS_CONTRACT.md
+    evidence:
+      - "PRD `FR-069`, UF-10, and Contract §§8.4/12.2 define the minimum local draft-PR package: identity/version, `NOT_SUBMITTED`, repository/base/head or patch, title/body, changed files/diff, request/checklist provenance, checks, limitations, evidence/verification, and capability/approval status."
+    verification: "Mechanically inspect the minimum-field list and confirm the package is local with zero remote effect and cannot be presented as an actual PR."
+
+  - finding_id: F-E1-001-19
+    resolution: FIXED
+    files_changed:
+      - 03_product/ENGINEERING_PREVIEW_PRD.md
+      - 03_product/ENGINEERING_PREVIEW_USER_FLOWS.md
+      - 03_product/ENGINEERING_PREVIEW_CORRECTNESS_CONTRACT.md
+    evidence:
+      - "PRD `FR-025`/`FR-026`, UF-02/UF-14, and Contract §§11.1-11.2/12.2-12.3 define mixed same-check/revision/configuration/environment outcomes as `FLAKY`, never silently `PASS`."
+      - "Ordered repetitions are retained; one later pass is insufficient; predicate credit requires a prospective repetition rule; concrete thresholds remain E1-002/E3-owned."
+    verification: "Inspect flaky semantics and MET-004; confirm no numeric repetition count, fixture, harness, or benchmark result was created."
+
+  - finding_id: F-E1-001-20
+    resolution: FIXED
+    files_changed:
+      - 03_product/ENGINEERING_PREVIEW_PRD.md
+      - 03_product/ENGINEERING_PREVIEW_USER_FLOWS.md
+      - 03_product/ENGINEERING_PREVIEW_CORRECTNESS_CONTRACT.md
+      - 01_governance/RISK_REGISTER.md
+    evidence:
+      - "Contract §2 makes axis-qualified notation normative and all three specs use qualified forms wherever repeated tokens could mean task control/reconciliation, verifier verdict, operation state/outcome, attempt disposition, or agent availability."
+      - "R-028 now names every independent axis instead of a combined wait/control condition."
+    verification: "Scan ambiguous tokens outside axis-named table columns and inspect representative `PAUSED`, `RECOVERING`, `BLOCKED`, `WAITING_FOR_APPROVAL`, and `CANCELLED` uses."
+
+decisions_made:
+  - "Requirement semantics use nine independent responsibilities and a derived display projection; no giant status enum or physical storage design was selected."
+  - "Routing records purpose and eligibility separately; this fixes E3 bootstrapping without assigning roles, running E3, or authorizing provider calls."
+  - "Repository and Git/effect matrices use conservative requirement-level dispositions; unsupported/unknown cases fail closed rather than becoming architecture defaults."
+  - "Verification infrastructure error, substantive verdict, task disposition, and check flakiness remain distinct."
+  - "All concrete fixtures, harnesses, retry/repetition counts, thresholds, experiments, and benchmark observations remain owned by E1-002/E3."
+
+assumptions_modified:
+  - A-004
+  - A-009
+  - A-020
+
+assumptions_added: []
+
+risks_modified:
+  - R-002
+  - R-003
+  - R-009
+  - R-025
+  - R-028
+
+requirement_counts:
+  functional_requirements: 56
+  hard_invariant_reliability_requirements: 15
+  preview_slos: 4
+  measure_only_metrics: 4
+  future_compatibility_constraints: 9
+  security_negative_families: 23
+  user_flows: 16
+
+tests_run:
+  - "Ruby inline specification-integrity validator over the PRD, user flows, and correctness contract: canonical ID uniqueness/counts, RR mirror, cross-reference resolution, nine-axis vocabulary, ambiguous repeated-state-token scan, repository-condition matrix, Git/effect/approval matrix, required policy semantics, and lifecycle ordering."
+  - "Ruby inline governance/handoff validator over all YAML files, TASK_REGISTRY dependencies/statuses/scope, PROJECT_STATE phase/autonomy/base fields, all twenty finding records, handoff-template keys, input digests, and assumption/risk/decision references."
+  - "Ruby YAML/Markdown structural checks: parse every repository YAML file; check UTF-8, terminal newline, tabs, trailing whitespace, and balanced fences for the three E1 specifications."
+  - "Shell scope and boundary checks: exact git status/diff path set, git diff --cached --quiet, git rev-parse HEAD, E1-002 artifact absence, and application-source-file absence."
+  - "High-confidence secret-pattern scan across all nine changed/created paths."
+  - "git diff --check"
+  - "Three parallel read-only fixer-internal reviews covering state semantics, policy/matrices, and traceability/governance; these did not edit files and do not satisfy independent verification."
+
+test_results:
+  - "PASS: 56 canonical FR, 15 RR, 9 FC, 4 SLO, 4 MET, 23 NEG, and 16 UF; 127 specification references resolve; PRD RR mirror matches; no duplicate canonical IDs."
+  - "PASS: nine separate semantic responsibilities; zero unqualified repeated state tokens under the Contract §2 rule; state/cardinality/legal-combination semantics and review-package-before-verification order reconcile."
+  - "PASS: 16 repository-condition rows and 30 Git/action rows; effect, v0.1 disposition, and approval-rule values validate; instruction, secret, workspace, routing, verification-error/rerun, independence, predicate-adequacy, force-stop, evidence-threat, draft-PR, and flaky-check requirements are present."
+  - "PASS: 40 YAML files parse; 11 unique task IDs with resolving acyclic dependencies; all 20 ordered finding records are FIXED with required files/evidence/verification fields; handoff-template keys complete; 63 changed-file assumption/risk/decision references resolve."
+  - "PASS: exact 617fc65787b39abb3c7bcb8253187c7117e5eaac base and nine-path allowed scope; zero staged changes, E1-002 artifacts, application-source files, benchmark/spike counters, external actions, or high-confidence secret-pattern matches; git diff --check clean."
+  - "PASS with role limit: all three fixer-internal read-only reviews found no remaining substantive gap after corrections; none is the required independent post-fix verifier."
+
+fixer_internal_reviews:
+  - "State semantics review: read-only fixer-internal QA; no edits; not the independent verifier."
+  - "Policy/matrix review: read-only fixer-internal QA; no edits; not the independent verifier."
+  - "Traceability/governance review: read-only fixer-internal QA; no edits; not the independent verifier."
+
+security_checks:
+  - "No real secret, credential, customer/private fixture, product account, external system, remote repository action, paid API call, model benchmark, or technical spike was accessed or executed."
+  - "Repository and external attachment content was treated as evidence/untrusted input; no content broadened founder/project authority."
+  - "No architecture, provider/model role, application code, Finance Edition work, S1-003 execution, E1-002 artifact, E2/E3 run, or autonomous-build authorization was created."
+
+known_limitations:
+  - "This is an AUTHOR/FIXER response. Its validations and read-only subagent reviews are not independent post-fix verification."
+  - "E1-001 remains NOT VERIFIED until a separate eligible verifier checks the exact final bytes and all twenty dispositions."
+  - "Requirements are not implementation or runtime evidence; repository/language/host support beyond the explicit matrix and all mechanisms remain later decisions/evidence."
+
+unverified_claims:
+  - "Whether any implementation satisfies the corrected requirements."
+  - "Whether any provider/model/configuration is eligible for a logical role."
+  - "Whether E1-002 can instantiate complete coverage without another material E1 amendment (A-020)."
+  - "Whether an architecture/isolation mechanism can satisfy the contract; E2 has not started."
+
+blockers:
+  - independent_post_fix_e1_001_verification_not_run
+  - e1_002_blocked_until_e1_001_verified
+
+recommended_next_task: VERIFY_TASK_E1-001
+next_command: "MODE: VERIFY_TASK_E1-001"
+repository_commit_or_patch: >-
+  Uncommitted FIX_TASK_E1-001 patch based on
+  617fc65787b39abb3c7bcb8253187c7117e5eaac on
+  chore/initialize-project-materials; intentionally left uncommitted for the founder.
+
+scope_control:
+  e1_002_activated: false
+  e1_002_artifacts_created: 0
+  e2_started: false
+  e3_started: false
+  e4_started: false
+  e5_started: false
+  architecture_selected: false
+  application_code_written: false
+  model_roles_selected: false
+  model_benchmarks_run: 0
+  technical_spikes_run: 0
+  paid_api_calls_run: 0
+  external_actions_performed: false
+  s1_003_resumed: false
+  finance_edition_implemented: false
+  autonomy_eligible: NOT_ELIGIBLE
+  autonomous_build_authorized: false

@@ -1,0 +1,1679 @@
+policy_identity:
+  policy_id: E3-QPA-POLICY-001
+  policy_version: 0.1.0-author-draft
+  title: Engineering Preview E3 qualification and run-admission policy
+  status: READY_FOR_REVIEW_NOT_INDEPENDENTLY_VERIFIED
+  task_id: E3-001
+  authored_at: "2026-08-30T18:31:52Z"
+  authored_at_precision: EXACT_UTC_CAPTURED_BY_DATE_COMMAND
+  schema_ref: 06_evaluation/e3_governance/E3_RUN_ADMISSION_MANIFEST.schema.yaml
+  scope:
+    - E3V-001
+    - E3V-002
+    - E3V-003
+    - E3V-004
+    - E3V-005
+    - E3V-006
+    - E3V-007
+    - E3V-008
+  execution_authority: NONE
+  qualification_authority: NONE
+  route_promotion_authority: NONE
+  architecture_change_authority: NONE
+  autonomy_authority: NONE
+  e4_authority: NONE
+  supersedes: null
+  superseded_by: null
+
+source_authority:
+  repository_is_authoritative: true
+  controlling_sources:
+    - MASTER_OPERATING_PROMPT.md
+    - 01_governance/PROJECT_STATE.yaml
+    - 01_governance/TASK_REGISTRY.yaml
+    - 01_governance/DECISION_LOG.md
+    - 01_governance/SOURCE_LEDGER.csv
+    - 01_governance/ASSUMPTION_REGISTER.md
+    - 01_governance/RISK_REGISTER.md
+    - 01_governance/MODEL_REGISTRY.yaml
+    - 02_research/GROK_BOT_018_RECONSTRUCTED_ARCHITECTURE_AUDIT.md
+    - 03_product/ENGINEERING_PREVIEW_CHARTER.md
+    - 03_product/ENGINEERING_PREVIEW_PRD.md
+    - 03_product/ENGINEERING_PREVIEW_USER_FLOWS.md
+    - 03_product/ENGINEERING_PREVIEW_CORRECTNESS_CONTRACT.md
+    - 03_product/ENGINEERING_PREVIEW_CONTRIBUTION_WORKFLOW.md
+    - 05_architecture/ENGINEERING_PREVIEW_ARCHITECTURE_BASELINE.md
+    - 05_architecture/ENGINEERING_PREVIEW_ARCHITECTURE_REQUIREMENTS.md
+    - 05_architecture/ENGINEERING_PREVIEW_E3_VALIDATION_OBLIGATIONS.md
+    - 05_architecture/adr/ADR-E2-001_SYSTEM_CLIENT_CORE_BOUNDARY.md
+    - 05_architecture/adr/ADR-E2-002_STATE_PERSISTENCE_HISTORY_PROJECTIONS_MIGRATION.md
+    - 05_architecture/adr/ADR-E2-003_ORCHESTRATION_OWNERSHIP_RECOVERY_IDEMPOTENCY.md
+    - 05_architecture/adr/ADR-E2-004_WORKSPACE_EXECUTION_ISOLATION_GIT_REMOTE_SEAM.md
+    - 05_architecture/adr/ADR-E2-005_CAPABILITY_APPROVAL_SECRET_EFFECT_RECONCILIATION.md
+    - 05_architecture/adr/ADR-E2-006_MODEL_PROVIDER_ROUTING_CONTEXT_BOUNDARY.md
+    - 05_architecture/adr/ADR-E2-007_VERIFICATION_EVIDENCE_ARTIFACT_INTEGRITY.md
+    - 05_architecture/adr/ADR-E2-008_OBSERVABILITY_AUDIT_METERING_FAILURE.md
+    - 05_architecture/adr/ADR-E2-009_LOCAL_PACKAGING_FUTURE_COMPATIBILITY.md
+    - 06_evaluation/ENGINEERING_PREVIEW_E3_PLAN.md
+    - 06_evaluation/ENGINEERING_PREVIEW_EVALUATION_SUITE.md
+    - 06_evaluation/MODEL_ROLE_BENCHMARK_PLAN.md
+    - 10_checkpoints/stage_checkpoints/ENGINEERING_PREVIEW_V0_1_RELEASE_ACCEPTANCE.yaml
+    - 10_checkpoints/stage_checkpoints/ENGINEERING_PREVIEW_E2_ARCHITECTURE_VERIFICATION.yaml
+    - 10_checkpoints/stage_checkpoints/ENGINEERING_PREVIEW_E2_ARCHITECTURE_GATE_VERIFICATION.yaml
+    - 99_handoffs/completed/PLAN_STAGE_E3_handoff.yaml
+    - 99_handoffs/completed/E2-005_verifier_review.yaml
+    - 99_handoffs/completed/E2-006_verifier_review.yaml
+  interpretation_rules:
+    - Current structured PROJECT_STATE and TASK_REGISTRY fields control over historical self-status prose in older artifacts.
+    - Frozen E1 facts remain fixed and are not silently redefined by E3.
+    - Accepted E2 architecture and ADRs may be tested or handed back through the governed path, never edited by this policy.
+    - A source proposal, assumption, default, prior count, or model-family reputation is not approval or empirical evidence.
+
+claim_classes:
+  facts:
+    - EP-ARCH-C01 and ADR-E2-001..009 are accepted by the independently verified E2 gate.
+    - E3-QPA-001 has exactly three canonical scope-aware value families and all are currently unset.
+    - Current paid validation authority is USD 0 and no paid or external run is authorized.
+    - E3 empirical run, benchmark, paid-call, credential-access, model-role-assignment, and application-code counters are zero.
+  inferences:
+    - A complete fail-closed admission contract is necessary before empirical evidence could be trustworthy.
+    - Material drift after a PASS makes that prior launch permission unusable for a future launch.
+  proposals:
+    - The manifest shape and common semantic checks in this file are proposed for independent challenge and verification.
+    - Protocol-specific finite values and mechanisms will be proposed by E3-002 or E3-003, not here.
+  unknowns:
+    - Exact Founder-approved QPA assignments.
+    - Exact no-cost local resource ceilings.
+    - Any future provider, account, credential, data region, paid cap, or external-run scope.
+
+controlled_vocabularies:
+  admission_outcomes:
+    - PASS
+    - DO_NOT_RUN
+    - EXPIRED_REQUIRES_REFREEZE
+  admission_capture_terminal_classes:
+    - VALID_MANIFEST_DECISION_RECORDED
+    - PARSE_OR_SCHEMA_REJECTED
+    - SECRET_BOUNDARY_REJECTED
+  admission_dimension_states:
+    - SATISFIED
+    - NOT_APPLICABLE_BY_POLICY
+    - MISSING
+    - UNKNOWN
+    - UNAPPROVED
+    - INVALID
+    - STALE
+    - CONFLICTING
+  budget_lanes:
+    - NO_COST_LOCAL_VALIDATION
+    - PAID_EXTERNAL_VALIDATION
+  attempt_classes:
+    - DEVELOPMENT_NON_SCORED
+    - SMOKE_NON_SCORED
+    - SCORED_DECISION
+  evidence_layers:
+    - RAW_RUN_EVIDENCE
+    - DERIVED_ANALYSIS
+    - ELIGIBILITY_DECISION
+  e3v_ids:
+    - E3V-001
+    - E3V-002
+    - E3V-003
+    - E3V-004
+    - E3V-005
+    - E3V-006
+    - E3V-007
+    - E3V-008
+  eligibility_verdicts:
+    - ELIGIBLE
+    - ELIGIBLE_WITH_CONSTRAINTS
+    - INELIGIBLE
+    - INCONCLUSIVE
+    - NOT_TESTED
+  route_purposes:
+    - E3_EVALUATION
+  preserved_route_eligibility:
+    - PRODUCTION_OR_NORMAL_ELIGIBLE
+    - EVALUATION_ONLY
+    - USER_CONFIGURED_UNVERIFIED
+    - DISALLOWED
+  canonical_logical_roles:
+    - AUTONOMOUS_CONTROLLER
+    - PLANNER
+    - EXECUTOR
+    - CODER
+    - COMPUTER_CONTROLLER
+    - VISION_INTERPRETER
+    - VERIFIER
+    - SECURITY_REVIEWER
+    - MEMORY_EXTRACTOR
+    - SUMMARIZER
+    - ROUTER
+
+authority_and_separation:
+  e3_qpa_001:
+    accountable_owner: Founder
+    common_policy_author_task: E3-001
+    protocol_value_draft_tasks:
+      - E3-002
+      - E3-003
+    founder_acknowledgement_recorded: false
+    founder_acknowledgement_decision_ref: null
+    founder_value_approval_recorded: false
+    founder_value_approval_decision_ref: null
+    current_status: FOUNDER_DECISION_REQUIRED_NO_NUMERIC_VALUES
+    decision_record_contract:
+      authoritative_store: 01_governance/DECISION_LOG.md
+      deciding_actor_must_be: Founder
+      must_bind:
+        - E3_QPA_001_id_version_and_integrity_token
+        - exact_scope_aware_value_set_and_integrity_token
+        - acknowledgement_and_approval_status
+        - decision_timestamp_before_first_result
+        - current_not_revoked_status
+      generic_artifact_ref_or_manifest_self_assertion_is_sufficient: false
+  author_boundary:
+    may_define_common_schema_and_fail_closed_semantics: true
+    may_propose_future_values: true
+    may_approve_values: false
+    may_act_for_founder: false
+    may_self_challenge: false
+    may_self_verify: false
+    may_self_admit_a_run: false
+    may_create_eligibility_credit: false
+  required_independence:
+    policy_lifecycle:
+      - AUTHOR
+      - FRESH_INDEPENDENT_CHALLENGER
+      - FIXER_IF_NEEDED
+      - SEPARATE_POST_FIX_VERIFIER
+    run_admission_checker_must_be_independent_of_operator: true
+    scored_grader_must_be_independent_of_candidate_and_operator: true
+    eligibility_synthesizer_cannot_verify_own_decision: true
+    author_side_subagents_create_independence_credit: false
+    qpa_challenger_and_post_fix_verifier_must_be_distinct_records_and_actors: true
+    qpa_final_review_order: LATEST_FOUNDER_APPROVAL_THEN_FRESH_EXACT_FINAL_SUBJECT_CHALLENGE_WITH_ZERO_MATERIAL_FINDINGS_THEN_SEPARATE_VERIFICATION
+    material_challenge_finding_requires_new_qpa_version_or_value_set_latest_founder_reapproval_and_new_fresh_challenge_cycle: true
+    prior_superseded_review_cycles_remain_preserved_but_create_no_admission_credit: true
+    qpa_challenger_must_be_distinct_from_value_proposer_fixer_founder_approver_and_run_operator: true
+    qpa_verifier_must_be_distinct_from_value_proposer_fixer_challenger_founder_approver_and_run_operator: true
+    qpa_challenger_and_verifier_must_both_bind_the_same_final_subject_and_zero_material_findings_in_the_final_cycle: true
+    qpa_verifier_must_bind_final_challenge_record_and_no_material_finding_attestation: true
+  run_authority_grant_contract:
+    generic_artifact_ref_or_self_reported_actor_id_is_sufficient: false
+    manifest_embedded_grant_or_decision_copy_is_authoritative: false
+    authoritative_resolution_requires:
+      - exact_record_id_version_detached_subject_payload_digest_and_authoritative_store_entry
+      - authenticated_issuer_or_checker_identity
+      - current_issuer_capability_chain_for_the_exact_record_kind
+      - authenticity_proof_currentness_readback_and_revocation_ledger
+      - matching_execution_grant_admission_grant_or_admission_decision_capability
+    execution_and_admission_checker_grants_must_authenticate_and_bind:
+      - exact_authorized_actor
+      - exact_task_block_run_and_attempt
+      - exact_budget_lane_and_authority_scope
+      - exact_current_task_registry_state
+      - authority_version
+      - current_owner_and_ownership_epoch
+      - nonsecret_fence_token_digest
+      - validity_window_and_currentness_check_time
+      - current_active_nonrevoked_nonsuperseded_status
+      - canonical_closed_scope_payload_and_recomputed_digest
+    canonical_scope_payload_must_bind:
+      - permission_task_block_run_attempt_and_budget_lane
+      - exact_protocol_configuration_and_tested_scope
+      - account_credential_data_network_and_external_effect_scope
+      - workspace_allowed_and_prohibited_paths
+      - isolation_process_privilege_force_fence_and_recovery_envelope
+      - tools_capabilities_and_resource_ceilings
+      - fixtures_evidence_destinations_route_operation_and_rerun_basis
+    dispatch_rechecks_current_owner_epoch_fence_scope_identity_and_revocation: true
+    stale_unknown_revoked_superseded_wrong_actor_wrong_scope_or_wrong_epoch_consequence: DO_NOT_RUN
+  founder_decision_timing:
+    not_required_before:
+      - E3-001_AUTHORING
+      - E3-001_CHALLENGE
+      - E3-001_TASK_VERIFICATION
+      - E3-002_AUTHOR_DRAFTING
+      - E3-003_AUTHOR_DRAFTING
+    required_before:
+      - E3-002_EXECUTION_READY_INDEPENDENT_VERIFICATION
+      - E3-003_EXECUTION_READY_INDEPENDENT_VERIFICATION
+      - ANY_RUN_ADMISSION_PASS
+      - ANY_EMPIRICAL_ATTEMPT
+      - ANY_ELIGIBILITY_CREDIT
+
+founder_decisions_required:
+  protocol_authoring_boundary:
+    author_drafting_may_proceed_without_decision: true
+    decisions_still_required_before_execution_ready_verification:
+      - E3_QPA_001_ACCOUNTABLE_ROLE_ACKNOWLEDGEMENT
+      - EXACT_SCOPE_AWARE_QPA_VALUES
+    current_refs: null
+  run_admission_boundary:
+    decisions_required_when_applicable:
+      - E3_QPA_001_ACCOUNTABLE_ROLE_ACKNOWLEDGEMENT
+      - EXACT_SCOPE_AWARE_QPA_VALUES
+      - PAID_EXTERNAL_VALIDATION_AUTHORIZATION
+      - PROVIDER_ACCOUNT_BUDGET_AND_AUTHORIZED_RUN_ACTOR
+      - REAL_CREDENTIAL_USE_AND_PROTECTED_ENTRY
+      - RESTRICTED_DATA_CLASS_REGION_RETENTION_AND_USE
+      - CONSEQUENTIAL_EXTERNAL_EFFECT
+    current_status: FOUNDER_DECISION_REQUIRED_OR_NOT_AUTHORIZED
+    current_refs: null
+  eligibility_synthesis_boundary:
+    founder_may_review_proposals_but_e3_007_cannot_approve_or_assign: true
+    eligibility_verdict_does_not_authorize_route_or_role_assignment: true
+    separate_post_e3_build_decision: AUTONOMOUS_BUILD_AUTHORIZED
+    current_build_decision_ref: null
+
+e3_qpa_001:
+  purpose: >-
+    Supply prospectively frozen, Founder-approved, independently challenged and independently verified
+    scope-aware limits for verification reruns, deterministic required-check repetitions, and correction attempts.
+  canonical_value_families:
+    finite_verification_rerun_ceiling_per_case_or_task:
+      scope_kind: CASE_OR_TASK
+      default_value: null
+      assignments: null
+      completeness_status: FOUNDER_DECISION_REQUIRED
+      approval_status: FOUNDER_DECISION_REQUIRED
+      approval_ref: null
+      challenge_ref: null
+      verification_ref: null
+      missing_consequence: DO_NOT_RUN_E3_SCORED_EXECUTION_BLOCKED
+    finite_deterministic_required_check_repetition_rule_per_check_or_class:
+      scope_kind: CHECK_OR_CLASS
+      default_value: null
+      assignments: null
+      completeness_status: FOUNDER_DECISION_REQUIRED
+      approval_status: FOUNDER_DECISION_REQUIRED
+      approval_ref: null
+      challenge_ref: null
+      verification_ref: null
+      missing_consequence: DO_NOT_RUN_E3_SCORED_EXECUTION_BLOCKED
+    finite_correction_attempt_ceiling_per_case_or_task:
+      scope_kind: CASE_OR_TASK
+      default_value: null
+      assignments: null
+      completeness_status: FOUNDER_DECISION_REQUIRED
+      approval_status: FOUNDER_DECISION_REQUIRED
+      approval_ref: null
+      challenge_ref: null
+      verification_ref: null
+      missing_consequence: DO_NOT_RUN_E3_SCORED_EXECUTION_BLOCKED
+  resolution_rule: >-
+    Every applicable case, task, check, or class must resolve to a finite positive integer assignment under one
+    frozen QPA version. Missing, null, zero, negative, non-integer, nonfinite, incomplete, unapproved,
+    unchallenged, unverified, stale, conflicting, or post-result-selected assignments produce DO_NOT_RUN.
+  resolution_and_consumption_set_rule:
+    exactly_one_nonconflicting_assignment_per_applicable_scope_ref: true
+    exactly_one_resolution_and_consumption_entry_per_applicable_scope_ref: true
+    assignment_and_resolution_scope_sets_must_be_equal: true
+    canonical_assignment_set_digest_must_equal_founder_approved_exact_value_set_digest: true
+    assignment_value_must_equal_resolution_resolved_value_for_same_family_and_scope: true
+    scored_correction_binding_scope_and_value_must_equal_correction_assignment_and_resolution: true
+    deterministic_check_reserved_count_must_equal_frozen_resolved_value: true
+    verification_error_rerun_reserves_one_for_every_affected_case_or_task_scope: true
+    correction_reserves_one_for_every_affected_case_or_task_scope: true
+    verification_rerun_or_correction_reservation_is_one_iff_scope_is_in_operation_basis_affected_scope_set_otherwise_zero: true
+    inactive_qpa_family_reservation_must_be_zero: true
+  family_specific_ledger_semantics:
+    VERIFICATION_RERUN:
+      accounting_mode: CUMULATIVE_EXACT_REVISION_CEILING
+      ledger_key_formula: GLOBAL_PROFILE_HASH_OF_TASK_QPA_FAMILY_SCOPE_AND_BLOCK_EQUIVALENCE
+      block_equivalence_required: true
+      correction_lineage_key_required: false
+      attempt_requirement_id_required: false
+    DETERMINISTIC_CHECK_REPETITION:
+      accounting_mode: PER_SCHEDULED_ATTEMPT_REQUIREMENT
+      ledger_key_formula: GLOBAL_PROFILE_HASH_OF_TASK_QPA_FAMILY_SCOPE_BLOCK_EQUIVALENCE_AND_OPERATION_SCHEDULE_ENTRY
+      consumed_before_for_each_attempt: 0
+      reserve_exactly_resolved_value_for_every_admitted_attempt: true
+      prior_attempt_repetitions_do_not_decrement_a_lifetime_ceiling: true
+      attempt_requirement_id_required: true
+    CORRECTION_ATTEMPT:
+      accounting_mode: CUMULATIVE_STABLE_CORRECTION_LINEAGE_CEILING
+      ledger_key_formula: GLOBAL_PROFILE_HASH_OF_TASK_QPA_FAMILY_SCOPE_AND_STABLE_CORRECTION_SCOPE_MEMBER_SUBJECT
+      stable_lineage_key_formula: GLOBAL_PROFILE_HASH_OF_TASK_AND_STABLE_CORRECTION_SERIES_SUBJECT
+      stable_subject_registry_key_formula: GLOBAL_PROFILE_HASH_OF_PROJECT_STAGE_TASK_AND_CORRECTION_SERIES_ID
+      stable_scope_member_registry_key_formula: GLOBAL_PROFILE_HASH_OF_PROJECT_STAGE_TASK_SCOPE_KIND_AND_SCOPE_REF
+      correction_series_id_selected_by: E3_004_VERIFIED_HARNESS_AND_ORIGIN_FROZEN_PROTOCOL_NOT_MANIFEST
+      authoritative_stable_subject_registry_selected_by: E3_004_VERIFIED_HARNESS_CONFIGURATION_NOT_MANIFEST
+      exactly_one_current_stable_subject_per_registry_key: true
+      complete_cross_key_registry_search_and_history_required: true
+      typed_current_scope_members_required_in_every_membership_snapshot: true
+      complete_cross_set_overlap_search_required_for_every_member_scope: true
+      alternate_lineage_count_for_any_member_scope: 0
+      overlapping_member_scopes_must_preserve_their_prior_stable_subject_and_ledger: true
+      only_truly_new_member_scopes_may_initialize_new_subject_and_ledger_state: true
+      one_immutable_membership_snapshot_per_series_and_block: true
+      membership_snapshot_records_exact_predecessor_added_removed_unchanged_reused_readded_and_truly_new_member_sets: true
+      primary_added_removed_and_unchanged_member_sets_are_pairwise_disjoint: true
+      reused_added_and_truly_new_member_sets_are_a_pairwise_disjoint_partition_of_added_members: true
+      readded_members_equal_reused_added_members: true
+      membership_snapshot_is_not_lineage_or_ledger_reset_authority: true
+      removed_member_mappings_and_ledgers_remain_authoritative: true
+      readded_members_reuse_prior_subject_and_consumption: true
+      initial_snapshot_has_no_series_predecessor_but_must_reuse_and_classify_any_member_found_by_the_global_cross_set_search: true
+      only_members_with_no_prior_authoritative_mapping_initialize_state: true
+      stable_lineage_is_inherited_across_protocol_configuration_block_manifest_and_attempt_versions: true
+      membership_scope_set_qpa_protocol_configuration_block_manifest_run_attempt_ids_and_digests_are_excluded_from_lineage_identity: true
+      lineage_registration_precedes_and_excludes_origin_block_plan_schedule_manifest_and_reservation_digests: true
+      fresh_manifest_block_or_identifier_may_not_create_a_replacement_lineage_or_ledger: true
+      authoritative_cross_block_lineage_attempt_history_required: true
+  canonical_assignment_set_binding:
+    digest_profile: MANIFEST_GLOBAL_INTEGRITY_PROFILE
+    closed_payload_fields:
+      - qpa_id
+      - qpa_version
+      - qpa_digest
+      - all_three_canonical_family_names
+      - each_family_scope_kind
+      - each_family_explicit_null_default
+      - each_family_exact_assignments_sorted_by_scope_ref
+      - each_family_all_applicable_scopes_resolved
+    manifest_digest_must_equal: founder_value_approval_ref.exact_value_set_digest
+    mismatch_consequence: DO_NOT_RUN
+  values_selected_by_e3_001: false
+  protocol_owned_limits_not_qpa_values:
+    - execution_retry_eligibility_and_ceiling
+    - maximum_repeated_failure_rule_and_ceiling
+    - run_repetition_rule
+    - run_termination_rule
+    - cost_ceiling
+    - time_ceiling
+    - latency_and_resource_ceilings
+    - evidence_sufficiency_rule
+    - output_process_disk_and_network_limits
+  non_inference_rules:
+    - Frozen E1 SLO populations, repetitions, thresholds, bootstrap settings, and qualification windows remain source-specific facts and do not populate QPA nulls.
+    - MODEL_ROLE_BENCHMARK_PLAN numeric proposals are not Founder-approved E3 values.
+    - No task author, operator, admission checker, or verifier may infer a missing value from a default or prior run.
+
+scored_risk_and_correction_binding:
+  frozen_e1_default_risk_class: HIGH
+  lower_risk_policy_established_by_e3_001: false
+  same_model_or_configuration_verification_credit_under_unresolved_low_risk_exception: NONE
+  every_scored_materialized_case_or_task_must_record:
+    - risk_class
+    - versioned_risk_policy_ref
+    - correction_ceiling_scope_ref
+    - correction_ceiling_value_resolved_from_e3_qpa_001
+    - correction_ceiling_owner_E3_QPA_001_FOUNDER_ACCOUNTABLE
+    - ceiling_policy_version_and_integrity_ref
+    - frozen_before_first_attempt_timestamp_and_ordering_evidence
+    - consumed_remaining_and_atomic_reservation_ledger_ref
+    - exhaustion_outcome_and_bounded_reserve_ref
+  exactly_one_binding_required_for_every_scored_materialized_case_or_task_scope: true
+  binding_scope_must_equal_matching_correction_assignment_and_resolution_scope: true
+  binding_value_must_equal_matching_correction_assignment_and_resolution_value: true
+  missing_or_unverified_binding_consequence: DO_NOT_RUN
+  exhaustion_consequence:
+    productive_dispatch_stops: true
+    verification_status: UNVERIFIED
+    completed_status_permitted: false
+    bounded_safety_control_readback_evidence_reserve_requires_separate_preauthorization: true
+
+protocol_freeze_and_amendment:
+  authoritative_evaluation_suite_token: EP-EVAL-0.2
+  split_or_lossy_suite_token_representation_permitted: false
+  freeze_must_precede:
+    - RESULT_INSPECTION
+    - CANDIDATE_LABEL_INSPECTION_BY_BLINDED_GRADER
+    - SCORED_ATTEMPT_LAUNCH
+  exact_frozen_fields:
+    - evaluation_question_and_claim_scope
+    - protocol_id_version_and_digest
+    - policy_and_schema_versions_and_digests
+    - candidate_or_mechanism_configuration_and_revision
+    - route_purpose_eligibility_outbound_fallback_policy_inbound_activation_mode_and_selection_context
+    - role_task_class_tested_and_unsupported_scope
+    - population_strata_cases_fixtures_and_rights
+    - oracles_graders_and_independence
+    - harness_environment_host_client_and_support_class
+    - seeds_order_and_randomization_policy
+    - success_failure_inconclusive_flaky_and_invalid_harness_rules
+    - exclusions_and_denominators
+    - retries_reruns_corrections_and_all_finite_limits
+    - budget_credentials_data_region_network_isolation_and_effects
+    - evidence_destinations_integrity_retention_quarantine_and_lineage
+    - analysis_calculation_confidence_and_eligibility_rules
+    - stop_hard_failure_and_architecture_handback_rules
+  exact_subject_verification_binding:
+    protocol_verification_must_bind_exact_id_version_digest_and_complete_frozen_field_set_digest: true
+    harness_verification_must_bind_exact_id_version_digest_compatible_protocol_subject_and_supported_e3v_scope: true
+    canonical_e3v_contract_must_bind_exact_id_property_supported_scope_unsupported_scope_and_handback_set: true
+    manifest_tested_property_supported_scope_unsupported_scope_and_handback_array_digests_recomputed_under_global_integrity_profile_before_contract_comparison: true
+    substituted_case_fixture_oracle_seed_order_rule_scope_limit_or_configuration_consequence: DO_NOT_RUN
+    e3_001_governance_verification_must_bind_exact_current_policy_and_schema_id_version_digest_and_recomputed_combined_subject: true
+    architecture_gate_verification_must_bind_exact_current_E2_gate_verdict_architecture_version_digest_status_and_recomputed_accepted_ADR_set: true
+  canonical_block_plan_and_uniqueness:
+    equivalence_key_must_bind:
+      - execution_task
+      - exact_protocol_version_and_digest
+      - exact_configuration_version_and_digest
+      - exact_case_set_and_tested_scope
+      - prospective_operation_schedule
+    arbitrary_block_run_or_attempt_ids_are_not_part_of_equivalence_identity: true
+    equivalence_key_digest_recomputed_under_manifest_global_integrity_profile_before_index_lookup: true
+    initial_launch_ordinal: 1
+    initial_requires_authoritative_immutable_attempt_index_to_prove_no_prior_equivalent_initial: true
+    retry_rerun_and_correction_must_follow_the_frozen_schedule_and_exact_lineage: true
+    every_operation_schedule_entry_exactly_matches_block_plan_schedule_equivalence_block_run_attempt_kind_basis_ordinal_and_attempt_index: true
+    retry_and_rerun_require_authoritative_immediate_prior_same_block_entry_and_exact_prior_ordinal_plus_one: true
+    correction_starts_a_new_block_at_ordinal_one_with_no_same_block_predecessor: true
+    duplicate_equivalent_initial_or_fresh_id_ceiling_bypass_consequence: DO_NOT_RUN
+    authoritative_attempt_index_contract:
+      key_formula: GLOBAL_PROFILE_HASH_OF_TASK_AND_BLOCK_EQUIVALENCE
+      store_selected_by: E3_004_VERIFIED_HARNESS_CONFIGURATION_NOT_MANIFEST
+      manifest_selected_fresh_or_empty_store_is_authoritative: false
+      complete_gap_free_ordered_history_from_first_attempt_required: true
+      every_entry_binds_schedule_entry_operation_kind_basis_ordinal_and_terminal_launch_state: true
+      prior_equivalent_initial_count_must_be_zero_before_initial_reservation: true
+      append_only_no_delete_no_replacement: true
+      authenticated_owner_epoch_fence_and_current_readback_required: true
+      index_identity_and_complete_history_must_match_block_plan_schedule_reservation_limit_ledgers_final_set_and_dispatch_predicate: true
+  forbidden_result_informed_changes:
+    - threshold
+    - population
+    - stratum
+    - exclusion
+    - denominator
+    - retry
+    - rerun
+    - correction
+    - seed_or_order
+    - fixture_or_oracle
+    - grader
+    - analysis
+    - success_or_failure_treatment
+  material_change_consequence:
+    new_protocol_or_configuration_version_required: true
+    new_manifest_required: true
+    new_whole_affected_block_required: true
+    prior_manifest_and_raw_evidence_preserved: true
+    prior_unfavorable_evidence_may_be_deleted_or_relabelled: false
+    old_and_new_results_reported_separately: true
+  harness_or_oracle_defect:
+    defect_must_be_independently_confirmed: true
+    invalidates_entire_affected_versioned_block_for_every_candidate: true
+    selective_candidate_or_attempt_exclusion_forbidden: true
+
+run_admission:
+  default_outcome: DO_NOT_RUN
+  only_outcomes:
+    - PASS
+    - DO_NOT_RUN
+    - EXPIRED_REQUIRES_REFREEZE
+  capture_terminal_class_is_distinct_from_run_admission_outcome: true
+  capture_terminal_class_mapping:
+    VALID_MANIFEST_DECISION_RECORDED: USE_EXACT_RECORDED_RUN_ADMISSION_DISPOSITION
+    PARSE_OR_SCHEMA_REJECTED: DO_NOT_RUN
+    SECRET_BOUNDARY_REJECTED: DO_NOT_RUN
+  parser_or_secret_capture_classes_do_not_expand_the_three_outcome_vocabulary: true
+  unit: IMMUTABLE_EXACT_BLOCK_AND_SINGLE_LAUNCH_ATTEMPT
+  every_empirical_block_including_development_and_smoke_requires_manifest: true
+  every_initial_retry_rerun_and_correction_requires_fresh_manifest_and_independent_pass: true
+  policy_verification_is_run_admission: false
+  schema_conformance_is_sufficient_for_pass: false
+  independent_semantic_fact_verification_required: true
+  evaluation_order:
+    - parse_strict_yaml_and_reject_duplicate_or_unsafe_constructs
+    - validate_schema
+    - verify_current_source_facts_and_digests
+    - verify_actor_independence_and_authority
+    - verify_all_admission_dimensions
+    - apply_expiry_and_stop_precedence
+    - record_one_capture_terminal_class_and_one_of_the_three_run_admission_outcomes
+  dimensions:
+    - execution_task_registration_claim_and_exact_dependency_status
+    - protocol_and_harness_verification
+    - architecture_and_e3v_binding
+    - exact_configuration_and_scope
+    - qpa_and_protocol_limits
+    - route
+    - budget_and_account
+    - credential_and_protected_entry
+    - data_fixture_rights_region_and_retention
+    - network_and_external_effects
+    - isolation_and_security
+    - evidence_destinations_integrity_retention_and_lineage
+    - contamination_and_grading
+    - retry_rerun_correction_and_attempt_semantics
+    - stop_hard_failure_and_handback
+    - freshness_and_expiry
+  pass_semantics:
+    launch_permitted: true
+    launch_count: SINGLE_USE
+    binds_exact_admission_payload_digest_manifest_block_run_attempt_and_operator: true
+    binds_current_authenticated_execution_and_admission_checker_authority_grants: true
+    authority_grant_subject_owner_epoch_fence_scope_and_revocation_are_rechecked_at_dispatch: true
+    launch_reservation_state_at_admission: UNCONSUMED_RESERVED
+    dispatch_transition: ATOMIC_COMPARE_AND_SET_UNCONSUMED_RESERVED_TO_CONSUMED
+    dispatch_transition_precedes_process_start_network_use_credential_use_or_external_effect: true
+    launch_attempt_index_qpa_protocol_budget_and_fallback_reservations_commit_as_one_atomic_set: true
+    atomic_reservation_set_contract:
+      canonical_member_order: ATTEMPT_INDEX_THEN_QPA_FAMILY_SCOPE_THEN_PROTOCOL_DIMENSION_THEN_BUDGET_THEN_FALLBACK_ROUTE_THEN_FALLBACK_CHILD_CONFIGURATION
+      exact_member_set_and_digest_recomputed: true
+      acyclic_commit_order:
+        - freeze_one_canonical_transaction_intent_from_raw_member_descriptors_without_final_member_payload_or_launch_digests
+        - create_each_attempt_QPA_protocol_budget_selector_and_child_claim_reservation_binding_only_the_intent_digest_and_transaction_id
+        - compute_one_final_atomic_set_over_the_completed_member_record_digests
+        - create_the_postdecision_launch_binding_over_payload_intent_final_set_and_decision
+      members_share_predecision_intent_digest_and_transaction_not_final_set_digest: true
+      final_atomic_set_alone_owns_completed_member_record_digests: true
+      one_current_owner_epoch_and_fence_across_authoritative_reservations_and_final_set: true
+      partial_commit_permitted: false
+      every_qpa_protocol_and_budget_ledger_is_authoritative_append_only_and_complete_from_first_applicable_attempt: true
+      qpa_ledger_identity_uses_the_exact_family_specific_formula_frozen_above: true
+      deterministic_repetition_is_a_per_scheduled_attempt_requirement_not_a_lifetime_cumulative_ceiling: true
+      correction_consumption_uses_one_stable_authoritative_scope_member_subject_per_case_or_task_across_membership_snapshot_and_cross_version_changes_and_cannot_reset_on_add_remove_readd_new_block_or_new_version: true
+      protocol_limit_dimensions_have_distinct_ledgers_and_reservations_for_retry_repetition_repeated_failure_elapsed_time_output_process_disk_and_network: true
+      manifest_or_fresh_identifier_may_not_reset_a_ledger: true
+      ledger_attempt_history_must_equal_the_exact_family_specific_projection_of_authoritative_attempt_indices: true
+      verification_and_cumulative_protocol_projection_scope: CURRENT_BLOCK_APPLICABLE_ATTEMPTS
+      deterministic_and_per_attempt_resource_projection_scope: EXACT_SCHEDULED_ATTEMPT
+      correction_projection_scope: STABLE_CORRECTION_SCOPE_MEMBER_ALL_BLOCKS
+      budget_projection_scope: STAGE_ALL_APPLICABLE_ATTEMPTS
+    dispatch_atomic_predicate_contract:
+      one_atomic_predicate_must_observe_and_bind:
+        - current_execution_grant_id_version_digest_status_revocation_owner_epoch_and_fence
+        - current_admission_checker_grant_id_version_digest_status_revocation_owner_epoch_and_fence
+        - exact_current_admission_decision_id_version_digest
+        - exact_capability_free_index_slot_preparse_context_and_protected_history_screen_attestations_resolved_inside_the_protected_boundary_to_a_terminal_valid_manifest_slot_with_PASS_and_zero_conflicting_terminal_decisions
+        - exact_transaction_intent_final_atomic_set_version_state_and_revocation
+        - exact_authoritative_material_admission_fact_set_digest_epoch_fence_zero_drift_state_and_current_readback
+      prospective_direct_dispatch_consumption_plan_binds_exact_launch_final_set_attempt_index_every_QPA_scope_all_eight_protocol_dimensions_budget_and_fallback_member_disposition: true
+      same_atomic_transaction_consumes_launch_final_set_attempt_index_every_QPA_scope_all_eight_protocol_dimensions_and_budget_members: true
+      fallback_enabled_primary_dispatch_leaves_selector_and_child_claims_reserved_only_for_later_route_resolution: true
+      fallback_disabled_primary_dispatch_has_no_selector_or_child_claim_members: true
+      authoritative_runtime_execution_record_is_the_atomic_consumption_receipt: true
+      post_execution_readback_attestation_must_rederive_the_exact_terminal_member_tuple: true
+      partial_mismatched_separate_or_unreceipted_member_transition_consequence: DO_NOT_RUN
+      authority_transfer_atomically_fences_or_revokes_every_old_reservation: true
+      any_material_fact_transition_atomically_advances_the_fact_epoch_and_fences_every_prior_PASS_and_reservation_before_the_changed_fact_becomes_current: true
+      receipt_records_the_observed_authority_decision_evaluation_and_reservation_tuple: true
+    durable_consumption_execution_record_and_post_record_readback_required: true
+    crash_or_unknown_consumption_outcome_requires_reconciliation_before_any_retry: true
+    concurrent_replay_stale_revoked_unknown_or_consumed_launch_is_rejected: true
+    final_manifest_envelope_is_separately_sealed_after_decision_and_binding_records: true
+    every_mandatory_dimension_must_be_satisfied: true
+    execution_task_must_be_registered_claimed_and_prelaunch_authorized: true
+    execution_task_is_not_required_or_permitted_to_claim_post_run_verification_before_launch: true
+    not_applicable_requires_explicit_policy_basis: true
+    route_is_never_not_applicable_for_an_empirical_e3_pass: true
+    exact_route_purpose: E3_EVALUATION
+    exact_route_eligibility: EVALUATION_ONLY
+    creates_technical_or_eligibility_credit: false
+    qualifies_configuration_or_role: false
+    promotes_route: false
+    authorizes_later_or_different_run: false
+  do_not_run_semantics:
+    launch_permitted: false
+    trigger: ANY_ABSENT_UNKNOWN_UNAPPROVED_INVALID_CONFLICTING_OR_NOT_YET_VERIFIED_REQUIRED_FACT
+    blocker_reasons_required: true
+  expired_semantics:
+    launch_permitted: false
+    applies_only_to_previously_passing_manifest: true
+    prior_pass_and_evidence_remain_historical_facts: true
+    trigger_and_prior_pass_ref_required: true
+    new_freeze_and_new_manifest_required: true
+  expiry_model:
+    calendar_ttl_invented_by_e3_001: false
+    inherited_e1_qualification_window_is_not_generic_manifest_ttl: true
+    material_change_triggers:
+      - policy_schema_protocol_or_qpa_version_or_digest_change
+      - task_dependency_harness_fixture_or_oracle_status_change
+      - configuration_prompt_tool_fallback_context_or_served_version_change
+      - role_task_scope_support_class_host_client_or_environment_change
+      - budget_account_entitlement_quota_or_billing_change
+      - credential_scope_validity_revocation_or_protected_entry_change
+      - data_rights_class_region_retention_or_training_policy_change
+      - network_destination_redirect_or_external_effect_scope_change
+      - isolation_security_capture_or_threat_boundary_change
+      - architecture_adr_or_canonical_handback_change
+      - evidence_destination_integrity_retention_or_contamination_change
+      - material_security_finding_provider_drift_or_independence_failure
+      - prior_single_use_pass_already_consumed
+    authoritative_material_fact_currentness_contract:
+      closed_material_fact_set_digest_required: true
+      authoritative_monotonic_epoch_and_fence_required: true
+      epoch_key_contract:
+        integrity_profile: MANIFEST_GLOBAL_INTEGRITY_PROFILE
+        exact_ordered_inputs: [project_id, stage, task_id]
+        material_source_identity_or_component_digests_are_key_inputs: false
+        mutable_record_store_ledger_manifest_block_run_attempt_admission_or_reservation_identifiers_are_key_inputs: false
+        verified_harness_resolves_exactly_one_current_authoritative_epoch_ledger_by_fixed_key: true
+        manifest_may_select_replace_fork_or_reset_the_epoch_key_or_ledger: false
+      material_fact_set_digest_includes_source_identity_set_and_all_nine_closed_component_digests: true
+      any_source_identity_or_component_change_reuses_same_key_and_atomically_advances_epoch_and_fence_before_publish: true
+      exact_fact_set_epoch_and_fence_bind_both_grants_decision_final_reservation_set_launch_and_dispatch_predicate: true
+      dispatch_requires_zero_material_change_triggers_and_current_authenticated_readback: true
+      fact_change_commit_must_atomically_advance_epoch_and_fence_prior_admission_before_publish: true
+      stale_or_unknown_epoch_fence_or_readback_consequence: USE_EXACT_THREE_OUTCOME_PRECEDENCE_RULE_BELOW
+  precedence:
+    - A hard stop during a valid launch does not rewrite the historical PASS; it stops the attempt and makes affected subsequent admission DO_NOT_RUN or EXPIRED_REQUIRES_REFREEZE.
+    - A prior PASS plus material drift yields EXPIRED_REQUIRES_REFREEZE; missing approval without a prior PASS yields DO_NOT_RUN.
+    - When stop facts and a qualifying prior-PASS expiry trigger coexist, EXPIRED_REQUIRES_REFREEZE takes precedence for the new admission; otherwise unresolved stop facts yield DO_NOT_RUN.
+    - Architecture handback is a governed root-cause consequence, not a fourth admission outcome.
+  admission_check_applicability:
+    every_check_status_must_be_supported_by_resolvable_evidence: true
+    route_check_must_be_SATISFIED_for_every_PASS: true
+    credential_check_must_be_SATISFIED_when_credentials_are_REQUIRED: true
+    network_and_effect_check_must_be_SATISFIED_when_network_is_active_or_an_exact_controlled_effect_is_planned: true
+    policy_not_applicable_requires_resolvable_policy_basis_and_reason_code: true
+
+budget_policy:
+  current_external_paid_budget_authorization_usd: 0
+  current_paid_validation_authorization: NOT_AUTHORIZED
+  current_paid_lane_outcome: DO_NOT_RUN
+  lanes:
+    NO_COST_LOCAL_VALIDATION:
+      external_or_provider_spend_usd: 0
+      provider_dispatch_permitted: false
+      external_network_permitted: false
+      real_credential_permitted: false
+      still_requires_full_admission: true
+      protocol_must_supply_finite_limits_for:
+        - elapsed_time
+        - output_bytes
+        - process_count
+        - disk_bytes
+        - retries_reruns_and_corrections
+      missing_limit_consequence: DO_NOT_RUN
+    PAID_EXTERNAL_VALIDATION:
+      current_authorization: NOT_AUTHORIZED
+      current_cap_usd: 0
+      current_outcome: DO_NOT_RUN
+      s0_005_must_be_reconciled: true
+      future_founder_authorization_must_bind:
+        - authorization_id_decision_ref_and_approving_actor
+        - authorized_run_actor
+        - provider_and_nonsecret_account_ref
+        - exact_task_protocol_block_and_configurations
+        - purpose_and_route
+        - per_run_protocol_stage_and_cumulative_caps
+        - conservative_remaining_budget_calculation
+        - repetitions_retries_reruns_and_corrections
+        - termination_and_budget_stop_rules
+        - data_classes_region_retention_and_training_policy
+        - nonsecret_credential_ref_scope_and_protected_entry
+        - exact_network_destinations_and_redirect_policy
+        - authorization_expiry_or_material_review_triggers
+      all_attempts_count_against_caps:
+        - successful
+        - failed
+        - refused
+        - retried
+        - rerun
+        - corrected
+        - inconclusive
+      unknown_or_unbounded_cost_consequence: DO_NOT_RUN
+  s0_005_current_facts:
+    status: BLOCKED
+    funded_account_or_budget_recorded: false
+    region_retention_and_data_classification_verified: false
+    protocol_planning_may_continue: true
+    paid_or_real_provider_execution_may_continue: false
+
+credential_and_protected_entry_policy:
+  current_dependency_status: CREDENTIAL_DEPENDENCY_UNVERIFIED
+  current_access_authority: NONE
+  manifest_contains_secret_values: false
+  references_only: true
+  required_nonsecret_facts_when_applicable:
+    - credential_reference
+    - provider_and_account_scope
+    - endpoint_and_use_scope
+    - least_privilege_basis
+    - validity_and_expiry_status
+    - revocation_status_and_check_time
+    - exact_protected_entry_recipient
+    - ambient_inheritance_disabled
+    - redaction_and_quarantine_controls
+  raw_secret_forbidden_surfaces:
+    - prompts_and_model_context
+    - chat_and_repository
+    - command_text_argv_and_environment_dump
+    - fixtures_and_test_data
+    - logs_transcripts_screenshots_and_caches
+    - approvals_manifests_artifacts_and_evidence
+    - child_process_environment
+  exception_boundary: >-
+    A raw secret may enter only the exact protected recipient when independently approved and technically required;
+    it remains forbidden from model context and every capture surface. No manifest or evidence may include it.
+  failure_rules:
+    missing_or_ambiguous_protected_entry: WAITING_FOR_USER_OR_BLOCKED
+    expired_revoked_wrong_account_wrong_endpoint_or_overbroad_credential: DO_NOT_RUN
+    suspected_exposure: STOP_QUARANTINE_PRESERVE_SAFE_FACTS_AND_ESCALATE
+  e3v_006_real_credentials_permitted: false
+  e3v_006_marker_policy: SYNTHETIC_MARKERS_ONLY
+
+data_and_fixture_policy:
+  default_deny: true
+  allowed_classes:
+    - SYNTHETIC
+    - REPOSITORY_OWNED
+    - PUBLIC_OPEN_WITH_RIGHTS
+    - CLEAN_ROOM_DERIVED
+  every_fixture_requires:
+    - immutable_fixture_id_version_and_digest
+    - provenance
+    - ownership_license_or_rights_basis
+    - data_classification
+    - clean_room_review_status
+    - development_or_held_out_partition
+    - region_retention_and_deletion_policy_when_applicable
+  prohibited_classes:
+    - private_customer_or_interview_data
+    - unauthorized_private_or_personal_data
+    - real_secrets_credentials_or_tokens
+    - reconstructed_grok_bot_source_or_nonpublic_assets
+    - unlicensed_proprietary_code_content_or_benchmark_material
+    - material_without_verified_rights_or_provenance
+  restricted_data_rule: EXPLICIT_SEPARATE_FOUNDER_AUTHORIZATION_AND_FULL_ADMISSION_REQUIRED
+  e3v_006_requires_synthetic_marker: true
+  clean_room_rules:
+    behavior_claims_require_authorized_evidence: true
+    public_or_reconstructed_reference_content_cannot_be_treated_as_runtime_fact: true
+    fixture_may_not_import_source_names_layouts_constants_or_assets_without_rights: true
+  missing_region_retention_or_rights_fact_consequence: DO_NOT_RUN
+
+network_and_external_effect_policy:
+  default_network: DENY
+  default_remote_effect: ZERO_CONSEQUENTIAL_EXTERNAL_EFFECT
+  semantic_separation:
+    NETWORK_READ_OR_PROVIDER_INVOCATION:
+      may_egress_data_or_incur_cost: true
+      is_not_remote_mutation_authority: true
+      exact_destination_purpose_data_credential_and_limits_required: true
+    REMOTE_SIDE_EFFECT:
+      examples:
+        - push_or_pull_request_mutation
+        - webhook_or_message
+        - account_or_permission_change
+        - external_file_or_record_mutation
+        - deployment_or_release
+      never_inferred_from_network_access: true
+      separate_exact_approval_and_readback_required: true
+  authorized_network_manifest_facts:
+    - exact_destinations_and_ports_or_api_surface
+    - redirect_policy
+    - purpose_and_task_operation_binding
+    - data_class_and_maximum_egress
+    - credential_reference_and_scope
+    - call_byte_time_and_cost_limits
+    - region_policy
+    - denial_and_stop_behavior
+  controlled_effect_contract:
+    effect_must_be_indispensable_to_the_frozen_validation_question: true
+    effect_must_be_synthetic_or_exactly_controlled: true
+    approval_branch:
+      required_sequence:
+        - INTENT
+        - APPROVAL
+        - ATTEMPT
+        - OBSERVED_EFFECT
+        - CONFIRMED_EFFECT_OR_KNOWN_FAILURE_OR_UNKNOWN_EFFECT
+    refusal_branch:
+      required_sequence:
+        - INTENT
+        - REFUSAL
+        - ZERO_ATTEMPT
+        - ZERO_EFFECT
+    exact_target_action_idempotency_and_actor_binding_required: true
+    fresh_target_specific_readback_required: true
+    unknown_effect_prohibits_blind_retry: true
+  no_cost_local_lane_network_or_effect_exception: NONE
+
+isolation_and_security_policy:
+  technology_selected_by_e3_001: false
+  exact_manifest_binding_required:
+    - host_platform_and_version
+    - process_and_privilege_model
+    - workspace_root_and_allowed_paths
+    - prohibited_paths_and_outside_canaries
+    - descendant_ownership_and_support_class
+    - filesystem_process_network_secret_and_effect_boundaries
+    - cancellation_timeout_force_or_fence_and_recovery
+    - stale_authority_rejection_and_fresh_readback
+  tier_2_semantic_floor:
+    - task_owned_descendants
+    - normalized_filesystem_and_object_boundaries
+    - deny_by_default_network_and_secret_scope
+    - bounded_cancellation_timeout_and_force_or_fence
+    - stale_authority_rejection
+    - recovery_reconciliation_and_fresh_readback
+  unsupported_force_or_containment_class: BLOCK_OR_FENCE_AND_MARK_UNSUPPORTED
+  security_review_required_for:
+    - E3V-006
+    - any_credential_or_network_use
+    - any_controlled_external_effect
+    - any_sensitive_evidence_quarantine
+  missing_capture_or_boundary_evidence_consequence: DO_NOT_RUN
+
+evidence_policy:
+  no_run_evidence_created_by_e3_001: true
+  conceptual_layers:
+    RAW_RUN_EVIDENCE:
+      mutability: IMMUTABLE_APPEND_ONLY
+      decision_authority: NONE
+      required_contents:
+        - block_run_and_attempt_ids
+        - policy_schema_manifest_protocol_configuration_and_harness_digests
+        - timestamps_inputs_cases_fixtures_seeds_and_order
+        - commands_tools_environment_and_nonsecret_provenance
+        - raw_outputs_refusals_failures_missingness_and_effect_readbacks
+        - retry_rerun_correction_and_exclusion_linkage
+        - usage_cost_latency_resource_and_stop_facts
+        - integrity_digest_retention_redaction_quarantine_and_limitations
+    DERIVED_ANALYSIS:
+      mutability: VERSIONED_REPRODUCIBLE_APPEND_ONLY
+      must_reference_complete_raw_set: true
+      may_not_overwrite_or_filter_raw_evidence: true
+      required_contents:
+        - analysis_version_and_digest
+        - exact_raw_input_set
+        - calculations_normalization_and_denominators
+        - missingness_exclusions_flaky_and_invalid_harness_treatment
+        - independent_reproduction_result
+    ELIGIBILITY_DECISION:
+      mutability: VERSIONED_APPEND_ONLY
+      must_reference_verified_analysis_and_raw_set: true
+      may_be_created_by_e3_005_or_e3_006: false
+      e3_007_may_propose_only: true
+      e3_008_and_stage_gate_have_separate_authorities: true
+  separation_rules:
+    raw_derived_and_decision_locators_must_be_distinct: true
+    write_authorities_must_be_explicit_and_least_privilege: true
+    all_launched_attempts_must_be_in_run_index: true
+    unfavorable_failed_blocked_inconclusive_and_stopped_attempts_preserved: true
+    absence_or_corruption_blocks_credit: true
+  pre_run_admission_requirements:
+    - immutable_append_only_raw_destination_ready
+    - operator_overwrite_and_delete_denied
+    - durable_attempt_index_slot_reserved
+    - preexisting_attempt_index_complete_and_integrity_checked
+    - authoritative_append_only_admission_evaluation_index_and_current_slot_reserved
+    - parser_wrapper_capture_ready_for_unparseable_duplicate_key_and_schema_rejected_submissions
+    - complete_prior_admission_outcomes_and_same_submission_equivalence_history_checked
+    - independent_seal_and_readback_controls_ready
+  admission_evaluation_history:
+    every_submission_or_evaluation_recorded: true
+    one_global_harness_selected_capture_index_reserves_a_gap_free_ordinal_before_parse_or_secret_classification: true
+    authoritative_index_store_selected_by: E3_004_VERIFIED_HARNESS_CONFIGURATION_NOT_MANIFEST
+    manifest_selected_fresh_or_empty_store_is_authoritative: false
+    includes:
+      - unparseable_or_schema_rejected_noncontent_submission_id_and_nonsecret_byte_digest_without_invented_manifest_identity
+      - suspected_or_confirmed_secret_boundary_rejection_with_opaque_quarantine_receipt_and_protected_store_only_equivalence_search_proof
+      - DO_NOT_RUN
+      - EXPIRED_REQUIRES_REFREEZE
+      - PASS
+      - replay_or_concurrent_denial
+    canonical_equivalent_submission_digest_recomputed: true
+    canonical_equivalent_submission_projection:
+      profile_is_separately_versioned_verified_current_and_selected_only_by_exact_E3_004_harness_id_version_digest: true
+      manifest_may_select_or_substitute_profile: false
+      profile_id_version_digest_must_match_across_prior_VERIFIED_NONSECRET_VALID_MANIFEST_equivalence_bearing_entries_current_slot_decision_and_index_key: true
+      nonsecret_parse_or_schema_rejected_entries_require_byte_digest_but_keep_canonical_equivalence_profile_digest_manifest_identity_and_payload_null: true
+      rejected_nonsecret_equivalence_key_formula: HASH_GLOBAL_PROFILE_OF_TASK_BRANCH_TAG_EXACT_RAW_BYTES_REJECTED_SUBMISSION_AND_RAW_BYTES_DIGEST
+      raw_rejection_equivalence_search_covers_all_parser_namespaces_checker_identities_and_keys_from_first_capture: true
+      submission_or_checker_identifiers_cannot_change_canonical_or_raw_equivalence: true
+      secret_boundary_entries_keep_null_profile_and_equivalence_digest_but_remain_gap_free_and_quarantine_receipted: true
+      index_ledger_key_formula: HASH_GLOBAL_PROFILE_OF_TASK_ID_CANONICAL_SUBMISSION_EQUIVALENCE_DIGEST_AND_EQUIVALENCE_PROFILE_ID_VERSION_DIGEST
+      authenticated_current_cross_key_and_cross_profile_equivalence_search_required: true
+      search_scope: ALL_KEYS_NAMESPACES_AND_PROFILE_VERSIONS_FROM_FIRST_SUBMISSION_THROUGH_CURRENT_RESERVATION
+      any_prior_VERIFIED_NONSECRET_equivalent_terminal_decision_outside_current_slot_consequence: DO_NOT_RUN
+      includes_substantive_facts:
+        - schema_policy_task_and_block_equivalence
+        - operation_schedule_kind_basis_and_ordinal_semantics
+        - execution_authority_scope_and_registry_state
+        - architecture_protocol_harness_configuration_route_and_QPA
+        - budget_account_credential_data_network_effect_isolation_and_evidence_destinations
+        - contamination_stop_handback_freshness_and_admission_check_subjects
+      excludes_only_nonsemantic_or_cycle_forming_fields:
+        - arbitrary_manifest_block_run_attempt_record_and_submission_identifiers
+        - creation_evaluation_and_decision_timestamps
+        - manifest_payload_final_envelope_and_record_digest_fields
+        - admission_decision
+        - admission_evaluation_index_slot_and_terminal_records
+        - admission_checker_identity_and_admission_checker_grant_selection
+      exclusion_does_not_remove_operation_schedule_or_lineage_basis: true
+      digest_computed_before_slot_reservation: true
+      checker_or_fresh_identifier_change_cannot_change_digest: true
+    equivalent_submission_may_be_resubmitted_to_another_checker: false
+    canonical_valid_manifest_nonsecret_rejected_nonsecret_and_secret_boundary_entry_branches_are_exhaustive_and_mutually_exclusive: true
+    valid_manifest_capture_class_records_exactly_one_of_the_three_run_admission_dispositions: true
+    parser_and_secret_capture_classes_each_record_run_admission_disposition_DO_NOT_RUN: true
+    secret_boundary_entry_ids_and_receipt_digests_are_opaque_safe_metadata_not_content_derived: true
+    ordered_history_bucket_counts_are_two_capture_rejection_classes_plus_three_valid_manifest_dispositions_and_must_sum_exactly_to_total_submissions: true
+    full_ordered_history_prior_entries_bucket_counts_protected_match_result_count_and_secret_equivalence_material_remain_only_in_the_access_controlled_protected_store: true
+    ordinary_manifest_embeds_only_capability_free_non_content_derived_opaque_current_index_slot_preparse_context_and_protected_history_screen_attestations_not_any_protected_record_or_digest: true
+    ordinary_manifest_exposes_no_global_ordinal_index_or_slot_version_slot_identity_ledger_version_owner_epoch_fence_history_multiplicity_protected_locator_store_configuration_or_access_handle: true
+    ordinary_attestation_wire_shapes_and_value_distributions_are_indistinguishable_across_histories_that_differ_only_in_prior_protected_captures: true
+    ordinary_manifest_or_general_evidence_may_not_expose_prior_secret_boundary_count_membership_multiplicity_or_protected_entry_correlation_material: true
+    every_capture_ordinal_has_exactly_one_terminal_class_and_one_run_admission_disposition: true
+    every_valid_manifest_slot_has_exactly_one_matching_terminal_decision: true
+    conflicting_terminal_outcome_consequence: DO_NOT_RUN
+    prior_ordered_entries_counts_and_gap_detection_recomputed_from_authoritative_append_only_store: true
+    deletion_omission_or_fresh_index_forum_shopping_consequence: DO_NOT_RUN
+    PASS_launch_requires_terminal_slot_CAS_receipt_and_current_readback: true
+    preclassification_protected_history_screen:
+      required_for_every_submission_before_secret_classification: true
+      current_submission_comparison_occurs_only_inside_protected_boundary: true
+      search_store_selected_by: E3_004_VERIFIED_HARNESS_CONFIGURATION_NOT_MANIFEST
+      search_scope: ALL_PROTECTED_QUARANTINE_ENTRIES_CHECKER_IDENTITIES_AND_SECRET_CLASSIFIER_VERSIONS_FROM_FIRST_CAPTURE_THROUGH_CURRENT_CAPTURE
+      exported_raw_secret_or_content_derived_identifier_digest_locator_or_token_permitted: false
+      match_boolean_exact_count_result_and_proof_metadata_visible_only_inside_protected_admission_control: true
+      ordinary_manifest_receives_only_a_non_content_derived_opaque_screen_attestation: true
+      screen_result_or_count_visible_to_untrusted_submitter_model_or_general_evidence: false
+      any_prior_protected_equivalent_match_forces_current_classification: SUSPECTED_OR_CONFIRMED_SECRET
+      any_prior_protected_equivalent_match_forces_capture_terminal_class: SECRET_BOUNDARY_REJECTED
+      any_prior_protected_equivalent_match_forces_run_admission_disposition: DO_NOT_RUN
+      later_checker_or_nonsecret_reclassification_bypass_permitted: false
+      ordinary_valid_manifest_requires_typed_current_submission_and_current_slot_attestation: true
+      typed_attestation_exactly_binds_task_submission_preparse_context_and_slot_inside_protected_boundary: true
+      missing_stale_wrong_submission_wrong_slot_or_prior_protected_match_consequence: DO_NOT_RUN
+    trusted_preparse_capture_context:
+      created_by: E3_004_VERIFIED_CAPTURE_WRAPPER_BEFORE_READING_OR_INSPECTING_UNTRUSTED_BYTES
+      exact_project_stage_task_harness_wrapper_parser_secret_classifier_global_index_store_owner_epoch_and_fence_binding_required: true
+      submission_or_manifest_may_select_or_replace_context: false
+      same_context_required_across_global_index_entry_screen_equivalence_search_slot_and_decision: true
+      ordinary_manifest_receives_only_a_capability_free_non_content_derived_opaque_context_attestation: true
+      full_context_record_digest_locator_store_epoch_and_fence_remain_protected: true
+      missing_wrong_postparse_or_task_or_index_substituted_context_consequence: DO_NOT_RUN
+    malformed_submission_secret_boundary:
+      raw_content_echoed: false
+      ordinary_evidence_digest_permitted_only_after_verified_nonsecret_classification: true
+      suspected_or_confirmed_secret_byte_digest_permitted: false
+      suspected_or_confirmed_secret_retention: OPAQUE_PROTECTED_QUARANTINE_RECEIPT_AND_SAFE_EXPOSURE_FACTS_ONLY
+      protected_equivalence_search_required_for_every_secret_capture_in_addition_to_the_every_submission_preclassification_screen: true
+      protected_search_store_selected_by: E3_004_VERIFIED_HARNESS_CONFIGURATION_NOT_MANIFEST
+      protected_search_scope: ALL_PROTECTED_QUARANTINE_ENTRIES_CHECKER_IDENTITIES_AND_SECRET_CLASSIFIER_VERSIONS_FROM_FIRST_CAPTURE_THROUGH_CURRENT_CAPTURE
+      secret_comparison_and_correlation_material_remain_inside_protected_boundary: true
+      exported_raw_secret_or_content_derived_identifier_digest_locator_or_token_permitted: false
+      proof_digest_covers_only_safe_metadata_not_secret_equivalence_material: true
+      full_secret_search_proof_and_exact_prior_match_count_are_protected_store_only_and_never_embedded_in_the_ordinary_manifest_or_general_evidence: true
+      ordinary_capture_receives_only_a_non_content_derived_opaque_secret_search_attestation: true
+      repeated_secret_still_gets_next_gap_free_capture_ordinal_and_DO_NOT_RUN: true
+      alternate_checker_may_create_valid_manifest_decision_for_protected_equivalent_submission: false
+  post_run_evidence_requirements:
+    - launched_attempt_is_indexed_and_sealed
+    - raw_evidence_completeness_and_integrity_are_independently_checked
+    - every_unfavorable_failed_blocked_inconclusive_and_stopped_attempt_is_preserved
+  correction_of_evidence:
+    overwrite_forbidden: true
+    append_only_amendment_required: true
+    amendment_must_record:
+      - actor
+      - reason
+      - timestamp
+      - original_locator_and_digest
+      - corrected_or_supplemental_facts
+      - affected_analysis_and_decision_refs
+      - recomputation_or_invalidation_consequence
+  storage_or_hash_implementation_selected_by_e3_001: false
+  integrity_profile_rule: >-
+    Every artifact and manifest integrity token must bind the one separately versioned manifest-global
+    canonicalization and integrity profile declared in schema_identity; that profile governs every digest-bearing
+    nested and referenced record. E3-001 selects no hash algorithm, storage engine, locator scheme, or sealing
+    implementation.
+  noncyclic_two_phase_manifest_integrity:
+    admission_payload_digest_scope: >-
+      Canonical pre-decision payload excluding admission_payload_digest, final_envelope_digest, and the complete
+      admission_decision object.
+    decision_and_single_use_binding_bind:
+      - exact_admission_payload_digest
+      - manifest_id
+      - block_id
+      - run_id
+      - attempt_id
+      - operator_actor_id
+      - execution_authority_grant_digest
+      - admission_checker_authority_grant_and_decision_record_digest
+      - authority_version_owner_epoch_and_fence_token_digest
+      - attempt_index_reservation_ref
+      - qpa_protocol_budget_and_fallback_reservation_set_digest
+      - authoritative_UNCONSUMED_reservation_version_and_revocation_status
+      - atomic_consumption_receipt_destination_and_crash_reconciliation_rule
+    admission_decision_uses_resolvable_external_record_ref_not_an_embedded_self_digest: true
+    authoritative_grant_decision_and_root_cause_proofs_bind_detached_subject_payload_digests_that_exclude_the_record_digest_and_proof_ref: true
+    proof_may_not_bind_the_enclosing_full_record_digest_recursively: true
+    reservation_digest_DAG: HARNESS_DERIVED_CORRECTION_SERIES_AND_VERSIONED_MEMBERSHIP_SNAPSHOT_TO_STABLE_SUBJECT_REGISTRIES_TO_CORRECTION_LINEAGE_REGISTRATION_TO_BLOCK_PLAN_AND_SCHEDULE_TO_TRANSACTION_INTENT_TO_MEMBER_RECORDS_TO_FINAL_ATOMIC_SET_TO_POSTDECISION_LAUNCH_BINDING_TO_PRE_DISPATCH_CONSUMPTION_PLAN_TO_FINAL_ENVELOPE
+    transaction_intent_may_not_contain_admission_payload_final_member_atomic_set_or_launch_binding_digests: true
+    predecision_fallback_selector_may_not_contain_parent_launch_or_admission_payload_digest: true
+    fallback_route_resolution_digest_DAG: PARENT_TRANSACTION_INTENT_TO_PREALLOCATED_ROUTE_RESOLUTION_AND_PARENT_LAUNCH_LOCATORS_TO_SELECTOR_TO_INCOMING_CHILD_CONTEXTS_TO_FALLBACK_ONLY_CHILD_MANIFESTS_ATOMIC_SETS_DECISIONS_AND_LAUNCHES_TO_CHILD_CLAIMS_TO_PARENT_FINAL_ATOMIC_SET_TO_RELEASE_PARENT_SELECTED_AND_NO_SELECTION_PLANS_TO_PARENT_PAYLOAD_DECISION_AND_LAUNCH_TO_EXTERNAL_RUNTIME_RELEASE_AND_ROUTE_RESOLUTION_EXECUTIONS_TO_POST_RECORD_READBACK_ATTESTATIONS
+    fallback_child_launch_and_context_contain_only_cycle_safe_parent_selector_transaction_configuration_and_preallocated_locator_facts_not_child_claim_parent_set_plan_parent_launch_runtime_or_receipt_digests: true
+    route_resolution_locator_contains_no_selector_set_payload_launch_plan_runtime_or_receipt_digest: true
+    selected_and_no_selection_plans_bind_only_prelaunch_facts_parent_launch_locator_destinations_and_rules_not_realized_parent_state_branch_receipt_transition_or_readback: true
+    runtime_resolution_resolves_the_exact_parent_launch_digest_and_never_hashes_back_into_any_prelaunch_artifact: true
+    runtime_execution_record_is_the_atomic_receipt_and_post_record_readback_or_reconciliation_attestations_may_bind_its_digest_but_are_not_hashed_back_into_it: true
+    final_envelope_digest_scope: >-
+      Canonical completed manifest envelope, including the admission decision, launch-binding reference, and
+      prospective direct-dispatch consumption plan when activation mode is DIRECT,
+      excluding only final_envelope_digest.
+    admission_payload_may_include_final_envelope_digest: false
+    final_envelope_must_include_admission_payload_digest: true
+    self_referential_or_mutually_recursive_digest_is_valid: false
+
+contamination_policy:
+  attempt_class_is_immutable: true
+  non_scored_may_be_relabelled_scored: false
+  partitions:
+    DEVELOPMENT_NON_SCORED:
+      may_inform_future_prospective_protocol_version: true
+      decision_credit: NONE
+    SMOKE_NON_SCORED:
+      purpose: INFRASTRUCTURE_ONLY
+      decision_credit: NONE
+    SCORED_DECISION:
+      held_out_partition_required: true
+      prospective_freeze_required: true
+      complete_block_required: true
+  held_out_controls:
+    held_out_bytes_labels_and_expected_results_unavailable_to_candidate_tuning: true
+    partition_digest_and_access_actors_recorded: true
+    candidate_label_blinding_required_where_grading_uses_judgment: true
+    grader_independence_required: true
+    self_or_same_family_grade_may_be_diagnostic_only: true
+  forbidden_practices:
+    - tuning_on_held_out_cases
+    - reuse_of_decision_cases_as_development_cases
+    - favorable_seed_or_order_selection
+    - selective_retry_rerun_or_candidate_omission
+    - failed_or_inconclusive_attempt_omission
+    - post_result_exclusion_denominator_threshold_or_criteria_change
+    - candidate_label_exposure_to_blinded_grader
+    - development_or_smoke_result_promotion
+    - candidate_specific_harness_defect_exclusion
+  contamination_consequence: STOP_QUARANTINE_BLOCK_CREDIT_AND_REQUIRE_INDEPENDENT_REVIEW
+
+retry_rerun_correction_and_flaky_policy:
+  common_rule:
+    fresh_single_use_manifest_and_independent_RUN_ADMISSION_PASS_required: true
+    immutable_scope_aware_consumption_ledger_and_atomic_reservation_required: true
+    exhausted_or_unreserved_attempt_consequence: DO_NOT_RUN
+    current_attempt_result_timestamps_are_null_at_prelaunch_admission: true
+    new_block_initial_or_correction_has_no_block_first_result_timestamp_at_prelaunch: true
+    same_block_retry_or_rerun_preserves_available_block_first_result_timestamps_and_truthful_optional_inspection_timestamp_with_ordering_evidence: true
+    absent_prior_block_result_requires_available_inspected_and_timing_evidence_all_null: true
+    available_prior_block_result_requires_available_timestamp_and_timing_evidence_but_inspection_remains_optional: true
+    inspected_prior_block_result_requires_available_timestamp_timing_evidence_and_ordering: true
+    RETRY_reserves_exactly_one_protocol_execution_retry_slot: true
+    PROTOCOL_REPETITION_RERUN_reserves_exactly_one_protocol_run_repetition_slot: true
+    VERIFICATION_ERROR_RERUN_reserves_zero_protocol_repetition_slots_and_one_for_each_affected_qpa_rerun_scope: true
+    CORRECTION_reserves_each_affected_qpa_correction_scope: true
+  RETRY:
+    definition: SAME_FROZEN_BLOCK_AND_RUN_SEMANTICS_AFTER_A_PROSPECTIVELY_ELIGIBLE_TRANSIENT_OPERATIONAL_FAILURE
+    new_attempt_id_required: true
+    same_run_id_permitted: true
+    original_attempt_preserved: true
+    consumes_frozen_retry_and_budget_limits: true
+    exact_prior_attempt_basis_required: ELIGIBLE_TRANSIENT_OPERATIONAL_FAILURE
+    ineligible_for_automatic_retry:
+      - denial_or_approval_failure
+      - malicious_schema_or_secret_boundary_failure
+      - stale_approval_or_verification
+      - uncertain_non_idempotent_effect
+      - budget_or_correction_exhaustion
+      - hard_or_terminal_failure
+  RERUN:
+    definition: NEW_EVIDENCE_EXECUTION_UNDER_THE_SAME_FROZEN_PROTOCOL_AND_CONFIGURATION
+    new_run_id_required: true
+    prior_run_preserved: true
+    consumes_qpa_verification_rerun_or_protocol_repetition_limit_as_applicable: true
+    same_revision_verification_rerun_allowed_only_after: VERIFICATION_ERROR
+    changes_required_blocked_or_inconclusive_is_same_revision_rerun_reason: false
+    exact_prior_attempt_or_frozen_schedule_basis_required: true
+  CORRECTION:
+    definition: MATERIAL_CHANGE_BEFORE_A_NEW_EXECUTION
+    candidate_configuration_or_prompt_change_requires_new_candidate_or_configuration_version: true
+    policy_protocol_threshold_population_exclusion_grader_or_analysis_change_requires_new_policy_or_protocol_version: true
+    admission_fact_drift_without_candidate_change_requires_refreeze_not_false_candidate_relabelling: true
+    new_whole_affected_block_and_manifest_required: true
+    prior_evidence_preserved: true
+    consumes_qpa_correction_limit: true
+    exact_material_diff_new_version_and_affected_block_basis_required: true
+    exact_stable_correction_series_id_subject_and_lineage_key_inherited_from_prior_affected_block: true
+    versioned_membership_snapshot_with_exact_predecessor_added_removed_unchanged_reused_readded_and_truly_new_sets_required: true
+    overlapping_reused_and_readded_scope_member_subjects_inherited: true
+    removed_scope_member_mapping_and_ledger_deletion_forbidden: true
+    new_membership_snapshot_version_block_manifest_or_attempt_may_not_create_a_new_series_lineage_or_reset_consumption: true
+    newly_added_scope_without_prospectively_Founder_approved_QPA_assignment: DO_NOT_RUN
+  evidence_record_correction_is_not_execution_correction: true
+  flaky_rule:
+    trigger: MIXED_ORDERED_OUTCOMES_FOR_SAME_REVISION_CONFIGURATION_ENVIRONMENT_AND_CHECK
+    result: FLAKY
+    later_pass_erases_flaky_or_failure: false
+    credit_requires_complete_prospectively_declared_repetition_rule: true
+  exhaustion_rule:
+    productive_dispatch_stops: true
+    only_preauthorized_bounded_safety_control_readback_and_evidence_reserve_may_continue: true
+    status_remains_unverified_noncomplete: true
+
+non_compensating_hard_failures:
+  failures:
+    - false_completed_or_false_success_claim
+    - unauthorized_network_read_dispatch_write_or_external_effect
+    - duplicate_or_unresolved_consequential_effect
+    - secret_private_data_or_protected_marker_exposure
+    - repository_workspace_root_or_scope_escape
+    - unrelated_data_loss_or_mutation
+    - approval_authorization_or_admission_bypass_or_replay
+    - stale_verification_or_wrong_revision_evidence
+    - hidden_fallback_or_unadmitted_route
+    - fabricated_deleted_tampered_or_selectively_omitted_evidence
+    - invalid_verifier_grader_or_admission_independence
+    - failure_to_obey_mandatory_stop_fence_wait_or_escalation
+    - clean_room_rights_or_fixture_provenance_failure
+    - protocol_freeze_or_run_admission_bypass
+    - any_frozen_hard_invariant_failure
+  compensation_by_average_or_later_pass_allowed: false
+  immediate_actions:
+    - stop_productive_dispatch
+    - contain_or_fence_effects
+    - preserve_and_quarantine_raw_evidence
+    - record_truthful_noncomplete_status
+    - escalate_for_independent_root_cause_classification
+  eligibility_consequence: >-
+    The exact affected configuration-role-task-scope-protocol tuple may be INELIGIBLE after the authorized
+    synthesis and verification path. E3-001 and the run operator may not issue that verdict.
+
+stop_and_architecture_handback:
+  stop_precedes_root_cause_convenience: true
+  this_admission_record_may_create_or_self_assert_a_handback: false
+  existing_handback_representation:
+    allowed_current_states:
+      - NONE
+      - PENDING_GOVERNED_E2_REVIEW
+    pending_requires:
+      - separately_independently_verified_root_cause_decision
+      - exact_existing_handback_evidence_reference
+      - exact_canonical_adr_set
+      - affected_lane_stopped
+      - DO_NOT_RUN_or_prior_PASS_material_expiry_outcome
+    a_PASS_requires_no_pending_handback: true
+    admission_preserves_but_does_not_manufacture_handback_history: true
+    typed_root_cause_record_must_exactly_bind:
+      - authoritative_source_manifest_block_run_attempt_configuration_and_E3V
+      - tested_indispensable_accepted_property_and_required_support_class
+      - exact_canonical_ADR_set_and_preserved_raw_fault_chain
+      - all_compliant_route_exhaustion_and_structural_impossibility_predicate
+      - authenticated_authoritative_current_nonrevoked_decision_provenance
+      - distinct_operator_investigator_and_independent_verifier
+    existing_handback_evidence_must_equal_the_same_exact_source_root_cause_subject: true
+    current_admission_must_separately_match_the_root_cause_affected_task_lane_and_scope_digest: true
+  ordinary_mechanism_or_configuration_failure:
+    architecture_handback_automatic: false
+    permitted_next_states:
+      - MARK_EXACT_CLASS_UNSUPPORTED
+      - PROPOSE_CORRECTION_THEN_NEW_VERSION_FREEZE_AND_ADMISSION
+      - REMAIN_INCONCLUSIVE_OR_NOT_TESTED
+  missing_or_inadequate_evidence:
+    outcome: NO_CREDIT_FAIL_CLOSED
+    architecture_handback_automatic: false
+  architecture_handback_trigger: >-
+    Reproducible independently reviewed evidence that an indispensable accepted architecture property is
+    structurally impossible for a required supported class, rather than an ordinary implementation,
+    configuration, provider, model, or evidence failure.
+  handback_actions:
+    - stop_affected_and_dependent_e3_lanes
+    - preserve_exact_raw_fault_chain_and_scope
+    - identify_exact_canonical_adr_set
+    - return_to_governed_e2_revision_and_challenge
+    - require_fresh_e2_006_verification_and_renewed_e2_gate
+    - invalidate_affected_downstream_derived_analysis_and_eligibility_credit_while_preserving_raw_history
+  e3_may_edit_or_redesign_accepted_adr_during_handback: false
+  e3v_008_special_rule: >-
+    Ordinary model, provider, configuration, role, task, or benchmark failure never reopens E2. Only structural
+    gateway impossibility through every compliant route can hand back to ADR-E2-006.
+
+e3v_admission_overlays:
+  shared_gate_profile:
+    id: ALL_E3V_COMMON_GATES
+    every_PASS_route_purpose: E3_EVALUATION
+    every_PASS_route_eligibility: EVALUATION_ONLY
+    route_check_status_for_PASS: SATISFIED
+    gates:
+      - registered_claimed_execution_task_and_exact_verified_dependencies
+      - verified_protocol_harness_policy_schema_and_qpa
+      - founder_decisions_applicable_to_run_scope
+      - exact_configuration_scope_case_fixture_oracle_seed_and_order
+      - budget_account_and_credential
+      - data_rights_region_retention_and_clean_room
+      - network_route_and_external_effect
+      - isolation_security_and_capture
+      - raw_derived_decision_evidence_separation_integrity_and_retention
+      - contamination_grading_retry_rerun_correction_stop_and_handback
+    every_e3v_inherits_profile: true
+  E3V-001:
+    shared_gates: ALL_E3V_COMMON_GATES
+    protocol_task: E3-002
+    execution_task: E3-005
+    canonical_handback_adrs: [ADR-E2-002, ADR-E2-003, ADR-E2-004, ADR-E2-005, ADR-E2-007, ADR-E2-008, ADR-E2-009]
+    special_requirements:
+      - exact_crash_duplicate_partial_write_epoch_and_effect_cases
+      - stable_identity_dedupe_readback_and_unknown_outcome_evidence
+  E3V-002:
+    shared_gates: ALL_E3V_COMMON_GATES
+    protocol_task: E3-002
+    execution_task: E3-005
+    canonical_handback_adrs: [ADR-E2-003, ADR-E2-004, ADR-E2-007]
+    special_requirements:
+      - exact_host_platform_process_privilege_supervisor_force_and_support_class
+      - safe_synthetic_task_owned_descendant_fixtures_only
+      - containment_termination_survivor_orphan_fence_restart_and_recovery_evidence
+      - every_survivor_must_lose_authority_if_termination_is_not_proven
+      - no_real_user_workload_or_destructive_external_process
+  E3V-003:
+    shared_gates: ALL_E3V_COMMON_GATES
+    protocol_task: E3-002
+    execution_task: E3-005
+    canonical_handback_adrs: [ADR-E2-001, ADR-E2-002, ADR-E2-004, ADR-E2-009]
+    special_requirements:
+      - exact_workspace_git_isolation_packaging_and_cleanup_scope
+      - outside_workspace_canaries_and_zero_unrelated_mutation
+  E3V-004:
+    shared_gates: ALL_E3V_COMMON_GATES
+    protocol_task: E3-002
+    execution_task: E3-005
+    canonical_handback_adrs: [ADR-E2-001, ADR-E2-004, ADR-E2-005, ADR-E2-006, ADR-E2-007, ADR-E2-008, ADR-E2-009]
+    special_requirements:
+      - offline_licensed_or_synthetic_transport_fixtures_first
+      - refusal_partial_cancellation_usage_cost_and_missingness_semantics
+      - denied_route_zero_dispatch_bytes_and_cost
+      - fallback_when_enabled_is_explicit_prospective_separately_admitted_and_raw_provenance_preserved
+  E3V-005:
+    shared_gates: ALL_E3V_COMMON_GATES
+    protocol_task: E3-002
+    execution_task: E3-005
+    canonical_handback_adrs: [ADR-E2-002, ADR-E2-003, ADR-E2-004, ADR-E2-005, ADR-E2-006, ADR-E2-007, ADR-E2-008]
+    special_requirements:
+      - exact_revision_immutable_bundle_gap_tamper_and_stale_checks
+      - independent_verifier_reaches_correct_exact_revision_result
+  E3V-006:
+    shared_gates: ALL_E3V_COMMON_GATES
+    protocol_task: E3-002
+    execution_task: E3-005
+    canonical_handback_adrs: [ADR-E2-001, ADR-E2-004, ADR-E2-005, ADR-E2-007, ADR-E2-008, ADR-E2-009]
+    special_requirements:
+      - exact_client_runtime_carrier_recipient_capture_process_workspace_and_network_boundary
+      - synthetic_markers_only_and_no_real_credential
+      - every_capture_surface_inventoried_and_checked
+      - exact_one_use_recipient_use_and_fence_binding
+      - stale_replay_and_wrong_recipient_denial
+      - crash_or_replacement_requires_reacquisition
+      - no_marker_outside_exact_recipient_and_no_replay
+      - missing_protected_delivery_fails_to_WAITING_FOR_USER_or_blocked
+      - independent_security_review
+  E3V-007:
+    shared_gates: ALL_E3V_COMMON_GATES
+    protocol_task: E3-002
+    execution_task: E3-005
+    canonical_handback_adrs: [ADR-E2-001, ADR-E2-002, ADR-E2-007, ADR-E2-008, ADR-E2-009]
+    special_requirements:
+      - raw_timestamps_outcomes_usage_cost_limits_and_missingness
+      - derived_measures_reproduce_from_raw_and_telemetry_is_non_authoritative
+  E3V-008:
+    shared_gates: ALL_E3V_COMMON_GATES
+    protocol_task: E3-003
+    execution_task: E3-006
+    canonical_handback_adrs: [ADR-E2-006]
+    special_requirements:
+      - exact_system_provider_model_version_reasoning_tools_fallback_context_and_gateway_configuration
+      - exact_logical_role_task_class_tested_scope_protocol_harness_grader_and_window
+      - route_purpose_E3_EVALUATION
+      - route_eligibility_EVALUATION_ONLY
+      - fallback_configuration_separately_admitted_and_qualified
+      - every_fallback_exactly_cross_bound_to_current_unexpired_unconsumed_PASS_manifest_and_single_use_launch_binding
+      - fallback_requested_envelope_and_authorization_capability_data_cost_effect_posture_match_or_are_no_weaker_than_the_parent_block
+      - every_fallback_exact_provider_account_credential_destination_and_effect_subject_is_separately_authorized_and_admitted
+      - fallback_exact_configuration_and_full_eligibility_key_distinct_from_parent_and_every_other_fallback
+      - fallback_graph_has_no_self_reference_duplicate_or_cycle
+      - fallback_activation_trigger_and_allowed_parent_failure_class_frozen_before_primary_launch
+      - fallback_launch_requires_a_committed_authenticated_runtime_route_resolution_after_parent_state_readback_and_must_precede_result_inspection
+      - primary_success_or_nonmatching_parent_state_forbids_fallback_activation
+      - fallback_result_attributed_to_exact_child_configuration_and_parent_trigger
+      - every_unused_child_claim_launch_atomic_set_attempt_index_qpa_protocol_and_budget_reservation_atomically_released_by_the_committed_runtime_route_resolution_with_post_record_readback_whether_one_child_is_selected_or_no_child_is_selected
+      - parent_atomic_set_and_execution_member_state_is_branch_specific_predispatch_release_or_consumed_no_refund
+      - raw_and_normalized_outputs_failures_attempts_cost_latency_and_blind_grading
+
+model_benchmark_and_eligibility_policy:
+  benchmark_route:
+    route_purpose: E3_EVALUATION
+    route_eligibility: EVALUATION_ONLY
+  wrong_route_consequence: DO_NOT_RUN
+  family_name_or_moving_alias_is_exact_configuration: false
+  configuration_identity_requires:
+    - system_and_provider
+    - model_id_and_served_version
+    - reasoning_mode_and_parameters
+    - tools_permissions_and_gateway
+    - fallback_policy_and_every_fallback_configuration
+    - context_policy_and_prompt_or_instruction_version
+    - grader_and_verifier_configuration
+  eligibility_key:
+    - exact_configuration_id
+    - logical_role
+    - task_class_and_tested_scope
+    - protocol_fixture_harness_and_grader_versions
+    - qualification_window
+  requested_envelope_key_shared_by_primary_and_fallback:
+    - logical_role
+    - task_class_and_tested_scope
+    - protocol_fixture_harness_and_grader_versions
+    - qualification_window
+    - provider_neutral_capability_data_cost_effect_and_security_posture
+  authorization_envelope_key_shared_or_no_weaker_for_fallback:
+    - maximum_cost_and_resource_posture
+    - credential_capability_and_protected_entry_posture
+    - data_class_rights_region_retention_and_training_posture
+    - network_redirect_destination_class_and_external_effect_posture
+    - isolation_capture_and_security_posture
+  key_digest_binding:
+    integrity_profile: MANIFEST_GLOBAL_INTEGRITY_PROFILE
+    requested_envelope_payload_is_exactly: requested_envelope_key_shared_by_primary_and_fallback
+    authorization_envelope_payload_is_exactly: authorization_envelope_key_shared_or_no_weaker_for_fallback
+    full_eligibility_payload_is_exactly:
+      - exact_configuration_id_version_and_digest
+      - requested_envelope_key_digest
+      - exact_protocol_fixture_harness_grader_and_qualification_window_versions
+    parent_and_every_fallback_recompute_each_digest_from_actual_closed_manifest_fields_before_comparison: true
+    copied_arbitrary_or_noncanonical_digest_consequence: DO_NOT_RUN
+  fallback_identity_rule:
+    enabled_fallback_permitted_only_for: [E3V-004, E3V-008]
+    requested_envelope_key_must_equal_parent: true
+    authorization_envelope_must_equal_or_be_stricter_than_parent: true
+    exact_provider_account_credential_destination_and_effect_subjects_must_be_separately_authorized: true
+    exact_configuration_and_full_eligibility_key_must_differ_from_parent_and_every_sibling: true
+    each_exact_configuration_separately_admitted: true
+    inbound_launch_activation_mode_is_orthogonal_to_outbound_fallback_enabled: true
+    every_separately_admitted_child_full_manifest_declares_FALLBACK_ONLY_with_typed_incoming_parent_selector_transaction_configuration_and_preallocated_route_resolution_context: true
+    fallback_graph_maximum_depth: 1
+    FALLBACK_ONLY_child_outbound_fallback_enabled: false
+    FALLBACK_ONLY_child_must_have_no_outbound_selector_claim_or_child_configuration_reservations: true
+    self_reference_duplicate_and_cycle_forbidden: true
+    activation_is_not_an_unbounded_extra_attempt: true
+    trigger_parent_identity_allowed_failure_class_and_ordering_are_prospectively_frozen: true
+    authoritative_parent_state_must_match_trigger_before_single_child_activation: true
+    result_inspection_or_primary_success_before_activation_forbids_child_launch: true
+    unused_child_claims_launches_sets_and_execution_members_require_atomic_release_execution_receipt_and_post_record_readback: true
+    one_predecision_route_selection_reservation_must_bind_exact_parent_manifest_block_run_attempt_configuration_execution_grant_transaction_intent_graph_recomputed_ordered_complete_sibling_set_and_preallocated_route_resolution_locator: true
+    deterministic_selection_rule: FIRST_MATCH_IN_FROZEN_ORDER
+    frozen_ordered_trigger_plan_set_must_exactly_match_ordered_child_configuration_set: true
+    postdecision_parent_launch_and_final_atomic_set_bind_the_selector_digest_one_way: true
+    selector_must_not_bind_parent_launch_or_admission_payload_digest: true
+    every_child_requires_one_unique_authoritative_claim_over_the_exact_child_launch_id_version_and_digest: true
+    child_claim_key_is_recomputed_and_one_current_claim_registry_proves_no_other_active_parent_claim: true
+    child_claim_registry_selected_by: E3_004_VERIFIED_HARNESS_CONFIGURATION_NOT_MANIFEST
+    manifest_selected_fresh_claim_registry_is_authoritative: false
+    every_child_claim_binds_the_same_selector_intent_transaction_owner_epoch_and_fence_and_the_final_atomic_set_commits_each_claim_digest_one_way: true
+    parent_launch_activation_mode: DIRECT
+    child_launch_activation_mode: FALLBACK_ONLY
+    fallback_child_launch_has_no_valid_direct_dispatch_path: true
+    every_child_launch_and_dispatch_predicate_are_FALLBACK_ONLY_and_bind_only_the_preallocated_route_resolution_execution_locator_id_version_and_trusted_store_currentness_locator: true
+    child_launch_or_predicate_may_not_embed_child_claim_parent_atomic_set_selected_or_no_selection_plan_parent_launch_runtime_or_receipt_digest: true
+    one_prospective_selected_child_activation_plan_per_child_binds_exact_parent_selector_trigger_candidate_child_claim_launch_atomic_set_complete_sibling_release_plan_set_and_shared_runtime_locator: true
+    one_prospective_no_selection_plan_per_enabled_route_contains_exactly_four_parent_terminal_branch_plans_and_the_complete_all_child_release_plan_set: true
+    selected_and_no_selection_plans_are_sealed_before_parent_launch_and_embed_no_realized_parent_state_selection_result_receipt_transition_or_readback: true
+    parent_launch_digest_is_resolved_only_during_runtime_route_resolution_to_avoid_a_digest_backedge: true
+    predispatch_parent_supersession_requires_UNCONSUMED_RESERVED_AT_ADMISSION: true
+    consumed_parent_activation_requires_CONSUMED_ELIGIBLE_FAILURE_and_authenticated_terminal_readback: true
+    parent_transition_plans_project_the_exact_parent_atomic_set_attempt_index_three_QPA_families_eight_protocol_dimensions_budget_selector_and_complete_child_claim_set: true
+    predispatch_parent_supersession_releases_parent_attempt_index_QPA_protocol_and_budget_members_with_receipt_and_readback: true
+    consumed_parent_activation_observes_consumed_parent_set_and_members_without_refund_release_or_reuse: true
+    fallback_child_dispatch_compare_and_set_is_valid_only_inside_the_atomic_runtime_route_resolution_transaction: true
+    selected_child_runtime_route_resolution_must_use_authenticated_trigger_evaluations_proving_every_earlier_child_NOT_MATCHED_and_the_selected_child_MATCHED: true
+    selected_child_route_resolution_transaction_must_atomically:
+      - select_and_consume_exactly_one_child
+      - terminalize_the_parent_as_predispatch_superseded_or_consumed_eligible_failure_activated
+      - transition_the_exact_parent_atomic_set_and_execution_members_as_predispatch_released_or_consumed_no_refund
+      - consume_the_selected_child_claim_and_launch_token
+      - release_all_and_only_unselected_sibling_claims_without_consuming_their_launch_tokens
+      - release_each_unselected_sibling_launch_atomic_set_and_all_attempt_index_QPA_protocol_and_budget_member_reservations_with_nested_fallback_members_structurally_empty
+      - commit_one_runtime_route_resolution_execution_record_as_the_atomic_receipt_then_read_back_post_record
+    no_selection_closure_plan_required_for_every_enabled_fallback: true
+    no_selection_runtime_resolution_requires_an_exact_all_child_trigger_evaluation_vector_with_every_result_NOT_MATCHED: true
+    no_selection_runtime_resolution_handles_no_dispatch_primary_success_terminal_nonmatching_failure_or_hard_stop: true
+    no_selection_runtime_resolution_atomically_terminalizes_or_observes_the_parent_transitions_the_selector_and_releases_every_child_claim_launch_atomic_set_attempt_index_QPA_protocol_and_budget_member: true
+    no_selection_release_execution_child_set_must_equal_the_route_fallback_configuration_selector_and_plan_ordered_child_set: true
+    no_selection_parent_predispatch_members_are_released_but_consumed_parent_members_are_never_refunded_released_or_reused: true
+    no_selection_runtime_resolution_requires_committed_execution_receipt_post_record_readback_and_unknown_outcome_reconciliation_before_terminal_visibility: true
+    selected_child_is_never_released_as_unused: true
+    any_unknown_selection_terminalization_consumption_or_release_outcome_requires_reconciliation_before_child_dispatch_or_parent_terminal_visibility: true
+  verdict_vocabulary:
+    - ELIGIBLE
+    - ELIGIBLE_WITH_CONSTRAINTS
+    - INELIGIBLE
+    - INCONCLUSIVE
+    - NOT_TESTED
+  route_eligibility_is_distinct_from_qualification_verdict: true
+  no_global_family_eligibility: true
+  e3_006_produces_eligibility_verdict: false
+  e3_007_proposes_only: true
+  e3_008_verifies_or_rejects_without_fixing: true
+  stage_gate_may_establish_only: AUTONOMY_ELIGIBLE
+  normal_route_promotion_automatic: false
+  current_registry_state:
+    qualification_records: 0
+    eligible_configurations: 0
+    role_assignments: 0
+    candidates: HYPOTHESIS_ONLY_NOT_RUN
+
+negative_admission_vectors:
+  schema_and_yaml:
+    - {id: DENY-YAML-001, mutation: DUPLICATE_KEY, expected: DO_NOT_RUN}
+    - {id: DENY-YAML-002, mutation: MISSING_REQUIRED_FIELD, expected: DO_NOT_RUN}
+    - {id: DENY-YAML-003, mutation: UNKNOWN_PROPERTY, expected: DO_NOT_RUN}
+    - {id: DENY-YAML-004, mutation: BAD_ENUM_OR_TYPE, expected: DO_NOT_RUN}
+    - {id: DENY-YAML-005, mutation: ALIAS_MERGE_CUSTOM_TAG_OR_MULTIDOCUMENT, expected: DO_NOT_RUN}
+  authority_and_single_use:
+    - {id: DENY-AUTH-001, mutation: GENERIC_UNAUTHENTICATED_OR_SELF_REPORTED_EXECUTION_OR_ADMISSION_AUTHORITY, expected: DO_NOT_RUN}
+    - {id: DENY-AUTH-002, mutation: WRONG_ACTOR_TASK_BLOCK_RUN_ATTEMPT_LANE_SCOPE_OWNER_EPOCH_OR_FENCE, expected: DO_NOT_RUN}
+    - {id: DENY-AUTH-003, mutation: STALE_REVOKED_SUPERSEDED_UNKNOWN_OR_NOT_DISPATCH_RECHECKED_GRANT, expected: DO_NOT_RUN}
+    - {id: DENY-AUTH-004, mutation: GRANT_OR_DECISION_PROOF_WRONG_SUBJECT_STORE_ISSUER_CAPABILITY_AUTHENTICITY_REVOCATION_OR_CLOSED_SCOPE_DIGEST, expected: DO_NOT_RUN}
+    - {id: DENY-LAUNCH-001, mutation: LAUNCH_RESERVATION_NOT_CURRENTLY_UNCONSUMED_OR_NOT_ATOMICALLY_BOUND_TO_ATTEMPT_INDEX_QPA_PROTOCOL_BUDGET_AND_FALLBACK_RESERVATIONS, expected: DO_NOT_RUN}
+    - {id: DENY-LAUNCH-002, mutation: CONCURRENT_REPLAY_ALREADY_CONSUMED_STALE_REVOKED_OR_UNKNOWN_CONSUMPTION_STATE, expected: DO_NOT_RUN}
+    - {id: DENY-LAUNCH-003, mutation: DISPATCH_BEFORE_ATOMIC_CONSUMPTION_RECEIPT_OR_UNKNOWN_OUTCOME_RECONCILIATION, expected: DO_NOT_RUN}
+    - {id: DENY-LAUNCH-004, mutation: INITIAL_ORDINAL_NOT_ONE_OR_PRIOR_EQUIVALENT_INITIAL_EXISTS_UNDER_FRESH_BLOCK_RUN_OR_ATTEMPT_IDS, expected: DO_NOT_RUN}
+    - {id: DENY-LAUNCH-005, mutation: BLOCK_PLAN_TASK_PROTOCOL_CONFIGURATION_CASE_SCOPE_SCHEDULE_OR_INDEX_DOES_NOT_MATCH_MANIFEST, expected: DO_NOT_RUN}
+    - {id: DENY-LAUNCH-006, mutation: SCHEDULE_ENTRY_WRONG_OPERATION_OR_NOT_EXACT_PRIOR_PLUS_ONE_OR_NEW_BLOCK_NOT_RESET_TO_ONE, expected: DO_NOT_RUN}
+    - {id: DENY-LAUNCH-007, mutation: QPA_PROTOCOL_BUDGET_OR_FALLBACK_RESERVATION_USES_WRONG_OR_RESET_LEDGER_HISTORY_SCOPE_TRANSACTION_OR_ATOMIC_MEMBER_SET, expected: DO_NOT_RUN}
+    - {id: DENY-LAUNCH-008, mutation: RESERVATION_INTENT_OR_FINAL_SET_CREATES_DIGEST_BACKEDGE_OR_MEMBER_BINDS_FINAL_SET_DIGEST, expected: DO_NOT_RUN}
+    - {id: DENY-LAUNCH-009, mutation: AUTHORITY_OR_ADMISSION_CHECKER_GRANT_REVOKED_OR_OWNER_EPOCH_CHANGES_BETWEEN_RECHECK_AND_NONATOMIC_RESERVATION_CAS, expected: DO_NOT_RUN}
+    - {id: DENY-LAUNCH-010, mutation: STALE_MISMATCHED_OR_NONATOMIC_MATERIAL_FACT_EPOCH_OR_ATTEMPT_INDEX_IDENTITY_AT_DISPATCH, expected: DO_NOT_RUN}
+    - {id: DENY-LAUNCH-011, mutation: DIRECT_DISPATCH_CONSUMES_ONLY_LAUNCH_OR_FINAL_SET_BUT_NOT_ATTEMPT_INDEX_EVERY_QPA_SCOPE_ALL_EIGHT_PROTOCOL_DIMENSIONS_AND_BUDGET_IN_ONE_CAS_OR_LACKS_RUNTIME_RECEIPT_AND_POST_RECORD_READBACK, expected: DO_NOT_RUN}
+    - {id: DENY-LAUNCH-012, mutation: DIRECT_DISPATCH_MEMBER_TRANSITION_IS_PARTIAL_MISMATCHED_SEPARATE_UNRECEIPTED_OR_ENABLED_FALLBACK_SELECTOR_OR_CLAIMS_ARE_PREMATURELY_CONSUMED_OR_RELEASED, expected: DO_NOT_RUN}
+    - {id: DENY-ADMISSION-INDEX-001, mutation: PARSE_SCHEMA_DNR_EXPIRED_PASS_OR_REPLAY_ENTRY_OMITTED_INDEX_RESET_GAP_COUNT_MISMATCH_OR_CONFLICTING_TERMINAL_DECISION, expected: DO_NOT_RUN}
+    - {id: DENY-ADMISSION-INDEX-002, mutation: CANONICALLY_EQUIVALENT_SUBMISSION_RESUBMITTED_TO_ANOTHER_CHECKER_OR_PRIOR_UNFAVORABLE_OUTCOME_HIDDEN, expected: DO_NOT_RUN}
+    - {id: DENY-ADMISSION-INDEX-003, mutation: GLOBAL_CAPTURE_ORDINAL_OR_VALID_RAW_OR_SECRET_BRANCH_MISSING_RAW_EQUIVALENCE_SEARCH_INCOMPLETE_OR_SECRET_CONTENT_DERIVED_IDENTIFIER_RECORDED, expected: DO_NOT_RUN}
+    - {id: DENY-ADMISSION-INDEX-004, mutation: CAPTURE_TERMINAL_CLASS_USED_AS_A_FOURTH_OR_FIFTH_RUN_ADMISSION_OUTCOME_OR_PARSER_OR_SECRET_REJECTION_NOT_MAPPED_TO_DO_NOT_RUN, expected: DO_NOT_RUN}
+    - {id: DENY-ADMISSION-INDEX-005, mutation: ANY_SUBMISSION_PRECLASSIFICATION_PROTECTED_HISTORY_SCREEN_OR_SECRET_PROOF_MISSING_STALE_INCOMPLETE_WRONG_RECEIPT_EXPORTS_CONTENT_DERIVED_CORRELATION_MATERIAL_OR_PERMITS_LATER_CHECKER_NONSECRET_VALID_DECISION, expected: DO_NOT_RUN}
+    - {id: DENY-ADMISSION-INDEX-006, mutation: ORDINARY_INDEX_SLOT_SCREEN_OR_PREPARSE_ATTESTATION_EXPORTS_ORDINAL_VERSION_SLOT_IDENTITY_LEDGER_OWNER_EPOCH_FENCE_MULTIPLICITY_PROTECTED_LOCATOR_STORE_ACCESS_HANDLE_OR_HISTORY_DEPENDENT_WIRE_VALUE, expected: DO_NOT_RUN}
+    - {id: DENY-ADMISSION-INDEX-007, mutation: TRUSTED_PREPARSE_CONTEXT_MISSING_WRONG_POSTPARSE_MANIFEST_SELECTED_OR_SUBSTITUTES_PROJECT_STAGE_TASK_HARNESS_WRAPPER_PARSER_CLASSIFIER_INDEX_STORE_OWNER_EPOCH_OR_FENCE, expected: DO_NOT_RUN}
+    - {id: DENY-ADMISSION-INDEX-008, mutation: VALID_MANIFEST_SCREEN_ATTESTATION_MISSING_STALE_WRONG_SUBMISSION_WRONG_SLOT_OR_PROTECTED_RESOLUTION_FINDS_A_PRIOR_MATCH, expected: DO_NOT_RUN}
+    - {id: DENY-ADMISSION-INDEX-009, mutation: TWO_HISTORIES_DIFFERING_ONLY_BY_PRIOR_SECRET_CAPTURES_PRODUCE_DISTINGUISHABLE_ORDINARY_ATTESTATION_FIELD_SHAPES_OR_VALUE_DISTRIBUTIONS, expected: DO_NOT_RUN}
+    - {id: DENY-GOV-001, mutation: E3_001_VERIFICATION_SUBJECT_OR_COMBINED_POLICY_SCHEMA_DIGEST_DIFFERS_FROM_MANIFEST, expected: DO_NOT_RUN}
+    - {id: DENY-ARCH-001, mutation: E2_GATE_ARCHITECTURE_OR_ACCEPTED_ADR_SET_SUBJECT_DIFFERS_FROM_MANIFEST, expected: DO_NOT_RUN}
+  qpa_protocol_and_freeze:
+    - {id: DENY-QPA-001, mutation: ANY_CANONICAL_QPA_VALUE_NULL_OR_UNRESOLVED, expected: DO_NOT_RUN}
+    - {id: DENY-QPA-002, mutation: QPA_VALUE_ZERO_NEGATIVE_NONINTEGER_OR_NONFINITE, expected: DO_NOT_RUN}
+    - {id: DENY-QPA-003, mutation: FOUNDER_ACK_APPROVAL_CHALLENGE_OR_VERIFICATION_REF_MISSING, expected: DO_NOT_RUN}
+    - {id: DENY-QPA-004, mutation: VALUE_SELECTED_AFTER_RESULT_INSPECTION, expected: DO_NOT_RUN}
+    - {id: DENY-QPA-005, mutation: MANIFEST_ASSIGNMENT_SET_DIGEST_DIFFERS_FROM_FOUNDER_APPROVED_EXACT_VALUE_SET_DIGEST, expected: DO_NOT_RUN}
+    - {id: DENY-QPA-006, mutation: ASSIGNMENT_VALUE_DIFFERS_FROM_MATCHING_RESOLUTION_VALUE, expected: DO_NOT_RUN}
+    - {id: DENY-QPA-007, mutation: SCORED_CORRECTION_BINDING_SCOPE_OR_VALUE_DIFFERS_FROM_MATCHING_CORRECTION_ASSIGNMENT_OR_RESOLUTION, expected: DO_NOT_RUN}
+    - {id: DENY-QPA-008, mutation: QPA_CHALLENGE_AND_VERIFICATION_SAME_RECORD_OR_ACTOR_WRONG_FINAL_SUBJECT_WRONG_ORDER_OR_MATERIAL_FINDING_WITHOUT_NEW_VERSION_REAPPROVAL_AND_FRESH_CHALLENGE, expected: DO_NOT_RUN}
+    - {id: DENY-QPA-009, mutation: DETERMINISTIC_REQUIRED_CHECK_REPETITION_TREATED_AS_A_CROSS_ATTEMPT_LIFETIME_CEILING_OR_NOT_RESERVED_EXACTLY_PER_SCHEDULED_ATTEMPT, expected: DO_NOT_RUN}
+    - {id: DENY-QPA-010, mutation: CORRECTION_LINEAGE_OR_LEDGER_RESET_BY_PROTOCOL_CONFIGURATION_MANIFEST_BLOCK_RUN_ATTEMPT_VERSION_OR_FRESH_IDENTIFIER, expected: DO_NOT_RUN}
+    - {id: DENY-QPA-011, mutation: CORRECTION_SERIES_OR_OVERLAPPING_REMOVED_RE_ADDED_MEMBER_SCOPE_REKEYED_FORKED_MANIFEST_SELECTED_MEMBERSHIP_SNAPSHOT_OR_MISSING_COMPLETE_SERIES_CROSS_SET_MEMBER_REGISTRY_HISTORY, expected: DO_NOT_RUN}
+    - {id: DENY-QPA-012, mutation: CORRECTION_MEMBERSHIP_SNAPSHOT_WRONG_PREDECESSOR_ADDED_REMOVED_UNCHANGED_REUSED_RE_ADDED_OR_TRULY_NEW_PARTITION_DELETES_REMOVED_MAPPING_OR_INITIALIZES_A_PREVIOUSLY_SEEN_MEMBER, expected: DO_NOT_RUN}
+    - {id: DENY-PROTO-001, mutation: PROTOCOL_OR_HARNESS_NOT_INDEPENDENTLY_VERIFIED, expected: DO_NOT_RUN}
+    - {id: DENY-PROTO-002, mutation: PRIOR_PASS_PLUS_CASE_ORACLE_SEED_ORDER_THRESHOLD_EXCLUSION_GRADER_OR_ANALYSIS_DRIFT, expected: EXPIRED_REQUIRES_REFREEZE}
+    - {id: DENY-PROTO-003, mutation: FRESH_MANIFEST_WITH_DRIFT_OR_MISSING_FREEZE_BASIS, expected: DO_NOT_RUN}
+    - {id: DENY-PROTO-004, mutation: VERIFIED_REF_SUBJECT_DIFFERS_FROM_EXACT_PROTOCOL_HARNESS_FROZEN_FIELDS_QPA_LIMITS_OR_SCOPE, expected: DO_NOT_RUN}
+    - {id: DENY-PROTO-005, mutation: EIGHT_PROTOCOL_LIMIT_DIMENSIONS_CONFLATED_MISSING_DUPLICATED_WRONG_SCOPE_OR_COST_TREATED_AS_A_PROTOCOL_DIMENSION, expected: DO_NOT_RUN}
+  budget_account_and_credentials:
+    - {id: DENY-BUDGET-001, mutation: LOCAL_LANE_PROVIDER_NETWORK_CREDENTIAL_OR_POSITIVE_EXTERNAL_SPEND, expected: DO_NOT_RUN}
+    - {id: DENY-BUDGET-002, mutation: LOCAL_LANE_MISSING_FINITE_RESOURCE_LIMIT, expected: DO_NOT_RUN}
+    - {id: DENY-BUDGET-003, mutation: PAID_LANE_WITH_CURRENT_USD_ZERO_OR_NO_FOUNDER_DECISION, expected: DO_NOT_RUN}
+    - {id: DENY-BUDGET-004, mutation: PAID_LANE_S0_005_ACCOUNT_CAP_OR_REMAINING_BUDGET_UNKNOWN, expected: DO_NOT_RUN}
+    - {id: DENY-CRED-001, mutation: RAW_SECRET_OR_ENVIRONMENT_OR_ARGV_DUMP_PRESENT, expected: DO_NOT_RUN}
+    - {id: DENY-CRED-002, mutation: EXPIRED_REVOKED_WRONG_SCOPE_OR_AMBIENT_CREDENTIAL, expected: DO_NOT_RUN}
+  data_network_effects_and_security:
+    - {id: DENY-DATA-001, mutation: MISSING_RIGHTS_PROVENANCE_REGION_OR_RETENTION, expected: DO_NOT_RUN}
+    - {id: DENY-DATA-002, mutation: PRIVATE_RECONSTRUCTED_UNLICENSED_OR_REAL_SECRET_FIXTURE, expected: DO_NOT_RUN}
+    - {id: DENY-NET-001, mutation: UNAPPROVED_DESTINATION_REDIRECT_EGRESS_OR_EFFECT, expected: DO_NOT_RUN}
+    - {id: DENY-EFFECT-001, mutation: UNKNOWN_EFFECT_WITH_BLIND_RETRY, expected: DO_NOT_RUN}
+    - {id: DENY-E3V006-001, mutation: NON_SYNTHETIC_MARKER_OR_MISSING_CAPTURE_SURFACE, expected: DO_NOT_RUN}
+  route_configuration_and_handback:
+    - {id: DENY-ROUTE-001, mutation: FAMILY_NAME_MOVING_ALIAS_OR_WRONG_ROUTE_PAIR, expected: DO_NOT_RUN}
+    - {id: DENY-ROUTE-002, mutation: HIDDEN_OR_UNADMITTED_FALLBACK, expected: DO_NOT_RUN}
+    - {id: DENY-ROUTE-003, mutation: FALLBACK_REFS_DO_NOT_CROSS_BIND_EXACT_CONFIGURATION_CURRENT_UNCONSUMED_PASS_ROUTE_AND_ELIGIBILITY_KEY, expected: DO_NOT_RUN}
+    - {id: DENY-ROUTE-004, mutation: FALLBACK_REQUESTED_ENVELOPE_DIFFERS_OR_AUTHORIZATION_CAPABILITY_DATA_COST_EFFECT_OR_SECURITY_POSTURE_IS_WEAKER_THAN_PARENT, expected: DO_NOT_RUN}
+    - {id: DENY-ROUTE-005, mutation: FALLBACK_CONFIGURATION_OR_FULL_ELIGIBILITY_KEY_EQUALS_PARENT_OR_SIBLING_OR_GRAPH_SELF_REFERENCES_DUPLICATES_OR_CYCLES, expected: DO_NOT_RUN}
+    - {id: DENY-ROUTE-006, mutation: FALLBACK_EXACT_PROVIDER_ACCOUNT_CREDENTIAL_DESTINATION_OR_EFFECT_IS_NOT_SEPARATELY_AUTHORIZED, expected: DO_NOT_RUN}
+    - {id: DENY-ROUTE-007, mutation: FALLBACK_ACTIVATED_BEFORE_MATCHING_PARENT_FAILURE_AFTER_PRIMARY_SUCCESS_OR_AFTER_RESULT_INSPECTION, expected: DO_NOT_RUN}
+    - {id: DENY-ROUTE-008, mutation: UNUSED_FALLBACK_RESERVATION_NOT_ATOMICALLY_RELEASED_RECEIPTED_READ_BACK_OR_CRASH_RECONCILED, expected: DO_NOT_RUN}
+    - {id: DENY-ROUTE-009, mutation: FALLBACK_ENABLED_OUTSIDE_E3V_004_OR_E3V_008_OR_SELECTOR_OMITS_SIBLING_USES_DIFFERENT_TRANSACTION_SELECTS_MULTIPLE_CHILDREN_OR_LEAVES_PARENT_DISPATCHABLE, expected: DO_NOT_RUN}
+    - {id: DENY-ROUTE-010, mutation: CHILD_LAUNCH_TOKEN_HAS_NO_UNIQUE_CURRENT_CLAIM_WRONG_CLAIM_KEY_REGISTRY_PARENT_SELECTOR_INTENT_OR_ANOTHER_ACTIVE_PARENT_CLAIM, expected: DO_NOT_RUN}
+    - {id: DENY-ROUTE-011, mutation: FALLBACK_CHILD_IS_DIRECT_OR_ROUTE_RESOLUTION_EXECUTION_LOCATOR_IS_NULL_STALE_UNRESOLVED_OR_MISMATCHED, expected: DO_NOT_RUN}
+    - {id: DENY-ROUTE-012, mutation: FALLBACK_CHILD_CONTEXT_OR_LAUNCH_EMBEDS_CLAIM_PARENT_SET_PLAN_PARENT_LAUNCH_RUNTIME_OR_RECEIPT_DIGEST_BACKEDGE_OR_USES_A_SECOND_LAUNCH_CONSUMPTION_CAS, expected: DO_NOT_RUN}
+    - {id: DENY-ROUTE-013, mutation: FULL_FALLBACK_CHILD_MANIFEST_INBOUND_CONTEXT_LAUNCH_OR_PREDICATE_DOES_NOT_MATCH_PARENT_SELECTOR_TRANSACTION_CANDIDATE_CONFIGURATION_OR_PREALLOCATED_ROUTE_RESOLUTION_LOCATOR, expected: DO_NOT_RUN}
+    - {id: DENY-ROUTE-014, mutation: PARENT_LAUNCH_LOCATOR_STATE_OR_TERMINAL_TRANSITION_MISMATCH_MISSING_CONSUMED_FAILURE_READBACK_OR_UNSELECTED_SIBLING_LAUNCH_SET_OR_MEMBER_RESERVATION_NOT_RELEASED, expected: DO_NOT_RUN}
+    - {id: DENY-ROUTE-015, mutation: FALLBACK_ONLY_CHILD_ENABLES_OUTBOUND_FALLBACK_OR_RESERVES_NESTED_SELECTOR_CLAIM_LAUNCH_SET_OR_RESOURCE_MEMBERS, expected: DO_NOT_RUN}
+    - {id: DENY-ROUTE-016, mutation: PARENT_ATOMIC_SET_OR_ATTEMPT_INDEX_QPA_PROTOCOL_BUDGET_SELECTOR_OR_CHILD_CLAIM_MEMBER_PROJECTION_IS_INCOMPLETE_MISMATCHED_STRANDED_DOUBLE_RELEASED_OR_REFUNDED_AFTER_CONSUMPTION, expected: DO_NOT_RUN}
+    - {id: DENY-ROUTE-017, mutation: NO_SELECTION_PLAN_OR_RUNTIME_EXECUTION_IS_MISSING_STALE_NONATOMIC_HAS_INCOMPLETE_CHILD_SET_OR_LEAVES_ANY_UNUSED_CHILD_CLAIM_LAUNCH_SET_OR_RESOURCE_MEMBER_DISPATCHABLE, expected: DO_NOT_RUN}
+    - {id: DENY-ROUTE-018, mutation: PRELAUNCH_SELECTED_OR_NO_SELECTION_PLAN_EMBEDS_REALIZED_PARENT_STATE_BRANCH_RECEIPT_TRANSITION_OR_READBACK_OR_RUNTIME_EXECUTION_HASHES_BACK_INTO_A_PRELAUNCH_ARTIFACT, expected: DO_NOT_RUN}
+    - {id: DENY-ROUTE-019, mutation: SELECTED_TRIGGER_VECTOR_HAS_AN_EARLIER_MATCH_OR_SELECTED_NOT_MATCHED_OR_NO_SELECTION_VECTOR_CONTAINS_ANY_MATCH_OR_DOES_NOT_EQUAL_FROZEN_ORDER, expected: DO_NOT_RUN}
+    - {id: DENY-ROUTE-020, mutation: ROUTE_RESOLUTION_RUNTIME_RECEIPT_OR_POST_RECORD_READBACK_IS_MISSING_PARTIAL_MISMATCHED_OR_VISIBLE_UNKNOWN_OUTCOME_ALLOWS_CHILD_DISPATCH_OR_PARENT_TERMINAL_VISIBILITY, expected: DO_NOT_RUN}
+    - {id: DENY-SCOPE-001, mutation: TASK_E3V_SCOPE_OR_CANONICAL_HANDBACK_MISMATCH, expected: DO_NOT_RUN}
+    - {id: DENY-HANDBACK-001, mutation: ORDINARY_CONFIG_FAILURE_AUTO_LABELLED_ARCHITECTURE_HANDBACK, expected: DO_NOT_RUN}
+    - {id: DENY-HANDBACK-002, mutation: ROOT_CAUSE_PROOF_WRONG_SUBJECT_ADR_SET_SUPPORT_CLASS_FAULT_CHAIN_ROUTE_EXHAUSTION_PROVENANCE_CURRENTNESS_OR_INDEPENDENCE, expected: DO_NOT_RUN}
+  evidence_contamination_and_independence:
+    - {id: DENY-EVID-001, mutation: RAW_AND_DERIVED_LOCATOR_SAME_OR_RAW_OVERWRITE, expected: DO_NOT_RUN}
+    - {id: DENY-EVID-002, mutation: UNFAVORABLE_ATTEMPT_OMITTED_OR_RUN_INDEX_INCOMPLETE, expected: DO_NOT_RUN}
+    - {id: DENY-CONTAM-001, mutation: DEVELOPMENT_OR_SMOKE_RELABELLED_SCORED, expected: DO_NOT_RUN}
+    - {id: DENY-CONTAM-002, mutation: HELD_OUT_SEEN_TUNED_OR_SELECTIVELY_RERUN, expected: DO_NOT_RUN}
+    - {id: DENY-CONTAM-003, mutation: RETRY_RERUN_OR_CORRECTION_BASIS_DOES_NOT_MATCH_IMMEDIATE_PRIOR_OUTCOME_FROZEN_SCHEDULE_OR_EXACT_MATERIAL_DIFF, expected: DO_NOT_RUN}
+    - {id: DENY-GRADE-001, mutation: CANDIDATE_LABEL_EXPOSED_OR_SELF_GRADE_USED_FOR_SELECTION, expected: DO_NOT_RUN}
+    - {id: DENY-INDEP-001, mutation: OPERATOR_SELF_ADMITS_OR_VERIFIES, expected: DO_NOT_RUN}
+  expiry_stop_and_truthfulness:
+    - {id: DENY-EXPIRY-001, mutation: PRIOR_PASS_REUSED_OR_PRIOR_PASS_PLUS_MATERIAL_FACT_DRIFTED, expected: EXPIRED_REQUIRES_REFREEZE}
+    - {id: DENY-MFACT-001, mutation: MATERIAL_SOURCE_SET_OR_FRESH_IDENTIFIER_REKEYS_MATERIAL_FACT_EPOCH_OR_SELECTS_REPLACEMENT_LEDGER_HISTORY, expected: DO_NOT_RUN}
+    - {id: DENY-STOP-001, mutation: HARD_FAILURE_OR_CEILING_EXHAUSTION_WITH_CONTINUED_PRODUCTIVE_DISPATCH, expected: DO_NOT_RUN}
+    - {id: DENY-STOP-002, mutation: MISSING_INCONCLUSIVE_OR_FLAKY_TREATED_AS_PASS, expected: DO_NOT_RUN}
+    - {id: DENY-TRUTH-001, mutation: FALSE_COMPLETION_OR_FABRICATED_EVIDENCE, expected: DO_NOT_RUN}
+  common_expected_actions:
+    launch_permitted: false
+    preserve_existing_raw_evidence: true
+    eligibility_credit: NONE
+    handback_only_after_separate_independent_root_cause_rule: true
+
+semantic_validator_boundary:
+  json_schema_can_validate:
+    - required_fields_types_enums_patterns_and_closed_shapes
+    - explicit_pass_do_not_run_and_expired_structural_conditions
+    - lane_task_e3v_route_and_canonical_handback_conditionals
+  independent_e3_004_validator_must_verify:
+    - strict_single_document_yaml_duplicate_keys_tags_aliases_and_merge_keys
+    - referenced_files_exist_and_every_digest_uses_the_manifest_global_integrity_profile
+    - two_phase_payload_detached_authoritative_proof_subject_transaction_intent_member_final_atomic_set_launch_binding_and_final_envelope_digest_DAG_is_noncyclic_and_resolves
+    - task_protocol_harness_qpa_and_dependency_current_status
+    - e3_001_governance_verification_exact_current_policy_schema_and_combined_subject_digest_binding
+    - architecture_gate_exact_current_gate_architecture_and_recomputed_accepted_ADR_set_binding
+    - correction_series_subject_is_membership_independent_and_every_block_has_one_harness_selected_versioned_membership_snapshot_with_exact_predecessor_added_removed_unchanged_reused_readded_and_truly_new_sets_while_typed_member_registries_preserve_removed_and_readded_ledgers_and_only_never_before_seen_members_initialize_state
+    - INITIAL_uses_the_origin_snapshot_CORRECTION_uses_the_exact_prior_affected_block_and_material_diff_RETRY_and_RERUN_reuse_the_current_block_snapshot_added_and_removed_affected_scopes_match_the_operation_basis_and_each_new_scope_has_a_prospectively_Founder_approved_QPA_assignment
+    - canonical_block_plan_operation_schedule_entry_attempt_index_and_exact_ordinal_predecessor_or_new_block_reset_binding
+    - execution_and_admission_grants_authenticate_and_exactly_bind_current_actor_task_block_run_attempt_lane_scope_registry_state_owner_epoch_and_fence
+    - grant_and_decision_authoritative_store_detached_subject_payload_authenticity_issuer_capability_chain_currentness_revocation_supersession_identity_and_dispatch_recheck
+    - closed_authority_scope_payload_digest_recomputation_and_exact_manifest_equality
+    - actor_admission_grader_and_verifier_independence
+    - admission_decision_record_exactly_matches_payload_manifest_attempt_operator_checker_authority_outcome_owner_epoch_and_fence
+    - launch_attempt_index_qpa_protocol_budget_and_fallback_reservations_are_one_exact_current_unconsumed_atomic_set
+    - every_DIRECT_PASS_has_one_cycle_safe_prospective_consumption_plan_and_one_authoritative_runtime_execution_receipt_that_atomically_consumes_launch_final_set_attempt_index_every_QPA_scope_all_eight_protocol_dimensions_and_budget_before_process_start_while_leaving_enabled_fallback_selector_and_claims_reserved_and_rejecting_partial_mismatched_separate_or_unreceipted_transitions
+    - verified_harness_selected_authoritative_qpa_protocol_and_budget_store_ledger_key_scope_family_complete_history_family_specific_attempt_index_projection_owner_epoch_fence_and_no_reset_binding
+    - verification_and_cumulative_protocol_ledgers_project_current_block_attempts_deterministic_and_resource_ledgers_project_the_exact_scheduled_attempt_each_correction_scope_member_ledger_projects_all_blocks_containing_that_stable_member_subject_and_budget_ledgers_project_all_stage_attempts
+    - deterministic_repetition_consumed_before_is_zero_and_reserved_amount_equals_the_frozen_value_for_every_exact_scheduled_attempt_while_correction_consumption_is_cumulative_across_each_scope_specific_stable_cross_version_member_subject
+    - exactly_eight_distinct_protocol_dimension_ledgers_descriptors_reservations_and_resolutions_exist_for_execution_retry_run_repetition_repeated_failure_elapsed_time_output_process_disk_and_network_and_cost_remains_only_in_the_budget_family
+    - canonical_acyclic_transaction_intent_exact_raw_descriptors_shared_member_transaction_identity_and_final_atomic_member_set_digest
+    - exact_atomic_dispatch_predicate_over_both_authority_grants_decision_protected_boundary_resolved_terminal_valid_manifest_capture_class_and_PASS_disposition_opaque_index_slot_preparse_screen_attestations_material_fact_epoch_attempt_index_identity_owner_epoch_fence_reservation_state_runtime_consumption_receipt_owner_transfer_and_material_drift_fencing
+    - one_verified_harness_selected_global_capture_index_reserves_every_submission_ordinal_before_parsing_or_secret_classification_and_its_gap_free_history_two_capture_rejection_class_buckets_plus_three_valid_manifest_disposition_buckets_close_exactly_inside_the_protected_boundary
+    - every_submission_has_one_authenticated_harness_selected_trusted_preparse_context_created_before_untrusted_bytes_binding_exact_project_stage_task_harness_wrapper_parser_classifier_index_store_owner_epoch_and_fence_and_the_same_context_resolves_across_index_entry_screen_search_slot_and_decision
+    - ordinary_index_slot_preparse_and_screen_attestations_are_capability_free_non_content_derived_and_wire_indistinguishable_across_histories_differing_only_in_protected_captures_and_export_no_ordinal_version_slot_identity_ledger_owner_epoch_fence_multiplicity_locator_store_or_access_handle
+    - every_valid_submission_completes_a_typed_current_submission_and_current_slot_preclassification_protected_history_screen_attestation_before_any_secret_classification_and_missing_stale_wrong_submission_wrong_slot_or_prior_match_fails_closed
+    - protected_screen_and_secret_search_cover_all_protected_entries_checker_identities_and_classifier_versions_inside_the_boundary_export_no_content_derived_correlation_material_and_any_prior_protected_equivalent_match_forces_secret_boundary_rejection_DO_NOT_RUN_under_every_later_checker
+    - exact_verified_harness_selected_current_canonical_equivalence_profile_authoritative_admission_index_key_cross_key_cross_profile_and_raw_namespace_search_ordered_entry_count_gap_secret_safe_parser_rejection_projection_one_terminal_decision_slot_CAS_and_conflict_reconciliation
+    - founder_DECISION_LOG_records_are_current_nonrevoked_and_bind_exact_qpa_value_set_before_results
+    - manifest_canonical_qpa_assignment_set_digest_equals_founder_exact_value_set_digest_under_the_global_integrity_profile
+    - qpa_final_cycle_latest_Founder_approval_fresh_exact_final_subject_challenge_zero_material_findings_then_separate_verification_with_any_material_finding_restarting_a_new_version_reapproval_and_challenge_cycle
+    - qpa_review_proposer_fixer_founder_approval_digest_and_independence_basis_match_authoritative_records_challenger_and_verifier_obey_every_actor_inequality_verifier_binds_the_exact_challenge_and_zero_unresolved_material_findings
+    - current_attempt_and_preserved_block_first_result_timestamps_and_freeze_before_result_ordering
+    - truthful_paired_block_result_timing_optional_inspection_and_timestamp_ordering
+    - exact_configuration_identity_and_served_version
+    - canonical_e3v_property_supported_scope_unsupported_scope_and_handback_set_exact_subject_binding
+    - protocol_harness_and_complete_frozen_field_set_exact_subject_cross_binding
+    - enabled_fallback_exact_configuration_current_unexpired_unconsumed_pass_launch_route_window_lane_account_credential_data_network_effect_scope_and_eligibility_cross_binding
+    - fallback_only_for_E3V_004_or_E3V_008_and_acyclic_selector_exact_parent_execution_grant_intent_graph_complete_ordered_sibling_set_and_one_of_N_atomic_CAS
+    - verified_harness_selected_fallback_unique_child_launch_claim_registry_key_currentness_no_other_active_parent_claim_and_one_way_final_atomic_set_membership
+    - every_separately_admitted_full_fallback_child_manifest_route_context_launch_and_predicate_is_FALLBACK_ONLY_has_no_direct_dispatch_path_and_exactly_matches_parent_selector_transaction_candidate_configuration_and_preallocated_route_resolution_and_parent_launch_locators_without_forbidden_digest_backedges
+    - prospective_release_parent_selected_child_and_no_selection_plans_are_complete_current_sealed_before_parent_launch_share_the_exact_runtime_locator_and_contain_no_realized_parent_state_branch_receipt_transition_or_readback_while_no_selection_covers_exactly_all_four_terminal_classes
+    - runtime_FIRST_MATCH_IN_FROZEN_ORDER_trigger_evaluations_prove_all_earlier_children_NOT_MATCHED_and_selected_MATCHED_or_all_children_NOT_MATCHED_then_one_atomic_route_resolution_execution_receipt applies_the_exact_parent_selector_selected_child_and_release_transitions_with_no_second_launch_CAS_no_consumed_parent_refund_and_post_record_readback
+    - every_enabled_fallback_no_selection_runtime_execution_releases_the_exact_complete_ordered_all_child_claim_launch_set_and_resource_member_set_for_no_dispatch_success_nonmatching_failure_or_hard_stop_and_unknown_outcomes_block_child_dispatch_and_parent_terminal_visibility_until_reconciled
+    - material_fact_epoch_key_recomputes_only_from_exact_ordered_project_stage_task_and_resolves_exactly_one_harness_selected_current_authoritative_complete_ledger_while_the_fact_set_recomputes_from_source_identity_plus_all_nine_components_and_every_change_reuses_the_key_advances_epoch_and_fence_and_preserves_history
+    - qpa_assignment_resolution_and_risk_binding_exact_scope_set_equality_and_one_nonconflicting_entry_per_scope
+    - each_qpa_family_assignment_value_equals_the_matching_resolution_value_and_each_scored_correction_binding_scope_and_value_equal_both
+    - operation_specific_qpa_and_protocol_reservations_deterministic_reservation_equals_frozen_value_and_verification_or_correction_reservation_is_one_iff_scope_is_affected
+    - retry_rerun_and_correction_basis_matches_immediate_prior_outcome_frozen_schedule_or_exact_material_diff_and_affected_block
+    - budget_arithmetic_remaining_caps_and_all_attempt_accounting
+    - admission_check_evidence_proves_declared_applicability_status_and_required_checks_are_SATISFIED
+    - credential_validity_endpoint_scope_and_secret_scan
+    - data_rights_region_retention_and_network_destination_policy
+    - evidence_locator_separation_integrity_run_index_and_contamination
+    - stop_handback_and_material_expiry_truth
+    - typed_root_cause_and_architecture_handback_exact_source_subject_current_affected_task_lane_scope_route_exhaustion_structural_impossibility_provenance_currentness_and_actor_independence
+  semantic_validation_failure_outcome: DO_NOT_RUN
+
+task_and_gate_boundaries:
+  current_task_statuses:
+    E3-001: READY_FOR_REVIEW_NOT_VERIFIED
+    E3-002: BACKLOG_BLOCKED_ON_INDEPENDENT_E3_001_VERIFICATION
+    E3-003: BACKLOG_BLOCKED_ON_INDEPENDENT_E3_001_VERIFICATION
+    E3-004: BACKLOG
+    E3-005: BACKLOG_DO_NOT_RUN
+    E3-006: BACKLOG_DO_NOT_RUN
+    E3-007: BACKLOG
+    E3-008: BACKLOG
+  after_independent_e3_001_verification:
+    E3-002_may_become_ready_for_author_drafting: true
+    E3-003_may_become_ready_for_author_drafting: true
+    any_empirical_task_may_become_ready: false
+  e3_004_boundary: VALIDATION_HARNESS_CODE_ONLY_NO_SCORED_OR_CANDIDATE_RUN
+  e3_005_boundary: E3V_001_THROUGH_E3V_007_EVIDENCE_ONLY
+  e3_006_boundary: E3V_008_EVALUATION_ONLY_EVIDENCE_ONLY
+  e3_007_boundary: SYNTHESIS_AND_ELIGIBILITY_PROPOSAL_ONLY
+  e3_008_boundary: FRESH_INDEPENDENT_VERIFICATION_NO_FIX_NO_GATE
+  verify_stage_e3_boundary: MAY_ESTABLISH_AUTONOMY_ELIGIBLE_ONLY
+  e4_requires_separate_founder_decision: AUTONOMOUS_BUILD_AUTHORIZED
+
+current_zero_state:
+  run_admission: DO_NOT_RUN
+  e3_gate_status: NOT_EVALUATED
+  technical_validation_runs: 0
+  model_benchmarks_run: 0
+  paid_api_calls: 0
+  credentials_accessed: 0
+  model_role_assignments: 0
+  application_code_files_created: 0
+  autonomy_eligible: NOT_ELIGIBLE
+  autonomous_build_authorized: false
+
+non_authorizations:
+  - This policy does not authorize or launch any run, smoke check, fixture, harness, provider call, or account check.
+  - This policy does not approve any QPA or protocol-specific number.
+  - This policy does not qualify a mechanism, system, configuration, model, role, task class, or route.
+  - This policy does not promote EVALUATION_ONLY evidence into normal routing.
+  - This policy does not edit, waive, or accept an ADR or architecture handback.
+  - This policy does not establish AUTONOMY_ELIGIBLE or AUTONOMOUS_BUILD_AUTHORIZED.
+  - This policy does not authorize application code or E4.

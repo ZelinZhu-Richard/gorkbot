@@ -1,0 +1,307 @@
+handoff_id: H-E1-002-20260828-AUTHOR
+task_id: E1-002
+stage: E1
+mode: EXECUTE_TASK_E1-002
+role: AUTHOR
+author_model: "Codex (runtime model identifier not exposed) — E1-002 AUTHOR"
+reviewer_requested: "Independent CHALLENGER followed, after any bounded fixer response, by an independent post-fix VERIFIER; the author and author-side subagents satisfy neither role"
+started_at: null
+started_at_status: "UNKNOWN_NOT_CAPTURED; no exact start timestamp is fabricated"
+author_claim_recorded_at: "2026-08-28T02:21:59Z"
+completed_at: "2026-08-28T02:39:39Z"
+base_commit: cfafbbcad94b265ab612f60bec6d5dbfc82adffd
+base_branch: chore/initialize-project-materials
+initial_worktree_status: CLEAN
+task_status: READY_FOR_REVIEW
+verification_status: NOT_VERIFIED_AUTHOR_PASS
+e1_gate_status: NOT_EVALUATED
+
+files_read:
+  - MASTER_OPERATING_PROMPT.md
+  - AGENTS.md
+  - README.md
+  - SECURITY.md
+  - 01_governance/PROJECT_STATE.yaml
+  - 01_governance/TASK_REGISTRY.yaml
+  - 01_governance/DECISION_LOG.md
+  - 01_governance/ASSUMPTION_REGISTER.md
+  - 01_governance/RISK_REGISTER.md
+  - 01_governance/MODEL_REGISTRY.yaml
+  - 02_research/GROK_BOT_BASELINE_2026-08-21.md
+  - 02_research/GROK_BOT_018_RECONSTRUCTED_ARCHITECTURE_AUDIT.md
+  - 02_research/GROK_BOT_018_ARCHITECTURE_ADOPTION_MATRIX.csv
+  - 03_product/ENGINEERING_PREVIEW_CHARTER.md
+  - 03_product/ENGINEERING_PREVIEW_PRD.md
+  - 03_product/ENGINEERING_PREVIEW_USER_FLOWS.md
+  - 03_product/ENGINEERING_PREVIEW_CORRECTNESS_CONTRACT.md
+  - 06_evaluation/MODEL_ROLE_BENCHMARK_PLAN.md
+  - 99_handoffs/completed/E1-001_handoff.yaml
+  - 99_handoffs/completed/E1-001_challenger_review.yaml
+  - 99_handoffs/completed/E1-001_fixer_handoff.yaml
+  - 99_handoffs/completed/E1-001_verifier_review.yaml
+  - 99_handoffs/completed/EXTERNAL_GROK_BOT_018_ARCHITECTURE_AUDIT_verifier_review.yaml
+  - 99_handoffs/HANDOFF_TEMPLATE.yaml
+
+files_created:
+  - 03_product/ENGINEERING_PREVIEW_CONTRIBUTION_WORKFLOW.md
+  - 06_evaluation/ENGINEERING_PREVIEW_EVALUATION_SUITE.md
+  - 10_checkpoints/stage_checkpoints/ENGINEERING_PREVIEW_V0_1_RELEASE_ACCEPTANCE.yaml
+  - 99_handoffs/completed/E1-002_handoff.yaml
+
+files_modified:
+  - 01_governance/ASSUMPTION_REGISTER.md
+  - 01_governance/RISK_REGISTER.md
+  - 01_governance/PROJECT_STATE.yaml
+  - 01_governance/TASK_REGISTRY.yaml
+
+files_deleted: []
+
+deliverables:
+  contribution_workflow:
+    path: 03_product/ENGINEERING_PREVIEW_CONTRIBUTION_WORKFLOW.md
+    status: AUTHOR_COMPLETE_NOT_VERIFIED
+    contribution_gates: 16
+    current_lane: GOVERNANCE_OR_SPECIFICATION
+    walkthrough: SPECIFIED_MECHANICALLY_REVIEWABLE_NOT_INDEPENDENTLY_RUN
+    implementation_setup: NOT_APPLICABLE
+    implementation_setup_reason: NO_APPLICATION_IMPLEMENTATION
+  evaluation_suite:
+    path: 06_evaluation/ENGINEERING_PREVIEW_EVALUATION_SUITE.md
+    suite_version: EP-EVAL-0.1
+    status: SPECIFIED_NOT_IMPLEMENTED
+    run_status: NOT_RUN
+    observed_results: 0
+  release_acceptance:
+    path: 10_checkpoints/stage_checkpoints/ENGINEERING_PREVIEW_V0_1_RELEASE_ACCEPTANCE.yaml
+    status: AUTHOR_COMPLETE_NOT_VERIFIED
+    gate_status: NOT_EVALUATED
+    release_authorized: false
+
+counts:
+  evaluation_cases: 169
+  case_groups:
+    core_workflow: 18
+    control_recovery_idempotency: 24
+    false_completion_and_verification: 21
+    approval: 9
+    routing: 7
+    evidence: 12
+    security_negative_cases: 24
+    repository_conditions: 16
+    git_effects: 30
+    contribution_release_workflow: 8
+  canonical_requirement_ids: 127
+  requirement_families:
+    functional_requirements: 56
+    reliability_hard_invariants: 15
+    preview_slos: 4
+    measure_only_metrics: 4
+    future_compatibility_constraints: 9
+    user_flows: 16
+    security_negative_families: 23
+  repository_condition_rows: 16
+  git_effect_rows: 30
+  task_lifecycle_transition_rows: 32
+  operation_transition_rows: 9
+  agent_transition_rows: 12
+  completion_predicate_sets: 7
+  state_combination_rows: 12
+  evidence_profiles: 6
+  evidence_top_level_logical_keys: 42
+  evidence_sections: 15
+  evidence_validation_rules: 16
+  fixture_families: 11
+  oracle_classes: 18
+  implemented_cases: 0
+  executed_cases: 0
+  observed_results: 0
+
+coverage:
+  canonical_requirements: "127/127 with nonempty case mappings and resolving references"
+  security_negative_families: "23/23; the additional dependency-confusion case is dual-mapped to NEG-SUPPLY-01 and NEG-NET-01 and does not inflate the canonical family count"
+  repository_conditions: "16/16 with exact verified E1-001 dispositions; no implementation support is claimed"
+  git_effects: "30/30 with exact primary-effect-class, disposition, approval-rule, and unauthorized-non-effect expectations"
+  lifecycle_and_state: "32 task, 9 operation, and 12 agent transition rows; 7 completion predicate sets; 12 legal/invalid combination rows"
+  evidence_contract: "6 profiles, 42 logical keys, 15 sections, and 16 validation rules"
+  fixtures_and_oracles: "11/11 fixture recipes and 18/18 oracle classes; no dangling or orphan reference"
+
+decisions_made:
+  - "Count one catalog row as one evaluation case. Parameterized fixture vectors are reported inside their row and do not silently inflate the 169-case catalog."
+  - "Keep all cases and fixtures SPECIFIED_NOT_IMPLEMENTED and NOT_RUN. Missing future adapters or implementation produce BLOCKED/NOT_RUN, never fabricated pass evidence."
+  - "Use deterministic state/readback, deterministic checks, invariants, and structured comparison ahead of judgment. OR-BOUNDED-RUBRIC is restricted to FR-061 explanation clarity and irreducible predicate adequacy, excludes hidden author reasoning, preserves INCONCLUSIVE, and cannot override deterministic failure."
+  - "Represent dependency confusion as one named additional security case mapped to two existing canonical NEG families; the verified canonical family count remains 23."
+  - "Freeze prospective PREVIEW_SLO populations, thresholds, repetition, confidence, and invalid-harness handling now, while recording no observation. MEASURE_ONLY families remain report-only until a prospective E1 amendment is independently reverified."
+  - "Make false terminal completion, unauthorized/duplicate/unresolved effects, evidence or revision invalidity, missing independent verification, approval failure, secret disclosure, root escape, user-material loss, and clean-room/rights failure non-compensating release blockers."
+  - "Treat missing outbound licensing and inbound contribution terms as an explicit release blocker traced to R-029; no open-source distribution or rights claim is made."
+  - "Select no architecture, client, language, persistence mechanism, workflow engine, sandbox, cloud, provider, model, framework, or permanent role occupant."
+
+assumptions_added: []
+assumptions_updated:
+  - "A-020 remains open and unverified; its status now records that E1-002 author artifacts exist and independent review plus the E1 gate are still required."
+
+risks_added:
+  - "R-029 HIGH/CRITICAL: an open-source or external-contribution claim without selected outbound licensing, inbound terms, and complete rights/provenance clearance."
+
+tests_run:
+  - "All-repository YAML parse and E1-002 checkpoint load."
+  - "Evaluation-case group count, ID uniqueness, release-list equality, and all case-reference resolution."
+  - "Canonical E1-001 requirement extraction and exact 127-key nonempty reverse-coverage validation."
+  - "Exact 23 security-negative, 16 repository-condition, and 30 Git/effect mapping reconciliation."
+  - "Exact task/operation/agent transition, completion-predicate, state-combination, and evidence-contract cardinality/reference validation."
+  - "Fixture/oracle definition uniqueness, reference resolution, and no-orphan validation."
+  - "Markdown UTF-8, final newline, tabs/trailing whitespace, balanced fences, table widths, 169 seven-field case rows, and oracle/forbidden-field presence."
+  - "Checkpoint vocabulary, current status/outcome/disposition closure, no duplicate YAML keys, no contradictory current execution/result claim, and prospective SLO consistency review."
+  - "Exact allowed-path, zero staged changes, no application-source file, E1-001 byte-unchanged, benchmark-plan/model-registry byte-unchanged, and no E2/E3 artifact execution validation."
+  - "High-confidence secret/private-key pattern scan, clean-room/forbidden-artifact review, no-architecture/no-model-selection assertions, git diff --check, and final worktree status."
+
+validation_commands:
+  - name: yaml_parse
+    command: "/opt/homebrew/bin/yq -o=json '.' FILE for every **/*.{yaml,yml}"
+  - name: traceability
+    command: "Read-only inline python3 validator using /opt/homebrew/bin/yq JSON output; compared suite case/fixture/oracle definitions and checkpoint maps to IDs extracted from the verified E1-001 PRD, flows, and correctness contract."
+  - name: repository_and_git_policy
+    command: "Read-only ruby validator comparing RC-01..16 and GE-01..30 checkpoint values and suite tokens to the verified E1-001 disposition/effect/approval vectors."
+  - name: markdown_structure
+    command: "Read-only ruby validator over ENGINEERING_PREVIEW_CONTRIBUTION_WORKFLOW.md and ENGINEERING_PREVIEW_EVALUATION_SUITE.md for UTF-8/newline/whitespace/fences/table shape and all 169 case rows."
+  - name: whitespace_and_staging
+    command: "git diff --check; git diff --cached --quiet; git status --short"
+
+test_results:
+  - "PASS: 43/43 YAML files parsed."
+  - "PASS: 169/169 evaluation IDs unique; group counts WF 18, CTL 24, FALSE 21, APR 9, ROUTE 7, EVID 12, NEG 24, REPO 16, GIT 30, CONTRIB 8."
+  - "PASS: 127/127 canonical E1-001 requirements covered with no empty or unresolved case mapping: FR 56, RR 15, SLO 4, MET 4, FC 9, UF 16, NEG 23."
+  - "PASS: 23/23 security families, 16/16 repository conditions, and 30/30 Git/effect action rows reconcile exactly."
+  - "PASS: lifecycle 32, operation 9, agent 12, completion predicate 7, state combination 12, evidence profiles 6, evidence keys 42, evidence sections 15, evidence rules 16."
+  - "PASS: 11 unique fixture recipes and 18 unique oracle classes; no undefined, dangling, or orphan reference."
+  - "PASS: checkpoint typed vocabulary closed; no undefined fused contribution result; no contradictory present execution/result claim; PREVIEW_SLO definitions internally consistent."
+  - "PASS: Markdown structure and case-row shape."
+  - "PASS: scope/no-code/no-architecture/no-benchmark/no-paid-call/no-external-effect/autonomy invariants, secret scan, clean-room review, no staged changes, and git diff --check."
+
+validation_iteration_notes:
+  - "The default python3 environment lacked a YAML module. The same read-only YAML assertions were rerun successfully with the installed yq YAML parser; this was a validator-environment issue, not malformed project YAML."
+  - "An initial Markdown row check required a forbidden-outcome phrase to contain one of a narrow set of English words and rejected the valid phrase 'not misclassified infrastructure error.' The final structural check validates the explicit oracle/forbidden field rather than imposing that accidental wording list."
+  - "One broad TASK_REGISTRY patch context transiently changed S0-004 assigned_model while adding the E1-002 author identity. Immediate diff inspection detected it and the value was restored to its exact original null before any final validation or handoff claim."
+  - "Author-side trace review found and corrected one orphan risk trace, one fused contribution result, repository/Git normalized enum qualifiers, one invalid evidence-case reference, one SLO success numerator ambiguity, and bespoke checkpoint vocabulary closure before the final pass."
+
+author_internal_reviews:
+  - "Case catalog and coverage allocation: AUTHOR_SIDE_ASSISTANCE_ONLY; no independent status."
+  - "Contribution workflow reproducibility review: AUTHOR_SIDE_ASSISTANCE_ONLY; no independent status."
+  - "Fixture design review: AUTHOR_SIDE_ASSISTANCE_ONLY; no files or executable fixtures created."
+  - "Release-gate review: AUTHOR_SIDE_ASSISTANCE_ONLY; no release gate evaluated."
+  - "Requirement extraction and coverage review: AUTHOR_SIDE_ASSISTANCE_ONLY."
+  - "Security-negative and oracle review: AUTHOR_SIDE_ASSISTANCE_ONLY."
+  - "Final traceability/vocabulary/policy audit: AUTHOR_SIDE_ASSISTANCE_ONLY; final result PASS but not independent challenger/verifier evidence."
+
+security_checks:
+  - "No real secret, credential, customer/private data, reconstructed source, private implementation material, paid API, model/provider account, remote repository, external system, or runtime product account was accessed."
+  - "All fixture definitions are semantic synthetic local clean-room recipes with deterministic provenance rules; no fixture artifact or application code was created."
+  - "All 23 canonical E1-001 security-negative families have explicit case coverage; dependency confusion and malicious-provider-output containment are named subcases without weakening the canonical contract."
+  - "The contributor workflow requires secret-safe readbacks, denied implicit helpers/scripts/network, provenance and rights review, and exact non-effect evidence."
+  - "Reconstructed-architecture material was used only as bounded clean-room context; no Level C code, schema, internal name, constant, asset, copy, or implementation detail was imported."
+
+known_limitations:
+  - "This is the sole AUTHOR pass. Independent E1-002 challenge, any fixer pass, post-fix verification, and the separate E1 gate evaluation have not occurred."
+  - "All 169 cases, 11 fixtures, and 18 oracles are specifications only. No harness, adapter, implementation, scored run, observed SLO, model benchmark, or provider eligibility evidence exists."
+  - "The external-contributor walkthrough is mechanically specified but has not received the required independent end-to-end challenger/verifier lifecycle."
+  - "Final outbound license, inbound contribution terms, contributor rights mechanism, third-party rights clearance, supported implementation environment, packaging/update/migration contract, and exact release candidate remain unknown and release-blocking where applicable."
+  - "Supported host/language/tool/repository matrix, architecture, isolation mechanism, durable-state mechanism, provider/model configurations, budgets/accounts, and permanent role occupants remain UNKNOWN pending E2/E3 or later governance."
+  - "The same-model low-risk verification policy owner remains undefined; the E1-001 independence floor and high-risk sole-author prohibition still apply."
+  - "The specification defines prospective SLO thresholds and rationale but has no empirical observations; no universal-host or production-readiness claim is made."
+
+unverified_claims:
+  - "Whether a later implementation satisfies any functional, hard-invariant, recovery, evidence, approval, security, reliability, or contribution requirement."
+  - "Whether the prospective SLO thresholds are achievable in a future frozen reference environment."
+  - "Whether any architecture, isolation design, provider, model, route, or verifier strategy is feasible or eligible."
+  - "Whether the project is legally ready for open-source distribution or inbound external contributions."
+  - "Whether E1-002 will pass independent challenge, post-fix verification, or the E1 stage gate without amendment."
+
+unknown_items:
+  - final_architecture
+  - client_and_language
+  - persistence_workflow_and_isolation_mechanisms
+  - supported_host_repository_language_tool_matrix
+  - provider_model_route_and_verifier_eligibility
+  - funded_access_budget_and_account_quotas
+  - outbound_license_and_inbound_contribution_terms
+  - third_party_rights_clearance
+  - packaging_update_migration_and_release_candidate
+  - observed_preview_slo_and_measure_only_values
+  - same_model_low_risk_verification_policy_owner
+
+blockers:
+  - independent_e1_002_challenger_review_not_run
+  - bounded_fixer_response_if_requested_not_run
+  - independent_post_fix_e1_002_verification_not_run
+  - e1_stage_gate_not_evaluated
+  - outbound_license_and_inbound_rights_not_selected_for_future_release
+
+recommended_next_task: REVIEW_TASK_E1-002
+next_command: "MODE: REVIEW_TASK_E1-002"
+repository_commit_or_patch: "Uncommitted E1-002 author patch based on cfafbbcad94b265ab612f60bec6d5dbfc82adffd on chore/initialize-project-materials; intentionally left uncommitted for the founder."
+
+scope_control:
+  e1_001_status: VERIFIED
+  e1_002_status: READY_FOR_REVIEW
+  e1_002_verified: false
+  e1_gate_status: NOT_EVALUATED
+  e2_started: false
+  e3_started: false
+  e4_started: false
+  e5_started: false
+  architecture_selected: false
+  model_roles_selected: false
+  application_code_written: false
+  evaluation_cases_implemented: 0
+  evaluation_cases_run: 0
+  observed_reliability_results: 0
+  model_benchmarks_run: 0
+  technical_spikes_run: 0
+  paid_api_calls_run: 0
+  external_actions_performed: false
+  release_authorized: false
+  autonomy_eligible: NOT_ELIGIBLE
+  autonomous_build_authorized: false
+  customer_evidence_records: 0
+  outreach_messages_sent: 0
+  interviews_conducted: 0
+  spend_usd: 0
+  s1_003_resumed: false
+
+fixer_correction_addendum:
+  addendum_status: APPEND_ONLY_SUPERSEDES_CURRENT_STATE_AND_COUNTS_ONLY
+  original_author_record_sha256_before_addendum: d43ce2f636f4a7717c0855a7759c494f15829aec49101a176d6febd823d5b981
+  challenger_record:
+    path: 99_handoffs/completed/E1-002_challenger_review.yaml
+    sha256: 5548d7a75cdb576e8b03fedcc59ab2e03595100dbf923693cbc6645ca4826301
+    reviewed_commit: 0044276289378051ecfe32ab04318c50aee3b4ad
+    verdict: E1_002_CHANGES_REQUESTED
+    finding_counts: "BLOCKER 0, HIGH 1, MEDIUM 6, LOW 4"
+  fixer_base_commit: 90df9ee5b1e84645f19921a10932dd97b6342bae
+  fixer_completed_at: "2026-08-28T04:18:28Z"
+  finding_disposition_summary: "F-E1-002-01..11 FIXED; DISPUTED 0; DEFERRED 0; independent post-fix verification required"
+  corrected_current_counts:
+    evaluation_cases_specified: 170
+    evaluation_cases_implemented: 0
+    evaluation_cases_run: 0
+    canonical_requirement_ids: 127
+    canonical_case_trace_edges: 701
+    canonical_protocol_trace_edges: 8
+    total_typed_trace_edges: 709
+    checkpoint_only_edges: 0
+    catalog_only_edges: 0
+    security_negative_families: 23
+    repository_condition_rows: 16
+    git_effect_rows: 30
+    predicate_adequacy_variants: 9
+    mandatory_composition_variants: 16
+    fixture_families: 11
+    used_fixture_families: 11
+    oracle_classes: 18
+    used_oracle_classes: 18
+    model_benchmarks_run: 0
+    paid_api_calls: 0
+  historical_record_rule: "Earlier 169-case, 695-row-edge, 907-checkpoint-edge, author-pass, and REVIEW_TASK_E1-002 statements above remain immutable historical author evidence and are not current corrected counts or next action."
+  current_status: READY_FOR_REVIEW_NOT_VERIFIED_FIXER_PASS
+  e1_gate_status: NOT_EVALUATED
+  next_command: "MODE: VERIFY_TASK_E1-002"
+  full_fixer_record: 99_handoffs/completed/E1-002_fixer_handoff.yaml

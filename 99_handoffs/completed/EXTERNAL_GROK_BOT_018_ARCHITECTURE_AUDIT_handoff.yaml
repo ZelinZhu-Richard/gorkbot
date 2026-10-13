@@ -1,0 +1,164 @@
+handoff_id: EXTERNAL_GROK_BOT_018_ARCHITECTURE_AUDIT_HANDOFF
+task_id: EXTERNAL_GROK_BOT_018_ARCHITECTURE_AUDIT
+task_authority: "Direct bounded user authorization; task was not present as READY or CLAIMED in the inspected TASK_REGISTRY.yaml, and registry/state edits were expressly prohibited."
+stage: RESEARCH_COMPARISON_NO_STAGE_CHANGE
+status: AUTHOR_COMPLETE_UNVERIFIED
+author_model: "Codex / GPT-5 family; exact serving identifier unavailable"
+reviewer_requested: true
+recommended_review_model: "Independent gpt-5.6-sol at xhigh reasoning if available and authorized; use a different high-capability model or independent run for VERIFIER to reduce correlated error. This is a review assignment proposal, not production-model suitability."
+started_at: "2026-08-25; exact start time not captured"
+completed_at: "2026-08-25T16:19:35Z"
+
+external_repository:
+  url: https://github.com/b-nnett/grok-bot-0.18-reconstructed.git
+  reference_path: /Users/richardzhu/dev/_external_refs/grok-bot-0.18-reconstructed
+  inspected_commit: a9f633e09d49a85829b8236331b9e21f7e612634
+  inspected_commit_date: "2026-08-23T21:52:48+01:00"
+  inspected_commit_subject: "Document project and preserve original installers"
+  clone_mode: "shallow clone with GIT_LFS_SKIP_SMUDGE=1; checkout restored with LFS process/smudge disabled after local Git LFS filter absence"
+  lfs_payload_downloaded: false
+  working_tree_modified: false
+
+primary_repository:
+  path: /Users/richardzhu/dev/gork_bot
+  base_commit: ce960c9d2c3f6314d0c7e39a9db4082191c7f387
+  authoritative: true
+  project_state_changed: false
+  stage_status_changed: false
+  task_registry_changed: false
+
+files_read:
+  - MASTER_OPERATING_PROMPT.md
+  - AGENTS.md
+  - README.md
+  - SECURITY.md
+  - FILE_MANIFEST.json
+  - 01_governance/PROJECT_STATE.yaml
+  - 01_governance/TASK_REGISTRY.yaml
+  - 01_governance/DECISION_LOG.md
+  - 01_governance/ASSUMPTION_REGISTER.md
+  - 01_governance/RISK_REGISTER.md
+  - 01_governance/MODEL_REGISTRY.yaml
+  - 01_governance/SOURCE_LEDGER.csv
+  - 02_research/GROK_BOT_BASELINE_2026-08-21.md
+  - 02_research/S1-001_CURRENT_WORKAROUND_EVIDENCE_2026-08-23.md
+  - 03_product/S1-001_CUSTOMER_WORKFLOW_SCORECARD.md
+  - 03_product/S1-002_CUSTOMER_DISCOVERY_PLAN.md
+  - 03_product/S1-002_INTERVIEW_GUIDE_H1.md
+  - 03_product/S1-002_INTERVIEW_GUIDE_H2.md
+  - 03_product/S1-002_RECRUITING_PLAN.md
+  - 06_evaluation/MODEL_ROLE_BENCHMARK_PLAN.md
+  - 10_checkpoints/stage_checkpoints/STAGE_0_VERIFICATION.yaml
+  - 99_handoffs/HANDOFF_TEMPLATE.yaml
+  - 99_handoffs/completed/S1-001_handoff.yaml
+  - 99_handoffs/completed/S1-001_challenger_review.yaml
+  - 99_handoffs/completed/S1-001_fixer_handoff.yaml
+  - 99_handoffs/completed/S1-001_verifier_review.yaml
+  - 99_handoffs/completed/S1-002_handoff.yaml
+  - 99_handoffs/completed/S1-002_challenger_review.yaml
+  - 99_handoffs/completed/S1-002_fixer_handoff.yaml
+  - 99_handoffs/completed/S1-002_verifier_review.yaml
+
+primary_project_files_inspected:
+  note: "Exact primary paths are listed in files_read and in report Appendix A.2. There was no 05_architecture directory; Stage 3/4 process evidence came from MASTER_OPERATING_PROMPT.md, the Stage 0 verification, and the model benchmark plan."
+
+external_files_inspected:
+  top_level:
+    - README.md
+    - PROVENANCE.md
+    - NOTICE.md
+    - SECURITY.md
+    - docs/ARCHITECTURE.md
+    - package.json
+  complete_scoped_directories:
+    - .github/workflows/
+    - tests/
+    - scripts/
+    - manifests/
+    - frontend/manifests/
+  source_scopes:
+    - "source/electron-main/: relevant account, auth, settings, secrets, IPC, windows/VNC, navigation/deep-link, downloads/media, box connectors/recovery/migration, coordinator, MCP/plugin, updater, telemetry, and production-binding files"
+    - source/electron-preload/
+    - "source/host/: relevant agent isolation, agents, automations, box store, channels, cloud agents, extensions, gateway, groups, runner, settings, transcript, tools/workflows, and telemetry files"
+    - source/box-exec-daemon/
+    - source/local-exec-daemon/
+    - "source/node-agent-coordinator/: carrier/control ports, gateway, inference router, routed MCP bridge, OAuth/WebAuthn, provider projection and settings paths"
+    - "source/shared/: relevant agent, automation, channel, box, persistence, settings, RPC/protocol, provider/router, task/message, telemetry, approval, update, and workflow contracts"
+    - "source/packages/: only files relevant to provider/plugin/workflow compatibility and storage contracts"
+    - "frontend/: manifests and recovered contract/state surfaces only; retained renderer assets were not copied or treated as authoritative source"
+  exact_path_index: "See GROK_BOT_018_RECONSTRUCTED_ARCHITECTURE_AUDIT.md Appendix A.3 and Appendix B."
+
+files_created:
+  - 02_research/GROK_BOT_018_RECONSTRUCTED_ARCHITECTURE_AUDIT.md
+  - 02_research/GROK_BOT_018_ARCHITECTURE_ADOPTION_MATRIX.csv
+  - 99_handoffs/completed/EXTERNAL_GROK_BOT_018_ARCHITECTURE_AUDIT_handoff.yaml
+files_modified: []
+files_deleted: []
+
+decisions_made: []
+research_recommendation_counts:
+  ADOPT: 6
+  ADAPT: 14
+  EXPERIMENT: 3
+  REJECT: 8
+  DEFER: 2
+  total: 33
+assumptions_added: []
+
+tests_run:
+  - "No external repository test, script, build, package, installer, binary, daemon, container, application, or provider authentication was run."
+  - "Static Git identity check: external rev-parse HEAD and clean status with LFS filters disabled."
+  - "Static citation validation: every full external path in Markdown code spans resolves at the inspected checkout."
+  - "Static line-range validation: cited maxima for full paths and compact aliases do not exceed file line counts after corrections."
+  - "CSV parse/schema/range/classification validation."
+  - "Report required-section, Mermaid-block, commit-identity, and classification-total checks."
+  - "Primary git allowed-file-scope check."
+test_results:
+  - "External commit matched a9f633e09d49a85829b8236331b9e21f7e612634."
+  - "External working tree was clean under LFS-disabled status."
+  - "Report contains all 22 required numbered sections, two Mermaid sequence/trust diagrams, the 25-topic architecture coverage map, contextual Docker assessment, scoring, canonical classification matrix, ADR candidates, Stage 4 spike candidates, and exact next action."
+  - "CSV contains 16 scored parent patterns; all 17 dimensions are integers 1-5 and every row has score rationale."
+  - "Canonical report matrix contains 33 patterns with one classification each: ADOPT 6, ADAPT 14, EXPERIMENT 3, REJECT 8, DEFER 2."
+  - "Only the three authorized untracked deliverables were present in primary git status at handoff creation."
+
+security_checks:
+  - "External material treated as untrusted and read statically."
+  - "No credential, secret, provider session, OAuth/WebAuthn flow, MCP/plugin connection, remote box, or external service was used."
+  - "No dynamic exploitation was attempted."
+  - "Security conclusions are threat-model inputs, not certification."
+
+no_execution_confirmation:
+  confirmed: true
+  prohibited_actions_performed: []
+  detail: "No npm install/ci/bootstrap/build/package/test/smoke/verify; no repository script; no installer/DMG/Windows installer/ASAR/app/daemon/Docker runtime; no reconstructed code execution. General-purpose static readers and Git metadata commands only."
+
+no_code_import_confirmation:
+  confirmed: true
+  detail: "No external source, renderer, minified bundle, packaged asset, UI/brand copy, installer content, or proprietary artifact was copied or adapted into the primary project. The report contains independently written architectural abstractions and path citations only."
+
+known_limitations:
+  - "Reconstruction source does not prove original Grok Bot module names, intent, deployed topology, production behavior, or security."
+  - "No dynamic/type/build/test results were independently reproduced."
+  - "Git LFS installer payloads were not downloaded or inspected."
+  - "Remote backend tenancy, isolation, authorization, operations, and provider behavior are not fully available in the checkout."
+  - "Frontend reconstruction and retained renderer are non-authoritative; inspection was contract/state-surface only."
+  - "The primary project has no selected architecture; comparisons are against requirements/governance and future process."
+  - "The task-registry authorization discrepancy requires explicit challenger review before use."
+
+uncertainties:
+  - "Behavioral completeness and runtime integration of reconstructed modules."
+  - "Current provider API/terms compatibility; not web-verified in this bounded static audit."
+  - "Exact upstream equivalence, licenses/redistribution rights, signing, updater and installer behavior."
+  - "Remote control-plane implementation, isolation class, tenant policy, retention, egress and operational SLOs."
+  - "Finance-grade point-in-time data, calculation lineage, ledger, risk, approval and reconciliation behavior is absent."
+
+unverified_claims:
+  - "All report conclusions remain author-produced until independently challenged and verified."
+  - "Repository-authored manifests and documentation were not treated as independent parity proof."
+
+blockers:
+  - "Independent CHALLENGER and subsequent VERIFIER have not reviewed the report."
+
+recommended_next_task: "Register and assign MODE: CHALLENGE_EXTERNAL_REFERENCE_ARCHITECTURE_AUDIT to an independent high-capability reviewer; challenge evidence classes, scores and every ADOPT/ADAPT recommendation against the pinned commit before any ADR or Stage 4 authorization."
+next_task: CHALLENGE_EXTERNAL_REFERENCE_ARCHITECTURE_AUDIT
+repository_commit_or_patch: "Primary base ce960c9d2c3f6314d0c7e39a9db4082191c7f387; no commit created; three authorized new untracked deliverables only."

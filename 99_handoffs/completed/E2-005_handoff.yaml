@@ -1,0 +1,306 @@
+handoff_id: E2-005-author-2026-08-30
+task_id: E2-005
+stage: E2
+author_model: "Codex (runtime model identifier not exposed)"
+reviewer_requested: FRESH_INDEPENDENT_CHALLENGER_THEN_FIXER_IF_NEEDED_THEN_SEPARATE_TASK_VERIFIER
+started_at: "2026-08-30T01:38:16Z"
+completed_at: "2026-08-30T02:10:35Z"
+fixer_completed_at: "2026-08-30T03:50:16Z"
+author_base_commit: 7f70f0eb4b4b0b28bbcee158c101f20bb6e4c0a7
+proposal_authority: "Recommend exactly one verified survivor and author a proposed architecture baseline, nine proposed ADRs, and an E3 validation-obligation plan. The author may not select or verify architecture, accept an ADR, pass the E2 gate, execute E2-006/E3/E4, select technology/model roles, write application code, change autonomy, or resume S1-003."
+proposed_candidate:
+  candidate_id: EP-ARCH-C01
+  candidate_name: Integrated Transactional Local Core
+  source_candidate_changed: false
+  hybrid_created: false
+  proposal_status: PROPOSED_PENDING_INDEPENDENT_ARCHITECTURE_VERIFICATION
+  architecture_selected: false
+  authoritative_preferred_candidate: null
+  accepted_adr_count: 0
+decision_rationale:
+  method: QUALITATIVE_CURRENT_SCOPE_PROPORTIONALITY_NO_WEIGHT_NO_SCORE
+  hard_gate: "All three candidates retain 57 CONFIRMED_SATISFIED_FOR_COMPARISON plus two ARCHITECTURE_SEAM_CONFIRMED_E3_VALIDATION_OUTSTANDING hard results, with zero architecture-blocking spikes and zero violations. Missing E3 evidence receives no favorable interpretation."
+  current_scope_precedence: "D-016 makes local-first, single-user Engineering Preview operation REQUIRED_NOW and leaves remote execution, concurrent tasks, multiple agents/clients, extensions, editions, and SaaS as reserved or deferred."
+  decision_rule_source: "After the non-compensating hard tie, use D-016 for present scope; E2 plan section 15 plus verified AR-PRF-002/004 for qualitative present-structure proportionality; comparison sections 5, 13, and 17.2 for contributor trade-offs and sensitivity. Immediate mandatory complexity receives more present scrutiny than reserved compatibility machinery, while future evolution remains a real preference and reopen surface. No numeric or hidden weights exist."
+  c01_reason: "C01 provides the shortest mandatory present authority/control path without requiring a persistent local service, service IPC/authentication, worker-lease lifecycle, or journal/reducer/projection authority model before those structures have present scope value. This is best fit for current verified scope under stated qualitative precedence, not an objective or universal winner."
+  admitted_costs: "The integrated core has a broader crash/coupling radius, heavier internal-boundary documentation burden, costly later authority extraction, and foundational transactional-state/history/effect semantics."
+  contributor_basis: "Contributor accessibility is taken from the verified comparison rather than inferred from process count: C01 has one visible runtime but broad-core coupling, C02 has narrower subsystems but multi-process setup, and C03 has deterministic replay fixtures but event/reducer onboarding."
+  sensitivity_basis: "All seven verified profiles were cross-checked: A supports C01's minimal-topology fit; D supports only its setup-topology sub-dimension while preserving distinct C02/C03 contributor advantages; B/C/G preserve C03 replay, C02 remote-worker, and differentiated testability pressure; E/F establish no stable candidate-wide migration or security-boundary winner. No profile is treated as an overall winner."
+rejected_alternatives:
+  EP-ARCH-C02:
+    status: ANALYTICALLY_VIABLE_NOT_PROPOSED_FOR_V0_1
+    preserved_strength: "Clearest direct remote-worker seam, replaceable leased/fenced workers, worker fault isolation, and explicit subsystem ownership."
+    reason: "A mandatory local service, IPC/authentication, lease/fence, correlation, and lifecycle surface adds present operational/security burden while remote or multi-worker execution is not REQUIRED_NOW."
+    reopen: "Reconsider if independently verified requirements make replaceable remote workers, service continuity across client lifetimes, or multiple execution owners present requirements."
+  EP-ARCH-C03:
+    status: ANALYTICALLY_VIABLE_NOT_PROPOSED_FOR_V0_1
+    preserved_strength: "Strongest causal replay/reconstruction, rebuildable projections, deterministic reducer fixtures, and coordinator replaceability."
+    reason: "Event identity/order/evolution, immutable payload, reducer, checkpoint, projection, retention, and rebuild semantics create more present conceptual and contributor burden than the single-user local workflow requires."
+    reopen: "Reconsider if independently verified requirements make full causal reconstruction, independently replayable projections, or coordinator-free operation decisive."
+verified_input_recomputation:
+  candidates: 3
+  candidate_ids:
+    - EP-ARCH-C01
+    - EP-ARCH-C02
+    - EP-ARCH-C03
+  decision_matrix_cells: 195
+  architecture_requirements: 65
+  hard_requirements_per_candidate: 59
+  preferences_per_candidate: 6
+  hard_results_per_candidate:
+    confirmed_satisfied_for_comparison: 57
+    architecture_seam_confirmed_e3_validation_outstanding: 2
+    architecture_blocking_spike: 0
+    confirmed_violated: 0
+  residual_hard_seams:
+    AR-EXE-003: E3V-002
+    AR-SEC-006: E3V-006
+  frozen_e1_trace_rows: 127
+  decision_domains: 25
+  threat_boundaries: 20
+  level_b_pattern_families: 19
+  sensitivity_profiles: 7
+  planned_adr_boundaries: 9
+  normalized_uncertainty_records: 28
+  uncertainty_partition:
+    paper_resolvable: 10
+    e2_preselection_spike_required: 0
+    e3_postselection_technical_validation: 8
+    e3_model_or_configuration_benchmark: 3
+    deferred_out_of_scope: 7
+  e3v_obligations: 8
+  all_candidates_analytically_viable: true
+  preselection_spikes_required: 0
+preference_tradeoffs:
+  status: QUALITATIVE_UNWEIGHTED_UNSCORED
+  criteria:
+    AR-PRF-001: "C01 has fewer prospective top-level local crossings; all latency remains unmeasured and E3V-007-owned."
+    AR-PRF-002: "C01 reduces lifecycle count but concentrates broad-core coupling; C02 has more lifecycle but narrower subsystems; C03 adds event/reducer/projection concepts."
+    AR-PRF-003: "No overall reversal winner: C01 authority extraction, C02 service/store/protocol, and C03 event semantics are each costly foundational commitments."
+    AR-PRF-004: "C02 has the clearest direct remote-worker seam and C03 has a serializable dispatch boundary; C01's remote evolution is costlier but remote execution is not required now."
+    AR-PRF-005: "C01 has compact current-state access and C03 strongest reconstruction; all evidence/large-output overhead remains unmeasured."
+    AR-PRF-006: "C01 has the simplest present topology/package, offset by broad-core documentation/coupling; C02 has more processes and C03 more concepts."
+baseline_coverage:
+  requirement_trace: "127 frozen E1 IDs -> 65 AR IDs -> nine proposed ADR primary assignments; every AR assigned exactly once and all hard/preferences retained."
+  domains: "All D01-D25 explicitly mapped."
+  security: "All TB-01..TB-20 carry trust/assets, authority, allowed flow, forbidden flow, enforcement point, fail-closed behavior, evidence/observability, and recovery/replay implications in the baseline; unsupported compromised-host class remains explicit and no LLM judgment grants authority."
+  recovery: "Twenty-five complete scenarios plus seven C01 partial-filesystem subcases cover client/core/host/owner/child failure; model/tool timeout; lost result/acknowledgement; partial authoritative/filesystem mutation; stale workspace/approval/verification; duplicate/reordered input/operation/effect; redirect/resume; stop/shutdown; protected-delivery and provider/request ambiguity. Each records source, readback, action, ambiguity, evidence, owner/escalation, invalidation, dispositions, ADR/AR and E3/E4 linkage while preserving KNOWN_SUCCESS/KNOWN_FAILURE/UNKNOWN_OUTCOME and denying global atomicity."
+  approval_effect: "Durable INTENT -> APPROVAL/REFUSAL -> ATTEMPT -> OBSERVED_EFFECT -> CONFIRMED_EFFECT/KNOWN_FAILURE/UNKNOWN_EFFECT with stable identity, exact scope, revocation/staleness, replay protection, target readback, reconciliation, and no global cross-boundary transaction claim."
+  evidence_verification: "Exact revision, operation/approval/effect/routing/actor/model/tool provenance, immutable evidence references, predicate adequacy, separate least-privilege verifier context, stale invalidation, integrity/gap state, and limitations."
+  testability: "Seams preserved for 170 cases, 18 oracles, 11 fixtures, 23 NEG families, 16 repository conditions, 30 Git/effect classes, nine predicate-adequacy variants, 16 dangerous compositions, eight reliability protocols, and EP-CTL-016; none implemented or run."
+  local_first: "One task-bound integrated runtime/package plus owned child/verifier processes; no mandatory daemon or cloud service."
+  future_compatibility: "Required-now, reserved-compatibility, and deferred-later classifications preserve versioned remote/concurrency/multi-agent/multi-client/extension/edition/SaaS seams without implementing them."
+  clean_room: "All 19 Level-B pattern-family dispositions are justified through frozen E1/E2 constraints; no Level-C source, module, schema, name, layout, constant, asset, or claimed external runtime behavior is imported."
+proposed_adrs:
+  count: 9
+  common_status: PROPOSED_PENDING_INDEPENDENT_ARCHITECTURE_VERIFICATION
+  accepted_count: 0
+  records:
+    - ADR-E2-001_SYSTEM_CLIENT_CORE_BOUNDARY.md
+    - ADR-E2-002_STATE_PERSISTENCE_HISTORY_PROJECTIONS_MIGRATION.md
+    - ADR-E2-003_ORCHESTRATION_OWNERSHIP_RECOVERY_IDEMPOTENCY.md
+    - ADR-E2-004_WORKSPACE_EXECUTION_ISOLATION_GIT_REMOTE_SEAM.md
+    - ADR-E2-005_CAPABILITY_APPROVAL_SECRET_EFFECT_RECONCILIATION.md
+    - ADR-E2-006_MODEL_PROVIDER_ROUTING_CONTEXT_BOUNDARY.md
+    - ADR-E2-007_VERIFICATION_EVIDENCE_ARTIFACT_INTEGRITY.md
+    - ADR-E2-008_OBSERVABILITY_AUDIT_METERING_FAILURE.md
+    - ADR-E2-009_LOCAL_PACKAGING_FUTURE_COMPATIBILITY.md
+  commitment_classes:
+    foundational_high_cost:
+      - ADR-E2-001
+      - ADR-E2-002
+      - ADR-E2-003
+      - ADR-E2-005
+      - ADR-E2-007
+    moderately_costly:
+      - ADR-E2-004
+      - ADR-E2-006
+      - ADR-E2-008
+    reversible_early:
+      - ADR-E2-009
+e3_validation_plan:
+  status: PLAN_ONLY_NOT_EXECUTED
+  technical_mechanism_obligations:
+    - E3V-001
+    - E3V-002
+    - E3V-003
+    - E3V-004
+    - E3V-005
+    - E3V-006
+    - E3V-007
+  model_configuration_obligations:
+    - E3V-008
+  canonical_handback_sets:
+    E3V-001: ADR-E2-002/003/004/005/007/008/009
+    E3V-002: ADR-E2-003/004/007
+    E3V-003: ADR-E2-001/002/004/009
+    E3V-004: ADR-E2-001/004/005/006/007/008/009
+    E3V-005: ADR-E2-002/003/004/005/006/007/008
+    E3V-006: ADR-E2-001/004/005/007/008/009
+    E3V-007: ADR-E2-001/002/007/008/009
+    E3V-008: ADR-E2-006
+  handback_closure_rule: "Union canonical E2-001 section 9 ARs with C01 decision-matrix E3 links; join every linked AR to the baseline primary ADR owner; include every structurally disproven primary owner and only explicitly justified secondary dependencies; normalize and require set equality across baseline, E3 plan, ADRs, handoffs, and current task state. Frozen E2-001 AR ownership is unchanged."
+  c01_protected_delivery:
+    question: SPQ-E2-002-03
+    linked_obligation: E3V-006
+    linked_adr: ADR-E2-005
+    proven: false
+  ceiling_policy_authority:
+    authority_id: E3-QPA-001
+    name: Engineering Preview E3 Qualification Policy Authority
+    accountable_owner: Founder
+    future_e3_author_may_draft_but_not_self_approve: true
+    required_review_path:
+      - FRESH_INDEPENDENT_CHALLENGER
+      - SEPARATE_POST_FIX_VERIFIER
+    finite_values_owned:
+      - verification_rerun_ceiling
+      - deterministic_check_repetition_rule_and_value
+      - correction_attempt_ceiling
+    numeric_values_selected_by_e2_005: false
+    invalid_or_missing_value_consequence: E3_SCORED_EXECUTION_BLOCKED
+e4_deferrals:
+  count: 3
+  bundles:
+    E4U-C01-IMPLEMENTATION: "client/runtime; embedded store; schema/codec; process API; isolation mechanism; provider SDKs/adapters; package/update tooling"
+    E4U-C02-IMPLEMENTATION: "service/client/runtime; IPC/auth; store/schema; worker supervisor; isolation mechanism; provider adapters; installer/updater"
+    E4U-C03-IMPLEMENTATION: "runtime/journal/payload; event/schema/reducer; projections/checkpoints; executor/isolation; provider adapters; client/package"
+bundle_and_sp_c_traceability:
+  E2U-S01-DESCENDANT-CONTAINMENT: "E3V-002 -> AR-DUR-004/AR-EXE-002/003/AR-TST-001/002 -> ADR-E2-003/004/007 -> exact host/tree/control/fence/readback evidence -> fence/block unsupported class -> implementation/configuration failure, evidence-missing fail-closed, or architecture handback to the same canonical set. Reuses/distinguishes verified audit SP-C01 crash scheduling and SP-C05 lifecycle material; not executed."
+  E2U-S02-PROTECTED-ACQUISITION: "E3V-006 -> AR-SEC-006/AR-TST-001/002 -> ADR-E2-001/004/005/007/008/009 -> synthetic marker/capture/exact-binding/reacquisition/receipt evidence -> WAITING_FOR_USER or blocked -> correction, evidence-missing fail-closed, or architecture handback to the same set. Reuses/distinguishes SP-C04 receipt/readback and SP-C05 lifecycle material; not executed."
+  E3U-C01-PROTECTED-DELIVERY: "E3V-006 -> AR-SEC-003/006/AR-TST-001/002/AR-FUT-002 -> ADR-E2-001/004/005/007/008/009 -> C01 f27/f30 exact co-resident delivery/capture/crash/revocation/no-replay evidence -> WAITING_FOR_USER or blocked -> same root-cause split and handback. Reuses/distinguishes SP-C01/SP-C04/SP-C05; not executed."
+  E3U-C01-TECHNICAL: "C01 f30 E3V-001..007 -> each linked AR/property -> its exact canonical ADR set -> section-specific evidence -> fail closed -> implementation/configuration, unsupported class, missing evidence, or architecture handback as defined in the E3 plan. SP-C01/SP-C03/SP-C04/SP-C05 provenance is cited per applicable obligation; no SP-C contract is architecture proof."
+  E3U-C01-MODEL-CONFIGURATION: "C01 f30 E3V-008 -> AR-MOD-001..003 -> ADR-E2-006 -> separately authorized exact configuration benchmark evidence -> role unassigned on failure/missing evidence -> architecture handback only for gateway-level impossibility through every compliant route. No benchmark or call was run."
+  E4U-C01-IMPLEMENTATION: "Future E4 implementation/configuration detail behind ADR-E2-001..009; not a hidden ADR, not resolved, and not authorized."
+  E4U-C02-IMPLEMENTATION: "Historical C02 reopen evidence only; not an active implementation plan."
+  E4U-C03-IMPLEMENTATION: "Historical C03 reopen evidence only; not an active implementation plan."
+handback_model:
+  rule: "E3 may correct or replace a failing implementation/configuration within a proposed ADR seam, narrow unsupported scope, or fail closed. Reproducible evidence that disproves an indispensable selected property or makes a hard boundary structurally impossible stops affected E3 and returns the exact evidence to the canonical closed ADR handback set, followed by independent challenge, fresh E2-006 verification, and a renewed E2 gate."
+  e2_005_review_reopen: "Challenge/fix evidence may revise this proposal before task verification; E2-006 must later rederive architecture compliance from frozen inputs."
+unresolved_implementation_details:
+  - Client framework and protected-acquisition carrier.
+  - Language/runtime, embedded store, schema, codec, migration and integrity mechanisms.
+  - Process API, isolation technology, supported-host matrix, workspace and Git adapters.
+  - Policy/grant/approval/effect persistence and target-specific readback adapters.
+  - Provider SDKs/adapters, exact model/configuration eligibility, routing and context algorithms.
+  - Evidence carrier, verifier runtime, instrumentation, finite E3 ceiling values and all measured thresholds.
+  - Package, installer/update/rollback, release tooling, remote/concurrency/extensions/editions/SaaS implementation.
+files_read:
+  - MASTER_OPERATING_PROMPT.md
+  - AGENTS.md
+  - README.md
+  - SECURITY.md
+  - 01_governance/PROJECT_STATE.yaml
+  - 01_governance/TASK_REGISTRY.yaml
+  - 01_governance/DECISION_LOG.md
+  - 01_governance/ASSUMPTION_REGISTER.md
+  - 01_governance/RISK_REGISTER.md
+  - 01_governance/MODEL_REGISTRY.yaml
+  - 02_research/GROK_BOT_BASELINE_2026-08-21.md
+  - 02_research/GROK_BOT_018_RECONSTRUCTED_ARCHITECTURE_AUDIT.md
+  - 02_research/GROK_BOT_018_ARCHITECTURE_ADOPTION_MATRIX.csv
+  - 03_product/ENGINEERING_PREVIEW_CHARTER.md
+  - 03_product/ENGINEERING_PREVIEW_PRD.md
+  - 03_product/ENGINEERING_PREVIEW_USER_FLOWS.md
+  - 03_product/ENGINEERING_PREVIEW_CORRECTNESS_CONTRACT.md
+  - 03_product/ENGINEERING_PREVIEW_CONTRIBUTION_WORKFLOW.md
+  - 06_evaluation/ENGINEERING_PREVIEW_EVALUATION_SUITE.md
+  - 06_evaluation/MODEL_ROLE_BENCHMARK_PLAN.md
+  - 10_checkpoints/stage_checkpoints/ENGINEERING_PREVIEW_V0_1_RELEASE_ACCEPTANCE.yaml
+  - 05_architecture/ENGINEERING_PREVIEW_E2_ARCHITECTURE_PLAN.md
+  - 05_architecture/ENGINEERING_PREVIEW_ARCHITECTURE_REQUIREMENTS.md
+  - 05_architecture/ENGINEERING_PREVIEW_E1_ARCHITECTURE_TRACEABILITY.csv
+  - 05_architecture/ENGINEERING_PREVIEW_ARCHITECTURE_ALTERNATIVES.md
+  - 05_architecture/candidates/EP-ARCH-C01.yaml
+  - 05_architecture/candidates/EP-ARCH-C02.yaml
+  - 05_architecture/candidates/EP-ARCH-C03.yaml
+  - 05_architecture/ENGINEERING_PREVIEW_ARCHITECTURE_COMPARISON.md
+  - 05_architecture/ENGINEERING_PREVIEW_ARCHITECTURE_DECISION_MATRIX.csv
+  - 05_architecture/ENGINEERING_PREVIEW_ARCHITECTURE_UNCERTAINTY_REGISTER.yaml
+  - 05_architecture/ENGINEERING_PREVIEW_PRESELECTION_UNCERTAINTY_CLOSURE.md
+  - 99_handoffs/completed/E2-001_verifier_review.yaml
+  - 99_handoffs/completed/E2-002_verifier_review.yaml
+  - 99_handoffs/completed/E2-003_handoff.yaml
+  - 99_handoffs/completed/E2-003_challenger_review.yaml
+  - 99_handoffs/completed/E2-003_verifier_review.yaml
+  - 99_handoffs/completed/E2-004_handoff.yaml
+  - 99_handoffs/completed/E2-004_challenger_review.yaml
+  - 99_handoffs/completed/E2-004_verifier_review.yaml
+files_created:
+  - 05_architecture/ENGINEERING_PREVIEW_ARCHITECTURE_BASELINE.md
+  - 05_architecture/ENGINEERING_PREVIEW_E3_VALIDATION_OBLIGATIONS.md
+  - 05_architecture/adr/ADR-E2-001_SYSTEM_CLIENT_CORE_BOUNDARY.md
+  - 05_architecture/adr/ADR-E2-002_STATE_PERSISTENCE_HISTORY_PROJECTIONS_MIGRATION.md
+  - 05_architecture/adr/ADR-E2-003_ORCHESTRATION_OWNERSHIP_RECOVERY_IDEMPOTENCY.md
+  - 05_architecture/adr/ADR-E2-004_WORKSPACE_EXECUTION_ISOLATION_GIT_REMOTE_SEAM.md
+  - 05_architecture/adr/ADR-E2-005_CAPABILITY_APPROVAL_SECRET_EFFECT_RECONCILIATION.md
+  - 05_architecture/adr/ADR-E2-006_MODEL_PROVIDER_ROUTING_CONTEXT_BOUNDARY.md
+  - 05_architecture/adr/ADR-E2-007_VERIFICATION_EVIDENCE_ARTIFACT_INTEGRITY.md
+  - 05_architecture/adr/ADR-E2-008_OBSERVABILITY_AUDIT_METERING_FAILURE.md
+  - 05_architecture/adr/ADR-E2-009_LOCAL_PACKAGING_FUTURE_COMPATIBILITY.md
+  - 99_handoffs/completed/E2-005_handoff.yaml
+files_modified:
+  - 01_governance/ASSUMPTION_REGISTER.md
+  - 01_governance/RISK_REGISTER.md
+  - 01_governance/PROJECT_STATE.yaml
+  - 01_governance/TASK_REGISTRY.yaml
+files_deleted: []
+decisions_made:
+  - "PROPOSAL only: EP-ARCH-C01 for v0.1, pending all required independent review and verification."
+  - "Nine separate ADR boundaries at PROPOSED_PENDING_INDEPENDENT_ARCHITECTURE_VERIFICATION; zero accepted."
+  - "E3-QPA-001 registration with Founder accountability and independent review; no finite numeric values selected."
+assumptions_added:
+  - "A-021: C01 proportionality for D-016 current scope is a design proposal, not a verified fact or architecture selection."
+risks_added_or_updated:
+  - "R-030 mitigation updated for verified no-spike closure and the provisional C01 package."
+  - "R-031 added for broad-core/shared-failure-domain, internal-boundary and future extraction/migration risk."
+tests_run:
+  - "ruby /tmp/e2_005_fixer_validate.rb"
+  - "shasum -a 256 over frozen trace, matrix, three candidate records, and E2-004 closure"
+  - "strict Psych AST duplicate-key scan and YAML load over all repository YAML"
+  - "CSV parse over all repository CSV"
+  - "ADR status/ID/schema/cross-reference, canonical vocabulary, ADR-E2-002/008 ownership-boundary, and required-heading checks"
+  - "127-E1/65-AR/59-hard/6-preference/25-domain/20-threat/19-Level-B/8-E3V/3-E4 structural checks, including E3V primary-owner closure and set equality"
+  - "25-row recovery matrix plus seven partial-filesystem subcase field-completeness checks"
+  - "decision-rule source, sensitivity interpretation, bundle-deferral chain, and SP-C provenance checks"
+  - "allowed-path and frozen-artifact diff checks"
+  - "Markdown table structural check"
+  - "high-confidence credential/private-key pattern scan of all changed files"
+  - "git diff --check"
+test_results:
+  - "PASS: comprehensive fixer suite completed 577/577 checks. This is author-side mechanical evidence, not independent task verification."
+  - "PASS: 70/70 YAML files parse; zero duplicate mapping keys."
+  - "PASS: 6/6 CSV files parse."
+  - "PASS: decision matrix 195 unique cells, three candidates, 65 criteria, 59 hard, six preferences; each candidate 57/2/0/0 hard results."
+  - "PASS: frozen trace 127 unique E1 rows; baseline primary assignment covers all 65 AR IDs exactly once across nine ADRs."
+  - "PASS: all 25 domains, 20 threat boundaries with nine complete C01 fields each, 19 Level-B families, 25 complete recovery rows plus seven partial-filesystem subcases, six qualitative preferences, eight primary-owner-closed canonical E3V obligations with set-equal handbacks, and three E4 bundles are present."
+  - "PASS: nine unique ADR IDs; every ADR has every required section and exact proposed status; zero accepted/verified ADR status."
+  - "PASS: candidate and verified-input SHA-256 values equal the pinned baseline values."
+  - "PASS: exactly 15 authorized repository paths changed (14 modified, one created); all frozen E1 and verified E2-001/E2-002/E2-003/E2-004 inputs unchanged."
+  - "PASS: all seven sensitivity profiles are explicitly cross-checked without an overall winner; state/status/reversibility vocabulary and ADR-E2-002/008 ownership are coherent; bundle/SP-C provenance is explicit; Markdown tables are structurally consistent; high-confidence secret scan zero matches; git diff --check clean."
+  - "PASS: architecture_selected=false, authoritative preferred_candidate=null, accepted ADRs=0, E2-006=BACKLOG, E2 gate=NOT_EVALUATED, all execution counters zero."
+security_checks:
+  - "Twenty threat boundaries mapped to enforcement and fail-closed behavior."
+  - "Protected acquisition/delivery remains unproven under E3V-006 and SPQ-E2-002-03; raw secret values are excluded from ordinary state/model/log/evidence paths by proposal."
+  - "No secret-bearing fixture, credential, provider call, network action, dependency, source code, or Level-C reconstructed artifact was created."
+  - "High-confidence credential/private-key scan returned zero matches in changed files."
+known_limitations:
+  - "This author proposal has received its fresh challenger review and author-side fixer pass. It has not received separate E2-005 task verification, E2-006 architecture verification, or E2 stage-gate evaluation."
+  - "No runtime mechanism, supported host/platform, isolation tier realization, protected-entry carrier, provider adapter, evidence system, package, performance, reliability, cost, or model/configuration eligibility has been implemented or observed."
+  - "AR-EXE-003/E3V-002 and AR-SEC-006/E3V-006 remain hard seams with empirical validation outstanding; all E3V-001..008 work is unrun."
+  - "E3-QPA-001 owns future finite ceiling values; E2-005 intentionally selects none, and scored E3 remains blocked until prospective independently reviewed values exist."
+  - "C01's broad-core coupling/crash radius and later extraction/migration cost are material proposal risks, not resolved claims."
+  - "README status refresh remains an out-of-scope founder commit-time item; E2-005 did not edit it."
+unverified_claims:
+  - "That any C01 mechanism can satisfy its contract on any concrete host, process, store, client, provider, package, or configuration."
+  - "That C01 has lower measured latency, cost, complexity, evidence overhead, or contributor burden than C02/C03."
+  - "That protected acquisition/delivery, descendant containment/fencing, recovery, migration, verification independence, finite limits, or package reproducibility work in practice."
+  - "That any model/provider is eligible for any logical role or that the system is production/release/autonomy ready."
+blockers: []
+downstream_blocked_state:
+  E2-006: BACKLOG_PENDING_E2_005_INDEPENDENT_TASK_VERIFICATION
+  E2_GATE: NOT_EVALUATED
+  E3: NOT_STARTED
+  E4: NOT_STARTED_NOT_AUTHORIZED
+recommended_next_task: "MODE: VERIFY_TASK_E2-005"
+repository_commit_or_patch: UNCOMMITTED_FIXER_WORKTREE_PATCH_AGAINST_29AF85899FAE6851115F8B75D567E6A58AB380E3

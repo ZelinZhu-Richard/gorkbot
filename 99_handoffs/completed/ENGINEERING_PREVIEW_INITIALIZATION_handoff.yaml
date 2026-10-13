@@ -1,0 +1,225 @@
+handoff_id: H-E0-001-ENGINEERING-PREVIEW-INITIALIZATION-20260825
+task_id: E0-001
+stage: E0
+mode: INITIALIZE_ENGINEERING_PREVIEW
+role: AUTHOR
+author_model: "Codex (runtime model identifier not exposed)"
+reviewer_requested: "Independent formal review of E0-001 before the E1 gate can be verified or E2 activated; E1-001 authoring is separately READY under confirmed D-016 and verified S0-002/S0-003 dependencies."
+started_at: "2026-08-25 (exact UTC start not separately recorded)"
+completed_at: "2026-08-26T02:26:12Z"
+base_commit: 334f91919abd62b8d9804ee63dda31699dbff0a0
+base_commit_subject: "Pivot project to engineering-first Developer Preview"
+
+files_read:
+  - MASTER_OPERATING_PROMPT.md
+  - AGENTS.md
+  - README.md
+  - SECURITY.md
+  - 01_governance/PROJECT_STATE.yaml
+  - 01_governance/TASK_REGISTRY.yaml
+  - 01_governance/DECISION_LOG.md
+  - 01_governance/ASSUMPTION_REGISTER.md
+  - 01_governance/RISK_REGISTER.md
+  - 01_governance/MODEL_REGISTRY.yaml
+  - 02_research/GROK_BOT_BASELINE_2026-08-21.md
+  - 02_research/GROK_BOT_018_RECONSTRUCTED_ARCHITECTURE_AUDIT.md
+  - 02_research/GROK_BOT_018_ARCHITECTURE_ADOPTION_MATRIX.csv
+  - 02_research/S1-001_CURRENT_WORKAROUND_EVIDENCE_2026-08-23.md
+  - 03_product/S1-001_CUSTOMER_WORKFLOW_SCORECARD.md
+  - 03_product/S1-001_SCORED_HYPOTHESES.csv
+  - 03_product/S1-002_CUSTOMER_DISCOVERY_PLAN.md
+  - 03_product/S1-002_INTERVIEW_GUIDE_H1.md
+  - 03_product/S1-002_INTERVIEW_GUIDE_H2.md
+  - 03_product/S1-002_RECRUITING_PLAN.md
+  - 03_product/S1-002_DISCOVERY_SCORECARD.csv
+  - 06_evaluation/MODEL_ROLE_BENCHMARK_PLAN.md
+  - 10_checkpoints/stage_checkpoints/STAGE_0_VERIFICATION.yaml
+  - 99_handoffs/HANDOFF_TEMPLATE.yaml
+  - 99_handoffs/completed/EXTERNAL_GROK_BOT_018_ARCHITECTURE_AUDIT_verifier_review.yaml
+  - 99_handoffs/completed/S1-001_verifier_review.yaml
+  - 99_handoffs/completed/S1-002_verifier_review.yaml
+  - 99_handoffs/completed/S1-003_AUTHORIZATION_RECONCILIATION_handoff.yaml
+
+files_created:
+  - 03_product/ENGINEERING_PREVIEW_CHARTER.md
+  - 99_handoffs/completed/ENGINEERING_PREVIEW_INITIALIZATION_handoff.yaml
+files_modified:
+  - README.md
+  - 01_governance/PROJECT_STATE.yaml
+  - 01_governance/TASK_REGISTRY.yaml
+files_deleted: []
+
+decisions_made:
+  - "GOVERNANCE DETERMINATION: D-016 is the active project-mode authority; the startup/customer track is preserved and DEFERRED, not completed or cancelled."
+  - "GOVERNANCE DETERMINATION: S1-003 retains task status BLOCKED and receives task_disposition DEFERRED with the sole active blocker PAUSED_BY_D016_ENGINEERING_FIRST_PIVOT, matching existing repository status vocabulary."
+  - "GOVERNANCE DETERMINATION: D-015 satisfied the old restricted-storage input; D-013 and D-015 remain preserved but inactive while D-016 is active; no outreach is currently authorized."
+  - "GOVERNANCE DETERMINATION: E0-001 is READY_FOR_REVIEW, not VERIFIED; E1-001 is the sole READY authoring task; E1-002 remains BACKLOG; E2/E3/E5 are NOT_STARTED; E4 and FULL_AUTONOMOUS_BUILD_MODE are NOT_AUTHORIZED until E3 is independently VERIFIED."
+  - "SCOPE DETERMINATION E0-001-A1: README.md was prospectively added to the allowed paths because its stale Stage 0 / MODE: INITIALIZE entrypoint contradicted D-016 and could misroute the next agent."
+  - "No architecture, client technology, workflow engine, database, sandbox technology, provider, model, permanent model role, customer wedge, price, or implementation was selected."
+assumptions_added: []
+
+program_state:
+  startup_customer_track: DEFERRED_BY_D016
+  s1_001: VERIFIED_UNCHANGED
+  s1_002: VERIFIED_UNCHANGED
+  s1_003: BLOCKED_DEFERRED_NOT_EXECUTED
+  engineering_preview_track: ACTIVE
+  E0: READY_FOR_REVIEW_NOT_VERIFIED
+  E1_001: READY
+  E1_002: BACKLOG
+  E2: NOT_STARTED
+  E3: NOT_STARTED
+  E4: NOT_AUTHORIZED
+  E5: NOT_STARTED
+  full_autonomous_build_mode: NOT_AUTHORIZED
+  engineering_preview_target: "Local-first, single-user, one persistent software-engineering agent using real repositories, durable state, isolated execution, files/terminal/Git/tests, independent completion verification, and evidence bundles."
+
+author_internal_subagent_work:
+  governance_design:
+    role: AUTHOR_INTERNAL_ANALYSIS
+    independence: "Separate read-only subagent context within the E0 AUTHOR operation; no file edits; does not satisfy the independent project CHALLENGER or VERIFIER protocol."
+    result: "Recommended the minimal E0-001/E1-001/E1-002 task graph, BLOCKED+DEFERRED S1-003 representation, and explicit E2/E3/E4 gates."
+  external_audit_requirements:
+    role: AUTHOR_INTERNAL_ANALYSIS
+    independence: "Separate read-only subagent context within the E0 AUTHOR operation; no file edits; does not satisfy the independent project CHALLENGER or VERIFIER protocol."
+    result: "Mapped the verified reconstructed-audit patterns and caveats into E1/E2 requirements without treating the audit as architecture authority."
+  draft_critique:
+    role: AUTHOR_INTERNAL_CRITIQUE
+    independence: "Separate read-only subagent context within the E0 AUTHOR operation; no file edits; does not satisfy the independent project CHALLENGER or VERIFIER protocol."
+    result: "CHANGES_REQUIRED during drafting on stale README/provenance, handoff placeholders, and E4 unlock wording; all substantive findings were fixed. Its final current-byte review found no remaining governance or requirement gap and identified only the now-resolved handoff placeholder closure."
+  requirements_traceability:
+    role: AUTHOR_INTERNAL_CHECK
+    independence: "Separate read-only subagent context within the E0 AUTHOR operation; no file edits; does not satisfy the independent project CHALLENGER or VERIFIER protocol."
+    result: "PASS after fixes: every explicit startup-pause, v0.1 capability, future-compatibility, external-audit, E1 artifact, E2, E3, E4, E5, prohibition, clean-room, privacy, and validation requirement maps to the current artifacts."
+  invariant_check:
+    role: AUTHOR_INTERNAL_CHECK
+    independence: "Separate read-only subagent context within the E0 AUTHOR operation; no file edits; does not satisfy the independent project CHALLENGER or VERIFIER protocol."
+    result: "PASS on every requested current-state invariant and validation; the only documentary follow-up was replacing the handoff's pending fields with these completed results. The author-internal check explicitly did not mark E0 VERIFIED."
+  formal_task_verification_status: NOT_VERIFIED
+
+tests_run:
+  - "Initial Ruby/Psych loader invocation: failed locally because this bundled Psych lacks safe_load_file and Date had not been required; no repository effect."
+  - "Supported Ruby Psych safe-load of PROJECT_STATE.yaml and TASK_REGISTRY.yaml."
+  - "Ruby registry assertions for unique task IDs, resolving dependencies, sole READY E1-001, S1-001/S1-002 VERIFIED, S1-003 BLOCKED+DEFERRED, E0-001 READY_FOR_REVIEW, and E1-002 BACKLOG."
+  - "Ruby project-state assertions for Engineering Preview active, exact active/ready/backlog lists, and E4 NOT_AUTHORIZED."
+  - "E0-001 files_to_read existence check; two initially incorrect S1-001 paths were found and corrected before final validation."
+  - "Author-internal read-only subagent critique and requirements-traceability checks against the founder request, D-012 through D-016, the verified research, and the current five-file patch; these did not satisfy independent project review."
+  - "Author-internal read-only subagent invariant checks for three YAML files; 11 unique task IDs; 14 resolving, acyclic dependencies; exact status lists; S1 preservation; E0-E5 state; no selections; handoff schema; and model-registry invariants; these did not satisfy independent project verification."
+  - "Decision-log worktree-versus-HEAD blob comparison and heading-bounded D-016 byte comparison; protected governance, baseline/audit, benchmark, S1 product, verifier-handoff, uploaded-originals, and customer-artifact git diff checks."
+  - "Ruby CSV check of the S1-002 scorecard: 74 unique headers and zero customer rows."
+  - "Exact changed-path comparison against the E0-001 allowlist including prospective amendment E0-001-A1; changed-extension/no-application-source check."
+  - "High-confidence secret/private-key/token pattern scan across all five changed files."
+  - "UTF-8, final-newline, tab, trailing-whitespace, Markdown heading/fence/table/duplicate-heading checks across the changed text files."
+  - "git diff --check and staged-change check."
+test_results:
+  - "YAML and initial governance assertions PASS after using the locally supported Psych API."
+  - "Initial files_to_read validation correctly failed on two wrong S1-001 path names; both were replaced with the existing scored-hypotheses and dated workaround-evidence paths."
+  - "Governance PASS: 11 unique task IDs, 14 dependencies resolve and are acyclic, project status lists match registry statuses, and E1-001 is the sole READY task with verified dependencies."
+  - "Track PASS: S1-001/S1-002 remain VERIFIED; S1-003 is BLOCKED+DEFERRED only by PAUSED_BY_D016_ENGINEERING_FIRST_PIVOT with five zero execution counters; E0 is READY_FOR_REVIEW; E2/E3 are NOT_STARTED; E4/FULL_AUTONOMOUS_BUILD_MODE are NOT_AUTHORIZED."
+  - "Selection PASS: architecture, PRD, code commit, application-code flag, and model-role-lock flag remain null/false; MODEL_REGISTRY remains 13/13 HYPOTHESIS_ONLY and 13/13 NOT_RUN with PLAN_ONLY_NOT_AUTHORIZED_TO_RUN benchmark policy."
+  - "Regression PASS: D-016 is byte-identical and the decision-log blob is 41e349cc24b9624b682f4de9e4011e29daabe57a in both HEAD and the worktree; protected research, governance, S1, model, benchmark, uploaded-original, and prior handoff artifacts are unchanged."
+  - "Customer PASS: scorecard remains 74 unique headers/0 customer rows; no customer execution or evidence mutation occurred."
+  - "Scope/no-code PASS: exactly five changed paths, all authorized; no application-source extension or binary artifact; no architecture technology was selected."
+  - "Security/text PASS: zero high-confidence secret/token/private-key matches; UTF-8/final-newline/tab/trailing-whitespace checks PASS; Markdown structure PASS; git diff --check exits 0 with no output."
+
+security_checks:
+  - "No customer/prospect system, private customer-evidence directory, external account, connector, paid API, or network service was accessed."
+  - "No outreach, contact identification, recruiting, interview, recording, pilot, price offer, incentive, or spend occurred."
+  - "No reconstructed Grok Bot code, private implementation material, renderer asset, UI copy, branding, consumer authentication integration, or external code was imported."
+  - "Final changed-file scan, including this handoff, found zero high-confidence secret, token, credential, or private-key patterns and no imported external/reconstructed code or binary artifact."
+
+known_limitations:
+  - "E0-001 is author work READY_FOR_REVIEW and is not formally VERIFIED by this handoff."
+  - "The E1 PRD, user flows, correctness contract, contribution workflow, evaluation suite, and release acceptance criteria do not yet exist; E1-001 is the next READY task."
+  - "The verified Grok Bot baseline has zero black-box runs, and the verified reconstructed-architecture audit is static evidence about an unofficial reconstruction; neither proves runtime parity, production behavior, security, or architecture."
+  - "README.md was changed under prospective scope amendment E0-001-A1; the amendment and rationale require the same independent E0 review as the rest of the patch."
+unverified_claims:
+  - "Engineering Preview runtime reliability, restart/recovery behavior, sandbox isolation, tool reliability, completion verification, and evidence generation remain untested because no implementation or E3 spike exists."
+  - "Every provider/model role and task-class suitability remains HYPOTHESIS_ONLY/NOT_RUN; no model is locked to a permanent role."
+  - "Customer demand, pricing, willingness to pay, market size, and customer selection remain unvalidated because S1-003 has zero execution."
+blockers:
+  - "E0-001 independent formal verification is required before the E1 gate can be VERIFIED or E2 activated."
+  - "E1-001 and E1-002 must be independently VERIFIED before E2 activation."
+recommended_next_task: "MODE: EXECUTE_TASK_E1-001"
+repository_commit_or_patch: "Uncommitted Engineering Preview initialization patch based on 334f91919abd62b8d9804ee63dda31699dbff0a0; intentionally left uncommitted for the founder."
+
+scope_control:
+  allowed_paths_only: true
+  application_code_written: false
+  architecture_selected: false
+  client_technology_selected: false
+  model_roles_locked: false
+  technical_spikes_run: 0
+  model_benchmarks_run: 0
+  paid_api_calls: 0
+  customer_records_created: 0
+  customer_contacts_identified: 0
+  outreach_messages_sent: 0
+  recruiting_posts_sent: 0
+  interviews_conducted: 0
+  pilots_offered_or_started: 0
+  price_offers_made: 0
+  incentives_purchased: 0
+  spend_usd: 0
+  external_actions_performed: false
+  full_autonomous_build_mode_authorized: false
+  commit_created: false
+
+final_validation:
+  status: PASS_AUTHOR_VALIDATION_E0_REMAINS_READY_FOR_REVIEW_NOT_VERIFIED
+  yaml_parse: PASS_3_OF_3
+  task_ids_unique: PASS_11_OF_11
+  dependencies_valid: PASS_14_RESOLVE_AND_ACYCLIC
+  status_lists_consistent: PASS
+  markdown_checks: PASS
+  d016_unchanged: PASS_BYTE_IDENTICAL
+  s1_verified_artifacts_unchanged: PASS
+  customer_evidence_preserved: PASS_74_HEADERS_ZERO_ROWS_ZERO_EXECUTION
+  model_registry_unchanged: PASS_13_HYPOTHESIS_ONLY_13_NOT_RUN
+  allowed_paths: PASS_EXACT_FIVE
+  application_code_absent: PASS
+  architecture_unselected: PASS
+  model_roles_unlocked: PASS
+  secret_scan: PASS_ZERO_MATCHES
+  git_diff_check: PASS_NO_OUTPUT
+
+role_provenance_correction_addendum:
+  correction_id: E0-001-F-E0-07
+  recorded_at: "2026-08-25 / 2026-08-26 UTC"
+  correction_mode: FIX_TASK_E0-001
+  historical_record_preserved: true
+  historical_commit: 25688830a2e9aab79a78bece358b13c7a3cd31b8
+  historical_file_sha256: 2bcf527a03aa3341fea97db89fb97f3ac0689f3011f3a73441a2928665a1547a
+  original_labels:
+    block_key: independent_review
+    roles:
+      - CHALLENGER
+      - CHALLENGER
+      - VERIFIER
+  correction: "The original labels described author-side, context-separated subagents used for analysis, critique, traceability, and invariant checks inside the E0 AUTHOR operation. They were not independent project CHALLENGER or VERIFIER roles and did not satisfy the repository's independent-review protocol. The live labels above are corrected to AUTHOR_INTERNAL_ANALYSIS, AUTHOR_INTERNAL_CRITIQUE, and AUTHOR_INTERNAL_CHECK; the original labels and results remain recoverable in the pinned historical commit and are recorded here rather than silently erased."
+  actual_independent_challenger:
+    artifact: 99_handoffs/completed/ENGINEERING_PREVIEW_INITIALIZATION_challenger_review.yaml
+    reviewed_commit: 25688830a2e9aab79a78bece358b13c7a3cd31b8
+    verdict: E0_CHANGES_REQUESTED
+  independent_post_fix_verifier: NOT_RUN_PENDING_VERIFY_TASK_E0_001
+  formal_task_verification_status: NOT_VERIFIED
+
+fixer_correction_addendum:
+  correction_id: E0-001-FIXER-CURRENT-STATE-20260825
+  correction_mode: FIX_TASK_E0-001
+  record_policy: "The initialization fields above remain historical author-state evidence. This addendum supersedes their current-state interpretation without rewriting the original status, test, limitation, or recommended-next-task claims."
+  corrected_current_state:
+    E0_001: READY_FOR_REVIEW_NOT_VERIFIED
+    E1_001: BACKLOG_PENDING_E0_001_INDEPENDENT_VERIFICATION
+    E1_002: BACKLOG
+    E2: NOT_STARTED
+    E3: NOT_STARTED
+    E4: NOT_STARTED
+    E5: NOT_STARTED
+    autonomy_eligibility: NOT_ELIGIBLE
+    autonomous_build_authorization: NOT_AUTHORIZED
+    full_autonomous_build_mode: NOT_AUTHORIZED
+  corrected_autonomy_policy: "D-016 does not authorize autonomous implementation. E3 verification can establish AUTONOMY_ELIGIBLE only; a separate explicit founder decision must record AUTONOMOUS_BUILD_AUTHORIZED before E4 can start."
+  corrected_dependency_policy: "E1-001 depends on E0-001 and cannot become READY until E0-001 is independently VERIFIED."
+  current_recommended_next_task: "MODE: VERIFY_TASK_E0-001"
+  prohibited_next_task: "Do not execute E1-001 before E0-001 is independently VERIFIED."

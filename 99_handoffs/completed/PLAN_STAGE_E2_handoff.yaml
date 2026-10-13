@@ -1,0 +1,427 @@
+handoff_id: H-PLAN-STAGE-E2-20260828-AUTHOR
+task_id: PLAN_STAGE_E2
+stage: E2
+mode: PLAN_STAGE_E2
+role: AUTHOR
+author_model: "Codex (runtime model identifier not exposed) — PLAN_STAGE_E2 AUTHOR"
+reviewer_requested: "Founder review of the uncommitted planning patch, followed by a fresh E2-001 AUTHOR session; all consequential E2 deliverables retain independent challenger/fixer/verifier requirements"
+started_at: null
+started_at_status: "UNKNOWN_NOT_CAPTURED; no exact start timestamp is fabricated"
+completed_at: "2026-08-28T15:43:29Z"
+base_commit: c2f70931ce13d0619a0dff4f48951e9278bb0c1c
+base_branch: chore/initialize-project-materials
+initial_worktree_status: CLEAN
+planning_status: COMPLETE_AUTHOR_SIDE_NOT_INDEPENDENTLY_VERIFIED
+e1_gate_status: VERIFIED
+e1_gate_verdict: E1_GATE_PASSED
+e2_status: PLANNED
+architecture_status: NOT_SELECTED
+
+authoritative_inputs_read:
+  repository_and_security:
+    - MASTER_OPERATING_PROMPT.md
+    - AGENTS.md
+    - README.md
+    - SECURITY.md
+  governance:
+    - 01_governance/PROJECT_STATE.yaml
+    - 01_governance/TASK_REGISTRY.yaml
+    - 01_governance/DECISION_LOG.md
+    - 01_governance/ASSUMPTION_REGISTER.md
+    - 01_governance/RISK_REGISTER.md
+    - 01_governance/MODEL_REGISTRY.yaml
+    - 01_governance/SOURCE_LEDGER.csv
+  frozen_e1_baseline:
+    - 03_product/ENGINEERING_PREVIEW_CHARTER.md
+    - 03_product/ENGINEERING_PREVIEW_PRD.md
+    - 03_product/ENGINEERING_PREVIEW_USER_FLOWS.md
+    - 03_product/ENGINEERING_PREVIEW_CORRECTNESS_CONTRACT.md
+    - 03_product/ENGINEERING_PREVIEW_CONTRIBUTION_WORKFLOW.md
+    - 06_evaluation/ENGINEERING_PREVIEW_EVALUATION_SUITE.md
+    - 06_evaluation/MODEL_ROLE_BENCHMARK_PLAN.md
+    - 10_checkpoints/stage_checkpoints/ENGINEERING_PREVIEW_V0_1_RELEASE_ACCEPTANCE.yaml
+    - 10_checkpoints/stage_checkpoints/ENGINEERING_PREVIEW_E1_SPECIFICATION_GATE_VERIFICATION.yaml
+  verification_provenance:
+    - 99_handoffs/completed/E0-001_fixer_handoff.yaml
+    - 99_handoffs/completed/E0-001_verifier_review.yaml
+    - 99_handoffs/completed/E1-001_handoff.yaml
+    - 99_handoffs/completed/E1-001_challenger_review.yaml
+    - 99_handoffs/completed/E1-001_fixer_handoff.yaml
+    - 99_handoffs/completed/E1-001_verifier_review.yaml
+    - 99_handoffs/completed/E1-002_handoff.yaml
+    - 99_handoffs/completed/E1-002_challenger_review.yaml
+    - 99_handoffs/completed/E1-002_fixer_handoff.yaml
+    - 99_handoffs/completed/E1-002_verifier_review.yaml
+  reference_evidence:
+    - 02_research/GROK_BOT_BASELINE_2026-08-21.md
+    - 99_handoffs/completed/S0-002_verifier_review.yaml
+    - 02_research/GROK_BOT_018_RECONSTRUCTED_ARCHITECTURE_AUDIT.md
+    - 02_research/GROK_BOT_018_ARCHITECTURE_ADOPTION_MATRIX.csv
+    - 99_handoffs/completed/EXTERNAL_GROK_BOT_018_ARCHITECTURE_AUDIT_handoff.yaml
+    - 99_handoffs/completed/EXTERNAL_GROK_BOT_018_ARCHITECTURE_AUDIT_challenger_review.yaml
+    - 99_handoffs/completed/EXTERNAL_GROK_BOT_018_ARCHITECTURE_AUDIT_fixer_handoff.yaml
+    - 99_handoffs/completed/EXTERNAL_GROK_BOT_018_ARCHITECTURE_AUDIT_verifier_review.yaml
+    - 99_handoffs/HANDOFF_TEMPLATE.yaml
+
+repository_searches:
+  terms:
+    - E2
+    - architecture
+    - ADR
+    - architecture_alternative
+    - architecture_gate
+    - technical_spike
+    - E3
+    - SP-C
+    - Level_A
+    - Level_B
+    - Level_C
+    - PLAN_STAGE_E2
+  result: "Relevant charter sections, task/checkpoint conventions, D-016 boundaries, verified audit/adoption records, SP-C01..SP-C10 contracts, and all existing E2 references were read before planning."
+
+e2_objective: >-
+  Transform the frozen verified product, correctness, evaluation, security, and reliability baseline into architecture requirements, genuinely different candidate architectures, hard-constraint-first comparison, bounded uncertainty resolution, explicit ADRs, an independently verified architecture baseline, and a stable E3 validation plan without choosing an architecture during PLAN_STAGE_E2.
+
+planned_tasks:
+  - task_id: E2-001
+    name: Derive Engineering Preview architecture requirements and decision criteria
+    status: READY
+    selection_authority: NONE
+  - task_id: E2-002
+    name: Generate credible end-to-end Engineering Preview architecture alternatives
+    status: BACKLOG
+    selection_authority: NONE
+  - task_id: E2-003
+    name: Compare architecture alternatives and classify decision uncertainty
+    status: BACKLOG
+    selection_authority: NONE
+  - task_id: E2-004
+    name: Close pre-selection architecture uncertainties
+    status: BACKLOG
+    selection_authority: NONE
+  - task_id: E2-005
+    name: Produce the proposed architecture baseline, ADR set, and E3 obligations
+    status: BACKLOG
+    selection_authority: PROPOSED_PENDING_INDEPENDENT_ARCHITECTURE_VERIFICATION
+  - task_id: E2-006
+    name: Independently verify the Engineering Preview architecture baseline and E3 readiness
+    status: BACKLOG
+    selection_authority: SELECTED_VERIFIED_PENDING_E2_GATE_ON_PASS_ONLY
+
+dependency_graph:
+  prerequisites:
+    - E0-001
+    - E1-001
+    - E1-002
+    - ENGINEERING_PREVIEW_E1_SPECIFICATION_GATE
+  serial_edges:
+    - E1_VERIFIED_BASELINE_TO_E2-001
+    - E2-001_TO_E2-002
+    - E2-002_TO_E2-003
+    - E2-003_TO_E2-004
+    - E2-004_TO_E2-005
+    - E2-005_TO_E2-006
+    - E2-006_TO_VERIFY_STAGE_E2
+    - VERIFIED_E2_GATE_TO_E3_ELIGIBILITY
+  dependency_semantics: "Each task-to-task edge requires independent VERIFIED status, not author completion or READY_FOR_REVIEW."
+  stage_gate_is_mode_level: true
+  future_gate_mode: VERIFY_STAGE_E2
+
+first_ready_task:
+  task_id: E2-001
+  next_command: "MODE: EXECUTE_TASK_E2-001"
+  executed_in_this_pass: false
+
+architecture_decision_domains:
+  - CLIENT_INTERACTION_BOUNDARY
+  - CORE_APPLICATION_RUNTIME
+  - TASK_WORKFLOW_ORCHESTRATION
+  - DURABLE_STATE_PERSISTENCE
+  - CANONICAL_TASK_CONVERSATION_EVIDENCE_MODEL
+  - EVENT_OPERATION_HISTORY
+  - FILESYSTEM_WORKSPACE_ABSTRACTION
+  - EXECUTION_PROCESS_CONTROL
+  - ISOLATION_SANDBOXING
+  - GIT_INTEGRATION
+  - APPROVAL_PERMISSION_SYSTEM
+  - EXTERNAL_EFFECT_RECONCILIATION
+  - MODEL_PROVIDER_GATEWAY
+  - ROUTING_CAPABILITY_DISCOVERY
+  - CONTEXT_MEMORY_COMPACTION
+  - VERIFICATION_ARCHITECTURE
+  - EVIDENCE_ARTIFACT_SYSTEM
+  - OBSERVABILITY_LOGGING
+  - ERROR_FAILURE_MODEL
+  - SECURITY_BOUNDARIES
+  - LOCAL_FIRST_PACKAGING
+  - FUTURE_REMOTE_EXECUTION
+  - FUTURE_CONCURRENCY_MULTI_AGENT
+  - EXTENSION_SKILL_CONNECTOR_BOUNDARY
+  - E1_SUITE_TESTABILITY
+
+architecture_requirements:
+  canonical_e1_ids_to_trace: 127
+  quality_attribute_families:
+    - correctness_and_false_completion_resistance
+    - durability_restart_recovery_and_idempotency
+    - security_authority_and_isolation
+    - local_execution_and_process_control
+    - provider_neutral_model_abstraction
+    - observability_and_truthful_failure_state
+    - local_first_bounded_extensibility
+    - performance_resource_and_cost_measurement
+    - operability_maintainability_and_reversibility
+    - frozen_e1_suite_testability
+  quantitative_requirements_invented: false
+  e1_waiver_allowed: false
+
+alternative_strategy:
+  minimum_end_to_end_candidates: 3
+  required_difference: "Material system shape across multiple authority, persistence, orchestration, execution/isolation, and client/runtime or control-plane boundaries; technology substitutions alone do not count."
+  winner_selected_by_planning: false
+  level_discipline:
+    level_a: REQUIRED_PROPERTIES_CONSTRAIN_CANDIDATES
+    level_b: PATTERNS_TO_EVALUATE_NOT_DECISIONS
+    level_c: RECONSTRUCTION_DETAILS_FORBIDDEN_AS_DEFAULTS
+
+decision_matrix:
+  classes:
+    - HARD_CONSTRAINT
+    - WEIGHTED_PREFERENCE
+    - UNKNOWN_REQUIRING_SPIKE
+    - E3_VALIDATION_OBLIGATION
+  hard_failure_can_be_compensated: false
+  unknown_can_receive_favorable_score: false
+  final_weights_assigned: false
+  comparison_task: E2-003
+
+adr_plan:
+  current_accepted_adrs: 0
+  planned_records:
+    - ADR-E2-001_system_client_core_runtime_boundary
+    - ADR-E2-002_canonical_state_persistence_history_projection_migration
+    - ADR-E2-003_orchestration_recovery_idempotency_concurrency
+    - ADR-E2-004_workspace_execution_isolation_git_local_remote_seam
+    - ADR-E2-005_capability_approval_secret_effect_reconciliation
+    - ADR-E2-006_model_provider_routing_context_compaction
+    - ADR-E2-007_verification_evidence_artifact_provenance_integrity
+    - ADR-E2-008_observability_audit_metering_typed_failures
+    - ADR-E2-009_packaging_future_compatibility_boundaries
+  status_before_e2_006: PROPOSED_PENDING_INDEPENDENT_ARCHITECTURE_VERIFICATION
+  selection_task: E2-005
+  independent_verification_task: E2-006
+
+technical_spike_boundary:
+  classification_task: E2-003
+  execution_task: E2-004
+  categories:
+    - PAPER_RESOLVABLE
+    - E2_PRESELECTION_SPIKE_REQUIRED
+    - E3_POSTSELECTION_TECHNICAL_VALIDATION
+    - E3_MODEL_OR_CONFIGURATION_BENCHMARK
+    - DEFERRED_OUT_OF_SCOPE
+  empty_preselection_set_disposition: NO_PRESELECTION_SPIKE_REQUIRED
+  required_contract_fields:
+    - question
+    - hypothesis
+    - alternatives
+    - minimal_prototype
+    - workload
+    - success_criterion
+    - failure_criterion
+    - security_checks
+    - finite_budget
+    - stop_condition
+    - artifact
+    - decision_rule
+    - adr_linkage
+  sp_c01_through_sp_c10_treatment: REUSE_OR_DISTINGUISH_WHERE_RELEVANT_NOT_BLINDLY_DUPLICATE
+  architecture_spikes_run: 0
+
+e2_e3_boundary:
+  e2_output: "Independently verified architecture interfaces, ADRs, reversal conditions, and enumerated technical/model validation obligations."
+  e3_output: "Empirical technical evidence and eligible system/model/configuration occupants for provider-neutral logical roles under the frozen suite and separate authorization."
+  architecture_redesign_by_e3_allowed_silently: false
+  paid_or_real_provider_work_authorized: false
+  ceiling_policy_owner_registration_task: E2-005
+
+provider_neutrality:
+  logical_roles:
+    - AUTONOMOUS_CONTROLLER
+    - PLANNER
+    - EXECUTOR
+    - CODER
+    - VERIFIER
+    - SECURITY_REVIEWER
+  permanent_assignments_made: 0
+  role_eligibility_determined_in_e2: false
+
+future_compatibility:
+  immediate_target: "Single user, local first, software engineering, developer/open-source workflow."
+  compatibility_checks:
+    - remote_execution_and_cloud_workers
+    - concurrent_tasks_and_multiple_agents
+    - multiple_clients
+    - skills_routines_and_connectors
+    - General_Edition
+    - Finance_Edition
+    - SaaS
+  future_features_authorized_for_e2_implementation: false
+  speculative_overengineering_allowed: false
+
+security_architecture:
+  first_class_hard_constraint: true
+  required_boundaries: "Authority, untrusted repository/tool/model/web/connector content, secrets, filesystem/symlinks, process descendants, Git hooks/helpers, package scripts, network/egress, approvals, destructive actions, external effects, evidence integrity, and provider boundaries."
+  threat_boundary_analysis_required_before_adr_acceptance: true
+  sandbox_technology_selected: false
+
+recovery_architecture:
+  first_class_hard_constraint: true
+  required_failures: "Durable identity, restart/resume, acknowledgement loss, partial writes, tool/model/worker/orchestrator timeout, duplicate/reordered requests, uncertain external effects, stale workspace/authority/evidence, pause/stop/force termination, reconciliation, and verification invalidation."
+  candidate_without_credible_recovery_model_eligible: false
+
+evidence_verification_architecture:
+  evidence_is_logging: false
+  exact_revision_binding_required: true
+  operation_artifact_approval_effect_route_verifier_provenance_required: true
+  predicate_adequacy_and_integrity_state_required: true
+  executor_self_report_sufficient: false
+  independent_re_derivation_task: E2-006
+
+stage_gate:
+  mode: VERIFY_STAGE_E2
+  status: NOT_EVALUATED
+  planned_evidence: 10_checkpoints/stage_checkpoints/ENGINEERING_PREVIEW_E2_ARCHITECTURE_GATE_VERIFICATION.yaml
+  question: >-
+    Do we have an independently verified architecture baseline that satisfies the frozen E1 product, correctness, evaluation, security, and reliability specification; results from a genuine comparison of at least three end-to-end alternatives; has no failed hard constraint or unresolved architecture-blocking uncertainty; records its major decisions and reversibility in a coherent ADR set; provides credible security, recovery, evidence, and independent-verification architectures; preserves provider neutrality and bounded future compatibility; and supplies a stable, explicitly bounded E3 validation plan without beginning application implementation?
+
+unresolved_architecture_questions:
+  - "E2-001: exact hard-constraint normalization, criterion semantics, prospective weighting governance, and complete E1 traceability."
+  - "E2-002: the actual end-to-end candidates and their boundary models."
+  - "E2-003: comparative results and the selection-blocking uncertainty set."
+  - "E2-004: any bounded pre-selection spike results or verified no-spike disposition."
+  - "E2-005: proposed architecture, ADR consequences, migration/reversal path, and exact E3 obligations."
+  - "E2-006: independent compliance verdict and architecture-baseline disposition."
+  - "E3: empirical technical behavior, model/configuration eligibility, cost/latency, reference environment, and prospectively frozen finite rerun/repetition/correction values."
+
+assumptions_added: []
+assumptions_updated:
+  - "A-020 now records that E1 input sufficiency is verified for E2 while E2 alternative compliance and E3/E5 observation remain outstanding."
+risks_added:
+  - "R-030 HIGH/CRITICAL: invalid E2 selection through hard-failure averaging, favorable unknown handling, or improper deferral of an architecture blocker to E3."
+risks_updated: []
+
+files_created:
+  - 05_architecture/ENGINEERING_PREVIEW_E2_ARCHITECTURE_PLAN.md
+  - 99_handoffs/completed/PLAN_STAGE_E2_handoff.yaml
+files_modified:
+  - README.md
+  - 01_governance/PROJECT_STATE.yaml
+  - 01_governance/TASK_REGISTRY.yaml
+  - 01_governance/ASSUMPTION_REGISTER.md
+  - 01_governance/RISK_REGISTER.md
+files_deleted: []
+
+decisions_made:
+  - "Use six serial E2 tasks aligned to irreversible decision boundaries plus a separate mode-level E2 gate."
+  - "Make E2-001 the only READY task; all downstream tasks require independent VERIFIED dependencies."
+  - "Require at least three materially different end-to-end candidates and hard-constraint-first comparison before selection."
+  - "Allow E2-005 to create only a proposed selection package; require E2-006 independent re-derivation and a later separate stage gate."
+  - "Assign future registration of finite verification-rerun, deterministic-check-repetition, and correction-attempt ceiling ownership/review path to E2-005 without selecting numeric values now."
+  - "Create no architecture decision, accepted ADR, technology choice, model assignment, spike, benchmark, or implementation."
+
+author_side_quality_check:
+  overlapping_decision_authority: PASS
+  premature_irreversible_decision: PASS
+  later_evidence_required_too_early: PASS
+  reviewable_task_boundaries: PASS
+  security_recovery_evidence_cross_cutting: PASS
+  e2_spike_e3_benchmark_separation: PASS
+  adr_selection_point_explicit: PASS
+  independent_verification_explicit: PASS
+  e2_gate_explicit: PASS
+  e3_blocked_until_verified_e2_gate: PASS
+  independence_status: AUTHOR_EVIDENCE_ONLY
+
+tests_run:
+  - "Strict parse of every repository YAML file."
+  - "Duplicate-key traversal of every YAML mapping."
+  - "Task-ID uniqueness, dependency resolution, DAG acyclicity, task-contract completeness, status/dependency consistency, and PROJECT_STATE reconciliation."
+  - "Exactly-one-READY and downstream-BACKLOG assertions for E2."
+  - "E1 gate, E3-E5, architecture, code, counters, autonomy, and S1-003 invariants."
+  - "Frozen E1 byte identity, model-registry no-run state, no-ADR/no-code/no-spike/no-benchmark/no-paid-call, clean-room, allowed-path, secret-pattern, and whitespace checks."
+
+validation_commands:
+  - name: yaml_parse
+    command: "yq -o=json '.' for every repository *.yaml and *.yml file"
+  - name: duplicate_keys
+    command: "Read-only Ruby Psych AST traversal over every YAML mapping"
+  - name: task_graph
+    command: "Read-only Ruby validator over yq JSON for task IDs, required E2 fields, resolving dependencies, DFS acyclicity, statuses, phase maps, counters, and gates"
+  - name: plan_content
+    command: "Read-only Ruby validator for 25 numbered domains, nine ADR records, decision classes, lifecycle, boundaries, task count, and handoff counters"
+  - name: frozen_e1
+    command: "git hash-object against nine recorded frozen E1 blob IDs plus git diff --quiet on the frozen artifact set"
+  - name: model_and_scope
+    command: "Read-only yq/Ruby model-registry assertions; git diff and untracked-file set equality; application-source extension scan; protected-input diff; S1-003 JSON comparison to HEAD"
+  - name: security_and_clean_room
+    command: "High-confidence credential/private-key pattern scan over all seven changed or created files; forbidden-transition and premature-artifact scans"
+  - name: text_and_git
+    command: "UTF-8/final-newline/tab/trailing-whitespace/fence/table checks; git diff --cached --quiet; git diff --check; git status --short"
+
+test_results:
+  - "PASS: 48/48 YAML files parse strictly; 48/48 have no duplicate mapping keys."
+  - "PASS: 17 unique tasks, 23 resolving acyclic dependency edges, 6 complete E2 task contracts with all 17 required fields, exactly E2-001 READY, and 5 downstream E2 tasks BACKLOG."
+  - "PASS: all 30 E2-001 files_to_read paths exist; the sole READY task has no missing authoritative input."
+  - "PASS: E2 plan has exactly 25 numbered architecture domains, nine planned separate ADR boundaries, all four decision classes, six task records, explicit security/recovery/evidence contracts, and a separate VERIFY_STAGE_E2 gate."
+  - "PASS: all nine frozen E1 artifacts match their recorded Git blob IDs and have no worktree diff."
+  - "PASS: all 13 model candidates remain HYPOTHESIS_ONLY / NOT_RUN and benchmark_policy.no_paid_calls_run remains true."
+  - "PASS: exactly seven authorized files changed or were created; zero staged changes; no application-source file exists; no premature candidate, spike, ADR, baseline, matrix, or requirements artifact exists."
+  - "PASS: E1 gate remains VERIFIED / E1_GATE_PASSED; E3-E5 remain NOT_STARTED; architecture/code flags remain false/null; evaluation implementation/runs, spikes, benchmarks, and paid-call counters remain zero; autonomy remains NOT_ELIGIBLE / NOT_AUTHORIZED; S1-003 remains byte-semantically unchanged, BLOCKED / DEFERRED / not executed."
+  - "PASS: protected E1/research/source/decision/model artifacts are unchanged; no uploaded original or reconstructed source was modified or imported."
+  - "PASS: high-confidence secret scan, forbidden-transition scan, UTF-8/newline/tab/trailing-whitespace/fence/table checks, staged-change check, and git diff --check."
+
+security_checks:
+  - "No secret, credential, private customer data, runtime product account, provider/model account, remote system, paid API, or external effect was accessed."
+  - "No reconstructed source or Level C implementation detail was imported; verified audit material was used only for Level A/B/C planning discipline."
+  - "The graph requires first-class threat-boundary analysis and independent security verification before final ADR acceptance."
+
+known_limitations:
+  - "This is AUTHOR-side planning evidence and has not independently challenged or verified any future E2 deliverable."
+  - "No architecture requirements trace, candidate, matrix, spike result, ADR, architecture baseline, or E3 plan has been executed or created beyond task contracts."
+  - "The actual architecture, technologies, E2 spike need, E3 reference environment, model/configuration eligibility, and quantitative runtime evidence remain unknown."
+  - "Outbound license and inbound contribution terms remain unresolved future release blockers under R-029."
+
+unverified_claims:
+  - "Whether any future candidate satisfies the frozen E1 baseline."
+  - "Whether any pre-selection architecture spike is required or any proposed mechanism is feasible."
+  - "Whether any future architecture baseline will pass E2-006 or VERIFY_STAGE_E2."
+  - "Whether any system/model/configuration is eligible for a logical role."
+
+blockers:
+  - "E2-002 is blocked until E2-001 is independently VERIFIED."
+  - "Every later E2 task is blocked by its immediate independently VERIFIED predecessor."
+  - "E3 is blocked until the architecture baseline and E2 stage gate are independently VERIFIED and all separate E3 authorization prerequisites hold."
+
+execution_counters:
+  architecture_selected: false
+  accepted_architecture_adrs: 0
+  application_code_created: false
+  evaluation_cases_implemented: 0
+  evaluation_cases_run: 0
+  architecture_spikes_run: 0
+  model_benchmarks_run: 0
+  paid_api_calls: 0
+  external_actions_performed: false
+  model_roles_locked: false
+  autonomy_eligible: NOT_ELIGIBLE
+  autonomous_build_authorized: false
+  s1_003_status: DEFERRED_NOT_EXECUTED
+
+internal_subagents:
+  used: false
+  independence_credit: NONE
+
+recommended_next_task: E2-001
+next_command: "MODE: EXECUTE_TASK_E2-001"
+repository_commit_or_patch: "Uncommitted PLAN_STAGE_E2 author patch based on c2f70931ce13d0619a0dff4f48951e9278bb0c1c on chore/initialize-project-materials; intentionally left uncommitted for founder review."

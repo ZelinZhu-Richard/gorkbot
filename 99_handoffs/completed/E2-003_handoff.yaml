@@ -1,0 +1,171 @@
+handoff_id: E2-003-AUTHOR-FIXER-CORRECTED-2026-08-29
+task_id: E2-003
+stage: E2
+role_history:
+  original_author: "Codex (runtime model identifier not exposed)"
+  independent_challenger: "Claude Fable 5 (claude-fable-5) via Claude Code"
+  returning_fixer: "Codex (runtime model identifier not exposed)"
+original_author_base_commit: b5b35a7fc5190ddbe359bd99f51fea4189ccff6a
+original_author_commit: c870c83a5f97c639c0c248c2e650ad31371c5164
+challenger_record_commit: dcb35439003fe2e1814b09e6e0c725e754d02dac
+fixer_base_commit: dcb35439003fe2e1814b09e6e0c725e754d02dac
+task_status: READY_FOR_REVIEW_NOT_VERIFIED_FIXER_PASS
+fixer_completed_at: "2026-08-29T15:49:07Z"
+architecture_selected: false
+preferred_candidate: null
+accepted_architecture_adrs: 0
+architecture_spikes_run: 0
+application_code_created: false
+evaluation_cases_run: 0
+model_benchmarks_run: 0
+paid_api_calls: 0
+
+provenance:
+  original_author_record: >-
+    The original author pass was committed as c870c83. Its independent challenger record is
+    99_handoffs/completed/E2-003_challenger_review.yaml and preserves the reviewed historical state.
+  correction_scope: F-E2-003-01 through F-E2-003-09 only.
+  fixer_detail: 99_handoffs/completed/E2-003_fixer_handoff.yaml
+  frozen_inputs_preserved:
+    - frozen E1 artifacts
+    - independently verified E2-001 requirements and traceability
+    - independently verified E2-002 candidates and alternatives
+    - E2 planning baseline
+
+files_created_by_original_author:
+  - 05_architecture/ENGINEERING_PREVIEW_ARCHITECTURE_COMPARISON.md
+  - 05_architecture/ENGINEERING_PREVIEW_ARCHITECTURE_DECISION_MATRIX.csv
+  - 05_architecture/ENGINEERING_PREVIEW_ARCHITECTURE_UNCERTAINTY_REGISTER.yaml
+  - 99_handoffs/completed/E2-003_handoff.yaml
+files_modified_by_fixer:
+  - 05_architecture/ENGINEERING_PREVIEW_ARCHITECTURE_COMPARISON.md
+  - 05_architecture/ENGINEERING_PREVIEW_ARCHITECTURE_DECISION_MATRIX.csv
+  - 05_architecture/ENGINEERING_PREVIEW_ARCHITECTURE_UNCERTAINTY_REGISTER.yaml
+  - 01_governance/PROJECT_STATE.yaml
+  - 01_governance/TASK_REGISTRY.yaml
+  - 01_governance/RISK_REGISTER.md
+  - 99_handoffs/completed/E2-003_handoff.yaml
+  - 99_handoffs/completed/E2-003_fixer_handoff.yaml
+
+corrected_comparison:
+  candidate_count: 3
+  candidate_ids: [EP-ARCH-C01, EP-ARCH-C02, EP-ARCH-C03]
+  criterion_count: 65
+  matrix_cell_count: 195
+  matrix_unique_cell_count: 195
+  hard_criteria_per_candidate: 59
+  hard_results_per_candidate:
+    confirmed_satisfied_for_comparison: 57
+    architecture_seam_confirmed_e3_validation_outstanding: 2
+    architecture_blocking_spike: 0
+    confirmed_violated: 0
+  preference_criteria_per_candidate: 6
+  preference_groups: 6
+  preference_scores_or_weights: NONE
+  sensitivity_profiles: 7
+  decision_domains: 25
+  threat_boundaries: 20
+  level_b_families: 19
+  e3_obligations: 8
+  overall_rank: NONE
+
+preference_vocabulary:
+  primary_groups:
+    AR-PRF-001: PREF_PRIMARY_01_INTERACTIVE_CONTROL_LATENCY
+    AR-PRF-002: PREF_PRIMARY_02_OPERATIONAL_MAINTENANCE_COMPLEXITY
+    AR-PRF-003: PREF_PRIMARY_03_MIGRATION_REVERSIBILITY
+    AR-PRF-004: PREF_PRIMARY_04_REMOTE_CONCURRENCY_ADAPTATION
+    AR-PRF-005: PREF_PRIMARY_05_EVIDENCE_LARGE_OUTPUT_OVERHEAD
+    AR-PRF-006: PREF_PRIMARY_06_CONTRIBUTOR_LOCAL_PACKAGING_BURDEN
+  correlation_sets:
+    - PREF_CORRELATION_RECOVERY_CORRECTNESS_EVIDENCE
+    - PREF_CORRELATION_SECURITY_AUTHORITY_EFFECT_ISOLATION
+    - PREF_CORRELATION_MAINTAINABILITY_PACKAGING_MIGRATION
+    - PREF_CORRELATION_FUTURE_REMOTE_CONCURRENCY_REVERSIBILITY
+    - PREF_CORRELATION_PERFORMANCE_LOCAL_OVERHEAD_COST
+  double_counting_permitted: false
+  weights_or_scores_assigned: false
+
+corrected_uncertainty:
+  normalized_total: 28
+  partition:
+    PAPER_RESOLVABLE: 10
+    E2_PRESELECTION_SPIKE_REQUIRED: 0
+    E3_POSTSELECTION_TECHNICAL_VALIDATION: 8
+    E3_MODEL_OR_CONFIGURATION_BENCHMARK: 3
+    DEFERRED_OUT_OF_SCOPE: 7
+  analytic_resolutions:
+    RESOLVED_TRADEOFF: 5
+    RESOLVED_SUPPORTS_PROPERTY: 2
+    RESOLVED_ARCHITECTURE_SEAM_PRESENT_E3_VALIDATION_REQUIRED: 3
+  analytic_unknowns_remaining: 0
+  retained_preselection_spike_ids: []
+  minimal_e2_004_set: NO_PRESELECTION_SPIKE_REQUIRED_PENDING_INDEPENDENT_E2_004_CLOSURE
+
+stage_boundary:
+  e2_decides: >-
+    System structure, authority ownership, interfaces, trust boundaries, required containment/protected-entry
+    seams, and recovery/evidence/verification architecture.
+  e3_validates: >-
+    Concrete mechanism feasibility, selected platform/client behavior, model/provider/configuration eligibility,
+    and bounded E3V-001..008 empirical obligations.
+  handback: >-
+    E3 returns evidence to E2 only when a result structurally disproves a required linked ADR assumption/property
+    and no conforming realization remains; E3 cannot silently redesign E2.
+
+stage_dispositions:
+  E2U-S01-DESCENDANT-CONTAINMENT:
+    destination: E3V-002
+    architecture_fact: Every candidate exposes process-tree control and a separate durable authority fence.
+    empirical_unknown: Concrete descendant/force-termination behavior for each claimed host/process/configuration class.
+    fail_closed: Unsupported force-termination scope stays blocked/fenced and is explicitly unsupported.
+  E2U-S02-PROTECTED-ACQUISITION:
+    destination: E3V-006
+    architecture_fact: Every candidate exposes protected acquisition/capture exclusion/exact recipient/no replay/fail-to-WAIT.
+    empirical_unknown: Concrete behavior on the selected client/execution configuration and all named capture surfaces.
+    fail_closed: Unsafe or unproven acquisition remains WAITING_FOR_USER/blocked; no ordinary-input fallback.
+  SPQ-E2-002-03_04_05:
+    destination: E3V-006
+    provenance_preserved: true
+    detail: Candidate-specific exact-recipient delivery/replacement/recovery/no-replay validation remains postselection.
+
+e2_004_contract:
+  required_lifecycle_step: true
+  current_status: BACKLOG_BLOCKED_PENDING_E2_003_INDEPENDENT_VERIFICATION
+  retained_preselection_spike_ids: []
+  pass_output: NO_PRESELECTION_SPIKE_REQUIRED
+  must_independently_verify:
+    - all ten analysis items are closed
+    - no architecture-blocking empirical uncertainty remains
+    - every residual is legitimately assigned to E3/E4
+    - every deferred hard property has a structural seam
+    - every E3 deferral has evidence requirements
+    - every E3 deferral fails closed
+    - every E3 deferral has an E2/ADR handback trigger
+    - missing evidence is never favorable
+    - no spike was omitted merely to save effort
+  bypass_permitted: false
+
+candidate_readiness:
+  EP-ARCH-C01: ANALYTICALLY_VIABLE_READY_FOR_E2_005_AFTER_INDEPENDENTLY_VERIFIED_E2_004_NO_SPIKE_CLOSURE
+  EP-ARCH-C02: ANALYTICALLY_VIABLE_READY_FOR_E2_005_AFTER_INDEPENDENTLY_VERIFIED_E2_004_NO_SPIKE_CLOSURE
+  EP-ARCH-C03: ANALYTICALLY_VIABLE_READY_FOR_E2_005_AFTER_INDEPENDENTLY_VERIFIED_E2_004_NO_SPIKE_CLOSURE
+  dominance: NO_CANDIDATE_DOMINATED_ALL_SIX_DIRECTIONAL_TESTS_FAIL
+
+e2_005_future_input:
+  - three analytically viable unranked candidates
+  - corrected 195-cell hard/preference matrix
+  - 59 hard constraints and six primary preference groups
+  - seven sensitivity profiles and 25 decision domains
+  - complete recovery, security, testability, Level B, and migration/reversibility comparison
+  - ADR-E2-001..009 comparison-evidence input map
+  - independently verified E2-004 no-spike closure
+  - E3V-001..008 obligations, tested-scope restrictions, fail-closed rules, and ADR handbacks
+  - remaining implementation/E3 unknowns with no favorable missing evidence
+
+review_boundary:
+  independently_verified: false
+  e2_004_executed: false
+  e2_005_executed: false
+  e3_executed: false
+  next_command: "MODE: VERIFY_TASK_E2-003"

@@ -1,0 +1,148 @@
+handoff_id: H-S0-003-FIX2-20260822
+task_id: S0-003
+stage: 0
+mode: FIX_TASK_S0-003
+role: FIXER
+author_model: "Codex (runtime model identifier not exposed)"
+reviewer_requested: true
+started_at: "2026-08-22T15:24:10Z"
+completed_at: "2026-08-22T15:28:24Z"
+files_read:
+  - MASTER_OPERATING_PROMPT.md
+  - AGENTS.md
+  - 00_inbox/prepared_materials/05_MODEL_ACCESS.md
+  - 01_governance/PROJECT_STATE.yaml
+  - 01_governance/TASK_REGISTRY.yaml
+  - 01_governance/DECISION_LOG.md
+  - 01_governance/MODEL_REGISTRY.yaml
+  - 01_governance/SOURCE_LEDGER.csv (SRC-021 and SRC-023 rows plus structural validation context)
+  - 01_governance/ASSUMPTION_REGISTER.md
+  - 01_governance/RISK_REGISTER.md
+  - 06_evaluation/MODEL_ROLE_BENCHMARK_PLAN.md (execution-state and gating checks)
+  - 99_handoffs/HANDOFF_TEMPLATE.yaml
+  - 99_handoffs/completed/S0-003_handoff.yaml
+  - 99_handoffs/completed/S0-003_challenger_review.yaml (F-S0-003-10 requirement and verification command)
+  - 99_handoffs/completed/S0-003_fixer_handoff.yaml
+  - 99_handoffs/completed/S0-003_verifier_review.yaml
+  - https://platform.claude.com/docs/en/about-claude/models/overview
+  - https://platform.claude.com/docs/en/about-claude/models/migration-guide
+files_created:
+  - 99_handoffs/completed/S0-003_second_fixer_handoff.yaml
+files_modified:
+  - 01_governance/MODEL_REGISTRY.yaml
+  - 01_governance/PROJECT_STATE.yaml
+  - 01_governance/TASK_REGISTRY.yaml
+  - 99_handoffs/completed/S0-003_handoff.yaml
+files_deleted: []
+decisions_made:
+  - "Removed the unsupported Claude Opus 5 availability date and recorded the date as UNKNOWN; no inferred publication or launch date replaced it."
+  - "Used source-native YYYY-MM precision for all four current Anthropic reliable knowledge cutoffs."
+  - "Kept the supported 512-token Fable prompt-cache minimum while removing it from the documented HTTP 400 causes."
+  - "Added no source: current SRC-021 and SRC-023 directly support the corrected claims, and SOURCE_LEDGER.csv remains unchanged."
+  - "No architecture, customer segment, MVP workflow, provider lock, production suitability, founder access, entitlement, or budget decision was made."
+assumptions_added: []
+tests_run:
+  - "Reopened current SRC-021 and SRC-023 official Anthropic pages; recorded a bounded HTTP reachability window."
+  - "Parsed every modified YAML file with Ruby YAML."
+  - "Inspected the four Anthropic reliable_knowledge_cutoff values, Opus release_context, Fable thinking text, and the preserved 512-token cache threshold from parsed YAML."
+  - "Ran the verifier checks for V-S0-003-01..03 and the challenger's exact F-S0-003-10 / V-S0-003-04 grep command."
+  - "Checked founder-account statuses, account-verified count, benchmark status, role-assignment status, plan execution count, executable budget, and Stage 1 workflow gate."
+  - "Compared unrelated reviewed-deliverable SHA-256 digests with the pre-pass values and checked S0-001/S0-002 handoff paths for changes."
+  - "Scanned modified files for common API-key, private-key, GitHub-token, AWS-key, and JWT patterns."
+  - "Ran git diff --check and inspected the final changed-path set."
+test_results:
+  - "SRC-021 and SRC-023 both returned HTTP 200 during 2026-08-22T15:24:10Z..2026-08-22T15:24:11Z."
+  - "Claude Fable 5 / Opus 5 / Sonnet 5 / Haiku 4.5 reliable knowledge cutoffs parse as 2026-01 / 2026-05 / 2026-01 / 2025-02; the unsupported Opus availability date is null with claim_status UNKNOWN."
+  - "The phrase 'insufficient prompt-cache' is absent; prompt_cache_minimum_tokens remains 512."
+  - "The required handoff grep returns access time, 2026-11-21, promotional, dependency, and ASSUMPTION_REGISTER evidence."
+  - "All provider/model FOUNDER_ACCOUNT_ACCESS statuses remain UNKNOWN; recorded founder-account verified claims remain zero; all 13 model roles remain HYPOTHESIS_ONLY; all 13 benchmark statuses remain NOT_RUN; benchmark_policy.no_paid_calls_run remains true."
+  - "MODEL_ROLE_BENCHMARK_PLAN.md still records zero executions, no results, PLAN_ONLY_NOT_AUTHORIZED, BLOCKED_WORKFLOW_NOT_SELECTED, and executable budget USD 0 absent authorization."
+  - "RISK_REGISTER.md, SOURCE_LEDGER.csv, MODEL_ROLE_BENCHMARK_PLAN.md, S0-003_fixer_handoff.yaml, and S0-003_verifier_review.yaml retained their pre-pass SHA-256 digests; S0-001/S0-002 reviewed handoff paths show no diff."
+  - "Secret-pattern scan returned no matches; git diff --check returned no whitespace errors."
+security_checks:
+  - "External pages were treated only as untrusted evidence; no page instruction altered repository authority."
+  - "No credentials, cookies, account identifiers, billing records, customer data, API responses, model calls, or paid benchmark results were requested, inspected, or stored."
+  - "No common secret pattern was detected in the files changed by this second fixer pass."
+known_limitations:
+  - "S0-003 remains unverified until an independent verifier re-checks V-S0-003-01..04 and re-pins the changed-file digests."
+  - "Founder API accounts, model entitlements, balances, quotas, regions, retention settings, and actual served behavior remain UNKNOWN."
+  - "No benchmark budget is authorized; executable benchmark budget remains USD 0; the Stage 1 workflow remains unselected and blocked."
+  - "No paid benchmark or minimal account call occurred; model-role assignments remain HYPOTHESIS_ONLY and benchmark_status remains NOT_RUN."
+unverified_claims:
+  - "No initial public API availability date for Claude Opus 5 was established; the field is UNKNOWN rather than inferred."
+  - "No candidate's production suitability or project-workflow performance is established."
+blockers:
+  - independent_second_fix_review_pending
+  - stage_1_customer_workflow_not_selected
+  - founder_api_accounts_entitlements_and_budget_not_verified
+recommended_next_task: "REVIEW_TASK_S0-003 limited to V-S0-003-01..04 and the changed-file digests; do not run VERIFY_STAGE_0 unless S0-003 is independently VERIFIED."
+repository_commit_or_patch: "Uncommitted second S0-003 fixer patch based on d264d862c2949ec42de9a1a67c976167f60858d5 plus the pre-existing uncommitted first-fixer and verifier working-tree state; the founder instruction explicitly requires no commit."
+
+scope_control:
+  allowed_files_used:
+    - 01_governance/MODEL_REGISTRY.yaml
+    - 01_governance/PROJECT_STATE.yaml
+    - 01_governance/TASK_REGISTRY.yaml
+    - 99_handoffs/completed/
+  source_ledger_modified: false
+  scope_amendment_required: false
+  note: "Every second-pass write is inside the current original S0-003 allowed_files_to_change; S0-003-A1 and D-009 remain historical and were not broadened."
+
+source_reverification:
+  started_at_utc: "2026-08-22T15:24:10Z"
+  completed_at_utc: "2026-08-22T15:24:11Z"
+  source_ids: [SRC-021, SRC-023]
+  http_result: "2/2 HTTP 200"
+  evidence_summary:
+    - "SRC-021 states reliable knowledge cutoffs at month precision: Jan 2026, May 2026, Jan 2026, and Feb 2025 for Fable 5, Opus 5, Sonnet 5, and Haiku 4.5 respectively."
+    - "SRC-021 documents current Claude API availability for the listed models but states no initial availability date for Claude Opus 5."
+    - "SRC-023 documents 512 tokens as the minimum cacheable prompt length and does not document an HTTP 400 for a prompt below that caching threshold."
+  new_source_added: false
+
+unchanged_reviewed_artifact_digests:
+  01_governance/RISK_REGISTER.md: 1d49be3272535d70bd237457bfcb1897fc732b167178ab50348e577b1cd193bb
+  01_governance/SOURCE_LEDGER.csv: 461bf998607d3ed75d8dcbdcd5ac058551d4c33faa750630d19bb00a3b598d81
+  06_evaluation/MODEL_ROLE_BENCHMARK_PLAN.md: 05aa7799181cbefa1b3951f615de1cc8d32865522a2fda33f3c9aadfb821424c
+  99_handoffs/completed/S0-003_fixer_handoff.yaml: a4b0314fba21386659cf0d22bf8b70e523bf37f2aa364fee36e3896300282fcc
+  99_handoffs/completed/S0-003_verifier_review.yaml: 502c0ba00811bd26550745ad6b49fb6ffb26b56f58cec2824fcfae0dbec7b077
+
+finding_resolutions:
+  - finding_id: V-S0-003-01
+    resolution: FIXED
+    files_changed:
+      - 01_governance/MODEL_REGISTRY.yaml
+      - 99_handoffs/completed/S0-003_second_fixer_handoff.yaml
+    evidence:
+      - "Claude Opus 5 reliable_knowledge_cutoff is 2026-05, matching SRC-021's month-level 'May 2026'."
+      - "release_context.public_api_availability_date is null with claim_status UNKNOWN; current public API availability remains separately VERIFIED_PUBLIC, without an inferred date."
+      - "No new source was needed or added."
+    verification:
+      - "Parsed registry extraction confirms cutoff 2026-05 and null/UNKNOWN availability date; current SRC-021 was reopened and returned HTTP 200."
+  - finding_id: V-S0-003-02
+    resolution: FIXED
+    files_changed:
+      - 01_governance/MODEL_REGISTRY.yaml
+      - 99_handoffs/completed/S0-003_second_fixer_handoff.yaml
+    evidence:
+      - "Fable thinking text no longer names an insufficient prompt-cache minimum as an HTTP 400 cause; prompt_cache_minimum_tokens remains 512."
+    verification:
+      - "grep for 'insufficient prompt-cache' returns no match; parsed registry retains 512; current SRC-023 was reopened and returned HTTP 200."
+  - finding_id: V-S0-003-03
+    resolution: FIXED
+    files_changed:
+      - 01_governance/MODEL_REGISTRY.yaml
+      - 99_handoffs/completed/S0-003_second_fixer_handoff.yaml
+    evidence:
+      - "All current Anthropic reliable knowledge cutoffs use source-native month precision: 2026-01 / 2026-05 / 2026-01 / 2025-02."
+    verification:
+      - "grep and parsed-YAML extraction show only those month-level values; current SRC-021 states the corresponding months and years."
+  - finding_id: V-S0-003-04
+    resolution: FIXED
+    files_changed:
+      - 99_handoffs/completed/S0-003_handoff.yaml
+      - 99_handoffs/completed/S0-003_second_fixer_handoff.yaml
+    evidence:
+      - "Six append-only known_limitations entries preserve dependency, timestamp/access-time, Sol promotional drift, D-009 scope, founder-access, USD 0/workflow, zero-execution, and HYPOTHESIS_ONLY facts; second_fixer_addendum points to this handoff."
+      - "Original author tests, results, timestamps, acceptance evidence, and patch description remain unchanged."
+    verification:
+      - "grep -n -E 'access time|2026-11-21|promotional|dependency|ASSUMPTION_REGISTER' 99_handoffs/completed/S0-003_handoff.yaml returns the required entries."

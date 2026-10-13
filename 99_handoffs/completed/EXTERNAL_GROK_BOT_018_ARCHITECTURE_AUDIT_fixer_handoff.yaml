@@ -1,0 +1,351 @@
+handoff_id: EXTERNAL_GROK_BOT_018_ARCHITECTURE_AUDIT_FIXER_HANDOFF
+task_id: EXTERNAL_GROK_BOT_018_ARCHITECTURE_AUDIT
+stage: "Research correction only; no project stage transition"
+role: FIXER
+mode: FIX_EXTERNAL_REFERENCE_ARCHITECTURE_AUDIT
+status: FIXED_PENDING_INDEPENDENT_VERIFICATION
+author_model: "OpenAI Codex; original AUTHOR returning as FIXER"
+reviewer_requested: "Independent VERIFIER"
+started_at: "2026-08-25"
+completed_at: "2026-08-25"
+task_authority: >-
+  Direct bounded user authorization for the named fixer mode. The task was not
+  registered as READY or CLAIMED, and the user expressly prohibited changes to
+  PROJECT_STATE, TASK_REGISTRY, decisions, assumptions, risks, Stage 1, S1-003,
+  architecture, evaluation, application code, and every path outside the three
+  listed deliverables.
+
+external_reference:
+  url: https://github.com/b-nnett/grok-bot-0.18-reconstructed
+  local_path: /Users/richardzhu/dev/_external_refs/grok-bot-0.18-reconstructed
+  exact_commit: a9f633e09d49a85829b8236331b9e21f7e612634
+  head_verified_equal_to_exact_commit: true
+  inspection_method: STATIC_TEXT_AND_GIT_METADATA_ONLY
+  no_lfs_payload_fetch: true
+  no_external_execution: true
+  no_external_repository_modification: true
+
+classification_counts_before:
+  ADOPT: 6
+  ADAPT: 14
+  EXPERIMENT: 3
+  REJECT: 8
+  DEFER: 2
+  total: 33
+
+classification_counts_after:
+  ADOPT: 7
+  ADAPT: 15
+  EXPERIMENT: 2
+  REJECT: 7
+  DEFER: 3
+  total: 34
+
+scope_assertions:
+  no_code_import: true
+  no_architecture_decision: true
+  no_project_state_mutation: true
+  no_stage_state_mutation: true
+  no_s1_003_authorization_change: true
+  no_external_spend: true
+  no_spike_execution: true
+  no_commit: true
+
+files_read:
+  - MASTER_OPERATING_PROMPT.md
+  - AGENTS.md
+  - 01_governance/PROJECT_STATE.yaml
+  - 01_governance/TASK_REGISTRY.yaml
+  - 01_governance/DECISION_LOG.md
+  - 01_governance/ASSUMPTION_REGISTER.md
+  - 01_governance/RISK_REGISTER.md
+  - 01_governance/MODEL_REGISTRY.yaml
+  - 02_research/GROK_BOT_018_RECONSTRUCTED_ARCHITECTURE_AUDIT.md
+  - 02_research/GROK_BOT_018_ARCHITECTURE_ADOPTION_MATRIX.csv
+  - 06_evaluation/MODEL_ROLE_BENCHMARK_PLAN.md
+  - 99_handoffs/HANDOFF_TEMPLATE.yaml
+  - 99_handoffs/completed/EXTERNAL_GROK_BOT_018_ARCHITECTURE_AUDIT_handoff.yaml
+  - 99_handoffs/completed/EXTERNAL_GROK_BOT_018_ARCHITECTURE_AUDIT_challenger_review.yaml
+
+external_files_re_read:
+  - source/packages/agent-kv/agent-store.ts
+  - source/packages/agent-kv/blob-store.ts
+  - source/packages/proto/generated/agent/v1/agent_pb.ts
+  - source/host/extensions/session/production.ts
+  - source/host/extensions/session/session-paths.ts
+  - source/host/extensions/session/agent-db.ts
+  - source/host/extensions/session/agent-db-schema.ts
+  - source/host/extensions/session/session-maintenance.ts
+  - source/host/agent-isolation/conversation-blob-db.ts
+  - source/host/agent-isolation/conversation-blob-store.ts
+  - source/host/agent-isolation/conversation-blob-gc.ts
+  - source/host/agent-isolation/transcript-mirror-worker.ts
+  - source/host/runner/turn-settle.ts
+  - source/host/extensions/transcript/run-lifecycle.ts
+  - source/host/extensions/transcript/sand-pending-wake-store.ts
+  - source/host/extensions/transcript/pending-wake-rearm.ts
+  - source/host/transcript-mirror/transcript-journal-codec.ts
+  - source/host/transcript-mirror/transcript-mirror.ts
+  - source/host/transcript-mirror/transcript-mirror-router.ts
+  - source/host/transcript-mirror/conversation-state-binary.ts
+  - source/host/cloud-agents/cloud-agent-tool.ts
+  - source/host/cloud-agents/cloud-agent-transcript-dump.ts
+  - source/host/cloud-agents/cloud-agent-images.ts
+  - source/host/extensions/cloud-agents/cloud-agents-service.ts
+  - source/host/extensions/cloud-agents/cloud-agent-poll-loop.ts
+  - source/host/extensions/cloud-agents/cloud-agent-request-composition.ts
+  - source/host/runner/sand-cloud-agent-auto-review.ts
+  - source/host/runner/sand-auto-review.ts
+  - source/shared/errors/registry.ts
+  - source/shared/errors/bounded.ts
+  - source/shared/errors.ts
+  - source/packages/agent-summarization/pipeline.ts
+  - source/packages/agent-summarization/prepare-messages.ts
+  - source/packages/agent-summarization/durable-blocks.ts
+  - source/packages/agent-summarization/background-summarization.ts
+  - source/packages/agent-summarization/summarization-handler.ts
+  - source/packages/agent-summarization/deterministic-summary-builder.ts
+  - source/packages/agent-summarization/transcript-location.ts
+  - source/packages/agent/summarization-orchestrator.ts
+  - source/shared/channels.ts
+  - source/shared/channel-messaging.ts
+  - source/host/groups/group-store.ts
+  - source/host/groups/group-chat.ts
+  - source/host/extensions/transcript/group-chat-orchestrator.ts
+  - source/host/extensions/transcript/agent-to-agent-messaging.ts
+  - source/host/extensions/box-store-sync/box-store-manifest-format.ts
+  - source/host/extensions/box-store-sync/box-store-manifest.ts
+  - source/host/extensions/box-store-sync/box-store-sync.ts
+  - source/host/extensions/box-store-sync/box-store-hydration.ts
+  - source/host/extensions/box-store-sync/box-object-store.ts
+  - source/node-agent-coordinator/inference-router.ts
+  - source/node-agent-coordinator/routed-mcp-bridge.ts
+  - source/host/extensions/local-tool-permission/local-tool-permission-controller.ts
+  - PROVENANCE.md
+  - NOTICE.md
+
+files_created:
+  - 99_handoffs/completed/EXTERNAL_GROK_BOT_018_ARCHITECTURE_AUDIT_fixer_handoff.yaml
+
+files_modified:
+  - 02_research/GROK_BOT_018_RECONSTRUCTED_ARCHITECTURE_AUDIT.md
+  - 02_research/GROK_BOT_018_ARCHITECTURE_ADOPTION_MATRIX.csv
+
+files_deleted: []
+decisions_made: []
+assumptions_added: []
+
+findings:
+  - finding_id: F-EXT-018-C-01
+    resolution: FIXED
+    files_changed:
+      - 02_research/GROK_BOT_018_RECONSTRUCTED_ARCHITECTURE_AUDIT.md
+      - 02_research/GROK_BOT_018_ARCHITECTURE_ADOPTION_MATRIX.csv
+      - 99_handoffs/completed/EXTERNAL_GROK_BOT_018_ARCHITECTURE_AUDIT_fixer_handoff.yaml
+    evidence:
+      - "source/packages/agent-kv/agent-store.ts:346-379"
+      - "source/host/extensions/session/production.ts:166-183"
+      - "source/host/runner/turn-settle.ts:231-289"
+      - "source/host/agent-isolation/transcript-mirror-worker.ts:18-25,60-95,117-135"
+      - "source/host/extensions/session/agent-db-schema.ts:4-25"
+    verification: >-
+      Reconstructed canonical conversation checkpoint, content-addressed referents,
+      selected live root, reachability/migration, JSONL projection and separate UI
+      projection. The corrected audit and PAT-02/PAT-17 no longer equate transcript
+      with authoritative domain, task, effect, or execution state.
+
+  - finding_id: F-EXT-018-C-02
+    resolution: FIXED
+    files_changed:
+      - 02_research/GROK_BOT_018_RECONSTRUCTED_ARCHITECTURE_AUDIT.md
+      - 02_research/GROK_BOT_018_ARCHITECTURE_ADOPTION_MATRIX.csv
+      - 99_handoffs/completed/EXTERNAL_GROK_BOT_018_ARCHITECTURE_AUDIT_fixer_handoff.yaml
+    evidence:
+      - "source/host/cloud-agents/cloud-agent-tool.ts:4-41"
+      - "source/host/extensions/cloud-agents/cloud-agent-poll-loop.ts:4-25"
+      - "source/host/extensions/transcript/pending-wake-rearm.ts:22-216"
+      - "source/host/runner/sand-cloud-agent-auto-review.ts:19-310"
+    verification: >-
+      Added PAT-18/D14 as ADAPT with launch, watch, reply, cancel, environment targets,
+      lifecycle, background continuation, failures, and the exact destructive and
+      review-gated sets. Optional review and caller confirmation are recorded as limits;
+      text heuristics are rejected as primary safety enforcement.
+
+  - finding_id: F-EXT-018-C-03
+    resolution: FIXED
+    files_changed:
+      - 02_research/GROK_BOT_018_RECONSTRUCTED_ARCHITECTURE_AUDIT.md
+      - 02_research/GROK_BOT_018_ARCHITECTURE_ADOPTION_MATRIX.csv
+      - 99_handoffs/completed/EXTERNAL_GROK_BOT_018_ARCHITECTURE_AUDIT_fixer_handoff.yaml
+    evidence:
+      - "source/shared/errors/registry.ts:1-18,788-839"
+      - "source/shared/errors/bounded.ts:1-48"
+      - "06_evaluation/MODEL_ROLE_BENCHMARK_PLAN.md:215-233"
+    verification: >-
+      Added PAT-19/A08 as ADOPT for stable error identity, domains, retryability
+      metadata, declared bounded payloads and safe unknown fallback. Provider, tool,
+      task, authorization, sandbox, connector, refusal and unknown-layer requirements
+      are separated from user copy, retry execution, and the benchmark taxonomy.
+
+  - finding_id: F-EXT-018-C-04
+    resolution: FIXED
+    files_changed:
+      - 02_research/GROK_BOT_018_RECONSTRUCTED_ARCHITECTURE_AUDIT.md
+      - 02_research/GROK_BOT_018_ARCHITECTURE_ADOPTION_MATRIX.csv
+      - 99_handoffs/completed/EXTERNAL_GROK_BOT_018_ARCHITECTURE_AUDIT_fixer_handoff.yaml
+    evidence:
+      - "source/packages/agent-summarization/pipeline.ts:86-125"
+      - "source/packages/agent-summarization/summarization-handler.ts:930-973,1074-1122"
+      - "source/packages/agent/summarization-orchestrator.ts:675-811"
+      - "source/host/agent-isolation/conversation-blob-gc.ts:10-14,43-100"
+    verification: >-
+      Added PAT-20/D15 as ADAPT and separated LLM working context, durable conversation,
+      memory, execution history, audit, and domain evidence. Lossy summaries cannot be
+      sole authority for Finance research, calculations, datasets, backtests, thesis
+      history, portfolio or position state.
+
+  - finding_id: F-EXT-018-C-05
+    resolution: FIXED
+    files_changed:
+      - 02_research/GROK_BOT_018_RECONSTRUCTED_ARCHITECTURE_AUDIT.md
+      - 02_research/GROK_BOT_018_ARCHITECTURE_ADOPTION_MATRIX.csv
+      - 99_handoffs/completed/EXTERNAL_GROK_BOT_018_ARCHITECTURE_AUDIT_fixer_handoff.yaml
+    evidence:
+      - "Audit section 0.4 classification rubric"
+      - "Audit section 15.1 corrected canonical inventory"
+      - "Companion CSV corrected parent classifications"
+    verification: >-
+      Applied one explicit five-class rubric to all canonical patterns. Counts changed
+      from 6/14/3/8/2 across 33 patterns to 7/15/2/7/3 across 34 patterns without
+      preserving the author totals or double-counting aspect dispositions.
+
+  - finding_id: F-EXT-018-C-06
+    resolution: FIXED
+    files_changed:
+      - 02_research/GROK_BOT_018_RECONSTRUCTED_ARCHITECTURE_AUDIT.md
+      - 99_handoffs/completed/EXTERNAL_GROK_BOT_018_ARCHITECTURE_AUDIT_fixer_handoff.yaml
+    evidence:
+      - "MASTER_OPERATING_PROMPT.md:277-298"
+      - "Audit section 18 SP-C01 through SP-C10"
+    verification: >-
+      Each of ten proposed spikes now has spike_id, question, hypothesis, alternatives,
+      minimum prototype, workload, success and failure metrics, security checks, USD 0
+      cost cap, decision rule, dependencies and required evidence. Conditional spikes
+      are gated on Stage 1/2/3 outcomes; no spike ran and no spend or technology was authorized.
+
+  - finding_id: F-EXT-018-C-07
+    resolution: FIXED
+    files_changed:
+      - 02_research/GROK_BOT_018_RECONSTRUCTED_ARCHITECTURE_AUDIT.md
+      - 02_research/GROK_BOT_018_ARCHITECTURE_ADOPTION_MATRIX.csv
+      - 99_handoffs/completed/EXTERNAL_GROK_BOT_018_ARCHITECTURE_AUDIT_fixer_handoff.yaml
+    evidence:
+      - "source/shared/channels.ts:1-65"
+      - "source/shared/channel-messaging.ts:11-240"
+      - "source/host/groups/group-store.ts:1-5"
+      - "source/host/extensions/transcript/agent-to-agent-messaging.ts:38-48"
+    verification: >-
+      Split thin channel address/envelope evidence from group, A2A and automation
+      behavior. PAT-21/F03 is DEFER; no mature connector, multi-agent channel routing,
+      or external delivery lifecycle is inferred from names or coming-soon structures.
+
+  - finding_id: F-EXT-018-C-08
+    resolution: FIXED
+    files_changed:
+      - 02_research/GROK_BOT_018_RECONSTRUCTED_ARCHITECTURE_AUDIT.md
+      - 02_research/GROK_BOT_018_ARCHITECTURE_ADOPTION_MATRIX.csv
+      - 99_handoffs/completed/EXTERNAL_GROK_BOT_018_ARCHITECTURE_AUDIT_fixer_handoff.yaml
+    evidence:
+      - "source/packages/agent-kv/blob-store.ts:21-26"
+      - "source/host/agent-isolation/conversation-blob-db.ts:13-18"
+      - "source/host/extensions/box-store-sync/box-store-manifest-format.ts:2-15"
+      - "source/host/extensions/box-store-sync/box-object-store.ts:186-193"
+    verification: >-
+      Added cross-tenant dedup, presence-oracle, low-entropy fingerprint, encryption,
+      namespace, keyed/salted/opaque identifier, dedup boundary, GC, retention and
+      deletion requirements without choosing cryptography. Finance hash-disclosure
+      sensitivity is explicit; content addressing is not global deduplication.
+
+  - finding_id: F-EXT-018-C-09
+    resolution: FIXED
+    files_changed:
+      - 02_research/GROK_BOT_018_RECONSTRUCTED_ARCHITECTURE_AUDIT.md
+      - 02_research/GROK_BOT_018_ARCHITECTURE_ADOPTION_MATRIX.csv
+      - 99_handoffs/completed/EXTERNAL_GROK_BOT_018_ARCHITECTURE_AUDIT_fixer_handoff.yaml
+    evidence:
+      - "Audit section 11 corrected 20-row score table"
+      - "Companion CSV 20 score rationales, each covering all 17 dimensions"
+    verification: >-
+      Rescored PAT-09, PAT-11 and all other parent rows as the external implementation
+      actually exists. Recommendations and future acceptance tests carry translated
+      potential separately. No aggregate score or ranking was introduced.
+
+  - finding_id: F-EXT-018-C-10
+    resolution: FIXED
+    files_changed:
+      - 02_research/GROK_BOT_018_RECONSTRUCTED_ARCHITECTURE_AUDIT.md
+      - 02_research/GROK_BOT_018_ARCHITECTURE_ADOPTION_MATRIX.csv
+      - 99_handoffs/completed/EXTERNAL_GROK_BOT_018_ARCHITECTURE_AUDIT_fixer_handoff.yaml
+    evidence:
+      - "source/host/groups/group-store.ts:1-5"
+      - "MASTER_OPERATING_PROMPT.md:213-275"
+      - "MASTER_OPERATING_PROMPT.md:469-487"
+      - "Audit sections 11 and 15 canonical tables"
+    verification: >-
+      Corrected the group-cap and primary threat-model ranges, retired PAT-05 into
+      PAT-04 aspect dispositions, merged the Finance package row into the workflow
+      pattern, separated channels, validated external paths, and retained superseded
+      tables only inside explicitly historical disclosure blocks.
+
+tests_run:
+  - "Pinned external HEAD and LFS-disabled clean-state checks"
+  - "Static full-path and cited-line-range existence validation"
+  - "CSV parser, schema-width, score-bound, unique-ID and vocabulary checks"
+  - "Bundled artifact-tool read-only CSV import and A1:AB21 workbook inspection"
+  - "Corrected Markdown score-table to CSV equality check"
+  - "Canonical classification inventory recount"
+  - "All-ten-finding disposition check"
+  - "Ten-spike, thirteen-required-field and zero-spend-cap check"
+  - "Markdown fence/details and Mermaid block structural sanity"
+  - "Independent read-only final consistency review of all three deliverables"
+  - "Secret-pattern scan over all three deliverables"
+  - "YAML parse of this handoff"
+  - "git diff --check"
+  - "Changed-path allowlist check"
+
+test_results:
+  - "External HEAD: a9f633e09d49a85829b8236331b9e21f7e612634; exact match"
+  - "External working tree: clean under LFS-disabled status; 55 handoff-listed source files exist with no duplicates"
+  - "Full external paths: 182 validated, 0 missing; full cited ranges: 132 validated, 0 out of bounds; 56 aliases resolve"
+  - "CSV: 20 data rows, 28 columns, 20 unique pattern IDs, all scores 1-5"
+  - "Artifact-tool import: Adoption Matrix sheet A1:AB21, 21 rows including header and 28 columns"
+  - "Score table: 20 rows and exact score/class equality with CSV"
+  - "Canonical inventory: ADOPT 7, ADAPT 15, EXPERIMENT 2, REJECT 7, DEFER 3; total 34"
+  - "Findings: C-01 through C-10 present once as FIXED dispositions"
+  - "Spikes: SP-C01 through SP-C10 each contain all 13 required fields and USD 0 cost cap"
+  - "Mermaid: four blocks extracted with balanced structural controls; Mermaid CLI unavailable"
+  - "Fixer handoff YAML: parsed successfully with ten FIXED findings and exact pinned commit"
+  - "Final read-only review found store-selection wording, incomplete error-boundary citations, and duplicate coverage numbering; all three were corrected, and the reviewer made no edits"
+  - "No matching secret token or private-key pattern found"
+  - "git diff --check: clean; changed paths exactly match the three-file allowlist"
+  - "No external code, installer, LFS payload, script, build, test, package, container, provider or service executed"
+
+security_checks:
+  - "Content-address oracle, namespace, deduplication, encryption and erasure risks added"
+  - "Declared action classes separated from policy decisions; regex/text heuristics rejected as primary safety"
+  - "Finance research, dataset, strategy, model and position sensitivity retained"
+  - "Secret-pattern scan limited to allowed deliverables returned no matches"
+
+known_limitations:
+  - "The external repository is a reconstruction and does not expose every backend, tenancy, retention or deployment behavior."
+  - "No Mermaid CLI was installed; syntax validation is bounded to extraction and structural/control balance."
+  - "This is an AUTHOR/FIXER artifact and has not received the required independent VERIFIER decision."
+
+unverified_claims:
+  - "No corrected recommendation is treated as an approved Stage 3 architecture decision."
+
+blockers: []
+recommended_next_task: VERIFY_EXTERNAL_REFERENCE_ARCHITECTURE_AUDIT
+repository_commit_or_patch: >-
+  Uncommitted working-tree patch over primary HEAD
+  3cb3e198b000bc7b301d7f040da37d1518fd047b; no commit by instruction.

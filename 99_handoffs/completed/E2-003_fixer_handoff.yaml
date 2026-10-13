@@ -1,0 +1,399 @@
+handoff_id: E2-003-FIXER-2026-08-29
+task_id: E2-003
+stage: E2
+mode: FIX_TASK_E2-003
+role: ORIGINAL_AUTHOR_RETURNING_AS_FIXER
+fixer_model: "Codex (runtime model identifier not exposed)"
+challenger_model: "Claude Fable 5 (claude-fable-5) via Claude Code"
+fixer_base_commit: dcb35439003fe2e1814b09e6e0c725e754d02dac
+challenger_reviewed_commit: c870c83a5f97c639c0c248c2e650ad31371c5164
+challenger_artifact: 99_handoffs/completed/E2-003_challenger_review.yaml
+started_at: UNKNOWN_NOT_CAPTURED
+completed_at: "2026-08-29T15:49:07Z"
+task_status: READY_FOR_REVIEW_NOT_VERIFIED_FIXER_PASS
+
+files_read:
+  - MASTER_OPERATING_PROMPT.md
+  - AGENTS.md
+  - README.md
+  - SECURITY.md
+  - 01_governance/PROJECT_STATE.yaml
+  - 01_governance/TASK_REGISTRY.yaml
+  - 01_governance/DECISION_LOG.md
+  - 01_governance/ASSUMPTION_REGISTER.md
+  - 01_governance/RISK_REGISTER.md
+  - 03_product/ENGINEERING_PREVIEW_CHARTER.md
+  - 03_product/ENGINEERING_PREVIEW_PRD.md
+  - 03_product/ENGINEERING_PREVIEW_USER_FLOWS.md
+  - 03_product/ENGINEERING_PREVIEW_CORRECTNESS_CONTRACT.md
+  - 03_product/ENGINEERING_PREVIEW_CONTRIBUTION_WORKFLOW.md
+  - 06_evaluation/ENGINEERING_PREVIEW_EVALUATION_SUITE.md
+  - 06_evaluation/MODEL_ROLE_BENCHMARK_PLAN.md
+  - 10_checkpoints/stage_checkpoints/ENGINEERING_PREVIEW_V0_1_RELEASE_ACCEPTANCE.yaml
+  - 05_architecture/ENGINEERING_PREVIEW_E2_ARCHITECTURE_PLAN.md
+  - 05_architecture/ENGINEERING_PREVIEW_ARCHITECTURE_REQUIREMENTS.md
+  - 05_architecture/ENGINEERING_PREVIEW_E1_ARCHITECTURE_TRACEABILITY.csv
+  - 05_architecture/ENGINEERING_PREVIEW_ARCHITECTURE_ALTERNATIVES.md
+  - 05_architecture/candidates/EP-ARCH-C01.yaml
+  - 05_architecture/candidates/EP-ARCH-C02.yaml
+  - 05_architecture/candidates/EP-ARCH-C03.yaml
+  - 05_architecture/ENGINEERING_PREVIEW_ARCHITECTURE_COMPARISON.md
+  - 05_architecture/ENGINEERING_PREVIEW_ARCHITECTURE_DECISION_MATRIX.csv
+  - 05_architecture/ENGINEERING_PREVIEW_ARCHITECTURE_UNCERTAINTY_REGISTER.yaml
+  - 99_handoffs/completed/E2-003_handoff.yaml
+  - 99_handoffs/completed/E2-003_challenger_review.yaml
+  - 99_handoffs/completed/E2-001_verifier_review.yaml
+  - 99_handoffs/completed/E2-002_verifier_review.yaml
+  - 02_research/GROK_BOT_018_RECONSTRUCTED_ARCHITECTURE_AUDIT.md
+  - 02_research/GROK_BOT_018_ARCHITECTURE_ADOPTION_MATRIX.csv
+  - 99_handoffs/completed/EXTERNAL_GROK_BOT_018_ARCHITECTURE_AUDIT_verifier_review.yaml
+
+scope:
+  finding_ids:
+    - F-E2-003-01
+    - F-E2-003-02
+    - F-E2-003-03
+    - F-E2-003-04
+    - F-E2-003-05
+    - F-E2-003-06
+    - F-E2-003-07
+    - F-E2-003-08
+    - F-E2-003-09
+  fixed: 9
+  disputed: 0
+  deferred: 0
+  architecture_selection_authorized: false
+  e2_004_execution_authorized: false
+  e2_005_execution_authorized: false
+  e3_execution_authorized: false
+
+finding_dispositions:
+  - finding_id: F-E2-003-01
+    resolution: FIXED
+    files_changed:
+      - 05_architecture/ENGINEERING_PREVIEW_ARCHITECTURE_COMPARISON.md
+      - 05_architecture/ENGINEERING_PREVIEW_ARCHITECTURE_DECISION_MATRIX.csv
+      - 05_architecture/ENGINEERING_PREVIEW_ARCHITECTURE_UNCERTAINTY_REGISTER.yaml
+      - 01_governance/RISK_REGISTER.md
+      - 01_governance/PROJECT_STATE.yaml
+      - 01_governance/TASK_REGISTRY.yaml
+      - 99_handoffs/completed/E2-003_handoff.yaml
+      - 99_handoffs/completed/E2-003_fixer_handoff.yaml
+    evidence: >-
+      AR-EXE-003 and candidate f04/f10 records expose process-tree control plus distinct epoch/lease/workflow
+      authority fencing. E2 plan section 13 makes concrete provider/platform/process-class primitive feasibility
+      postselection because it cannot distinguish candidates; E2-001 already assigns it to E3V-002.
+    verification_method: >-
+      Re-derive candidate invariance and plan section 13 boundary; verify the matrix has three AR-EXE-003
+      ARCHITECTURE_SEAM_CONFIRMED_E3_VALIDATION_OUTSTANDING cells, S01 class E3, exact E3V-002 evidence/scope/
+      force-or-fence/fail-closed/handback fields, zero E2 spike IDs, and spikes_run=0.
+
+  - finding_id: F-E2-003-02
+    resolution: FIXED
+    files_changed:
+      - 05_architecture/ENGINEERING_PREVIEW_ARCHITECTURE_COMPARISON.md
+      - 05_architecture/ENGINEERING_PREVIEW_ARCHITECTURE_DECISION_MATRIX.csv
+      - 05_architecture/ENGINEERING_PREVIEW_ARCHITECTURE_UNCERTAINTY_REGISTER.yaml
+      - 01_governance/RISK_REGISTER.md
+      - 01_governance/PROJECT_STATE.yaml
+      - 01_governance/TASK_REGISTRY.yaml
+      - 99_handoffs/completed/E2-003_handoff.yaml
+      - 99_handoffs/completed/E2-003_fixer_handoff.yaml
+    evidence: >-
+      UF-11, AR-SEC-003/006, correctness protected-entry semantics, and all candidate f18 records provide a
+      protected boundary, capture-exclusion interface, exact recipient, non-secret receipt, no replay, and fail-to-WAIT.
+      No selected client surface exists before E2-005, so concrete acquisition/capture evidence belongs to E3V-006.
+    verification_method: >-
+      Verify three AR-SEC-006 seam/outstanding cells; S02 and SPQ-03/04/05 E3V-006 ownership; exact synthetic-only
+      acquisition/capture/delivery/replacement/recovery/no-replay/forbidden-surface/fail-to-WAIT evidence; root-cause
+      distinction among configuration failure, unsupported class, and structural handback; zero E2 spike execution.
+
+  - finding_id: F-E2-003-03
+    resolution: FIXED
+    files_changed:
+      - 05_architecture/ENGINEERING_PREVIEW_ARCHITECTURE_COMPARISON.md
+      - 05_architecture/ENGINEERING_PREVIEW_ARCHITECTURE_UNCERTAINTY_REGISTER.yaml
+      - 01_governance/PROJECT_STATE.yaml
+      - 01_governance/TASK_REGISTRY.yaml
+      - 99_handoffs/completed/E2-003_handoff.yaml
+      - 99_handoffs/completed/E2-003_fixer_handoff.yaml
+    evidence: >-
+      Ten analytic records use 5 RESOLVED_TRADEOFF, 2 RESOLVED_SUPPORTS_PROPERTY, and
+      3 RESOLVED_ARCHITECTURE_SEAM_PRESENT_E3_VALIDATION_REQUIRED labels. C01 extraction cost remains factual
+      tradeoff prose under the same vocabulary used for C02 and C03.
+    verification_method: >-
+      Strict YAML count ten analytic records and exact 5/2/3 resolutions; search current E2-003/governance artifacts
+      for stale positive/negative/neutral resolution tokens and candidate-only valence governance.
+
+  - finding_id: F-E2-003-04
+    resolution: FIXED
+    files_changed:
+      - 05_architecture/ENGINEERING_PREVIEW_ARCHITECTURE_COMPARISON.md
+      - 05_architecture/ENGINEERING_PREVIEW_ARCHITECTURE_DECISION_MATRIX.csv
+      - 05_architecture/ENGINEERING_PREVIEW_ARCHITECTURE_UNCERTAINTY_REGISTER.yaml
+      - 99_handoffs/completed/E2-003_handoff.yaml
+      - 99_handoffs/completed/E2-003_fixer_handoff.yaml
+    evidence: >-
+      The comparison/register define CANDIDATE_NONVIABLE, E2_005_BLOCKED, ARCHITECTURE_REVISION_REQUIRED,
+      E3_HAND_BACK_TO_E2, IMPLEMENTATION_CONFIGURATION_FAILURE, PRODUCT_CLASS_UNSUPPORTED, and
+      EVIDENCE_MISSING_FAIL_CLOSED; every uncertainty references a complete outcome profile.
+    verification_method: >-
+      Parse all 28 uncertainty records, confirm valid consequence_profile references and success/failure/missing/
+      candidate/E2/ADR/alternate-mechanism semantics; inspect all E3V-001..008 contracts; reject interchangeable
+      eliminate/block/no-go terminology.
+
+  - finding_id: F-E2-003-05
+    resolution: FIXED
+    files_changed:
+      - 05_architecture/ENGINEERING_PREVIEW_ARCHITECTURE_COMPARISON.md
+      - 05_architecture/ENGINEERING_PREVIEW_ARCHITECTURE_DECISION_MATRIX.csv
+      - 05_architecture/ENGINEERING_PREVIEW_ARCHITECTURE_UNCERTAINTY_REGISTER.yaml
+      - 99_handoffs/completed/E2-003_fixer_handoff.yaml
+    evidence: >-
+      C01-U03, C02-U03, and C03-U04 explicitly say the architecture seam is present and E3 validation remains
+      required; matrix host/client mechanism cells state that empirical feasibility is not proven.
+    verification_method: >-
+      Search current corrected artifacts for forbidden resolved-valence labels; verify all three host-class records
+      carry RESOLVED_ARCHITECTURE_SEAM_PRESENT_E3_VALIDATION_REQUIRED and E3V-001/003/006 linkage.
+
+  - finding_id: F-E2-003-06
+    resolution: FIXED
+    files_changed:
+      - 05_architecture/ENGINEERING_PREVIEW_ARCHITECTURE_COMPARISON.md
+      - 05_architecture/ENGINEERING_PREVIEW_ARCHITECTURE_DECISION_MATRIX.csv
+      - 99_handoffs/completed/E2-003_handoff.yaml
+      - 99_handoffs/completed/E2-003_fixer_handoff.yaml
+    evidence: >-
+      The six AR-PRF requirements each have exactly one primary group named PREF_PRIMARY_01 through
+      PREF_PRIMARY_06; five separately declared correlation sets disclose overlap and prevent double counting.
+    verification_method: >-
+      Parse 18 preference cells; assert six AR IDs, three candidates per AR, one primary group per AR, six unique
+      primary groups, no new/missing preference, no score/weight, and comparison/matrix vocabulary equality.
+
+  - finding_id: F-E2-003-07
+    resolution: FIXED
+    files_changed:
+      - 05_architecture/ENGINEERING_PREVIEW_ARCHITECTURE_COMPARISON.md
+      - 99_handoffs/completed/E2-003_handoff.yaml
+      - 99_handoffs/completed/E2-003_fixer_handoff.yaml
+    evidence: >-
+      Seven bounded profiles cover minimal local topology, recovery rigor, future remote evolution, contributor
+      accessibility, migration reversibility, security-boundary clarity, and testability/debuggability.
+    verification_method: >-
+      Confirm exactly seven named profile rows and that each states emphasized characteristics, comparative
+      advantage, added burden, uncertainty, and why the profile is not overall selection; confirm no weights/rank.
+
+  - finding_id: F-E2-003-08
+    resolution: FIXED
+    files_changed:
+      - 05_architecture/ENGINEERING_PREVIEW_ARCHITECTURE_COMPARISON.md
+      - 99_handoffs/completed/E2-003_handoff.yaml
+      - 99_handoffs/completed/E2-003_fixer_handoff.yaml
+    evidence: >-
+      A nine-row input map covers every future ADR-E2-001..009 decision boundary with criteria/candidate
+      differences, remaining/E3 evidence, migration implications, E2-005 proposal condition, and later handback.
+    verification_method: >-
+      Extract exact ADR-E2-001..009 set, one row each, and inspect required six input dimensions; confirm the map
+      is explicitly non-final, no ADR artifact was created, and accepted ADR count remains zero.
+
+  - finding_id: F-E2-003-09
+    resolution: FIXED
+    files_changed:
+      - 05_architecture/ENGINEERING_PREVIEW_ARCHITECTURE_COMPARISON.md
+      - 99_handoffs/completed/E2-003_handoff.yaml
+      - 99_handoffs/completed/E2-003_fixer_handoff.yaml
+    evidence: >-
+      The recovery table explicitly compares stale workspace, duplicate task/input, duplicate operation,
+      duplicate external effect, stale approval, stale verification, client-only interruption, full-system shutdown,
+      partial filesystem write, lost acknowledgement, and coordinator/worker/core loss for all three candidates.
+    verification_method: >-
+      Confirm eleven scenario rows and that every candidate cell states truth source, recovery action, ambiguity,
+      evidence/readback, and burden; verify KNOWN_SUCCESS/KNOWN_FAILURE/UNKNOWN_OUTCOME remain and transactional/
+      replaceable/journal labels do not claim away external ambiguity.
+
+corrected_minimal_e2_004_set:
+  result: NO_PRESELECTION_SPIKE_REQUIRED
+  retained_preselection_spike_ids: []
+  architecture_spikes_run: 0
+  governance_step_bypassed: false
+  E2-004_status: BACKLOG_BLOCKED_PENDING_E2_003_INDEPENDENT_VERIFICATION
+  required_independent_closure_conditions:
+    - all analysis unknowns resolved
+    - no architecture-blocking empirical uncertainty remains
+    - residuals legitimately assigned to E3/E4
+    - every deferred hard property has a structural seam
+    - every E3 deferral has exact evidence requirements
+    - every E3 deferral fails closed
+    - every E3 deferral has an E2/ADR handback trigger
+    - no favorable missing evidence
+    - no spike skipped merely to save effort
+
+e3v_002_handoff:
+  property: Descendants are accounted/terminated where claimed and always lose stale productive/effect authority after stop, owner loss, or fence change.
+  distinction: Process-tree containment and control-authority fencing are separate required evidence classes.
+  evidence: Exact tested host/platform/process/configuration scope, tree observations, force primitive/permissions/bounds, stale result/effect rejection, recovery/readback, and limitations.
+  fail_closed: Force-unavailable classes remain unsupported and execution stays blocked/fenced.
+  handback: Only structural inability to satisfy required AR-EXE-003 for a linked ADR invokes E3_HAND_BACK_TO_E2.
+
+e3v_006_handoff:
+  property: Protected acquisition, capture exclusion, exact-recipient delivery, replacement/recovery revocation, no replay, unauthorized-surface exclusion, and fail-to-WAIT.
+  evidence: Synthetic sentinel, complete selected-client observer inventory, exact binding, crash/replacement/recovery, forbidden-surface scans, receipt/readback, and exact supported scope.
+  fail_closed: Missing/unsafe evidence remains WAITING_FOR_USER/blocked with no ordinary-input fallback.
+  handback: One mechanism/configuration failure permits a conforming alternative; unsupported class narrows scope; structural impossibility for ADR-E2-005 invokes E3_HAND_BACK_TO_E2.
+
+analytic_resolution_model:
+  RESOLVED_TRADEOFF: 5
+  RESOLVED_SUPPORTS_PROPERTY: 2
+  RESOLVED_ARCHITECTURE_SEAM_PRESENT_E3_VALIDATION_REQUIRED: 3
+  remaining: 0
+
+preference_vocabulary:
+  primary_groups:
+    AR-PRF-001: PREF_PRIMARY_01_INTERACTIVE_CONTROL_LATENCY
+    AR-PRF-002: PREF_PRIMARY_02_OPERATIONAL_MAINTENANCE_COMPLEXITY
+    AR-PRF-003: PREF_PRIMARY_03_MIGRATION_REVERSIBILITY
+    AR-PRF-004: PREF_PRIMARY_04_REMOTE_CONCURRENCY_ADAPTATION
+    AR-PRF-005: PREF_PRIMARY_05_EVIDENCE_LARGE_OUTPUT_OVERHEAD
+    AR-PRF-006: PREF_PRIMARY_06_CONTRIBUTOR_LOCAL_PACKAGING_BURDEN
+  correlation_sets:
+    - PREF_CORRELATION_RECOVERY_CORRECTNESS_EVIDENCE
+    - PREF_CORRELATION_SECURITY_AUTHORITY_EFFECT_ISOLATION
+    - PREF_CORRELATION_MAINTAINABILITY_PACKAGING_MIGRATION
+    - PREF_CORRELATION_FUTURE_REMOTE_CONCURRENCY_REVERSIBILITY
+    - PREF_CORRELATION_PERFORMANCE_LOCAL_OVERHEAD_COST
+  double_counting_permitted: false
+  weights_or_scores_assigned: false
+
+consequence_model:
+  terms:
+    - CANDIDATE_NONVIABLE
+    - E2_005_BLOCKED
+    - ARCHITECTURE_REVISION_REQUIRED
+    - E3_HAND_BACK_TO_E2
+    - IMPLEMENTATION_CONFIGURATION_FAILURE
+    - PRODUCT_CLASS_UNSUPPORTED
+    - EVIDENCE_MISSING_FAIL_CLOSED
+  outcome_dimensions: [success, failure, missing_or_inconclusive, candidate_invalidation, E2_progression, ADR_handback, alternate_implementation]
+
+sensitivity_profiles:
+  count: 7
+  ids:
+    - MINIMAL_LOCAL_TOPOLOGY
+    - RECOVERY_RIGOR
+    - FUTURE_REMOTE_EVOLUTION
+    - CONTRIBUTOR_ACCESSIBILITY
+    - MIGRATION_REVERSIBILITY
+    - SECURITY_BOUNDARY_CLARITY
+    - TESTABILITY_DEBUGGABILITY
+  overall_selection: NONE
+
+adr_input_map:
+  count: 9
+  ids: [ADR-E2-001, ADR-E2-002, ADR-E2-003, ADR-E2-004, ADR-E2-005, ADR-E2-006, ADR-E2-007, ADR-E2-008, ADR-E2-009]
+  accepted: 0
+  status: INPUT_ONLY_NO_ADR_CREATED_OR_PROPOSED
+
+recovery_additions:
+  count: 11
+  scenarios:
+    - stale workspace
+    - duplicate task/input delivery
+    - duplicate operation
+    - duplicate external effect
+    - stale approval
+    - stale verification
+    - client-only interruption
+    - full-system shutdown
+    - partial filesystem write
+    - lost acknowledgement
+    - coordinator/worker/core loss
+  outcome_vocabulary: [KNOWN_SUCCESS, KNOWN_FAILURE, UNKNOWN_OUTCOME]
+
+candidate_readiness:
+  EP-ARCH-C01: ANALYTICALLY_VIABLE_READY_FOR_E2_005_AFTER_INDEPENDENTLY_VERIFIED_E2_004_NO_SPIKE_CLOSURE
+  EP-ARCH-C02: ANALYTICALLY_VIABLE_READY_FOR_E2_005_AFTER_INDEPENDENTLY_VERIFIED_E2_004_NO_SPIKE_CLOSURE
+  EP-ARCH-C03: ANALYTICALLY_VIABLE_READY_FOR_E2_005_AFTER_INDEPENDENTLY_VERIFIED_E2_004_NO_SPIKE_CLOSURE
+  preferred_candidate: null
+  architecture_selected: false
+
+dominance_result:
+  C01_over_C02: NOT_DOMINANT
+  C01_over_C03: NOT_DOMINANT
+  C02_over_C01: NOT_DOMINANT
+  C02_over_C03: NOT_DOMINANT
+  C03_over_C01: NOT_DOMINANT
+  C03_over_C02: NOT_DOMINANT
+  overall: NO_CANDIDATE_DOMINATED
+
+files_created:
+  - 99_handoffs/completed/E2-003_fixer_handoff.yaml
+files_modified:
+  - 01_governance/PROJECT_STATE.yaml
+  - 01_governance/RISK_REGISTER.md
+  - 01_governance/TASK_REGISTRY.yaml
+  - 05_architecture/ENGINEERING_PREVIEW_ARCHITECTURE_COMPARISON.md
+  - 05_architecture/ENGINEERING_PREVIEW_ARCHITECTURE_DECISION_MATRIX.csv
+  - 05_architecture/ENGINEERING_PREVIEW_ARCHITECTURE_UNCERTAINTY_REGISTER.yaml
+  - 99_handoffs/completed/E2-003_handoff.yaml
+
+validations:
+  status: PASS_FIXER_SIDE_NOT_INDEPENDENT_VERIFICATION
+  commands_run:
+    - "ruby -ryaml -rpsych -rdate -e '<strict YAML safe-load plus duplicate-key AST traversal over **/*.yaml>'"
+    - "ruby -rcsv -e '<decision-matrix schema, set, frozen-input, hard/preference, consequence, and E3-link assertions>'"
+    - "ruby -ryaml -rdate -e '<uncertainty partition, resolution, consequence-profile, S01/S02/SPQ, E3V, and closure assertions>'"
+    - "ruby -e '<comparison domain, threat-boundary, Level B, recovery, sensitivity, dominance, ADR, and preference assertions>'"
+    - "ruby -ryaml -rdate -e '<PROJECT_STATE/TASK_REGISTRY lifecycle, downstream-contract, startup, autonomy, and handoff assertions>'"
+    - "git diff --quiet -- <frozen E1, E2 plan, E2-001, and E2-002 input paths>"
+    - "shasum -a 256 05_architecture/candidates/EP-ARCH-C01.yaml 05_architecture/candidates/EP-ARCH-C02.yaml 05_architecture/candidates/EP-ARCH-C03.yaml"
+    - "ruby -e '<exact E2-003 allowed-path set assertion from git diff and untracked files>'"
+    - "rg -n '<clean-room, stale-vocabulary, absolute-path, and high-confidence secret patterns>' <changed artifacts>"
+    - "test ! -d 05_architecture/spikes"
+    - "git diff --check"
+  exact_results:
+    - "YAML_STRICT_PARSE_PASS files=63 duplicate_keys=0"
+    - "MATRIX_PASS rows=195 unique=195 ARs=65 candidates=3 input_preserved=52/5/2/0 hard=59(57_confirmed+2_seam_e3+0_spike+0_violation) preferences=6 groups=6 no_compensation=true"
+    - "FROZEN_CANDIDATE_TRACE_PASS cells=195/195 class_status_evidence_preserved=true source_candidates_unchanged=true"
+    - "UNCERTAINTY_PASS items=28 partition=10/0/8/3/7 analytic=5/2/3 profiles=6 e3_contracts=8 closure_conditions=9 S01=E3V-002 S02+SPQ03/04/05=E3V-006"
+    - "COMPARISON_PASS domains=25 threat_boundaries=20 level_b=19 recovery_scenarios=11 sensitivity_profiles=7 dominance_directions=6 adr_map=9 primary_preferences=6 correlation_sets=5 no_selection=true"
+    - "RECOVERY_DETAIL_PASS scenarios=11 candidate_cells=33 truth/action/ambiguity/evidence/burden=165_fields outcome_vocabulary=KNOWN_SUCCESS/KNOWN_FAILURE/UNKNOWN_OUTCOME"
+    - "PROFILE_ADR_DETAIL_PASS sensitivity=7x6_fields ADR_map=9x5_fields proposal_condition_and_handback=9/9 no_weights_or_overall_selection=true"
+    - "DEFERRED_HANDOFF_DETAIL_PASS S01_fields=9 E3V-002 S02_fields=8 E3V-006 SPQ03/04/05_fields=9_each provenance_preserved=true fail_closed=true"
+    - "DOWNSTREAM_CONTRACT_PASS E2-004=mandatory_9_condition_no-spike_closure_BACKLOG E2-005=11_input_categories_3_analytic_candidates_BACKLOG no_bypass=true"
+    - "GOVERNANCE_PASS E2-001=VERIFIED E2-002=VERIFIED E2-003=READY_FOR_REVIEW_NOT_VERIFIED E2-004=BACKLOG_BLOCKED E2-005/006=BACKLOG gate=NOT_EVALUATED architecture=NOT_SELECTED preferred=NONE adrs=0 spikes/code/evals/benchmarks/paid=0 autonomy=NOT_ELIGIBLE"
+    - "FROZEN_INPUTS_PASS E1/E2-001/E2-002/E2-plan artifacts unchanged from fixer base dcb3543"
+    - "ALLOWED_PATH_PASS changed=8 exact_registry_allowed_set=true untracked_fixer_handoff=1"
+    - "STARTUP_AUTONOMY_PASS D-016_unchanged=true startup_track_unchanged=true S1-003_unchanged=true E4_autonomy_unchanged=true"
+    - "CLEAN_ROOM_TECHNOLOGY_SCAN_PASS matches=0; SECRET_SCAN_PASS high_confidence_matches=0; STALE_VOCABULARY_SCAN_PASS matches=0"
+    - "NO_EXECUTION_ARTIFACTS_PASS spike_directory=absent changed_files=governance_architecture_docs_only application_code=none"
+    - "GIT_DIFF_CHECK_PASS"
+  corrected_validation_attempts:
+    - "Initial strict-YAML harness used unsupported Psych.safe_load_file and returned NoMethodError; corrected to YAML.safe_load plus Psych AST traversal, then PASS. No artifact defect."
+    - "Early comparison harness used imprecise section/header markers and returned four harness-only RuntimeError results; markers/cardinality rules were corrected, then PASS. No resulting artifact change except separately listed substantive fixes."
+    - "Initial frozen-candidate trace check found the six special matrix source_evidence strings no longer embedded exact f23 evidence; the source strings were restored and all 195/195 cells then passed."
+  remaining_failures: []
+  known_limitations:
+    - Fixer validation is not independent E2-003 verification.
+    - No empirical feasibility, architecture selection, ADR acceptance, or production readiness is claimed.
+
+boundary_status:
+  E2-001: VERIFIED
+  E2-002: VERIFIED
+  E2-003: READY_FOR_REVIEW_NOT_VERIFIED
+  E2-004: BACKLOG_BLOCKED_PENDING_E2_003_INDEPENDENT_VERIFICATION
+  E2-005: BACKLOG
+  E2-006: BACKLOG
+  E2_gate: NOT_EVALUATED
+  architecture: NOT_SELECTED
+  preferred_candidate: NONE
+  accepted_adrs: 0
+  architecture_spikes_run: 0
+  application_code: NONE
+  evaluation_cases_run: 0
+  model_benchmarks_run: 0
+  paid_api_calls: 0
+  autonomy_eligible: NOT_ELIGIBLE
+  autonomous_build_authorized: false
+  S1-003: DEFERRED
+
+next_command: "MODE: VERIFY_TASK_E2-003"

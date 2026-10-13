@@ -1,0 +1,80 @@
+handoff_id: H-ADVANCE-STAGE-0-TO-1-20260822
+task_id: null
+stage: 1
+mode: ADVANCE_STAGE
+role: TRANSITION_AUTHOR
+author_model: "Codex (runtime model identifier not exposed)"
+reviewer_requested: true
+started_at: "2026-08-22T19:20:39Z"
+completed_at: "2026-08-22T19:25:49Z"
+files_read:
+  - MASTER_OPERATING_PROMPT.md
+  - AGENTS.md
+  - 01_governance/PROJECT_STATE.yaml
+  - 01_governance/TASK_REGISTRY.yaml
+  - 01_governance/DECISION_LOG.md
+  - 10_checkpoints/stage_checkpoints/STAGE_0_VERIFICATION.yaml
+  - 01_governance/ASSUMPTION_REGISTER.md
+  - 01_governance/RISK_REGISTER.md
+  - 01_governance/MODEL_REGISTRY.yaml
+  - 01_governance/SOURCE_LEDGER.csv
+  - 99_handoffs/HANDOFF_TEMPLATE.yaml
+  - 99_handoffs/completed/README.md
+  - 99_handoffs/completed/S0-001_handoff.yaml
+  - 99_handoffs/completed/S0-003_second_fixer_handoff.yaml
+files_created:
+  - 99_handoffs/completed/ADVANCE_STAGE_0_TO_1_handoff.yaml
+files_modified:
+  - 01_governance/PROJECT_STATE.yaml
+  - 01_governance/TASK_REGISTRY.yaml
+files_deleted: []
+decisions_made:
+  - "Formally advanced the current repository stage from Stage 0 to Stage 1 after all advancement preconditions passed."
+  - "Set the canonical Stage 1 state to customer_wedge_company_thesis / READY, with stage_1_gate NOT_EVALUATED."
+  - "Activated only the already-defined first Stage 1 planning/discovery task, S1-001, by moving it from BACKLOG to READY; no new task was needed."
+  - "Preserved Stage 0 as the last verified checkpoint and recorded the founder's gate-artifact commit 7c337530ffd01154bb2778ef8d5f30f306adcf36 without modifying the Stage 0 checkpoint."
+  - "Preserved S0-004 and S0-005 as BLOCKED legitimate deferred external dependencies under their existing required-before boundaries."
+  - "No customer segment, MVP workflow, differentiator, architecture, provider/model role, benchmark, API access, application implementation, or customer-evidence decision was made. D-006 and D-007 remain PROVISIONAL."
+assumptions_added: []
+tests_run:
+  - "Read the required governance sources and checked the committed Stage 0 gate artifact at HEAD."
+  - "Ran pre-change git status, HEAD, and gate-artifact history checks."
+  - "Extracted precondition state from PROJECT_STATE.yaml, TASK_REGISTRY.yaml, and STAGE_0_VERIFICATION.yaml with yq."
+  - "Checked D-006 and D-007 status directly in DECISION_LOG.md."
+  - "Parsed and inspected the post-transition PROJECT_STATE.yaml and TASK_REGISTRY.yaml with yq."
+  - "Checked current-stage, last-verified-checkpoint, task-list, dependency, deferred-boundary, unresolved-question, and null architecture/PRD/code invariants."
+  - "Confirmed DECISION_LOG.md and STAGE_0_VERIFICATION.yaml have no working-tree diff."
+  - "Ran git diff --check and inspected the complete final changed-path set and diff."
+test_results:
+  - "PASS — the pre-change working tree was clean at 7c337530ffd01154bb2778ef8d5f30f306adcf36, whose subject is 'Verify Stage 0 gate'."
+  - "PASS — the Stage 0 checkpoint verdict and gate_status are STAGE_0_VERIFIED / VERIFIED; FAIL=0, PARTIAL=0, new_material_findings is empty, and all three task-level unresolved_material_findings arrays are empty."
+  - "PASS — S0-001, S0-002, and S0-003 are VERIFIED."
+  - "PASS — S0-004 and S0-005 remain BLOCKED, stage_0_closure_required=false, and LEGITIMATE_DEFERRED_EXTERNAL_DEPENDENCY with their required-before and not-required-before boundaries preserved."
+  - "PASS — Stage 1 is customer_wedge_company_thesis / READY; stage_1_gate is NOT_EVALUATED; Stage 0 remains the last verified stage/gate/checkpoint."
+  - "PASS — S1-001 is the only READY task; its S0-002 and S0-003 dependencies remain VERIFIED, and no Stage 1 task was executed or claimed."
+  - "PASS — first_customer_segment and first_mvp_workflow remain unresolved; current_architecture_version, current_prd_version, and current_code_commit remain null."
+  - "PASS — D-006 and D-007 remain PROVISIONAL; DECISION_LOG.md and STAGE_0_VERIFICATION.yaml are unchanged."
+  - "PASS — final YAML parsing, cross-file state checks, changed-path scope inspection, and git diff --check completed without a repository-content failure."
+  - "NOTE — two initial yq audit expressions used unsupported shorthand/object or array-literal assertion forms, and the first Ruby parser invocation used an unsupported aliases keyword on system Ruby 2.6; these read-only tooling invocations failed without changing repository content, and corrected reruns passed."
+security_checks:
+  - "No webpage, account, connector, model-provider, benchmark, or API call was made."
+  - "No credentials, secrets, customer data, interview claims, market evidence, screenshots, recordings, or test fixtures were requested, created, or stored."
+  - "The Stage 0 gate artifact and all 00_inbox originals/prepared inputs remain unchanged."
+known_limitations:
+  - "S0-004 remains BLOCKED because eligible Grok Bot account/plan/build and safe test-environment evidence are not recorded; its runtime and parity claim boundaries still apply."
+  - "S0-005 remains BLOCKED because funded provider accounts/budget and approved retention/region/data-classification settings are not recorded; its paid-run, real-provider-spike, production-recommendation, and Stage 4 boundaries still apply."
+  - "The Stage 1 gate is NOT_EVALUATED and S1-001 has not been executed."
+unverified_claims:
+  - "No beachhead customer, primary workflow, primary differentiator, demand, willingness to pay, market validation, or prototype scope is verified or selected by this transition."
+blockers: []
+recommended_next_task: "After founder review and commit: MODE: EXECUTE_TASK_S1-001"
+repository_commit_or_patch: "Uncommitted Stage 0 to Stage 1 governance transition based on 7c337530ffd01154bb2778ef8d5f30f306adcf36; left uncommitted for founder review."
+
+scope_control:
+  existing_stage_1_graph_sufficient: true
+  governance_task_created: false
+  stage_1_research_executed: false
+  files_changed_only:
+    - 01_governance/PROJECT_STATE.yaml
+    - 01_governance/TASK_REGISTRY.yaml
+    - 99_handoffs/completed/ADVANCE_STAGE_0_TO_1_handoff.yaml

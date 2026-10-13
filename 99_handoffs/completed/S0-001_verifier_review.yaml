@@ -1,0 +1,233 @@
+review_id: R-S0-001-20260821-VERIFIER
+handoff_id: H-S0-001-VERIFY-20260821
+task_id: S0-001
+stage: 0
+mode: REVIEW_TASK_S0-001
+role: VERIFIER
+author_model: "Claude Fable 5 (claude-fable-5) via Claude Code — author of this verifier artifact only; not an author or fixer of any S0-001 content"
+reviewer_model: "Claude Fable 5 (claude-fable-5) via Claude Code"
+reviewer_independence: "Independent of the S0-001 author, which the repository records as 'Codex (runtime model identifier not exposed)' and D-010 confirms as the Codex runtime. The verifier is the same model/product as the S0-001 challenger (Claude Fable 5 via Claude Code) but ran in a separate session with no shared conversation state and re-derived every fact from the repository; the founder assigned this verifier explicitly. The AGENTS.md sole-author rule is satisfied: the author (Codex) did not mark its own work verified."
+reviewer_requested: false
+started_at: "2026-08-21T21:55:00-04:00"
+completed_at: "2026-08-21T22:03:39-04:00"
+verified_commit: adc87c4
+verified_commit_full_state: "Branch chore/initialize-project-materials at adc87c4 (Resolve S0-001 author provenance); working tree clean before this pass; 43 tracked files == 43 filesystem files; all index modes 100644; no symlinks; no binaries. History: base 4d99fff (34 files) -> author f151f28 (39) -> challenger 43daad7 -> S0-002/S0-003 reviews 874ae4b, b8735fb -> D-009 9a2900a (42, fix baseline) -> fixer 0863467 (43) -> founder resolution adc87c4 (43)."
+verdict: VERIFIED
+verdict_rationale: >-
+  All four S0-001 acceptance criteria and the required inventory cross-check pass against the
+  current tree, reproduced independently rather than read from the fixer record. All six
+  challenger findings (F-S0-001-01..06) are RESOLVED: five by the committed fixer pass
+  (0863467) and F-S0-001-04 by founder decision D-010 plus the founder_confirmation_addendum
+  in the fixer handoff (adc87c4), which record the authoring surface as Codex, keep the exact
+  runtime model UNKNOWN_NOT_EXPOSED, and forbid relabelling the author as GPT-5.6 Sol. No
+  BLOCKER, HIGH, or MEDIUM issue affecting S0-001 remains. Original evidence under 00_inbox is
+  byte-identical to the base commit; no secrets were introduced; S0-002/S0-003 deliverables,
+  handoffs, reviews, and registry entries are unchanged since 9a2900a; no Stage 1, architecture,
+  or application work exists. The only new items are LOW/NOTE bookkeeping: the governance
+  records had not yet been updated to reflect the founder's F-S0-001-04 resolution, which this
+  verifier pass reconciles as part of its mandated status update. S0-001 is therefore VERIFIED.
+  This verdict covers S0-001 only; S0-002, S0-003, and the Stage 0 gate were not evaluated.
+
+method:
+  - "Read MASTER_OPERATING_PROMPT.md, AGENTS.md, CLAUDE.md, README.md, SECURITY.md, .gitignore, FILE_MANIFEST.json, all 01_governance files, 99_handoffs/HANDOFF_TEMPLATE.yaml, 99_handoffs/completed/README.md, the S0-001 author handoff, challenger review, and fixer handoff in full, the 00_inbox READMEs, and the MAG-005/MAG-006 registry entries; opened S0-002/S0-003 reviews and author outputs only for verdict/status lines and immutability checks."
+  - "Re-ran every acceptance criterion and every challenger verification_method command myself (see tests_run); did not rely on recorded fixer test_results."
+  - "Re-checked each of F-S0-001-01..06 against the live files and the commit diffs 9a2900a..0863467 and 0863467..adc87c4."
+  - "No subagents, no external sources, no network access were used; all evidence is the local repository and git history."
+
+files_read:
+  - MASTER_OPERATING_PROMPT.md
+  - AGENTS.md
+  - CLAUDE.md
+  - README.md
+  - SECURITY.md
+  - .gitignore
+  - FILE_MANIFEST.json
+  - 01_governance/PROJECT_STATE.yaml
+  - 01_governance/TASK_REGISTRY.yaml
+  - 01_governance/DECISION_LOG.md
+  - 01_governance/MODEL_REGISTRY.yaml (MAG-005, MAG-006, benchmark_policy)
+  - 99_handoffs/HANDOFF_TEMPLATE.yaml
+  - 99_handoffs/completed/README.md
+  - 99_handoffs/completed/S0-001_handoff.yaml
+  - 99_handoffs/completed/S0-001_challenger_review.yaml
+  - 99_handoffs/completed/S0-001_fixer_handoff.yaml
+  - 99_handoffs/completed/S0-002_challenger_review.yaml (verdict/commit lines only)
+  - 99_handoffs/completed/S0-003_challenger_review.yaml (verdict/commit lines only)
+  - 02_research/GROK_BOT_BASELINE_2026-08-21.md (status header only)
+  - 06_evaluation/MODEL_ROLE_BENCHMARK_PLAN.md (status header only)
+  - 00_inbox/README.md
+  - 00_inbox/uploaded_originals/README.md
+  - git history 64d4bbc..adc87c4 (log, diffs, per-file add commits)
+files_created:
+  - 99_handoffs/completed/S0-001_verifier_review.yaml
+files_modified:
+  - 01_governance/TASK_REGISTRY.yaml
+  - 01_governance/PROJECT_STATE.yaml
+files_deleted: []
+decisions_made:
+  - "S0-001 status advanced READY_FOR_REVIEW -> VERIFIED in TASK_REGISTRY.yaml; S0-001 moved from active_task_ids to completed_task_ids in PROJECT_STATE.yaml."
+  - "No S0-002, S0-003, Stage 0 gate, Stage 1, architecture, or application decision was made or evaluated."
+  - "Historical fixer fields (fixer_finding_counts, deferred_finding_ids) were left intact in TASK_REGISTRY; a deferred_finding_resolutions record was added instead of rewriting them."
+  - "All changes are left uncommitted for the founder; no git commit or push was performed."
+assumptions_added: []
+
+tests_run:
+  - "git status --porcelain --ignored; git log --oneline; git branch --show-current; git ls-files | wc -l; find . -path ./.git -prune -o -type f -print | wc -l; git ls-files -s mode histogram; find -type l"
+  - "ruby -ryaml: set comparison of S0-001_handoff.yaml repository_inventory (34) + repository_inventory_addendum_at_fix_baseline (9) against git ls-files (43) and the filesystem (43); duplicate check; per-entry presence of path/role/authority/freshness/evidence_or_assumption; authority classes used vs defined; files_read vs git ls-tree 4d99fff"
+  - "Challenger F-S0-001-01 literal command: git ls-files | sort vs grep '^  - path: ' S0-001_handoff.yaml | sort; comm -23 and comm -13"
+  - "git diff --name-only / --numstat / --stat 9a2900a 0863467, 0863467 adc87c4, 9a2900a HEAD; full diffs of AGENTS.md, DECISION_LOG.md, PROJECT_STATE.yaml, TASK_REGISTRY.yaml, S0-001_handoff.yaml, S0-001_fixer_handoff.yaml read in full"
+  - "git diff 9a2900a HEAD -- 02_research 06_evaluation 01_governance/MODEL_REGISTRY.yaml 01_governance/SOURCE_LEDGER.csv 01_governance/ASSUMPTION_REGISTER.md 01_governance/RISK_REGISTER.md 99_handoffs/completed/S0-002_* 99_handoffs/completed/S0-003_* 99_handoffs/completed/S0-001_challenger_review.yaml | wc -l"
+  - "ruby -ryaml: TASK_REGISTRY tasks at 9a2900a vs HEAD, per-task equality for S0-002, S0-003, S0-004, S0-005, S1-001 and changed-key list for S0-001"
+  - "git diff 4d99fff HEAD -- 00_inbox | wc -l; git diff --stat 4d99fff HEAD -- README.md CLAUDE.md MASTER_OPERATING_PROMPT.md SECURITY.md .gitignore FILE_MANIFEST.json 99_handoffs/HANDOFF_TEMPLATE.yaml 99_handoffs/completed/README.md; ls -la 00_inbox/uploaded_originals/"
+  - "python3: sha256 + byte size of all 33 FILE_MANIFEST.json entries versus git show 4d99fff:<path> and versus the HEAD working tree; manifest path set versus base tree"
+  - "ruby -ryaml: parse all 11 *.yaml files; HANDOFF_TEMPLATE key presence for S0-001_handoff.yaml, S0-001_fixer_handoff.yaml, S0-001_challenger_review.yaml; fixer started_at/completed_at non-null and distinct; finding_resolutions and founder_confirmation_addendum dump; trailing-newline check over all files"
+  - "git diff --check 9a2900a HEAD"
+  - "grep -rnIE secret/token/private-key/JWT/basic-auth patterns over the working tree; grep -rnIoE email/phone/IPv4/home-path patterns; same patterns over git log -p 9a2900a..HEAD; git log --all author identities; git log --all --diff-filter=D"
+  - "grep -rnI 'GPT-5.6 Sol' over the tree; grep author_model/assigned_model/reviewer_model/challenger_model/verifier_model over 01_governance and 99_handoffs"
+  - "Challenger verification_method greps: HANDOFF_TEMPLATE in AGENTS.md and MASTER_OPERATING_PROMPT.md (F-06); 'reconciliation' in S0-001_handoff.yaml and DECISION_LOG.md (F-02); '_at:' in S0-001 handoff, fixer handoff, challenger review (F-03); 'terms|cloud provider|MAG-00[56]' in S0-001_handoff.yaml and MAG ids in MODEL_REGISTRY.yaml (F-05)"
+  - "DECISION_LOG D-0xx headers and Status lines at 4d99fff, 9a2900a, and HEAD"
+  - "git log --diff-filter=A per tracked file (which commit added each file) versus the addendum freshness labels; commit subjects and bodies for 0863467 and adc87c4"
+  - "file --mime-type over git ls-files; grep for application-code extensions; ls of top-level directories for Stage 1/architecture folders"
+test_results:
+  - "Working tree clean at adc87c4; 43 tracked files == 43 filesystem files; 43 x mode 100644; 0 symlinks; 0 binaries (41 text/plain, 1 application/json, 1 text/csv); 0 application-code files; only directories 00_inbox, 01_governance, 02_research, 06_evaluation, 99_handoffs."
+  - "Inventory: 34 base entries == git ls-tree 4d99fff exactly; 9 addendum entries; combined 43 unique; missing_from_inventory=[] and extra_in_inventory=[] against both git ls-files and the filesystem; every entry carries all five classification keys; 9 authority classes all defined and all used; files_read (34) == base tree. Literal comm commands returned empty both ways."
+  - "Fixer commit 0863467 touched exactly AGENTS.md, DECISION_LOG.md, PROJECT_STATE.yaml, TASK_REGISTRY.yaml, S0-001_handoff.yaml, S0-001_fixer_handoff.yaml == fixer handoff files_created + files_modified. S0-001_handoff.yaml changes are append-only (69 insertions, 0 deletions). Founder commit adc87c4 touched only DECISION_LOG.md (D-010 added) and S0-001_fixer_handoff.yaml (founder_confirmation_addendum added). Both commits authored by the founder git identity (GitHub noreply)."
+  - "S0-002/S0-003 immutability: 0 diff lines 9a2900a..HEAD across both author outputs, MODEL_REGISTRY.yaml, SOURCE_LEDGER.csv, ASSUMPTION_REGISTER.md, RISK_REGISTER.md, S0-002/S0-003 handoffs and challenger reviews, and the S0-001 challenger review; TASK_REGISTRY entries for S0-002, S0-003, S0-004, S0-005, S1-001 are identical at 9a2900a and HEAD; only S0-001 changed (status, allowed_files_to_change, scope_amendments, fixer_* fields, deferred_finding_ids, verification_status)."
+  - "Original evidence: git diff 4d99fff HEAD -- 00_inbox = 0 lines; all 18 FILE_MANIFEST entries under 00_inbox match at HEAD; 00_inbox/uploaded_originals contains only README.md; root governing docs and templates other than AGENTS.md unchanged since base."
+  - "FILE_MANIFEST.json: 33/33 entries match base-commit blobs (0 sha256/size mismatches); only base path absent is FILE_MANIFEST.json itself; at HEAD 8 entries differ (the 7 Stage-0-modified 01_governance files plus AGENTS.md changed by the fixer) — expected and disclosed; manifest remains a base-commit snapshot (see N-S0-001-01)."
+  - "All 11 YAML files parse. S0-001_handoff.yaml and S0-001_fixer_handoff.yaml contain every HANDOFF_TEMPLATE key; the challenger review uses a review schema (as before). Fixer started_at 2026-08-21T18:00:57-04:00 and completed_at 2026-08-21T18:05:13-04:00 are non-null and distinct. git diff --check clean. One file lacks a trailing newline: S0-001_fixer_handoff.yaml (introduced at adc87c4)."
+  - "Secrets/PII: 0 key/token/private-key/JWT/basic-auth hits (the only regex matches are the English word 'secret' inside S0-002 review prose describing documentation); 0 emails, phone numbers, IPs, or home paths in the tree; patches 9a2900a..HEAD contain only the commit author's GitHub noreply address; all 10 commits share one author identity; no deleted files in history."
+  - "'GPT-5.6 Sol' appears only in MASTER_OPERATING_PROMPT (planning arrangement), D-010 (forbidding relabel), the challenger review (historical review-request description), the fixer handoff and S0-001 handoff (describing the unconfirmed mapping), PROJECT_STATE (S0-003 price note), and S0-002/S0-003/model files (model catalog context). No author_model/assigned_model field names GPT-5.6 Sol; all five author fields read 'Codex (runtime model identifier not exposed)'."
+  - "Challenger verification_method greps: AGENTS.md line 61 names 99_handoffs/HANDOFF_TEMPLATE.yaml and MASTER_OPERATING_PROMPT.md has no schema (F-06); 'reconciliation' found in DECISION_LOG.md line 96 and S0-001_handoff.yaml line 337 (F-02); S0-001 handoff line 76 carries the batch-timestamp limitation and later handoffs have non-null started_at (F-03); provider terms, cloud providers, MAG-005 and MAG-006 appear at S0-001_handoff.yaml lines 351-353 and MAG-005/MAG-006 exist in MODEL_REGISTRY.yaml with matching content (F-05)."
+  - "DECISION_LOG: D-001..D-005 CONFIRMED, D-006..D-008 PROVISIONAL at 4d99fff, 9a2900a, and HEAD (unchanged); D-009 added at 9a2900a; D-010 added at adc87c4; the reconciliation note remains a non-decision note with a provenance bullet."
+  - "Addendum freshness labels match git: the five Stage 0 outputs were added at f151f28; S0-001/S0-002/S0-003 challenger reviews were added at 43daad7/874ae4b/b8735fb respectively; fixer handoff added at 0863467; S0-002 and S0-003 challenger verdicts are CHANGES_REQUESTED, matching AUTHOR_OUTPUT_CHANGES_REQUESTED_NOT_VERIFIED."
+
+security_checks:
+  - "No file under 00_inbox changed since base commit; uploaded_originals holds only its README; no original evidence exists to have been modified."
+  - "No secrets, credentials, cookies, PII, customer data, binaries, symlinks, or application code in the working tree or in commits 9a2900a..HEAD."
+  - "No authentication, authorization, tenant, credential, or approval control exists yet to weaken; no such change occurred."
+  - "Verifier changed only TASK_REGISTRY.yaml, PROJECT_STATE.yaml, and this new artifact; no other file was touched; nothing committed."
+
+acceptance_criteria_evaluation:
+  - criterion: "Every repository file is listed."
+    result: PASS
+    evidence: "repository_inventory (34, == base tree 4d99fff) plus repository_inventory_addendum_at_fix_baseline (9) == git ls-files at adc87c4 == filesystem (43/43); no duplicates, no extras; each entry has role, authority, freshness, evidence_or_assumption; inventory_scope records base, reviewed (f151f28) and fix-baseline (9a2900a) commits. The challenger's PARTIAL (F-S0-001-01) is cleared. This verifier artifact post-dates the inventory by design (see V-S0-001-08)."
+  - criterion: "Prepared drafts are distinguished from primary evidence."
+    result: PASS
+    evidence: "All 18 00_inbox files are PREPARED_FOUNDER_INPUT, GOVERNING_INSTRUCTION, or PRIMARY_EVIDENCE_CONTAINER_INSTRUCTION with explicit non-observation evidence_or_assumption labels; inventory_scope records original_evidence 0, customer_evidence 0, black_box_observation 0; Stage 0 author outputs are AUTHOR_OUTPUT_CHANGES_REQUESTED_NOT_VERIFIED; handoffs are *_NOT_VERIFICATION / PENDING_INDEPENDENT_REVIEW; challenger reviews are INDEPENDENT_CHALLENGER_REVIEW_NOT_VERIFIER_DECISION; FILE_MANIFEST is labelled generated metadata. No generated or author material is labelled as evidence."
+  - criterion: "No original evidence is modified."
+    result: PASS
+    evidence: "git diff 4d99fff HEAD -- 00_inbox = 0 lines; 18/18 manifest entries under 00_inbox match at HEAD; uploaded_originals contains only README.md."
+  - criterion: "Missing high-priority inputs are identified."
+    result: PASS
+    evidence: "missing_input_list priority_0 (eligible Grok Bot account/build/plan/region, repeated black-box observations, funded provider API accounts/quotas/retention, confirmed budget, independent reviewers), required_before_stage_1_gate (customer evidence), required_before_architecture_or_production (provider terms/commercial rights, available cloud providers, BYOK vs resale) with accurate MAG-005/MAG-006 cross-references, and absent_but_not_currently_required. F-S0-001-05 omissions are now present."
+  - criterion: "Required test: Cross-check inventory against repository tree."
+    result: PASS
+    evidence: "Reproduced by the verifier with an independent ruby set comparison and the challenger's literal comm command; both empty in both directions at adc87c4."
+
+original_finding_dispositions:
+  - finding_id: F-S0-001-01
+    severity: LOW
+    disposition: RESOLVED
+    evidence: "Addendum lists all nine post-base files with role/authority/freshness/evidence; union of inventory and addendum == tree at adc87c4 (43/43); inventory_scope records reviewed_commit f151f28 and fix_baseline_commit 9a2900a; freshness labels match git add-commits and review verdicts."
+  - finding_id: F-S0-001-02
+    severity: LOW
+    disposition: RESOLVED
+    evidence: "DECISION_LOG reconciliation note carries a provenance bullet (initial author batch, S0-001 allowance, on behalf of S0-002/S0-003, no D-00x status change); S0-001_handoff.yaml fixer_attribution_addendum describes the change without rewriting the original files_modified; D-001..D-008 statuses identical at 4d99fff and HEAD."
+  - finding_id: F-S0-001-03
+    severity: LOW
+    disposition: RESOLVED
+    evidence: "S0-001_handoff.yaml known_limitations records that the three initial handoffs used one batch completed_at and no started_at, non-fabricated but not usable for duration/ordering; the fixer handoff (18:00:57 -> 18:05:13) and challenger review (15:40 -> 16:05) record distinct non-null start/end times."
+  - finding_id: F-S0-001-04
+    severity: LOW
+    disposition: RESOLVED
+    evidence: "D-010 (CONFIRMED, founder, adc87c4) records the authoring surface as Codex, keeps any more specific model identifier unknown unless exposed, and forbids retroactive GPT-5.6 Sol labelling; the fixer handoff founder_confirmation_addendum (recorded 2026-08-21T19:39:00-04:00) records authoring_surface Codex, exact_runtime_model UNKNOWN_NOT_EXPOSED, resolution FIXED, remaining_blocker false, superseding the DEFERRED entry and the founder-confirmation blocker. All five author fields (PROJECT_STATE.author_model, TASK_REGISTRY assigned_model x3, S0-00{1,2,3} handoff author_model, fixer handoff author_model) read one consistent founder-confirmed value. The challenger's required fix offered 'or records UNKNOWN explicitly'; that branch is satisfied. The residual evidence clause (no MODEL_REGISTRY entry for the project's own runtimes) is not part of the required fix and is carried as V-S0-001-07."
+  - finding_id: F-S0-001-05
+    severity: LOW
+    disposition: RESOLVED
+    evidence: "missing_input_list.required_before_architecture_or_production present with provider terms/data-use/reselling/commercial-deployment review (MAG-005), available cloud providers and account/region/quota/budget constraints, and BYOK vs resale decision (MAG-006); both MAG entries exist with matching text."
+  - finding_id: F-S0-001-06
+    severity: LOW
+    disposition: RESOLVED
+    evidence: "AGENTS.md Handoff section now names 99_handoffs/HANDOFF_TEMPLATE.yaml, which exists and parses; MASTER_OPERATING_PROMPT.md contains no schema, so the pointer is now correct; the change was made under prospective scope amendment S0-001-A1 recorded in TASK_REGISTRY with reason, authorization, effective_at (== fixer started_at), and an audit note preserving the original challenger-reviewed scope, as D-009 requires."
+
+independent_checks:
+  repository_inventory_matches_tree: PASS
+  classifications_correct: PASS
+  original_evidence_preserved: PASS
+  generated_material_not_mislabeled_as_evidence: PASS
+  governance_state_matches_reality: "PASS_AFTER_VERIFIER_UPDATE — at adc87c4, PROJECT_STATE.next_recommended_action and one note, plus TASK_REGISTRY fixer_finding_counts/deferred_finding_ids, still described F-S0-001-04 as deferred/pending founder confirmation although D-010 and the fixer addendum had resolved it, and verifier_model was TO_ASSIGN_INDEPENDENT_VERIFIER; reconciled in this pass (V-S0-001-01)."
+  handoffs_accurately_describe_changes: "PASS — fixer handoff files equal the 0863467 diff; S0-001 handoff changes are append-only; founder addendum matches adc87c4 content (NOTE: it does not enumerate DECISION_LOG.md D-010 as a changed file; git history does)."
+  task_scope_amendments_comply_with_D009: "PASS — S0-001-A1 recorded before the AGENTS.md change with reason and authorization; all fixer-changed paths inside the amended scope; original scope preserved in the challenger record and audit_note; founder committed the amendment (0863467)."
+  author_provenance_complies_with_D010: "PASS — author recorded as Codex everywhere; exact model unknown; no GPT-5.6 Sol relabel."
+  no_secrets_or_sensitive_material: PASS
+  S0_002_and_S0_003_not_modified_by_fixer: PASS
+  no_stage_1_architecture_or_application_work: PASS
+
+founder_confirmation_inspection:
+  authoring_surface_recorded_as_codex: true
+  exact_runtime_model_remains_unknown_not_exposed: true
+  no_false_relabel_as_gpt_5_6_sol: true
+  F_S0_001_04_remains_a_legitimate_blocker: false
+  evidence: "01_governance/DECISION_LOG.md D-010 (CONFIRMED, EXECUTION_PROVENANCE, added at adc87c4 by the founder git identity); 99_handoffs/completed/S0-001_fixer_handoff.yaml founder_confirmation_addendum (recorded_at 2026-08-21T19:39:00-04:00, authoring_surface Codex, exact_runtime_model UNKNOWN_NOT_EXPOSED, remaining_blocker false); grep of every author_model/assigned_model field returns 'Codex (runtime model identifier not exposed)'."
+
+new_findings:
+  - finding_id: V-S0-001-01
+    severity: LOW
+    status: RESOLVED_BY_VERIFIER_GOVERNANCE_UPDATE
+    requirement: "Stage 0 gate 'governance files agree with one another'; PROJECT_STATE/TASK_REGISTRY as authoritative state."
+    evidence: "At adc87c4: PROJECT_STATE.next_recommended_action said 'F-S0-001-04 still requires founder confirmation'; PROJECT_STATE note said 'founder confirmation is absent'; TASK_REGISTRY S0-001 fixer_finding_counts 'DEFERRED 1' and deferred_finding_ids [F-S0-001-04] had no resolution record; verifier_model was TO_ASSIGN_INDEPENDENT_VERIFIER — while D-010 and the fixer addendum had already resolved the finding."
+    consequence: "Transitional staleness only; no acceptance impact."
+    correction: "This pass sets S0-001 VERIFIED, adds deferred_finding_resolutions and verifier fields to TASK_REGISTRY, sets verifier_model, moves S0-001 to completed_task_ids, and rewrites next_recommended_action and a note in PROJECT_STATE; historical fixer fields were not rewritten."
+    verification_method: "ruby -ryaml parse; grep 'still requires founder confirmation' PROJECT_STATE.yaml returns nothing; TASK_REGISTRY S0-001 status VERIFIED."
+  - finding_id: V-S0-001-02
+    severity: NOTE
+    status: OPEN_COSMETIC
+    evidence: "99_handoffs/completed/S0-001_fixer_handoff.yaml has no trailing newline (introduced by adc87c4). YAML parses; git diff --check does not flag it. Left unchanged because it is another role's artifact; fix opportunistically in any task that next touches the file."
+  - finding_id: V-S0-001-03
+    severity: NOTE
+    status: RECORDED
+    evidence: "Fixer handoff repository_commit_or_patch and the addendum freshness labels ('UNCOMMITTED_FIXER_OUTPUT', 'FIXER_ADDENDUM_UNCOMMITTED') were accurate when written; the founder has since committed them as 0863467 and adc87c4. Same pattern as challenger note N-S0-001-02. The verified commit is recorded here and in TASK_REGISTRY."
+  - finding_id: V-S0-001-04
+    severity: NOTE
+    status: RECORDED
+    evidence: "The founder_confirmation_addendum does not list DECISION_LOG.md (D-010) as a file changed by the founder resolution; commit adc87c4 shows both files. Traceability is preserved by git history."
+  - finding_id: V-S0-001-05
+    severity: NOTE
+    status: CARRIED_FORWARD
+    evidence: "Base-inventory freshness labels for 01_governance files describe the base commit; seven of them were modified by Stage 0 tasks and AGENTS.md by the fixer, so FILE_MANIFEST.json now has 8 HEAD mismatches. Disclosed by inventory_scope and N-S0-001-01; AUTHORITATIVE_PROJECT_STATE is mutable by definition. Regenerate or retire FILE_MANIFEST.json in a task permitted to change it; not an S0-001 defect."
+  - finding_id: V-S0-001-06
+    severity: NOTE
+    status: RECORDED
+    evidence: "Verifier and challenger are the same model/product (Claude Fable 5 via Claude Code) in separate sessions; author is Codex. Independence from the author holds; founder may prefer a different-vendor verifier for the Stage 0 gate."
+  - finding_id: V-S0-001-07
+    severity: NOTE
+    status: CARRIED_FORWARD
+    evidence: "MODEL_REGISTRY.yaml still has no entry for the project's own author/challenger/verifier runtimes (Codex, Claude Fable 5 via Claude Code). Not part of F-S0-001-04's required fix; belongs to S0-003 / BENCHMARK_MODELS scope."
+  - finding_id: V-S0-001-08
+    severity: NOTE
+    status: RECORDED
+    evidence: "This verifier artifact is the 44th file and post-dates the 43-file inventory at adc87c4; the fixer handoff's known_limitations already states that later additions require a later inventory reconciliation. Classification for the record: role independent_s0_001_verifier_review_and_decision; authority INDEPENDENT_VERIFIER_DECISION; evidence_or_assumption REPRODUCED_VERIFICATION_EVIDENCE_AND_VERIFIER_JUDGMENT."
+  - finding_id: V-S0-001-09
+    severity: NOTE
+    status: RECORDED
+    evidence: "TASK_REGISTRY S0-001 allowed_files_to_change now lists AGENTS.md without the 'FIX_TASK_S0-001 pass only' qualifier that amendment S0-001-A1 states. S0-001 is now VERIFIED, so no further S0-001 edits are expected; any future change would need a new D-009 amendment."
+
+passes_confirmed:
+  - "Inventory + addendum == tree == filesystem (43/43) with full classifications."
+  - "Original 00_inbox evidence byte-identical to base; zero originals; manifest 33/33 at base, 18/18 inbox at HEAD."
+  - "Fixer changed exactly the six files it claims, all within the D-009-amended scope; S0-001 handoff edits append-only; S0-002/S0-003 untouched."
+  - "D-010 and the founder addendum resolve F-S0-001-04 without relabelling the author."
+  - "No secrets, PII, binaries, symlinks, app code, Stage 1 or architecture artifacts."
+  - "YAML/JSON/CSV parse; template keys present; whitespace clean."
+
+known_limitations:
+  - "started_at is approximate (session start shortly after the founder's 21:53:53 -04:00 commit); completed_at is exact."
+  - "Verification covers S0-001 only; S0-002, S0-003, and the Stage 0 gate remain unverified and were deliberately not evaluated."
+  - "The founder's FIX_TASK_S0-001 instruction authorizing S0-001-A1 is evidenced only by the amendment text and the founder's commit of 0863467, not by a separate founder record; accepted on that basis."
+  - "No network or external source was consulted; nothing in S0-001 requires one."
+unverified_claims: []
+blockers: []
+blockers_for_task: []
+recommended_next_task: "FIX_TASK_S0-002 (F-S0-002-01..07) and FIX_TASK_S0-003 (F-S0-003-01..11, with D-009 applied), then REVIEW_TASK_S0-002 / REVIEW_TASK_S0-003 verifier passes, then VERIFY_STAGE_0."
+repository_commit_or_patch: "Verification performed against committed state adc87c4; this artifact and the TASK_REGISTRY/PROJECT_STATE updates are left uncommitted in the working tree for the founder to commit."

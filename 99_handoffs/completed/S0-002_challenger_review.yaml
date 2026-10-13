@@ -1,0 +1,375 @@
+review_id: R-S0-002-20260821-CHALLENGER
+task_id: S0-002
+stage: 0
+mode: REVIEW_TASK_S0-002
+role: CHALLENGER
+reviewer_model: "Claude Fable 5 (claude-fable-5) via Claude Code"
+reviewer_independence: "Independent of the recorded author ('Codex (runtime model identifier not exposed)'); no Claude model authored S0-002."
+started_at: "2026-08-21T15:30:00-04:00"
+completed_at: "2026-08-21T16:40:00-04:00"
+reviewed_commit: 43daad7
+reviewed_commit_full_state: "Branch chore/initialize-project-materials at 43daad7 (Review S0-001 repository inventory); working tree clean at start of review. S0-002 author artifacts unchanged since f151f28."
+verdict: CHANGES_REQUESTED
+verdict_rationale: >-
+  No BLOCKER. No fabricated observation, no invented implementation detail, no
+  design proposal disguised as observation, and no security or scope violation was
+  found. All 30 feature rows (GBF-001..030) were re-checked sentence by sentence
+  against the live official pages and against Internet Archive copies dated
+  2026-08-12 to 2026-08-19; every row matched the documentation as it stood on those
+  dates. Three HIGH findings prevent a VERIFIED verdict: (1) four of the thirteen
+  cited pages changed on 2026-08-20/21 (plan eligibility widened; "Last updated"
+  now August 20, 2026), so GBF-028, the parity-map metering row, the handoff date
+  check, and four SOURCE_LEDGER dates are no longer supported by the current
+  source; (2) product version context omits that Grok Bot is a vendor-labelled
+  "Early beta" launched 2026-08-11 by X.AI LLC/SpaceXAI with Cursor account,
+  billing, and dashboard integration, and the two official launch/expansion
+  announcements are not in the ledger; (3) the teams page documents model and
+  provider behavior (no model picker for members or admins, fixed model set per
+  surface, automatic failover, serving model shown in usage analytics) that the
+  baseline lists only as an open question, which matters directly to D-007
+  (model-transparent orchestration). Two MEDIUM findings cover omitted documented
+  security/persistence/team facts and unrecorded inconsistencies inside the
+  official documentation. Acceptance criteria 1 and 2 are PARTIAL; 3 and 4 PASS.
+  The fixes are bounded and stay inside S0-002's allowed files.
+
+method:
+  - "Read MASTER_OPERATING_PROMPT.md, AGENTS.md, CLAUDE.md, README.md, SECURITY.md, all 01_governance files, all three Stage 0 handoffs, the S0-001 challenger review, every file under 00_inbox/prepared_materials relevant to S0-002 (02_PRODUCT_REFERENCE_LINKS.md, 03_GROKBOT_EXAMPLES/*, 01_FOUNDER_BRIEF.md, ASSUMPTIONS_AND_OPEN_QUESTIONS.md), 02_research/GROK_BOT_BASELINE_2026-08-21.md in full."
+  - "Mirrored all 14 docs.x.ai/grok-bot pages (13 cited + use-cases) with curl on 2026-08-21 ~19:40-20:10Z, extracted visible text, grepped 'Last updated' and JSON-LD dateModified, and compared each GBF row and each ledger claims_supported entry against the exact page text."
+  - "Retrieved Internet Archive captures (CDX + id_ raw fetch, gunzip) of faq (2026-08-14, 2026-08-19), get-started (2026-08-12, 2026-08-14), mobile (2026-08-14), teams-and-enterprises (2026-08-14), overview (2026-08-12), and of x.ai/news/introducing-grok-bot (2026-08-11 and 2026-08-21) and x.ai/news/grok-bot-more-plans (2026-08-21) to separate author error from post-access source change. x.ai/bot and x.ai/news return HTTP 403 to automated fetch; archived copies were used for those."
+  - "Opened additional official primary sources not cited by S0-002: x.ai/news/introducing-grok-bot (2026-08-11), x.ai/news/grok-bot-more-plans (2026-08-21), forum.cursor.com/t/introducing-grok-bot/168053 (2026-08-11 staff post), docs.x.ai/developers/release-notes, cursor.com/pricing, and the Cursor help-center Grok Bot section (cursor.com/help/grok-bot/{getting-started,sign-in,plans,connect-plugins,secrets,mobile,computer-recovery,get-help})."
+  - "Re-ran the author's reproducible checks: page reachability, ruby CSV parse of SOURCE_LEDGER.csv (rows, width, duplicate IDs), cited-SRC-ID presence, git diff of governance files 4d99fff..f151f28, allowed-file compliance."
+  - "Secondary press was consulted only for context and was not used as evidence; where it conflicts with official documentation (per-Bot VM claims) the official text wins and the conflict is noted."
+
+files_read:
+  - MASTER_OPERATING_PROMPT.md
+  - AGENTS.md
+  - CLAUDE.md
+  - README.md
+  - SECURITY.md
+  - 01_governance/PROJECT_STATE.yaml
+  - 01_governance/TASK_REGISTRY.yaml
+  - 01_governance/DECISION_LOG.md
+  - 01_governance/ASSUMPTION_REGISTER.md
+  - 01_governance/RISK_REGISTER.md
+  - 01_governance/MODEL_REGISTRY.yaml (Grok/Cursor mentions only)
+  - 01_governance/SOURCE_LEDGER.csv
+  - 02_research/GROK_BOT_BASELINE_2026-08-21.md
+  - 99_handoffs/HANDOFF_TEMPLATE.yaml
+  - 99_handoffs/completed/S0-001_handoff.yaml
+  - 99_handoffs/completed/S0-001_challenger_review.yaml
+  - 99_handoffs/completed/S0-002_handoff.yaml
+  - 99_handoffs/completed/S0-003_handoff.yaml (contradiction check only)
+  - 00_inbox/prepared_materials/01_FOUNDER_BRIEF.md
+  - 00_inbox/prepared_materials/02_PRODUCT_REFERENCE_LINKS.md
+  - 00_inbox/prepared_materials/03_GROKBOT_EXAMPLES/README.md
+  - 00_inbox/prepared_materials/03_GROKBOT_EXAMPLES/TEST_MATRIX.md
+  - 00_inbox/prepared_materials/03_GROKBOT_EXAMPLES/EXPERIMENT_TEMPLATE.md
+  - 00_inbox/prepared_materials/ASSUMPTIONS_AND_OPEN_QUESTIONS.md
+files_created:
+  - 99_handoffs/completed/S0-002_challenger_review.yaml
+files_modified:
+  - 01_governance/TASK_REGISTRY.yaml
+  - 01_governance/PROJECT_STATE.yaml
+files_deleted: []
+
+external_sources_reopened:
+  - id: SRC-001
+    url: https://docs.x.ai/grok-bot/overview
+    live_last_updated: "August 11, 2026"
+    archived_copy: "web.archive.org 2026-08-12T00:21Z (matches live)"
+  - id: SRC-002
+    url: https://docs.x.ai/grok-bot/bots
+    live_last_updated: "August 11, 2026"
+  - id: SRC-003
+    url: https://docs.x.ai/grok-bot/chat-and-collaboration
+    live_last_updated: "August 11, 2026"
+  - id: SRC-004
+    url: https://docs.x.ai/grok-bot/skills-routines-and-automations
+    live_last_updated: "August 11, 2026"
+  - id: SRC-005
+    url: https://docs.x.ai/grok-bot/approvals-security-and-privacy
+    live_last_updated: "August 11, 2026"
+  - id: SRC-006
+    url: https://docs.x.ai/grok-bot/teams-and-enterprises
+    live_last_updated: "August 20, 2026"
+    archived_copy: "web.archive.org 2026-08-14T05:50Z showed 'August 11, 2026' and Individuals = 'SuperGrok Heavy, Cursor Ultra, or a one-time trial'; Self-serve teams = 'Premium seats include a weekly Grok Bot usage allowance. Standard seats can use the free trial or on-demand usage.'"
+  - id: SRC-007
+    url: https://docs.x.ai/grok-bot/settings-and-notifications
+    live_last_updated: "August 11, 2026"
+  - id: SRC-008
+    url: https://docs.x.ai/grok-bot/faq
+    live_last_updated: "August 20, 2026"
+    archived_copy: "web.archive.org 2026-08-14T03:01Z and 2026-08-19T23:05Z showed 'August 11, 2026' and plans 'SuperGrok Heavy, Cursor Ultra, and Cursor Teams Premium'"
+  - id: SRC-012
+    url: https://docs.x.ai/grok-bot/files-and-results
+    live_last_updated: "August 11, 2026"
+  - id: SRC-013
+    url: https://docs.x.ai/grok-bot/computer-and-apps
+    live_last_updated: "August 11, 2026"
+  - id: SRC-014
+    url: https://docs.x.ai/grok-bot/get-started
+    live_last_updated: "August 20, 2026"
+    archived_copy: "web.archive.org 2026-08-12T23:19Z and 2026-08-14T05:50Z showed 'August 11, 2026' and 'An eligible plan: SuperGrok Heavy, Cursor Ultra, Cursor Teams Premium'"
+  - id: SRC-015
+    url: https://docs.x.ai/grok-bot/mobile
+    live_last_updated: "August 20, 2026"
+    archived_copy: "web.archive.org 2026-08-14T05:50Z showed 'August 11, 2026' and 'SuperGrok Heavy, Cursor Ultra, or Cursor Teams Premium'"
+  - id: SRC-016
+    url: https://docs.x.ai/grok-bot/troubleshooting
+    live_last_updated: "August 11, 2026"
+  - id: NOT_IN_LEDGER
+    url: https://docs.x.ai/grok-bot/use-cases
+    live_last_updated: "August 11, 2026"
+    note: "Listed in 02_PRODUCT_REFERENCE_LINKS.md; reachable; not cited or ledgered by S0-002."
+  - id: NOT_IN_LEDGER
+    url: https://x.ai/news/introducing-grok-bot
+    note: "Official launch post dated Aug 11, 2026 by X.AI LLC. Archived 2026-08-11T17:40Z: 'Grok Bot is in beta and available today for SuperGrok Heavy, Cursor Ultra, and Cursor Teams Premium subscribers on desktop and iOS ... Enterprise users can join a waitlist for future access.' Archived 2026-08-21T18:14Z: header label 'Early beta'; plan sentence now 'SuperGrok Plus and Heavy, Cursor Pro+ and Ultra, and Cursor Teams Standard and Premium'. Both versions: 'Bots share a computer of their own in the cloud'."
+  - id: NOT_IN_LEDGER
+    url: https://x.ai/news/grok-bot-more-plans
+    note: "Official post dated Aug 21, 2026 (archived 2026-08-21T18:16Z): 'We launched Grok Bot in beta on August 11 ... Grok Bot is now included with all SuperGrok Plus, Cursor Pro+, and Cursor Teams plans ... Enterprise users can join a waitlist as we ramp access for larger team and company rollouts.'"
+  - id: NOT_IN_LEDGER
+    url: https://forum.cursor.com/t/introducing-grok-bot/168053
+    note: "Cursor staff announcement 2026-08-11: 'Grok Bot is in beta and available today on desktop and iOS' for 'SuperGrok Heavy, Cursor Ultra, and Cursor Teams Premium subscribers'; 'Bots work on a persistent cloud computer ... each gets its own screen'."
+  - id: NOT_IN_LEDGER
+    url: https://cursor.com/help/grok-bot/plans
+    note: "Cursor help center (undated): plan matrix incl. Cursor Pro not included; Pro+ included (weekly usage below Ultra); Ultra highest; self-serve Teams every member, no Premium seat required; Enterprise via account executive; individual SuperGrok Plus/Heavy link as usage grant (permanent link); SuperGrok Team/Enterprise and basic SuperGrok not included; weekly reset; on-demand continuation; trial is a usage credit with a 7-day window; macOS and iOS share one usage bucket."
+  - id: NOT_IN_LEDGER
+    url: https://cursor.com/help/grok-bot/getting-started
+    note: "'Some launch materials describe Grok Bot as a beta only to set expectations that it is an early product. Grok Bot is not subject to Cursor's Beta Services terms.' 'Sidebar Sections require Grok Bot v1.2.0 or later.' 'You sign in there yourself; the agent doesn't see your password.'"
+  - id: NOT_IN_LEDGER
+    url: https://cursor.com/help/grok-bot/computer-recovery
+    note: "'Your agent conversation history is stored separately from the box'; 'Grok Bot also keeps a durable copy of synced box data on the server'; 'Reset rebuilds the box from scratch ... anything not yet synced to the server will not come back'; recoverability table (conversation history yes; synced sandbox files yes; local machine files no)."
+  - id: NOT_IN_LEDGER
+    url: https://cursor.com/help/grok-bot/sign-in
+    note: "'Grok Bot uses your Cursor account. There is no separate Grok Bot login.' Phone-verification failures can block account access; known persistent authentication issues."
+  - id: NOT_IN_LEDGER
+    url: https://cursor.com/help/grok-bot/secrets
+    note: "'Use Grok Bot's secure secret card. Don't paste secrets into chat or save them in ordinary files.'"
+  - id: NOT_IN_LEDGER
+    url: https://docs.x.ai/developers/release-notes
+    note: "August 2026 entries: 'Grok 4.6 ... now available on the xAI API'; 'Grok Bot is now available. Durable AI teammates that work on a persistent cloud computer, with messaging, approvals, connectors, and routines.'"
+  - id: NOT_IN_LEDGER
+    url: https://cursor.com/pricing
+    note: "'Access to Grok Bot' listed under Pro+, Ultra, Teams Standard, Teams Premium (live 2026-08-21)."
+
+tests_run:
+  - "curl mirror of 14 docs.x.ai/grok-bot pages; HTML-to-text extraction; grep 'Last updated' and JSON-LD dateModified per page"
+  - "web.archive.org CDX listing and id_ raw retrieval (gunzip) for 7 docs pages and 3 x.ai/news snapshots; text extraction and diff of plan/date lines against live pages"
+  - "Sentence-level comparison of all 30 GBF rows, the parity map, the strong inferences, and the open-questions list against live page text"
+  - "ruby -rcsv: SOURCE_LEDGER.csv row count, column width, duplicate source IDs; grep of SRC IDs cited in the baseline"
+  - "git diff 4d99fff f151f28 -- ASSUMPTION_REGISTER.md RISK_REGISTER.md SOURCE_LEDGER.csv; allowed_files_to_change comparison for S0-002 files_modified"
+  - "WebFetch structured extraction of bots, computer-and-apps, approvals, teams, faq, release-notes, cursor.com/pricing, cursor.com/help/grok-bot/* as a cross-check of the raw text"
+test_results:
+  - "14 of 14 official Grok Bot pages reachable (HTTP 200) on 2026-08-21; the 13 cited pages plus use-cases."
+  - "Live 'Last updated': August 11, 2026 on overview, bots, chat-and-collaboration, skills-routines-and-automations, approvals-security-and-privacy, settings-and-notifications, files-and-results, computer-and-apps, troubleshooting, use-cases; August 20, 2026 on faq, get-started, mobile, teams-and-enterprises. JSON-LD dateModified agrees in every case."
+  - "Archived copies dated 2026-08-12..2026-08-19 of faq, get-started, mobile, teams-and-enterprises show 'August 11, 2026' and the plan list recorded in GBF-028; the live pages differ. The vendor expansion post is dated 2026-08-21. The author's 12:58-04:00 access cannot be placed before or after the change from repository evidence; the archived evidence is consistent with the baseline having been accurate when written."
+  - "30/30 GBF rows: content supported by the cited pages as archived and (except GBF-028 and the plan-dependent text in GBF-029) as live. No row asserts an undocumented internal mechanism. Citation precision nits only (GBF-007 cites SRC-001 for the one-task-per-screen limit, which is stated in SRC-008/SRC-013; GBF-024 cites SRC-014 for secure secret requests, which are stated in SRC-005/SRC-013)."
+  - "SOURCE_LEDGER.csv: 25 lines incl. header, 24 data rows, all 11 columns wide, 0 duplicate IDs; all 13 SRC IDs cited by the baseline present. Four rows (SRC-006, SRC-008, SRC-014, SRC-015) now carry a stale publication_or_update_date (2026-08-11; live 2026-08-20)."
+  - "S0-002 files_modified (ASSUMPTION_REGISTER, PROJECT_STATE, RISK_REGISTER, SOURCE_LEDGER, TASK_REGISTRY) and files_created (02_research/..., 99_handoffs/completed/...) are inside S0-002 allowed_files_to_change. A-011, A-012, R-016, R-019 are present and accurately described in the handoff."
+  - "Teams page archived 2026-08-14 already contained the 'Models and providers' section, the Cloud Agents toggle, non-root user, static egress, 'audit view ... is coming', and 'no Grok Bot-specific spend cap yet' text; these facts were available at author access time."
+  - "Overview page (archived 2026-08-12 and live) contains both 'Each Bot runs on a persistent cloud VM' and 'All of your Bots use the same persistent cloud computer'; the launch post says 'Bots share a computer of their own in the cloud'."
+
+claim_classification:
+  - topic: "Product and version context as of 2026-08-21"
+    classification: VERIFIED
+    baseline_status: PARTIAL_IN_BASELINE
+    evidence: "x.ai/news/introducing-grok-bot (Aug 11, 2026; 'in beta'; header label 'Early beta' on the current page); docs site title 'SpaceXAI Docs'; footer 'X.AI LLC'; Cursor help: beta label is expectation-setting, not Cursor Beta Services terms; Cursor help references app version v1.2.0; docs pages dated Aug 11 (10) and Aug 20 (4); plan expansion post Aug 21. Installed build, plan, region for the project account remain UNKNOWN (correctly stated by the baseline)."
+  - topic: "Persistent Bot identity"
+    classification: VERIFIED
+    baseline_status: CORRECT
+    evidence: "SRC-002 'A Bot is a durable AI teammate with a name, a job, its own conversation, and working context that develops over time'; SRC-001; SRC-008."
+  - topic: "What state actually persists"
+    classification: VERIFIED
+    baseline_status: CORRECT_BUT_INCOMPLETE
+    evidence: "SRC-013 files in /workspace, browser cookies/sessions, command-line credentials, connectors account-wide; 'Files, browser state, and supported sign-ins are designed to survive normal computer updates and recovery'; SRC-002 memory = stable preferences, important facts, summaries; Cursor help computer-recovery: conversation history stored outside the box filesystem; durable copy of synced box data on the server; unsynced work lost on Reset. UNKNOWN: sync boundary/RPO, retention, memory schema (correctly open)."
+  - topic: "Cloud-computer ownership and scope"
+    classification: VERIFIED
+    baseline_status: CORRECT_BUT_INCONSISTENCY_UNRECORDED
+    evidence: "SRC-013 'The computer is assigned to your user account, not an individual Bot'; SRC-008 'assigned per user, not per Bot'; SRC-005 'one cloud computer assigned to your user account'; SRC-006 'Each member gets one dedicated cloud computer ... managed Linux virtual machine ... shared by all of their Bots' and 'a computer is shared across every team the member belongs to'. Documented inconsistency: SRC-001 bullet 'It has a computer of its own. Each Bot runs on a persistent cloud VM'."
+  - topic: "Computer state scope (user / Bot / task)"
+    classification: VERIFIED
+    baseline_status: CORRECT
+    evidence: "User-level for individuals, member-level for teams; not Bot-level, not task-level; per-Bot screens are 'separate work surfaces, not separate security boundaries' (SRC-013)."
+  - topic: "Browser / session / filesystem persistence"
+    classification: VERIFIED
+    baseline_status: CORRECT_BUT_INCOMPLETE
+    evidence: "SRC-013 'Browser sessions persist'; SRC-014 'The browser session persists on your shared Grok Bot computer'; SRC-006 FAQ 'Sign-in sessions inside the computer can drop when the computer is recreated or its network address changes' (not in baseline); SRC-013 sites may expire sessions."
+  - topic: "Credentials / session behavior"
+    classification: VERIFIED
+    baseline_status: CORRECT_BUT_INCOMPLETE
+    evidence: "SRC-005 secure secret request 'masked, excluded from the transcript, and not shown to the model' for 'a supported connection'; SRC-006 'Sign-in tokens for hosted MCP servers stay with Cursor's backend ... The computer never stores those tokens' (not in baseline); Cursor help 'the agent doesn't see your password' when the user signs in; plugin connections belong to the account. UNKNOWN: storage, revocation, leakage resistance (correctly open)."
+  - topic: "Terminal and file access"
+    classification: VERIFIED
+    baseline_status: CORRECT
+    evidence: "SRC-013 command line, files, /workspace; local computer separate with policy (SRC-005, SRC-006)."
+  - topic: "Parallel execution"
+    classification: VERIFIED
+    baseline_status: CORRECT_BUT_INCOMPLETE
+    evidence: "SRC-008/SRC-013 per-Bot screens; one computer-use task per Bot screen at a time; SRC-006 'Cloud Agents ... team-wide toggle controls whether Grok Bot Bots can launch Cursor cloud agents. It is on by default' (not in baseline)."
+  - topic: "Agent-to-agent communication and asynchronous handoffs"
+    classification: VERIFIED
+    baseline_status: CORRECT
+    evidence: "SRC-003 'A Bot can send an asynchronous message to another Bot. The receiving Bot wakes, handles the request, and can reply later'; 'Bot-to-group handoff messages are currently text-only'. Ownership/delivery internals UNKNOWN (correctly open)."
+  - topic: "Group conversations"
+    classification: VERIFIED
+    baseline_status: CORRECT
+    evidence: "SRC-003 two to six Bots; participants decide responder; @ mentions; @everyone; threads; reactions."
+  - topic: "Skills"
+    classification: VERIFIED
+    baseline_status: CORRECT
+    evidence: "SRC-004; skills available across Bots; private skills enabled per Bot."
+  - topic: "Routines"
+    classification: VERIFIED
+    baseline_status: CORRECT
+    evidence: "SRC-004 50 routines per Bot; 20 run records; schedule or 'where supported' event via 'Cursor account integrations'; test run performs real work; unattended pause prompt."
+  - topic: "Workflow learning from demonstration"
+    classification: VERIFIED (rollout-dependent)
+    baseline_status: CORRECT_BUT_INCONSISTENCY_UNRECORDED
+    evidence: "SRC-004 'When Teach a task is available'; up to ten minutes; draft skill; no microphone audio; SRC-008 'rollout may be gradual'. SRC-001 marketing bullet states it without qualifier and says it 'persists that path as a routine'."
+  - topic: "Approvals"
+    classification: VERIFIED
+    baseline_status: CORRECT_BUT_INCOMPLETE
+    evidence: "SRC-005 Allow once / Deny / Always allow; iPhone Approve once / Deny; Auto Review 'When ... available', model-based, Require Approval wins; 'Personal Auto-review rules are stored on the current desktop and synced to its Grok Bot computer' and SRC-007 'not an account-synchronized policy across every device' (baseline lists synchronization as unknown)."
+  - topic: "Human takeover"
+    classification: VERIFIED
+    baseline_status: CORRECT
+    evidence: "SRC-005, SRC-013, SRC-014, SRC-015."
+  - topic: "Local-computer execution"
+    classification: VERIFIED
+    baseline_status: CORRECT
+    evidence: "SRC-005 default 'Ask every time'; options; SRC-006 first local action asks consent, every local action goes through Auto-review with exact command; team ceiling 'Coming soon'."
+  - topic: "Mobile behavior"
+    classification: VERIFIED
+    baseline_status: CORRECT
+    evidence: "SRC-015 iPhone iOS 18+; not iPad/Android; desktop-only routine editing/testing/deleting; SRC-006 mobile cannot reset computer; Cursor help: computer updates not available on mobile; usage bucket shared across macOS/iOS."
+  - topic: "Notifications"
+    classification: VERIFIED (push rollout-dependent)
+    baseline_status: CORRECT_BUT_INCOMPLETE
+    evidence: "SRC-007 per-Bot switch; 'Group chats do not have the same per-Bot notification switch' (baseline lists group behavior as untested); suppressed while focused; mobile push rolling out."
+  - topic: "Team and enterprise controls"
+    classification: VERIFIED (partly rollout-dependent)
+    baseline_status: CORRECT_BUT_INCOMPLETE
+    evidence: "SRC-006 per-member managed Linux VM; Cursor SSO; Cursor dashboard admin; Cloud Agents toggle; MCP allow/deny lists; team rules scoped to Cursor/Grok Bot; static egress IPs; admins can kill computers (durable storage kept); 'An audit view of Bot actions is coming'; 'no Grok Bot-specific spend cap yet'; Privacy Mode (Legacy) blocks Grok Bot; computer not MDM-enrolled by default; WebAuthn forwarding (Windows in progress)."
+  - topic: "Model / provider behavior"
+    classification: VERIFIED
+    baseline_status: MISCLASSIFIED_AS_UNKNOWN
+    evidence: "SRC-006 'Grok Bot has no model picker, for members or admins. We do not plan to allow admin or user choice for models that are used with Grok Bot. Model choice is fully managed by the product. Each request routes to a fixed set of models for its surface, with automatic failover ... Usage analytics show the model that actually served each request, including failovers. Billing follows the actual serving model.' Tension: SRC-007 lists 'Default Model, when model selection is available' under Agent settings. OPEN: whether any individual-account surface exposes that control; which models are in the fixed set."
+  - topic: "Rollout / account limitations"
+    classification: VERIFIED (changed 2026-08-20/21)
+    baseline_status: STALE
+    evidence: "Live SRC-008/SRC-014/SRC-015/SRC-006 and x.ai/news/grok-bot-more-plans: SuperGrok Plus, SuperGrok Heavy, Cursor Pro+, Cursor Ultra, Cursor Teams Standard and Premium; individuals also 'a one-time trial'; Enterprise 'Rolling out' / waitlist; Cursor help: Cursor Pro, basic SuperGrok, SuperGrok Team/Enterprise not included; Legacy Privacy Mode blocks; Linux desktop, Android, iPad unsupported at initial launch; 'If you have both a Cursor and a SuperGrok subscription, Grok Bot uses whichever has more usage'."
+  - topic: "Security-boundary claims"
+    classification: VERIFIED (documented) / UNKNOWN (implementation, contractual)
+    baseline_status: CORRECT_BUT_INCOMPLETE
+    evidence: "SRC-005 'Do not use separate Bots as a security boundary'; 'Do not treat this user assignment as a guarantee that is broader than Cursor's published security documentation'; SRC-006 'The Bot runs as a non-root user'; hosted MCP tokens not stored on the computer; static egress IPs. Implementation, encryption, subprocessors, retention remain UNKNOWN (correctly open)."
+  - topic: "Design proposals"
+    classification: DESIGN PROPOSAL
+    baseline_status: NONE_MADE
+    evidence: "The baseline makes no architecture proposal; parity map states 'No design selected'; DECISION_LOG reconciliation note and R-019 keep the shared computer as comparison input only."
+
+acceptance_criteria_evaluation:
+  - criterion: "Every consequential claim links to a current primary source or is labeled."
+    result: PARTIAL
+    evidence: "All 30 rows cite ledgered primary sources and carry an evidence label; archived copies confirm each row matched its source on 2026-08-12..19. As of this review GBF-028 (plan eligibility) and the parity-map metering row are contradicted by the current source text, four ledger dates are stale (F-S0-002-01), and a documented consequential fact (model/provider policy) is labeled as an open question rather than sourced (F-S0-002-03)."
+  - criterion: "Research date and product version context are explicit."
+    result: PARTIAL
+    evidence: "Research date 2026-08-21, documentation date, unknown build/plan/region, and zero black-box runs are explicit. Beta status, launch date (2026-08-11), publisher identity (X.AI LLC / SpaceXAI with Cursor account, billing, dashboard), and the Aug 21 plan expansion are absent; the documentation-date statement is no longer accurate for four pages (F-S0-002-02, F-S0-002-01)."
+  - criterion: "Unknown implementation details remain unknown."
+    result: PASS
+    evidence: "No row asserts scheduler, VM, memory, routing, or security implementation; the open-questions list and handoff unverified_claims preserve them. Strong inferences are bounded and labeled."
+  - criterion: "Public observations are not confused with clean-room design proposals."
+    result: PASS
+    evidence: "No design proposal appears; parity map 'Clean-room status' column says no design selected; R-019 and the DECISION_LOG note keep the reference boundary as comparison input only."
+  - criterion: "Required test: Challenger source spot-check."
+    result: PASS
+    evidence: "Executed by this review over all 13 cited pages plus archived copies; see test_results."
+  - criterion: "Required test: Link and date validation."
+    result: PARTIAL
+    evidence: "Links: 13/13 reproduced. Dates: the author's 'August 11, 2026' result is reproduced only for 9 of 13 pages at review time; 4 pages now show August 20, 2026."
+
+findings:
+  - finding_id: F-S0-002-01
+    severity: HIGH
+    requirement: "S0-002 acceptance criterion 1 (current primary source); criterion 2 (version context); MASTER rule 'If a source no longer supports a claim, downgrade the claim'; Stage 0 gate 'current product version and research date are explicit'."
+    file_or_component: "02_research/GROK_BOT_BASELINE_2026-08-21.md (Record status; Source freshness result; GBF-028; GBF-029 plan text; parity map 'Metering and billing'); 01_governance/SOURCE_LEDGER.csv SRC-006, SRC-008, SRC-014, SRC-015; 99_handoffs/completed/S0-002_handoff.yaml test_results"
+    evidence: "Live faq, get-started, mobile, teams-and-enterprises display 'Last updated: August 20, 2026' (JSON-LD dateModified 2026-08-20) and list eligible plans 'SuperGrok Plus, SuperGrok Heavy, Cursor Pro+, Cursor Ultra, and Cursor Teams Standard and Premium' (teams page: Individuals also 'or a one-time trial'; Enterprise 'Rolling out'). Baseline GBF-028 states 'SuperGrok Heavy, Cursor Ultra, or Cursor Teams Premium'; ledger records 2026-08-11 for all four. Archived copies 2026-08-12..2026-08-19 match the baseline. x.ai/news/grok-bot-more-plans is dated Aug 21, 2026. Cursor help plans page adds exclusions (Cursor Pro, basic SuperGrok, SuperGrok Team/Enterprise) and trial semantics."
+    why_it_matters: "Eligible-plan and rollout facts determine whether and at what cost the project can obtain an account for S0-004 (currently BLOCKED on 'eligible_grok_bot_account_and_plan_not_recorded'), and the four stale ledger dates would mislead a later agent into trusting a superseded page version. The handoff's date-validation result is no longer reproducible."
+    required_fix: "In SOURCE_LEDGER.csv set publication_or_update_date to 2026-08-20 and refresh accessed_date for SRC-006, SRC-008, SRC-014, SRC-015; add ledger rows for x.ai/news/introducing-grok-bot (2026-08-11), x.ai/news/grok-bot-more-plans (2026-08-21), and cursor.com/help/grok-bot/plans; rewrite GBF-028 with the current plan list, exclusions, one-time trial (usage credit, 7-day window), 'whichever has more usage', enterprise waitlist; update the parity-map metering row; add a dated 'source drift observed 2026-08-21' paragraph to 'Source freshness result' stating which pages changed and that archived copies confirmed the earlier text; add the access timestamp (with timezone) to the handoff and note the drift under known_limitations."
+    verification_method: "ruby -rcsv parse shows 2026-08-20 for the four rows and the three new rows; grep -n 'Cursor Pro+' 02_research/GROK_BOT_BASELINE_2026-08-21.md hits GBF-028; reopening the four URLs shows no date newer than the ledger value."
+  - finding_id: F-S0-002-02
+    severity: HIGH
+    requirement: "S0-002 acceptance criterion 2 'Research date and product version context are explicit'; MASTER Stage 0 'current product version and research date are explicit'; AGENTS.md 'Use current primary sources for current product ... information'."
+    file_or_component: "02_research/GROK_BOT_BASELINE_2026-08-21.md Record status and Source freshness result; 01_governance/SOURCE_LEDGER.csv"
+    evidence: "Baseline version context is limited to 'the reviewed Grok Bot pages display Last updated: August 11, 2026' and 'Installed application build: UNKNOWN'. Official launch post (x.ai/news/introducing-grok-bot, Aug 11, 2026): 'Grok Bot is in beta and available today ...'; current header label 'Early beta'; footer 'X.AI LLC'; docs site title 'SpaceXAI Docs'; Cursor forum staff post 2026-08-11 'Grok Bot is in beta'; Cursor help: 'Some launch materials describe Grok Bot as a beta only to set expectations that it is an early product. Grok Bot is not subject to Cursor's Beta Services terms.'; 'Sidebar Sections require Grok Bot v1.2.0 or later.'; release notes entry 'Grok Bot is now available'. None of these sources is in the ledger."
+    why_it_matters: "A Stage 1 planner reading the baseline would treat the reference as a mature product whose documentation date happens to be Aug 11; in fact the documentation date is the public-beta launch date ten days before the research date, which explains the pervasive rollout qualifiers and bounds how much reliability should be inferred from documentation. Publisher identity also matters for the clean-room boundary (README: no implied affiliation with xAI, Cursor, or Grok)."
+    required_fix: "Add to Record status: product status (vendor-labelled beta / 'Early beta', launched 2026-08-11; Cursor help characterisation), publisher (X.AI LLC / SpaceXAI docs; Cursor account, billing, and dashboard integration), known app-version reference (v1.2.0 per Cursor help; installed build for the project account still unknown), and the Aug 21 plan expansion. Add ledger rows for the launch post, the expansion post, the Cursor forum post, docs.x.ai/developers/release-notes, and the Cursor help-center Grok Bot pages actually relied on."
+    verification_method: "grep -n -i 'beta' 02_research/GROK_BOT_BASELINE_2026-08-21.md returns the Record status line; grep -n 'introducing-grok-bot' 01_governance/SOURCE_LEDGER.csv returns a row."
+  - finding_id: F-S0-002-03
+    severity: HIGH
+    requirement: "S0-002 objective 'sourced feature baseline with facts, inferences, unknowns, and rollout limitations'; acceptance criterion 1; MASTER evidence labels (VERIFIED FACT vs OPEN QUESTION); D-007 provisional differentiator 'model-transparent orchestration'."
+    file_or_component: "02_research/GROK_BOT_BASELINE_2026-08-21.md 'Open questions' bullet 'Which model executes each role, whether users can select models, and model failover behavior'; 'Source freshness result' sentence listing 'default-model selection' as rollout-dependent; feature table (no row); parity map (no row)"
+    evidence: "SRC-006 (archived 2026-08-14 and live) section 'Models and providers': 'Grok Bot has no model picker, for members or admins. We do not plan to allow admin or user choice for models that are used with Grok Bot. Model choice is fully managed by the product. Each request routes to a fixed set of models for its surface, with automatic failover. ... Usage analytics show the model that actually served each request, including failovers. Billing follows the actual serving model.' Teams FAQ: 'Can I restrict which models Grok Bot uses? No. Grok Bot uses a fixed, published set of models and providers with automatic failover.' SRC-007 lists 'Default Model, when model selection is available'. The founder source map (02_PRODUCT_REFERENCE_LINKS.md) explicitly flagged 'model and provider policy limits' under the Teams page."
+    why_it_matters: "The reference product documents that users and admins get no model choice while this project's provisional primary differentiator is model-transparent orchestration; filing a documented fact as an open question hides the strongest piece of reference evidence bearing on D-007 and would cause Stage 1 to plan research for something already answered by the vendor. The 'default-model selection varies by account' sentence also makes an inference sound like a documented fact."
+    required_fix: "Add a feature row (e.g. GBF-031 'Model and provider policy', VERIFIED FACT — DOCUMENTED) quoting the teams-page policy, with the limit column recording the SRC-007 conditional 'Default Model' control as an OPEN QUESTION for individual accounts and the identity of the fixed model set as unknown; add a parity-map row 'Model selection and transparency: reference documented as product-managed, no user or admin choice; serving model visible in usage analytics'; rewrite the open-questions bullet to the residual unknowns only; correct the Source freshness sentence."
+    verification_method: "grep -n 'model picker' 02_research/GROK_BOT_BASELINE_2026-08-21.md returns a GBF row and a parity-map row; the open-questions list no longer asks whether users can select models."
+  - finding_id: F-S0-002-04
+    severity: MEDIUM
+    requirement: "S0-002 deliverables reference_product_teardown and feature_parity_baseline; MASTER Stage 0 'build a feature inventory and evidence ledger'; review focus items persistence, credentials, parallel execution, team controls, security boundary."
+    file_or_component: "02_research/GROK_BOT_BASELINE_2026-08-21.md GBF-006, GBF-008, GBF-011, GBF-023, GBF-024, GBF-026, GBF-029, GBF-030 and their limit columns"
+    evidence: "Documented in SRC-006 (archived 2026-08-14 and live) but absent from the baseline: 'The Bot runs as a non-root user'; 'Sign-in tokens for hosted MCP servers stay with Cursor's backend ... The computer never stores those tokens'; 'Computers reach the internet through static egress IP addresses'; 'Grok Bot's computer is not by default enrolled in mobile device management'; 'Cloud Agents ... toggle controls whether Grok Bot Bots can launch Cursor cloud agents. It is on by default'; 'Kill deletes the running virtual machine. Durable storage is kept'; 'Sign-in sessions inside the computer can drop when the computer is recreated or its network address changes'; 'An audit view of Bot actions is coming'; 'There is no Grok Bot-specific spend cap yet'; 'Privacy Mode (Legacy) blocks Grok Bot entirely'; 'a computer is shared across every team the member belongs to'. SRC-005/SRC-007: Auto-review rules 'stored on the current desktop and synced to its Grok Bot computer' and 'not an account-synchronized policy' (baseline GBF-023 limit says synchronization unknown). SRC-007: 'Group chats do not have the same per-Bot notification switch' (GBF-026 limit says group behavior requires testing). SRC-013: 'Installed connectors are account-wide'. Cursor help computer-recovery: conversation history stored outside the box filesystem; durable copy of synced box data; recoverability table (GBF-011 limit says durable-state boundary unknown). Cursor help sign-in: phone-verification failures can block access."
+    why_it_matters: "These are exactly the persistence, credential, isolation, and administration facts the review brief asks to verify and that Stage 2/3 will compare against; several limit-column 'unknown' statements are partly documented, which understates what the vendor commits to and overstates what must be black-box tested. The Cloud Agents toggle is an undocumented-in-baseline capability (Bots launching Cursor cloud agents) relevant to parallel execution and delegation."
+    required_fix: "Extend the affected rows (or add rows) with the quoted facts and source IDs; revise the limit columns of GBF-011, GBF-023, GBF-026 to cite what is documented and keep only the residual unknowns; add Cursor help computer-recovery and sign-in pages to the ledger if relied upon; add 'Legacy Privacy Mode not supported' and 'no Grok Bot-specific spend cap' to GBF-028/GBF-029."
+    verification_method: "grep -n -E 'non-root|never stores those tokens|Cloud Agents|static egress|audit view|spend cap|Legacy Privacy Mode|synced box' 02_research/GROK_BOT_BASELINE_2026-08-21.md returns hits in feature rows."
+  - finding_id: F-S0-002-05
+    severity: MEDIUM
+    requirement: "MASTER 'Flag any wording that makes an inference sound like a verified fact' (review rule 7); Stage 0 'separate verified behavior from design inference'; S0-002 acceptance criterion 1."
+    file_or_component: "02_research/GROK_BOT_BASELINE_2026-08-21.md GBF-005, GBF-006, GBF-011, GBF-019 and Source freshness result"
+    evidence: "(a) SRC-001 'It has a computer of its own. Each Bot runs on a persistent cloud VM with a browser, filesystem, and terminal' versus SRC-001 'All of your Bots use the same persistent cloud computer' and SRC-013/SRC-008/SRC-005/SRC-006 user-scoped wording; launch post 'Bots share a computer of their own in the cloud'; secondary press repeats 'each Bot gets its own cloud computer'. (b) SRC-001 'It can learn workflows from live demonstration ... It persists that path as a routine' (unqualified) versus SRC-004/SRC-008 'When Teach a task is available ... draft skill ... rollout may be gradual'. (c) SRC-006 'Reset recreates the computer and keeps its data' versus SRC-013/SRC-016 'Reset ... can discard recent unsaved work' and Cursor help 'anything not yet synced to the server will not come back'. (d) SRC-005 local policy options 'Always require approval / Are always allowed / Are never allowed' with 'The default is Ask every time'. The baseline cites SRC-001 for GBF-005/006 and SRC-004/008 for GBF-019 without recording that the cited pages disagree internally."
+    why_it_matters: "A later agent reopening SRC-001 (the first page in the founder source map) will find the per-Bot-VM sentence and may 'correct' the baseline in the wrong direction; the contradiction is the single most consequential scope question in the review brief (cloud-computer ownership). Recording the inconsistency and its resolution is what keeps the baseline trustworthy when sources conflict."
+    required_fix: "Add a 'Documented inconsistencies in official sources' subsection listing (a)-(d) with the resolving reading (user/member-scoped computer; teach-by-demonstration rollout-dependent and draft-skill output; Reset may lose unsynced work; default local policy is ask-every-time) and cite the supporting pages; reference it from the GBF-005/006/011/019 limit columns."
+    verification_method: "grep -n 'Each Bot runs on a persistent cloud VM' 02_research/GROK_BOT_BASELINE_2026-08-21.md returns a hit inside the inconsistencies subsection."
+  - finding_id: F-S0-002-06
+    severity: LOW
+    requirement: "S0-002 deliverable source_ledger_update; MASTER 'evidence ledger'; ledger schema columns publisher and accessed_date."
+    file_or_component: "01_governance/SOURCE_LEDGER.csv SRC-001..008, SRC-012..016 publisher field; missing rows"
+    evidence: "publisher is 'xAI official documentation' while the live site title is 'SpaceXAI Docs' and the announcement footer reads 'X.AI LLC'; https://docs.x.ai/grok-bot/use-cases is listed in 02_PRODUCT_REFERENCE_LINKS.md and reachable but has no ledger row; the Cursor help-center Grok Bot pages, cursor.com/pricing, the Cursor forum post, and docs.x.ai/developers/release-notes are official sources bearing on plans, beta status, persistence, and secrets and have no rows; x.ai/bot and x.ai/news return HTTP 403 to automated fetch, which the ledger should record as an access limitation if those pages are ever cited."
+    why_it_matters: "Traceability and the clean-room boundary depend on naming the actual publisher; unledgered official pages cannot be spot-checked by the verifier."
+    required_fix: "Set publisher to 'SpaceXAI (X.AI LLC) official documentation' (or equivalent) for the docs.x.ai rows; add rows for use-cases and for each additional official source the revised baseline cites; note the 403 access limitation where applicable."
+    verification_method: "ruby -rcsv parse succeeds; grep -c 'cursor.com/help/grok-bot' 01_governance/SOURCE_LEDGER.csv >= 1; grep -n 'use-cases' returns a row."
+  - finding_id: F-S0-002-07
+    severity: LOW
+    requirement: "MASTER task execution rule 2 'Confirm dependencies are verified'; AGENTS.md handoff schema (started_at/completed_at); AGENTS.md completion rule 'exact results'."
+    file_or_component: "99_handoffs/completed/S0-002_handoff.yaml (started_at, completed_at, test_results); 01_governance/TASK_REGISTRY.yaml S0-002 dependencies"
+    evidence: "S0-002 depends on S0-001, which was READY (not VERIFIED) when S0-002 ran and is CHANGES_REQUESTED now (N-S0-001-03). started_at is null and completed_at is the batch stamp shared by all three Stage 0 handoffs (F-S0-001-03). test_results state 'The cited Grok Bot pages displayed Last updated: August 11, 2026' without an access time; four pages now display August 20, 2026, so the result cannot be reproduced or dated."
+    why_it_matters: "Audit value only: a dated access time would have settled whether the plan change post-dated the author's research; the dependency deviation had no substantive effect because S0-001 produced LOW findings only."
+    required_fix: "In the S0-002 handoff add known_limitations entries recording (a) the dependency deviation and (b) that the access time was not captured and that faq/get-started/mobile/teams-and-enterprises were revised on or about 2026-08-20/21; future handoffs record per-task start/end and UTC access times for every reopened source."
+    verification_method: "grep -n -E 'access time|2026-08-20' 99_handoffs/completed/S0-002_handoff.yaml returns the limitation entries."
+
+notes:
+  - note_id: N-S0-002-01
+    text: "Passes confirmed: 14/14 pages reachable; SOURCE_LEDGER parses (24 rows x 11 columns, no duplicate IDs); all 13 cited SRC IDs present; every GBF row supported by the cited pages as archived 2026-08-12..19; no invented observation, no implementation claim, no design proposal; S0-002 stayed inside allowed_files_to_change; A-011, A-012, R-016, R-019 accurately recorded; black-box plan maps to existing GB-0xx IDs and prohibits unsafe tests."
+  - note_id: N-S0-002-02
+    text: "Secondary press (e.g. Memeburn, Unite.AI, August 2026) states each Bot gets its own cloud computer and names launch prices; official documentation says the computer is per user/member. Do not import secondary claims into the baseline; if prices are wanted, cite cursor.com/pricing or x.ai pages directly."
+  - note_id: N-S0-002-03
+    text: "For S0-004: the 2026-08-21 expansion lowers the cost of an eligible account (Cursor Pro+, SuperGrok Plus via link, any self-serve Cursor Teams seat, or a one-time trial usage credit with a 7-day window). Founder resources in 01_FOUNDER_BRIEF.md list no Cursor or SuperGrok subscription; record the chosen access path in S0-004 preflight. Cursor help also documents a version reference (v1.2.0) usable in the preflight record."
+  - note_id: N-S0-002-04
+    text: "The baseline's Strong Inference 1 (coarse Bot-to-Bot credential boundary) is in fact directly documented ('Do not use separate Bots as a security boundary', SRC-005/SRC-008); keeping it as STRONG INFERENCE is conservative and acceptable, but it could be promoted to VERIFIED FACT — DOCUMENTED."
+  - note_id: N-S0-002-05
+    text: "The x.ai launch post was itself edited after publication (archived 2026-08-11 lists three plans; archived 2026-08-21 lists six and carries an 'Early beta' label). When ledgering it, record the archived timestamp used."
+  - note_id: N-S0-002-06
+    text: "No contradiction between S0-002 and S0-003 artifacts was found; MODEL_REGISTRY.yaml and the S0-003 handoff make no Grok Bot or Cursor claims. The S0-003 files_modified overlap with S0-002 allowed files (N-S0-001-04) remains for REVIEW_TASK_S0-003."
+  - note_id: N-S0-002-07
+    text: "Contradiction with founder materials: 02_PRODUCT_REFERENCE_LINKS.md (author files_to_read) flagged 'model and provider policy limits' under the Teams page and listed the use-cases page; the baseline omitted both (F-S0-002-03, F-S0-002-06)."
+
+passes_confirmed:
+  - "No fabricated observation; no black-box result claimed; zero runs stated consistently in baseline, handoff, and PROJECT_STATE."
+  - "Every feature row carries a source ID and an explicit limit or unknown; labels follow the MASTER vocabulary."
+  - "Strong inferences are bounded, labeled, and not implementation claims."
+  - "No design proposal; DECISION_LOG, R-019, and parity map keep the reference boundary as comparison input only."
+  - "Handoff files_created/files_modified are inside S0-002 allowed files; governance additions (A-011, A-012, R-016, R-019) match the diff."
+  - "Black-box plan is evidence-first, prohibits production data, real secrets, irreversible actions, and unauthorized tests."
+
+blockers_for_task: []
+recommended_next_task: FIX_TASK_S0-002
+recommended_fix_scope: "Author edits 02_research/GROK_BOT_BASELINE_2026-08-21.md, 01_governance/SOURCE_LEDGER.csv, and 99_handoffs/completed/S0-002_handoff.yaml for F-S0-002-01..07 (all inside S0-002 allowed files); no architecture, wedge, or scope change; re-run the verification_method commands above, then verifier decision. REVIEW_TASK_S0-003 may proceed in parallel."
+repository_commit_or_patch: "Review performed against committed state 43daad7 with live and archived web sources accessed 2026-08-21 19:30-20:30Z; review artifact and governance updates left uncommitted in the working tree for the founder to commit."

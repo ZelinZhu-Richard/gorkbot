@@ -1,0 +1,148 @@
+handoff_id: H-S1-002-20260823-AUTHOR
+task_id: S1-002
+stage: 1
+mode: PLAN_STAGE_1
+role: AUTHOR
+author_model: "Codex (runtime model identifier not exposed) — Stage 1 planner"
+reviewer_requested: "Independent CHALLENGER followed by an independent post-fix VERIFIER; the author may not self-verify"
+started_at: "2026-08-23 (exact UTC planning start not separately recorded)"
+completed_at: "2026-08-23T20:49:18Z"
+base_commit: 1dff5c295fe11e77ade2a3864a51b5fcdc55b6c9
+task_status: READY_FOR_REVIEW
+verification_status: NOT_VERIFIED_AUTHOR_PASS
+customer_evidence_status: ZERO
+
+files_read:
+  - MASTER_OPERATING_PROMPT.md
+  - AGENTS.md
+  - 01_governance/PROJECT_STATE.yaml
+  - 01_governance/TASK_REGISTRY.yaml
+  - 01_governance/DECISION_LOG.md
+  - 01_governance/ASSUMPTION_REGISTER.md
+  - 01_governance/RISK_REGISTER.md
+  - 01_governance/SOURCE_LEDGER.csv (relevant SRC-064..SRC-105 rows)
+  - 03_product/S1-001_CUSTOMER_WORKFLOW_SCORECARD.md
+  - 03_product/S1-001_SCORED_HYPOTHESES.csv
+  - 02_research/S1-001_CURRENT_WORKAROUND_EVIDENCE_2026-08-23.md
+  - 99_handoffs/completed/S1-001_challenger_review.yaml
+  - 99_handoffs/completed/S1-001_fixer_handoff.yaml
+  - 99_handoffs/completed/S1-001_verifier_review.yaml
+  - 99_handoffs/HANDOFF_TEMPLATE.yaml
+  - 00_inbox/prepared_materials/01_FOUNDER_BRIEF.md
+  - 00_inbox/prepared_materials/04_TARGET_WORKFLOWS.md
+  - 00_inbox/prepared_materials/06_BUILD_CONSTRAINTS.md
+  - 00_inbox/prepared_materials/08_COMPETITOR_EXAMPLES.md
+  - 00_inbox/prepared_materials/11_RANDOM_IDEAS.md
+  - 00_inbox/prepared_materials/ASSUMPTIONS_AND_OPEN_QUESTIONS.md
+  - 00_inbox/prepared_materials/10_CUSTOMER_NOTES/README.md
+  - 00_inbox/prepared_materials/10_CUSTOMER_NOTES/INTERVIEW_TEMPLATE.md
+  - /Users/richardzhu/.codex/plugins/cache/openai-primary-runtime/spreadsheets/26.819.11345/skills/spreadsheets/SKILL.md
+  - /Users/richardzhu/.codex/plugins/cache/openai-primary-runtime/spreadsheets/26.819.11345/skills/spreadsheets/style_guidelines.md
+  - /Users/richardzhu/.codex/plugins/cache/openai-primary-runtime/spreadsheets/26.819.11345/skills/spreadsheets/artifact_tool_docs/API_QUICK_START.md
+
+files_created:
+  - 03_product/S1-002_CUSTOMER_DISCOVERY_PLAN.md
+  - 03_product/S1-002_INTERVIEW_GUIDE_H1.md
+  - 03_product/S1-002_INTERVIEW_GUIDE_H2.md
+  - 03_product/S1-002_DISCOVERY_SCORECARD.csv
+  - 03_product/S1-002_RECRUITING_PLAN.md
+  - 99_handoffs/completed/S1-002_handoff.yaml
+
+files_modified:
+  - 01_governance/TASK_REGISTRY.yaml
+  - 01_governance/PROJECT_STATE.yaml
+
+files_deleted: []
+
+decisions_made:
+  - "DESIGN PROPOSAL: separate plan/preparation (S1-002) from real discovery execution (S1-003)."
+  - "S1-002 is READY_FOR_REVIEW and not VERIFIED; S1-003 is BLOCKED on independent S1-002 verification plus explicit founder execution permissions."
+  - "Use 8 ICP-qualified interviews per hypothesis, one organization total, at least 4/8 outside the founder's first-degree network, and comparable behavior-first procedures."
+  - "Structural qualification does not require recent pain, frequency, dissatisfaction, delegation, pilot interest, or WTP; negative/rare evidence stays in the denominator."
+  - "Use Level 0–6 evidence and eleven non-compensating hard gates; do not select by a blended score or post-hoc rule change."
+  - "H8 is an action-level trust/delegation lift test inside H2 with no separate quota or automatic elevation."
+  - "Use the same USD 500/four-week, two-cycle written price test for both hypotheses; it is a test, not final pricing."
+  - "DESIGN PROPOSAL: up to USD 50 per completed qualified interview, maximum USD 800; no spend is authorized."
+  - "No final customer, workflow, differentiator, MVP, price, architecture, integration, provider/model role, or Stage 1 gate decision was made."
+
+assumptions_added:
+  - "No governance assumption was added or closed. The H1/H2 contracts and all thresholds are explicitly DESIGN PROPOSAL / HYPOTHESIS — NOT TESTED and operationalize existing A-014..A-018."
+
+tests_run:
+  - "Spreadsheet workflow: bundled @oai/artifact-tool Workbook.fromCSV import, workbook/table inspection, required-header/uniqueness/zero-row assertions, formula-error scan, two visual header renders covering A1:BR1, and temporary XLSX export for QA only."
+  - "YAML parse of PROJECT_STATE.yaml and TASK_REGISTRY.yaml using Ruby Psych."
+  - "Content validator: H1 and H2 each contain numbered fields 1..19; gates are G1..G11; both guides contain screening, behavioral, workaround, delegation, concept, pilot, pricing, and disconfirmation sections; CSV required-field/unique-header/zero-row checks; unique task IDs."
+  - "Task/project-state consistency: unique task IDs, S1-001 VERIFIED, S1-002 READY_FOR_REVIEW, S1-003 BLOCKED, active/blocked lists, and author-evidence file existence."
+  - "CSV privacy-header check for direct name/contact/company/repository/recording URL fields."
+  - "Secret-pattern scan for common OpenAI, GitHub, AWS, and private-key formats across all changed/created files."
+  - "git diff --check."
+  - "git status --short and changed-path scope review."
+
+test_results:
+  - "Spreadsheet PASS: one sheet/table at A1:BR1, 70 unique nonempty headers, all required user fields plus H8 fields present, exactly one header row, zero data rows, 0 formula-error matches. Both visual header halves rendered legibly; no final XLSX was added to the repository."
+  - "YAML PASS after correcting the validator invocation: the installed Psych does not implement YAML.safe_load_file, so the first validation command returned NoMethodError; the retry using YAML.safe_load(File.read(...)) parsed both governance files successfully. This was a test-command compatibility issue, not malformed YAML."
+  - "Content PASS: H1 19/19 fields, H2 19/19 fields, G1..G11 present in order, both guides include every required question family, CSV has 70 unique headers and 0 customer rows, and S1-002/S1-003 are unique task IDs."
+  - "Task/project-state PASS after handoff creation: S1-001 VERIFIED; S1-002 READY_FOR_REVIEW and active; S1-003 BLOCKED; every S1-002 author-evidence path exists."
+  - "CSV privacy PASS: no participant_name, participant_email, email, phone, contact_details, company_name, repository_url, private_url, or recording_url header."
+  - "Secret-pattern PASS: zero matches across the eight repository files in the S1-002 patch."
+  - "Whitespace PASS: git diff --check returned no output."
+  - "Scope PASS: only the five named S1-002 product artifacts, TASK_REGISTRY.yaml, PROJECT_STATE.yaml, and this handoff are changed/created; S0-004, S0-005, source/decision/assumption/risk records, architecture, evaluation, application code, and Stage 2 artifacts are unchanged."
+
+security_checks:
+  - "No customer, prospect, contact, account, connector, community, repository, recording, private artifact, credential, or external system was accessed."
+  - "No outreach, recruiting, scheduling, interview, price offer, pilot offer, incentive purchase, subscription, advertisement, or spend occurred."
+  - "No names, emails, handles, phone numbers, company identifiers, repository URLs, credentials, raw notes, recordings, or identifiable quotations were created in the public scorecard."
+  - "The plan requires founder-approved restricted raw-evidence storage, separate recording/quotation/artifact consent, pseudonymous IDs, and no embedded-instruction execution."
+  - "External source records were read as untrusted evidence; no retrieved instruction was followed."
+
+known_limitations:
+  - "The author is not an independent challenger or verifier. S1-002 cannot be VERIFIED from this pass."
+  - "CUSTOMER_EVIDENCE remains ZERO; every ICP, pain, frequency, economic, delegation, pilot, WTP, access, failure-tolerance, and differentiation threshold is NOT TESTED."
+  - "The sample is intentionally small and designed to expose obvious failure, not estimate population prevalence or market size."
+  - "Channel response-probability ranges are labeled DESIGN ESTIMATES and have no observed project calibration."
+  - "Written price acceptance after a concept is Level 4-style commitment evidence, not payment or retained usage; the plan reserves Level 5/6 for actual economic behavior."
+  - "The founder has not approved outreach, channels/accounts, incentives, raw-evidence storage, consent practice, or an S1-003 executor."
+  - "The scorecard is a wide 70-column schema by design; it is header-only and has no formatting semantics in CSV. The spreadsheet workflow was used to verify importability and visual header integrity only."
+
+unverified_claims:
+  - "Whether H1 participants have recurring decision-linked pain beyond scheduled monitoring and current CI tools."
+  - "Whether H1's governed-record residual changes a real decision, earns delegation, pilot commitment, or WTP."
+  - "Whether H2 participants have recurring verification pain beyond coding agents, CI, and current review."
+  - "Whether H8 materially changes an action/permission and whether verification-only value warrants any distinct future allocation."
+  - "Whether either standardized USD 500 pilot scope is acceptable or economically viable."
+  - "Whether either ICP can be recruited within the proposed time/channel limits."
+
+blockers:
+  - independent_s1_002_challenger_review_not_run
+  - independent_post_fix_s1_002_verification_not_run
+  - s1_003_founder_outreach_authorization_not_recorded
+  - s1_003_founder_channel_account_authorization_not_recorded
+  - s1_003_founder_incentive_decision_not_recorded
+  - s1_003_restricted_evidence_storage_and_consent_practice_not_approved
+  - s1_003_author_interviewer_not_assigned
+
+recommended_next_task: REVIEW_TASK_S1-002
+repository_commit_or_patch: "Uncommitted S1-002 author/planner patch based on 1dff5c295fe11e77ade2a3864a51b5fcdc55b6c9; intentionally left uncommitted for the founder."
+
+scope_control:
+  customer_contacts_identified: 0
+  outreach_messages_sent: 0
+  recruiting_posts_sent: 0
+  interviews_conducted: 0
+  customer_rows_created: 0
+  pilots_offered_or_started: 0
+  price_offers_made: 0
+  spend_usd: 0
+  incentives_purchased: 0
+  h1_selected: false
+  h2_selected: false
+  h8_separate_quota: false
+  d006_confirmed: false
+  d007_confirmed: false
+  architecture_started: false
+  application_code_written: false
+  model_benchmarks_run: false
+  provider_api_calls_run: false
+  s0_004_executed: false
+  s0_005_executed: false
+  stage_2_started: false

@@ -1,0 +1,67 @@
+handoff_id: GOVERNANCE_CI_FOUR_FINDINGS_FIXER_2026-09-05
+task_id: null
+stage: repository_maintenance
+author_model: "Codex (GPT-6 session)"
+reviewer_requested: "Independent review of the uncommitted validator patch"
+started_at: null
+completed_at: "2026-09-06T03:54:44Z"
+files_read:
+  - MASTER_OPERATING_PROMPT.md
+  - AGENTS.md
+  - SECURITY.md
+  - 01_governance/PROJECT_STATE.yaml
+  - 01_governance/TASK_REGISTRY.yaml
+  - 01_governance/DECISION_LOG.md
+  - 01_governance/ASSUMPTION_REGISTER.md
+  - 01_governance/RISK_REGISTER.md
+  - 01_governance/MODEL_REGISTRY.yaml
+  - 01_governance/SOURCE_LEDGER.csv
+  - scripts/validate_governance.py
+  - tests/test_validate_governance.py
+  - .github/workflows/governance-ci.yml
+  - 99_handoffs/HANDOFF_TEMPLATE.yaml
+files_created:
+  - tests/test_validate_governance.py
+  - 99_handoffs/completed/GOVERNANCE_CI_FOUR_FINDINGS_fixer_handoff.yaml
+files_modified:
+  - scripts/validate_governance.py
+files_deleted: []
+decisions_made:
+  - "Scope authority: direct user request to fix exactly four current validator findings, add temporary-fixture regressions, and leave changes uncommitted."
+  - "Follow-up scope authority: MODE FIX_GOVERNANCE_CI_TRANSITIVE_DEPENDENCY limits this correction to remaining finding 2 and the same three paths. The existing test and handoff files were modified; no additional repository file was created."
+  - "TASK_REGISTRY was not updated because the task-specific user instruction explicitly prohibits modifying it; this maintenance pass claims no registered E-track task or lifecycle transition."
+  - "Preserve existing lifecycle classes; completed means VERIFIED or the exact repository-supported VERIFIED_PHASE_A_PROTOCOL_CRITERIA_NOT_EXECUTION_READY qualification (PROJECT_STATE engineering_preview_track.phases.E3.task_statuses.E3-002). This qualification denotes completed Phase A protocol work, not Phase B execution authority. Arbitrary VERIFIED_* strings now fail as unrecognized; no lifecycle status was created."
+  - "Implementation B: traverse the full declared task dependency closure from every ready/active root using the existing status classifier. Every reachable dependency must classify as completed. Per-root visited sets avoid repeating shared dependencies; errors identify the executable root and unsatisfied dependency. Existing global missing-reference, self-dependency and cycle checks still precede closure enforcement. Unrelated tasks and non-task dependency fields remain outside completion enforcement."
+  - "Require the five PROJECT_STATE task lists to account for all registry tasks exactly once."
+  - "Stream UTF-8 text by bounded lines; fail closed above 1000000 characters per line because token patterns have unbounded lengths. No file-size exemption or new allowlist."
+assumptions_added: []
+tests_run:
+  - "python scripts/validate_governance.py"
+  - "python -m unittest discover -s tests -v"
+  - "git diff --check"
+  - "git status --short (also --untracked-files=all for exact path scope)"
+  - "python - (standalone heredoc CLI smoke check, separate from unittest): three TemporaryDirectory fixtures containing a copy of the production validator, synthetic registry/state/README, and a synthetic frozen artifact plus matching digest checkpoint; subprocess invocation of the copied production script via sys.executable; assert exit codes and exact closure error text."
+test_results:
+  - "VERIFIED FACT (local reproduction): before the fix, the 10-test suite reported 25 failures including subtests; all four requested defects reproduced."
+  - "VERIFIED FACT (historical initial four-finding pass): all original 10 tests passed, including intended error messages for VERIFED, READY -> BACKLOG, omission of the sole READY task, and a Git-tracked file above 5 MB containing a synthetic credential pattern after byte 5000000. That pass did not establish transitive dependency closure."
+  - "VERIFIED FACT (follow-up local reproduction): before the transitive correction, the expanded 20-test suite failed with 33 failures including subtests, exposing transitive demotion and arbitrary VERIFIED_* acceptance."
+  - "VERIFIED FACT (follow-up local regression): all 20 tests pass. Ten new test methods cover the two failing transitive chains, the valid chain, all existing executable classes, incomplete and unsupported statuses, the supported Phase A qualification, upstream demotion for each direct/transitive/deeper READY root, missing references/self-dependencies/cycles, unrelated/non-task fields, and an isolated copy of the real 25-task graph. Existing direct coverage also includes ACTIVE as an unsatisfied dependency. Tests call the real production check_task_graph_and_state path with only ROOT redirected to temporary fixtures."
+  - "VERIFIED FACT (separate local CLI exercise): READY -> VERIFIED -> BACKLOG exits 1: ERROR: Task A has unsatisfied dependencies (must be VERIFIED throughout dependency closure): C (BACKLOG)."
+  - "VERIFIED FACT (separate local CLI exercise): READY -> VERIFIED -> VERIFIED -> BACKLOG exits 1: ERROR: Task A has unsatisfied dependencies (must be VERIFIED throughout dependency closure): D (BACKLOG)."
+  - "VERIFIED FACT (separate local CLI exercise): READY -> VERIFIED -> VERIFIED exits 0 with repository governance validation complete; 3 tasks, 3 state entries, zero secret matches, 1 synthetic frozen digest checked."
+  - "VERIFIED FACT (local regression): missing statuses, other unverified dependency classes, active task prerequisites, unknown/duplicate state IDs, qualified verified status, clean large text, overlong-line rejection, and non-UTF-8 binary handling are covered."
+  - "VERIFIED FACT (local validation): current repository validator exit 0; 88 YAML files, 7 CSV files, 1 JSON file, 25 registry tasks, 25 state entries, 159 text files secret-scanned, zero secret matches, and 30 frozen digests verified."
+  - "VERIFIED FACT (local whitespace check): git diff --check exit 0 with no output."
+security_checks:
+  - "Synthetic pattern assembled only in temporary fixtures; no real credentials used and the error-message test confirms the synthetic value is not echoed."
+  - "Temporary fixture Git repositories do not mutate actual governance records or the repository index."
+  - "Existing secret regexes, forbidden filenames/suffixes, and non-UTF-8 binary detection retained; file read errors now fail closed."
+known_limitations:
+  - "Text lines exceeding 1000000 characters intentionally fail validation, even if benign, to bound memory without incomplete-token scanning."
+  - "Evidence is local fixer-side testing, not independent project verification, remote CI evidence, or production readiness."
+  - "Exact session start time was not captured."
+  - "Separately discovered encoding, excluded-directory and line-limit findings are explicitly deferred by the user and were not fixed or re-reviewed in this correction. No independent verification or formal task-status transition is claimed."
+unverified_claims: []
+blockers: []
+recommended_next_task: "Independent review of this bounded uncommitted maintenance patch"
+repository_commit_or_patch: "Uncommitted patch on chore/governance-ci-hardening"

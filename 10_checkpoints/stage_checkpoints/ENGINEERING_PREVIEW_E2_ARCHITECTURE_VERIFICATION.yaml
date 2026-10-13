@@ -1,0 +1,410 @@
+checkpoint_id: ENGINEERING_PREVIEW_E2_ARCHITECTURE_VERIFICATION
+mode: EXECUTE_TASK_E2-006
+program: ENGINEERING_PREVIEW
+stage: E2
+stage_name: engineering_preview_architecture_and_adrs
+task_id: E2-006
+record_type: INDEPENDENT_ARCHITECTURE_VERIFICATION
+claim_class: VERIFICATION_RECORD
+verdict: E2_006_VERIFIED
+e2_006_task_status: VERIFIED
+architecture_status: SELECTED_VERIFIED_PENDING_E2_GATE
+architecture_candidate: EP-ARCH-C01
+architecture_candidate_name: Integrated Transactional Local Core
+adr_status: SELECTED_VERIFIED_PENDING_E2_GATE
+verified_adr_count: 9
+accepted_adr_count: 0
+e2_gate_id: engineering_preview_e2_architecture_gate
+e2_gate_status: NOT_EVALUATED
+e2_gate_evaluated_by_this_record: false
+e2_gate_evidence_owner: "MODE: VERIFY_STAGE_E2 (10_checkpoints/stage_checkpoints/ENGINEERING_PREVIEW_E2_ARCHITECTURE_GATE_VERIFICATION.yaml; not this file)"
+verified_at_utc: "2026-08-30T06:20:00Z"
+reviewed_commit: 85902bfc61f9ebb8363f6b4d69194c3a1a275f14
+pre_verification_worktree_status: CLEAN
+verification_patch_status: UNCOMMITTED_FOR_FOUNDER
+precedent: 10_checkpoints/stage_checkpoints/ENGINEERING_PREVIEW_E1_SPECIFICATION_GATE_VERIFICATION.yaml
+companion_review: 99_handoffs/completed/E2-006_verifier_review.yaml
+
+verifier:
+  role: INDEPENDENT_ARCHITECTURE_VERIFIER
+  model: "Claude Fable 5 (claude-fable-5) via Claude Code"
+  independence: >-
+    Fresh session independent of the Codex E2-005 author/fixer session and of every author-side
+    assistant; no shared conversation state with the E2-005 challenger or task-verifier sessions
+    or any E2-001..E2-004, S0/S1, E0, or E1 session; same model/product as those challenger and
+    verifier sessions, disclosed per repository precedent. Disclosure: the charter names "Claude
+    Code" among the E3 candidate systems; this verification selects no role occupant, provider,
+    model, technology, or product. Every count, join, closure, hash, blob, path set and status map
+    was recomputed from committed bytes at 85902bf with scratchpad ruby 2.6 Psych/CSV scripts,
+    git, grep, find and shasum; prior author/challenger/fixer/verifier summaries were read but
+    not relied on. No subagents, network retrieval, login, account, API key, paid call, spend,
+    spike, benchmark, evaluation-case implementation or execution, application code, ADR
+    acceptance, E2 gate evaluation, or E3 execution was used or produced. No architecture, ADR,
+    baseline, E3-register, candidate, comparison, closure, E2-001, frozen E1, research,
+    DECISION_LOG, MODEL_REGISTRY or README file was modified; no finding was fixed.
+  method: >-
+    Read the E2-006 registry contract first, then MASTER_OPERATING_PROMPT, AGENTS, README,
+    SECURITY, the six governance records, D-016, the frozen E1 artifacts (charter in full; PRD,
+    user flows, correctness contract, contribution workflow, evaluation suite, benchmark plan and
+    release checkpoint in the sections the architecture must preserve; E1 gate record in full),
+    the verified E2-001 requirements and trace, the E2 plan, the alternatives overview, all three
+    candidate records, the comparison, matrix, uncertainty register and closure, the E2-001..
+    E2-004 verifier reviews, the E2-005 handoff/challenger/fixer/verifier records, the
+    reconstructed-audit sections used for clean-room and SP-C provenance, the Grok Bot baseline,
+    and the proposed baseline, E3 register and nine ADRs in full. Re-derived the C01 selection,
+    the no-hybrid identity, the 127/65/25 projections, the 59 hard-AR dispositions, the E3V
+    handback closure, and the recovery/security/approval/protected-entry/provider/evidence/
+    observability/testability architectures independently; ran every mechanical check below.
+
+verification_question: >-
+  Does the proposed EP-ARCH-C01 + ADR-E2-001..009 baseline faithfully implement the frozen E1
+  requirements at the architecture level, preserve every hard requirement and safety boundary,
+  truthfully carry unresolved empirical obligations into E3, and form a sufficiently coherent and
+  stable architecture baseline for the E2 stage gate?
+verification_answer: YES
+
+authority:
+  e2_006_registry_entry: "01_governance/TASK_REGISTRY.yaml task E2-006 at 85902bf"
+  completion_transition_applied: "On PASS, E2-006 becomes VERIFIED, ADRs and the architecture baseline may be recorded SELECTED_VERIFIED_PENDING_E2_GATE, and MODE: VERIFY_STAGE_E2 becomes the only next E-track operation."
+  transitions_not_made: "E2 gate not passed; no ADR ACCEPTED; E3 not started; no model/provider/role occupant selected; no paid call; no application code; AUTONOMY_ELIGIBLE unchanged NOT_ELIGIBLE; AUTONOMOUS_BUILD_AUTHORIZED unchanged NO; S1-003 unchanged DEFERRED."
+  adr_file_self_status: "ADR/baseline/E3-register files are outside E2-006 allowed paths and are forbidden content changes; their 'Status: PROPOSED_PENDING_INDEPENDENT_ARCHITECTURE_VERIFICATION' lines are historical per precedent; the verified status is recorded here, in TASK_REGISTRY and in PROJECT_STATE."
+
+reviewed_artifact_digests_sha256:
+  05_architecture/ENGINEERING_PREVIEW_ARCHITECTURE_BASELINE.md: 6a80babee9cb23ee58241663c2cc73d5e36916a3e1270cfa65330a17755b599d
+  05_architecture/ENGINEERING_PREVIEW_E3_VALIDATION_OBLIGATIONS.md: 5c8b5b26bfdc593800200d7c60451676a426fc2477263df1ccba2812c9f51f4b
+  05_architecture/adr/ADR-E2-001_SYSTEM_CLIENT_CORE_BOUNDARY.md: abcbe273e762a14c39328d28bc2c2fd6414bf803929336c8e26d18d36e93df23
+  05_architecture/adr/ADR-E2-002_STATE_PERSISTENCE_HISTORY_PROJECTIONS_MIGRATION.md: 71572486589bfe68fdce42ee7307f7eef3df55d49dd589fda7b524580e481441
+  05_architecture/adr/ADR-E2-003_ORCHESTRATION_OWNERSHIP_RECOVERY_IDEMPOTENCY.md: 77ae13e6db508afb1ed8cb4c1ba8bdf80623f76185dd89869f9946207bc60277
+  05_architecture/adr/ADR-E2-004_WORKSPACE_EXECUTION_ISOLATION_GIT_REMOTE_SEAM.md: c07f75f2697c80a1abbc85dc0a75f26b858642cb1886cf1a90fe58cd5f86b29f
+  05_architecture/adr/ADR-E2-005_CAPABILITY_APPROVAL_SECRET_EFFECT_RECONCILIATION.md: 3a363d8df54aca75d9e0273c1feb17d4f9e3a99aa957f747c873492f6063a0f9
+  05_architecture/adr/ADR-E2-006_MODEL_PROVIDER_ROUTING_CONTEXT_BOUNDARY.md: a80be98a2897ce86ad3055bcf1106b018c5f163d1114876e8f0588f9966441c9
+  05_architecture/adr/ADR-E2-007_VERIFICATION_EVIDENCE_ARTIFACT_INTEGRITY.md: ee81d671157f5408bb36193d3a9ee7ad985d68107bf91f2f70471af753bf4ecd
+  05_architecture/adr/ADR-E2-008_OBSERVABILITY_AUDIT_METERING_FAILURE.md: 4dc30f868ba36a3b11a3f2ca8a4533d4159ac13e4cef752bf122e4944409919e
+  05_architecture/adr/ADR-E2-009_LOCAL_PACKAGING_FUTURE_COMPATIBILITY.md: 44c4f3db29d1bcd8aa9b609aad84b50e5da953f4e5d2f484a7d99db3b8c109d3
+  05_architecture/ENGINEERING_PREVIEW_ARCHITECTURE_REQUIREMENTS.md: 6d2a17d9b1f6c1fec1bcecd09fc845a005636f98ad4df07782b4ac969731f955
+  05_architecture/ENGINEERING_PREVIEW_E1_ARCHITECTURE_TRACEABILITY.csv: f169aa82a462fd009b19810ad9bf095882601b099b78a6e5b06ecf69e98200b9
+  05_architecture/ENGINEERING_PREVIEW_E2_ARCHITECTURE_PLAN.md: 4867fabd3bcd9a2e24f9b506dce6af1ab3bd8e21e63ce567e8e1da3fad5de44a
+  05_architecture/ENGINEERING_PREVIEW_ARCHITECTURE_ALTERNATIVES.md: 51c3bf492b5ee2f13108f0915ee5c70db3f382ed5d2a715889713574470cceb6
+  05_architecture/candidates/EP-ARCH-C01.yaml: ea9ff609a2c89c96b721fef4f6005d28238940b17085ffc2d82a13ff5b688e92
+  05_architecture/candidates/EP-ARCH-C02.yaml: 899f7fa0933da3a7657a928f0aa5e2b4b94ffc80778bf6ba8d5a36fb6c45ba81
+  05_architecture/candidates/EP-ARCH-C03.yaml: 72cacf1cf6d7d99807b3d0c4c10180bb9dc079516443843ac3c87919d319e4f0
+  05_architecture/ENGINEERING_PREVIEW_ARCHITECTURE_COMPARISON.md: 094da9bb4c2699098d2b94da8682d5a4f435c3607d406f6782e4a4d66f4131d9
+  05_architecture/ENGINEERING_PREVIEW_ARCHITECTURE_DECISION_MATRIX.csv: 0780d87b1311137047d7830b7a4bfd7c8bc4983886d7ce72e485a3584466a24f
+  05_architecture/ENGINEERING_PREVIEW_ARCHITECTURE_UNCERTAINTY_REGISTER.yaml: dc9b53ff254ea561d5ab4494a94642bdd65c90945a084cf7ecd75b11d59b36cd
+  05_architecture/ENGINEERING_PREVIEW_PRESELECTION_UNCERTAINTY_CLOSURE.md: a28d5f890387e7db5b387f92b5f3e4d3cb02008a69338e5d1e56695156875ba3
+  03_product/ENGINEERING_PREVIEW_CHARTER.md: 0038f7aa3511b7e3b63d0d1cc52895c097577d70b004620417b6eb1dd7bbc520
+  03_product/ENGINEERING_PREVIEW_PRD.md: f446e6db5ff95554665db02e4a0decf32b9713e72a54f475083f5ead884c513e
+  03_product/ENGINEERING_PREVIEW_USER_FLOWS.md: a5251d6fc4dbba2929764ffcb4b629ffbbec71bd154e5b380c101dd5563976dc
+  03_product/ENGINEERING_PREVIEW_CORRECTNESS_CONTRACT.md: 243adff11190a4d6f9a28fc458d9a7a225b14522b2aa1ddcd7f5061b51ccd148
+  03_product/ENGINEERING_PREVIEW_CONTRIBUTION_WORKFLOW.md: 2d1a68995eaa2c8130df80d0a3a2dede4a052530be79c1938f2fe9d6409e4fbd
+  06_evaluation/ENGINEERING_PREVIEW_EVALUATION_SUITE.md: e9541c5a359cc01ba13ee66c130c37d92f16b9d05b64726463e37a9868ccd5b6
+  06_evaluation/MODEL_ROLE_BENCHMARK_PLAN.md: 0c723502dad5ae301de5a0ca05cf86aea0571614917022b4f6dd0f2542c2cfc0
+  10_checkpoints/stage_checkpoints/ENGINEERING_PREVIEW_V0_1_RELEASE_ACCEPTANCE.yaml: 69f9c76445be0e6ee7ec3f0c68ddef8d1f29e307bedf26f5453cdfd5d280cc83
+  10_checkpoints/stage_checkpoints/ENGINEERING_PREVIEW_E1_SPECIFICATION_GATE_VERIFICATION.yaml: 6b29e98ecc44b6e7216f041fb86931aaa2ad61acb1525c34d0c54820ebd5a323
+  99_handoffs/completed/E2-005_handoff.yaml: ffeeafb28cdae53ac4ab87751749cb4b971066ce1e4690f4aad94cd5917eea55
+  99_handoffs/completed/E2-005_challenger_review.yaml: dc8a3a521b78e18bada923ae7f7b45e915110812216a16492a7f0c219b4e5ae4
+  99_handoffs/completed/E2-005_fixer_handoff.yaml: c0dc3adbe0e9c1086e9bff4f00ea9fd9100908c07165c29a8b2b4003a85345d8
+  99_handoffs/completed/E2-005_verifier_review.yaml: 5579b64837cc93c076967a83756a4c17213908d64430f4650873d443481bb5d8
+  99_handoffs/completed/E2-004_verifier_review.yaml: 27625c578bd4a1a6c680f34fa7c12b73be2dd028b785145676c392e297fe9026
+  99_handoffs/completed/E2-003_verifier_review.yaml: a8922a1c2a9c52985b7e0044e18dfbcc46503193cd3810583a37077cadc74f4f
+  99_handoffs/completed/E2-002_verifier_review.yaml: 6a6d9d86a31e3d93d6f37d9bdac61a122cd3e5defee6647a690667a8bf5e539a
+  99_handoffs/completed/E2-001_verifier_review.yaml: 1a4b4494014e7fe2117a04f078e2bf7038a042d36c90b3b97d2326c15ff62c9e
+reviewed_artifact_git_blobs:
+  05_architecture/ENGINEERING_PREVIEW_ARCHITECTURE_BASELINE.md: e0b5941a
+  05_architecture/ENGINEERING_PREVIEW_E3_VALIDATION_OBLIGATIONS.md: 578654b5
+  05_architecture/adr/ADR-E2-001_SYSTEM_CLIENT_CORE_BOUNDARY.md: d16b8444
+  05_architecture/adr/ADR-E2-002_STATE_PERSISTENCE_HISTORY_PROJECTIONS_MIGRATION.md: 08ef3e30
+  05_architecture/adr/ADR-E2-003_ORCHESTRATION_OWNERSHIP_RECOVERY_IDEMPOTENCY.md: eb01b6b4
+  05_architecture/adr/ADR-E2-004_WORKSPACE_EXECUTION_ISOLATION_GIT_REMOTE_SEAM.md: d127b2bb
+  05_architecture/adr/ADR-E2-005_CAPABILITY_APPROVAL_SECRET_EFFECT_RECONCILIATION.md: 14f073f1
+  05_architecture/adr/ADR-E2-006_MODEL_PROVIDER_ROUTING_CONTEXT_BOUNDARY.md: 73ec03f7
+  05_architecture/adr/ADR-E2-007_VERIFICATION_EVIDENCE_ARTIFACT_INTEGRITY.md: 8aa32117
+  05_architecture/adr/ADR-E2-008_OBSERVABILITY_AUDIT_METERING_FAILURE.md: 823c6468
+  05_architecture/adr/ADR-E2-009_LOCAL_PACKAGING_FUTURE_COMPATIBILITY.md: 6775d3d9
+  frozen_e1_blobs_equal_to_e1_gate_record: "charter 50f21ea0, PRD 4a817887, user flows e09e92f7, contract 8e11bdf0, contribution workflow 4c834fc0, evaluation suite 3d474bbd, benchmark plan cc902fb9, release checkpoint f1c3fc21, E1 gate record 3554fc1e"
+input_pins_reproduced:
+  trace: f169aa82a462fd009b19810ad9bf095882601b099b78a6e5b06ecf69e98200b9
+  matrix: 0780d87b1311137047d7830b7a4bfd7c8bc4983886d7ce72e485a3584466a24f
+  EP-ARCH-C01: ea9ff609a2c89c96b721fef4f6005d28238940b17085ffc2d82a13ff5b688e92
+  EP-ARCH-C02: 899f7fa0933da3a7657a928f0aa5e2b4b94ffc80778bf6ba8d5a36fb6c45ba81
+  EP-ARCH-C03: 72cacf1cf6d7d99807b3d0c4c10180bb9dc079516443843ac3c87919d319e4f0
+  closure: a28d5f890387e7db5b387f92b5f3e4d3cb02008a69338e5d1e56695156875ba3
+  result: "6/6 equal to baseline section 20"
+
+preconditions:
+  result: PASS
+  E2-001: "VERIFIED against 0d702b8 (99_handoffs/completed/E2-001_verifier_review.yaml; artifacts unchanged since)"
+  E2-002: "VERIFIED against 1a1c542 (E2-002_verifier_review.yaml; candidates SHA-256 equal to pins)"
+  E2-003: "VERIFIED against e5d541c (E2-003_verifier_review.yaml; comparison/matrix/register unchanged since)"
+  E2-004: "VERIFIED against 1f35f73 (E2-004_verifier_review.yaml at 7f70f0e; closure SHA-256 equal to pin; NO_PRESELECTION_SPIKE_REQUIRED)"
+  E2-005: "VERIFIED against 2c4b3fa (E2-005_verifier_review.yaml at 85902bf) as a challenged (F-E2-005-01..09 RESOLVED) PROPOSED selection package; baseline/E3 register/ADRs unchanged since 2c4b3fa"
+  E1_gate: "VERIFIED / E1_GATE_PASSED against 7bbfebd; nine frozen E1 blobs identical"
+  E2_006_pre_state: "READY / READY_NOT_CLAIMED_NOT_EXECUTED; dependencies [E2-005]; blocked_by []; activation condition SATISFIED"
+  e2_gate_before: NOT_EVALUATED
+  architecture_before: "NOT_SELECTED (architecture_selected false; preferred_candidate null; proposed_candidate EP-ARCH-C01 PROPOSED_PENDING_INDEPENDENT_ARCHITECTURE_VERIFICATION); ADRs 9 proposed / 0 accepted / 0 verified"
+  execution_counters_before: "architecture spikes 0; application code NONE; evaluation cases run 0; model benchmarks 0; paid API calls 0; external actions 0; MODEL_REGISTRY 13/13 HYPOTHESIS_ONLY / NOT_RUN"
+  autonomy_before: "AUTONOMY_ELIGIBLE NOT_ELIGIBLE; AUTONOMOUS_BUILD_AUTHORIZED NO; founder_authorization_status NOT_RECORDED"
+  s1_003_before: "BLOCKED / DEFERRED (PAUSED_BY_D016_ENGINEERING_FIRST_PIVOT); execution_started false; counters 0"
+  governance_reconciled: "PROJECT_STATE and TASK_REGISTRY agree on every field above; 17 unique task IDs; dependencies resolve; acyclic"
+
+section_results:
+  c01_selection_rationale: C01_SELECTION_RATIONALE_PASS
+  no_hidden_hybrid: NO_HIDDEN_HYBRID_PASS
+  ar_coverage: AR_COVERAGE_PASS
+  hard_requirements: HARD_REQUIREMENTS_PASS
+  e3_outstanding_truth: E3_OUTSTANDING_TRUTH_PASS
+  adr_set: ADR_SET_PASS
+  adr_status: ADR_STATUS_PASS
+  cross_adr_consistency: CROSS_ADR_CONSISTENCY_PASS
+  state_ownership: STATE_OWNERSHIP_PASS
+  recovery_architecture: RECOVERY_ARCHITECTURE_PASS
+  partial_filesystem: PARTIAL_FILESYSTEM_PASS
+  approval_effect: APPROVAL_EFFECT_PASS
+  threat_model: THREAT_MODEL_PASS
+  execution_isolation: EXECUTION_ISOLATION_PASS
+  protected_entry: PROTECTED_ENTRY_PASS
+  model_provider: MODEL_PROVIDER_PASS
+  evidence_verification: EVIDENCE_VERIFICATION_PASS
+  observability_boundary: OBSERVABILITY_BOUNDARY_PASS
+  testability: TESTABILITY_PASS
+  e3v_handback_closure: E3V_HANDBACK_PASS
+  e3v_contracts: E3V_CONTRACT_PASS
+  e3v_002: E3V_002_PASS
+  e3v_006: E3V_006_PASS
+  e3_qpa_001: E3_QPA_001_PASS
+  e4_deferrals: E4_DEFERRALS_PASS
+  reversibility_migration: REVERSIBILITY_PASS
+  rejected_alternatives: REJECTED_ALTERNATIVES_PASS
+  decision_rule: DECISION_RULE_PASS
+  clean_room: CLEAN_ROOM_PASS
+  technology_neutrality: TECHNOLOGY_NEUTRALITY_PASS
+  no_implementation: NO_IMPLEMENTATION_PASS
+  frozen_artifacts: FROZEN_ARTIFACTS_PASS
+  governance_reconciliation: GOVERNANCE_RECONCILIATION_PASS
+  detailed_evidence: "per-section evidence, the thirteen cross-ADR pair analyses, the challenger-finding dispositions and the eleven NOTEs are recorded in 99_handoffs/completed/E2-006_verifier_review.yaml"
+
+candidate_rederivation:
+  hard_gate_per_candidate: "C01, C02, C03 each 59 hard = 57 CONFIRMED_SATISFIED_FOR_COMPARISON + 2 ARCHITECTURE_SEAM_CONFIRMED_E3_VALIDATION_OUTSTANDING (AR-EXE-003 -> E3V-002; AR-SEC-006 -> E3V-006) + 0 ARCHITECTURE_BLOCKING_SPIKE + 0 KNOWN_VIOLATION; input map 52/5/2/0 preserved; no hidden hard violation"
+  preferences: "6 x 3 QUALITATIVE_TRADEOFF_NO_SCORE; no weights, scores, ranks or additive counts anywhere"
+  sensitivity_profiles: "7/7 acknowledged consistently with comparison section 17.2; none an overall winner"
+  decision_rule: "ordered non-numeric rule: hard tie -> D-016 REQUIRED_NOW scope (non-discriminating alone) -> present-structure proportionality per E2 plan section 15 and AR-PRF-002/004 rationale applied once -> future evolution retained as preference and reopen surface -> missing E3 evidence never favorable; contributor accessibility from comparison sections 5/13/17.2, not process count"
+  c01_costs_stated: "broad-core coupling and crash radius; no live deadline enforcement while the core is absent; foundational transactional state/history/effect semantics; costlier later service/remote extraction; heavier broad-core documentation"
+  c02_c03_preserved: "C02 clearest direct remote-worker seam and replaceable leased/fenced workers; C03 strongest causal replay/reconstruction and deterministic reducer fixtures; both 'analytically viable, not proposed' with explicit reopen and migration conditions"
+  hybrid: "none; baseline shape equals verified C01 f02-f30; no daemon, worker plane, journal/reducer authority or C04"
+  independent_conclusion: "EP-ARCH-C01 remains the defensible proposal as best fit for the current verified local-first single-user scope; not an objectively superior architecture"
+
+architecture_requirement_dispositions:
+  total: 65
+  hard: 59
+  preferences: 6
+  hard_summary: "57 ARCHITECTURE_CONFIRMED; 2 E3_VALIDATION_OUTSTANDING; 0 VIOLATED; 0 UNMAPPED"
+  primary_owner_distribution: "ADR-E2-001 1 (0 hard); 002 7 (6); 003 6 (6); 004 11 (11); 005 10 (10); 006 5 (5); 007 11 (10); 008 7 (7); 009 7 (4)"
+  rows:
+    - {ar: AR-APR-001, class: HARD_CONSTRAINT, primary_adr: ADR-E2-005, c01_matrix_result: CONFIRMED_SATISFIED_FOR_COMPARISON, e3_obligation: E3V-006, e2_006_status: ARCHITECTURE_CONFIRMED}
+    - {ar: AR-APR-002, class: HARD_CONSTRAINT, primary_adr: ADR-E2-005, c01_matrix_result: CONFIRMED_SATISFIED_FOR_COMPARISON, e3_obligation: E3V-001, e2_006_status: ARCHITECTURE_CONFIRMED}
+    - {ar: AR-APR-003, class: HARD_CONSTRAINT, primary_adr: ADR-E2-005, c01_matrix_result: CONFIRMED_SATISFIED_FOR_COMPARISON, e3_obligation: E3V-006, e2_006_status: ARCHITECTURE_CONFIRMED}
+    - {ar: AR-COR-001, class: HARD_CONSTRAINT, primary_adr: ADR-E2-003, c01_matrix_result: CONFIRMED_SATISFIED_FOR_COMPARISON, e3_obligation: E3V-001, e2_006_status: ARCHITECTURE_CONFIRMED}
+    - {ar: AR-COR-002, class: HARD_CONSTRAINT, primary_adr: ADR-E2-003, c01_matrix_result: CONFIRMED_SATISFIED_FOR_COMPARISON, e3_obligation: NONE, e2_006_status: ARCHITECTURE_CONFIRMED}
+    - {ar: AR-COR-003, class: HARD_CONSTRAINT, primary_adr: ADR-E2-002, c01_matrix_result: CONFIRMED_SATISFIED_FOR_COMPARISON, e3_obligation: E3V-005, e2_006_status: ARCHITECTURE_CONFIRMED}
+    - {ar: AR-COR-004, class: HARD_CONSTRAINT, primary_adr: ADR-E2-007, c01_matrix_result: CONFIRMED_SATISFIED_FOR_COMPARISON, e3_obligation: E3V-005, e2_006_status: ARCHITECTURE_CONFIRMED}
+    - {ar: AR-COR-005, class: HARD_CONSTRAINT, primary_adr: ADR-E2-007, c01_matrix_result: CONFIRMED_SATISFIED_FOR_COMPARISON, e3_obligation: E3V-005, e2_006_status: ARCHITECTURE_CONFIRMED}
+    - {ar: AR-COR-006, class: HARD_CONSTRAINT, primary_adr: ADR-E2-007, c01_matrix_result: CONFIRMED_SATISFIED_FOR_COMPARISON, e3_obligation: E3V-005, e2_006_status: ARCHITECTURE_CONFIRMED}
+    - {ar: AR-COR-007, class: HARD_CONSTRAINT, primary_adr: ADR-E2-003, c01_matrix_result: CONFIRMED_SATISFIED_FOR_COMPARISON, e3_obligation: E3V-001, e2_006_status: ARCHITECTURE_CONFIRMED}
+    - {ar: AR-CTX-001, class: HARD_CONSTRAINT, primary_adr: ADR-E2-006, c01_matrix_result: CONFIRMED_SATISFIED_FOR_COMPARISON, e3_obligation: E3V-005, e2_006_status: ARCHITECTURE_CONFIRMED}
+    - {ar: AR-CTX-002, class: HARD_CONSTRAINT, primary_adr: ADR-E2-006, c01_matrix_result: CONFIRMED_SATISFIED_FOR_COMPARISON, e3_obligation: E3V-005, e2_006_status: ARCHITECTURE_CONFIRMED}
+    - {ar: AR-DAT-001, class: HARD_CONSTRAINT, primary_adr: ADR-E2-002, c01_matrix_result: CONFIRMED_SATISFIED_FOR_COMPARISON, e3_obligation: E3V-005, e2_006_status: ARCHITECTURE_CONFIRMED}
+    - {ar: AR-DAT-002, class: HARD_CONSTRAINT, primary_adr: ADR-E2-002, c01_matrix_result: CONFIRMED_SATISFIED_FOR_COMPARISON, e3_obligation: E3V-005, e2_006_status: ARCHITECTURE_CONFIRMED}
+    - {ar: AR-DUR-001, class: HARD_CONSTRAINT, primary_adr: ADR-E2-002, c01_matrix_result: CONFIRMED_SATISFIED_FOR_COMPARISON, e3_obligation: E3V-001, e2_006_status: ARCHITECTURE_CONFIRMED}
+    - {ar: AR-DUR-002, class: HARD_CONSTRAINT, primary_adr: ADR-E2-003, c01_matrix_result: CONFIRMED_SATISFIED_FOR_COMPARISON, e3_obligation: E3V-001, e2_006_status: ARCHITECTURE_CONFIRMED}
+    - {ar: AR-DUR-003, class: HARD_CONSTRAINT, primary_adr: ADR-E2-003, c01_matrix_result: CONFIRMED_SATISFIED_FOR_COMPARISON, e3_obligation: E3V-001, e2_006_status: ARCHITECTURE_CONFIRMED}
+    - {ar: AR-DUR-004, class: HARD_CONSTRAINT, primary_adr: ADR-E2-003, c01_matrix_result: CONFIRMED_SATISFIED_FOR_COMPARISON, e3_obligation: E3V-002, e2_006_status: ARCHITECTURE_CONFIRMED}
+    - {ar: AR-DUR-005, class: HARD_CONSTRAINT, primary_adr: ADR-E2-002, c01_matrix_result: CONFIRMED_SATISFIED_FOR_COMPARISON, e3_obligation: E3V-001, e2_006_status: ARCHITECTURE_CONFIRMED}
+    - {ar: AR-DUR-006, class: HARD_CONSTRAINT, primary_adr: ADR-E2-002, c01_matrix_result: CONFIRMED_SATISFIED_FOR_COMPARISON, e3_obligation: E3V-003, e2_006_status: ARCHITECTURE_CONFIRMED}
+    - {ar: AR-EVD-001, class: HARD_CONSTRAINT, primary_adr: ADR-E2-007, c01_matrix_result: CONFIRMED_SATISFIED_FOR_COMPARISON, e3_obligation: E3V-005, e2_006_status: ARCHITECTURE_CONFIRMED}
+    - {ar: AR-EVD-002, class: HARD_CONSTRAINT, primary_adr: ADR-E2-007, c01_matrix_result: CONFIRMED_SATISFIED_FOR_COMPARISON, e3_obligation: E3V-005, e2_006_status: ARCHITECTURE_CONFIRMED}
+    - {ar: AR-EVD-003, class: HARD_CONSTRAINT, primary_adr: ADR-E2-007, c01_matrix_result: CONFIRMED_SATISFIED_FOR_COMPARISON, e3_obligation: E3V-005, e2_006_status: ARCHITECTURE_CONFIRMED}
+    - {ar: AR-EXE-001, class: HARD_CONSTRAINT, primary_adr: ADR-E2-005, c01_matrix_result: CONFIRMED_SATISFIED_FOR_COMPARISON, e3_obligation: E3V-006, e2_006_status: ARCHITECTURE_CONFIRMED}
+    - {ar: AR-EXE-002, class: HARD_CONSTRAINT, primary_adr: ADR-E2-004, c01_matrix_result: CONFIRMED_SATISFIED_FOR_COMPARISON, e3_obligation: E3V-002, e2_006_status: ARCHITECTURE_CONFIRMED}
+    - {ar: AR-EXE-003, class: HARD_CONSTRAINT, primary_adr: ADR-E2-004, c01_matrix_result: ARCHITECTURE_SEAM_CONFIRMED_E3_VALIDATION_OUTSTANDING, e3_obligation: E3V-002, e2_006_status: E3_VALIDATION_OUTSTANDING}
+    - {ar: AR-EXE-004, class: HARD_CONSTRAINT, primary_adr: ADR-E2-004, c01_matrix_result: CONFIRMED_SATISFIED_FOR_COMPARISON, e3_obligation: E3V-006, e2_006_status: ARCHITECTURE_CONFIRMED}
+    - {ar: AR-FAIL-001, class: HARD_CONSTRAINT, primary_adr: ADR-E2-008, c01_matrix_result: CONFIRMED_SATISFIED_FOR_COMPARISON, e3_obligation: E3V-001, e2_006_status: ARCHITECTURE_CONFIRMED}
+    - {ar: AR-FAIL-002, class: HARD_CONSTRAINT, primary_adr: ADR-E2-008, c01_matrix_result: CONFIRMED_SATISFIED_FOR_COMPARISON, e3_obligation: E3V-007, e2_006_status: ARCHITECTURE_CONFIRMED}
+    - {ar: AR-FUT-001, class: HARD_CONSTRAINT, primary_adr: ADR-E2-009, c01_matrix_result: CONFIRMED_SATISFIED_FOR_COMPARISON, e3_obligation: E3V-001, e2_006_status: ARCHITECTURE_CONFIRMED}
+    - {ar: AR-FUT-002, class: HARD_CONSTRAINT, primary_adr: ADR-E2-009, c01_matrix_result: CONFIRMED_SATISFIED_FOR_COMPARISON, e3_obligation: E3V-006, e2_006_status: ARCHITECTURE_CONFIRMED}
+    - {ar: AR-FUT-003, class: HARD_CONSTRAINT, primary_adr: ADR-E2-009, c01_matrix_result: CONFIRMED_SATISFIED_FOR_COMPARISON, e3_obligation: E3V-004, e2_006_status: ARCHITECTURE_CONFIRMED}
+    - {ar: AR-GIT-001, class: HARD_CONSTRAINT, primary_adr: ADR-E2-004, c01_matrix_result: CONFIRMED_SATISFIED_FOR_COMPARISON, e3_obligation: E3V-003, e2_006_status: ARCHITECTURE_CONFIRMED}
+    - {ar: AR-GIT-002, class: HARD_CONSTRAINT, primary_adr: ADR-E2-004, c01_matrix_result: CONFIRMED_SATISFIED_FOR_COMPARISON, e3_obligation: E3V-005, e2_006_status: ARCHITECTURE_CONFIRMED}
+    - {ar: AR-MOD-001, class: HARD_CONSTRAINT, primary_adr: ADR-E2-006, c01_matrix_result: CONFIRMED_SATISFIED_FOR_COMPARISON, e3_obligation: E3V-004, e2_006_status: ARCHITECTURE_CONFIRMED}
+    - {ar: AR-MOD-002, class: HARD_CONSTRAINT, primary_adr: ADR-E2-006, c01_matrix_result: CONFIRMED_SATISFIED_FOR_COMPARISON, e3_obligation: E3V-004, e2_006_status: ARCHITECTURE_CONFIRMED}
+    - {ar: AR-MOD-003, class: HARD_CONSTRAINT, primary_adr: ADR-E2-006, c01_matrix_result: CONFIRMED_SATISFIED_FOR_COMPARISON, e3_obligation: E3V-004, e2_006_status: ARCHITECTURE_CONFIRMED}
+    - {ar: AR-OBS-001, class: HARD_CONSTRAINT, primary_adr: ADR-E2-008, c01_matrix_result: CONFIRMED_SATISFIED_FOR_COMPARISON, e3_obligation: E3V-007, e2_006_status: ARCHITECTURE_CONFIRMED}
+    - {ar: AR-OBS-002, class: HARD_CONSTRAINT, primary_adr: ADR-E2-008, c01_matrix_result: CONFIRMED_SATISFIED_FOR_COMPARISON, e3_obligation: E3V-005, e2_006_status: ARCHITECTURE_CONFIRMED}
+    - {ar: AR-PERF-001, class: HARD_CONSTRAINT, primary_adr: ADR-E2-008, c01_matrix_result: CONFIRMED_SATISFIED_FOR_COMPARISON, e3_obligation: E3V-007, e2_006_status: ARCHITECTURE_CONFIRMED}
+    - {ar: AR-PERF-002, class: HARD_CONSTRAINT, primary_adr: ADR-E2-008, c01_matrix_result: CONFIRMED_SATISFIED_FOR_COMPARISON, e3_obligation: E3V-007, e2_006_status: ARCHITECTURE_CONFIRMED}
+    - {ar: AR-PKG-001, class: HARD_CONSTRAINT, primary_adr: ADR-E2-009, c01_matrix_result: CONFIRMED_SATISFIED_FOR_COMPARISON, e3_obligation: E3V-003, e2_006_status: ARCHITECTURE_CONFIRMED}
+    - {ar: AR-PRF-001, class: WEIGHTED_PREFERENCE, primary_adr: ADR-E2-001, c01_matrix_result: QUALITATIVE_TRADEOFF_NO_SCORE, e3_obligation: E3V-007, e2_006_status: PREFERENCE_QUALITATIVE}
+    - {ar: AR-PRF-002, class: WEIGHTED_PREFERENCE, primary_adr: ADR-E2-009, c01_matrix_result: QUALITATIVE_TRADEOFF_NO_SCORE, e3_obligation: NONE, e2_006_status: PREFERENCE_QUALITATIVE}
+    - {ar: AR-PRF-003, class: WEIGHTED_PREFERENCE, primary_adr: ADR-E2-002, c01_matrix_result: QUALITATIVE_TRADEOFF_NO_SCORE, e3_obligation: E3V-001, e2_006_status: PREFERENCE_QUALITATIVE}
+    - {ar: AR-PRF-004, class: WEIGHTED_PREFERENCE, primary_adr: ADR-E2-009, c01_matrix_result: QUALITATIVE_TRADEOFF_NO_SCORE, e3_obligation: NONE, e2_006_status: PREFERENCE_QUALITATIVE}
+    - {ar: AR-PRF-005, class: WEIGHTED_PREFERENCE, primary_adr: ADR-E2-007, c01_matrix_result: QUALITATIVE_TRADEOFF_NO_SCORE, e3_obligation: E3V-007, e2_006_status: PREFERENCE_QUALITATIVE}
+    - {ar: AR-PRF-006, class: WEIGHTED_PREFERENCE, primary_adr: ADR-E2-009, c01_matrix_result: QUALITATIVE_TRADEOFF_NO_SCORE, e3_obligation: E3V-003, e2_006_status: PREFERENCE_QUALITATIVE}
+    - {ar: AR-SEC-001, class: HARD_CONSTRAINT, primary_adr: ADR-E2-005, c01_matrix_result: CONFIRMED_SATISFIED_FOR_COMPARISON, e3_obligation: E3V-006, e2_006_status: ARCHITECTURE_CONFIRMED}
+    - {ar: AR-SEC-002, class: HARD_CONSTRAINT, primary_adr: ADR-E2-005, c01_matrix_result: CONFIRMED_SATISFIED_FOR_COMPARISON, e3_obligation: E3V-006, e2_006_status: ARCHITECTURE_CONFIRMED}
+    - {ar: AR-SEC-003, class: HARD_CONSTRAINT, primary_adr: ADR-E2-005, c01_matrix_result: CONFIRMED_SATISFIED_FOR_COMPARISON, e3_obligation: E3V-006, e2_006_status: ARCHITECTURE_CONFIRMED}
+    - {ar: AR-SEC-004, class: HARD_CONSTRAINT, primary_adr: ADR-E2-005, c01_matrix_result: CONFIRMED_SATISFIED_FOR_COMPARISON, e3_obligation: E3V-006, e2_006_status: ARCHITECTURE_CONFIRMED}
+    - {ar: AR-SEC-005, class: HARD_CONSTRAINT, primary_adr: ADR-E2-005, c01_matrix_result: CONFIRMED_SATISFIED_FOR_COMPARISON, e3_obligation: E3V-006, e2_006_status: ARCHITECTURE_CONFIRMED}
+    - {ar: AR-SEC-006, class: HARD_CONSTRAINT, primary_adr: ADR-E2-005, c01_matrix_result: ARCHITECTURE_SEAM_CONFIRMED_E3_VALIDATION_OUTSTANDING, e3_obligation: E3V-006, e2_006_status: E3_VALIDATION_OUTSTANDING}
+    - {ar: AR-TST-001, class: HARD_CONSTRAINT, primary_adr: ADR-E2-004, c01_matrix_result: CONFIRMED_SATISFIED_FOR_COMPARISON, e3_obligation: E3V-001, e2_006_status: ARCHITECTURE_CONFIRMED}
+    - {ar: AR-TST-002, class: HARD_CONSTRAINT, primary_adr: ADR-E2-007, c01_matrix_result: CONFIRMED_SATISFIED_FOR_COMPARISON, e3_obligation: E3V-001, e2_006_status: ARCHITECTURE_CONFIRMED}
+    - {ar: AR-TST-003, class: HARD_CONSTRAINT, primary_adr: ADR-E2-008, c01_matrix_result: CONFIRMED_SATISFIED_FOR_COMPARISON, e3_obligation: E3V-007, e2_006_status: ARCHITECTURE_CONFIRMED}
+    - {ar: AR-VER-001, class: HARD_CONSTRAINT, primary_adr: ADR-E2-007, c01_matrix_result: CONFIRMED_SATISFIED_FOR_COMPARISON, e3_obligation: E3V-005, e2_006_status: ARCHITECTURE_CONFIRMED}
+    - {ar: AR-VER-002, class: HARD_CONSTRAINT, primary_adr: ADR-E2-007, c01_matrix_result: CONFIRMED_SATISFIED_FOR_COMPARISON, e3_obligation: E3V-005, e2_006_status: ARCHITECTURE_CONFIRMED}
+    - {ar: AR-VER-003, class: HARD_CONSTRAINT, primary_adr: ADR-E2-007, c01_matrix_result: CONFIRMED_SATISFIED_FOR_COMPARISON, e3_obligation: E3V-005, e2_006_status: ARCHITECTURE_CONFIRMED}
+    - {ar: AR-WSP-001, class: HARD_CONSTRAINT, primary_adr: ADR-E2-004, c01_matrix_result: CONFIRMED_SATISFIED_FOR_COMPARISON, e3_obligation: E3V-003, e2_006_status: ARCHITECTURE_CONFIRMED}
+    - {ar: AR-WSP-002, class: HARD_CONSTRAINT, primary_adr: ADR-E2-004, c01_matrix_result: CONFIRMED_SATISFIED_FOR_COMPARISON, e3_obligation: E3V-003, e2_006_status: ARCHITECTURE_CONFIRMED}
+    - {ar: AR-WSP-003, class: HARD_CONSTRAINT, primary_adr: ADR-E2-004, c01_matrix_result: CONFIRMED_SATISFIED_FOR_COMPARISON, e3_obligation: E3V-003, e2_006_status: ARCHITECTURE_CONFIRMED}
+    - {ar: AR-WSP-004, class: HARD_CONSTRAINT, primary_adr: ADR-E2-004, c01_matrix_result: CONFIRMED_SATISFIED_FOR_COMPARISON, e3_obligation: E3V-003, e2_006_status: ARCHITECTURE_CONFIRMED}
+    - {ar: AR-WSP-005, class: HARD_CONSTRAINT, primary_adr: ADR-E2-004, c01_matrix_result: CONFIRMED_SATISFIED_FOR_COMPARISON, e3_obligation: E3V-003, e2_006_status: ARCHITECTURE_CONFIRMED}
+  e1_projection: "127/127 canonical IDs -> primary AR -> primary ADR (ADR-E2-002 14, 003 22, 004 20, 005 29, 006 11, 007 17, 008 10, 009 4; ADR-E2-001 hard coverage via cross-cutting list); 119 HARD_CONSTRAINT / 0 WEIGHTED_PREFERENCE / 8 JUSTIFIED_NON_ARCHITECTURE_DRIVING (SLO-001..004, MET-001..004 with seams AR-TST-003/AR-PERF-002/AR-OBS-001 owned by ADR-E2-008 under E3V-007); 0 waiver text"
+  domain_projection: "25/25 baseline section 14 domains equal E2-001 section 7; every domain's ADR owner covers at least one domain AR through primary or cross-cutting lists; ADR domain lines cover all 25"
+
+e3_validation_obligations:
+  canonical_source: "ENGINEERING_PREVIEW_ARCHITECTURE_REQUIREMENTS.md section 9 (verified E2-001)"
+  register: 05_architecture/ENGINEERING_PREVIEW_E3_VALIDATION_OBLIGATIONS.md
+  execution_status: PLAN_ONLY_NOT_AUTHORIZED_NOT_RUN
+  lanes: "E3V-001..007 technical/mechanism; E3V-008 model/configuration benchmark"
+  canonical_handback_sets:
+    E3V-001: ADR-E2-002/003/004/005/007/008/009
+    E3V-002: ADR-E2-003/004/007
+    E3V-003: ADR-E2-001/002/004/009
+    E3V-004: ADR-E2-001/004/005/006/007/008/009
+    E3V-005: ADR-E2-002/003/004/005/006/007/008
+    E3V-006: ADR-E2-001/004/005/007/008/009
+    E3V-007: ADR-E2-001/002/007/008/009
+    E3V-008: ADR-E2-006
+  closure_recomputed: "8/8 primary-owner closed from E2-001 section 9 sources plus C01 matrix links joined to baseline section 13 owners; secondaries only where structurally justified (E3V-003 +001; E3V-004 +001; E3V-005 +003/005; E3V-006 +001/008; E3V-007 +002/009); 0 unmapped linked ARs; 75 representations set-equal; frozen E2-001 ownership unchanged"
+  e3_outstanding_hard_requirements:
+    AR-EXE-003: "E3V-002; process-tree containment and authority fencing seam defined; host/process mechanism unselected and unvalidated; missing evidence keeps the class blocked/fenced; configuration failure vs architecture failure split; handback ADR-E2-003/004/007"
+    AR-SEC-006: "E3V-006; protected acquisition/delivery seam defined; client/carrier mechanism unselected and unvalidated; missing evidence fails to WAITING_FOR_USER/blocked; never ordinary input; SPQ-E2-002-03 attached to ADR-E2-005; handback ADR-E2-001/004/005/007/008/009"
+  e3_qpa_001: "Engineering Preview E3 Qualification Policy Authority; accountable owner Founder; future E3 author may draft, not self-approve; fresh challenger plus separate post-fix verifier; owned values verification-rerun ceiling, deterministic-check repetition rule/value, correction-attempt ceiling; numeric values selected: none; missing/invalid value -> E3_SCORED_EXECUTION_BLOCKED; frozen E1 rules restated unchanged"
+  e4_deferrals: "E4U-C01-IMPLEMENTATION (applicable future implementation input only after architecture verification and separate E4 authorization), E4U-C02-IMPLEMENTATION and E4U-C03-IMPLEMENTATION (historical reopen evidence) - all unresolved, implementation/configuration-level, fail-closed"
+  bundle_provenance: "E2U-S01-DESCENDANT-CONTAINMENT -> E3V-002; E2U-S02-PROTECTED-ACQUISITION and E3U-C01-PROTECTED-DELIVERY -> E3V-006; E3U-C01-TECHNICAL -> E3V-001..007; E3U-C01-MODEL-CONFIGURATION -> E3V-008; SP-C01/C03/C04/C05 cited as verified research contract inputs, not executed, not architecture proof"
+  e3_admission_preconditions_remaining: "E2 stage gate independently VERIFIED; eligible E3 task registered and authorized; exact mechanism/configuration/host/client/support-class identity selected by an authorized task; E3-QPA-001 finite values prospectively frozen and independently reviewed; budget/account/credential/data-policy/run authorizations; S0-005 inputs for any real-provider or paid work"
+
+recovery_and_security_summary:
+  recovery_scenarios: "25 (REC-01..25) x 12 non-empty fields plus 7 C01 f09 partial-filesystem subcases; transaction boundary limited to ADR-E2-002 records; KNOWN_SUCCESS / KNOWN_FAILURE / UNKNOWN_OUTCOME retained; no global-transaction fiction"
+  threat_boundaries: "TB-01..TB-20 with nine semantics each, cell-equal to verified C01 f05; structural enforcement points; no LLM-only enforcement; unsupported host-compromise assumption explicit"
+  approval_effect_chain: "INTENT -> APPROVAL/REFUSAL -> ATTEMPT -> OBSERVED_EFFECT -> CONFIRMED_EFFECT | KNOWN_FAILURE | UNKNOWN_EFFECT with identities, exact scope, replay protection, revocation, staleness, restart revalidation, readback, duplicate first-outcome and unknown-blocks-completion semantics"
+  isolation: "technology-neutral Tier 2 semantic floor; no container/VM/worktree/process mechanism selected or credited"
+  protected_entry: "dedicated controller outside ordinary capture; one-use exact recipient/use/fence; non-secret receipt; no replay; fail-to-WAITING_FOR_USER; mechanism E3V-006 outstanding"
+  provider_neutrality: "embedded provider-neutral gateway; route_purpose/route_eligibility; explicit fallback; zero provider/model names; six logical roles unassigned"
+  evidence_verification: "exact revision binding; full provenance; separate least-privilege verifier process/context/workspace; adequacy before pass credit; stale invalidation; executor narration never sufficient"
+  observability: "ADR-E2-008 rebuildable projections subordinate to ADR-E2-002 material history and ADR-E2-007 evidence; telemetry never completion evidence"
+  testability: "seams for 170 cases, 18 oracles, 11 fixture families, 23 NEG families, 16 repository conditions, 30 Git/effect classes, 9 adequacy variants, 16 compositions, 8 protocols, EP-CTL-016"
+
+acceptance_criteria_results:
+  - {criterion: "127-requirement and 25-domain compliance projections independently reconstructed; no unresolved or falsely waived item", result: PASS}
+  - {criterion: "at least three genuine alternatives and the complete decision matrix confirmed; hard-gate eliminations and uncertainty dispositions reproduce", result: PASS}
+  - {criterion: "every proposed ADR coherent, comparison-supported, explicit about consequences/reversibility, E1-compliant", result: PASS}
+  - {criterion: "security/trust/capability/secret/isolation, recovery/idempotency/reconciliation, exact-revision evidence and structurally independent verification credible and testable", result: PASS}
+  - {criterion: "provider neutrality preserved; no role occupant selected; E3 technical vs model obligations, owners, authorization gates, ceiling-policy ownership, failure consequences and reversal triggers complete", result: PASS}
+  - {criterion: "clean-room, local-first proportionality, future compatibility, E1-suite testability, no-application-code, no-E3-run, no-paid-call, no-autonomy, no-S1-003-resumption invariants", result: PASS}
+  - {criterion: "no unresolved BLOCKER/HIGH/MEDIUM architecture finding", result: PASS}
+required_tests_results:
+  - {test: "independent strict YAML/CSV/Markdown, duplicate-key, ID/set/count, dependency/DAG/status, 127-requirement, 25-domain, candidate, matrix, uncertainty, ADR and E3-obligation reconstruction", result: PASS}
+  - {test: "independent hard-constraint, threat-boundary, recovery/fault, evidence/revision, verifier-independence, provider-neutrality, clean-room and reversal-path review", result: PASS}
+  - {test: "frozen-E1 byte identity; no implementation; no missing/accepted-without-verification ADR; no spike/benchmark/paid-call/autonomy/S1-003 regression; secret scan; allowed-path; git diff --check", result: PASS}
+
+mechanical_checks:
+  validator: "scratchpad ruby 2.6 Psych/CSV scripts plus git, grep, find, shasum; scripts retained in the session scratchpad, not in the repository"
+  results:
+    - "strict YAML parse: 71/71 tracked YAML files at 85902bf; duplicate keys 0 (AST walk over every mapping)"
+    - "CSV parse: 6/6 (matrix 195 x 18; trace 127 x 19)"
+    - "matrix: 195 unique cells; 65 criteria (59 hard / 6 preference); C01/C02/C03 hard results 57/2/0/0; seams AR-EXE-003 -> E3V-002 and AR-SEC-006 -> E3V-006; result vocabulary closed"
+    - "trace: 127 unique IDs; families 56/15/4/4/9/16/23; primaries within the 65; dispositions 119/0/8; SLO/MET seams -> ADR-E2-008 / E3V-007; 0 waiver text"
+    - "baseline section 13: 65/65 ARs exactly once; ADR Primary lines set-equal; Primary plus Cross-cutting lines cover all 65"
+    - "ADRs: 9 files; IDs 001..009 unique; 9/9 PROPOSED status; 9/9 EP-ARCH-C01; decision classes within the three-class vocabulary; 17 identical headings"
+    - "E3V closure: 8/8 primary-owner closed with only stated secondaries; 0 unmapped linked ARs; 75 representations set-equal (0 mismatches)"
+    - "threat boundaries: 20 rows x 9 columns non-empty; 0 cell differences from C01 f05"
+    - "recovery: 25 unique REC rows x 12 non-empty cells; all 18 C01 f09 scenario keys and plan section 11 bullets covered; every row carries ADR/AR/E3V/E4U links; 7 subcases equal to C01 f09 keys; global_atomicity_claim false"
+    - "domains: 25/25 equal to E2-001 section 7; ADR ownership via primary or cross-cutting lists; ADR domain lines cover all 25"
+    - "Level-B: 19/19 rows; dispositions equal C01 f29"
+    - "state vocabulary: exactly the four E2-001 section 3 classes; 0 compound tokens; reversibility vocabulary three classes"
+    - "SHA-256 pins: 6/6 reproduced; 39 reviewed artifact digests recorded above"
+    - "frozen artifacts: nine E1 blobs equal to the E1 gate record; diffs against 7bbfebd/c2f7093 (E1, research, DECISION_LOG, MODEL_REGISTRY, SOURCE_LEDGER, governing prompts), 0d702b8 (E2-001), 1a1c542 (E2-002), e5d541c (E2-003), 1f35f73 (E2-004 closure/lifecycle), 2c4b3fa (E2-005 artifacts): empty"
+    - "git diff --check 7f70f0e..85902bf: clean; working tree clean before edits"
+    - "tracked files: md 58 / yaml 71 / csv 6 / json 1 / gitignore 1; no source/manifest/lock/build/spike artifacts; no untracked files"
+    - "secret-pattern scan over 05_architecture, 01_governance, 99_handoffs, 10_checkpoints, README: 0 hits"
+    - "technology/vendor/framework/database/container/cloud/SDK/vector/telemetry/packaging/MCP scan over baseline, ADRs, E3 register: 0 selections; provider/model names: 0; role occupants: 0; accepted/selected/final/locked wording: disclaimers only; hybrid tokens: options/rejected/negation/migration contexts only; favorable/empirical wording: negations and limitations only; weight/score/rank/winner: negations only; numeric ceiling values in E3 register section 11: none"
+    - "Level-C probe: 176 external paths and 16 CamelCase identifiers from the reconstructed audit/adoption matrix: 0 hits (two generic slash-phrase coincidences inspected); audit labels/module names: only SP-C provenance citations"
+    - "governance reconciliation before transition: PROJECT_STATE and TASK_REGISTRY agree on E2-001..E2-005 VERIFIED, E2-006 READY, lists, gate NOT_EVALUATED, architecture flags, ADR counters, execution counters, E3/E4 NOT_STARTED, autonomy, S1-003; 17 unique task IDs; dependencies resolve; acyclic; MODEL_REGISTRY 13/13 NOT_RUN; release checkpoint E2_gate NOT_EVALUATED"
+    - "challenger findings: F-E2-005-01..09 independently RESOLVED; F-E2-001/002/003 9/9/9 RESOLVED and F-E2-004 7/7 RESOLVED_OR_NONBLOCKING by their verifiers (recomputed from the records)"
+  post_edit_validation:
+    performed_at_utc: "2026-08-30T06:18:53Z"
+    yaml_strict_parse: "73/73 YAML files (71 tracked plus the two new records) parse under Psych safe_load; duplicate keys 0"
+    governance_reconciliation: "35/35 checks PASS: 17 unique task IDs, dependencies resolve, acyclic; TASK_REGISTRY E2-006 status VERIFIED / verifier_result E2_006_VERIFIED / next_command MODE: VERIFY_STAGE_E2; PROJECT_STATE task_statuses E2-001..E2-006 VERIFIED and equal to the registry; ready/active/backlog []; completed includes E2-006 once; stage_gate_status and phases.E2.gate_status NOT_EVALUATED with gate_mode VERIFY_STAGE_E2; architecture_selected true with architecture_selection_status SELECTED_VERIFIED_PENDING_E2_GATE in engineering_preview_track and scope_counters; preferred/proposed candidate EP-ARCH-C01; verified ADRs 9; accepted ADRs 0 everywhere; current_architecture_version null; E3/E4/E5 NOT_STARTED; spikes/evaluation/benchmark/paid/application-code counters unchanged at zero; autonomy tokens unchanged with no grant; working_tree_base_commit 85902bf; unresolved_p0_questions selection entry converted to a resolved record pointing at this checkpoint; checkpoint and review agree on verdict, statuses, gate and reviewed commit; review acceptance-criteria and required-test texts equal the registry entry verbatim; nine ADR files untouched"
+    allowed_paths: "changed paths equal the four E2-006 allowed paths exactly (2 modified, 2 new); README, 05_architecture, 03_product, 06_evaluation, 02_research, DECISION_LOG and MODEL_REGISTRY untouched"
+    git: "git diff --check clean; both new files end with a newline and carry no trailing whitespace; nothing staged; HEAD unchanged at 85902bf; patch left uncommitted"
+    secret_scan: "0 hits over the four changed paths"
+    non_document_files_added: 0
+    provider_model_names_in_new_records: "0 outside the verifier-disclosure and scan-description lines"
+    e3_executable: false
+    autonomy_transition: NONE
+    implementation_benchmark_or_paid_call: NONE
+
+new_material_findings:
+  blocker: 0
+  high: 0
+  medium: 0
+  low: 0
+  notes: 11
+  note_ids: [V-E2-006-N1, V-E2-006-N2, V-E2-006-N3, V-E2-006-N4, V-E2-006-N5, V-E2-006-N6, V-E2-006-N7, V-E2-006-N8, V-E2-006-N9, V-E2-006-N10, V-E2-006-N11]
+  note_summary: "README founder refresh; ADR/baseline self-status lines historical (outside allowed paths); D02 ownership via ADR-E2-001 cross-cutting list; E1 five-outcome operation vocabulary mapped onto E2 chain names (permitted, no redefinition); contract section 13.2 record-class labels map onto the four architecture classes; E3-QPA-001 founder acknowledgement not yet in DECISION_LOG; six vs eleven logical roles (role-count neutral); release-checkpoint fields remain gate-owned; ADR-E2-009 REVERSIBLE_EARLY applies to packaging mechanics; representation-count method difference (85 vs 75, both zero mismatches); Level-C probe slash-phrase coincidences. Full text in the companion review."
+  fixer_path_required: false
+
+limitations:
+  - "This record verifies the architecture at the design level from committed artifacts; it establishes no runtime, host, isolation, protected-entry, provider, evidence, performance, cost, reliability, model-eligibility, product-demand or production-readiness fact."
+  - "AR-EXE-003 (E3V-002) and AR-SEC-006 (E3V-006) remain architecture seams with empirical validation outstanding; every E3V-001..008 obligation is unrun and E3 is not started or authorized."
+  - "The E2 stage gate is NOT_EVALUATED; ADR acceptance, E3 planning/authorization, autonomy eligibility and autonomous-build authorization are separate later decisions."
+  - "Timestamps are approximate where session start was not captured, per repository precedent."
+
+files_created:
+  - 10_checkpoints/stage_checkpoints/ENGINEERING_PREVIEW_E2_ARCHITECTURE_VERIFICATION.yaml
+  - 99_handoffs/completed/E2-006_verifier_review.yaml
+files_modified:
+  - 01_governance/TASK_REGISTRY.yaml
+  - 01_governance/PROJECT_STATE.yaml
+files_intentionally_not_modified:
+  - "05_architecture/** (baseline, E3 register, nine ADRs, candidates, comparison, matrix, register, closure, requirements, trace, plan, alternatives) — outside E2-006 allowed paths and forbidden content changes"
+  - "03_product/**, 06_evaluation/**, 10_checkpoints/stage_checkpoints/ENGINEERING_PREVIEW_V0_1_RELEASE_ACCEPTANCE.yaml, 10_checkpoints/stage_checkpoints/ENGINEERING_PREVIEW_E1_SPECIFICATION_GATE_VERIFICATION.yaml — frozen E1"
+  - "01_governance/DECISION_LOG.md, ASSUMPTION_REGISTER.md, RISK_REGISTER.md, MODEL_REGISTRY.yaml, SOURCE_LEDGER.csv — outside allowed paths"
+  - "README.md — outside allowed paths (V-E2-006-N1)"
+  - "02_research/** and 99_handoffs/completed/E2-00[1-5]_* — evidence only"
+
+security_checks:
+  - "No secrets, credentials, tokens, private keys, or raw protected values in the reviewed artifacts, this checkpoint, or the companion review (pattern scan zero matches)."
+  - "No customer, prospect, account, connector, provider API, or external system accessed; no outreach, spend, spike, benchmark, evaluation-case run, or paid call."
+  - "No reconstructed Grok Bot code or external implementation material read into or imported into the project; the external reference repository was not opened; Level-C probe zero hits."
+  - "This patch changes only governance status records and adds two verification records; it authorizes no execution, technology, model role, E3/E4/E5 work, release, autonomy eligibility, or autonomous build."
+
+state_transition:
+  e2_006_status_after: VERIFIED
+  architecture_status_after: SELECTED_VERIFIED_PENDING_E2_GATE
+  architecture_selected_after: true
+  architecture_selected_qualifier: "independently verified selection pending the separate E2 stage gate; not gate-passed; not accepted; not implementation-authorized"
+  preferred_candidate_after: EP-ARCH-C01
+  adr_status_after: "ADR-E2-001..009 SELECTED_VERIFIED_PENDING_E2_GATE (verified 9; accepted 0; ADR file self-status lines unchanged)"
+  e2_gate_status_after: NOT_EVALUATED
+  e3_status_after: NOT_STARTED_NOT_EXECUTABLE_UNTIL_E2_GATE_PASSES
+  architecture_spikes_run: 0
+  application_code_created: false
+  evaluation_cases_implemented: 0
+  evaluation_cases_run: 0
+  model_benchmarks_run: 0
+  paid_api_calls: 0
+  external_actions_performed: false
+  model_roles_locked: false
+  autonomy_eligible: NOT_ELIGIBLE
+  autonomous_build_authorized: false
+  s1_003_resumed: false
+  next_command_after_founder_review_and_commit: "MODE: VERIFY_STAGE_E2 — a separate fresh stage-gate session independently evaluates the E2 architecture and ADR gate against E2 plan section 16 (ten conditions), re-deriving rather than inheriting this E2-006 result, and records it in 10_checkpoints/stage_checkpoints/ENGINEERING_PREVIEW_E2_ARCHITECTURE_GATE_VERIFICATION.yaml; select no model/provider, run no spike/benchmark/paid call, write no application code, do not authorize autonomous build, do not resume S1-003."

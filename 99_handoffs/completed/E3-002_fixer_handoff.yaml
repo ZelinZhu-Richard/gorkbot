@@ -1,0 +1,418 @@
+handoff_id: H-E3-002-20260902-FIXER
+task_id: E3-002
+stage: E3
+mode: FIX_TASK_E3-002
+role: FIXER
+author_model: "Codex (runtime model identifier not exposed) — original E3-002 AUTHOR returning as FIXER"
+reviewer_requested: SEPARATE_POST_FIX_VERIFIER
+started_at: UNKNOWN_NOT_CAPTURED_NO_TIMESTAMP_FABRICATED
+completed_at: "2026-09-02T20:29:25Z"
+base_commit: 4152f0d42922e5fdcd168e755aae94891e3dc8d9
+base_branch: chore/initialize-project-materials
+initial_worktree_status: CLEAN
+repository_patch_status: UNCOMMITTED_FOR_FOUNDER_REVIEW
+fixer_result: FIXER_PASS_COMPLETE_READY_FOR_SEPARATE_POST_FIX_VERIFICATION_NOT_VERIFIED
+
+challenger_review:
+  artifact: 99_handoffs/completed/E3-002_challenger_review.yaml
+  reviewer_model: "Claude Fable 5 (claude-fable-5) via Claude Code"
+  reviewed_commit: bebf9fdb11c4b496e167c04f47a815b25319c03f
+  challenger_state_commit: 4152f0d42922e5fdcd168e755aae94891e3dc8d9
+  verdict: E3_002_CHANGES_REQUESTED
+  finding_counts: {BLOCKER: 0, HIGH: 0, MEDIUM: 3, LOW: 3, NOTE: 3}
+  scoped_findings: [F-E3-002-C01, F-E3-002-C02, F-E3-002-C03, F-E3-002-L01, F-E3-002-L02, F-E3-002-L03]
+
+scope_statement: >-
+  Addressed exactly the three MEDIUM and three LOW findings named by the founder. No protocol,
+  fixture, fault, process, harness, benchmark, provider, network, credential, account, paid or
+  external action was run. No application or validation-harness code, mechanism selection,
+  supported-class claim, model/role assignment, eligibility result, autonomy change, accepted
+  E1/E2/ADR edit, E3-003 authoring, E3-004 build, E3-005/E3-006 execution, or E4 action occurred.
+  The challenger's three NOTE findings were not promoted into scope.
+
+finding_dispositions:
+  - finding_id: F-E3-002-C01
+    severity: MEDIUM
+    resolution: FIXED
+    files_changed:
+      - 06_evaluation/technical_validation/E3_TECHNICAL_VALIDATION_PROTOCOLS.yaml
+      - 06_evaluation/technical_validation/E3_TECHNICAL_HARNESS_CONTRACT.md
+      - 01_governance/TASK_REGISTRY.yaml
+      - 01_governance/PROJECT_STATE.yaml
+      - 01_governance/RISK_REGISTER.md
+      - 99_handoffs/completed/E3-002_handoff.yaml
+      - 99_handoffs/completed/E3-002_fixer_handoff.yaml
+    before: >-
+      Configuration failure applied while a conforming realization merely remained plausible and
+      architecture handback required exhaustion of every compliant route across an undefined,
+      potentially unbounded implementation space. The seven protocol records lacked a concrete
+      reachability demonstration for the five root-cause outcomes.
+    after: >-
+      Configuration failure now requires reproducible localization to the selected realization plus
+      at least one concrete, prospectively identified, materially distinct candidate admitted by the
+      accepted architecture for the same property/support scope. Candidate identities form a finite
+      prospective envelope; nominal variants share one cumulative correction lineage. Exhaustion or
+      absence of a concrete candidate stops for mandatory independent architecture classification.
+      Independently reviewed disproof of a named accepted assumption, or evidence that a required
+      accepted property cannot be satisfied in the claimed design envelope, reaches the set-equal
+      canonical handback without universal implementation exhaustion. Insufficient evidence fails
+      closed. Each E3V record now has a hypothetical-only outcome-reachability sanity test.
+    authoritative_basis:
+      - accepted E3 validation obligations section 1.1 root-cause taxonomy
+      - accepted architecture requirements section 9 disjunctive handback trigger
+      - ADR-E2-001..009 exact handback/reopen clauses
+      - E3-001 cumulative non-resettable correction and independent classification policy
+    evidence:
+      - architecture_failure_classification finite_candidate_envelope_rule and exhaustion_and_escalation_rule
+      - architecture_failure_classification e3_001_route_exhaustion_binding_interpretation and concrete architecture-evidence requirement
+      - seven implementation_configuration_failure_rule and architecture_failure_rule replacements
+      - seven outcome_reachability_sanity_test records with all five canonical paths plus classification-review evidence
+      - harness contract section 13 finite classification and handback semantics
+    verification_method: >-
+      Strictly parse the protocol; assert every E3V has all six reachability fields; reject universal-
+      route or mere-plausibility requirements; inspect candidate material-distinctness/correction
+      lineage and fail-closed escalation; rederive all seven handback sets from accepted records.
+
+  - finding_id: F-E3-002-C02
+    severity: MEDIUM
+    resolution: FIXED
+    files_changed:
+      - 06_evaluation/technical_validation/E3_TECHNICAL_VALIDATION_PROTOCOLS.yaml
+      - 06_evaluation/technical_validation/E3_TECHNICAL_HARNESS_CONTRACT.md
+      - 01_governance/TASK_REGISTRY.yaml
+      - 01_governance/PROJECT_STATE.yaml
+      - 01_governance/RISK_REGISTER.md
+      - 99_handoffs/completed/E3-002_handoff.yaml
+      - 99_handoffs/completed/E3-002_fixer_handoff.yaml
+    before: >-
+      E3-002 recorded value_proposal_created_by_e3_002 false, supplied no exact QPA proposal or
+      mechanism candidate classes, and left the Founder with no scoped values to review.
+    after: >-
+      E3-002-QPA-PROP-001 proposes exactly one same-revision verification-error rerun per exact
+      case/task scope, exactly three ordered invocations of every applicable required deterministic
+      check per scheduled attempt with all retained and mixed outcomes FLAKY, and two material
+      corrections after the initial block per stable scope with cumulative non-resettable lineage.
+      Each proposal records scope, rationale, source constraints, affected protocols, evidence/cost/
+      contamination/retry effects, too-low/too-high failure modes, alternatives and Founder decision
+      requirement. All authoritative values and approved_value fields remain null; approval is false.
+      Three technology-neutral candidate classes per E3V plus exact metadata, material-distinctness,
+      selection criteria and Phase B selection ownership are proposed; no final mechanism is selected.
+      Every unresolved per-protocol limit dimension has a designated post-E3-004 Phase B proposal step.
+    authoritative_basis:
+      - verified E3-001 protocol_value_draft_tasks ownership and three QPA family definitions
+      - frozen E1 FLAKY no-majority-vote and immutable-attempt semantics
+      - accepted architecture technology-neutral seam boundaries
+    evidence:
+      - qpa_author_proposal_for_founder_review with three complete proposal records
+      - qpa_binding authoritative null values and author_proposal_ref
+      - mechanism_candidate_governance with 21 candidate classes, seven selection criteria and seven discriminating-evidence records
+      - protocol_limit_proposal_schedule with exact dimensions, current nonproposal reason, missing evidence and designated Phase B owner/gate
+      - TASK_REGISTRY and PROJECT_STATE proposal/approval separation
+    verification_method: >-
+      Parse all QPA records; assert proposed values/rules equal 1/3/2, all approved/authoritative values
+      are null, all approval flags false, all required rationale fields nonempty, seven protocols are
+      affected, 21 candidate classes exist, selection remains NOT_SELECTED, and every actual protocol
+      limit key is scheduled or explicitly nonnumeric/status metadata.
+
+  - finding_id: F-E3-002-C03
+    severity: MEDIUM
+    resolution: FIXED
+    files_changed:
+      - 06_evaluation/technical_validation/E3_TECHNICAL_VALIDATION_PROTOCOLS.yaml
+      - 06_evaluation/technical_validation/E3_TECHNICAL_HARNESS_CONTRACT.md
+      - 01_governance/TASK_REGISTRY.yaml
+      - 01_governance/PROJECT_STATE.yaml
+      - 01_governance/RISK_REGISTER.md
+      - 99_handoffs/completed/E3-002_handoff.yaml
+      - 99_handoffs/completed/E3-002_fixer_handoff.yaml
+    before: >-
+      E3-004 appeared to require E3-002 execution readiness with exact configurations and QPA values,
+      while E3-002 execution readiness required the exact future E3-004 harness identity. No task
+      clearly owned later exact configuration/limit/evidence binding.
+    after: >-
+      Phase A independently verifies protocol questions, fixtures/observations, oracles/outcomes,
+      hard failures, support/evidence/handback contracts, QPA binding points and parameterized
+      mechanism metadata. Phase A is sufficient for E3-004 and expressly excludes exact harness
+      digest, final mechanism/configuration/environment/support class, approved QPA, final limits,
+      execution manifest, admission and empirical results. After E3-004 verification, Phase B binds
+      those exact inputs. The registered E3-005 prelaunch execution-block preparer acting for the
+      accountable validation owner—and distinct from operator/admission checker—owns that binding;
+      the registered E3-006 benchmark-block preparer owns the parallel model/configuration Phase B
+      binding and is distinct from its operator/admission checker. Separate verification and admission
+      still follow in both lanes.
+    authoritative_basis:
+      - task dependency direction E3-002/E3-003 -> E3-004 -> E3-005/E3-006
+      - verified E3-001 policy distinction between protocol drafting and launch admission
+      - no-result-before-freeze and exact-currentness requirements
+    evidence:
+      - common_protocol_contract.freeze_timing_rule
+      - harness contract section 14 two-phase freeze and sections 15/16 strict E3-005/E3-006 inputs
+      - TASK_REGISTRY E3-002/E3-003/E3-004/E3-005 activation and input contracts
+      - PROJECT_STATE phase-explicit dependency_graph
+    verification_method: >-
+      Build the prospective dependency graph from repository fields; assert it is acyclic; assert
+      E3-004 consumes only Phase A verified parameterized inputs and does not require approved QPA
+      numbers; assert Phase B requires E3-004 verification and E3-005 remains DO_NOT_RUN.
+
+  - finding_id: F-E3-002-L01
+    severity: LOW
+    resolution: FIXED
+    files_changed:
+      - 06_evaluation/technical_validation/E3_TECHNICAL_VALIDATION_PROTOCOLS.yaml
+      - 06_evaluation/technical_validation/E3_TECHNICAL_HARNESS_CONTRACT.md
+      - 01_governance/TASK_REGISTRY.yaml
+      - 01_governance/PROJECT_STATE.yaml
+      - 01_governance/RISK_REGISTER.md
+      - 99_handoffs/completed/E3-002_handoff.yaml
+      - 99_handoffs/completed/E3-002_fixer_handoff.yaml
+    before: >-
+      E3V-006 named repository/worktree/diff/temp/cache/artifact surfaces but did not explicitly
+      require all non-repository writable filesystem surfaces visible to the subject.
+    after: >-
+      E3V-006 freezes the exact subject-process-tree writable filesystem view before marker creation:
+      repository paths; OS/user temp; runtime/framework/dependency/tool caches/logs/state; app support,
+      preferences, sessions, autosave, local databases/persistence; crash/core/minidump/diagnostic/
+      profile/debug outputs; filesystem spools/queues/sockets/locks/transfers; shell/editor/tool history
+      and recovery; plus all prior non-filesystem surfaces. Each class is captured/scanned or proved
+      inaccessible. Deleted/rotated content requires write-time interception. Relevant unobservable or
+      unbounded surfaces fail closed or are unsupported and cannot support a leakage-absence claim.
+    authoritative_basis:
+      - frozen E1 correctness-contract crash/core/temp/cache capture requirements
+      - E3V-006 observable-surface and no-overgeneralization boundary
+    evidence:
+      - E3V-006 oracle_contract.filesystem_capture_scope
+      - expanded mandatory_capture_surfaces and raw/observation requirements
+      - harness contract section 8
+      - R-036 mitigation
+    verification_method: >-
+      Assert the protocol and harness explicitly cover every named outside-repository class, require a
+      pre-marker complete inventory, define inclusion/exclusion evidence, fail closed on missing
+      observation, and scope positive claims to the exact frozen inventory.
+
+  - finding_id: F-E3-002-L02
+    severity: LOW
+    resolution: FIXED
+    files_changed:
+      - 06_evaluation/technical_validation/E3_TECHNICAL_VALIDATION_PROTOCOLS.yaml
+      - 06_evaluation/technical_validation/E3_TECHNICAL_HARNESS_CONTRACT.md
+      - 01_governance/TASK_REGISTRY.yaml
+      - 01_governance/PROJECT_STATE.yaml
+      - 99_handoffs/completed/E3-002_handoff.yaml
+      - 99_handoffs/completed/E3-002_fixer_handoff.yaml
+    before: >-
+      Cross-protocol preconditions said E3V-003/E3V-002/E3V-006 controls must be verified before
+      related fixtures without distinguishing harness capability verification from empirical E3V verdicts.
+    after: >-
+      Preconditions now name E3-004 independently verified isolation, descendant-control/fencing and
+      marker/capture harness capabilities. They explicitly state no empirical E3V verdict is a
+      prerequisite to itself or another protocol. The prospective DAG has no self-edge.
+    authoritative_basis:
+      - subject-oracle separation and E3-004 harness-before-evidence rule
+      - each E3V must remain separately verdictable without circular admission
+    evidence:
+      - cross_protocol_order_and_reuse.precondition_source and prospective_dependency_dag
+      - harness contract section 11
+      - PROJECT_STATE dependency graph
+    verification_method: >-
+      Search all cross-protocol preconditions for empirical-verdict prerequisite language; assert each
+      safety dependency resolves to an E3-004 harness capability and mechanically inspect the DAG for cycles.
+
+  - finding_id: F-E3-002-L03
+    severity: LOW
+    resolution: FIXED
+    files_changed:
+      - 06_evaluation/technical_validation/E3V_E1_TRACEABILITY.csv
+      - 01_governance/TASK_REGISTRY.yaml
+      - 01_governance/PROJECT_STATE.yaml
+      - 99_handoffs/completed/E3-002_handoff.yaml
+      - 99_handoffs/completed/E3-002_fixer_handoff.yaml
+    before: >-
+      The exact 21-case and 13-Git-effect complements were each one aggregate row with only an
+      E5-or-other-gate destination and no concrete owner, prerequisites, mandatory status or E3 effect.
+    after: >-
+      The 21 cases are eight explicit workflow/Git/contributor groups and the 13 Git-effect rows are
+      four explicit local/external-read/prohibited-local-shared/remote groups. Every row identifies
+      FUTURE_E5_RELEASE_VALIDATION_OWNER_UNREGISTERED_NO_CURRENT_TASK_AUTHORITY, exact scope,
+      E4/E3/authorization prerequisites, mandatory release-gate status, what E3-002 evidence can or
+      cannot satisfy, and current_E3_effect=none. Counts and complements remain exact.
+    authoritative_basis:
+      - frozen E1 full-release suite remains mandatory but outside focused E3V evidence
+      - no unregistered future task may be presented as current authority
+    evidence:
+      - CASE-DEFERRED-* and GE-DEFERRED-* rows in E3V_E1_TRACEABILITY.csv
+    verification_method: >-
+      Parse the CSV; recompute selected/deferred disjoint set equality to all 170 E1 cases and 30 Git
+      rows; assert eight/four grouped rows, exact group counts, explicit owner/prerequisite/mandatory/
+      E3-role/current-effect fields, and no vague DEFERRED_TO_E5_OR_OTHER disposition.
+
+finding_totals:
+  fixed: 6
+  disputed: 0
+  deferred: 0
+
+acceptance_criteria_fixer_assessment:
+  task_verification_performed_by_fixer: false
+  acceptance_criteria_marked_pass_by_fixer: 0
+  phase_A_protocol_criteria_state: FIXER_DRAFT_READY_FOR_SEPARATE_POST_FIX_VERIFICATION
+  qpa_and_mechanism_proposal_duty: FIXER_ASSESSMENT_SATISFIED_BY_EXACT_UNAPPROVED_PROPOSAL_AND_EXPLICIT_POST_E3_004_LIMIT_STEP_PENDING_VERIFIER
+  execution_ready_approval_and_binding_criterion: NOT_SATISFIED_AND_NOT_CLAIMED_FOUNDER_APPROVAL_PHASE_B_AND_ADMISSION_ABSENT
+
+qpa_state:
+  proposal_ref: E3-002-QPA-PROP-001@0.1.0
+  proposal_status: AUTHOR_PROPOSAL_FOR_FOUNDER_REVIEW_NOT_APPROVED
+  proposed_values: {verification_error_reruns: 1, ordered_deterministic_check_invocations: 3, material_corrections_after_initial_block: 2}
+  founder_acknowledgement_recorded: false
+  founder_value_approval_recorded: false
+  authoritative_values:
+    finite_verification_rerun_ceiling_per_case_or_task: null
+    finite_deterministic_required_check_repetition_rule_per_check_or_class: null
+    finite_correction_attempt_ceiling_per_case_or_task: null
+  proposal_authorizes_execution: false
+
+mechanism_state:
+  criteria_status: MECHANISM_CANDIDATE_CRITERIA_SPECIFIED
+  protocol_count: 7
+  candidate_class_count: 21
+  discriminating_evidence_record_count: 7
+  final_mechanism_selection: NOT_SELECTED
+  product_or_technology_selected: false
+
+freeze_and_task_state:
+  phase_A: FIXER_DRAFT_PENDING_SEPARATE_POST_FIX_VERIFICATION
+  phase_B: NOT_FROZEN_PENDING_E3_004_AND_EXACT_APPROVED_INPUTS
+  E3-004_input_contract: VERIFIED_E3_001_PLUS_VERIFIED_E3_002_AND_E3_003_PHASE_A_PARAMETERIZED_PROTOCOL_CONTRACTS_NO_EXECUTION_READY_OR_APPROVED_QPA_PREREQUISITE
+  E3-005_input_contract: VERIFIED_E3_001_E3_002_PHASE_A_E3_004_AND_EXACT_VERIFIED_PHASE_B_WITH_APPROVED_QPA_LIMITS_AUTHORITIES_EVIDENCE_AND_FRESH_ADMISSION
+  E3-002: READY_FOR_REVIEW_NOT_VERIFIED_NOT_EXECUTION_READY
+  E3-003: READY_NOT_EXECUTED
+  E3-004: BACKLOG_NOT_BUILT
+  E3-005: BACKLOG_DO_NOT_RUN
+  E3-006: BACKLOG_DO_NOT_RUN
+  E3-007: BACKLOG
+  E3-008: BACKLOG
+  E3_gate: NOT_EVALUATED
+  run_admission: DO_NOT_RUN
+  AUTONOMY_ELIGIBLE: NOT_ELIGIBLE
+  AUTONOMOUS_BUILD_AUTHORIZED: false
+
+execution_counters:
+  technical_validation_runs: 0
+  model_benchmarks_run: 0
+  paid_api_calls: 0
+  credentials_accessed: 0
+  network_or_provider_calls: 0
+  external_effects: 0
+  model_role_assignments: 0
+  eligibility_verdicts_created: 0
+  application_code_files_created: 0
+  validation_harness_code_files_created: 0
+  autonomy_changes: 0
+  e4_actions: 0
+
+files_read:
+  - MASTER_OPERATING_PROMPT.md
+  - AGENTS.md
+  - README.md
+  - SECURITY.md
+  - 01_governance/PROJECT_STATE.yaml
+  - 01_governance/TASK_REGISTRY.yaml
+  - 01_governance/DECISION_LOG.md
+  - 01_governance/ASSUMPTION_REGISTER.md
+  - 01_governance/RISK_REGISTER.md
+  - 01_governance/MODEL_REGISTRY.yaml
+  - 03_product/ENGINEERING_PREVIEW_CORRECTNESS_CONTRACT.md
+  - 05_architecture/ENGINEERING_PREVIEW_ARCHITECTURE_REQUIREMENTS.md
+  - 05_architecture/ENGINEERING_PREVIEW_ARCHITECTURE_BASELINE.md
+  - 05_architecture/ENGINEERING_PREVIEW_E3_VALIDATION_OBLIGATIONS.md
+  - 05_architecture/adr/ADR-E2-001_SYSTEM_CLIENT_CORE_BOUNDARY.md
+  - 05_architecture/adr/ADR-E2-002_STATE_PERSISTENCE_HISTORY_PROJECTIONS_MIGRATION.md
+  - 05_architecture/adr/ADR-E2-003_ORCHESTRATION_OWNERSHIP_RECOVERY_IDEMPOTENCY.md
+  - 05_architecture/adr/ADR-E2-004_WORKSPACE_EXECUTION_ISOLATION_GIT_REMOTE_SEAM.md
+  - 05_architecture/adr/ADR-E2-005_CAPABILITY_APPROVAL_SECRET_EFFECT_RECONCILIATION.md
+  - 05_architecture/adr/ADR-E2-006_MODEL_PROVIDER_ROUTING_CONTEXT_BOUNDARY.md
+  - 05_architecture/adr/ADR-E2-007_VERIFICATION_EVIDENCE_ARTIFACT_INTEGRITY.md
+  - 05_architecture/adr/ADR-E2-008_OBSERVABILITY_AUDIT_METERING_FAILURE.md
+  - 05_architecture/adr/ADR-E2-009_LOCAL_PACKAGING_FUTURE_COMPATIBILITY.md
+  - 06_evaluation/ENGINEERING_PREVIEW_E3_PLAN.md
+  - 06_evaluation/ENGINEERING_PREVIEW_EVALUATION_SUITE.md
+  - 06_evaluation/e3_governance/E3_QUALIFICATION_AND_RUN_ADMISSION_POLICY.yaml
+  - 06_evaluation/e3_governance/E3_RUN_ADMISSION_MANIFEST.schema.yaml
+  - 10_checkpoints/stage_checkpoints/ENGINEERING_PREVIEW_V0_1_RELEASE_ACCEPTANCE.yaml
+  - 06_evaluation/technical_validation/E3_TECHNICAL_VALIDATION_PROTOCOLS.yaml
+  - 06_evaluation/technical_validation/E3V_E1_TRACEABILITY.csv
+  - 06_evaluation/technical_validation/E3_TECHNICAL_HARNESS_CONTRACT.md
+  - 99_handoffs/HANDOFF_TEMPLATE.yaml
+  - 99_handoffs/completed/E3-001_verifier_review.yaml
+  - 99_handoffs/completed/E3-002_handoff.yaml
+  - 99_handoffs/completed/E3-002_challenger_review.yaml
+
+files_created:
+  - 99_handoffs/completed/E3-002_fixer_handoff.yaml
+files_modified:
+  - 06_evaluation/technical_validation/E3_TECHNICAL_VALIDATION_PROTOCOLS.yaml
+  - 06_evaluation/technical_validation/E3V_E1_TRACEABILITY.csv
+  - 06_evaluation/technical_validation/E3_TECHNICAL_HARNESS_CONTRACT.md
+  - 01_governance/PROJECT_STATE.yaml
+  - 01_governance/TASK_REGISTRY.yaml
+  - 01_governance/RISK_REGISTER.md
+  - 99_handoffs/completed/E3-002_handoff.yaml
+files_deleted: []
+
+decisions_made:
+  - "PROPOSAL ONLY: E3-002-QPA-PROP-001 exact 1/3/2 values for Founder review; no approval claimed."
+  - "PROPOSAL ONLY: three technology-neutral candidate classes per E3V and selection criteria; no final mechanism selected."
+  - "PROTOCOL CLARIFICATION: finite candidate-envelope root-cause classification and two-phase freeze consistent with accepted E2/E3-001 authority."
+  - "No Founder, QPA approval, architecture, mechanism, support, run, model-role, eligibility, autonomy or implementation decision was made."
+assumptions_added: []
+risks_added_or_updated:
+  - R-032
+  - R-033
+  - R-035
+  - R-036
+
+tests_run:
+  - "ruby /private/tmp/e3_002_fixer_validate.rb"
+  - "git diff --check"
+  - "high-confidence secret-pattern scan over all eight changed paths"
+  - "merge-conflict-marker scan over all eight changed paths"
+test_results:
+  - "PASS 41980/41980 fixer-side assertions; 85 repository YAML files strict-parsed with duplicate-key rejection; 42 traceability CSV rows parsed; exact seven-protocol set; 70 AR references/62 unique; 39 ADR references/9 unique; canonical questions/properties/assumptions/hypotheses preserved."
+  - "PASS exact 149 selected plus 21 deferred = 170-case partition; exact 17 selected plus 13 deferred = 30 Git/effect partition; 18/11/23/16/9/16/8/EP-CTL-016 frozen-source coverage; all deferred group owner/prerequisite/mandatory/E3-role/current-effect fields present."
+  - "PASS exact QPA proposal 1/3/2 with one canonical Founder authority, all approved/authoritative values and every protocol retry/repetition/time/resource/cost limit null; 21 candidate classes; final mechanism NOT_SELECTED."
+  - >-
+    PASS finite outcome-reachability, acyclic connected phase/task dependency graphs, E3V-002 safety
+    surfaces, E3V-006 complete subject-writable filesystem/protected-entry surfaces, Phase A/Phase B
+    task contracts, frozen-source digests, exact allowed paths and no repository code. Named regression
+    checks PASS: E3V_SCOPE, CANONICAL_E3V_FIDELITY, PREREGISTRATION, QPA_BINDING,
+    NO_HIDDEN_THRESHOLD, OUTCOME_VOCABULARY, UNSUPPORTED_SCOPE_DISCIPLINE, SUPPORT_SCOPE,
+    E3V_001_PROTOCOL, E3V_002_PROTOCOL, E3V_002_SAFETY, E3V_003_PROTOCOL, E3V_004_PROTOCOL,
+    E3V_005_PROTOCOL, E3V_006_PROTOCOL, E3V_006_MARKER_ORACLE, E3V_007_PROTOCOL, VALIDATION_ORDER,
+    HARNESS_CONTRACT, SUBJECT_ORACLE_SEPARATION, ORACLE_ADEQUACY, AR_TRACE_DISCIPLINE,
+    HANDBACK_SET, HANDBACK_TRIGGER, HARD_FAILURE_MAPPING, CONTAMINATION_CONTROL, EVIDENCE_CONTRACT,
+    EVIDENCE_ADEQUACY, RUN_ADMISSION_BINDING, E3_005_INPUT_CONTRACT, E3_003_BOUNDARY,
+    NO_MECHANISM_SELECTION, TASK_STATE and NO_EXECUTION.
+  - "PASS git diff --check, secret-pattern scan and conflict-marker scan; all eight changed paths remain uncommitted."
+security_checks:
+  - "PASS_FIXER_STATIC_ONLY: E3V-006 names repository and non-repository writable filesystem classes including user-home dotfiles/tool state, pre-marker inventory, write-time deleted/rotated observation, inclusion/exclusion evidence, exact scoped claim boundary and fail-closure for relevant unobservable surfaces."
+  - "PASS_FIXER_STATIC_ONLY: synthetic marker, exact recipient, one use/no replay, approval/revocation, crash/replacement/reacquisition and WAITING_FOR_USER paths remain explicit; real_secret_or_credential_used=false."
+  - "PASS: high-confidence secret-pattern scan found zero matches in all changed paths; merge-conflict-marker scan found zero matches."
+  - NO_REAL_SECRET_CREDENTIAL_ACCOUNT_PROVIDER_NETWORK_OR_EXTERNAL_ACTION
+
+known_limitations:
+  - "The 1/3/2 QPA package is an unapproved author proposal. All authoritative values remain null."
+  - "Every protocol-owned retry/repetition/repeated-failure/time/output/process/disk/network/cost limit remains null until the designated Phase B proposal and approval/review lifecycle."
+  - "No exact mechanism, configuration, environment, host/client/support class, harness digest, selector order/seed, evidence destination or live lane is selected."
+  - "Phase A is not yet independently verified; Phase B does not exist; E3-004 is not built; no empirical feasibility/security/performance/architecture claim exists."
+unverified_claims:
+  - "All fixer dispositions and validation results require separate post-fix verification from repository bytes."
+  - "Every future positive E3V result, configuration-failure label, architecture handback, mechanism/support claim and QPA adequacy judgment remains unverified."
+blockers:
+  - SEPARATE_E3_002_POST_FIX_VERIFICATION_NOT_RUN
+  - E3_003_PHASE_A_NOT_AUTHORED_OR_VERIFIED
+  - E3_004_HARNESS_NOT_BUILT_OR_VERIFIED
+  - PHASE_B_EXACT_EXECUTION_BLOCK_NOT_FROZEN_OR_VERIFIED
+  - FOUNDER_E3_QPA_001_ACKNOWLEDGEMENT_AND_VALUE_APPROVAL_ABSENT
+  - ALL_AUTHORITATIVE_QPA_AND_PROTOCOL_LIMIT_VALUES_NULL
+  - RUN_ADMISSION_DO_NOT_RUN
+
+recommended_next_task: "MODE: VERIFY_TASK_E3-002"
+repository_commit_or_patch: "Uncommitted FIX_TASK_E3-002 patch against 4152f0d42922e5fdcd168e755aae94891e3dc8d9; leave uncommitted for Founder review."
